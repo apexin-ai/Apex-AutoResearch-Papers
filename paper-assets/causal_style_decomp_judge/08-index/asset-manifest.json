@@ -2,7 +2,7 @@
   "project": "causal_style_decomp_judge",
   "academic_record": {
     "date": "2026-05-25",
-    "record": "ROADMAP 记载 OpenReview 投稿已由运维人工完成，项目处于等待审稿状态。"
+    "record": "The ROADMAP records that the OpenReview submission was completed manually by operations and the project is awaiting review."
   },
   "paper_pdf": "paper.pdf",
   "tex_count": 11,
@@ -57,63 +57,63 @@
   "archive_error": null,
   "paper_sha256": "a5de390ec806593617839aadabe59b690403969d41ccc932c40f890f2d3cbd7d",
   "title": "The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation",
-  "archive_note": "归档扫描完成",
+  "archive_note": "Archive scan completed",
   "archive_rel": "causal_style_decomp_judge/workspace.tar.gz",
   "criteria": [
     {
-      "name": "论文与版本",
-      "status": "已有",
-      "evidence": "paper.pdf；11 个 TeX/Bib 源文件；28 个归档版本候选",
-      "gap": "投稿稿与公开修订稿的身份需作者确认；候选文件未自动认定为正式版本。",
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "paper.pdf; 11 TeX/Bib source files; 28 archive version candidates",
+      "gap": "The author must confirm which files are the submitted and public revision versions; candidates were not automatically designated as official versions.",
       "path": "01-manuscript/"
     },
     {
-      "name": "真实学术状态",
-      "status": "未确认",
-      "evidence": "截至 2026-05-25 的项目记录：ROADMAP 记载 OpenReview 投稿已由运维人工完成，项目处于等待审稿状态。 稿件封面标记：Anonymous ACL submission。",
-      "gap": "状态仅反映项目文件在该日期的记载；归档内未核实官方投稿回执、审稿/录用决定或发表记录。",
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "As of 2026-05-25, the project record states that the OpenReview submission was completed manually by operations and the project is awaiting review. Manuscript cover marker: Anonymous ACL submission.",
+      "gap": "This status reflects only the project files available on that date; official submission receipts, review/acceptance decisions, and publication records were not verified in the archive.",
       "path": "07-maintenance/source/ROADMAP.md"
     },
     {
-      "name": "AI / 人类贡献",
-      "status": "部分",
-      "evidence": "3 个角色/任务说明；对话中记录 user/assistant/tool 角色",
-      "gap": "角色标签不能确认真实人员身份、人工决策、修改归属或作者贡献声明。",
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "3 role/task descriptions; the conversations record user/assistant/tool roles",
+      "gap": "Role labels cannot verify real-person identity, human decisions, edit ownership, or author contribution statements.",
       "path": "02-contributions/"
     },
     {
-      "name": "生成轨迹",
-      "status": "已整理",
-      "evidence": "69 个对话 JSONL；432 个 worker 日志/结果；文本轨迹已打包",
-      "gap": "明显凭证已打码，图片等二进制载荷已省略；完整原文请查源归档。",
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "69 conversation JSONL files; 432 worker logs/results; text traces were packaged",
+      "gap": "Obvious credentials were redacted and binary payloads such as images were omitted; consult the source archive for the complete original.",
       "path": "05-generation-trace/trace-files.tar.gz"
     },
     {
-      "name": "复现代码",
-      "status": "已有",
-      "evidence": "51 个项目代码/命令文件；1 个依赖或环境清单",
-      "gap": "运行环境是否仍可安装、代码是否与主稿版本一一对应需复现验证。",
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "51 project code/command files; 1 dependency/environment manifests",
+      "gap": "Reproduction is needed to verify that the environment remains installable and that the code matches the manuscript version.",
       "path": "03-code/"
     },
     {
-      "name": "实验与环境",
-      "status": "部分",
-      "evidence": "38 个数据/结果文件；已收集数据集、配置和依赖清单",
-      "gap": "原始数据授权、硬件预算、失败运行完整性和跨环境复现需逐项确认。",
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "38 data/result files; datasets, configurations, and dependency manifests were collected",
+      "gap": "Data permissions, hardware budget, completeness of failed runs, and cross-environment reproduction require item-by-item verification.",
       "path": "04-experiments/"
     },
     {
-      "name": "验证证据",
-      "status": "部分",
-      "evidence": "18 份内部 review 报告；28 个审计/验证文件；来源身份未验证",
-      "gap": "不能据此标注人工核验、独立复现或公开外部评审已完成。",
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "18 internal review reports; 28 audit/validation files; source identity not verified",
+      "gap": "These files do not establish that human verification, independent reproduction, or public external review has been completed.",
       "path": "06-validation/"
     },
     {
-      "name": "维护规则",
-      "status": "部分",
-      "evidence": "0 个 provenance 文件；0 个投稿表单/清单/元数据文件；0 个许可文件；项目计划、路线图和问题记录已归档。参考文献文件见 01-manuscript/。",
-      "gap": "许可适用范围、已知问题关闭情况及完整修订历史仍需维护者确认。",
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "0 provenance files; 0 submission forms/checklists/metadata files; 0 license files; Project plans, roadmaps, and issue records are archived. See 01-manuscript/ for reference files.",
+      "gap": "The maintainer still needs to confirm license scope, closure of known issues, and the complete revision history.",
       "path": "07-maintenance/"
     }
   ]

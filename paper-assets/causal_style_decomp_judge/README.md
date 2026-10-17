@@ -1,40 +1,40 @@
 # The Likert Blindspot: Measurement-Mode Divergence in LLM Judge Style Evaluation
 
-项目目录：`causal_style_decomp_judge`
+Project directory: `causal_style_decomp_judge`
 
-## 资产审查矩阵
+## Asset review matrix
 
-| 要求 | 状态 | 已整理内容与证据 | 仍需确认 |
+| Requirement | Status | Organized contents and evidence | Still to verify |
 |---|---|---|---|
-| 论文与版本 | 已有 | paper.pdf；11 个 TeX/Bib 源文件；28 个归档版本候选 | 投稿稿与公开修订稿的身份需作者确认；候选文件未自动认定为正式版本。 |
-| 真实学术状态 | 未确认 | 截至 2026-05-25 的项目记录：ROADMAP 记载 OpenReview 投稿已由运维人工完成，项目处于等待审稿状态。 稿件封面标记：Anonymous ACL submission。 | 状态仅反映项目文件在该日期的记载；归档内未核实官方投稿回执、审稿/录用决定或发表记录。 |
-| AI / 人类贡献 | 部分 | 3 个角色/任务说明；对话中记录 user/assistant/tool 角色 | 角色标签不能确认真实人员身份、人工决策、修改归属或作者贡献声明。 |
-| 生成轨迹 | 已整理 | 69 个对话 JSONL；432 个 worker 日志/结果；文本轨迹已打包 | 明显凭证已打码，图片等二进制载荷已省略；完整原文请查源归档。 |
-| 复现代码 | 已有 | 51 个项目代码/命令文件；1 个依赖或环境清单 | 运行环境是否仍可安装、代码是否与主稿版本一一对应需复现验证。 |
-| 实验与环境 | 部分 | 38 个数据/结果文件；已收集数据集、配置和依赖清单 | 原始数据授权、硬件预算、失败运行完整性和跨环境复现需逐项确认。 |
-| 验证证据 | 部分 | 18 份内部 review 报告；28 个审计/验证文件；来源身份未验证 | 不能据此标注人工核验、独立复现或公开外部评审已完成。 |
-| 维护规则 | 部分 | 0 个 provenance 文件；0 个投稿表单/清单/元数据文件；0 个许可文件；项目计划、路线图和问题记录已归档。参考文献文件见 01-manuscript/。 | 许可适用范围、已知问题关闭情况及完整修订历史仍需维护者确认。 |
+| Manuscript and versions | Available | paper.pdf; 11 TeX/Bib source files; 28 archive version candidates | The author must confirm which files are the submitted and public revision versions; candidates were not automatically designated as official versions. |
+| Academic status | Unverified | As of 2026-05-25, the project record states that the OpenReview submission was completed manually by operations and the project is awaiting review. Manuscript cover marker: Anonymous ACL submission. | This status reflects only the project files available on that date; official submission receipts, review/acceptance decisions, and publication records were not verified in the archive. |
+| AI / human contribution | Partial | 3 role/task descriptions; the conversations record user/assistant/tool roles | Role labels cannot verify real-person identity, human decisions, edit ownership, or author contribution statements. |
+| Generation trace | Organized | 69 conversation JSONL files; 432 worker logs/results; text traces were packaged | Obvious credentials were redacted and binary payloads such as images were omitted; consult the source archive for the complete original. |
+| Reproduction code | Available | 51 project code/command files; 1 dependency/environment manifests | Reproduction is needed to verify that the environment remains installable and that the code matches the manuscript version. |
+| Experiments and environment | Partial | 38 data/result files; datasets, configurations, and dependency manifests were collected | Data permissions, hardware budget, completeness of failed runs, and cross-environment reproduction require item-by-item verification. |
+| Validation evidence | Partial | 18 internal review reports; 28 audit/validation files; source identity not verified | These files do not establish that human verification, independent reproduction, or public external review has been completed. |
+| Maintenance | Partial | 0 provenance files; 0 submission forms/checklists/metadata files; 0 license files; Project plans, roadmaps, and issue records are archived. See 01-manuscript/ for reference files. | The maintainer still needs to confirm license scope, closure of known issues, and the complete revision history. |
 
-## 已整理的文件夹
+## Organized directories
 
-- `01-manuscript/`：当前论文 PDF、LaTeX 源文件、引用和排版资源。
-- `02-contributions/`：Agent 角色说明及人机贡献审查备注。
-- `03-code/`：项目代码、图表代码和运行环境清单。
-- `04-experiments/`：数据、结果表、分析产物和相关说明。
-- `05-generation-trace/`：脱敏后的对话、工具调用、worker 日志与循环笔记压缩包；附件二进制载荷省略。
-- `06-validation/`：内部 review 报告和审查状态文件。
-- `07-maintenance/`：计划、provenance、路线图、引用和许可文件。
-- `08-index/`：原始归档路径、版本候选和每类资产清单。
+- `01-manuscript/`: Current paper PDF, LaTeX source, references, and typesetting assets.
+- `02-contributions/`: Agent role descriptions and human/AI contribution review notes.
+- `03-code/`: Project code, figure-generation code, and environment manifests.
+- `04-experiments/`: Data, result tables, analysis artifacts, and related notes.
+- `05-generation-trace/`: Redacted conversation, tool-call, worker-log, and loop-note archive; binary attachment payloads omitted.
+- `06-validation/`: Internal review reports and audit status files.
+- `07-maintenance/`: Plans, provenance, roadmaps, references, and license files.
+- `08-index/`: Source archive paths, version candidates, and per-category asset manifests.
 
-## 重要判读
+## Important interpretation
 
-- 主稿标记：`Anonymous ACL submission`。这只是稿件封面文字，不单独证明已投稿、录用或公开发表。
-- 学术状态记录（截至 2026-05-25）：ROADMAP 记载 OpenReview 投稿已由运维人工完成，项目处于等待审稿状态。 官方投稿回执、审稿决定或发表记录未在此归档中核实。来源：`07-maintenance/source/ROADMAP.md`。
-- 原始归档：`causal_style_decomp_judge/workspace.tar.gz`。生成轨迹副本对明显凭证字段做了脱敏并省略二进制附件载荷；源归档本身未修改。
-- 归档读取状态：`归档扫描完成`。
+- Manuscript marker: `Anonymous ACL submission`. This is cover text only and does not by itself establish submission, acceptance, or publication.
+- Academic status snapshot (2026-05-25): The ROADMAP records that the OpenReview submission was completed manually by operations and the project is awaiting review. Official submission receipts, review decisions, or publication records were not verified in this archive. Source: `07-maintenance/source/ROADMAP.md`.
+- Source archive: `causal_style_decomp_judge/workspace.tar.gz`. The generation-trace copy redacts obvious credential fields and omits binary attachment payloads; the source archive itself was not modified.
+- Archive read status: `Archive scan completed`.
 
-## 目录计数
+## Directory counts
 
-源码文件 51 个；实验数据/结果文件 38 个；内部评审报告 18 份；审计/验证文件 28 个；对话记录 69 个；worker 日志/结果 432 个；主 PDF 20 页。
+51 source files; 38 experiment data/result files; 18 internal review reports; 28 audit/validation files; 69 conversation records; 432 worker logs/results; main PDF (20 pages).
 
-清单按文件名和归档路径整理。证据文件的存在不等同于实验独立复现或外部评审完成。
+Manifests are organized by filename and archive path. The presence of evidence files does not establish independent reproduction or completion of external peer review.

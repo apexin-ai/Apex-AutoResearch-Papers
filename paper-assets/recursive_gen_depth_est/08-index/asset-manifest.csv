@@ -1,4 +1,4 @@
-﻿类别,源归档路径,原始字节,整理后路径,整理后字节
+﻿Category,Source archive path,Original bytes,Organized path,Organized bytes
 03-code,figures/paper/fig_problem_illustration.py,8714,03-code/source/figures/paper/fig_problem_illustration.py,8714
 03-code,figures/paper/fig_confusion_matrix.py,1996,03-code/source/figures/paper/fig_confusion_matrix.py,1996
 03-code,figures/paper/gen_fig_auc_decay_v3.py,3419,03-code/source/figures/paper/gen_fig_auc_decay_v3.py,3419

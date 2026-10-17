@@ -1,4 +1,4 @@
-﻿类别,源归档路径,原始字节,整理后路径,整理后字节
+﻿Category,Source archive path,Original bytes,Organized path,Organized bytes
 03-code,figures/paper/gen_fig1.py,4624,03-code/source/figures/paper/gen_fig1.py,4624
 03-code,figures/paper/gen_fig_jaccard_hierarchy.py,2896,03-code/source/figures/paper/gen_fig_jaccard_hierarchy.py,2896
 03-code,figures/paper/gen_fig5_per_example_bars.py,2081,03-code/source/figures/paper/gen_fig5_per_example_bars.py,2081

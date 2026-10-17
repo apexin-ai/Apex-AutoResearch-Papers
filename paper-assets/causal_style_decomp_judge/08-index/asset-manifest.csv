@@ -1,4 +1,4 @@
-﻿类别,源归档路径,原始字节,整理后路径,整理后字节
+﻿Category,Source archive path,Original bytes,Organized path,Organized bytes
 03-code,docs/paper/figures/gen_power_curve.py,6197,03-code/source/docs/paper/figures/gen_power_curve.py,6197
 01-manuscript/source,docs/paper/figures/dag_diagram.pdf,2833091,01-manuscript/source/source/docs/paper/figures/dag_diagram.pdf,2833091
 01-manuscript/source,docs/paper/figures/dag_diagram.png,2761312,01-manuscript/source/source/docs/paper/figures/dag_diagram.png,2761312

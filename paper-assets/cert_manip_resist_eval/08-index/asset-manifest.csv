@@ -1,4 +1,4 @@
-﻿类别,源归档路径,原始字节,整理后路径,整理后字节
+﻿Category,Source archive path,Original bytes,Organized path,Organized bytes
 03-code,scripts/run_aggregation_loglog.py,16156,03-code/source/scripts/run_aggregation_loglog.py,16156
 03-code,scripts/run_pool_a_mde.py,18168,03-code/source/scripts/run_pool_a_mde.py,18168
 03-code,scripts/run_fp16_attack_eval.py,22209,03-code/source/scripts/run_fp16_attack_eval.py,22209

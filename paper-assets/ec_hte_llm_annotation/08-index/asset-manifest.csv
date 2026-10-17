@@ -1,4 +1,4 @@
-﻿类别,源归档路径,原始字节,整理后路径,整理后字节
+﻿Category,Source archive path,Original bytes,Organized path,Organized bytes
 07-maintenance,docs/arr_checklist_reference.md,9696,07-maintenance/source/docs/arr_checklist_reference.md,9696
 06-validation,docs/_last_visual_review.json,90,06-validation/source/docs/_last_visual_review.json,90
 01-manuscript/source,docs/paper/figures/policy_reversal_zone.png,154202,01-manuscript/source/source/docs/paper/figures/policy_reversal_zone.png,154202

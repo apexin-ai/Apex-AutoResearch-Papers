@@ -1,4 +1,4 @@
-﻿类别,源归档路径,原始字节,整理后路径,整理后字节
+﻿Category,Source archive path,Original bytes,Organized path,Organized bytes
 03-code,figures/paper/gen_fig_compression_curve.py,4352,03-code/source/figures/paper/gen_fig_compression_curve.py,4352
 03-code,figures/paper/gen_fig_architecture.py,6964,03-code/source/figures/paper/gen_fig_architecture.py,6964
 03-code,figures/paper/gen_fig_cliff_edge.py,3847,03-code/source/figures/paper/gen_fig_cliff_edge.py,3847

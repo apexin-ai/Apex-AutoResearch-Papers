@@ -1,4 +1,4 @@
-﻿类别,源归档路径,原始字节,整理后路径,整理后字节
+﻿Category,Source archive path,Original bytes,Organized path,Organized bytes
 03-code,figures/paper/create_problem_illustration.py,7996,03-code/source/figures/paper/create_problem_illustration.py,7996
 03-code,scripts/submit_exp012.sh,307,03-code/source/scripts/submit_exp012.sh,307
 03-code,scripts/run_gemini_flash_fewrel.py,19628,03-code/source/scripts/run_gemini_flash_fewrel.py,19628
