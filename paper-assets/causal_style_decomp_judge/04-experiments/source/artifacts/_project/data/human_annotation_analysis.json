@@ -1,0 +1,244 @@
+{
+  "gate_validation": {
+    "annotator_1": {
+      "precision": {
+        "value": 0.9857,
+        "n": 70,
+        "yes": 69,
+        "ci_95": [
+          0.9234,
+          0.9975
+        ]
+      },
+      "false_rejection_rate": {
+        "value": 1.0,
+        "n": 30,
+        "yes": 30,
+        "ci_95": [
+          0.8865,
+          1
+        ]
+      },
+      "style_change_rate_nli_pass": {
+        "value": 0.4857,
+        "n": 70,
+        "yes": 34,
+        "ci_95": [
+          0.3725,
+          0.6005
+        ]
+      }
+    },
+    "annotator_2": {
+      "precision": {
+        "value": 0.9857,
+        "n": 70,
+        "yes": 69,
+        "ci_95": [
+          0.9234,
+          0.9975
+        ]
+      },
+      "false_rejection_rate": {
+        "value": 0.9333,
+        "n": 30,
+        "yes": 28,
+        "ci_95": [
+          0.7868,
+          0.9815
+        ]
+      },
+      "style_change_rate_nli_pass": {
+        "value": 0.6571,
+        "n": 70,
+        "yes": 46,
+        "ci_95": [
+          0.5404,
+          0.7575
+        ]
+      }
+    }
+  },
+  "agreement": {
+    "preserves_meaning": {
+      "kappa_all": -0.0152,
+      "kappa_nli_pass": -0.0145,
+      "kappa_nli_fail": 0.0,
+      "ac1_all": 0.9584,
+      "agreement_rate": 0.96
+    },
+    "style_change_detected": {
+      "kappa_all": 0.1383,
+      "ac1_all": 0.2057,
+      "agreement_rate": 0.58
+    }
+  },
+  "disagreements": [
+    {
+      "sample_id": "S073",
+      "axis": "formality",
+      "source_id": "mvp_0023",
+      "nli_pass": "true",
+      "nli_score": "0.9903",
+      "a1_preserves_meaning": "no",
+      "a2_preserves_meaning": "yes",
+      "a1_notes": "",
+      "a2_notes": ""
+    },
+    {
+      "sample_id": "S098",
+      "axis": "formality",
+      "source_id": "mvp_0006",
+      "nli_pass": "false",
+      "nli_score": "0.9947",
+      "a1_preserves_meaning": "yes",
+      "a2_preserves_meaning": "no",
+      "a1_notes": "",
+      "a2_notes": ""
+    },
+    {
+      "sample_id": "S063",
+      "axis": "formality",
+      "source_id": "alpacaeval_029",
+      "nli_pass": "true",
+      "nli_score": "0.9902",
+      "a1_preserves_meaning": "yes",
+      "a2_preserves_meaning": "no",
+      "a1_notes": "",
+      "a2_notes": ""
+    },
+    {
+      "sample_id": "S136",
+      "axis": "verbosity",
+      "source_id": "alpacaeval_029",
+      "nli_pass": "false",
+      "nli_score": "0.8844",
+      "a1_preserves_meaning": "yes",
+      "a2_preserves_meaning": "no",
+      "a1_notes": "",
+      "a2_notes": ""
+    }
+  ],
+  "comparison_with_50pair": {
+    "previous_50": {
+      "a1_precision": 1.0,
+      "a2_precision": 0.84,
+      "kappa_pm": 0.44,
+      "ac1_pm": 0.65
+    },
+    "current_100": {
+      "a1_precision": 0.9857,
+      "a2_precision": 0.9857,
+      "kappa_pm": -0.0152,
+      "ac1_pm": 0.9584
+    }
+  },
+  "disagreement_summary": {
+    "total": 4,
+    "by_axis": {
+      "formality": 3,
+      "verbosity": 1
+    },
+    "by_nli_pass": {
+      "nli_pass": 2,
+      "nli_fail": 2
+    }
+  },
+  "sensitivity_flagged_pairs": [
+    {
+      "sample_id": "S073",
+      "axis": "formality",
+      "source_id": "mvp_0023",
+      "nli_score": "0.9903",
+      "a1": "no",
+      "a2": "yes"
+    },
+    {
+      "sample_id": "S063",
+      "axis": "formality",
+      "source_id": "alpacaeval_029",
+      "nli_score": "0.9902",
+      "a1": "yes",
+      "a2": "no"
+    }
+  ],
+  "sensitivity_analysis": {
+    "excluded_pairs": ["mvp_0023", "alpacaeval_029"],
+    "n_excluded": 2,
+    "qwen3_32b_formality_scaled": {
+      "dataset": "scaled (n=355)",
+      "before": {
+        "n": 355,
+        "bt_pct": 67.46,
+        "bt_p": 0.0001,
+        "bt_ci": [63.7, 71.3],
+        "likert_d": -0.0393,
+        "likert_p": 0.5999,
+        "likert_ate": -0.0592,
+        "style_or": 2.1502,
+        "style_or_p": 0.0001,
+        "style_or_ci": [1.4625, 3.1614]
+      },
+      "after": {
+        "n": 353,
+        "bt_pct": 67.56,
+        "bt_p": 0.0001,
+        "bt_ci": [63.7, 71.2],
+        "likert_d": -0.0376,
+        "likert_p": 0.626,
+        "likert_ate": -0.0567,
+        "style_or": 2.1497,
+        "style_or_p": 0.0001,
+        "style_or_ci": [1.457, 3.1717]
+      },
+      "bt_change_pct": 0.15,
+      "likert_d_change_pct": 4.33,
+      "style_or_change_pct": 0.02
+    },
+    "qwen3_32b_formality_llmbar": {
+      "dataset": "LLMBar (n=88)",
+      "excluded_in_this_dataset": ["mvp_0023"],
+      "note": "alpacaeval_029 not in LLMBar dataset",
+      "before": {
+        "n": 88,
+        "bt_pct": 66.47,
+        "bt_p": 0.0001,
+        "likert_d": 0.1441,
+        "likert_p": 0.4062,
+        "style_or": 4.2008,
+        "style_or_p": 0.0002
+      },
+      "after": {
+        "n": 87,
+        "bt_pct": 66.66,
+        "bt_p": 0.0001,
+        "likert_d": 0.147,
+        "likert_p": 0.4062,
+        "style_or": 4.3576,
+        "style_or_p": 0.0001
+      },
+      "bt_change_pct": 0.29,
+      "style_or_change_pct": 3.73
+    },
+    "verbosity_reference": {
+      "note": "No flagged pairs in verbosity - reported for completeness",
+      "qwen3_32b": {
+        "n": 86,
+        "bt_pct": 77.32,
+        "bt_p": 0.0001,
+        "likert_d": 0.0557,
+        "likert_p": 0.3949,
+        "style_or": 13.1014
+      },
+      "gpt4o": {
+        "n": 86,
+        "bt_pct": 76.02,
+        "bt_p": 0.0001,
+        "likert_d": 0.078,
+        "likert_p": 0.4033,
+        "style_or": 11.2056
+      }
+    },
+    "conclusion": "Robustness confirmed. Excluding 2 annotator-flagged NLI-pass pairs changes BT% by <0.3% relative, Style OR by <4% relative, Likert d by <5% relative. All significance levels unchanged. Effect sizes are insensitive to these borderline pairs."
+  }
+}

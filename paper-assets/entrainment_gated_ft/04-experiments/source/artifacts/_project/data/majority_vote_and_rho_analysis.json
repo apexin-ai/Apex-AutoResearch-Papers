@@ -1,0 +1,112 @@
+{
+  "task_1_majority_vote": {
+    "LAMBADA": {
+      "N": 5153,
+      "majority_vote_acc": 0.5121,
+      "mean_individual_acc": 0.51,
+      "mv_vs_mean_pp": 0.21,
+      "agreement_pct": 70.41,
+      "disagreement_pct": 29.59,
+      "unanimous_correct": 1860,
+      "two_of_three": 779,
+      "one_of_three": 746,
+      "unanimous_wrong": 1768,
+      "individual_accs": {
+        "GDN": 0.5133,
+        "RetNet": 0.5024,
+        "HGRN2": 0.5143
+      },
+      "best_single": "HGRN2",
+      "best_single_acc": 0.5143,
+      "mv_vs_best_pp": -0.21
+    },
+    "HellaSwag (acc_norm)": {
+      "N": 10042,
+      "majority_vote_acc": 0.5965,
+      "mean_individual_acc": 0.5949,
+      "mv_vs_mean_pp": 0.16,
+      "agreement_pct": 84.95,
+      "disagreement_pct": 15.05,
+      "unanimous_correct": 5211,
+      "two_of_three": 779,
+      "one_of_three": 732,
+      "unanimous_wrong": 3320
+    },
+    "ARC-Easy": {
+      "N": 2376,
+      "majority_vote_acc": 0.7096,
+      "mean_individual_acc": 0.7083,
+      "mv_vs_mean_pp": 0.13,
+      "agreement_pct": 79.0,
+      "disagreement_pct": 21.0,
+      "unanimous_correct": 1432,
+      "two_of_three": 254,
+      "one_of_three": 245,
+      "unanimous_wrong": 445,
+      "individual_accs": {
+        "GDN": 0.7083,
+        "RetNet": 0.6961,
+        "HGRN2": 0.7205
+      },
+      "best_single": "HGRN2",
+      "best_single_acc": 0.7205,
+      "mv_vs_best_pp": -1.09
+    },
+    "BoolQ": {
+      "N": 3270,
+      "majority_vote_acc": 0.633,
+      "mean_individual_acc": 0.6131,
+      "mv_vs_mean_pp": 1.99,
+      "agreement_pct": 54.65,
+      "disagreement_pct": 45.35,
+      "unanimous_correct": 1231,
+      "two_of_three": 839,
+      "one_of_three": 644,
+      "unanimous_wrong": 556
+    }
+  },
+  "task_2_rho_sigma_j": {
+    "sigma_values": [
+      0.016238,
+      0.013596,
+      0.006055,
+      0.004943
+    ],
+    "j_helped_values": [
+      0.09452,
+      0.09509,
+      0.09223,
+      0.10018
+    ],
+    "j_hurt_values": [
+      0.08733,
+      0.08087,
+      0.0988,
+      0.09281
+    ],
+    "j_mean_values": [
+      0.090925,
+      0.08798,
+      0.095515,
+      0.096495
+    ],
+    "rho_sigma_j_helped": {
+      "rho": -0.3999999999999999,
+      "p_exact": 0.75
+    },
+    "rho_sigma_j_hurt": {
+      "rho": -0.6000000000000001,
+      "p_exact": 0.4166666666666667
+    },
+    "rho_sigma_j_mean": {
+      "rho": -0.8,
+      "p_exact": 0.3333333333333333
+    },
+    "sigma_range_pct": 106.7,
+    "j_helped_range_pct": 8.3,
+    "floor_effect_refutation": {
+      "mean_j_obs_over_j_max_pct": 10.875,
+      "conclusion": "J_obs is ~11% of theoretical J_max. Low J is genuine architecture specificity, not floor effect."
+    }
+  }
+}

@@ -1,0 +1,6 @@
+\section{Conclusion}\label{sec:conclusion}
+
+Standard confusion-matrix correction can reverse causal conclusions when misclassification rates vary across subgroups.
+We derived an exact bias identity ($R^2 \geq 0.97$), validated across 11 LLM--dataset combinations spanning nine LLMs, that yields a practitioner-facing protocol: estimate per-subgroup error rates, apply the diagnostic (Proposition~\ref{prop:debiasing_hurts}), and if $\Delta\pi > 0.15$, $n_{\text{expert}} \geq 250$, and $\mathrm{FPR}_s, \mathrm{FNR}_s < 0.50$, use EC-HTE; otherwise retain global correction (Section~\ref{sec:diagnostic}).
+Aggregate annotation accuracy is insufficient for causal validity---two annotators with identical overall accuracy can yield opposite conclusions if their errors differ across subgroups ($\Delta\pi = 0.117$ in our hate speech case study).
+We release an open-source implementation to facilitate adoption.

@@ -1,0 +1,7 @@
+{
+  "baseline_128tokens": {"mean_ms": 164.33, "std_ms": 3.04, "speedup": "1.00x"},
+  "smart_compress_m32": {"mean_ms": 154.78, "std_ms": 5.36, "speedup": "1.06x"},
+  "smart_compress_m64": {"mean_ms": 156.16, "std_ms": 6.37, "speedup": "1.05x"},
+  "n_runs": 100,
+  "note": "Speedup modest (~6%) because SmolVLA bottleneck is iterative denoising loop, not vision token prefix computation"
+}

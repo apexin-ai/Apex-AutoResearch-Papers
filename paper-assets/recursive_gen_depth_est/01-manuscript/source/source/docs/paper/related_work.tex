@@ -1,0 +1,18 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Model Collapse Theory.}
+Recursive training on model outputs erodes distributional tails \cite{shumailov2024_nature}, an effect formalized as exponential tail decay via scaling laws \cite{dohmatob2024_tale_of_tails,seddik2024synthetic} and extended to autophagous loops in the MAD framework \cite{alemohammad2024_mad} and Markovian generation chains \cite{geng2026_markovian}.
+\citet{bertrand2024_stability} identify convergence to a fixed point under mixed real-synthetic retraining (grounding our EDD ceiling, \S\ref{sec:method:theory}); refinements address generalization-to-memorization transitions \cite{shi2025_closer_look} and broader model classes \cite{dohmatob2025_strong_collapse}.
+\citet{schaeffer2025} argue that ``model collapse'' conflates multiple phenomena; we respond by operationalizing tail-erosion into a deployable ordinal classifier that reveals strategy-dependent trajectories the theory does not predict.
+All assume depth is known a priori; we address the inverse problem of estimating depth from text alone.
+
+\paragraph{AI Text Detection.}
+The detection literature \cite{wu2025_detection_survey} spans statistical \cite{mitchell2023_detectgpt,fast_detectgpt2024,binoculars2024,gehrmann2019_gltr,verma2024_ghostbuster}, geometric \cite{tulchinskii2023_intrinsic_dim}, and watermarking \cite{kirchenbauer2023_watermark} methods, with known limits \cite{sadasivan2023_paraphrase,pudasaini2026_detection_fails}.
+\citet{bevendorff2025_two_paradigms} distinguish attribution from verification; all remain binary, whereas our approach outputs ordinal depth labels along a third axis, recursive iteration.
+
+\paragraph{Adjacent Tasks and Methods.}
+Training data extraction \cite{carlini2021_extracting} motivates provenance pipelines; Min-K\% Prob \cite{shi2024_minkprob}, Datamodels \cite{ilyas2022datamodels}, watermarks \cite{christ2024_undetectable}, and TROVE \cite{zhu2025_trove} address membership inference or source attribution but remain binary or cooperation-dependent.
+EditLens \cite{editlens2026} estimates editing extent; \citet{uchendu2020_attribution} classify which model generated text; \citet{mohamed2025_broken_telephone} characterize how text degrades under iterative generation; none address ordinal depth.
+CORAL \cite{coral2020} and CLOC \cite{cloc2025} enforce ordinal rank consistency; we adopt both as baselines (\S\ref{sec:generalization}).
+Decoding strategies shape text statistics \cite{holtzman2020_nucleus,finlayson2024_closing,garces_arias2025_decoding_decoded,wiher2022_decoding,basu2021_mirostat}; our atlas confirms they induce qualitatively different degradation trajectories (\S\ref{sec:atlas}).

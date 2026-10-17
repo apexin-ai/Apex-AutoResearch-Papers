@@ -1,0 +1,42 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:16:25.874734+00:00",
+  "completed_at": "2026-05-25T21:20:25.257490+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页为纯文本（Title/Abstract/Intro），无视觉锚点。Figure 1 出现在 page 2 顶部，位置优秀，锚定效应及时——审稿人翻到第二页即看到完整的 pipeline 概览图，能快速理解核心 idea。不构成问题，仅记录。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 的 pipeline 图使用红色文字标注 \"Sign Reversal: 14.9% of configs\" 并用绿色/蓝色区分标准流程与 EC-HTE 流程。红-绿对比对红绿色盲用户存在辨识风险。建议改用 orange/blue 或添加纹理/图案区分。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 3（bias amplification heatmap）内部注释文字 \"debiasing helps\" / \"debiasing hurts\" 字号偏小（约为正文 60%），在打印或缩放阅读时可能不易辨认。建议将注释文字放大至正文 70% 以上。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 5 中 \"Max Direct = 0.003\" 注释和虚线标签较密集，整体略显拥挤。Sign reversal rate 曲线的注释可考虑精简或移至 caption。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 17",
+      "message": "附录 Table 9（bias identity predictions under asymmetric misclassification）行列数多、字号较小，阅读体验偏密。作为附录可接受，但若审稿人需要细看会有些吃力。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 31",
+      "message": "末页（最后一页附录）内容约占页面 2/3，底部约 1/3 空白。包含 \"Use of AI Assistants\" 声明段落。作为附录最后一页可接受。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 0,
+    "info": 6
+  }
+}

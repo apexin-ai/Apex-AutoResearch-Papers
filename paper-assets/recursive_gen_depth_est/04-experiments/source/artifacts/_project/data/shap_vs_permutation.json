@@ -1,0 +1,6 @@
+See full data on remote server: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/shap_vs_permutation.json
+Key results - Spearman rho per cell:
+  pythia_nucleus095: 0.749, pythia_temp09: 0.890, pythia_topk50: 0.809
+  gpt2xl_nucleus095: 0.788, gpt2xl_temp09: 0.879, gpt2xl_topk50: 0.916
+  olmo_nucleus095: 0.802, olmo_temp09: 0.784, olmo_topk50: 0.856
+All p-values < 0.001. p90_ppl and var_surprisal always top-2 in both SHAP and permutation.

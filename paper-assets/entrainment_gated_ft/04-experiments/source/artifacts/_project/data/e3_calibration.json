@@ -1,0 +1,107 @@
+{
+  "lambada": {
+    "GDN": {
+      "pure": {"ECE": 0.197997, "MCE": 0.528616, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.353177, "mean_accuracy": 0.543373},
+      "h24-1": {"ECE": 0.200245, "MCE": 0.52529, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.34723, "mean_accuracy": 0.53988},
+      "h12-1": {"ECE": 0.210132, "MCE": 0.524013, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.330907, "mean_accuracy": 0.535804},
+      "h6-1": {"ECE": 0.204859, "MCE": 0.535991, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.308102, "mean_accuracy": 0.509606},
+      "h3-1": {"ECE": 0.222327, "MCE": 0.559606, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.298592, "mean_accuracy": 0.513293}
+    },
+    "RetNet": {
+      "pure": {"ECE": 0.232561, "MCE": 0.541981, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.287444, "mean_accuracy": 0.517369},
+      "h24-1": {"ECE": 0.231751, "MCE": 0.558766, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.288042, "mean_accuracy": 0.515234},
+      "h12-1": {"ECE": 0.233185, "MCE": 0.556346, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.278102, "mean_accuracy": 0.506695},
+      "h6-1": {"ECE": 0.227584, "MCE": 0.558434, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.269636, "mean_accuracy": 0.496798},
+      "h3-1": {"ECE": 0.223559, "MCE": 0.561299, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.279566, "mean_accuracy": 0.502426}
+    },
+    "HGRN2": {
+      "pure": {"ECE": 0.235952, "MCE": 0.593311, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.250293, "mean_accuracy": 0.48399},
+      "h24-1": {"ECE": 0.238096, "MCE": 0.586112, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.262369, "mean_accuracy": 0.499903},
+      "h12-1": {"ECE": 0.23333, "MCE": 0.562758, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.272398, "mean_accuracy": 0.503202},
+      "h6-1": {"ECE": 0.23962, "MCE": 0.573124, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.272876, "mean_accuracy": 0.511159},
+      "h3-1": {"ECE": 0.235154, "MCE": 0.552255, "n_bins": 15, "n_samples": 5153, "mean_confidence": 0.281932, "mean_accuracy": 0.514264}
+    }
+  },
+  "hellaswag": {
+    "GDN": {
+      "pure": {"ECE": 0.422236, "MCE": 0.648996, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.278911, "mean_accuracy": 0.607648},
+      "h24-1": {"ECE": 0.418163, "MCE": 0.645754, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.278586, "mean_accuracy": 0.597391},
+      "h12-1": {"ECE": 0.423396, "MCE": 0.644996, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.278893, "mean_accuracy": 0.610137},
+      "h6-1": {"ECE": 0.420375, "MCE": 0.646724, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.278461, "mean_accuracy": 0.605557},
+      "h3-1": {"ECE": 0.421453, "MCE": 0.649662, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.277882, "mean_accuracy": 0.603167}
+    },
+    "RetNet": {
+      "pure": {"ECE": 0.410003, "MCE": 0.646956, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.275283, "mean_accuracy": 0.579865},
+      "h24-1": {"ECE": 0.406547, "MCE": 0.642508, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.275492, "mean_accuracy": 0.582155},
+      "h12-1": {"ECE": 0.41004, "MCE": 0.642903, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.27577, "mean_accuracy": 0.588229},
+      "h6-1": {"ECE": 0.412294, "MCE": 0.643956, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.275768, "mean_accuracy": 0.584944},
+      "h3-1": {"ECE": 0.409516, "MCE": 0.649774, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.275496, "mean_accuracy": 0.577773}
+    },
+    "HGRN2": {
+      "pure": {"ECE": 0.416473, "MCE": 0.646822, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.276629, "mean_accuracy": 0.598984},
+      "h24-1": {"ECE": 0.41762, "MCE": 0.645189, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.276798, "mean_accuracy": 0.602071},
+      "h12-1": {"ECE": 0.418623, "MCE": 0.649696, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.277256, "mean_accuracy": 0.606552},
+      "h6-1": {"ECE": 0.421337, "MCE": 0.647265, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.277241, "mean_accuracy": 0.606155},
+      "h3-1": {"ECE": 0.418587, "MCE": 0.646875, "n_bins": 15, "n_samples": 10042, "mean_confidence": 0.27696, "mean_accuracy": 0.603964}
+    }
+  },
+  "piqa": {
+    "GDN": {
+      "pure": {"ECE": 0.057539, "MCE": 0.432507, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.716614, "mean_accuracy": 0.723613},
+      "h24-1": {"ECE": 0.055222, "MCE": 0.435268, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.72063, "mean_accuracy": 0.729053},
+      "h12-1": {"ECE": 0.057481, "MCE": 0.434601, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.716283, "mean_accuracy": 0.725789},
+      "h6-1": {"ECE": 0.053918, "MCE": 0.428728, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.71722, "mean_accuracy": 0.73123},
+      "h3-1": {"ECE": 0.058107, "MCE": 0.433528, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.723252, "mean_accuracy": 0.737758}
+    },
+    "RetNet": {
+      "pure": {"ECE": 0.059113, "MCE": 0.431537, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.71372, "mean_accuracy": 0.726333},
+      "h24-1": {"ECE": 0.061038, "MCE": 0.431649, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.712732, "mean_accuracy": 0.723613},
+      "h12-1": {"ECE": 0.058419, "MCE": 0.434459, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.71315, "mean_accuracy": 0.726333},
+      "h6-1": {"ECE": 0.061326, "MCE": 0.432038, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.710042, "mean_accuracy": 0.725245},
+      "h3-1": {"ECE": 0.061668, "MCE": 0.432063, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.717151, "mean_accuracy": 0.729053}
+    },
+    "HGRN2": {
+      "pure": {"ECE": 0.063714, "MCE": 0.429634, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.720688, "mean_accuracy": 0.73449},
+      "h24-1": {"ECE": 0.059561, "MCE": 0.431293, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.72284, "mean_accuracy": 0.736126},
+      "h12-1": {"ECE": 0.057827, "MCE": 0.434668, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.721088, "mean_accuracy": 0.737214},
+      "h6-1": {"ECE": 0.062795, "MCE": 0.434009, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.719639, "mean_accuracy": 0.733406},
+      "h3-1": {"ECE": 0.057781, "MCE": 0.430787, "n_bins": 15, "n_samples": 1838, "mean_confidence": 0.715676, "mean_accuracy": 0.730141}
+    }
+  },
+  "arc_easy": {
+    "GDN": {
+      "pure": {"ECE": 0.11344, "MCE": 0.432644, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.657157, "mean_accuracy": 0.712121},
+      "h24-1": {"ECE": 0.113957, "MCE": 0.429874, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.656465, "mean_accuracy": 0.709175},
+      "h12-1": {"ECE": 0.11132, "MCE": 0.433438, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.651902, "mean_accuracy": 0.699495},
+      "h6-1": {"ECE": 0.109824, "MCE": 0.433193, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.667127, "mean_accuracy": 0.717593},
+      "h3-1": {"ECE": 0.108049, "MCE": 0.433976, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.66313, "mean_accuracy": 0.708333}
+    },
+    "RetNet": {
+      "pure": {"ECE": 0.111098, "MCE": 0.432719, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.655984, "mean_accuracy": 0.712963},
+      "h24-1": {"ECE": 0.114858, "MCE": 0.436558, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.654835, "mean_accuracy": 0.708754},
+      "h12-1": {"ECE": 0.1091, "MCE": 0.433557, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.667637, "mean_accuracy": 0.720118},
+      "h6-1": {"ECE": 0.11907, "MCE": 0.431902, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.658934, "mean_accuracy": 0.718013},
+      "h3-1": {"ECE": 0.113186, "MCE": 0.430577, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.644391, "mean_accuracy": 0.696128}
+    },
+    "HGRN2": {
+      "pure": {"ECE": 0.11693, "MCE": 0.429745, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.659359, "mean_accuracy": 0.712963},
+      "h24-1": {"ECE": 0.11361, "MCE": 0.434564, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.674851, "mean_accuracy": 0.730219},
+      "h12-1": {"ECE": 0.117436, "MCE": 0.433307, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.673238, "mean_accuracy": 0.733165},
+      "h6-1": {"ECE": 0.115392, "MCE": 0.431688, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.677841, "mean_accuracy": 0.741162},
+      "h3-1": {"ECE": 0.113474, "MCE": 0.430589, "n_bins": 15, "n_samples": 2376, "mean_confidence": 0.665299, "mean_accuracy": 0.720539}
+    }
+  },
+  "disruption_threshold_vs_ece_correlation": {
+    "lambada_pure": {
+      "rho": 1.0,
+      "p": 0.0,
+      "ece_values": {"GDN": 0.197997, "RetNet": 0.232561, "HGRN2": 0.235952},
+      "threshold_values": {"GDN": 0.696, "RetNet": 0.998, "HGRN2": 1.137}
+    },
+    "all_benchmarks_mean": {
+      "rho": 1.0,
+      "p": 0.0,
+      "mean_ece_values": {"GDN": 0.197793, "RetNet": 0.203195, "HGRN2": 0.208281}
+    }
+  }
+}

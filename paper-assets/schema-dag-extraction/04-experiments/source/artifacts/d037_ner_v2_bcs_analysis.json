@@ -1,0 +1,143 @@
+{
+  "v2": {
+    "count_6": {
+      "f1_vs_bcs": {
+        "pearson_r": 0.2684,
+        "pearson_p": 0.1758,
+        "spearman_rho": 0.2653,
+        "spearman_p": 0.181
+      },
+      "recall_vs_bcs": {
+        "pearson_r": 0.0529,
+        "pearson_p": 0.7933,
+        "spearman_rho": -0.0495,
+        "spearman_p": 0.8064
+      },
+      "n_batches": 27,
+      "bcs_range": [0.8628, 0.9447],
+      "f1_range": [0.1709, 0.4993],
+      "mean_f1": 0.3026,
+      "std_f1": 0.0897,
+      "bootstrap_f1": {
+        "pearson_ci_95": [-0.1934, 0.64],
+        "spearman_ci_95": [-0.1297, 0.6014],
+        "n_valid_bootstrap": 1000
+      },
+      "bootstrap_recall": {
+        "pearson_ci_95": [-0.2847, 0.3774],
+        "spearman_ci_95": [-0.4442, 0.3524],
+        "n_valid_bootstrap": 1000
+      },
+      "extreme_gap": {
+        "low_bcs": 0.8709,
+        "low_f1": 0.2524,
+        "high_bcs": 0.9447,
+        "high_f1": 0.4858,
+        "delta_f1_pp": 23.34,
+        "direction": "positive (high BCS -> higher F1)"
+      }
+    },
+    "count_12": {
+      "f1_vs_bcs": {
+        "pearson_r": 0.5804,
+        "pearson_p": 0.0015,
+        "spearman_rho": 0.4627,
+        "spearman_p": 0.0151
+      },
+      "recall_vs_bcs": {
+        "pearson_r": 0.526,
+        "pearson_p": 0.0048,
+        "spearman_rho": 0.4612,
+        "spearman_p": 0.0155
+      },
+      "n_batches": 27,
+      "bcs_range": [0.892, 0.9732],
+      "f1_range": [0.1867, 0.4805],
+      "mean_f1": 0.2914,
+      "std_f1": 0.0617,
+      "bootstrap_f1": {
+        "pearson_ci_95": [0.1853, 0.8054],
+        "spearman_ci_95": [0.0458, 0.7664],
+        "n_valid_bootstrap": 1000
+      },
+      "bootstrap_recall": {
+        "pearson_ci_95": [0.1107, 0.8119],
+        "spearman_ci_95": [0.0452, 0.7697],
+        "n_valid_bootstrap": 1000
+      },
+      "extreme_gap": {
+        "low_bcs": 0.9148,
+        "low_f1": 0.229,
+        "high_bcs": 0.9447,
+        "high_f1": 0.3127,
+        "delta_f1_pp": 8.37,
+        "direction": "positive (high BCS -> higher F1)"
+      }
+    },
+    "pooled": {
+      "f1_vs_bcs": {
+        "pearson_r": 0.2542,
+        "pearson_p": 0.0636,
+        "spearman_rho": 0.2516,
+        "spearman_p": 0.0664
+      },
+      "recall_vs_bcs": {
+        "pearson_r": -0.1292,
+        "pearson_p": 0.3517,
+        "spearman_rho": -0.1222,
+        "spearman_p": 0.3786
+      },
+      "n_batches": 54,
+      "bcs_range": [0.8628, 0.9732],
+      "f1_range": [0.1709, 0.4993],
+      "mean_f1": 0.297,
+      "std_f1": 0.0772,
+      "bootstrap_f1": {
+        "pearson_ci_95": [-0.0719, 0.546],
+        "spearman_ci_95": [-0.0437, 0.5106],
+        "n_valid_bootstrap": 1000
+      }
+    }
+  },
+  "v1": {
+    "count_6": {
+      "note": "v1 per-batch raw data overwritten by v2 run; stats from D005 decision record",
+      "f1_vs_bcs": {
+        "pearson_r": null,
+        "note": "D005 reported pooled/count_12 stats only"
+      },
+      "n_batches": 27
+    },
+    "count_12": {
+      "note": "v1 per-batch raw data overwritten by v2 run; stats from D005 decision record",
+      "f1_vs_bcs": {
+        "pearson_r": 0.5,
+        "pearson_p": 0.008,
+        "source": "D005"
+      },
+      "recall_vs_bcs": {
+        "pearson_r": 0.25,
+        "pearson_p": 0.066,
+        "source": "D005"
+      },
+      "partial_r_f1_bcs": {
+        "r": 0.3,
+        "p": 0.026,
+        "source": "D005"
+      },
+      "n_batches": 27
+    },
+    "pooled": {
+      "note": "v1 raw data unavailable; D005 reported within-count stats"
+    }
+  },
+  "comparison": {
+    "direction_consistent": true,
+    "v1_count12_pearson_r": 0.5,
+    "v2_count12_pearson_r": 0.5804,
+    "v2_count6_pearson_r": 0.2684,
+    "v1_vs_v2_summary": "Both v1 (r=0.50) and v2 (r=0.58) show positive BCS-F1 correlation at count_12, direction consistent. This positive direction is OPPOSITE to the naive confusability hypothesis (expected negative). D008 identified type frequency as confounding variable. Batch-level BCS-F1 is not a valid test of Channel 2.",
+    "risk_level": "LOW - direction consistent across prompt versions; confound identified and documented",
+    "note": "v1 raw per-batch data unavailable (overwritten). v1 stats from D005 decision record."
+  }
+}

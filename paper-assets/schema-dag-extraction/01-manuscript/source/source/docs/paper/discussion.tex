@@ -1,0 +1,34 @@
+\section{Discussion and Conclusion}
+\label{sec:discussion}
+
+\looseness=-1
+\textbf{RQ1} (independent confusability effect): Yes, on RE. BCS independently explains ${\sim}$27\% of cross-batch accuracy variance on FewRel after controlling for count and centrality, replicating across three model scales. The NER null reflects dispersed error modes rather than absence of confusability effects (\S\ref{sec:multi_channel}).
+\textbf{RQ2} (degradation modes): Count reduces recall overall (monotonically in RE; non-monotonically in NER); confusability drives type substitution (IntraSub) that scales monotonically with BCS. The two dimensions interact with bounded magnitude on the linear scale.
+\textbf{RQ3} (decomposition): Schema decomposition fails in practice due to routing ambiguity (RE) and merge amplification (NER/ED), though oracle routing confirms the dimensions are separable in principle (\S\ref{sec:sdgd}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Intra-batch substitution (IntraSub) and missed rates by BCS bin. IntraSub scales monotonically with BCS across all three datasets. DocRED missed rates decrease with BCS, indicating errors shift from omission to substitution.}
+\label{tab:error_taxonomy}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrrrrrr}
+\toprule
+ & & \multicolumn{5}{c}{\textbf{BCS Bin}} & & \\
+\cmidrule(lr){3-7}
+\textbf{Task} & \textbf{Error} & \textbf{Solo} & \textbf{Low} & \textbf{Mid} & \textbf{High} & \textbf{V.High} & \textbf{$\rho$} & \textbf{$p$} \\
+\midrule
+NER & IntraSub & 0\% & 1.6\% & 10.6\% & 49.4\% & --- & 1.000 & ${<}0.001$ \\
+RE  & IntraSub & 0\% & 4.2\% & 13.0\% & 20.3\% & 32.3\% & 0.954 & ${<}\,0.001$ \\
+DocRED & IntraSub & --- & 4.8\% & 22.4\% & 37.0\% & 41.9\% & 0.843 & ${<}\,0.001$ \\
+\midrule
+NER & Missed & --- & 42.8\% & 64.8\% & 49.9\% & --- & --- & --- \\
+RE  & Missed & --- & 10.4\% & 11.3\% & 13.1\% & 15.7\% & --- & --- \\
+DocRED & Missed & --- & 28.1\% & 22.6\% & 21.6\% & 16.2\% & --- & --- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+
+\looseness=-1
+We hypothesize that near-neighbor types in embedding space activate overlapping LLM representations, producing type-substitution interference consistent with ecological confusability \citep{baan-2023-ecological}, explaining why BCS predicts RE accuracy but not NER F1 (where errors concentrate in span boundary and missed-entity modes). The signal applies to cross-domain schemas; same-domain schemas exhibit centrality confounding (\S\ref{sec:centrality_confound}). For practitioners, reducing candidate types is the primary lever for NER; for RE, pre-computing SCS/BCS can flag high-risk schemas before deployment. Naive mitigations (renaming, few-shot) do not close the gap (Appendices~\ref{app:renaming},~\ref{sec:appendix_fewshot_bcs}). Probing the representational mechanism remains future work.

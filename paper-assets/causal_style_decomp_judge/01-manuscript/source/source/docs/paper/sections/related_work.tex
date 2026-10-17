@@ -1,0 +1,20 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\paragraph{Interventional Approaches to Judge Bias}
+Text-based interventional methods have a growing methodological foundation \citep{feder2021causalm,wu2021polyjuice,feder2022causal}.
+\citet{reber2025rate} propose RATE, which rewrites outputs along style attributes and measures causal effects via Likert average treatment effect (ATE); however, our experiments show 60\% of style-transformed pairs receive identical Likert scores, yielding non-significant effects that pairwise comparison detects at $p = 0.006$.
+CSD differs in targeting individual style axes, using position-controlled pairwise comparison, and enforcing content preservation via NLI gating.
+\citet{counterfactual2025rhetorical} adopt a similar design at persona-level granularity, whereas CSD intervenes on specific style axes with position control.
+
+\paragraph{Style Bias in LLM Judges}
+The foundational LLM-as-judge framework \citep{zheng2023judging} documented position bias; \citet{shi2024judging} study it across 15 judges, and \citet{ye2024justice} quantify 12 bias types, though neither isolates individual style effects.
+Style bias as a separate source has received recent attention \citep{wu2023style,feuer2025sos,saito2023verbosity,li2026preference,soumik2026judging}; \citet{li2026preference} show that style-mediated \emph{preference leakage} propagates through evaluation pipelines.
+Multi-feature frameworks such as CASSE \citep{casse2026concise} and FairJudge \citep{wang2026fairjudge} decompose style into finer dimensions but rely on correlational analyses that cannot distinguish causal style effects from content quality confounds.
+\citet{jeong2025comparative} identify the Comparative Trap (pairwise comparison may amplify style biases), which we address in \S\ref{sec:amplification}.
+Unlike human evaluators, LLM judges acquire format-specific biases through RLHF training: pairwise comparison serves as the reward signal in DPO pipelines, while Likert scoring is used for evaluation, motivating independent quantification of the format gap.
+
+\paragraph{Measurement Format Sensitivity}
+The superiority of pairwise comparison over rating scales has been established since \citet{thurstone1927law}; \citet{carterette2008here} confirm this for information retrieval, and \citet{krosnick1999survey} documents satisficing behavior that may compound the tie inflation we observe.
+Within NLP, \citet{amidei2019likert} review Likert scales \citep{likert1932technique} in natural language generation (NLG) evaluation, and \citet{novikova2018rankme} confirm that forced-choice methods detect quality differences that rating scales miss.
+The Bradley-Terry model \citep{bradley1952rank} underpins Chatbot Arena \citep{chiang2024chatbot} and AlpacaFarm \citep{dubois2023alpacafarm}; no prior work combines BT with per-axis GEE decomposition to expose confound structures invisible to aggregate scores.

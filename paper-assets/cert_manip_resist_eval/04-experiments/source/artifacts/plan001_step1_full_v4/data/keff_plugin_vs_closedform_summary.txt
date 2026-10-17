@@ -1,0 +1,8 @@
+Location: seetacloud-rtx6000:/root/cert_manip_resist_eval/artifacts/results/plan001/keff_plugin_vs_closedform.json
+Total panels: 2910
+Overall: Pearson r=0.966, RMSE=1.009, Rank Spearman=0.970
+Within-K3: Pearson=0.866, Spearman=0.861
+Within-K5: Pearson=0.875, Spearman=0.864
+Within-K7: Pearson=0.874, Spearman=0.860
+Systematic offset: closed-form mean=4.29, plugin mean=3.38
+Gaussian copula bias (mean |diff|): 0.22

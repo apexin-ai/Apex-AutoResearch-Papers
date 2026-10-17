@@ -1,0 +1,14 @@
+\section*{Limitations}
+\label{sec:limitations}
+
+Our benchmark uses full-replacement chains at 1--1.5B parameters; real-world contamination involves accumulation at unknown mixing ratios (per-passage robustness in Appendix~\ref{app:mixed_depth}), and depth signal attenuates at larger scales (\S\ref{sec:gen:crossscale}), with reference-model mismatch contributing to the observed degradation (Appendix~\ref{app:cross_scale_full}).
+Cross-strategy transfer can invert adjacent-depth predictions, requiring strategy-aware deployment (\S\ref{sec:gen:crossstrategy}).
+On held-out web-crawl corpora, pooled-classifier raw false-positive rates range from 15\% to 34\%, reducible to ${\leq}$7\% via posterior-threshold calibration (Appendix~\ref{app:calibration}); robustness to post-hoc paraphrasing remains untested.
+
+\section*{Ethical Considerations}
+\label{sec:ethics}
+
+Our method estimates recursive generation depth for content provenance purposes and is not intended for judging or penalizing individuals.
+Potential applications include data auditing and corpus curation rather than surveillance or censorship.
+The current system is limited to English text and specific model families (Pythia, OLMo, GPT-2~XL at 1--1.5B parameters); generalization to other languages and architectures remains unvalidated.
+We encourage responsible deployment with appropriate calibration and transparency about the method's false-positive rates.

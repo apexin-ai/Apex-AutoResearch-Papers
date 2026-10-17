@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-05-22T07:28:31.808464+00:00",
+  "dry_run": true,
+  "n_samples_per_condition": 5,
+  "models": {
+    "claude-opus-4": {
+      "error": "'str' object has no attribute 'get'"
+    },
+    "gpt-5.5": {
+      "error": "'str' object has no attribute 'get'"
+    },
+    "gemini-2.5-pro": {
+      "error": "'str' object has no attribute 'get'"
+    },
+    "gpt-4.1": {
+      "error": "'str' object has no attribute 'get'"
+    },
+    "claude-sonnet-4": {
+      "error": "'str' object has no attribute 'get'"
+    },
+    "gpt-4o": {
+      "error": "'str' object has no attribute 'get'"
+    },
+    "gemini-2.5-flash": {
+      "error": "'str' object has no attribute 'get'"
+    },
+    "gpt-4o-mini": {
+      "error": "'str' object has no attribute 'get'"
+    },
+    "claude-3-haiku": {
+      "error": "'str' object has no attribute 'get'"
+    }
+  },
+  "total_api_calls": 0,
+  "runtime_minutes": 1.9
+}

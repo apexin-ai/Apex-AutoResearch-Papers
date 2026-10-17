@@ -1,0 +1,396 @@
+{
+  "cells": {
+    "pythia_nucleus": {
+      "model": "Pythia-1.4B",
+      "strategy": "nucleus_p095",
+      "experiment_id": "mvp_pipeline_pythia_002",
+      "acc_4class": {
+        "random_forest": 0.7815,
+        "logistic_regression": 0.7492,
+        "rf_ci": [0.7690, 0.7940],
+        "lr_ci": [0.7360, 0.7620]
+      },
+      "auc": {
+        "random_forest": {
+          "depth0_vs_depth1": 0.9975,
+          "depth0_vs_depth2": 0.9995,
+          "depth0_vs_depth3": 0.9986,
+          "depth1_vs_depth2": 0.8607,
+          "depth1_vs_depth3": 0.9685,
+          "depth2_vs_depth3": 0.8005
+        },
+        "logistic_regression": {
+          "depth0_vs_depth1": 0.9922,
+          "depth0_vs_depth2": 0.9997,
+          "depth0_vs_depth3": 0.9997,
+          "depth1_vs_depth2": 0.7784,
+          "depth1_vs_depth3": 0.9484,
+          "depth2_vs_depth3": 0.7578
+        }
+      },
+      "feature_importance": {
+        "var_surprisal": 0.1692,
+        "p90_ppl": 0.1582,
+        "mean_ppl": 0.1204,
+        "mean_surprisal": 0.0884,
+        "p75_ppl": 0.0671,
+        "skewness_ppl": 0.0392,
+        "p50_ppl": 0.0366,
+        "entropy_of_surprisal": 0.0350,
+        "kurtosis_ppl": 0.0344,
+        "type_token_ratio": 0.0343,
+        "hapax_ratio": 0.0316,
+        "p25_ppl": 0.0308,
+        "bigram_entropy": 0.0290,
+        "rep_2gram": 0.0268,
+        "trigram_entropy": 0.0260,
+        "p10_ppl": 0.0250,
+        "rep_4gram": 0.0243,
+        "rep_3gram": 0.0224,
+        "var_ppl": 0.0014
+      },
+      "top5_features": ["var_surprisal", "p90_ppl", "mean_ppl", "mean_surprisal", "p75_ppl"]
+    },
+    "pythia_temp09": {
+      "model": "Pythia-1.4B",
+      "strategy": "temperature_09",
+      "experiment_id": "pythia_temp09_001",
+      "acc_4class": {
+        "random_forest": 0.7625,
+        "logistic_regression": 0.7405,
+        "rf_ci": [0.7490, 0.7753],
+        "lr_ci": [0.7265, 0.7545]
+      },
+      "auc": {
+        "random_forest": {
+          "depth0_vs_depth1": 0.9968,
+          "depth0_vs_depth2": 0.9993,
+          "depth0_vs_depth3": 0.9991,
+          "depth1_vs_depth2": 0.8327,
+          "depth1_vs_depth3": 0.9590,
+          "depth2_vs_depth3": 0.7928
+        },
+        "logistic_regression": {
+          "depth0_vs_depth1": 0.9934,
+          "depth0_vs_depth2": 0.9999,
+          "depth0_vs_depth3": 0.9997,
+          "depth1_vs_depth2": 0.7833,
+          "depth1_vs_depth3": 0.9374,
+          "depth2_vs_depth3": 0.7652
+        }
+      },
+      "feature_importance": {
+        "var_surprisal": 0.1776,
+        "p90_ppl": 0.1501,
+        "mean_ppl": 0.1140,
+        "mean_surprisal": 0.0889,
+        "p75_ppl": 0.0687,
+        "p50_ppl": 0.0395,
+        "type_token_ratio": 0.0356,
+        "hapax_ratio": 0.0352,
+        "entropy_of_surprisal": 0.0335,
+        "bigram_entropy": 0.0312,
+        "p25_ppl": 0.0309,
+        "trigram_entropy": 0.0295,
+        "rep_4gram": 0.0292,
+        "rep_2gram": 0.0279,
+        "skewness_ppl": 0.0275,
+        "kurtosis_ppl": 0.0266,
+        "p10_ppl": 0.0265,
+        "rep_3gram": 0.0253,
+        "var_ppl": 0.0024
+      },
+      "top5_features": ["var_surprisal", "p90_ppl", "mean_ppl", "mean_surprisal", "p75_ppl"]
+    },
+    "pythia_topk50": {
+      "model": "Pythia-1.4B",
+      "strategy": "topk_k50",
+      "experiment_id": "pythia_topk50_001",
+      "acc_4class": {
+        "random_forest": 0.6963,
+        "logistic_regression": 0.6820,
+        "rf_ci": [0.6825, 0.7107],
+        "lr_ci": [0.6667, 0.6955]
+      },
+      "auc": {
+        "random_forest": {
+          "depth0_vs_depth1": 0.9927,
+          "depth0_vs_depth2": 0.9983,
+          "depth0_vs_depth3": 0.9978,
+          "depth1_vs_depth2": 0.7518,
+          "depth1_vs_depth3": 0.9176,
+          "depth2_vs_depth3": 0.6918
+        },
+        "logistic_regression": {
+          "depth0_vs_depth1": 0.9889,
+          "depth0_vs_depth2": 0.9983,
+          "depth0_vs_depth3": 0.9995,
+          "depth1_vs_depth2": 0.7289,
+          "depth1_vs_depth3": 0.9039,
+          "depth2_vs_depth3": 0.6804
+        }
+      },
+      "feature_importance": {
+        "var_surprisal": 0.1759,
+        "p90_ppl": 0.1347,
+        "mean_ppl": 0.1120,
+        "mean_surprisal": 0.0702,
+        "p75_ppl": 0.0612,
+        "type_token_ratio": 0.0416,
+        "hapax_ratio": 0.0416,
+        "p50_ppl": 0.0386,
+        "p25_ppl": 0.0373,
+        "entropy_of_surprisal": 0.0368,
+        "bigram_entropy": 0.0345,
+        "trigram_entropy": 0.0333,
+        "p10_ppl": 0.0330,
+        "skewness_ppl": 0.0327,
+        "kurtosis_ppl": 0.0316,
+        "rep_2gram": 0.0297,
+        "rep_4gram": 0.0281,
+        "rep_3gram": 0.0264,
+        "var_ppl": 0.0008
+      },
+      "top5_features": ["var_surprisal", "p90_ppl", "mean_ppl", "mean_surprisal", "p75_ppl"]
+    },
+    "olmo_nucleus": {
+      "model": "OLMo-1B",
+      "strategy": "nucleus_p095",
+      "experiment_id": "cross_model_olmo_002",
+      "acc_4class": {
+        "random_forest": 0.7877,
+        "logistic_regression": 0.7508,
+        "rf_ci": [0.7758, 0.8003],
+        "lr_ci": [0.7368, 0.7650]
+      },
+      "auc": {
+        "random_forest": {
+          "depth0_vs_depth1": 0.9834,
+          "depth0_vs_depth2": 0.9949,
+          "depth0_vs_depth3": 0.9989,
+          "depth1_vs_depth2": 0.8673,
+          "depth1_vs_depth3": 0.9806,
+          "depth2_vs_depth3": 0.8124
+        },
+        "logistic_regression": {
+          "depth0_vs_depth1": 0.9809,
+          "depth0_vs_depth2": 0.9921,
+          "depth0_vs_depth3": 0.9945,
+          "depth1_vs_depth2": 0.8296,
+          "depth1_vs_depth3": 0.9629,
+          "depth2_vs_depth3": 0.7661
+        }
+      },
+      "feature_importance": {
+        "p90_ppl": 0.1803,
+        "var_surprisal": 0.1608,
+        "p75_ppl": 0.1110,
+        "mean_surprisal": 0.0838,
+        "type_token_ratio": 0.0605,
+        "hapax_ratio": 0.0441,
+        "p50_ppl": 0.0411,
+        "mean_ppl": 0.0395,
+        "p25_ppl": 0.0363,
+        "rep_3gram": 0.0292,
+        "p10_ppl": 0.0290,
+        "rep_4gram": 0.0289,
+        "rep_2gram": 0.0279,
+        "entropy_of_surprisal": 0.0268,
+        "kurtosis_ppl": 0.0258,
+        "skewness_ppl": 0.0245,
+        "bigram_entropy": 0.0234,
+        "trigram_entropy": 0.0234,
+        "var_ppl": 0.0036
+      },
+      "top5_features": ["p90_ppl", "var_surprisal", "p75_ppl", "mean_surprisal", "type_token_ratio"]
+    },
+    "olmo_temp09": {
+      "model": "OLMo-1B",
+      "strategy": "temperature_09",
+      "experiment_id": "olmo_temp09_001",
+      "acc_4class": {
+        "random_forest": 0.8203,
+        "logistic_regression": 0.8155,
+        "rf_ci": [0.8087, 0.8320],
+        "lr_ci": [0.8035, 0.8280]
+      },
+      "auc": {
+        "random_forest": {
+          "depth0_vs_depth1": 0.9960,
+          "depth0_vs_depth2": 0.9997,
+          "depth0_vs_depth3": 0.9995,
+          "depth1_vs_depth2": 0.9010,
+          "depth1_vs_depth3": 0.9874,
+          "depth2_vs_depth3": 0.8214
+        },
+        "logistic_regression": {
+          "depth0_vs_depth1": 0.9976,
+          "depth0_vs_depth2": 0.9999,
+          "depth0_vs_depth3": 0.9999,
+          "depth1_vs_depth2": 0.8910,
+          "depth1_vs_depth3": 0.9842,
+          "depth2_vs_depth3": 0.8160
+        }
+      },
+      "feature_importance": {
+        "p90_ppl": 0.1987,
+        "var_surprisal": 0.1741,
+        "p75_ppl": 0.1263,
+        "mean_surprisal": 0.1139,
+        "p50_ppl": 0.0510,
+        "type_token_ratio": 0.0498,
+        "rep_2gram": 0.0337,
+        "p25_ppl": 0.0312,
+        "hapax_ratio": 0.0286,
+        "entropy_of_surprisal": 0.0263,
+        "p10_ppl": 0.0255,
+        "rep_3gram": 0.0243,
+        "skewness_ppl": 0.0240,
+        "trigram_entropy": 0.0233,
+        "kurtosis_ppl": 0.0231,
+        "bigram_entropy": 0.0221,
+        "rep_4gram": 0.0211,
+        "mean_ppl": 0.0030,
+        "var_ppl": 0.0001
+      },
+      "top5_features": ["p90_ppl", "var_surprisal", "p75_ppl", "mean_surprisal", "p50_ppl"]
+    },
+    "gpt2xl_nucleus": {
+      "model": "GPT-2-XL",
+      "strategy": "nucleus_p095",
+      "experiment_id": "cross_model_gpt2xl_001",
+      "acc_4class": {
+        "random_forest": 0.8333,
+        "logistic_regression": 0.8127,
+        "rf_ci": [0.8227, 0.8445],
+        "lr_ci": [0.8013, 0.8257]
+      },
+      "auc": {
+        "random_forest": {
+          "depth0_vs_depth1": 0.9941,
+          "depth0_vs_depth2": 0.9965,
+          "depth0_vs_depth3": 0.9988,
+          "depth1_vs_depth2": 0.9131,
+          "depth1_vs_depth3": 0.9857,
+          "depth2_vs_depth3": 0.8829
+        },
+        "logistic_regression": {
+          "depth0_vs_depth1": 0.9808,
+          "depth0_vs_depth2": 0.9941,
+          "depth0_vs_depth3": 0.9937,
+          "depth1_vs_depth2": 0.8469,
+          "depth1_vs_depth3": 0.9686,
+          "depth2_vs_depth3": 0.8651
+        }
+      },
+      "feature_importance": {
+        "p90_ppl": 0.2082,
+        "var_surprisal": 0.2079,
+        "p75_ppl": 0.1034,
+        "mean_surprisal": 0.0821,
+        "mean_ppl": 0.0645,
+        "type_token_ratio": 0.0460,
+        "p50_ppl": 0.0349,
+        "entropy_of_surprisal": 0.0347,
+        "p25_ppl": 0.0316,
+        "hapax_ratio": 0.0283,
+        "skewness_ppl": 0.0221,
+        "p10_ppl": 0.0211,
+        "kurtosis_ppl": 0.0210,
+        "rep_2gram": 0.0204,
+        "rep_4gram": 0.0191,
+        "bigram_entropy": 0.0185,
+        "trigram_entropy": 0.0182,
+        "rep_3gram": 0.0172,
+        "var_ppl": 0.0007
+      },
+      "top5_features": ["p90_ppl", "var_surprisal", "p75_ppl", "mean_surprisal", "mean_ppl"]
+    },
+    "gpt2xl_temp09": {
+      "model": "GPT-2-XL",
+      "strategy": "temperature_09",
+      "experiment_id": "gpt2xl_temp09_001",
+      "acc_4class": {
+        "random_forest": 0.8542,
+        "logistic_regression": 0.8155,
+        "rf_ci": [0.8430, 0.8653],
+        "lr_ci": [0.8025, 0.8273]
+      },
+      "auc": {
+        "random_forest": {
+          "depth0_vs_depth1": 0.9963,
+          "depth0_vs_depth2": 0.9992,
+          "depth0_vs_depth3": 1.0000,
+          "depth1_vs_depth2": 0.9367,
+          "depth1_vs_depth3": 0.9947,
+          "depth2_vs_depth3": 0.8815
+        },
+        "logistic_regression": {
+          "depth0_vs_depth1": 0.9840,
+          "depth0_vs_depth2": 0.9998,
+          "depth0_vs_depth3": 1.0000,
+          "depth1_vs_depth2": 0.8903,
+          "depth1_vs_depth3": 0.9824,
+          "depth2_vs_depth3": 0.8183
+        }
+      },
+      "feature_importance": {
+        "p90_ppl": 0.2633,
+        "mean_surprisal": 0.1479,
+        "p75_ppl": 0.1461,
+        "var_surprisal": 0.1212,
+        "p50_ppl": 0.0567,
+        "type_token_ratio": 0.0300,
+        "p25_ppl": 0.0298,
+        "entropy_of_surprisal": 0.0297,
+        "hapax_ratio": 0.0249,
+        "rep_2gram": 0.0215,
+        "p10_ppl": 0.0209,
+        "rep_3gram": 0.0197,
+        "trigram_entropy": 0.0192,
+        "rep_4gram": 0.0181,
+        "bigram_entropy": 0.0173,
+        "skewness_ppl": 0.0171,
+        "kurtosis_ppl": 0.0168,
+        "mean_ppl": 0.0000,
+        "var_ppl": 0.0000
+      },
+      "top5_features": ["p90_ppl", "mean_surprisal", "p75_ppl", "var_surprisal", "p50_ppl"]
+    }
+  },
+  "missing_cells": {
+    "olmo_topk50": {
+      "model": "OLMo-1B",
+      "strategy": "topk_k50",
+      "status": "running",
+      "experiment_id": "olmo_topk50_001",
+      "progress": "depth_0-2 done, depth_3 pending"
+    },
+    "gpt2xl_topk50": {
+      "model": "GPT-2-XL",
+      "strategy": "topk_k50",
+      "status": "running",
+      "experiment_id": "gpt2xl_topk50_001",
+      "progress": "depth_0-2 done, depth_3 pending"
+    }
+  },
+  "grid": {
+    "models": ["Pythia-1.4B", "OLMo-1B", "GPT-2-XL"],
+    "strategies": ["nucleus_p095", "temperature_09", "topk_k50"],
+    "cell_keys": {
+      "Pythia-1.4B": {"nucleus_p095": "pythia_nucleus", "temperature_09": "pythia_temp09", "topk_k50": "pythia_topk50"},
+      "OLMo-1B": {"nucleus_p095": "olmo_nucleus", "temperature_09": "olmo_temp09", "topk_k50": null},
+      "GPT-2-XL": {"nucleus_p095": "gpt2xl_nucleus", "temperature_09": "gpt2xl_temp09", "topk_k50": null}
+    }
+  },
+  "metadata": {
+    "n_cells_completed": 7,
+    "n_cells_total": 9,
+    "generated_at": "2026-05-15",
+    "data_source": "gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/",
+    "classifier": "RandomForest (primary), LogisticRegression (secondary)",
+    "n_samples_per_depth": 1000,
+    "n_depths": 4,
+    "feature_count": 19
+  }
+}

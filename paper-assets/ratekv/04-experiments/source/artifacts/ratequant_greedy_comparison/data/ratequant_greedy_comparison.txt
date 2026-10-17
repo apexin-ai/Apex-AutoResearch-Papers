@@ -1,0 +1,1 @@
+Greedy RateQuant: PPL=32.4467, bit_dist={2:68, 4:30, 8:4, 16:10}, mem=0.2500\nMCKP (k=8, L0 excl): PPL=11.2312, bit_dist={2:8, 4:100, 8:4}, mem=0.2500\n\nDelta PPL: +21.22 (greedy dramatically worse)\nGreedy assigns 68 heads to 2-bit vs MCKP's 8.\nGreedy L0: 3x8bit + 1x16bit (does not fully protect L0).\nConclusion: greedy on {2,4,8,16} is dramatically suboptimal.

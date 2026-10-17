@@ -1,0 +1,221 @@
+_next_id: 17
+mistakes:
+- id: M001
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: exp-003 mixing matrix 假设 P(Z)=0.5，但 DGP 有 P(Z=1)≈0.33，导致所有修正结果系统性偏误
+  root_cause: exp-003 复制了 exp-001 的简化版 build_mixing_matrix（仅适用于 P(Z)=0.5），而未使用 exp-007
+    已有的通用版本（含 P(Z) 参数）。代码复用时未检查前置假设是否匹配新 DGP。
+  prevention: 1. 共享工具函数（build_mixing_matrix, invert_mixing_safe）应提取到独立模块，所有实验统一调用，禁止复制粘贴。2.
+    新实验的 DGP 与旧实验不同时，必须检查所有复用函数的假设条件是否仍然成立。3. Reviewer 审查代码时应对照 DGP spec 文档检查隐含假设。
+  status: active
+  context: exp-003 Phase A 半合成基准。DGP 中 Z=(sentiment==2)，P(Z=1)≈0.33。build_mixing_matrix
+    用 col_sum 归一化等价于 P(Z)=0.5 的贝叶斯规则特例。正确值 M[0,0]=0.920 vs 错误值 0.850，差 7pp。
+  fix: 从 exp-007 提取通用 build_mixing_matrix(C, p_z, p_z_hat)，exp-003 传入从专家数据估计的 P(Z)。同时补
+    invert_mixing_safe。重跑 100 MC。
+  related_decisions:
+  - D005
+- id: M002
+  date: '2026-05-21'
+  category: experiment_design
+  severity: medium
+  summary: D008 Claim 2 framing 决策基于 n_mc=2 dry-run 数据，非全量 100 MC
+  root_cause: Agent 汇报 exp-003 HB 结果时未标明数据来源是 dry-run (n_mc=2)。Director 未要求确认 MC run
+    数量即做出 framing 决策并更新 paper_framing.md。
+  prevention: 收到实验结果时，首先确认 MC run 数量和数据完整性，再做 framing 决策。Agent 汇报结果必须标注 n_mc 和数据来源（dry-run
+    / partial / full）。
+  status: active
+  context: exp-003 v3 CSV 有 300 行但来自 2 MC dry-run。S3 blowup (3-8x) 和 S2 改善 (21-40%)
+    可能是采样噪声。D008 已 logged，paper_framing.md Claim 2 已编辑。全量结果 ~30min 后到。
+  fix: 等全量 100 MC 结果后重新评估 D008，必要时回退 paper_framing.md 编辑
+- id: M003
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 进程被意外 kill（SIGTERM 传播），导致 exp-003 HB 100MC 丢失 ~2h 计算
+  root_cause: 取消一个卡死的 Worker session 时，SIGTERM 信号传播到了该 Worker 启动的后台实验进程（PID 78723）。Worker
+    cancel 和实验进程的生命周期没有解耦。
+  prevention: 1. 长时间实验用 nohup + disown 启动，确保进程与 Worker session 解耦。2. cancel Worker
+    前先确认该 Worker 是否有正在运行的后台实验进程。3. 对 >1h 的实验，启动时记录 PID 到 registry，cancel 前交叉检查。
+  status: active
+  context: exp-003 HB 集成 full 100 MC run 在约 60% 完成时被意外 kill。原因是 Director 取消了一个看似卡死的
+    Worker，但该 Worker 的实验进程仍在运行。损失约 2h CPU 时间，需要从头重跑。
+  fix: 重启了 exp-003 HB 100MC run 作为新 Worker，当前 ~60% 完成中。
+- id: M004
+  date: '2026-05-21'
+  category: experiment_design
+  severity: medium
+  summary: GPU Worker 用了错误分析脚本 analyze_ec_hte.py（per-Z 3×3 CM），在 balanced-Z 下结构性奇异导致
+    EC-HTE 退化为 Naive
+  root_cause: analyze_ec_hte.py 按 Z 值分组计算 3×3 CM。balanced-Z 定义 Z=1 if true_label≥1，导致
+    Z=0 组只有 negative 样本（neutral/positive 行全零），CM rank≤1，矩阵不可逆，fallback 到单位矩阵。GPU Worker
+    在标注完成后自动运行了这个脚本，而非论文框架中的 binary per-subgroup CM pipeline。
+  prevention: GPU 上部署分析脚本前，必须验证：(1) CM 维度与 Z 定义匹配（balanced binary Z 只能用 2×2 CM）(2)
+    分层变量是 subgroup S 而非 treatment Z (3) 先在小样本上 dry-run 确认矩阵非奇异。对于关键实验，禁止自动运行未经验证的分析脚本。
+  status: active
+  fix: 丢弃 analyze_ec_hte.py 输出，用正确的 analyze_llama.py / run_llama_semisynthetic.py
+    框架（binary 2×2 CM, per-subgroup S）重新分析全部 4 模型。
+- id: M005
+  date: '2026-05-21'
+  category: communication
+  severity: high
+  summary: C1 论文整合时 crossover 对比基准写错（vs Global 应为 vs Naive）+ §5.7 措辞暗示 EC-HTE 超越 Global
+    + MC seeds 数不一致
+  root_cause: Paper Agent patch 时我提供的数据说 "RMSE crossover at n=1000" 未明确说明是 vs Naive
+    还是 vs Global。Paper Agent 按 convention 理解为 vs Global（论文其他地方 crossover 都指 vs Global），但
+    C1 数据中 Global 始终 ≥ HB。同时我的 patch 指令说 50 seeds 但 Paper Agent 沿用了 Table 1 的 100
+    MC runs 格式。
+  prevention: 向 Paper Agent 提供数据时，必须明确标注每个 claim 的对比基准（vs Naive / vs Global / vs Strat.MLE）。crossover
+    这类关键概念必须附带精确定义。MC seeds 等实验参数必须显式传达，不能假设 Paper Agent 会从数据推断。
+  status: active
+  fix: Paper Agent 修复中：(1) Table 8 caption 改 crossover 定义为 vs Naive (2) §5.7 改写消除
+    vs Global 暗示 (3) MC runs 100→50
+- id: M006
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: 论文全文7处数字不一致：Table 1取整错误、Llama coverage错误、AUC取整错误
+  root_cause: 多轮编辑中数字从源数据到论文的传递链断裂：(1) Table 1 HB |Bias| 0.0104→0.011和0.0083→0.009
+    违反标准四舍五入（4<5应向下取整）；(2) Llama coverage 0.940误写为0.950（可能混淆了不同budget的值）；(3) AUC 0.8646被Worker建议报为0.87但标准取整应为0.86
+  prevention: Paper Agent写入数字时必须从源CSV直接读取并按统一取整规则（标准四舍五入）处理。所有headline数字（abstract/intro/conclusion引用的）须由consistency
+    checker在编译后自动验证。建议：写入数字后立即跑number consistency check，不要等到最后一轮。
+  status: active
+  fix: Director直接修复13处：Table 1三个cell + 文本倍数2处 + abstract/intro |Bias| 2处 + appendix
+    R-learner表1处 + Llama coverage + 平均coverage + §5.7 headline + AUC全文7处。编译通过，已派Reviewer验证。
+- id: M007
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: ARR checklist Worker 检查了 ACL 模板文件而非实际论文
+  root_cause: Worker 使用了 artifacts/paper/main.tex（ACL 模板示例文件）而非实际论文路径 docs/paper/main.tex。项目中存在两个
+    main.tex，Worker 未区分。
+  prevention: 派论文相关 Worker 时必须在指令中明确指定论文路径（docs/paper/main.tex）和编译目录（docs/paper/）。不要让
+    Worker 自行寻找论文文件。
+  status: active
+  fix: 丢弃错误输出，重新派 Worker 指向正确路径 docs/paper/main.tex
+- id: M008
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: 诊断指标仅在 synthetic 数据验证就写入论文 claim，真实 CM 上 AUC 从 0.86 降至 0.63
+  root_cause: Proposition 3 的 AUC=0.86 仅在 synthetic symmetric errors 下验证。未在真实 LLM
+    CM（高度非对称 FPR/FNR）上交叉验证就写入论文作为 Contribution C3。真实 CM 上 pooled AUC=0.63，K=2 时 AUC=0.0（系统性反预测）。
+  prevention: 任何诊断/分类指标在 synthetic 数据上验证后，必须用 real 数据交叉验证再写入论文 claim。性能可能在 controlled
+    和 real 设置间严重分化。
+  status: active
+  context: exp-028 发现：(1) 非对称 B_s 公式对 binary Z 与对称公式代数等价（2×2 column-stochastic M 的性质），无法改善；(2)
+    K=2 时 |δ_0|=|δ_1|，score 差异仅来自 1/π_s，与实际 harm 方向负相关；(3) K=4 中部分 combo AUC=1.0 但部分
+    AUC=0.0
+  fix: limitations.tex 更新为诚实报告 AUC=0.63 + K=2 反预测机制 + asymmetric 等价性。experiments.tex
+    Section 5.4 加 K=2 caveat。C3 定位从 practical diagnostic tool 调整为 theoretically grounded
+    criterion。
+- id: M009
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: exp-030/031 registry metrics 与 CSV ground truth 严重不一致（RMSE 差 2-3x，coverage
+    差 5pp），错误数据被写入论文
+  root_cause: Agent 注册实验结果时使用了错误的数字来源（可能是中间变量或手动汇总），未与脚本直接输出的 CSV 交叉验证。这是 A1 sensitivity
+    表格问题（M009）的重复——registry 数据不可信，CSV 才是 ground truth。
+  prevention: 1. Agent 注册实验指标时必须直接从 CSV 读取，禁止手动输入或从日志截取。2. 写入论文前 Director 必须要求 Reviewer
+    先验证 registry vs CSV 一致性，再派写作任务。3. 论文表格数据必须标注来源 CSV 文件路径。
+  status: active
+  context: 'exp-030: HB |bias| registry 0.154 vs CSV 0.183; MLE coverage registry
+    90.3% vs CSV 95.3%; Naive coverage registry 86.7% vs CSV 91.3%. exp-031: ALL RMSE
+    values registry 比 CSV 高 2-3x. 论文 Appendix 已用错误数据写入，需全部重写。'
+- id: M010
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: exp-036 Bootstrap SE 使用 n_estimators=48 而非标准实验的 200，导致 oracle coverage
+    与论文已有数据矛盾
+  root_cause: Agent 编写 bootstrap SE 实验代码时为了降低计算成本自行将 n_estimators 从 200 降到 48，但未汇报这一超参数变更。Director
+    审批时未检查超参数一致性。
+  prevention: 审批涉及与已有实验对比的新实验时，必须要求 Agent 明确列出所有超参数，并与标准实验对照。特别是 CausalForest 的 n_estimators、MC
+    runs 等关键参数必须与基准实验保持一致，除非有明确理由并在论文中注明。
+  status: active
+  context: exp-036 bootstrap SE 用 48 棵树得到 oracle coverage 82.5%，而标准实验 exp-027b 用 200
+    棵树得到 94%。论文 appendix.tex 同一 section 内出现"oracle 94-96%"和"oracle 82.5% inherently
+    under-calibrated"两个矛盾结论。
+  fix: 双轨修复：(1) 立即修复文本矛盾 (2) 用 n_estimators=200 重跑 exp-036
+- id: M011
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: 论文引用了来自不同 DGP (mf2, 6-feature) 的 CF coverage 数据 (83-85%)，与标准 DGP (2-feature)
+    的 91-94% 混在同一 section 造成误导
+  root_cause: mf2 实验使用了非标准的 6-feature DGP（含 5 个随机连续特征），而论文其他所有实验用标准 2-feature DGP。在写
+    appendix 时未注意到 DGP 差异，将不同 DGP 的结果放在同一上下文中对比。
+  prevention: 论文中引用实验数据时，必须确认该实验的 DGP/数据集/超参数与上下文中的其他实验一致。跨 DGP 对比必须明确注明。Agent 写入实验结果时需在
+    PR 中标注实验配置差异。
+  status: active
+  context: appendix.tex L1031-1037 混用了 mf2 DGP (83-85% coverage) 和标准 DGP (94-96% oracle
+    coverage)。exp036v2 用标准 DGP 重跑后 plugin 已达 93.8%，证明 83-85% 是 DGP artifact 而非 CF
+    的固有问题。
+  fix: 方案 B：用 exp036v2 数据重写 L1031-1037，删除 mf2 引用
+- id: M012
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: 数据审计误判 AUC=0.86 为错误数字，导致 6 处正确数字被错改为 0.83
+  root_cause: 审计时将论文中 Δπ-only 诊断的 AUC=0.865 与 exp-005 signed-product 诊断的 subgroup_auc=0.826
+    混淆——两个是不同的诊断方法，各自有独立的 AUC。Reviewer 初审也犯了同样的混淆（后自行更正）。根因：论文中有多个诊断方法各自报告 AUC，审计时未区分是哪个诊断的
+    AUC。
+  prevention: 数据审计时，对同一指标名（如 AUC）出现在不同上下文的情况，必须先确认该数字对应的是哪个方法/实验/配置，再去匹配源数据。不能看到"AUC=X"就去所有
+    CSV 里搜 X——要先确认论文声明的是哪个方法的 AUC，再去该方法对应的数据文件核实。修改论文数字前必须经 Reviewer 独立确认。
+  status: active
+  context: R16 Action Matrix 执行中。Worker data-audit 报告 AUC=0.86 与 exp005 CSV 中 0.826
+    不一致，Director 未充分验证即派 Agent 修改。Reviewer 初审也判定 critical，后独立核实发现 0.86 来自 delta_pi_only
+    诊断（AUC=0.865），与 signed-product 诊断（AUC=0.826）是不同方法，论文数字正确。已派 Agent 回退 6 处错误修改。
+  fix: 回退 6 处 0.83→0.86，保留 0.82→0.66 的正确修正。
+- id: M013
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: method.tex PPCI 互补性描述包含 3 个事实性错误（DGP 标签、bias 值、RMSE 百分比）
+  root_cause: PPCI 实验结果写入论文时手动转录错误，未与 appendix 表格交叉验证。DGP B/C 标签混淆、bias 值引用了错误 DGP
+    行、RMSE 百分比计算错误（27% vs 实际 38%）。
+  prevention: 论文中引用实验数字时，必须标注 source（experiment ID + table row/col），且由 Reviewer 独立对照
+    appendix 表格验证。新增数字审计流程：每个行内数字旁加 LaTeX 注释标注来源。
+  status: active
+  fix: 'method.tex L61: DGP~C→DGP~B, 0.003-0.004→0.015-0.020, 27%→38%。Reviewer 独立验证
+    PASS。'
+- id: M014
+  date: '2026-05-24'
+  category: code_bug
+  severity: high
+  summary: 3 个 bib 条目作者归属严重错误（LLM 生成元数据未验证）
+  root_cause: bib 条目由 LLM 生成时作者列表被幻觉：sui2026ppci 把 Sui Yang 写成 Sui Yijun 并虚构 Candès
+    为共同作者；audinet2025benchmarking 把 Nicolas 写成 Josias 并混入 DSL 论文的作者（Egami/Alizadeh/Gilardi）；ashwin2025bias
+    把 Julian 写成 Aditya 并虚构 3 个作者。整个流程中无人用 WebSearch 验证 bib 元数据。
+  prevention: 所有新增 bib 条目必须经 WebSearch 核查真实作者。Paper Agent/Main Agent 生成 bib 后，Director
+    审批前要求 reference-audit skill 验证。不信任 LLM 生成的作者列表。
+  status: active
+  context: R23 审稿 Reviewer 2 发现此问题并标为 Critical，直接影响论文可信度。3/3 被质疑的条目全部确认错误。
+  fix: WebSearch 核查后修正所有 3 个 bib 条目为真实作者。同时派 Agent 做全面引用审计排查更多潜在问题。
+- id: M015
+  date: '2026-05-24'
+  category: other
+  severity: high
+  summary: LLM 生成 bib 条目 28% 错误率——16/57 条有错误，含作者完全伪造
+  root_cause: Paper Agent 使用 LLM 生成 bib 条目时未经 WebSearch 逐条核实。LLM 倾向于用正确标题+错误作者的方式幻觉
+    bib 元数据，特别是 2024-2026 年新论文。最严重的 bu2023forestiv 全部 4 位作者完全捏造，angelopoulos2023ppi（核心引用）2/5
+    作者也错。
+  prevention: 论文写作流程中 bib 条目必须经过独立核实：(1) Paper Agent 每添加一条新引用必须 WebSearch 验证作者+venue+year；(2)
+    提交审稿前必须跑一次全量 reference audit（Agent 全部条目 WebSearch 核对）；(3) 对已有 bib 条目做修改时也需重新验证。
+  status: active
+  context: R17 审稿 R2 首次发现 3 条作者错误。全面审计后发现总计 16/57（28%）有错，8 条涉及作者错误（含 1 条全部伪造），8 条
+    volume/pages/year 错误。这是审稿中被标为 Critical 的学术诚信问题。
+  fix: Agent 对全部 57 条 bib 逐条 WebSearch 核对，16 条已修正。references.bib 现已完整可靠。
+- id: M016
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: high
+  summary: Figure 3 (fig_method_overview) 文字重叠问题反复出现，用户多次要求修复未彻底解决
+  root_cause: matplotlib 生成的概念图在 column width 下文字密度过高导致重叠，之前的修复只调参数未从根本解决，应该用 PaperBanana
+    重画
+  prevention: 概念图（架构/流程图）一律用 PaperBanana 生成，不要用 matplotlib 手写。生成后必须 Read PNG 在 column
+    width 下检查文字重叠。
+  status: active
+  fix: 用 PaperBanana 重画 fig_method_overview

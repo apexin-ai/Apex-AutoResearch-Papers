@@ -1,0 +1,2104 @@
+claims:
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_9cell_001
+    field: best_acc_matrix
+  - exp_id: zero_shot_llm_baseline_001
+    field: four_class_acc
+  - exp_id: atlas_v2_analysis
+    field: p90_ppl_in_top2
+  id: C001
+  location:
+    context: result_statement
+    section: abstract
+  text: A Random Forest classifier achieves 70--85\% four-class accuracy (chance =
+    25\%; a zero-shot LLM baseline reaches only 36.2\%), with 90th-percentile perplexity
+    and surprisal variance emerging as univers
+  source: zeroshot_llm_500_001
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: depth_extension_pythia_d4d5_001
+    field: edd_at_075
+  - exp_id: atlas_v2_analysis
+    field: edd_distribution_T075
+  id: C002
+  location:
+    context: result_statement
+    section: abstract
+  text: 'Our Depth Degradation Atlas reveals that decoding strategy reshapes degradation
+    trajectories rather than merely attenuating them, and we define the Effective
+    Discriminable Depth (EDD) metric, finding '
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_model_loo_001
+    field: mean_4class_acc
+  - exp_id: cross_strategy_loo_001
+    field: mean_4class_acc
+  id: C003
+  location:
+    context: result_statement
+    section: abstract
+  text: Cross-model transfer reaches 66.4\% and cross-strategy transfer 59.1\%, though
+    temperature sampling induces a d1/d2 AUC inversion that z-score normalization
+    cannot resolve.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_9cell_001
+    field: best_acc_matrix
+  id: C004
+  location:
+    context: result_statement
+    section: atlas
+  text: All 9 cells exceed chance (25\%) by a wide margin, with accuracy ranging from
+    69.6\% to 85.4\%.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_9cell_001
+    field: best_acc_matrix
+  id: C005
+  location:
+    context: result_statement
+    section: atlas
+  text: In-distribution 4-class depth estimation accuracy (\%) across 3 model families
+    $$ 3 decoding strategies. RF classifier with 19 statistical features, 5-fold CV
+    (std 0.2--0.9pp across all cells). Chance
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: gpt2xl_temp09_001
+    field: three_class
+  - exp_id: mvp_pipeline_pythia_002
+    field: filtered_4class_acc
+  id: C006
+  location:
+    context: result_statement
+    section: atlas
+  text: Performance drops moderately---GPT-2~XL with temperature sampling still reaches
+    82.0\%, and even the weakest setting (Pythia nucleus) retains 70.8\%---confirming
+    that the classifier captures inter-gen
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: cross_model_rank_corr_mean
+  id: C007
+  location:
+    context: result_statement
+    section: atlas
+  text: 'To quantify cross-model agreement, we compute the Spearman rank correlation
+    of the full 19-feature importance vectors across all $9{2=36$ cell pairs and obtain
+    a mean $ = 0.868$ (range: 0.619--0.954).'
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: edd_distribution_T075
+  id: C008
+  location:
+    context: result_statement
+    section: atlas
+  text: Within the 4-class atlas (d0--d3), 7 of 9 cells achieve $EDD_{0.75=3$; the
+    two exceptions are Pythia and OLMo with top-$k$ sampling ($EDD_{0.75=2$), consistent
+    with top-$k$'s signal-attenuating effect
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: depth_extension_binary_pairwise_002
+    field: d0v1_auc
+  id: C009
+  location:
+    context: result_statement
+    section: atlas
+  text: The d0\,vs.\,d1 boundary is near-perfect (AUC\,=\,0.998), reflecting the well-known
+    human--machine gap.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: depth_extension_binary_pairwise_002
+    field: d1v2_auc
+  - exp_id: depth_extension_binary_pairwise_002
+    field: d2v3_auc
+  - exp_id: depth_extension_binary_pairwise_002
+    field: d3v4_auc
+  id: C010
+  location:
+    context: result_statement
+    section: atlas
+  text: 'Subsequent boundaries degrade monotonically: d1\,vs.\,d2 achieves 0.925 [95\%
+    CI: 0.914,\,0.935], d2\,vs.\,d3 reaches 0.823 [0.805,\,0.840], and d3\,vs.\,d4
+    yields 0.784 [0.765,\,0.802]---with the con'
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: depth_extension_binary_pairwise_002
+    field: d4v5_auc
+  id: C011
+  location:
+    context: result_statement
+    section: atlas
+  text: At d4\,vs.\,d5, AUC drops to 0.683 [0.661,\,0.705], falling below the threshold
+    and fixing $EDD_{0.75=4$.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: depth_extension_pythia_d4d5_001
+    field: pairwise_auc_rf
+  - exp_id: depth_extension_olmo_d4d5_002
+    field: binary_pairwise
+  - exp_id: depth_extension_gpt2xl_d4d5_001
+    field: binary_pairwise
+  id: C012
+  location:
+    context: result_statement
+    section: atlas
+  text: 'The d3\,vs.\,d4 AUC consistently clusters near the 0.75 threshold: Pythia
+    0.784 ($p{=0.001$), OLMo 0.765 ($p{=0.091$, marginal), GPT-2~XL 0.750 ($p{=0.505$,
+    n.s.)---only Pythia achieves conventional s'
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: depth_extension_olmo_d4d5_002
+    field: binary_pairwise
+  - exp_id: depth_extension_gpt2xl_d4d5_001
+    field: binary_pairwise
+  - exp_id: depth_extension_pythia_d4d5_001
+    field: pairwise_auc_rf
+  id: C013
+  location:
+    context: result_statement
+    section: atlas
+  text: At d4\,vs.\,d5, AUC uniformly drops below 0.70 (Pythia 0.683, OLMo 0.684,
+    GPT-2~XL 0.681), fixing $EDD_{0.75{=4$ for all three models.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: depth_extension_binary_pairwise_002
+    field: d1v2_auc
+  id: C014
+  location:
+    context: result_statement
+    section: atlas
+  text: 'Binary pairwise AUC between adjacent depths (Pythia-1.4B, nucleus $p{=0.95$,
+    d0--d5). Shaded bands: 95\% bootstrap CI. Dashed line: $T{=0.75$. $EDD_{0.75=4$:
+    depth pairs up to d3\,vs.\,d4 remain discr'
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: granularity_ablation_rf_001
+    field: summary
+  id: C015
+  location:
+    context: result_statement
+    section: atlas
+  text: 'Decision boundary dilution motivates EDD''s binary-pair design: mean accuracy
+    drops from 99.5\% (binary) to 78.3\% (4-class) to 62.9\% (6-class), and the d2\,vs.\,d3
+    AUC falls from 0.804 to 0.689 betwe'
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: cells_covered
+  id: C016
+  location:
+    context: result_statement
+    section: atlas
+  text: Normalized feature trajectories across generation depths for 3 models $$ 2
+    strategies (nucleus $p{=0.95$, temperature $=0.9$). All features decrease monotonically
+    with depth, but inter-depth spacing i
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: cells_covered
+  id: C017
+  location:
+    context: result_statement
+    section: atlas
+  text: For Pythia nucleus, p90\_ppl drops from 483.7 (d0) to 61.4 (d1)---an 87\%
+    reduction---but only from 29.7 (d2) to 18.2 (d3), a 39\% reduction.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: cells_covered
+  id: C018
+  location:
+    context: result_statement
+    section: atlas
+  text: Temperature sampling ($=0.9$) applies uniform logit scaling rather than the
+    hard truncation of nucleus or top-$k$, which accelerates convergence toward the
+    low-entropy attractor described by marchi202
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: cells_covered
+  id: C019
+  location:
+    context: result_statement
+    section: atlas
+  text: Nucleus sampling ($p{=0.95$) serves as a stable baseline with moderate signal
+    strength.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: cells_covered
+  id: C020
+  location:
+    context: result_statement
+    section: atlas
+  text: Temperature sampling ($=0.9$) enhances the signal via accelerated convergence,
+    yielding higher within-strategy accuracy but strategy-specific depth boundaries.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_9cell_001
+    field: best_acc_matrix
+  - exp_id: depth_extension_pythia_d4d5_001
+    field: edd_at_075
+  id: C021
+  location:
+    context: result_statement
+    section: conclusion
+  text: 'We introduced recursive generation depth estimation and showed that 19 lightweight
+    statistical features---with p90 perplexity and surprisal variance as universal
+    markers---achieve 70--85\% four-class '
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_model_loo_001
+    field: mean_4class_acc
+  - exp_id: cross_strategy_loo_001
+    field: mean_4class_acc
+  - exp_id: n2_roberta_finetune_001
+    field: accuracy_mean
+  - exp_id: n2_deberta_finetune_001
+    field: accuracy_mean
+  id: C022
+  location:
+    context: result_statement
+    section: conclusion
+  text: Cross-model transfer reaches 66.4\% and cross-strategy 59.1\%, though the
+    temperature-induced d1/d2 inversion and PLMs' ${$59\% ceiling underscore remaining
+    challenges; future work should address wild
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_strategy_loo_001
+    field: pythia_holdout_temp09
+  - exp_id: cross_strategy_loo_001
+    field: gpt2xl_holdout_temp09
+  id: C023
+  location:
+    context: result_statement
+    section: conclusion
+  text: 'Without this knowledge, d1/d2 predictions may systematically invert: cross-strategy
+    holdout d1v2 AUC drops to 0.129 (GPT-2~XL) and 0.253 (OLMo) when temperature-sampled
+    text is classified by a model t'
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_model_loo_001
+    field: per_class_recall
+  id: C024
+  location:
+    context: result_statement
+    section: conclusion
+  text: Cross-model transfer accuracy of 66.4\% is substantially driven by d0; d2
+    recall drops to 26.8\% in the worst case (Pythia holdout).
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_9cell_001
+    field: experimental_setup
+  id: C025
+  location:
+    context: result_statement
+    section: conclusion
+  text: All experiments use Wikipedia seed text with controlled recursive generation
+    (LoRA fine-tuning, 1--1.5B parameter models).
+  type: design
+- deprecated: false
+  evidence:
+  - exp_id: cross_model_loo_v1
+    field: holdout_gpt2xl
+  - exp_id: cross_model_loo_v1
+    field: holdout_olmo
+  id: C026
+  location:
+    context: result_statement
+    section: conclusion
+  text: Surprisal-based features are computed relative to GPT-2 base (124M), introducing
+    partial overlap when GPT-2~XL is held out, though GPT-2~XL holdout accuracy (67.6\%)
+    does not exceed the unrelated OLMo
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_9cell_001
+    field: best_acc_matrix
+  id: C027
+  location:
+    context: result_statement
+    section: generalization
+  text: 'We test whether the atlas results (69.6--85.4\%) reflect genuine statistical
+    regularities or training artifacts, evaluating four axes: classifier choice (sec:gen:baselines),
+    cross-model transfer (sec:'
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_001
+    field: coral_4class_acc
+  id: C028
+  location:
+    context: result_statement
+    section: generalization
+  text: Table~tab:baselines compares classification methods on the Pythia-1.4B nucleus
+    setting.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_001
+    field: coral_4class_acc
+  - exp_id: baseline_battery_001
+    field: diveye_4class_acc
+  - exp_id: mvp_pipeline_pythia_002
+    field: full_4class_acc
+  id: C029
+  location:
+    context: result_statement
+    section: generalization
+  text: Three feature-based methods---Random Forest (RF), CORAL ordinal regression
+    coral2020, and DivEye diveye2026---all operate on the same 19 statistical features
+    and achieve statistically indistinguishabl
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_001
+    field: ce_mlp_4class_acc
+  id: C030
+  location:
+    context: result_statement
+    section: generalization
+  text: These three significantly outperform CE-MLP ($p<0.001$, $+$3.8pp), which in
+    turn trails logistic regression by $$0.1pp.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_001
+    field: ppl_reg_single_4class_acc
+  id: C031
+  location:
+    context: result_statement
+    section: generalization
+  text: Single-feature regression on mean perplexity performs at chance (25.1\%),
+    confirming that depth estimation requires the multi-dimensional feature representation
+    defined in sec:method.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_001
+    field: ppl_reg_single_4class_acc
+  id: C032
+  location:
+    context: result_statement
+    section: generalization
+  text: ppl-regression (single feature) & 25.1 \\
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_001
+    field: coral_4class_acc
+  - exp_id: baseline_battery_001
+    field: diveye_4class_acc
+  - exp_id: zero_shot_llm_baseline_001
+    field: four_class_acc
+  id: C033
+  location:
+    context: result_statement
+    section: generalization
+  text: That three structurally different classifiers achieve identical performance
+    confirms that the discriminative signal resides in the 19 features, not the classifier
+    architecture; a zero-shot LLM baselin
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_model_loo_001
+    field: per_class_recall
+  - exp_id: baseline_battery_9cell_001
+    field: best_acc_matrix
+  id: C034
+  location:
+    context: result_statement
+    section: generalization
+  text: Confusion matrices for the best in-distribution setting (GPT-2 XL, temp $=0.9$,
+    85.4\%) and the best cross-model leave-one-out transfer (OLMo holdout, 69.2\%).
+    d0 recall exceeds 99\% in both; errors s
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_model_loo_001
+    field: mean_4class_acc
+  - exp_id: cross_model_loo_001
+    field: per_class_recall
+  id: C035
+  location:
+    context: result_statement
+    section: generalization
+  text: Mean transfer accuracy reaches 66.4\% (2.7$$ chance), though d0 recall ($>$98\%)
+    inflates the headline; d2 recall drops to 26.8\% (Pythia holdout), making it the
+    most confusable class.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_strategy_loo_001
+    field: pythia_holdout_nucleus
+  id: C036
+  location:
+    context: result_statement
+    section: generalization
+  text: temp ($=0.9$) & 62.8 & 58.2 & 56.1 \\
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_strategy_loo_001
+    field: mean_4class_acc
+  id: C037
+  location:
+    context: result_statement
+    section: generalization
+  text: Mean cross-strategy accuracy (59.1\%) falls 7 points below cross-model transfer
+    (66.4\%), indicating that strategy-induced distribution shifts pose a greater
+    generalization challenge than architectura
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_strategy_loo_001
+    field: per_class_recall
+  id: C038
+  location:
+    context: result_statement
+    section: generalization
+  text: As with cross-model transfer, d0 recall remains high ($$89.5\%) across all
+    holdout settings, inflating the headline accuracy; d2 recall ranges from 3.7\%
+    to 19\%, confirming mid-chain depths as the pr
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_strategy_loo_001
+    field: gpt2xl_holdout_temp09
+  - exp_id: cross_strategy_loo_001
+    field: olmo_holdout_temp09
+  id: C039
+  location:
+    context: result_statement
+    section: generalization
+  text: 'Training on nucleus + top-$k$ and testing on temperature yields d1v2 AUC
+    of 0.129 for GPT-2~XL and 0.253 for OLMo---both below 0.5, indicating that the
+    d1/d2 decision boundary inverts (Pythia retains '
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: lr_zscore_cross_strategy_001
+    field: zscore_lr
+  - exp_id: cross_strategy_loo_zscore_001
+    field: temp09_d1v2_delta
+  id: C040
+  location:
+    context: result_statement
+    section: generalization
+  text: Z-score normalization sugiyama2007_importance_weighting improves logistic
+    regression cross-strategy accuracy (25\%$$61\%) but does not recover the inversion---all
+    three models worsen (GPT-2~XL 0.50$$0
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: n2_roberta_finetune_001
+    field: accuracy_mean
+  - exp_id: n2_deberta_finetune_001
+    field: accuracy_mean
+  id: C041
+  location:
+    context: result_statement
+    section: generalization
+  text: Both converge to ${$59\% (RoBERTa 59.5$$3.2\%, DeBERTa 58.3$$4.7\%), 19pp
+    below feature-based RF (78.2\%); the 1.2pp inter-backbone gap rules out architecture
+    selection bias.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: n2_roberta_finetune_001
+    field: per_class_f1
+  - exp_id: n2_deberta_finetune_001
+    field: per_class_f1
+  id: C042
+  location:
+    context: result_statement
+    section: generalization
+  text: Both easily separate d0 (F1$>$0.95) but fail at adjacent-depth discrimination
+    (d1/d2 F1$<$0.42).
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: n2_deberta_finetune_001
+    field: pairwise_auc
+  - exp_id: n2_roberta_finetune_001
+    field: pairwise_auc
+  id: C043
+  location:
+    context: result_statement
+    section: generalization
+  text: Probing reveals a negative correlation between PLM attention and RF permutation
+    importance for both backbones (DeBERTa $={-0.484$, RoBERTa $={-0.456$; zero top-5
+    overlap; Appendix~app:feature_overlap)
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: dcol_roberta_v6_001
+    field: test_acc
+  id: C044
+  location:
+    context: result_statement
+    section: generalization
+  text: 'DCOL cloc2025, which adds a contrastive ordinal loss, fared worse: across
+    six iterations with two backbones (Appendix~app:dcol_iterations), the best run
+    (RoBERTa-large) reached only 64.5\% with severe'
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: cells_covered
+  id: C045
+  location:
+    context: result_statement
+    section: introduction
+  text: 'To systematically characterize how recursive generation reshapes these features,
+    we construct the Depth Degradation Atlas: a $3  3$ grid of model families (Pythia-1.4B,
+    OLMo-1B, GPT-2~XL) and decoding'
+  type: methodological
+- deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: p90_ppl_in_top2
+  - exp_id: atlas_v2_analysis
+    field: var_surprisal_in_top2
+  - exp_id: depth_extension_pythia_d4d5_001
+    field: edd_at_075
+  id: C046
+  location:
+    context: result_statement
+    section: introduction
+  text: Depth Degradation Atlas. We construct a systematic $3  3$ map across model
+    families and decoding strategies, revealing that p90\_ppl ranks in the top 2 in
+    all 9 cells (100\%) and var\_surprisal in 7/9
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: cross_model_loo_001
+    field: mean_4class_acc
+  - exp_id: cross_strategy_loo_001
+    field: mean_4class_acc
+  id: C047
+  location:
+    context: result_statement
+    section: introduction
+  text: 'Generalization analysis. Cross-model leave-one-out transfer achieves 66.4\%
+    and cross-strategy transfer 59.1\% (chance = 25\%). We identify a temperature-induced
+    d1/d2 AUC inversion (GPT-2~XL: 0.129, '
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: n2_deberta_finetune_001
+    field: accuracy_mean
+  - exp_id: n2_roberta_finetune_001
+    field: accuracy_mean
+  id: C048
+  location:
+    context: result_statement
+    section: introduction
+  text: End-to-end learning as negative result. Both DeBERTa-v3-base (58.3\%) and
+    RoBERTa-base (59.5\%) achieve ${$59\% via end-to-end finetuning---19pp below feature-based
+    classifiers (78.2\%)---with the arc
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: depth_extension_pythia_d4d5_001
+    field: edd_at_075
+  id: C049
+  location:
+    context: finding_statement
+    section: introduction
+  text: we introduce the Effective Discriminable Depth (EDD) metric to quantify how
+    far into the recursion chain adjacent depths remain distinguishable.
+  type: methodological
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_9cell_001
+    field: experimental_setup
+  id: C050
+  location:
+    context: result_statement
+    section: method
+  text: 'Each model is paired with three decoding strategies: nucleus sampling ($p{=0.95$)
+    holtzman2020_nucleus, temperature sampling ($=0.9$), and top-$k$ sampling ($k{=50$).'
+  type: design
+- deprecated: false
+  evidence:
+  - exp_id: lora_rank_ablation_001
+    field: lora_config
+  id: C051
+  location:
+    context: result_statement
+    section: method
+  text: We adopt standard LoRA hyperparameters ($r{=16$, $=32$, dropout$\,{=\,0.05$)
+    following hu2022lora, applied uniformly across all models.
+  type: design
+- deprecated: false
+  evidence:
+  - exp_id: depth_extension_pythia_d4d5_001
+    field: edd_at_075
+  id: C052
+  location:
+    context: finding_statement
+    section: method
+  text: We introduce the Effective Discriminable Depth (EDD), a scalar metric that
+    summarizes how far into a recursive chain adjacent depths remain distinguishable.
+  type: methodological
+- deprecated: false
+  evidence:
+  - exp_id: baseline_battery_9cell_001
+    field: experimental_setup
+    note: positioning statement; ordinal output validated by all 9-cell experiments
+  id: C053
+  location:
+    context: finding_statement
+    section: related_work
+  text: Our approach outputs ordinal depth labels, complementing rather than replacing
+    binary detection.
+  type: positioning
+- deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: cells_covered
+  id: C054
+  location:
+    context: result_statement
+    section: section_appendix
+  text: Figure~fig:feature_trajectory in the main text shows feature trajectories
+    for nucleus ($p{=0.95$) and temperature ($=0.9$) sampling.
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: dcol_roberta_v6_001
+    field: test_acc
+  id: C055
+  location:
+    context: result_statement
+    section: section_appendix
+  text: 'DCOL iteration summary. All experiments use Pythia-1.4B nucleus data. RF
+    baseline: 78.2\%.'
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: dcol_deberta_001
+    field: status
+  id: C056
+  location:
+    context: result_statement
+    section: section_appendix
+  text: v1 & DeBERTa-large & Full FT, margin\_lr$\,{=\,10^{-3$ & Embed.\ collapse
+    (acc 31.5\%) \\
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: n2_deberta_finetune_001
+    field: pairwise_auc
+  id: C057
+  location:
+    context: result_statement
+    section: section_appendix
+  text: DeBERTa attention importance and RF permutation importance exhibit a significant
+    negative correlation (Spearman $={-0.484$, $p{=0.036$; top-5 Jaccard overlap$\,{=\,0$).
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: n2_deberta_finetune_001
+    field: per_class_f1
+  id: C058
+  location:
+    context: result_statement
+    section: section_appendix
+  text: 'PLM representations excel at surface lexical features (TTR: $R^2{=0.85$,
+    repeated bigrams) but fail to capture perplexity distribution statistics---var\_surprisal
+    and p90\_ppl yield negative $R^2$ und'
+  type: quantitative
+- deprecated: false
+  evidence:
+  - exp_id: n2_roberta_finetune_001
+    field: vs_rf_baseline
+  - exp_id: n2_deberta_finetune_001
+    field: vs_rf_baseline
+  id: C059
+  location:
+    context: finding_statement
+    section: section_appendix
+  text: This confirms that the 19pp accuracy gap between feature-based and end-to-end
+    methods (sec:gen:dcol) stems from complementary---not redundant---representati
+  type: methodological
+- id: C060
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: Five feature-based methods converge within <=0.9pp (78.1-79.0%), establishing
+    a feature-determined accuracy ceiling
+  type: quantitative
+  evidence: xgboost_lgbm_baseline_001
+  decisions: []
+  deprecated: false
+- id: C061
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: XGBoost 79.0%
+  type: quantitative
+  evidence: xgboost_lgbm_baseline_001
+  decisions: []
+  deprecated: false
+- id: C062
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: LightGBM 78.8%
+  type: quantitative
+  evidence: xgboost_lgbm_baseline_001
+  decisions: []
+  deprecated: false
+- id: C063
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'Pythia nucleus: RF 78.8, XGB 79.0, LGBM 78.9, spread 0.2pp'
+  type: quantitative
+  evidence: xgboost_lgbm_3cell_001
+  decisions: []
+  deprecated: false
+- id: C064
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'GPT-2 XL temp: RF 85.8, XGB 86.2, LGBM 86.2, spread 0.4pp'
+  type: quantitative
+  evidence: xgboost_lgbm_3cell_001
+  decisions: []
+  deprecated: false
+- id: C065
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'Pythia top-k: RF 68.9, XGB 68.9, LGBM 68.7, spread 0.2pp'
+  type: quantitative
+  evidence: xgboost_lgbm_3cell_001
+  decisions: []
+  deprecated: false
+- id: C066
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: Top-5 features achieve 97.6% of full 19-feature accuracy (mean 76.5% vs 78.4%)
+  type: quantitative
+  evidence: feat_ablation_v1
+  decisions: []
+  deprecated: false
+- id: C067
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: 'Category ablation: perplexity 76.6% > surprisal 73.2% > lexdiv 46.1% > repetition
+    43.7% > ngram_ent 39.5%'
+  type: quantitative
+  evidence: feat_ablation_v1
+  decisions: []
+  deprecated: false
+- id: C068
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: 'Forward selection: var_surprisal first in 6/9, p90_ppl in 3/9'
+  type: quantitative
+  evidence: feat_ablation_v1
+  decisions: []
+  deprecated: false
+- id: C069
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: 'LOGO acc: buggy 64.0% → fixed 72.1% (matching CV 72.0%)'
+  type: quantitative
+  evidence: w2_domain_bias_001
+  decisions: []
+  deprecated: false
+- id: C070
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Seed-group prediction: buggy 20.8% → fixed 10.2% (near 10% chance)'
+  type: quantitative
+  evidence: w2_domain_bias_001
+  decisions: []
+  deprecated: false
+- id: C071
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: Depth-to-seed-group accuracy ratio 7.1x
+  type: quantitative
+  evidence: w2_domain_bias_001
+  decisions: []
+  deprecated: false
+- id: C072
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'WikiText-103 546 passages: 100% classified as d0, zero false positives'
+  type: quantitative
+  evidence: wild_data_calibration_001
+  decisions: []
+  deprecated: false
+- id: C073
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'Domain shift: mean_ppl +621%, var_ppl +503%'
+  type: quantitative
+  evidence: wild_data_calibration_001
+  decisions: []
+  deprecated: false
+- id: C074
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: Controlled-data calibration >=99.9% per class
+  type: quantitative
+  evidence: wild_data_calibration_001
+  decisions: []
+  deprecated: false
+- id: C075
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: WikiText-103 546 passages all classified as d0 (FPR=0%), mean posterior 0.996
+  type: quantitative
+  evidence: plan_015
+  decisions: []
+  deprecated: false
+- id: C076
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: 'WikiText robustness is partly an easy case: higher perplexity places it farther
+    from d1-d3 in feature space'
+  type: quantitative
+  evidence: plan_015
+  decisions: []
+  deprecated: false
+- id: C077
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: EDD_T is formally defined as the longest contiguous discriminable prefix depth
+    at AUC threshold T, using independent binary RF classifiers (500 trees, 5-fold
+    CV) on 19-dim features
+  type: methodological
+  evidence:
+  - exp_id: depth_extension_binary_pairwise_002
+    role: primary_application
+  - exp_id: atlas_v2_analysis
+    role: 9-cell_validation
+  decisions:
+  - D002
+  deprecated: false
+- id: C078
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: 'd3v4 AUC clusters near 0.75 with stratified statistical strength: Pythia
+    0.784 (p=0.001 significant), OLMo 0.765 (p=0.091 marginal), GPT-2 XL 0.750 (p=0.505
+    non-significant); d4v5 uniformly below 0.70 (0.681-0.684)'
+  type: empirical
+  evidence:
+  - exp_id: depth_extension_binary_pairwise_002
+    metric: d3v4_auc=0.7837, d4v5_auc=0.6832
+    role: Pythia_nucleus
+  - exp_id: depth_extension_olmo_d4d5_002
+    metric: d3v4_auc=0.765, d4v5_auc=0.684
+    role: OLMo_nucleus
+  - exp_id: depth_extension_gpt2xl_d4d5_001
+    metric: d3v4_auc=0.750, d4v5_auc=0.681
+    role: GPT2XL_nucleus
+  decisions:
+  - D027
+  deprecated: false
+- id: C079
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: All three model-specific RF classifiers achieve >=98.5% d0 accuracy on WikiText-103
+    (Pythia 100%, GPT-2 XL 99.3%, OLMo 98.5%)
+  type: quantitative
+  evidence: wild_data_calibration_001, wild_data_gpt2xl_calibration_001, wild_data_olmo_calibration_001
+  decisions: []
+  deprecated: false
+- id: C080
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: C4 FPR ranges from 4.7% (OLMo) to 22.4% (GPT-2 XL), concentrated in template/SEO
+    content
+  type: quantitative
+  evidence: wild_data_c4_supplement_001, wild_data_gpt2xl_calibration_001, wild_data_olmo_calibration_001
+  decisions: []
+  deprecated: false
+- id: C081
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'Deprecated: was Pythia-only, replaced by ecological_wikitext_3model'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C082
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'WikiText robustness is partly an easy case: higher perplexity places it farther
+    from d1-d3'
+  type: quantitative
+  evidence: wild_data_calibration_001
+  decisions: []
+  deprecated: false
+- id: C083
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: Pythia C4 FPR=20.2%, d0=79.8%
+  type: quantitative
+  evidence: wild_data_c4_supplement_001
+  decisions: []
+  deprecated: false
+- id: C084
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: GPT-2 XL C4 FPR=22.4%, d0=77.6%, d1=9.0%, d2=3.7%, d3=9.6%
+  type: quantitative
+  evidence: wild_data_gpt2xl_calibration_001
+  decisions: []
+  deprecated: false
+- id: C085
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: OLMo C4 FPR=4.7%, d0=95.3%, d1=2.9%, d2=0.5%, d3=1.3%
+  type: quantitative
+  evidence: wild_data_olmo_calibration_001
+  decisions: []
+  deprecated: false
+- id: C086
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: 'C4 misclassifications concentrate in template/SEO content: rep_3gram +37%,
+    rep_4gram +75%'
+  type: quantitative
+  evidence: wild_data_c4_supplement_001
+  decisions: []
+  deprecated: false
+- id: C087
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: OLMo lower FPR likely reflects Dolma training data (diverse web) vs Pythia/GPT-2
+    XL (Wikipedia/WebText)
+  type: quantitative
+  evidence: wild_data_olmo_calibration_001
+  decisions: []
+  deprecated: false
+- id: C088
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Web-crawl deployment requires model-specific calibration, C4 FPR 4.7-22.4%
+  type: quantitative
+  evidence: wild_data_c4_supplement_001, wild_data_gpt2xl_calibration_001, wild_data_olmo_calibration_001
+  decisions: []
+  deprecated: true
+- id: C089
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: E2E experiment used RoBERTa-base (125M), not RoBERTa-large (355M). Backbone
+    scale bound corrected to ≤125M.
+  type: quantitative
+  evidence: 'n2_roberta_finetune_001 (model path: roberta-base, hidden_size=768, 12
+    layers)'
+  decisions: []
+  deprecated: false
+- id: C090
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: '9-cell per-class recall corrected from all_results.json source. Key changes:
+    d2 range 46-73% (was 55-71%), d3 range 58-82% (was 64-82%), strongest d2 = GPT-2
+    XL nucleus 73.3% (was GPT-2 XL temp 71%)'
+  type: quantitative
+  evidence: baseline_battery_9cell/all_results.json (Reviewer-verified)
+  decisions: []
+  deprecated: false
+- id: C091
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: 'd1 recall 72-91%, d2 recall 46-73%, d3 recall 58-82% (corrected from all_results.json).
+    Pythia nuc example: d3=72% (was 76%). Strongest d2: GPT-2 XL nucleus 73% (was
+    GPT-2 XL temp 71%).'
+  type: quantitative
+  evidence: baseline_battery_9cell/all_results.json (Reviewer-verified)
+  decisions: []
+  deprecated: false
+- id: C092
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'Depth signal persists at 7B scale: 60.1% accuracy vs 25% chance'
+  type: empirical
+  evidence:
+  - cross_scale_qwen7b_001
+  decisions: []
+  deprecated: false
+- id: C093
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'd0 separability preserved at 7B: all d0-vs-deeper AUC > 0.92'
+  type: empirical
+  evidence:
+  - cross_scale_qwen7b_001
+  decisions: []
+  deprecated: false
+- id: C094
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'EDD increases with model scale: EDD>5 at 7B vs EDD=4 at 1-1.5B (T=0.70)'
+  type: empirical
+  evidence:
+  - cross_scale_qwen7b_001
+  decisions: []
+  deprecated: false
+- id: C095
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: Non-monotonic U-shaped AUC at 7B (d2v3 < d3v4 < d4v5), contrasting monotonic
+    decay at 1-1.5B
+  type: empirical
+  evidence:
+  - cross_scale_qwen7b_001
+  decisions: []
+  deprecated: false
+- id: C096
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: Llama-3.1-8B achieves 70.2% 4-class accuracy [68.3, 72.4]
+  type: quantitative
+  evidence:
+  - exp_id: cross_scale_llama3_8b_003
+    field: rf_4class_acc
+  decisions: []
+  deprecated: false
+- id: C097
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'Llama-3.1-8B consecutive AUC: 0.949, 0.877, 0.771, 0.716, 0.618 (monotonic
+    decay)'
+  type: quantitative
+  evidence:
+  - exp_id: cross_scale_llama3_8b_003
+    field: pairwise_auc
+  decisions: []
+  deprecated: false
+- id: C098
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: seed=43 LoRA replication yields 77.15% (CI [76.4, 78.15]), delta=-1.05pp vs
+    baseline
+  type: quantitative
+  evidence: D035 second-seed replication
+  decisions: []
+  deprecated: false
+- id: C099
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Cross-seed transfer avg 76.76%, delta=-1.30pp vs within-seed avg (78.07%),
+    confirming depth signal inherent to recursive process
+  type: quantitative
+  evidence: D035 second-seed replication
+  decisions: []
+  deprecated: false
+- id: C100
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Reference-free surface features achieve 53.7% (2.15x chance) but 25pp below
+    full pipeline
+  type: quantitative
+  evidence: D035 reference-free experiment
+  decisions: []
+  deprecated: false
+- id: C101
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Simple multi-reference ensembling (73.7%) does not outperform best single
+    reference (78.6%)
+  type: quantitative
+  evidence: D035 ensemble experiment
+  decisions: []
+  deprecated: false
+- id: C102
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: '128 tokens: 68.35%, 256: 73.80%, 512: 77.82%; depth signal saturates near
+    500 tokens'
+  type: quantitative
+  evidence: D035 generation length ablation
+  decisions: []
+  deprecated: false
+- id: C103
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: Mixed-depth corpus macro-recall delta=-1.62pp (within 2pp tolerance), per-class
+    range -0.45pp to -2.43pp (d1 largest)
+  type: quantitative
+  evidence: D035 mixed-depth corpus experiment
+  decisions: []
+  deprecated: false
+- id: C104
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-model transfer: XGBoost 67.2%, ordinal MLP 66.7%, prototypical 66.6%
+    vs RF 66.4%, spread ≤0.8pp'
+  type: quantitative
+  evidence:
+  - exp_id: learned_estimator_002
+    metric: xgboost_mean=67.18, ordinal_mlp_mean=66.7, prototypical_mean=66.64, rf_baseline_mean=66.4
+  decisions: []
+  deprecated: false
+- id: C105
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: Qwen2.5-1.5B-Instruct achieves 47.4% 4-class accuracy (CI [46.7, 48.1], 1.9x
+    chance), self-reference evaluation
+  type: quantitative
+  evidence:
+  - exp_id: qwen25-1p5b-instruct-001
+    metric: rf_4class_acc=0.4742, rf_4class_ci=[0.467, 0.4811]
+  decisions: []
+  deprecated: false
+- id: C106
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: 'Geometric AUC decay model: gamma~0.74, R^2=0.97, predicted vs observed AUC
+    for Pythia nucleus d0-d4'
+  type: quantitative
+  evidence:
+  - exp_id: edd_extended_analysis
+    metric: gamma=0.74, R2=0.97, predicted=[0.995,0.953,0.862,0.766,0.683], observed=[0.999,0.925,0.823,0.784,0.683]
+  decisions: []
+  deprecated: false
+- id: C107
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Downstream fine-tuning probe: depth-filtered subsets comparable to unfiltered
+    (delta PPL <= 0.12)'
+  type: quantitative
+  evidence:
+  - exp_id: downstream_benchmark_002
+    metric: baseline_ppl=5.67, d0_only_ppl=5.65, d1_only_ppl=5.55, mixed_all_ppl=5.55,
+      ppl_improvement=0.12
+  decisions: []
+  deprecated: true
+- id: C108
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Pooled RF: C4 FPR 34%, FineWeb FPR 17% (10K passages each)'
+  type: quantitative
+  evidence:
+  - exp_id: wild_data_features_001
+    metric: c4_fpr=34.02%, fineweb_fpr=17.15%
+  decisions: []
+  deprecated: false
+- id: C109
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Learned estimator cross-model transfer: XGBoost mean 67.2%, MLP 66.7%, Proto
+    66.6%, RF 66.4%'
+  type: quantitative
+  evidence:
+  - exp_id: learned_estimator_002
+    metric: xgboost_mean=67.18, ordinal_mlp_mean=66.7, prototypical_mean=66.64, rf_baseline_mean=66.4
+  decisions: []
+  deprecated: false
+- id: C110
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: Pythia holdout hardest (61.6-63.7%), OLMo/GPT-2 XL holdouts 67.9-70.0%
+  type: quantitative
+  evidence:
+  - exp_id: learned_estimator_002
+    metric: xgboost_pythia=63.72, prototypical_pythia=61.55, prototypical_olmo=70.01,
+      xgboost_gpt2xl=68.05
+  decisions: []
+  deprecated: false
+- id: C111
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Qwen2.5-1.5B-Instruct: 47.4% 4-class acc (CI [46.7, 48.1]), d0v1=0.653, d1v2=0.620,
+    d2v3=0.664'
+  type: quantitative
+  evidence:
+  - exp_id: qwen25-1p5b-instruct-001
+    metric: 'rf_4class_acc=0.4742, pairwise_auc_rf: d0v1=0.653, d1v2=0.620, d2v3=0.664'
+  decisions: []
+  deprecated: false
+- id: C112
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: Top features shift to surprisal_range, surprisal_position_corr, prob_std
+  type: qualitative
+  evidence:
+  - exp_id: qwen25-1p5b-instruct-001
+    metric: top_features=[surprisal_range, surprisal_position_corr, prob_std, surprisal_first_half_minus_second,
+      surprisal_std]
+  decisions: []
+  deprecated: false
+- id: C113
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Downstream probe: baseline PPL 5.67, d0_only 5.65, d1_only 5.55, mixed 5.55;
+    d0-only hypothesis not supported'
+  type: quantitative
+  evidence:
+  - exp_id: downstream_benchmark_002
+    metric: baseline_ppl=5.67, d0_only_ppl=5.65, d1_only_ppl=5.55, mixed_all_ppl=5.55
+  decisions: []
+  deprecated: false
+- id: C114
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Training loss monotonically decreases with depth (d0: 2.558, d1: 1.920, d2:
+    1.286)'
+  type: quantitative
+  evidence:
+  - exp_id: downstream_benchmark_002
+    metric: 'train_loss: d0=2.558, d1=1.920, d2=1.286'
+  decisions: []
+  deprecated: false
+- id: C115
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: 'AUC-excess geometric contraction: ratio of successive values 0.69-0.80, mean
+    0.74 (Pythia nucleus)'
+  type: quantitative
+  evidence:
+  - exp_id: edd_extended_analysis
+    metric: excess_ratios=[0.91/0.50=..., mean_ratio=0.74], 3-model mean AUC=[0.999,0.948,0.840,0.766,0.683]
+  decisions: []
+  deprecated: false
+- id: C116
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'Feature group ablation: perplexity-only 66.0% (-0.5pp), repetition/diversity-only
+    53.0% (-13.6pp) vs full 66.6%'
+  type: quantitative
+  evidence:
+  - exp_id: feature_importance_ablation
+    metric: full=66.55, perplexity_only=66.01, repetition_diversity_only=52.97
+  decisions: []
+  deprecated: false
+- id: C117
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'RF seed robustness: std=0.06pp across 3 seeds'
+  type: quantitative
+  evidence:
+  - exp_id: rf_seed_robustness
+    metric: seeds=[42,123,456], mean=66.48, std=0.06
+  decisions: []
+  deprecated: false
+- id: C118
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Feature group ablation detail: perplexity 66.0%, entropy/surprisal 63.2%,
+    repetition/diversity 53.0%, full 66.6%'
+  type: quantitative
+  evidence:
+  - exp_id: feature_importance_ablation
+    metric: full=66.55, perplexity=66.01, entropy_surprisal=63.19, repetition_diversity=52.97
+  decisions: []
+  deprecated: false
+- id: C119
+  location:
+    section: section_appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Top-2 features: p90_ppl 22.4%, var_surprisal 18.8%, total 41%'
+  type: quantitative
+  evidence:
+  - exp_id: feature_importance_ablation
+    metric: p90_ppl_importance=22.4%, var_surprisal_importance=18.8%
+  decisions: []
+  deprecated: false
+- id: C120
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: p90_ppl single-feature RF achieves 58.3% (LOO cross-model), -8.3pp vs full
+    19-feature set
+  type: quantitative
+  evidence:
+  - exp_id: feature_importance_ablation
+    metric: p90_ppl_single=58.27, full=66.55, delta=-8.28
+  decisions: []
+  deprecated: false
+- id: C121
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'Raw perplexity (mean/median) at chance (25.1%): depth signal in distributional
+    statistics, not central tendency'
+  type: quantitative
+  evidence:
+  - exp_id: feature_importance_ablation
+    metric: mean_ppl_single=25.1%
+  decisions: []
+  deprecated: false
+- id: C122
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: 'AUC-excess contraction: 3-model mean excess (0.453, 0.362, 0.266, 0.183 for
+    d1v2-d4v5), ratio decreases 0.80 to 0.69; per-model Pythia range 0.64-0.88'
+  type: quantitative
+  evidence:
+  - exp_id: edd_extended_analysis
+    metric: 3model_mean_excess=[0.453,0.362,0.266,0.183], contraction_ratios=[0.80,0.73,0.69],
+      pythia_ratios=[0.88,0.76,0.64]
+  decisions: []
+  deprecated: false
+- id: C123
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: perplexity tail statistics achieve 69-86% four-class accuracy (EDD_0.75=4)
+  type: quantitative
+  evidence:
+  - exp_id: mvp_pipeline_pythia_002
+    metric: rf_accuracy
+  - exp_id: gpt2xl_temp09_001
+    metric: rf_accuracy
+  - exp_id: depth_extension_bootstrap
+    metric: edd_threshold
+  decisions: []
+  deprecated: true
+- id: C125
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: five features sufficing for 97.6% of full performance
+  type: quantitative
+  evidence:
+  - exp_id: feat_ablation_v1
+    metric: top5_mean_acc_ratio
+  decisions: []
+  deprecated: true
+- id: C128
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: LoRA fine-tuning loss decreases monotonically across depths for all three
+    families
+  type: quantitative
+  evidence:
+  - exp_id: mvp_pipeline_pythia_002
+    metric: finetune_losses
+  - exp_id: gpt2xl_nucleus_001
+    metric: finetune_losses
+  - exp_id: olmo_nucleus_001
+    metric: finetune_losses
+  decisions: []
+  deprecated: true
+- id: C132
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: instruction tuning regularizes this compression
+  type: qualitative
+  evidence:
+  - exp_id: cross_scale_7b
+    metric: instruct_vs_base_auc_trajectory
+  decisions: []
+  deprecated: true
+- id: C137
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Cross-strategy transfer remains the primary bottleneck
+  type: qualitative
+  evidence:
+  - exp_id: cross_strategy_loo
+    metric: mean_accuracy
+  decisions: []
+  deprecated: true
+- id: C138
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: EDD_0.75=4 for Pythia (p=0.001), OLMo (p=0.091), GPT-2 XL (p=0.505)
+  type: quantitative
+  evidence:
+  - exp_id: depth_extension_bootstrap
+    metric: d3v4_auc_pvalue
+  decisions: []
+  deprecated: false
+- id: C139
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: Prompted generation (GPT-2 XL nucleus, topic-seeded) yields 69.5% accuracy,
+    -13.8pp vs BOS-seeded, 2.8x chance, monotonic AUC decay, identical top features
+  type: quantitative
+  evidence:
+  - exp_id: prompted_gen_gpt2xl_001
+    metric: rf_accuracy_4class
+  decisions: []
+  deprecated: false
+- id: C140
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: prompted generation 69.5% as generalization axis
+  type: quantitative
+  evidence:
+  - exp_id: prompted_gen_gpt2xl_001
+    metric: rf_accuracy_4class
+  decisions: []
+  deprecated: false
+- id: C141
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: Binary detectors (Binoculars + Fast-DetectGPT combined) reach 74.2% for ordinal
+    depth classification, 4pp below RF 78.2%
+  type: quantitative
+  evidence:
+  - exp_id: detector_ord_baseline_001
+    metric: combined_binoculars_fdgpt_acc
+  decisions: []
+  deprecated: false
+- id: C142
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 69-86% four-class accuracy with EDD_0.75=4
+  type: quantitative
+  evidence:
+  - exp_id: mvp_pipeline_pythia_002
+    metric: rf_accuracy
+  - exp_id: gpt2xl_temp09_001
+    metric: rf_accuracy
+  decisions: []
+  deprecated: true
+- id: C144
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: five features sufficing for 97.6% of full performance
+  type: quantitative
+  evidence:
+  - exp_id: feat_ablation_v1
+    metric: top5_mean_acc_ratio
+  decisions: []
+  deprecated: true
+- id: C147
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: LoRA loss decreases monotonically with depth for all three families
+  type: quantitative
+  evidence:
+  - exp_id: mvp_pipeline_pythia_002
+    metric: finetune_losses
+  - exp_id: gpt2xl_nucleus_001
+    metric: finetune_losses
+  - exp_id: olmo_nucleus_001
+    metric: finetune_losses
+  decisions: []
+  deprecated: true
+- id: C151
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: instruction tuning regularizes compression
+  type: qualitative
+  evidence:
+  - exp_id: cross_scale_7b
+    metric: instruct_vs_base_auc_trajectory
+  decisions: []
+  deprecated: true
+- id: C152
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 69-86% four-class accuracy with EDD_0.75=4
+  type: quantitative
+  evidence:
+  - exp_id: mvp_pipeline_pythia_002
+    metric: rf_accuracy
+  - exp_id: gpt2xl_temp09_001
+    metric: rf_accuracy
+  decisions: []
+  deprecated: true
+- id: C154
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: five features sufficing for 97.6% of full performance
+  type: quantitative
+  evidence:
+  - exp_id: feat_ablation_v1
+    metric: top5_mean_acc_ratio
+  decisions: []
+  deprecated: true
+- id: C157
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: LoRA loss decreases monotonically with depth for all three families
+  type: quantitative
+  evidence:
+  - exp_id: mvp_pipeline_pythia_002
+    metric: finetune_losses
+  - exp_id: gpt2xl_nucleus_001
+    metric: finetune_losses
+  - exp_id: olmo_nucleus_001
+    metric: finetune_losses
+  decisions: []
+  deprecated: true
+- id: C161
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: depth estimation may partially conflate recursive depth with quality degradation
+  type: caveat
+  evidence:
+  - exp_id: downstream_benchmark_002
+    field: ppl_delta
+    note: negative result showing depth-quality entanglement
+  decisions:
+  - R7-W4 depth-quality entanglement acknowledged as open challenge
+  deprecated: true
+- id: C162
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Both accumulation conditions (50/50 and 25/75) achieve ~69-70% accuracy, down
+    ~15pp from 84.2% full-replacement
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C163
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Accumulation accuracy remains 2.8x chance
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C164
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 1pp gap between mix ratios falls within cross-seed variance (2.04pp)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C165
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: DeBERTa-v3-base (LoRA) end-to-end underperforms RF by 16-32pp across three
+    cells; gap largest on GPT-2 XL temp09 (53.1% vs 85.4%)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C166
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: DeBERTa d2 recall collapses to 8.4% on GPT-2 XL temp09
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C167
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: RoBERTa-DCOL ordinal contrastive achieves 64.5%, 14pp below RF
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C168
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: Perplexity features alone reach 76.6%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C169
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: Surprisal features alone reach 73.2%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C170
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: Lexical diversity features alone ≤47%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C171
+  location:
+    section: atlas
+    paragraph: 0
+    sentence: 0
+  text: Repetition features alone ≤40%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C172
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Mean perplexity performs at chance (25.1%)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C174
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Strategy effect 9.3pp exceeds model effect 7.2pp
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C177
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Accumulation -14 to -15pp vs 84.2% full-replacement
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C181
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: At 14B, EDD_{0.70}=0, accuracy remains 2x chance (>50%)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C186
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Binary detectors: >97% d0 recall'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C187
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 4 importance measures converge (Kendall W=0.90, p<0.005); Binoculars independent
+    path 78.1% vs 78.4% (p>0.05); merged 82.6%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C189
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Strategy effect 9.3pp exceeds model effect 7.2pp
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C192
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: RF depth filtering retains 44% corpus, matches unfiltered PPL (p=0.41), beats
+    random (p<0.002)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C196
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 14B EDD_{0.70}=0, accuracy 2x chance; reference mismatch ~7pp
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C201
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Binary detectors >97% d0 recall; depth provides finer ordinal resolution
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C202
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 'Stage 1 strategy classifier: 19 features, 3-class, 57.8% accuracy'
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C203
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: Two-stage pipeline 70.5% vs LOO 59.1% (+11.5pp); oracle 78.3%, gap 7.8pp from
+    misidentification
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C204
+  location:
+    section: generalization
+    paragraph: 0
+    sentence: 0
+  text: 31.5pp d1-d3 gap between correct and incorrect routing
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+figures:
+- caption: Feature importance heatmap across 9 cells (3 models $\times$ 3 strategies).
+    Top-7 features by mean importance. \textsc{p90\_ppl
+  deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: cells_covered
+  id: F001
+  label: fig:atlas_heatmap
+  location:
+    section: atlas
+  source_path: ../../figures/paper/fig_atlas_heatmap.pdf
+  type: result
+- caption: Binary pairwise AUC between adjacent depths (Pythia-1.4B, nucleus $p{=
+  deprecated: false
+  evidence:
+  - exp_id: depth_extension_binary_pairwise_002
+    field: d1v2_auc
+  id: F002
+  label: fig:auc_decay
+  location:
+    section: atlas
+  source_path: ../../figures/paper/fig_auc_decay.pdf
+  type: result
+- caption: Normalized feature trajectories across generation depths for 3 models $\times$
+    2 strategies (nucleus $p{=
+  deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: cells_covered
+  id: F003
+  label: fig:feature_trajectory
+  location:
+    section: atlas
+  source_path: ../../figures/paper/fig_feature_trajectory.pdf
+  type: result
+- caption: Confusion matrices for the best in-distribution setting (GPT-2 XL, temp
+    $\tau{=
+  deprecated: false
+  evidence:
+  - exp_id: cross_model_loo_001
+    field: per_class_recall
+  - exp_id: baseline_battery_9cell_001
+    field: best_acc_matrix
+  id: F004
+  label: fig:confusion_matrix
+  location:
+    section: generalization
+  source_path: ../../figures/paper/fig_confusion_matrix.pdf
+  type: result
+paper:
+  generated_at: '2026-05-22T09:49:37.308302+00:00'
+  source: auto-bootstrap from existing tex files
+  title: How Deep Is Your Data? Estimating Recursive Generation Depth\\via Statistical
+    Fingerprints
+  version: 83
+tables:
+- caption: In-distribution 4-class depth estimation accuracy (\%) across 3 model families
+    $\times$ 3 decoding strategies. RF classifier with 19 statistical features, 5-fold
+    CV (std 0.2--0.9pp across all cells). Chance = 25\%.
+  cells: []
+  deprecated: false
+  evidence:
+  - exp_id: baseline_battery_9cell_001
+    field: best_acc_matrix
+  id: T001
+  label: tab:main_matrix
+  location:
+    section: atlas
+- caption: EDD sensitivity to threshold $T$ (Pythia-1.4B, nucleus $p{=
+  cells: []
+  deprecated: false
+  evidence:
+  - exp_id: depth_extension_pythia_d4d5_001
+    field: pairwise_auc_rf
+  id: T002
+  label: tab:edd_sensitivity
+  location:
+    section: atlas
+- caption: 'Comparison of classification methods on Pythia-1.4B nucleus. RF, CORAL,
+    and DivEye use the same 19 statistical features and are statistically indistinguishable
+    (bootstrap $p>0.05$, Bonferroni-corrected). Chance = 25\%. 5-fold CV std: 0.2--0.9pp
+    across all methods.'
+  cells: []
+  deprecated: false
+  evidence:
+  - exp_id: baseline_battery_001
+    field: coral_4class_acc
+  - exp_id: zero_shot_llm_baseline_001
+    field: four_class_acc
+  id: T003
+  label: tab:baselines
+  location:
+    section: generalization
+- caption: Cross-model transfer (leave-one-out, nucleus only). Train on 2 model families,
+    test on held-out 3rd. Chance = 25\%.
+  cells: []
+  deprecated: false
+  evidence:
+  - exp_id: cross_model_loo_001
+    field: mean_4class_acc
+  - exp_id: cross_model_loo_001
+    field: per_class_recall
+  id: T004
+  label: tab:cross_model
+  location:
+    section: generalization
+- caption: Cross-strategy transfer (leave-one-out). Train on 2 strategies, test on
+    held-out 3rd. Chance = 25\%.
+  cells: []
+  deprecated: false
+  evidence:
+  - exp_id: cross_strategy_loo_001
+    field: mean_4class_acc
+  id: T005
+  label: tab:cross_strategy
+  location:
+    section: generalization
+- caption: The 19 statistical features comprising $\mathbf{f
+  cells: []
+  deprecated: false
+  evidence:
+  - exp_id: atlas_v2_analysis
+    field: feature_definitions
+  - exp_id: feat_ablation_v1
+    field: feature_importance
+  id: T006
+  label: tab:features
+  location:
+    section: method
+- caption: 'DCOL iteration summary. All experiments use Pythia-1.4B nucleus data.
+    RF baseline: 78.2\%.'
+  cells: []
+  deprecated: false
+  evidence:
+  - exp_id: dcol_deberta_001
+    field: status
+  - exp_id: dcol_roberta_v6_001
+    field: test_acc
+  id: T007
+  label: tab:dcol_iterations
+  location:
+    section: section_appendix
+_completeness:
+  coverage: 123/142
+  claims: 138
+  tables: 7
+  figures: 4
+  tier_counts:
+    tier1: 0
+    tier2: 123
+    tier3: 19
+    tierX: 0
+  last_checked: '2026-05-22T09:49:37.308382+00:00'

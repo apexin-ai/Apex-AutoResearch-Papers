@@ -1,0 +1,13 @@
+Text Length Sensitivity Results (plan_022)
+============================================
+Config: 9 cells, 1800 samples, pythia-1.4b, 5-fold CV, seed=42
+Server path: /root/autodl-tmp/recursive_gen_depth_est/results/text_length_sensitivity/summary.json
+
+Trunc | 4-class | 3-class |   d0     d1     d2     d3
+------|---------|---------|----------------------------
+  50  |  51.5%  |  65.0%  | 82.9%  47.2%  28.0%  47.8%
+ 100  |  56.3%  |  72.8%  | 89.8%  54.3%  27.5%  53.4%
+ 200  |  60.4%  |  74.9%  | 92.0%  56.0%  35.3%  57.0%
+ 500  |  61.0%  |  78.9%  | 93.8%  66.9%  42.7%  55.2%
+
+Key: 200 tokens is the cost-effective inflection point. 50 tokens already well above chance (25%).

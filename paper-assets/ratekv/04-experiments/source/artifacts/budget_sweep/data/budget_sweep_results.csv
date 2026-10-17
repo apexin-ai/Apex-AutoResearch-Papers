@@ -1,0 +1,4 @@
+compression,budget,uniform_bits,uniform_ppl,mckp_ppl,delta_ppl,mckp_mem_ratio,n_2bit,n_4bit,n_8bit,n_16bit
+2x,0.5,8,10.1007,10.6633,-0.5626,0.4955,8,66,0,38
+4x,0.25,4,15.4454,11.2312,4.2142,0.25,8,100,4,0
+8x,0.125,2,14758.9234,906.7774,13852.146,0.1295,108,4,0,0

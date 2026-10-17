@@ -1,0 +1,188 @@
+experiments:
+- id: exp-001
+  claim:
+  - 1
+  - 2
+  description: 'Count curve baseline: recall/precision/F1 across type counts [1,2,6,12,22,44,66]
+    on Few-NERD with Qwen3-32B-FP8'
+  priority: P0
+  gpu_budget_hours: 3.5
+  deps: []
+  registry_id: exp001_count_baseline
+  status_note: DONE. Recall 0.72->0.42 monotonic. WrongType 0->2434. Over-prediction
+    at low counts.
+- id: exp-002
+  claim:
+  - 1
+  - 2
+  description: 'Confusability controlled: within-count r(metric, BCS) at count=6/12,
+    25 random + extreme batches on Few-NERD'
+  priority: P0
+  gpu_budget_hours: 3
+  deps:
+  - exp-001
+  registry_id: exp002_confusability_controlled
+  status_note: DONE. Partial r=0.303 (p=0.026), count_12 r=0.501 (p=0.008). Confusion
+    rate 10-28x.
+- id: exp-003a
+  claim:
+  - 1
+  - 2
+  description: 'Prompt v2 rerun: clean data without offset fabrication, anti-hallucination
+    instruction. Re-run exp1+exp2.'
+  priority: P0
+  gpu_budget_hours: 3
+  deps:
+  - exp-001
+  - exp-002
+  registry_id: exp003a_prompt_v2_rerun
+  status_note: FAILED (EXIT_CODE=2 syntax error). Needs fix and re-run.
+- id: exp-004
+  claim:
+  - 1
+  - 2
+  - 3
+  description: 'MAVEN confusability study: count curve + within-count BCS correlation
+    on MAVEN Event Detection (168 event types, FrameNet hierarchy). Replicates core
+    finding cross-task (NER→ED) with larger type space and known sibling confusion
+    (14.6-19.8%).'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - exp-003a
+  registry_id: exp-004
+  status_note: 'DONE (success). MAVEN count curve replicated. Also: exp004_maven_bcs
+    (negative) — BCS within-count correlation weaker on MAVEN due to FrameNet hierarchy
+    structure.'
+- id: exp-005
+  claim:
+  - 1
+  - 2
+  description: 'DocRED confusability study: count curve + BCS correlation on DocRED
+    (96 relation types). Scaling stress test.'
+  priority: P1
+  gpu_budget_hours: 5
+  deps:
+  - exp-003a
+  registry_id: exp_docred_confusability
+- id: exp-006
+  claim:
+  - 2
+  description: 'Interaction effect 2x2: {low count, high count} x {low BCS, high BCS}
+    on Few-NERD. Tests additive vs multiplicative interaction between count and confusability.'
+  priority: P1
+  gpu_budget_hours: 2
+  deps:
+  - exp-003a
+  registry_id: exp006_interaction_2x2
+- id: exp-007
+  claim:
+  - 2
+  description: 'Error taxonomy: systematic FP classification (type_substitution /
+    boundary_error / false_negative / hallucination) across BCS bins. Mechanistic
+    evidence for multi-channel model.'
+  priority: P1
+  gpu_budget_hours: 1
+  deps:
+  - exp-002
+  registry_id: exp016_fewrel_error_taxonomy
+  status_note: Partially done via reeval_text_match.py FP three-way. Needs systematic
+    BCS-binned analysis.
+- id: exp-012
+  claim:
+  - 1
+  - 2
+  description: 'Multi-model validation: replicate exp-002 protocol with >=1 additional
+    model (candidate: Qwen2.5-72B-Instruct or LLaMA-3.3-70B-Instruct). Addresses single-model
+    generalizability.'
+  priority: P0
+  gpu_budget_hours: 6
+  deps:
+  - exp-003a
+  registry_id: exp012_llama_8b_r3
+- id: exp-016
+  claim:
+  - 1
+  - 2
+  description: 'FewRel cross-task replication: count curve + BCS correlation on FewRel
+    RE (80 relation types with --use_all). Replicates confusability effect NER→RE.
+    Pilot (fewrel_pilot) confirmed signal; formal run with full count curve [1,4,8,16,32,64,80].'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - exp-003a
+  registry_id: exp_fewrel_formal
+  status_note: RUNNING (16-rel version). Will rerun with --use_all for 80-rel full
+    count curve after current run completes.
+- id: exp-008
+  claim:
+  - 3
+  description: 'SDGD-zero on Few-NERD: confusability-minimizing batch composition
+    via embedding SCS + graph coloring. Compare vs single-pass full-schema baseline.'
+  priority: P0
+  gpu_budget_hours: 3
+  deps:
+  - exp-003a
+  registry_id: exp008_sdgd_v2_fewnerd
+  status_note: 'DONE (negative). R2 attempt: SDGD-zero did not outperform single-pass
+    baseline on Few-NERD. R1 (exp008_sdgd_zero_fewnerd) failed with script error.'
+- id: exp-009
+  claim:
+  - 3
+  description: 'SDGD-zero on MAVEN: confusability-minimizing batch composition on
+    168 event types. Compare vs single-pass + random batching. Cross-task validation
+    of SDGD framework (NER→ED).'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - exp-004
+  - exp-008
+- id: exp-010
+  claim:
+  - 3
+  description: 'SDGD-cal on Few-NERD: empirical confusability from 5-10 calibration
+    examples (no gradients). Compare vs SDGD-zero.'
+  priority: P1
+  gpu_budget_hours: 4
+  deps:
+  - exp-008
+- id: exp-011
+  claim:
+  - 3
+  description: 'SDGD-cal on MAVEN: empirical confusability with calibration on 168
+    event types. Full comparison table.'
+  priority: P1
+  gpu_budget_hours: 4
+  deps:
+  - exp-009
+  - exp-010
+- id: exp-013
+  claim:
+  - 3
+  description: 'Ablation: random batching -- same batch count k as SDGD, random composition.
+    Isolates confusability-aware grouping from batch count reduction.'
+  priority: P0
+  gpu_budget_hours: 3
+  deps:
+  - exp-008
+  registry_id: exp008_sdgd_v2_fewnerd
+  status_note: "Also covered by exp_confusability_batch_composition (+1.44pp directional)."
+- id: exp-014
+  claim:
+  - 3
+  description: 'Ablation: per-type splitting (UniNER-style, 1 type per batch). Upper
+    bound on decomposition benefit. Reveals latency vs quality tradeoff.'
+  priority: P1
+  gpu_budget_hours: 3
+  deps:
+  - exp-008
+- id: exp-015
+  claim:
+  - 1
+  description: 'SCS validation: Spearman/Kendall rank correlation between embedding
+    SCS and empirical confusion matrix. Validates embedding proxy for practical use.'
+  priority: P1
+  gpu_budget_hours: 1
+  deps:
+  - exp-010
+  registry_id: exp015_scs_validation

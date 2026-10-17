@@ -1,0 +1,4 @@
+Spearman correlation mean: 0.4069, std: 0.1022, median: 0.4065
+Gradient stats - retained mean: 0.000311, pruned mean: 0.000183, ratio: 1.7027
+Action loss mean: 0.0195
+N samples: 100, N vis tokens: 64

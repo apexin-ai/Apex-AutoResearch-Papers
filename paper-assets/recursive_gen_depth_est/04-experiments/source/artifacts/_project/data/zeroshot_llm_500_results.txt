@@ -1,0 +1,23 @@
+Zero-shot LLM Baseline (500 samples) — DeepSeek-v3.2
+
+4-class accuracy: 36.2%  [95% CI: 32.0%–40.4%, width=8.4pp]
+3-class accuracy: 16.5%
+MAE: 1.028
+Errors: 0/500
+
+Per-class metrics:
+          precision  recall  f1-score  support
+depth-0     0.39     0.952    0.55      125
+depth-1     0.33     0.128    0.18      125
+depth-2     0.30     0.248    0.27      125
+depth-3     0.38     0.120    0.18      125
+
+Comparison:
+- 200-sample run: acc=40.0%
+- 500-sample run: acc=36.2% (within 200-sample CI)
+- RF baseline:    acc=78.2%
+
+CI width narrowed from ~13.6pp (200 samples) to 8.4pp (500 samples).
+LLM massively over-predicts depth-0 (recall 95.2%) at expense of other classes.
+
+Remote path: /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/results.json

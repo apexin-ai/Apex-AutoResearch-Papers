@@ -1,0 +1,50 @@
+{
+  "GPT-4o_Formality": {
+    "observed_d": 0.073,
+    "observed_n": 88,
+    "bt_pct": 63.0,
+    "required_n_80pct": 1473,
+    "ratio": 16.7,
+    "feasible": false
+  },
+  "GPT-4o_Verbosity": {
+    "observed_d": 0.08,
+    "observed_n": 86,
+    "bt_pct": 76.0,
+    "required_n_80pct": 1227,
+    "ratio": 14.3,
+    "feasible": false
+  },
+  "Qwen3-32B_Formality": {
+    "observed_d": -0.017,
+    "observed_n": 355,
+    "bt_pct": 66.5,
+    "required_n_80pct": 27159,
+    "ratio": 76.5,
+    "feasible": false
+  },
+  "Qwen3-32B_Verbosity": {
+    "observed_d": 0.153,
+    "observed_n": 86,
+    "bt_pct": 77.3,
+    "required_n_80pct": 336,
+    "ratio": 3.9,
+    "feasible": false
+  },
+  "Llama-70B_Formality": {
+    "observed_d": 0.0208,
+    "observed_n": 88,
+    "bt_pct": 69.5,
+    "required_n_80pct": 18157,
+    "ratio": 206.3,
+    "feasible": false
+  },
+  "Llama-70B_Verbosity": {
+    "observed_d": 0.0341,
+    "observed_n": 86,
+    "bt_pct": 73.5,
+    "required_n_80pct": 6737,
+    "ratio": 78.3,
+    "feasible": false
+  }
+}

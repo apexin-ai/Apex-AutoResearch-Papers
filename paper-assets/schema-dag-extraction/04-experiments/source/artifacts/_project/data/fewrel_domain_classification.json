@@ -1,0 +1,322 @@
+{
+  "after a work by": {
+    "pid": "P1877",
+    "domain": "creative_work"
+  },
+  "applies to jurisdiction": {
+    "pid": "P1001",
+    "domain": "geography"
+  },
+  "architect": {
+    "pid": "P84",
+    "domain": "science_taxonomy"
+  },
+  "characters": {
+    "pid": "P674",
+    "domain": "creative_work"
+  },
+  "child": {
+    "pid": "P40",
+    "domain": "person"
+  },
+  "competition class": {
+    "pid": "P2094",
+    "domain": "event_temporal"
+  },
+  "composer": {
+    "pid": "P86",
+    "domain": "creative_work"
+  },
+  "constellation": {
+    "pid": "P59",
+    "domain": "geography"
+  },
+  "contains administrative territorial entity": {
+    "pid": "P150",
+    "domain": "geography"
+  },
+  "country": {
+    "pid": "P17",
+    "domain": "geography"
+  },
+  "country of citizenship": {
+    "pid": "P27",
+    "domain": "geography"
+  },
+  "country of origin": {
+    "pid": "P495",
+    "domain": "geography"
+  },
+  "crosses": {
+    "pid": "P177",
+    "domain": "geography"
+  },
+  "developer": {
+    "pid": "P178",
+    "domain": "organization"
+  },
+  "director": {
+    "pid": "P57",
+    "domain": "creative_work"
+  },
+  "distributor": {
+    "pid": "P750",
+    "domain": "organization"
+  },
+  "father": {
+    "pid": "P22",
+    "domain": "person"
+  },
+  "field of work": {
+    "pid": "P101",
+    "domain": "person"
+  },
+  "followed by": {
+    "pid": "P156",
+    "domain": "event_temporal"
+  },
+  "follows": {
+    "pid": "P155",
+    "domain": "event_temporal"
+  },
+  "genre": {
+    "pid": "P136",
+    "domain": "creative_work"
+  },
+  "has part": {
+    "pid": "P527",
+    "domain": "science_taxonomy"
+  },
+  "head of government": {
+    "pid": "P6",
+    "domain": "event_temporal"
+  },
+  "headquarters location": {
+    "pid": "P159",
+    "domain": "geography"
+  },
+  "heritage designation": {
+    "pid": "P1435",
+    "domain": "science_taxonomy"
+  },
+  "instance of": {
+    "pid": "P31",
+    "domain": "science_taxonomy"
+  },
+  "instrument": {
+    "pid": "P1303",
+    "domain": "creative_work"
+  },
+  "language of work or name": {
+    "pid": "P407",
+    "domain": "creative_work"
+  },
+  "league": {
+    "pid": "P118",
+    "domain": "organization"
+  },
+  "licensed to broadcast to": {
+    "pid": "P1408",
+    "domain": "geography"
+  },
+  "located in or next to body of water": {
+    "pid": "P206",
+    "domain": "geography"
+  },
+  "located in the administrative territorial entity": {
+    "pid": "P131",
+    "domain": "geography"
+  },
+  "located on terrain feature": {
+    "pid": "P706",
+    "domain": "geography"
+  },
+  "location": {
+    "pid": "P276",
+    "domain": "geography"
+  },
+  "location of formation": {
+    "pid": "P740",
+    "domain": "geography"
+  },
+  "main subject": {
+    "pid": "P921",
+    "domain": "science_taxonomy"
+  },
+  "manufacturer": {
+    "pid": "P176",
+    "domain": "organization"
+  },
+  "member of": {
+    "pid": "P463",
+    "domain": "organization"
+  },
+  "member of political party": {
+    "pid": "P102",
+    "domain": "person"
+  },
+  "military branch": {
+    "pid": "P241",
+    "domain": "person"
+  },
+  "military rank": {
+    "pid": "P410",
+    "domain": "person"
+  },
+  "mother": {
+    "pid": "P25",
+    "domain": "person"
+  },
+  "mountain range": {
+    "pid": "P4552",
+    "domain": "geography"
+  },
+  "mouth of the watercourse": {
+    "pid": "P403",
+    "domain": "geography"
+  },
+  "movement": {
+    "pid": "P135",
+    "domain": "creative_work"
+  },
+  "nominated for": {
+    "pid": "P1411",
+    "domain": "event_temporal"
+  },
+  "notable work": {
+    "pid": "P800",
+    "domain": "creative_work"
+  },
+  "occupant": {
+    "pid": "P466",
+    "domain": "science_taxonomy"
+  },
+  "occupation": {
+    "pid": "P106",
+    "domain": "person"
+  },
+  "operating system": {
+    "pid": "P306",
+    "domain": "science_taxonomy"
+  },
+  "operator": {
+    "pid": "P137",
+    "domain": "organization"
+  },
+  "original language of film or TV show": {
+    "pid": "P364",
+    "domain": "creative_work"
+  },
+  "original network": {
+    "pid": "P449",
+    "domain": "creative_work"
+  },
+  "owned by": {
+    "pid": "P127",
+    "domain": "organization"
+  },
+  "part of": {
+    "pid": "P361",
+    "domain": "science_taxonomy"
+  },
+  "participant": {
+    "pid": "P710",
+    "domain": "organization"
+  },
+  "participant of": {
+    "pid": "P1344",
+    "domain": "event_temporal"
+  },
+  "participating team": {
+    "pid": "P1923",
+    "domain": "organization"
+  },
+  "performer": {
+    "pid": "P175",
+    "domain": "creative_work"
+  },
+  "place served by transport hub": {
+    "pid": "P931",
+    "domain": "geography"
+  },
+  "platform": {
+    "pid": "P400",
+    "domain": "creative_work"
+  },
+  "position held": {
+    "pid": "P39",
+    "domain": "person"
+  },
+  "position played on team": {
+    "pid": "P413",
+    "domain": "science_taxonomy"
+  },
+  "publisher": {
+    "pid": "P123",
+    "domain": "organization"
+  },
+  "record label": {
+    "pid": "P264",
+    "domain": "creative_work"
+  },
+  "religion": {
+    "pid": "P140",
+    "domain": "person"
+  },
+  "residence": {
+    "pid": "P551",
+    "domain": "geography"
+  },
+  "said to be the same as": {
+    "pid": "P460",
+    "domain": "science_taxonomy"
+  },
+  "screenwriter": {
+    "pid": "P58",
+    "domain": "creative_work"
+  },
+  "sibling": {
+    "pid": "P3373",
+    "domain": "person"
+  },
+  "sport": {
+    "pid": "P641",
+    "domain": "science_taxonomy"
+  },
+  "sports season of league or competition": {
+    "pid": "P3450",
+    "domain": "event_temporal"
+  },
+  "spouse": {
+    "pid": "P26",
+    "domain": "person"
+  },
+  "subsidiary": {
+    "pid": "P355",
+    "domain": "organization"
+  },
+  "successful candidate": {
+    "pid": "P991",
+    "domain": "event_temporal"
+  },
+  "taxon rank": {
+    "pid": "P105",
+    "domain": "science_taxonomy"
+  },
+  "tributary": {
+    "pid": "P974",
+    "domain": "geography"
+  },
+  "voice type": {
+    "pid": "P412",
+    "domain": "person"
+  },
+  "winner": {
+    "pid": "P1346",
+    "domain": "event_temporal"
+  },
+  "work location": {
+    "pid": "P937",
+    "domain": "geography"
+  }
+}

@@ -1,0 +1,31 @@
+_next_id: 5
+constraints:
+- id: C001
+  added: 2026-05-15 02:50 UTC
+  summary: 提交同系列实验（如 DCOL v5/v6）前必须先 read_registry 检查该系列所有历史实验的失败原因和参数约束，确认新 spec
+    不重复已知错误
+  scope: all
+  reason: DCOL 系列 4 次失败，v4 重复了 v1 完全相同的错误（margin_lr=1e-3 导致 embedding collapse）。Worker
+    写 spec 时未查阅同系列历史教训。
+- id: C002
+  added: 2026-05-15 02:50 UTC
+  summary: 提交 DCOL 系列新实验前必须先 read_registry 检查同系列所有历史实验的失败原因和参数约束
+  scope: all
+  reason: DCOL v4 重复了 v1 完全相同的错误（margin_lr=1e-3 导致 embedding collapse），系列已连续 4 次失败。Worker
+    未查阅历史教训直接提交。
+- id: C003
+  added: 2026-05-17 14:36 UTC
+  summary: 'plan_023 理论分析质量门控: EDD 上界推导必须 mathematically rigorous (Fisher information
+    / KL chain rule 级别)。如果只能做 informal argument，写入 Discussion 一段即可，不单开 Theory section。写入论文前必须
+    post_to_reviewer 审查。'
+  scope: all
+  reason: 'Reviewer warning: 浅层理论反而招攻击，worse than no theory section。D038。'
+  decision_id: D038
+- id: C004
+  added: 2026-05-17 17:30 UTC
+  summary: wild_data_features 结果禁止解释为"AI生成内容占比"。C4 34% d1+ 是 OOD 假阳性率（C4 来自 2019 年，几乎无
+    LLM 内容）。论文中必须 frame 为 FPR baseline / method limitation，不是正面 claim。
+  scope: all
+  reason: RF 训练数据的 d0 是模型 BOS-seeded 生成文本，不是真实人类文本。分类器从未见过 human web text 分布，在已知人类语料上的
+    d1+ 预测是 distribution shift 导致的假阳性。正确叙事角色：Limitation + Future Work (需 human-text
+    calibration)。

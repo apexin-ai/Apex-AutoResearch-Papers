@@ -1,0 +1,17 @@
+experiment: plan_015_wild_data_calibration
+model_cell: pythia_nucleus
+feature_model: pythia-1.4b
+rf_config: n_estimators=200, seed=42
+cv_accuracy: 0.7878 +/- 0.0056
+n_wiki_passages: 546
+trunc_len: 507
+
+WikiText d0 prediction rate: 100.0%
+WikiText mean P(d0): 0.9963, P(d1): 0.003, P(d2): 0.0003, P(d3): 0.0004
+Controlled d0 mean P(d0): 0.9941, P(d1): 0.0038, P(d2): 0.0013, P(d3): 0.0008
+Controlled accuracy: d0=100.0%, d1=99.96%, d2=99.94%, d3=99.9%
+
+Domain shift (WikiText vs Ctrl d0): mean_ppl +621%, var_ppl +503%, p90_ppl +115%, p75_ppl +106%
+Top features: var_surprisal=0.1801, p90_ppl=0.156, mean_ppl=0.1189
+
+Server files: results/plan_015_wild_data/{results.json, calibration_table.json, reliability_diagram.json, probability_stats.json, domain_shift.json, wikitext_features.jsonl, wikitext_passages.jsonl, wikitext_predictions.jsonl}

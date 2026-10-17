@@ -1,0 +1,9 @@
+\begin{abstract}
+Large language models (LLMs) increasingly replace human annotators in computational social science, yet their error rates can vary by up to $5\times$ across demographic and text-feature subgroups.
+When these noisy labels serve as effect modifiers in heterogeneous treatment effect (HTE) analysis, the standard remedy, estimating a single confusion matrix and applying its inverse uniformly, is widely trusted to remove bias.
+We prove it can do the opposite.
+We derive an exact bias identity showing that global correction introduces a subgroup-level bias proportional to the interaction of error-rate deviation and effect heterogeneity, a product structure invisible to any pooled analysis.
+This identity reveals that correction reverses estimated causal effect signs in 14.9\% of configurations and amplifies bias across all nine real LLMs tested.
+A diagnostic corollary flags harmful correction from error rates alone, without estimating treatment effects.
+Guided by the identity, we propose Error-Corrected HTE (EC-HTE), a per-subgroup correction via hierarchical Bayesian confusion matrix estimation that reduces bias by $7.4\times$ under extreme heterogeneity, with clear operating conditions (Section~\ref{sec:diagnostic}), validated across 11 LLM--dataset combinations spanning four NLP tasks\footnote{Code and data: \url{https://anonymous.4open.science/r/ec_hte_llm_annotation-4CC8/}.}.
+\end{abstract}

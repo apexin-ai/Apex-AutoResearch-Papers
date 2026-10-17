@@ -1,0 +1,270 @@
+experiments:
+- id: plan_001
+  claim:
+  - 2
+  description: 'Remove L0 exclusion constraint from solver, keep only max_2bit=8.
+    Verify solver still assigns 8-bit to Layer 0 heads purely from profiling data.
+    Strengthens narrative: "solver automatically discovers sensitivity structure."
+
+    '
+  priority: P0
+  gpu_budget_hours: 1
+  deps: []
+  registry_id: exp_d_no_l0_exclusion
+  model: Qwen2.5-7B
+  eval: WikiText-2
+- id: plan_002
+  claim:
+  - 1
+  - 2
+  description: 'Replicate full pipeline on Llama-3.1-8B (GQA ratio 4:1 vs Qwen 7:1).
+    Profile all KV heads, run constrained MCKP, evaluate PPL. Tests generalizability
+    across different GQA ratios and architectures. Fallback if HF token unavailable:
+    Yi-1.5-9B (non-gated, similar scale).
+
+    '
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  registry_id: llama_full_pipeline
+  model: Llama-3.1-8B
+  fallback_model: Yi-1.5-9B
+  eval: WikiText-2
+- id: plan_003
+  claim:
+  - 1
+  - 2
+  description: 'Replicate full pipeline on Mistral-7B-v0.3. Different architecture
+    family to establish cross-architecture validity.
+
+    '
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  registry_id: mistral_full_pipeline
+  model: Mistral-7B-v0.3
+  eval: WikiText-2
+- id: plan_004
+  claim:
+  - 3
+  description: 'Compounding effect characterization: sweep max_2bit from 0 to 112
+    (steps: 0, 4, 8, 16, 24, 48, 75, 112) on Qwen2.5-7B. Plot PPL vs max_2bit to map
+    the compounding threshold. Establishes the principled basis for cardinality constraint
+    selection.
+
+    '
+  priority: P0
+  gpu_budget_hours: 3
+  deps: []
+  registry_id: compounding_sweep
+  model: Qwen2.5-7B
+  eval: WikiText-2
+- id: plan_005
+  claim:
+  - 2
+  description: 'Budget sweep: test constrained MCKP at compression ratios 2×, 4×,
+    8× (budget = 0.5, 0.25, 0.125) on Qwen2.5-7B. Compare each against uniform baseline
+    at same budget.
+
+    '
+  priority: P0
+  gpu_budget_hours: 3
+  deps: []
+  registry_id: budget_sweep
+  model: Qwen2.5-7B
+  eval: WikiText-2
+- id: plan_006
+  claim:
+  - 1
+  - 2
+  description: 'High-resolution profiling: 64 seq × 2048 tokens (vs current 16×512).
+    Rerun MCKP with hires profiles on Qwen2.5-7B. Tests whether better profiling discovers
+    mid-layer heterogeneity and improves solver allocation beyond current results.
+
+    '
+  priority: P0
+  gpu_budget_hours: 3
+  deps: []
+  registry_id: exp_e_hires_profile
+  model: Qwen2.5-7B
+  eval: WikiText-2
+- id: plan_007
+  claim:
+  - 1
+  - 2
+  - 3
+  description: 'Evaluate on C4 perplexity (in addition to WikiText-2) for Qwen2.5-7B.
+    Cross-dataset evaluation to show results are not WikiText-2 specific.
+
+    '
+  priority: P0
+  gpu_budget_hours: 2
+  deps: []
+  registry_id: c4_rerun_d032
+  model: Qwen2.5-7B
+  eval: C4
+- id: plan_008
+  claim:
+  - 2
+  description: 'RateQuant comparison: implement RateQuant''s greedy algorithm (Algorithm
+    1) on our discrete action set {2,4,8,16}-bit. RateQuant''s Prop. 6 optimality
+    relies on consecutive-integer polymatroid structure which breaks on non-consecutive
+    sets. Show greedy produces suboptimal allocation vs constrained MCKP. Critical
+    for differentiation claim — must have experimental evidence.
+
+    '
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  registry_id: ratequant_greedy_comparison
+  model: Qwen2.5-7B
+  eval: WikiText-2
+- id: plan_009
+  claim:
+  - 2
+  description: 'Oracle comparison: brute-force optimal allocation on a subset (3-4
+    layer groups) of Qwen2.5-7B. Quantify MCKP gap to oracle.
+
+    '
+  priority: P1
+  gpu_budget_hours: 6
+  deps:
+  - plan_006
+  registry_id: oracle_comparison
+  model: Qwen2.5-7B
+- id: plan_010
+  claim:
+  - 2
+  description: 'Cross-domain calibration robustness: calibrate on C4, evaluate on
+    WikiText-2 (and vice versa). Report per-head allocation agreement rate across
+    calibration sources.
+
+    '
+  priority: P1
+  gpu_budget_hours: 2
+  deps:
+  - plan_007
+  registry_id: c4_rerun_d032
+  model: Qwen2.5-7B
+- id: plan_011
+  claim:
+  - 1
+  description: 'Head sensitivity visualization: generate paper-quality figures showing
+    per-head profiling delta heatmap across layers, compounding effect curve, and
+    budget allocation comparison chart.
+
+    '
+  priority: P1
+  gpu_budget_hours: 1
+  deps:
+  - plan_004
+  - plan_006
+  registry_id: head_sensitivity_viz
+- id: plan_014
+  claim:
+  - 2
+  description: 'K/V separation: treat K and V heads as independent MCKP items with
+    separate budget allocation. Compare joint K+V optimization vs current uniform
+    K=V approach. RateQuant supports asymmetric K/V (e.g. K=2.85, V=2.15 avg bits)
+    — we should show MCKP naturally handles this.
+
+    '
+  priority: P1
+  gpu_budget_hours: 3
+  deps: []
+  registry_id: kv_separation
+  model: Qwen2.5-7B
+  eval: WikiText-2
+- id: plan_012
+  claim:
+  - 1
+  - 2
+  description: 'Downstream task evaluation: ARC-C / HellaSwag / PIQA / WinoGrande
+    on Qwen2.5-7B at 4× compression. Must match RateQuant''s eval suite for direct
+    comparison. Tests whether PPL improvements translate to downstream performance.
+
+    '
+  priority: P1
+  gpu_budget_hours: 8
+  deps:
+  - plan_005
+  registry_id: downstream_eval_qwen
+  model: Qwen2.5-7B
+- id: plan_013
+  claim:
+  - 1
+  description: '70B profiling-only: run distortion profiling on Qwen2.5-72B (no full
+    eval). Analyze whether sensitivity patterns (Layer 0 dominance, compounding threshold)
+    scale with model size.
+
+    '
+  priority: P1
+  gpu_budget_hours: 4
+  deps: []
+  registry_id: qwen72b_profiling
+  model: Qwen2.5-72B
+- id: plan_015
+  claim:
+  - 2
+  description: 'L0-only heuristic baseline: assign 8-bit to all Layer 0 KV heads,
+    uniform 4-bit to all other heads, at 4x compression on Qwen2.5-7B. This is the
+    simplest possible non-uniform strategy exploiting L0 sensitivity. If L0-only matches
+    or beats constrained MCKP, the full optimization machinery is unnecessary. Must
+    also test on Llama and Mistral. Critical missing baseline flagged by Dream review.
+
+    '
+  priority: P0
+  gpu_budget_hours: 1
+  deps: []
+  registry_id: l0_only_heuristic
+  model: Qwen2.5-7B
+  eval: WikiText-2
+- id: plan_016
+  claim:
+  - 2
+  description: 'RateQuant greedy + cardinality constraint ablation: add max_2bit=k
+    constraint to RateQuant greedy Algorithm 1 on {2,4,8,16}. Compare three conditions:
+    (a) RateQuant greedy unconstrained (already have: PPL ~32.45), (b) RateQuant greedy
+    + cardinality k=8, (c) constrained MCKP k=8 (already have: PPL ~11.23). If (b)
+    matches (c), the contribution is the cardinality constraint, not the MCKP solver.
+    If (c) beats (b), discrete MCKP optimization genuinely matters. Critical ablation
+    flagged by all three Dream review tiers.
+
+    '
+  priority: P0
+  gpu_budget_hours: 2
+  deps:
+  - plan_008
+  registry_id: greedy_cardinality_ablation
+  model: Qwen2.5-7B
+  eval: WikiText-2
+- id: plan_017
+  claim:
+  - 1
+  - 2
+  description: 'Multi-seed error bars: run constrained MCKP and uniform 4-bit on Qwen2.5-7B
+    at 4x compression with 3 different calibration sets (different random subsets
+    of WikiText-2 training data). Report mean +/- std for PPL. Required for statistical
+    credibility — Dream review flagged all-single-run as critical gap.
+
+    '
+  priority: P1
+  gpu_budget_hours: 3
+  deps: []
+  registry_id: multi_seed_error_bars
+  model: Qwen2.5-7B
+  eval: WikiText-2
+- id: plan_018
+  claim:
+  - 2
+  description: 'Runtime/latency benchmark: measure end-to-end inference latency and
+    throughput with mixed-precision KV cache vs uniform 4-bit quantization on Qwen2.5-7B.
+    Include profiling cost breakdown. Dream review flagged missing latency evaluation
+    as significant gap for systems-oriented contribution.
+
+    '
+  priority: P1
+  gpu_budget_hours: 2
+  deps: []
+  registry_id: runtime_benchmark
+  model: Qwen2.5-7B

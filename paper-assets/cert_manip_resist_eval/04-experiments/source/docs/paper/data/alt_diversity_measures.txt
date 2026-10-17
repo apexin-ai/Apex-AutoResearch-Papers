@@ -1,0 +1,13 @@
+% Alternative Diversity Measures — FDR-corrected significance counts (V2 corrected)
+% Source: docs/paper/data/alt_diversity_corrected.json
+% Note: 12 conditions = 2 benchmarks (MMLU, ARC-Challenge) × 6 manipulations; K=3 OLS
+%
+% Measure          & D_fdr_sig & sig+ & sig- & mean |β_std| & corr w/ K_eff (ρ)       & notes
+Q-statistic        & 9/12      & 6    & 3    & 0.251        & 0.599                    & weakest predictor
+Disagreement       & 11/12     & 11   & 0    & 0.481        & 0.934                    & strong alt-measure signal
+κ-diversity        & 11/12     & 11   & 0    & 0.497        & 0.978                    & highest K_eff correlation
+%
+% K_eff (OLS) reference — effect_size section (V2 corrected)
+% keff_std_beta: mean=0.430, sd=0.109
+% eta_std_beta:  mean=0.179, sd=0.100
+% clustered_se:  keff_ci_contains_zero = 12/12, eta_ci_contains_zero = 8/12  (V2: keff sig 0/12, eta sig 4/12)

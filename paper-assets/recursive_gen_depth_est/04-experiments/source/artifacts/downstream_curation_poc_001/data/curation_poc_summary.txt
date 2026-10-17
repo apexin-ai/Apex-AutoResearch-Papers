@@ -1,0 +1,12 @@
+Condition                     PPL        Delta    p-value    Cohen d   Sig
+----------------------------------------------------------------------
+unfiltered            15.78+/-0.07   (base)     n=10000
+rf_strict             15.81+/-0.06   -0.03     0.6071     -0.528      n=2496
+rf_moderate           15.76+/-0.06   +0.02     0.4916      0.334      n=4940
+rf_soft               15.73+/-0.04   +0.04     0.4066      0.792      n=4422
+oracle_strict         15.88+/-0.13   -0.10     0.2156     -1.004      n=2500
+oracle_moderate       15.81+/-0.10   -0.03     0.4851     -0.384      n=5000
+random_strict         16.24+/-0.17   -0.46     0.0135     -3.671     * n=2496
+random_moderate       16.00+/-0.09   -0.22     0.0285     -2.809     * n=5000
+
+Conclusion: NEGATIVE. RF-based curation does not significantly improve downstream PPL vs unfiltered (all p>0.4). Random filtering significantly hurts (p<0.05). Oracle filtering also does not help.

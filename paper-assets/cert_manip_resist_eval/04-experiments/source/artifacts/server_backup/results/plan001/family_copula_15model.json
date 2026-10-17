@@ -1,0 +1,2629 @@
+{
+  "family_map": {
+    "qwen2.5-72b": "qwen",
+    "qwen2.5-32b": "qwen",
+    "qwen2.5-14b": "qwen",
+    "llama3.1-70b": "llama",
+    "llama3.1-8b": "llama",
+    "mistral-large": "mistral",
+    "claude-opus-4-6": "claude",
+    "claude-sonnet-4-6": "claude",
+    "claude-3-haiku": "claude",
+    "gpt-5.5": "openai",
+    "gpt-4.1": "openai",
+    "gpt-4.1-nano": "openai",
+    "gpt-4.1-mini": "openai",
+    "gemini-3.1-pro-preview": "gemini",
+    "gemini-3.5-flash": "gemini"
+  },
+  "families": {
+    "qwen": 3,
+    "llama": 2,
+    "mistral": 1,
+    "claude": 3,
+    "openai": 4,
+    "gemini": 2
+  },
+  "mmlu": {
+    "claim4_within_vs_cross_family": {
+      "n_within": 14,
+      "n_cross": 91,
+      "mean_within_mi": 0.29646854045560056,
+      "std_within_mi": 0.18751600317519368,
+      "mean_cross_mi": 0.24311156171727694,
+      "std_cross_mi": 0.1626927102102543,
+      "u_statistic": 735.0,
+      "p_value": 0.17902449803354686,
+      "effect_size_rank_biserial": -0.15384615384615374,
+      "within_pairs": [
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "qwen2.5-32b"
+          ],
+          "mi": 0.3470669052814603,
+          "family": "qwen"
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "qwen2.5-14b"
+          ],
+          "mi": 0.27125804258663433,
+          "family": "qwen"
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "llama3.1-8b"
+          ],
+          "mi": 0.05018961809391721,
+          "family": "llama"
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "qwen2.5-14b"
+          ],
+          "mi": 0.2421749533006641,
+          "family": "qwen"
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "claude-sonnet-4-6"
+          ],
+          "mi": 0.44193205157290955,
+          "family": "claude"
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "claude-3-haiku"
+          ],
+          "mi": 0.17860787985674753,
+          "family": "claude"
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1"
+          ],
+          "mi": 0.4890920304803571,
+          "family": "openai"
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1-nano"
+          ],
+          "mi": 0.09859592679327965,
+          "family": "openai"
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1-mini"
+          ],
+          "mi": 0.3397229237196301,
+          "family": "openai"
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "gemini-3.5-flash"
+          ],
+          "mi": 0.7529290843487237,
+          "family": "gemini"
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "gpt-4.1-nano"
+          ],
+          "mi": 0.1562504126973624,
+          "family": "openai"
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "gpt-4.1-mini"
+          ],
+          "mi": 0.4901002520943033,
+          "family": "openai"
+        },
+        {
+          "pair": [
+            "claude-sonnet-4-6",
+            "claude-3-haiku"
+          ],
+          "mi": 0.17543718597831032,
+          "family": "claude"
+        },
+        {
+          "pair": [
+            "gpt-4.1-nano",
+            "gpt-4.1-mini"
+          ],
+          "mi": 0.11720229957410755,
+          "family": "openai"
+        }
+      ]
+    },
+    "claim5_copula_gof": {
+      "n_pairs": 105,
+      "mean_ratio": 0.933249325381677,
+      "median_ratio": 0.9288680020359101,
+      "pct_ratio_gt_1": 35.23809523809524,
+      "max_ratio": 1.818281768664891,
+      "min_ratio": 0.1634964732985574,
+      "std_ratio": 0.27102477241025813,
+      "pairs": [
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "llama3.1-70b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2962205170426407,
+          "spearman_rho": 0.6956447532312485,
+          "mi_gaussian": 0.33074831551974715,
+          "ratio": 0.8956070315192731
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "mistral-large"
+          ],
+          "family_same": false,
+          "mi_observed": 0.26675251098957503,
+          "spearman_rho": 0.6504257906942005,
+          "mi_gaussian": 0.27500305017120596,
+          "ratio": 0.9699983721035295
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "qwen2.5-32b"
+          ],
+          "family_same": true,
+          "mi_observed": 0.3470669052814603,
+          "spearman_rho": 0.7660068963006244,
+          "mi_gaussian": 0.4418713141073899,
+          "ratio": 0.7854479216026029
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "qwen2.5-14b"
+          ],
+          "family_same": true,
+          "mi_observed": 0.27125804258663433,
+          "spearman_rho": 0.6733727233183889,
+          "mi_gaussian": 0.3020472001264504,
+          "ratio": 0.8980650788124294
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "llama3.1-8b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.036010036882308916,
+          "spearman_rho": 0.20689863786770316,
+          "mi_gaussian": 0.02187514219765701,
+          "ratio": 1.6461624137997997
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.28731888801126415,
+          "spearman_rho": 0.6987785083239495,
+          "mi_gaussian": 0.33499998190570374,
+          "ratio": 0.8576683687467752
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3191362352253263,
+          "spearman_rho": 0.7156785165933526,
+          "mi_gaussian": 0.3589205291666518,
+          "ratio": 0.8891557024233264
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.35168587132015827,
+          "spearman_rho": 0.7299517608220316,
+          "mi_gaussian": 0.38053057405853913,
+          "ratio": 0.9241987248731727
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2965563120641862,
+          "spearman_rho": 0.7086683506578279,
+          "mi_gaussian": 0.34878932373477034,
+          "ratio": 0.8502448093557369
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3533510256304889,
+          "spearman_rho": 0.7510869920917036,
+          "mi_gaussian": 0.4152075379715292,
+          "ratio": 0.8510226653320495
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.1328306436270179,
+          "spearman_rho": 0.46396341705583294,
+          "mi_gaussian": 0.12120272080090501,
+          "ratio": 1.0959378036175742
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3867367855857686,
+          "spearman_rho": 0.7686974554110021,
+          "mi_gaussian": 0.4468926668878944,
+          "ratio": 0.86539076212406
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.26335401432169325,
+          "spearman_rho": 0.6475829277314745,
+          "mi_gaussian": 0.271815309378909,
+          "ratio": 0.9688711608019813
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.1953748382396672,
+          "spearman_rho": 0.595555367265349,
+          "mi_gaussian": 0.21900928093015026,
+          "ratio": 0.892084743668827
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "mistral-large"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2440104667595938,
+          "spearman_rho": 0.635182011529389,
+          "mi_gaussian": 0.2583012956537015,
+          "ratio": 0.9446738009658802
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "qwen2.5-32b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2986645649606351,
+          "spearman_rho": 0.6707687671795748,
+          "mi_gaussian": 0.2988555398180147,
+          "ratio": 0.9993609793631535
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "qwen2.5-14b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.14478230599138053,
+          "spearman_rho": 0.494630485759815,
+          "mi_gaussian": 0.14029319816712071,
+          "ratio": 1.0319980432616005
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "llama3.1-8b"
+          ],
+          "family_same": true,
+          "mi_observed": 0.05018961809391721,
+          "spearman_rho": 0.27045551968273673,
+          "mi_gaussian": 0.03797971304849847,
+          "ratio": 1.3214849209057271
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2760064663925398,
+          "spearman_rho": 0.6776248038488584,
+          "mi_gaussian": 0.3073301102552402,
+          "ratio": 0.8980781810259792
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.30830289854629034,
+          "spearman_rho": 0.7286731859154323,
+          "mi_gaussian": 0.378538529476004,
+          "ratio": 0.8144557939004569
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3155441322598244,
+          "spearman_rho": 0.7412046653324912,
+          "mi_gaussian": 0.3985702666173987,
+          "ratio": 0.7916900950434571
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.34347517274268324,
+          "spearman_rho": 0.7687230314350179,
+          "mi_gaussian": 0.44694072675989344,
+          "ratio": 0.7685027391276558
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.32303289427076615,
+          "spearman_rho": 0.788630416926837,
+          "mi_gaussian": 0.48634845120117387,
+          "ratio": 0.6642005201680932
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.13391273609524,
+          "spearman_rho": 0.4147914122428633,
+          "mi_gaussian": 0.09440241332383452,
+          "ratio": 1.4185308550944637
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.34490590856943293,
+          "spearman_rho": 0.7652223722268509,
+          "mi_gaussian": 0.4404199026224157,
+          "ratio": 0.7831297053465143
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2905313259782581,
+          "spearman_rho": 0.6901368442188931,
+          "mi_gaussian": 0.3234075066799446,
+          "ratio": 0.8983444106193184
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.17128276712405138,
+          "spearman_rho": 0.5346080279533992,
+          "mi_gaussian": 0.16830014289613485,
+          "ratio": 1.0177220540433958
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "qwen2.5-32b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.20591433091558176,
+          "spearman_rho": 0.5871499006858816,
+          "mi_gaussian": 0.2113654075495338,
+          "ratio": 0.9742101761250852
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "qwen2.5-14b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.12844326291058067,
+          "spearman_rho": 0.43591456201455814,
+          "mi_gaussian": 0.10537379075772221,
+          "ratio": 1.2189298874698387
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "llama3.1-8b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.037766679713954275,
+          "spearman_rho": 0.23646188960028905,
+          "mi_gaussian": 0.028769126932080842,
+          "ratio": 1.3127502896808503
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.18723651742582784,
+          "spearman_rho": 0.5858992886642158,
+          "mi_gaussian": 0.2102472248299616,
+          "ratio": 0.8905540492972319
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.23078151458579058,
+          "spearman_rho": 0.659023419724155,
+          "mi_gaussian": 0.2848561778599177,
+          "ratio": 0.8101685430156998
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.24792694728189563,
+          "spearman_rho": 0.6781300877384687,
+          "mi_gaussian": 0.30796384187261067,
+          "ratio": 0.8050521313617417
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.25087598035611236,
+          "spearman_rho": 0.6715139740352035,
+          "mi_gaussian": 0.2997655969312735,
+          "ratio": 0.8369071798910601
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.28407449782124566,
+          "spearman_rho": 0.7142873379557052,
+          "mi_gaussian": 0.3568856017417086,
+          "ratio": 0.795981951737131
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.13067801250081526,
+          "spearman_rho": 0.44114634414902015,
+          "mi_gaussian": 0.10821438360827743,
+          "ratio": 1.207584501648629
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3015537043004064,
+          "spearman_rho": 0.7292943239786461,
+          "mi_gaussian": 0.37950484728132555,
+          "ratio": 0.7945977672239474
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2487749523256102,
+          "spearman_rho": 0.6523581146567977,
+          "mi_gaussian": 0.27718948306581326,
+          "ratio": 0.8974905886546332
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.11255817541955744,
+          "spearman_rho": 0.44208834554638443,
+          "mi_gaussian": 0.10873117575962066,
+          "ratio": 1.0351968939285399
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "qwen2.5-14b"
+          ],
+          "family_same": true,
+          "mi_observed": 0.2421749533006641,
+          "spearman_rho": 0.6037894459628177,
+          "mi_gaussian": 0.22672013709605687,
+          "ratio": 1.068166932159446
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "llama3.1-8b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.027766224296906415,
+          "spearman_rho": 0.17343442058095018,
+          "mi_gaussian": 0.015270583897068004,
+          "ratio": 1.818281768664891
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.19205267421174443,
+          "spearman_rho": 0.5808664142536342,
+          "mi_gaussian": 0.2057962646405603,
+          "ratio": 0.9332174932678192
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2598721573145359,
+          "spearman_rho": 0.6740994365855392,
+          "mi_gaussian": 0.3029437967263607,
+          "ratio": 0.8578230025593493
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.27188074623528397,
+          "spearman_rho": 0.6969783973491791,
+          "mi_gaussian": 0.3325509619360189,
+          "ratio": 0.8175611480792903
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.27386977219211506,
+          "spearman_rho": 0.660998532597423,
+          "mi_gaussian": 0.28716594790218836,
+          "ratio": 0.9536986338136368
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2764974783597451,
+          "spearman_rho": 0.711141798412162,
+          "mi_gaussian": 0.35232924858221404,
+          "ratio": 0.784770153123481
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.14917645968741294,
+          "spearman_rho": 0.47712004579819917,
+          "mi_gaussian": 0.12915454865820816,
+          "ratio": 1.1550228872092638
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3156228874984773,
+          "spearman_rho": 0.7386422582428247,
+          "mi_gaussian": 0.39438032740495615,
+          "ratio": 0.8003007897865821
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.27185240283257495,
+          "spearman_rho": 0.6447873415869482,
+          "mi_gaussian": 0.2687137654227508,
+          "ratio": 1.0116802256292539
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.18215970916017696,
+          "spearman_rho": 0.5657649841279265,
+          "mi_gaussian": 0.19289743395302655,
+          "ratio": 0.9443345379313631
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "llama3.1-8b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.03728148566065872,
+          "spearman_rho": 0.24864169068307845,
+          "mi_gaussian": 0.031908159178789926,
+          "ratio": 1.168399764203275
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.12264854058805152,
+          "spearman_rho": 0.4312421258518285,
+          "mi_gaussian": 0.10287888871982537,
+          "ratio": 1.1921643217012747
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.14732186894232646,
+          "spearman_rho": 0.514446986128425,
+          "mi_gaussian": 0.15370822808320492,
+          "ratio": 0.9584514165538268
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.13318088209854134,
+          "spearman_rho": 0.48052073944933743,
+          "mi_gaussian": 0.13126725715619644,
+          "ratio": 1.0145780827892812
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.11252459037220368,
+          "spearman_rho": 0.4510393513520332,
+          "mi_gaussian": 0.11372421229212505,
+          "ratio": 0.9894514818283385
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.15665715483640483,
+          "spearman_rho": 0.5256604917440191,
+          "mi_gaussian": 0.16170226295100487,
+          "ratio": 0.9688000153954018
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.09549876519941644,
+          "spearman_rho": 0.38956545748633803,
+          "mi_gaussian": 0.08229656644822098,
+          "ratio": 1.1604222304888256
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.1974077872246506,
+          "spearman_rho": 0.5645167811279276,
+          "mi_gaussian": 0.19186100309256615,
+          "ratio": 1.0289104301691174
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.09908352361405896,
+          "spearman_rho": 0.42518850345002135,
+          "mi_gaussian": 0.09970451796283558,
+          "ratio": 0.9937716528652384
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.16784989696931452,
+          "spearman_rho": 0.5167787540417444,
+          "mi_gaussian": 0.15534590935794748,
+          "ratio": 1.0804912576265873
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.027374919625452528,
+          "spearman_rho": 0.1844751525060658,
+          "mi_gaussian": 0.01731181057952507,
+          "ratio": 1.5812857644034786
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.03492522455668444,
+          "spearman_rho": 0.22475204529868215,
+          "mi_gaussian": 0.02591697387077273,
+          "ratio": 1.3475811154044708
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.03601439058764885,
+          "spearman_rho": 0.24457564240661503,
+          "mi_gaussian": 0.030840501126047217,
+          "ratio": 1.1677628207290016
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.032238825951064726,
+          "spearman_rho": 0.2316136988710152,
+          "mi_gaussian": 0.027568708100919083,
+          "ratio": 1.1693992273069171
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.032827371827387236,
+          "spearman_rho": 0.23507516122273583,
+          "mi_gaussian": 0.028422936214526014,
+          "ratio": 1.154960612781809
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.02888207536794336,
+          "spearman_rho": 0.23456084235657548,
+          "mi_gaussian": 0.028295116989599595,
+          "ratio": 1.0207441580312078
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.04529013318420483,
+          "spearman_rho": 0.2739031832607952,
+          "mi_gaussian": 0.03899317834847748,
+          "ratio": 1.1614886270478442
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.04845084720573631,
+          "spearman_rho": 0.29176720484389607,
+          "mi_gaussian": 0.044485612749762635,
+          "ratio": 1.0891352104843117
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.03992145118337386,
+          "spearman_rho": 0.27281495242200055,
+          "mi_gaussian": 0.03867167616698096,
+          "ratio": 1.0323175807274678
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4963943157615729,
+          "spearman_rho": 0.8878458822245978,
+          "mi_gaussian": 0.776222433899271,
+          "ratio": 0.6395000892566177
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4996525985584359,
+          "spearman_rho": 0.8902969084787264,
+          "mi_gaussian": 0.7866219096667958,
+          "ratio": 0.6351877470207805
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4338437546105655,
+          "spearman_rho": 0.8591486567577082,
+          "mi_gaussian": 0.6699657882480329,
+          "ratio": 0.6475610579236758
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": true,
+          "mi_observed": 0.44193205157290955,
+          "spearman_rho": 0.8779362748428985,
+          "mi_gaussian": 0.7365192927572136,
+          "ratio": 0.6000278009263067
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.07527710803563537,
+          "spearman_rho": 0.3581173805763176,
+          "mi_gaussian": 0.06862518301832479,
+          "ratio": 1.0969312535827311
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6027332808831043,
+          "spearman_rho": 0.9443589743589745,
+          "mi_gaussian": 1.111951065997042,
+          "ratio": 0.5420501848637175
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.31698206689360614,
+          "spearman_rho": 0.7454976312927718,
+          "mi_gaussian": 0.40570272260589624,
+          "ratio": 0.7813160948429861
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "claude-3-haiku"
+          ],
+          "family_same": true,
+          "mi_observed": 0.17860787985674753,
+          "spearman_rho": 0.5503839974281786,
+          "mi_gaussian": 0.180429373801184,
+          "ratio": 0.989904670697114
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.7388605681234537,
+          "spearman_rho": 0.991974731275169,
+          "mi_gaussian": 2.0680168252936646,
+          "ratio": 0.3572797663377489
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1"
+          ],
+          "family_same": true,
+          "mi_observed": 0.4890920304803571,
+          "spearman_rho": 0.919103313840156,
+          "mi_gaussian": 0.9313621825128535,
+          "ratio": 0.5251362355735409
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.45954936711107036,
+          "spearman_rho": 0.9020786954533614,
+          "mi_gaussian": 0.8403218996783538,
+          "ratio": 0.5468730105534201
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1-nano"
+          ],
+          "family_same": true,
+          "mi_observed": 0.09859592679327965,
+          "spearman_rho": 0.39765479185135805,
+          "mi_gaussian": 0.08606443962427032,
+          "ratio": 1.1456058649044574
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.7533822302550752,
+          "spearman_rho": 1.0,
+          "mi_gaussian": 4.605170185988147,
+          "ratio": 0.16359487268187017
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1-mini"
+          ],
+          "family_same": true,
+          "mi_observed": 0.3397229237196301,
+          "spearman_rho": 0.7745286186207633,
+          "mi_gaussian": 0.4580136096265625,
+          "ratio": 0.7417310677659126
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2278569042991717,
+          "spearman_rho": 0.6289606619660049,
+          "mi_gaussian": 0.25175250440451913,
+          "ratio": 0.9050829696337332
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5178160185157653,
+          "spearman_rho": 0.9334992844546077,
+          "mi_gaussian": 1.0256055546548837,
+          "ratio": 0.5048880792089805
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4763495184513842,
+          "spearman_rho": 0.8990740579751826,
+          "mi_gaussian": 0.8260009244501495,
+          "ratio": 0.5766936868363428
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.0934543960872968,
+          "spearman_rho": 0.38041607723518506,
+          "mi_gaussian": 0.07816107978631438,
+          "ratio": 1.1956640868165207
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "gemini-3.5-flash"
+          ],
+          "family_same": true,
+          "mi_observed": 0.7529290843487237,
+          "spearman_rho": 1.0,
+          "mi_gaussian": 4.605170185988147,
+          "ratio": 0.1634964732985574
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.34459630264833596,
+          "spearman_rho": 0.7740975048875791,
+          "mi_gaussian": 0.457179982344121,
+          "ratio": 0.7537431995195212
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.21166799541598724,
+          "spearman_rho": 0.6140892197475539,
+          "mi_gaussian": 0.23668911425125908,
+          "ratio": 0.8942869894358112
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5184709318626206,
+          "spearman_rho": 0.9047582247949323,
+          "mi_gaussian": 0.8534907669253863,
+          "ratio": 0.607471049429579
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "gpt-4.1-nano"
+          ],
+          "family_same": true,
+          "mi_observed": 0.1562504126973624,
+          "spearman_rho": 0.43992505499874995,
+          "mi_gaussian": 0.10754680337714684,
+          "ratio": 1.4528596647305356
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6103198456730485,
+          "spearman_rho": 0.9803187403993857,
+          "mi_gaussian": 1.6224152867798538,
+          "ratio": 0.3761797923418254
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "gpt-4.1-mini"
+          ],
+          "family_same": true,
+          "mi_observed": 0.4901002520943033,
+          "spearman_rho": 0.8092111291850237,
+          "mi_gaussian": 0.5318484703443094,
+          "ratio": 0.9215035473863843
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.14771023936229316,
+          "spearman_rho": 0.5267192735255078,
+          "mi_gaussian": 0.16247269848859944,
+          "ratio": 0.9091388321629794
+        },
+        {
+          "pair": [
+            "claude-sonnet-4-6",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.09357975384868297,
+          "spearman_rho": 0.3882489978681477,
+          "mi_gaussian": 0.08169334962442486,
+          "ratio": 1.145500267511424
+        },
+        {
+          "pair": [
+            "claude-sonnet-4-6",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5301203344324747,
+          "spearman_rho": 0.9242819944946513,
+          "mi_gaussian": 0.9630931925466736,
+          "ratio": 0.5504351380894886
+        },
+        {
+          "pair": [
+            "claude-sonnet-4-6",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.39953863043944937,
+          "spearman_rho": 0.7994259608645944,
+          "mi_gaussian": 0.5095520622477518,
+          "ratio": 0.7840977596616765
+        },
+        {
+          "pair": [
+            "claude-sonnet-4-6",
+            "claude-3-haiku"
+          ],
+          "family_same": true,
+          "mi_observed": 0.17543718597831032,
+          "spearman_rho": 0.558649280476007,
+          "mi_gaussian": 0.18704791844285687,
+          "ratio": 0.9379264278308789
+        },
+        {
+          "pair": [
+            "gpt-4.1-nano",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.12333523389354661,
+          "spearman_rho": 0.45047236414548075,
+          "mi_gaussian": 0.11340347095826898,
+          "ratio": 1.0875790031059314
+        },
+        {
+          "pair": [
+            "gpt-4.1-nano",
+            "gpt-4.1-mini"
+          ],
+          "family_same": true,
+          "mi_observed": 0.11720229957410755,
+          "spearman_rho": 0.39913804653144924,
+          "mi_gaussian": 0.08676684979791574,
+          "ratio": 1.3507727876150566
+        },
+        {
+          "pair": [
+            "gpt-4.1-nano",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.06487890616500078,
+          "spearman_rho": 0.3215134774416851,
+          "mi_gaussian": 0.05455650494221241,
+          "ratio": 1.1892056911219313
+        },
+        {
+          "pair": [
+            "gemini-3.5-flash",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4868778167024367,
+          "spearman_rho": 0.8952755287400066,
+          "mi_gaussian": 0.8085291176434547,
+          "ratio": 0.6021772204339338
+        },
+        {
+          "pair": [
+            "gemini-3.5-flash",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.22786624102234287,
+          "spearman_rho": 0.6227043762024581,
+          "mi_gaussian": 0.24531606269448555,
+          "ratio": 0.9288680020359101
+        },
+        {
+          "pair": [
+            "gpt-4.1-mini",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.10954361624757641,
+          "spearman_rho": 0.4446615518315462,
+          "mi_gaussian": 0.11015123031685979,
+          "ratio": 0.9944838194949296
+        }
+      ],
+      "robust_filtered_rho_gt_005": {
+        "n_pairs": 105,
+        "mean_ratio": 0.933249325381677,
+        "median_ratio": 0.9288680020359101,
+        "pct_ratio_gt_1": 35.23809523809524,
+        "max_ratio": 1.818281768664891,
+        "min_ratio": 0.1634964732985574
+      }
+    }
+  },
+  "arc_challenge": {
+    "claim4_within_vs_cross_family": {
+      "n_within": 14,
+      "n_cross": 91,
+      "mean_within_mi": 0.37611545642312866,
+      "std_within_mi": 0.21880479075728604,
+      "mean_cross_mi": 0.3544248765872159,
+      "std_cross_mi": 0.2150418638699912,
+      "u_statistic": 668.5,
+      "p_value": 0.3850577033232693,
+      "effect_size_rank_biserial": -0.0494505494505495,
+      "within_pairs": [
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "qwen2.5-32b"
+          ],
+          "mi": 0.46174112476560014,
+          "family": "qwen"
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "qwen2.5-14b"
+          ],
+          "mi": 0.37360307602728104,
+          "family": "qwen"
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "llama3.1-8b"
+          ],
+          "mi": 0.08603001260709404,
+          "family": "llama"
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "qwen2.5-14b"
+          ],
+          "mi": 0.356541939704031,
+          "family": "qwen"
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "claude-sonnet-4-6"
+          ],
+          "mi": 0.6256630401859414,
+          "family": "claude"
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "claude-3-haiku"
+          ],
+          "mi": 0.011020826094756589,
+          "family": "claude"
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1"
+          ],
+          "mi": 0.6347230964624998,
+          "family": "openai"
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1-nano"
+          ],
+          "mi": 0.2965888382776203,
+          "family": "openai"
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1-mini"
+          ],
+          "mi": 0.5445182833388909,
+          "family": "openai"
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "gemini-3.5-flash"
+          ],
+          "mi": 0.6916802639174183,
+          "family": "gemini"
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "gpt-4.1-nano"
+          ],
+          "mi": 0.3035180780201512,
+          "family": "openai"
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "gpt-4.1-mini"
+          ],
+          "mi": 0.5690493248772669,
+          "family": "openai"
+        },
+        {
+          "pair": [
+            "claude-sonnet-4-6",
+            "claude-3-haiku"
+          ],
+          "mi": 0.010879727413353916,
+          "family": "claude"
+        },
+        {
+          "pair": [
+            "gpt-4.1-nano",
+            "gpt-4.1-mini"
+          ],
+          "mi": 0.30005875823189543,
+          "family": "openai"
+        }
+      ]
+    },
+    "claim5_copula_gof": {
+      "n_pairs": 104,
+      "mean_ratio": 7.018515614291636,
+      "median_ratio": 0.7482225985495486,
+      "pct_ratio_gt_1": 24.03846153846154,
+      "max_ratio": 212.31794062742495,
+      "min_ratio": 0.15019646093035802,
+      "std_ratio": 30.219628370418793,
+      "pairs": [
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "llama3.1-70b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3820991003076517,
+          "spearman_rho": 0.7995174785592386,
+          "mi_gaussian": 0.5097548246979919,
+          "ratio": 0.7495742694226174
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "mistral-large"
+          ],
+          "family_same": false,
+          "mi_observed": 0.39457366475843153,
+          "spearman_rho": 0.8076916909536396,
+          "mi_gaussian": 0.528302348018757,
+          "ratio": 0.7468709276764799
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "qwen2.5-32b"
+          ],
+          "family_same": true,
+          "mi_observed": 0.46174112476560014,
+          "spearman_rho": 0.8554758483018174,
+          "mi_gaussian": 0.6580837302286454,
+          "ratio": 0.7016449481362687
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "qwen2.5-14b"
+          ],
+          "family_same": true,
+          "mi_observed": 0.37360307602728104,
+          "spearman_rho": 0.7137357672527678,
+          "mi_gaussian": 0.3560821785666758,
+          "ratio": 1.0492046457678152
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "llama3.1-8b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.11386148535139266,
+          "spearman_rho": 0.47416940974612437,
+          "mi_gaussian": 0.12734073536661955,
+          "ratio": 0.8941481688760511
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4283274189721331,
+          "spearman_rho": 0.8213367254045588,
+          "mi_gaussian": 0.5613408481116541,
+          "ratio": 0.7630433815978704
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4208330735571502,
+          "spearman_rho": 0.818104172460251,
+          "mi_gaussian": 0.553263418616732,
+          "ratio": 0.7606378072299017
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.43017964609277143,
+          "spearman_rho": 0.8287317875423075,
+          "mi_gaussian": 0.580450871519651,
+          "ratio": 0.7411129299651811
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4179118454395495,
+          "spearman_rho": 0.8169888867437858,
+          "mi_gaussian": 0.5505138633398623,
+          "ratio": 0.7591304656782997
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.42986988044679414,
+          "spearman_rho": 0.8318300503174245,
+          "mi_gaussian": 0.588732355499215,
+          "ratio": 0.730161806857526
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3173505243091362,
+          "spearman_rho": 0.7270930428407637,
+          "mi_gaussian": 0.3760923425135028,
+          "ratio": 0.8438101190474049
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4223786348275266,
+          "spearman_rho": 0.8288172522485958,
+          "mi_gaussian": 0.5806770725871703,
+          "ratio": 0.7273898949473673
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.41374846046336533,
+          "spearman_rho": 0.8035217132280721,
+          "mi_gaussian": 0.5187310464417261,
+          "ratio": 0.7976165361635927
+        },
+        {
+          "pair": [
+            "qwen2.5-72b",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.01454561412171829,
+          "spearman_rho": 0.1064150366452764,
+          "mi_gaussian": 0.0056943832651794755,
+          "ratio": 2.554379191626091
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "mistral-large"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4853360314976374,
+          "spearman_rho": 0.8929704216657542,
+          "mi_gaussian": 0.7982514013479455,
+          "ratio": 0.6079989721008794
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "qwen2.5-32b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.49201311843097484,
+          "spearman_rho": 0.8786020160768762,
+          "mi_gaussian": 0.7390765578149912,
+          "ratio": 0.6657133327101652
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "qwen2.5-14b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2411680866889861,
+          "spearman_rho": 0.5952736970968924,
+          "mi_gaussian": 0.21874945859372547,
+          "ratio": 1.1024854106583086
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "llama3.1-8b"
+          ],
+          "family_same": true,
+          "mi_observed": 0.08603001260709404,
+          "spearman_rho": 0.40028049390653553,
+          "mi_gaussian": 0.08731032678700318,
+          "ratio": 0.9853360509916255
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5112669281619396,
+          "spearman_rho": 0.8995383307775564,
+          "mi_gaussian": 0.8281840760803618,
+          "ratio": 0.6173348932059514
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.48936022484246183,
+          "spearman_rho": 0.884949869685655,
+          "mi_gaussian": 0.7642430518052665,
+          "ratio": 0.6403201490501135
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4997694144040369,
+          "spearman_rho": 0.8975764440541599,
+          "mi_gaussian": 0.8190305190501111,
+          "ratio": 0.6101963269740615
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5167632329331259,
+          "spearman_rho": 0.9118245395002854,
+          "mi_gaussian": 0.8901842689668298,
+          "ratio": 0.5805126544562444
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5307937365742256,
+          "spearman_rho": 0.9246133151046076,
+          "mi_gaussian": 0.96519977008531,
+          "ratio": 0.5499314784620296
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3437056419718152,
+          "spearman_rho": 0.7705817974952593,
+          "mi_gaussian": 0.4504502686941644,
+          "ratio": 0.7630268330579596
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5026794527055958,
+          "spearman_rho": 0.9059217665834955,
+          "mi_gaussian": 0.8593314069714953,
+          "ratio": 0.5849657636477728
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.49605866688967243,
+          "spearman_rho": 0.8925917209950429,
+          "mi_gaussian": 0.7965854217484296,
+          "ratio": 0.6227312895092539
+        },
+        {
+          "pair": [
+            "llama3.1-70b",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.011416871569318438,
+          "spearman_rho": 0.06528906759551517,
+          "mi_gaussian": 0.002135886696697924,
+          "ratio": 5.3452608637756365
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "qwen2.5-32b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4578254789429925,
+          "spearman_rho": 0.8596550711071405,
+          "mi_gaussian": 0.6716305419022993,
+          "ratio": 0.6816626856281224
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "qwen2.5-14b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.22287460788047037,
+          "spearman_rho": 0.5535386265329519,
+          "mi_gaussian": 0.1829335391296504,
+          "ratio": 1.2183365004626765
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "llama3.1-8b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.08467717367379393,
+          "spearman_rho": 0.3981909096466292,
+          "mi_gaussian": 0.08631790801055614,
+          "ratio": 0.9809919589737792
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5450996003511879,
+          "spearman_rho": 0.9325181159420289,
+          "mi_gaussian": 1.018536112830256,
+          "ratio": 0.5351794536145538
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5072494571314404,
+          "spearman_rho": 0.9117398447324522,
+          "mi_gaussian": 0.8897263875174305,
+          "ratio": 0.5701184816455755
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5490058208281446,
+          "spearman_rho": 0.9383565678611809,
+          "mi_gaussian": 1.0622740528038643,
+          "ratio": 0.5168212660179808
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5668505972269925,
+          "spearman_rho": 0.9521595665494486,
+          "mi_gaussian": 1.185473939575552,
+          "ratio": 0.47816369327355107
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5710625408514229,
+          "spearman_rho": 0.9515263001085017,
+          "mi_gaussian": 1.1790610569913795,
+          "ratio": 0.4843366994993527
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3395458423066502,
+          "spearman_rho": 0.7697288965866174,
+          "mi_gaussian": 0.44883579230769727,
+          "ratio": 0.7565034877474213
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5484248871889538,
+          "spearman_rho": 0.9348259004459629,
+          "mi_gaussian": 1.0353378932861388,
+          "ratio": 0.5297061864974977
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5622576022641839,
+          "spearman_rho": 0.945892212885276,
+          "mi_gaussian": 1.1255282855231044,
+          "ratio": 0.49954995311634226
+        },
+        {
+          "pair": [
+            "mistral-large",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.010441939017600918,
+          "spearman_rho": 0.053527258058522695,
+          "mi_gaussian": 0.0014346399021827588,
+          "ratio": 7.278439001810727
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "qwen2.5-14b"
+          ],
+          "family_same": true,
+          "mi_observed": 0.356541939704031,
+          "spearman_rho": 0.6627674639526733,
+          "mi_gaussian": 0.2892496037285478,
+          "ratio": 1.2326445226131928
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "llama3.1-8b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.1167073877663067,
+          "spearman_rho": 0.47507110287277154,
+          "mi_gaussian": 0.12789313281924525,
+          "ratio": 0.9125383450513511
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4730710352149037,
+          "spearman_rho": 0.8591952855954395,
+          "mi_gaussian": 0.6701188004381502,
+          "ratio": 0.705950996906207
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4607935819764162,
+          "spearman_rho": 0.850559734619635,
+          "mi_gaussian": 0.6426851880443524,
+          "ratio": 0.7169817984736507
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.477673250406244,
+          "spearman_rho": 0.8700764506748413,
+          "mi_gaussian": 0.7074148854420951,
+          "ratio": 0.6752377709831829
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.46847744864841623,
+          "spearman_rho": 0.8636772500762278,
+          "mi_gaussian": 0.6850892456855423,
+          "ratio": 0.6838195922629452
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.49569484787773294,
+          "spearman_rho": 0.884373094899411,
+          "mi_gaussian": 0.7618957084027007,
+          "ratio": 0.6506072188238826
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3734124002243516,
+          "spearman_rho": 0.7921865715983364,
+          "mi_gaussian": 0.49383907894839013,
+          "ratio": 0.7561418610684231
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4838393321707649,
+          "spearman_rho": 0.8831934988132121,
+          "mi_gaussian": 0.7571337719876523,
+          "ratio": 0.6390407482426442
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.4387281383620818,
+          "spearman_rho": 0.8399883798254272,
+          "mi_gaussian": 0.611374792002846,
+          "ratio": 0.7176091394360916
+        },
+        {
+          "pair": [
+            "qwen2.5-32b",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.01637905497657952,
+          "spearman_rho": 0.09610257263268449,
+          "mi_gaussian": 0.004639309007022426,
+          "ratio": 3.5304945093734608
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "llama3.1-8b"
+          ],
+          "family_same": false,
+          "mi_observed": 0.12531534979503017,
+          "spearman_rho": 0.5560232172173799,
+          "mi_gaussian": 0.18492483110576408,
+          "ratio": 0.6776556130710134
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.2250759948381078,
+          "spearman_rho": 0.5591171371838414,
+          "mi_gaussian": 0.18742816632955683,
+          "ratio": 1.20086537282958
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.23269847048691358,
+          "spearman_rho": 0.5458063453006178,
+          "mi_gaussian": 0.176842969569816,
+          "ratio": 1.3158480150665326
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.23765811487482888,
+          "spearman_rho": 0.5553727267769452,
+          "mi_gaussian": 0.1844018617332338,
+          "ratio": 1.2888053983892993
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.222783226587303,
+          "spearman_rho": 0.5437380246537502,
+          "mi_gaussian": 0.17524068152044722,
+          "ratio": 1.271298562949885
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.23084041767488123,
+          "spearman_rho": 0.5678284993423107,
+          "mi_gaussian": 0.194620618364296,
+          "ratio": 1.1861046358551182
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.25671945494952764,
+          "spearman_rho": 0.6093975803158383,
+          "mi_gaussian": 0.2321025652558885,
+          "ratio": 1.1060603947504826
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.23656454811276562,
+          "spearman_rho": 0.5664043755672181,
+          "mi_gaussian": 0.19343006698975165,
+          "ratio": 1.2229978089461104
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.21360512499123288,
+          "spearman_rho": 0.5478472549960549,
+          "mi_gaussian": 0.17843506349764754,
+          "ratio": 1.1971028608625962
+        },
+        {
+          "pair": [
+            "qwen2.5-14b",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.049739743023520244,
+          "spearman_rho": 0.3069549127806717,
+          "mi_gaussian": 0.04948014183190212,
+          "ratio": 1.0052465733121796
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "claude-opus-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.07923995272018233,
+          "spearman_rho": 0.38100947844464145,
+          "mi_gaussian": 0.0784252905290466,
+          "ratio": 1.0103877484627741
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.0689021397542843,
+          "spearman_rho": 0.361128238440177,
+          "mi_gaussian": 0.06986879398023546,
+          "ratio": 0.9861647214602759
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.07152390224990757,
+          "spearman_rho": 0.37019385510459263,
+          "mi_gaussian": 0.0736954917784808,
+          "ratio": 0.9705329393132928
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.07228287350034832,
+          "spearman_rho": 0.3727527416276103,
+          "mi_gaussian": 0.07479822013012721,
+          "ratio": 0.9663715710694328
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.08302740463775829,
+          "spearman_rho": 0.39773782999292817,
+          "mi_gaussian": 0.08610366804661192,
+          "ratio": 0.9642725626138448
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.13899081035972066,
+          "spearman_rho": 0.4944099339571329,
+          "mi_gaussian": 0.14014882413758134,
+          "ratio": 0.9917372565557605
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.08429241649330345,
+          "spearman_rho": 0.3978590973120075,
+          "mi_gaussian": 0.0861609767341348,
+          "ratio": 0.9783131492740951
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.0779716966745841,
+          "spearman_rho": 0.38398126305262176,
+          "mi_gaussian": 0.07975678997089136,
+          "ratio": 0.9776182905937068
+        },
+        {
+          "pair": [
+            "llama3.1-8b",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.03902876592502452,
+          "spearman_rho": 0.2923430648330984,
+          "mi_gaussian": 0.044669478700971425,
+          "ratio": 0.8737233354857971
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gpt-5.5"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6317008076342964,
+          "spearman_rho": 0.9728348306942918,
+          "mi_gaussian": 1.4631740788851213,
+          "ratio": 0.43173318660458126
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6771455083930547,
+          "spearman_rho": 0.9863838066082037,
+          "mi_gaussian": 1.8050898504642443,
+          "ratio": 0.37513119262118844
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6213456044101843,
+          "spearman_rho": 0.9658349408809355,
+          "mi_gaussian": 1.350317379488781,
+          "ratio": 0.460147824391789
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": true,
+          "mi_observed": 0.6256630401859414,
+          "spearman_rho": 0.9723041781669363,
+          "mi_gaussian": 1.4536356103342836,
+          "ratio": 0.4304125708932389
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.3158216233508465,
+          "spearman_rho": 0.7469782028386571,
+          "mi_gaussian": 0.40819604250674213,
+          "ratio": 0.7737008458273579
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6534327715471941,
+          "spearman_rho": 0.985609265427928,
+          "mi_gaussian": 1.7776224551089923,
+          "ratio": 0.3675880497960574
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5729568076617713,
+          "spearman_rho": 0.9456782258793369,
+          "mi_gaussian": 1.123609758591573,
+          "ratio": 0.5099250903445014
+        },
+        {
+          "pair": [
+            "claude-opus-4-6",
+            "claude-3-haiku"
+          ],
+          "family_same": true,
+          "mi_observed": 0.011020826094756589,
+          "spearman_rho": 0.014400579326387015,
+          "mi_gaussian": 0.00010369909522673745,
+          "ratio": 106.27697445825943
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gemini-3.1-pro-preview"
+          ],
+          "family_same": false,
+          "mi_observed": 0.7171091224986436,
+          "spearman_rho": 0.9999999999999998,
+          "mi_gaussian": 4.605170185988147,
+          "ratio": 0.1557182674118201
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1"
+          ],
+          "family_same": true,
+          "mi_observed": 0.6347230964624998,
+          "spearman_rho": 0.9725399219015198,
+          "mi_gaussian": 1.4578500108956909,
+          "ratio": 0.43538298982659485
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6104682577247427,
+          "spearman_rho": 0.9722375473512384,
+          "mi_gaussian": 1.4524510431513644,
+          "ratio": 0.4203021235058068
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1-nano"
+          ],
+          "family_same": true,
+          "mi_observed": 0.2965888382776203,
+          "spearman_rho": 0.7317226829749008,
+          "mi_gaussian": 0.3833086924438523,
+          "ratio": 0.7737597506246616
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6916802639174183,
+          "spearman_rho": 1.0,
+          "mi_gaussian": 4.605170185988147,
+          "ratio": 0.15019646093035802
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "gpt-4.1-mini"
+          ],
+          "family_same": true,
+          "mi_observed": 0.5445182833388909,
+          "spearman_rho": 0.9252079363650756,
+          "mi_gaussian": 0.969004759985564,
+          "ratio": 0.5619356125216588
+        },
+        {
+          "pair": [
+            "gpt-5.5",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.008284771650669424,
+          "spearman_rho": -0.01473617379739306,
+          "mi_gaussian": 0.00010858919985422326,
+          "ratio": 76.29461918672764
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "gpt-4.1"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6725591919095786,
+          "spearman_rho": 0.9861535523300229,
+          "mi_gaussian": 1.796763342574148,
+          "ratio": 0.37431707113193385
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6490105255861227,
+          "spearman_rho": 0.9789948167320507,
+          "mi_gaussian": 1.5901985009744566,
+          "ratio": 0.4081317679449553
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.30840044683625184,
+          "spearman_rho": 0.7434861057359606,
+          "mi_gaussian": 0.4023429146225542,
+          "ratio": 0.7665114399381641
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "gemini-3.5-flash"
+          ],
+          "family_same": true,
+          "mi_observed": 0.6916802639174183,
+          "spearman_rho": 1.0,
+          "mi_gaussian": 4.605170185988147,
+          "ratio": 0.15019646093035802
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5661329967782105,
+          "spearman_rho": 0.9451006643568354,
+          "mi_gaussian": 1.1184701502863732,
+          "ratio": 0.5061672827238686
+        },
+        {
+          "pair": [
+            "gemini-3.1-pro-preview",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.014254537921672816,
+          "spearman_rho": -0.011587337175437478,
+          "mi_gaussian": 6.713769867750671e-05,
+          "ratio": 212.31794062742495
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "claude-sonnet-4-6"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6208790809260244,
+          "spearman_rho": 0.9789712170912586,
+          "mi_gaussian": 1.5896430213225772,
+          "ratio": 0.3905776785088864
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "gpt-4.1-nano"
+          ],
+          "family_same": true,
+          "mi_observed": 0.3035180780201512,
+          "spearman_rho": 0.7368767492184932,
+          "mi_gaussian": 0.3915220969039981,
+          "ratio": 0.7752259206319442
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6420819014702398,
+          "spearman_rho": 0.9853515102913658,
+          "mi_gaussian": 1.7688110293310984,
+          "ratio": 0.3630019774995707
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "gpt-4.1-mini"
+          ],
+          "family_same": true,
+          "mi_observed": 0.5690493248772669,
+          "spearman_rho": 0.95177864710784,
+          "mi_gaussian": 1.1816061331997783,
+          "ratio": 0.48158968448842315
+        },
+        {
+          "pair": [
+            "gpt-4.1",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.007448905227882885,
+          "spearman_rho": -0.008858280694203292,
+          "mi_gaussian": 3.923610786052883e-05,
+          "ratio": 189.84821976637534
+        },
+        {
+          "pair": [
+            "claude-sonnet-4-6",
+            "gpt-4.1-nano"
+          ],
+          "family_same": false,
+          "mi_observed": 0.31934029349585713,
+          "spearman_rho": 0.7612983629588693,
+          "mi_gaussian": 0.4332448221013144,
+          "ratio": 0.737089694337257
+        },
+        {
+          "pair": [
+            "claude-sonnet-4-6",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.6243274207687424,
+          "spearman_rho": 0.9779527861052243,
+          "mi_gaussian": 1.5662533378237122,
+          "ratio": 0.39861202890474723
+        },
+        {
+          "pair": [
+            "claude-sonnet-4-6",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5717592530329215,
+          "spearman_rho": 0.9513122797357612,
+          "mi_gaussian": 1.176913160558276,
+          "ratio": 0.4858126089453396
+        },
+        {
+          "pair": [
+            "claude-sonnet-4-6",
+            "claude-3-haiku"
+          ],
+          "family_same": true,
+          "mi_observed": 0.010879727413353916,
+          "spearman_rho": 0.03045658697993417,
+          "mi_gaussian": 0.00046401709050328786,
+          "ratio": 23.446824774392283
+        },
+        {
+          "pair": [
+            "gpt-4.1-nano",
+            "gemini-3.5-flash"
+          ],
+          "family_same": false,
+          "mi_observed": 0.32363646495028564,
+          "spearman_rho": 0.7577806078486368,
+          "mi_gaussian": 0.42692969467629577,
+          "ratio": 0.7580556447254658
+        },
+        {
+          "pair": [
+            "gpt-4.1-nano",
+            "gpt-4.1-mini"
+          ],
+          "family_same": true,
+          "mi_observed": 0.30005875823189543,
+          "spearman_rho": 0.7321740597620312,
+          "mi_gaussian": 0.38402034235371507,
+          "ratio": 0.7813616236910597
+        },
+        {
+          "pair": [
+            "gpt-4.1-nano",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.02645515682385152,
+          "spearman_rho": 0.17984765982932827,
+          "mi_gaussian": 0.01643992348966611,
+          "ratio": 1.6092019430918179
+        },
+        {
+          "pair": [
+            "gemini-3.5-flash",
+            "gpt-4.1-mini"
+          ],
+          "family_same": false,
+          "mi_observed": 0.5636013086233409,
+          "spearman_rho": 0.9423740384092408,
+          "mi_gaussian": 1.0949355673489072,
+          "ratio": 0.5147346797656325
+        },
+        {
+          "pair": [
+            "gemini-3.5-flash",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.008095101617023752,
+          "spearman_rho": 0.0008577329878948011,
+          "mi_gaussian": 3.6785307459173243e-07,
+          "ratio": null
+        },
+        {
+          "pair": [
+            "gpt-4.1-mini",
+            "claude-3-haiku"
+          ],
+          "family_same": false,
+          "mi_observed": 0.012372456425553936,
+          "spearman_rho": 0.02698937259287318,
+          "mi_gaussian": 0.0003643458321256081,
+          "ratio": 33.9580018066147
+        }
+      ],
+      "robust_filtered_rho_gt_005": {
+        "n_pairs": 98,
+        "mean_ratio": 0.8957453394544481,
+        "median_ratio": 0.7336257505973915,
+        "pct_ratio_gt_1": 19.387755102040817,
+        "max_ratio": 7.278439001810727,
+        "min_ratio": 0.15019646093035802
+      }
+    }
+  }
+}

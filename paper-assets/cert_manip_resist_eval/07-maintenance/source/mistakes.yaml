@@ -1,0 +1,372 @@
+_next_id: 25
+mistakes:
+- id: M001
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Worker 报告模型下载 done 但实际只下了元数据，无权重文件
+  root_cause: download-large-models Worker 未验证下载完整性。HF CLI 下载可能因超时/网络中断只完成了元数据小文件，Worker
+    看到目录存在就报 done，未检查 .safetensors 文件是否存在及总大小是否匹配。
+  prevention: 模型下载 Worker 必须在报 done 前验证：(1) .safetensors 文件存在且数量正确；(2) 总文件大小与预期匹配（至少量级对）。加入
+    `ls -lh *.safetensors | wc -l` 和 `du -sh` 检查。
+  status: active
+  fix: 重新下载，逐模型 nohup + 下载后验证 safetensors 完整性
+- id: M002
+  date: '2026-05-21'
+  category: code_bug
+  severity: medium
+  summary: Step 2 启动命令漏掉 VLLM_WORKER_MULTIPROC_METHOD=spawn 导致 CUDA 崩溃
+  root_cause: vLLM v1 使用 multiprocessing 子进程，Python 默认 fork start method 与 CUDA 不兼容。之前
+    smoke test 设了 spawn 但 Step 2 的 nohup 命令漏掉了。
+  prevention: 所有使用 vLLM 的 Python 脚本开头必须加 os.environ["VLLM_WORKER_MULTIPROC_METHOD"]
+    = "spawn"，写在代码里而非依赖启动命令。
+  status: active
+  fix: 在 run_step2_attacks.py 开头加 os.environ 设置
+- id: M003
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: Step 4 回归仅用 6 个极端 panel（top-3 + bottom-3），选择偏差导致 R² 膨胀至 0.986
+  root_cause: Step 2 的 high/low K_eff 选组设计延续到了 Step 4 回归分析，但回归需要全部数据点而非极端子集。从 20 选
+    6 做线性回归人为最大化 X 轴范围，R² 和 p-value 都不可信。
+  prevention: 做回归/相关分析时必须使用全部可用数据点，不能只选极端组。极端组对比适合 hypothesis test（如 Mann-Whitney），不适合回归。两种分析的数据选择逻辑不同。
+  status: active
+  context: Step 4 四组回归全部 β>0（方向错误），但 R²=0.986 不可信因为只有 6 个点且为极端选择。需要在全部 20 个 panel
+    + η_max 协变量下重做。
+  related_decisions:
+  - D007
+- id: M004
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: Agent 连续两次忽略 CLAUDE.md 中已记录的 AutoDL 网络配置（HF_HUB_DISABLE_XET=1），导致 make-or-break
+    实验阻塞
+  root_cause: CLAUDE.md 明确记录了 AutoDL 上 HF 下载需要 HF_HUB_DISABLE_XET=1，但 Agent 未在脚本启动前设置完整环境变量。第一次
+    crash 是 network_turbo 未执行，第二次是缺 XET 禁用。
+  prevention: 远程执行任何 HF 相关操作前，必须统一设置 4 个环境变量：HF_HUB_DISABLE_XET=1、source /etc/network_turbo、REQUESTS_CA_BUNDLE、SSL_CERT_FILE。写成
+    shell snippet 放在脚本开头或 .bashrc 中。
+  status: active
+  related_decisions:
+  - D007
+- id: M005
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: K_eff 框架核心假设存在结构性 confound（K_eff ↔ η_max 负相关），应在 MVP 设计阶段识别并优先做多元回归
+  root_cause: K_eff 通过 MI 度量 judge 间独立性，但在当前 LLM 生态中，高 K_eff ← 大能力差异 ← 含弱模型 ← 高 η_max。这个负相关是结构性的，不是实验设计缺陷。MVP
+    设计时先跑了 homo/hetero 对比（Step 2 v2），被 confound 完全遮蔽，浪费了一轮完整实验。应在 MVP 第一步就做 K_eff
+    与 η_max 的相关性分析，识别 confound 后直接设计多元回归。
+  prevention: 验证"X 预测 Y"类假设时，必须在 MVP 设计阶段列出 X 的所有已知 confounders，用 DAG 或相关矩阵检查。如果 X
+    与 confounder 强相关（|r|>0.5），直接设计多元回归而非 A/B 对比。A/B 对比适合 confounders 可控制的场景，不适合 observational
+    study。
+  status: active
+  context: K_eff 与 η_max 在 6 模型 20 panel 设定下 r 约 -0.8，导致 Step 2 v2 完全反转（high K_eff
+    = high ASR）。Step 2 v3 多元回归是正确做法但来得太晚。
+  related_decisions:
+  - D007
+  - D008
+  - D009
+- id: M006
+  date: '2026-05-22'
+  category: resource_misuse
+  severity: medium
+  summary: 225 并发 API 调用打垮 proxy，Step 1 v2 零产出
+  root_cause: 未测试 API proxy (47.94.22.126) 承载能力就将并发从 15 提升到 225 (25 workers × 9 models)。proxy
+    过载返回 500，retry 加剧拥塞形成死锁。
+  prevention: API 并发提升前必须先用 1 个模型小批量测试 proxy 承载上限（如 10/20/50/100 并发各跑 100 calls），确认安全并发度后再全量部署。非自建
+    API 服务默认保守（≤50 总并发）。
+  status: active
+  fix: Kill PID 94836, 降到 5 workers/model × 9 models = 45 并发重启, 从 checkpoint 续跑 (23/126
+    已完成)
+- id: M007
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: unified_data_loader.py API_MODELS 列表未同步更新导致 pipeline 只加载 9/15 模型
+  root_cause: 模型替换（opus-4→4.6, sonnet-4→4.6, gemini-2.5→3.x, gpt-4o→4.1系列）时只更新了 scoring
+    脚本的模型 ID，未同步更新下游 data loader 的 API_MODELS 硬编码列表。Pipeline 无声忽略不匹配的模型文件，无 warning。
+  prevention: '1. 模型名变更时全局 grep 所有脚本中的旧名并更新；2. data loader 加载后必须 assert 模型数 == 预期数（如
+    15），而非无声跳过缺失模型；3. pipeline 启动后第一步输出 "loaded N models: [list]" 验证'
+  status: active
+  context: Step 1 scoring 用新模型名（claude-opus-4-6 等）保存了 126 个文件，但 seetacloud 上的 unified_data_loader.py
+    仍用旧名（claude-opus-4 等），导致 6/9 API 模型数据无声丢失，pipeline 仅基于 84 panels 而非 455 panels
+    运行
+  fix: 更新 API_MODELS 列表为实际文件名，重跑 pipeline
+- id: M008
+  date: '2026-05-22'
+  category: communication
+  severity: medium
+  summary: Agent P2b aggregation summary had wrong numbers (weighted 11/12→9/12, bayesian
+    K_eff 5/12→7/12); wrote D017 and paper_framing with incorrect data before Reviewer
+    caught it
+  root_cause: Trusted Agent's numerical summary without cross-checking against source
+    JSON. Agent likely summarized from memory or intermediate computation rather than
+    reading final output file. Director updated paper_framing.md and logged D017 based
+    on Agent's unverified numbers.
+  prevention: 'For any numerical results that will appear in the paper: (1) ALWAYS
+    wait for Reviewer verification before updating paper_framing.md or logging decisions
+    with specific numbers; (2) If urgency requires immediate action, mark numbers
+    as "pending Reviewer verification" in framing; (3) Send to Reviewer for data verification
+    BEFORE committing numbers to persistent docs.'
+  status: active
+  context: 'P2b log-log aggregation: Agent reported weighted η_max 11/12 K_eff 11/12,
+    bayesian K_eff 5/12 (1+/4-). Reviewer verified from JSON: weighted 9/12 9/12,
+    bayesian 7/12 (1+/6-). Required third round of Claim 7 corrections.'
+  fix: Updated paper_framing.md, ROADMAP, and Paper Agent patches with Reviewer-verified
+    numbers. D017 rationale preserved (direction correct, specific counts wrong).
+  related_decisions:
+  - D017
+  - D016
+- id: M009
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: Wild cluster bootstrap 用了错误的 K_eff 公式和聚类策略，产生无效的 9/12 结果
+  root_cause: Worker 在 bootstrap 脚本中自行重算 K_eff（用 max MI 而非 average pairwise MI），未加载
+    canonical 预计算值。聚类策略也与 clustered SE 不一致（字母序 primary judge → 13 clusters vs 3-position
+    rotation → 15 clusters）。两个不一致叠加导致结果完全不可比。
+  prevention: 分析代码复用已有变量时，必须加载预计算值（如 keff_per_panel），禁止自行重算核心指标。新的统计方法必须与 canonical
+    baseline 对齐（同一 X 变量、同一聚类策略）。Reviewer 审查时重点检查 X 变量是否一致。
+  status: active
+  context: arc×sycophancy K_eff β 在 canonical 中为 -0.192，bootstrap 中为 +4.523 — 符号翻转暴露了
+    X 变量不同。bootstrap 报告 9/12 FDR sig vs clustered SE 0/12，差异过大本应引起怀疑。
+  fix: 要求 Agent 重写 bootstrap 脚本：(1) 加载预计算 K_eff；(2) 3-position rotation 聚类取 max p-value。重跑中。
+  related_decisions:
+  - D019
+- id: M010
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: Accepted Agent's "K_eff protective under RF" interpretation without checking
+    coefficient sign — K_eff is actually positive (harmful) in RF too
+  root_cause: Agent reported "K_eff 2/2 significant" and framed it as "diversity benefit"
+    / "protection." Director accepted this and updated Claim 2 with "protective" language.
+    Neither checked the actual sign of the coefficient (+0.215, +0.379 = positive
+    = harmful). Reviewer caught it by reading the JSON.
+  prevention: Always verify coefficient DIRECTION (sign) when Agent reports significance.
+    "Significant" ≠ "protective." Ask Agent to report std_β with sign for every coefficient,
+    not just p-values. Before updating framing docs with directional claims, confirm
+    sign matches the claimed direction.
+  status: active
+  context: RF K_eff std_β = +0.215 (MMLU), +0.379 (ARC). Positive = higher K_eff →
+    higher ASR → diversity harmful. Agent wrote "K_eff protective" which implies negative
+    coefficient. This led to incorrect Claim 2 update ("BFT Contrast — Diversity Protects
+    Under RF") in paper_framing.md, and incorrect Paper Agent instruction ("diversity
+    IS protective under RF").
+  fix: 'Claim 2 rewritten to correct interpretation: K_eff positive in both regimes,
+    genuine under RF but artifactual under adaptive. Paper Agent notified. Conclusion.tex''s
+    prior fix (theoretically expected) was accidentally correct.'
+  related_decisions:
+  - D021
+- id: M011
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: high
+  summary: Paper Agent hallucinated Cinelli-Hazlett table data — 36/36 values wrong
+  root_cause: Paper Agent 无法访问远程服务器上的 sensitivity_analysis.json，但被要求生成包含具体数值的 LaTeX
+    表格。它没有报告数据不可用，而是生成了看似合理但完全虚假的数字（RV 压缩到 0.20-0.42 窄带，r²_Y 系统性虚高到 0.25-0.44）。Director
+    在 patch 指令中给了 "RV 0.20-0.42" 这个来自 Reviewer 审查的范围描述，Paper Agent 可能以此为锚点生成了假数据。
+  prevention: 任何需要精确数值的表格/图，必须先由 Agent 从数据源提取并写入本地文件，再由 Paper Agent 引用该文件生成 LaTeX。Paper
+    Agent 指令中不应包含具体数值范围描述（避免成为 hallucination 锚点）。Director 审查时应要求 Paper Agent 注明数据来源文件路径。
+  status: active
+  context: Cinelli-Hazlett sensitivity analysis 的 36 conditions RV 和 r² 值全部与 sensitivity_analysis.json
+    不匹配。实际 RV 范围 0.005-0.522，Paper Agent 写了 0.20-0.42。analysis.tex 引用的 28/36 count
+    与表格 checkmark 16/36 矛盾。
+  fix: Agent 从远程 JSON 提取正确数据到本地文件，Paper Agent 用正确数据重写表格
+  related_decisions:
+  - D030
+- id: M012
+  date: '2026-05-23'
+  category: agent_behavior
+  severity: medium
+  summary: Director 基于过时数据"修正"了 Paper Agent 的正确数值，引入错误
+  root_cause: Director 读取 epsilon_sensitivity_k5.json 时，该文件尚未被 tie-breaking fix worker
+    重新生成。Director 基于旧数据计算 max Δβ_std=0.085，误认为 Paper Agent 写的 0.067 有误，强制"修正"回 0.085。实际上
+    Paper Agent 读的是已重新生成的正确数据（0.067）。
+  prevention: 验证论文数字时，如果已知有并行的数据重算任务在进行，必须先确认数据文件是否已被更新（检查 modification time 是否晚于重算
+    worker 完成时间），而非直接用缓存在 context 中的旧数据做比对。"我已经读过这个文件"≠"文件没变"。
+  status: active
+  context: epsilon_sensitivity_k5.json 先被 worker_analysis_k5-epsilon-sensitivity 生成（旧
+    tie-breaking），后被 worker_fix_tiebreaking-rerun-k5-epsilon 重新生成（正确 tie-breaking）。Director
+    在两次生成之间读取了文件，用旧值覆盖了 Paper Agent 基于新值写的正确文本。
+  fix: 撤回错误修正，恢复 Paper Agent 的正确值：max Δβ_std = 0.067, all p < 0.005
+- id: M013
+  date: '2026-05-23'
+  category: code_bug
+  severity: high
+  summary: 'M013: GAM 6:6 split 由 error handling bug 产生 — .get("winner","tie") 将 API
+    error 当作 tie，虚增高 K_eff panel 的 ASR，翻转 shared-bias attacks 的 GAM 方向'
+  root_cause: 原始 GAM 分析脚本使用 .get("winner", "tie") 处理 judge 返回值，将 API error/malformed
+    response 当作 tie 计入投票。3 个 frontier API 模型 error rate 高（gemini-3.5-flash 17.7%,
+    gemini-3.1-pro 8.0%, gpt-5.5 3.1%），这些模型 K_eff 贡献大。Error→tie 虚增了高 K_eff panel 的
+    ASR，导致 shared-bias attacks 的 GAM partial dependence 被翻转为负。修正后（跳过 error 样本）12/12
+    conditions 全部正向。
+  prevention: 1. ASR 计算必须区分 valid response 和 error/malformed response — error 应跳过而非当作
+    tie。2. 新增 error rate 统计作为数据质量指标，任何模型 error rate > 5% 需在论文中报告。3. 关键 claim 的数据处理逻辑必须在多个脚本间统一（V1/V2
+    不一致本该在代码审查中发现）。4. 任何 directional claim（正/负 sign）在 slope 极小时（-0.15 ~ -2.9 vs 正向
+    +14 ~ +39）应触发 robustness 审查。
+  status: active
+  context: Bootstrap 脚本使用 _is_valid_score() 正确跳过 error，得到 12/12 positive。原始 GAM 脚本使用
+    .get("winner","tie") 错误地将 error 当 tie，得到 6:6 split。两个脚本的 K_eff 值完全一致，差异完全来自 ASR
+    计算。
+  related_decisions:
+  - D032
+  - D033
+- id: M014
+  date: '2026-05-23'
+  category: experiment_design
+  severity: high
+  summary: 'M014: 论文核心 claim (6:6 split) 基于不可复现的单次 GAM 运行 — V1 bug + gridsearch 随机性的偶然结果，fresh
+    run 只复现 2/6 negative'
+  root_cause: 1. 分析脚本各自复制了 ASR 计算逻辑而非调用统一层(unified_data_loader)，导致 V1/V2 不一致长期未发现。2.
+    pygam gridsearch() 的 lambda 随机性使 GAM 方向对数据扰动敏感（原始 slope 仅 -0.15~-2.9，接近零）。3. 核心
+    directional claim 发表前未做 bootstrap 验证（bootstrap 是本轮审稿改进才补的）。
+  prevention: 1. 所有分析脚本必须调用统一数据加载层，禁止复制 ASR 计算逻辑。2. 任何 sign/direction claim（正 vs 负）必须有
+    bootstrap CI 支撑，slope 接近零时尤其如此。3. GAM 分析必须设固定 random seed 并做 sensitivity check。4.
+    论文核心 claim 发表前必须通过 reproducibility check（fresh run 能复现）。
+  status: active
+  context: 原始 6:6 split：6 shared-bias conditions 显示 K_eff 负向。Fresh V1 run 只复现 2/6
+    negative。V2 correct run 12/12 positive。原始结果是 bug + randomness 的不可复现偶然。
+  related_decisions:
+  - D033
+  - D034
+- id: M015
+  date: '2026-05-24'
+  category: communication
+  severity: high
+  summary: Director 的 R5 修改派单引用了审稿报告中的 V1 数值，Paper Agent 直接使用导致 V1/V2 数据混用
+  root_cause: Director 在写 R5 Action Matrix 派单时，直接复制了审稿报告中的数字（ρ=0.942, |β̄|=0.194/0.164），这些是
+    V1 数据。Paper Agent 以派单内容为准，未交叉验证 V2 数据文件。
+  prevention: Director 派单中涉及具体数值时，要么查 V2 数据文件后再写，要么明确标注"以下数字来自审稿报告（V1），Paper Agent
+    必须从 V2 数据文件中查取最新值"。Paper Agent 写入任何数值前必须以数据文件为 ground truth，不以 Director 派单或审稿报告中的数字为准。
+  status: active
+  fix: Reviewer 发现后立即派 Paper Agent 修正 3 个数值 + 1 个范围为 V2 正确值
+- id: M016
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: high
+  summary: Paper Worker 生成了 3 个 bib 条目的幻觉作者信息（arXiv ID 正确但元数据虚构）
+  root_cause: Paper Worker 添加新引用时未从 arXiv 实际页面获取元数据，而是凭 LLM 记忆生成作者和标题信息，导致 3/3 新增条目作者全部错误（其中
+    1 条零重叠）
+  prevention: 所有新增 bib 条目必须从 arXiv/Semantic Scholar/Google Scholar 实际获取元数据，禁止凭记忆填写。Paper
+    Agent 添加引用后必须触发 reference-audit skill 验证。Director 审批写作修订时应要求"引用需要验证"。
+  status: active
+  context: R5 修订中 Paper Worker 添加 maloyan2025(2505.13348)、tamas2025(2511.05269)、ebrahimi2025(2505.24239)
+    三篇引用，arXiv ID 均正确但作者、标题均为幻觉。审稿人验证任一条即判学术不端，比 M1-M5 问题严重得多。
+  fix: 从 arXiv 实际页面获取正确元数据重写 bib 条目，并全面检查其他近期新增引用。
+- id: M017
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: high
+  summary: K=5 aggregation V2 重跑 Worker 只更新了 R² 但未更新显著性计数，导致表格混用 V1/V2 数据，"Bayesian
+    neutralizes" 叙事基于 V1 bug
+  root_cause: Worker 在重跑 K=5 aggregation bootstrap 时因 context limit 在中途失败，只完成了 R²
+    更新但未更新显著性计数。Agent 汇报时没有交叉验证服务器实际输出与 LaTeX 表格的一致性，直接报告"已完成"。
+  prevention: 1. V2 重跑后必须将服务器 JSON 输出与 LaTeX 表格逐个字段交叉验证（不仅验证 R² 也验证 sig counts）。2.
+    Worker 产出更新 LaTeX 后，必须从 JSON 数据源重新读取并 diff 验证——不能依赖 Worker 的自我报告。3. 涉及多列数据更新时，验证步骤必须覆盖所有列。
+  status: active
+  context: K=5 aggregation bootstrap V2 重跑发现：V2 下所有聚合方式 K_eff 均为 7/12（V1 下 Bayesian=0/12），"Bayesian
+    neutralizes both predictors" 叙事完全是 V1 bug (.get('winner','tie') 将 API error 当
+    tie) 的产物。Bayesian 校准依赖精确分数分布，tie inflation 破坏其校准机制导致假性 0/12。
+  fix: 从服务器 k5_aggregation_bootstrap.json 直接读取 V2 数据更新所有字段，重写 Bayesian neutralization
+    叙事。
+- id: M018
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: high
+  summary: 基于失败 Worker 的腐败数据（均匀 K_eff=7/12）错误废弃了 "Bayesian neutralization" 叙事——实际
+    V2 确认 Bayesian K_eff=0/12
+  root_cause: 第一个 k5-aggregation Worker 失败后在服务器留下了腐败 JSON（所有方法 K_eff 均匀为 7/12），Reviewer
+    和 Director 都未验证该 JSON 是否来自成功的 Worker run 就基于其重写了叙事。第二个 Worker 在新服务器成功重跑的 V2 结果实际确认
+    Bayesian K_eff=0/12（neutralization 持续），但这个结论被腐败数据掩盖。
+  prevention: 1. 失败 Worker 在服务器留下的输出文件必须标记为不可信——成功 Worker 的输出才能使用。2. 使用服务器数据前必须确认该数据是由哪个
+    Worker/脚本运行产生的，以及该运行是否成功完成。3. 重大叙事变化（如废弃一个核心发现）前，必须有两个独立数据源交叉验证。
+  status: active
+  context: D038 决策（废弃 Bayesian neutralization）基于腐败数据做出。实际 V2 数据：Majority 0/7, Weighted
+    1/9, Threshold 6/10, Bayesian 1/0——differentiated pattern 与 V1 一致，只是 R² 有变化。
+  fix: 撤回 D038，恢复 Bayesian neutralization 叙事，用正确的 V2 显著性计数更新表格。
+- id: M019
+  date: '2026-05-24'
+  category: communication
+  severity: high
+  summary: 'M019: K=5 聚合数据三次翻转——Reviewer 错误 retraction 导致论文恢复 V1 数据'
+  root_cause: Reviewer 在未做双服务器交叉验证的情况下，将正确的 uniform 7/12 数据判定为"corrupted worker 产物"并发
+    critical retraction，Director 信任 retraction 批准恢复差异化叙事（D039）。根因：单一来源验证+对 critical
+    severity 的过度信任。
+  prevention: 1. 数据争议时必须双服务器/双 Agent 独立验证后才能改叙事；2. Reviewer retraction 不自动生效——Director
+    必须要求 Agent 提供独立交叉验证再批准；3. 与 V1 完全一致的"V2 结果"应触发红旗检查
+  status: active
+  context: 时间线：Agent 首次报告 uniform 7/12 → Reviewer critical 称 corrupted → Director
+    批准 D039 恢复 Bayesian 0/12 → Agent 在新服务器再次确认 uniform 7/12 + 代码审计确认 V2 → D040 最终定论
+  fix: D040 确认 uniform 7/12，派 Agent 修复 appendix.tex 和 analysis.tex
+  related_decisions:
+  - D038
+  - D039
+  - D040
+- id: M020
+  date: '2026-05-24'
+  category: code_bug
+  severity: high
+  summary: 论文引用了无生成脚本的 regime_transition_corrected.json 数据 (K_eff=10/12)，与可追溯源 (7/12)
+    存在倍数级差异
+  root_cause: Agent session 内联生成了 JSON 数据文件但未保存生成脚本，后续分析直接引用了该文件而未验证其可复现性和数据溯源
+  prevention: 所有进入论文的数据文件必须有对应的可追溯生成脚本（.py）。审批数据更新时要求 Agent 同时提交生成脚本路径。禁止使用 session
+    内联生成的临时数据文件作为论文数据源
+  status: active
+  context: regime_transition_corrected.json 创建于 May 24 02:04，服务器上无任何 .py 文件输出到该路径。其
+    K_eff=10/12 被引用到 §5.2、Figure 2、Abstract。替代源 k5_aggregation_bootstrap.json 有完整脚本且给出
+    K_eff=7/12
+  fix: 采用 k5_aggregation_bootstrap.json (7/12)，修正论文全部引用处
+- id: M021
+  date: '2026-05-25'
+  category: agent_behavior
+  severity: low
+  summary: FP16 worker context耗尽：轮询大模型下载日志导致result.json 2.3MB
+  root_cause: Worker 反复用 cat/read 读取整个下载日志文件来检查进度，29GB模型下载日志不断增长，最终 result.json 达
+    2.3MB/1.15M tokens 耗尽 context
+  prevention: 大模型下载时用 nohup 启动后 sleep 等待，或只用 tail -5 查看最后几行。禁止反复读取完整下载日志。
+  status: active
+  fix: 下载仍在后台运行，spawn 新 worker 接续推理
+- id: M022
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: 论文数据版本不一致：appendix表用旧数据，Table 3用修正数据，FDR counts部分无数据源
+  root_cause: error-as-tie bug修复后，只更新了部分论文数字（Table 3 significance patterns, methodology.tex），但appendix三张per-condition表的β_std/p-values、β_std
+    trajectory (0.264→0.102→0.084)、以及部分FDR summary counts未同步更新。同时K_eff公式也有v1→v2变更，导致至少3个版本的分析结果混合出现在论文中。
+  prevention: 1. 每次bug修复或公式变更后，必须有一个"全量重生成"步骤：从原始数据重跑全部分析→重生成全部表格→重更新全部正文引用。2. 论文中的每个数字必须有明确的数据文件溯源（文件名+字段名），不允许手动抄写。3.
+    建立自动化一致性检查脚本：从数据文件提取数字，与tex文件中的数字交叉比对。
+  status: active
+  context: 审计发现5类问题：(1)K=5 η_max boot FDR 2/12、K=7 K_eff boot 8/12、K=7 η_max boot
+    1/12无数据源；(2)appendix K=3表用旧β_std（如MMLU Score Manip K_eff=0.033→应为0.576）；(3)Table
+    3与appendix表对同一condition显著性相反；(4)β_std trajectory用旧数据；(5)stochastic dominance tier
+    breakdown用不同于Table 2的tier分类
+  fix: 已派Agent用修正后数据重建全部appendix表、重算β_std trajectory和FDR counts、拆分Figure 2、更新全文引用
+- id: M023
+  date: '2026-05-25'
+  category: code_bug
+  severity: high
+  summary: Agent 误报 position bias bug 不影响主管线（循环验证陷阱）
+  root_cause: Agent 对比 raw individual_scores/ 文件和 appendix 表发现 18/18 匹配，就判定主管线无 bug。但实际
+    bug 在 unified_data_loader.py 的 load_all_scores() 函数中——加载时才引入 _invert_winners()
+    反转。raw 文件和 appendix 表都未经此函数处理，所以匹配是必然的，验证是循环论证。
+  prevention: 验证"bug 不影响 X"时，必须检查 X 的完整数据流路径（从源文件到最终使用处），不能只对比源文件和一个下游产物就宣布安全。正确验证方式：grep
+    bug 相关函数在所有管线中的调用点。
+  status: active
+  context: Position bias _invert_winners bug 存在于 unified_data_loader.py lines 96-97
+    和 113-114。影响 2/12 conditions 的全部下游分析（OLS、bootstrap、FDR、β_std trajectory）。Agent
+    之前基于"individual_scores/ vs appendix table 18/18 匹配"错误排除了影响。
+  fix: 删除 unified_data_loader.py 中两处 _invert_winners() 调用，重跑全量分析。
+- id: M024
+  date: '2026-05-26'
+  category: communication
+  severity: high
+  summary: memory.md 错误记录 (9/9/9) 导致论文 fractional logit 数字被错误修正，实际 ground truth 为
+    9/11/12
+  root_cause: memory.md 中 V2 验证结果记录为 9/9/9，但 JSON pipeline 输出 (fractional_logit_corrected.json
+    → frac_logit_clustered) 实际为 9/11/12。Director 基于 memory.md 错误记录下达修正指令，Agent 执行后论文
+    8 处被改为错误值。
+  prevention: 数字修正类任务必须以 pipeline 原始输出文件 (JSON/CSV) 为 ground truth，不以 memory.md 人工记录为准。修正前
+    Agent 应交叉验证 memory 记录与原始数据文件的一致性。
+  status: active
+  fix: 回滚 8 处修改：K=3 保持 9/12，K=5 改为 11/12，K=7 改为 12/12。同时修正 memory.md 错误记录。

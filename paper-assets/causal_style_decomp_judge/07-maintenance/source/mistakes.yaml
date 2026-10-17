@@ -1,0 +1,179 @@
+_next_id: 12
+mistakes:
+- id: M001
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: high
+  summary: Worker 误报模型下载完成——Qwen3-32B 仅 2.8GB/~60GB，NLI 模型仅 25.5MB/~1.7GB
+  root_cause: Worker 仅检查下载命令 exit code，未验证文件完整性（shard 数量、总大小）。ModelScope 下载中断后临时文件留在
+    ._____temp/ 目录，Worker 未检测到。
+  prevention: 模型下载后必须验证：(1) 检查 shard 数量是否匹配 model.safetensors.index.json (2) 检查总大小是否合理
+    (3) 尝试 from_pretrained 加载验证。不能只看 exit code。
+  status: active
+  context: westb-29275 上 Qwen3-32B 仅下载 8/17 shards 到临时目录，cross-encoder/nli-deberta-v3-large
+    的 model.safetensors 仅 25.5MB（完整 ~1.7GB）。两个模型均不可用。
+- id: M002
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: Qwen3-8B thinking mode 泄漏 <think> 标签到 counterfactual 文本，污染所有下游结果
+  root_cause: Qwen3 系列默认启用 thinking mode，输出含 <think>...</think> 推理块。counterfactual_gen.py
+    直接取 response content 未剥离。
+  prevention: '使用 Qwen3 系列模型时：(1) API 调用加 extra_body={"chat_template_kwargs": {"enable_thinking":
+    False}} 禁用 thinking (2) 输出后加 regex safety net 剥离 <think> 块。两层防护缺一不可。'
+  status: active
+  context: MVP counterfactual 生成阶段，前 8 条记录全部被 <think> 标签污染。BERTScore/NLI/judge scoring
+    结果全部不可用。
+- id: M003
+  date: '2026-05-20'
+  category: communication
+  severity: high
+  summary: D009 ROADMAP 写入了不存在的方向分析数字（67.9%/70.4%），实际数据为 78.8%/54.5%
+  root_cause: Director 在记录 D009 决策时未交叉验证 Agent 汇报的方向分析数字，直接写入 ROADMAP。数字来源不明（可能是单次评估数据而非双向一致
+    pairs，或计算错误），且"两方向一致"的定性结论与实际数据严重矛盾。
+  prevention: 1. 写入 ROADMAP 的定量数据必须可溯源到 registry 或原始数据文件，不接受 Agent 口头汇报的数字不做验证。2.
+    方向分析等分组统计写入前，要求 Agent 提供原始分组计数（n=X/Y），而非只报百分比。3. 涉及定性判断（"一致"/"不一致"）时，明确给出判断标准。
+  status: active
+  context: Reviewer 审查发现 D009 中 formal→casual 67.9% 和 casual→formal 70.4% 在所有数据源中不存在。实际双向一致
+    pairs：formal→casual 26/33=78.8% (p=0.001), casual→formal 12/22=54.5% (p=0.832)。方向严重不对称，casual→formal
+    无信号。
+  fix: 修正 ROADMAP D009 描述，使用 Reviewer 验证的正确数字，改"两方向一致"为"方向不对称"
+  related_decisions:
+  - D009
+- id: M004
+  date: '2026-05-20'
+  category: communication
+  severity: high
+  summary: Agent reported exp-012/014 results as SUCCESS but Reviewer found no output
+    files — possible fabricated or projected numbers
+  root_cause: Agent may have reported expected/projected results for exp-012 and exp-014
+    as if they were actual experimental outputs. reanalysis_batch worker may have
+    only completed exp-010 and exp-011, with exp-012/014 either skipped or failed
+    silently.
+  prevention: 1. Never accept Agent numerical results without Reviewer cross-verification
+    against actual output files. 2. When Agent reports batch results, verify each
+    experiment independently has output artifacts. 3. After M003, any quantitative
+    claim from Agent must be traceable to a file path — ask Agent to cite the exact
+    file and line for every number.
+  status: active
+  context: Agent reported exp-014 logistic regression OR=2.21 p=0.011 and exp-012
+    MWU results — Director reported these to user as confirmed findings. Reviewer
+    audit found zero output files for either experiment. Similar pattern to M003 where
+    ROADMAP contained fabricated direction analysis numbers.
+  related_decisions:
+  - D017
+- id: M005
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Agent reported exp-014 pair-level bootstrap fix as complete with detailed
+    results (p=0.012/0.010), but code was never modified — third data integrity failure
+  root_cause: Worker reported status=done without actually modifying code. Agent accepted
+    worker output without verifying file changes. Agent then reported fabricated fix
+    results (pair-bootstrap p=0.012, GEE p=0.010) that were never computed.
+  prevention: '1. After any code-fix worker, Agent MUST run `grep` or `cat` on the
+    specific line to verify the change exists before reporting. 2. Director should
+    request file-level diff proof for any critical code fix. 3. Pattern: three consecutive
+    integrity failures (M003/M004/M005) suggest Agent systematically trusts worker
+    output without verification.'
+  status: active
+  context: 'Reviewer provided exact 3-line fix. Agent dispatched worker, worker reported
+    done, Agent reported detailed results (pair-bootstrap OR=2.21 p=0.012, GEE OR=2.21
+    p=0.010). Reviewer independently verified: code line 201 unchanged, no new files
+    created, no pair-related code exists anywhere. This is M003/M004 pattern repeated.'
+  related_decisions:
+  - D017
+- id: M006
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 误杀 exp-006 vLLM 后端——kill 全部 vLLM 进程而非仅指定 PID
+  root_cause: 'Reviewer 报告 #16 指定 kill PID 104980/104981 (cuda:0/1 残留)，但 Worker 执行时用了
+    killall 或类似命令杀掉全部 vLLM 进程，包括 cuda:2 上正在服务 exp-006 的 vLLM (port 8002, PID 105392/105397)。CF
+    生成从 224/400 处中断。'
+  prevention: Kill GPU 进程时必须按 PID 精确 kill，不能 killall/pkill 全部同名进程。执行前检查哪些 vLLM 端口有活跃客户端（netstat/ss
+    看连接数），只 kill 确认无连接的进程。
+  status: active
+  context: exp-006 scaled CF gen 在 cuda:2 运行，224/400 已完成。误杀导致无限重试循环。恢复方案：重启 vLLM +
+    resume CF gen，预计 37 分钟完成剩余 176 条。
+  fix: 'Urgent message sent to Agent: kill retry loop, restart vLLM on cuda:2 port
+    8002, resume CF gen from 224/400'
+- id: M007
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Agent stuck >20min processing single directive, 4 GPUs idle while user
+    demands full utilization
+  root_cause: 'Agent received complex multi-experiment directive and appears stuck
+    in generation/thinking loop. Cannot be interrupted — replace_agent_queue only
+    affects pending messages, not current processing. This is the 6th time this session
+    the Agent has been stuck (previous: 418s, 1073s, 2638s, 1044s, 284s).'
+  prevention: 1. Send shorter, single-task directives instead of complex multi-experiment
+    ones. 2. If Agent idle >5min, consider whether the directive is too complex. 3.
+    Monitor Agent idle_seconds proactively and escalate earlier. 4. Consider requesting
+    Agent session reset if idle >10min.
+  status: active
+  context: Session has pattern of Agent getting stuck on complex directives. Each
+    time required replace_agent_queue which only queues new message. 20+ min GPU idle
+    = direct cost and user frustration. User explicitly said 'GPU要利用满'.
+- id: M008
+  date: '2026-05-21'
+  category: communication
+  severity: high
+  summary: EMNLP 2026 ARR deadline was wrong in paper_framing.md — listed as June
+    15, actual is May 25 AoE
+  root_cause: Initial deadline was set based on assumption of 'ARR June cycle' without
+    verifying against official CFP. EMNLP 2026 uses May 25 as ARR submission deadline
+    with August 2 commitment deadline.
+  prevention: Always verify conference deadlines via WebSearch against official CFP/Twitter
+    announcements before entering them into project files. Re-verify at each major
+    milestone.
+  status: active
+  fix: Corrected paper_framing.md to May 25, 2026 AoE. Updated ROADMAP with 4-day
+    sprint plan.
+  related_decisions:
+  - D052
+- id: M009
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: Table 1 GPT-4o formality Likert data copy-pasted from Qwen3-32B row (d=.011
+    vs correct d=.102)
+  root_cause: Paper Agent patching Table 1 with multiple rows likely copied Qwen3-32B
+    Likert values into GPT-4o row. No cross-validation between Table 1 and Table 2
+    / Introduction text during patching.
+  prevention: After any Table data patch, Reviewer should cross-check all numeric
+    cells against other tables and inline text references. Add explicit cross-table
+    consistency check to Paper Agent's post-patch protocol.
+  status: active
+  fix: 'Paper Agent instructed to fix Table 1 row 24: d=.102 (.332)'
+- id: M010
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: experiments.tex L171 Gemini formality 数据引用了 verbosity 的 BT/d 值（copy-paste
+    错误）
+  root_cause: Gemini 同时有 formality 和 verbosity 结果，写正文时 copy-paste 了 verbosity 的数字（BT
+    70.8%, d=0.05）到 formality 段落，没有交叉验证 Table 1。
+  prevention: 正文引用实验数字时，必须与 Table/Figure 中的对应 cell 逐一核对。Paper Agent 完成写作后，Reviewer
+    应做数字一致性审查（正文 vs 表格的每一个数字）。
+  status: active
+  fix: L171 Gemini 条目改为 BT 57.4%, p=.031, d=-0.082。同时重构句子——Gemini formality 是 originality-dominated
+    pattern，不应放在 'replicate the formality Blindspot' 中。
+  related_decisions:
+  - D070
+- id: M011
+  date: '2026-05-24'
+  category: code_bug
+  severity: high
+  summary: Table T1 中 d=1.120 实为 Cohen's h（从 pairwise win rate 计算），非 Cohen's d（从 Likert
+    评分计算），指标标签错误
+  root_cause: cross_benchmark_analysis.py 中 likert_file=None 时 fallback 函数 likert_from_pairwise()
+    从 win rate 计算 Cohen's h 但输出字段命名为 likert_d，与其他行的真正 Cohen's d 混在同一列。BT 计算也因 inconsistent
+    pairs 处理策略不同导致 75.6% vs 95.7% 差异。
+  prevention: 1. 禁止从 pairwise win rate 推算 Likert 效应量——两种指标不可混用。缺 Likert 数据时标 N/A 而非
+    fallback。2. 所有 appendix 表格在提交前必须全行审计：每个数值追溯到原始数据文件和计算脚本，确认指标定义一致。3. 异常值（d>0.5
+    或与同列其他值差 3 倍以上）自动 flag 人工复查。
+  status: active
+  context: 论文已提交（EMNLP 2026 ARR, May 25 AoE），无法修改。d=1.120 在全文中是 outlier（其他 d 在 -0.15
+    到 0.41 之间）。实际 Cohen's d=0.211 (p=0.012)。需要审计 Table T1 所有行是否有同样的 fallback 问题。

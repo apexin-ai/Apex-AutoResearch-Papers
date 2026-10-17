@@ -1,0 +1,3 @@
+Remote path: /root/cert_manip_resist_eval/artifacts/results/plan001/k5_rf_contrast.json
+Server: seetacloud-rtx6000
+Script: /root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py

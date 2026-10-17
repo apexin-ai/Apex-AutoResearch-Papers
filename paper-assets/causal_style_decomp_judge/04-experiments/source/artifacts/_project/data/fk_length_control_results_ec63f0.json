@@ -1,0 +1,66 @@
+{
+  "descriptive": {
+    "verbosity": {
+      "n": 86,
+      "delta_fk_mean": 2.2599,
+      "delta_fk_std": 4.5089,
+      "delta_fk_d": 0.5012,
+      "delta_sentlen_mean": 3.4022,
+      "delta_sentlen_std": 9.6802,
+      "delta_sentlen_d": 0.3515,
+      "delta_wordcount_mean": 4.6279,
+      "delta_wordcount_d": 0.0419
+    },
+    "formality": {
+      "n": 100,
+      "delta_fk_mean": -0.3018,
+      "delta_fk_std": 3.6335,
+      "delta_fk_d": -0.083,
+      "delta_sentlen_mean": -0.1101,
+      "delta_sentlen_std": 2.9771,
+      "delta_sentlen_d": -0.037,
+      "delta_wordcount_mean": -4.01,
+      "delta_wordcount_d": -0.173
+    }
+  },
+  "regression": {
+    "model1_no_control": {
+      "style_axis_coef": 2.5616,
+      "style_axis_se": 0.5973,
+      "style_axis_p": 2.9e-05,
+      "intercept": -0.3018,
+      "r2": 0.0909,
+      "r2_adj": 0.0859
+    },
+    "model2_length_controlled": {
+      "style_axis_coef": 1.0436,
+      "style_axis_se": 0.4172,
+      "style_axis_p": 0.013241,
+      "delta_sentlen_coef": 0.4322,
+      "delta_sentlen_se": 0.0292,
+      "delta_sentlen_p": 0.0,
+      "intercept": -0.2542,
+      "r2": 0.5856,
+      "r2_adj": 0.5811
+    },
+    "coef_reduction_pct": 59.26
+  },
+  "correlation": {
+    "delta_sentlen_vs_delta_fk": {
+      "all": {"r": 0.7559, "p": 0.0},
+      "verbosity_only": {"r": 0.8823, "p": 0.0},
+      "formality_only": {"r": 0.5121, "p": 5e-08}
+    }
+  },
+  "mediation": {
+    "path_a_verbosity_to_sentlen": {"coef": 3.5124, "se": 1.0195, "p": 0.000707},
+    "path_b_sentlen_to_fk": {"coef": 0.4322, "se": 0.0292, "p": 0.0},
+    "indirect_effect": 1.518,
+    "direct_effect": 1.0436,
+    "total_effect": 2.5616,
+    "pct_mediated": 59.26,
+    "sobel_z": 3.3553,
+    "sobel_p": 0.00079282
+  },
+  "conclusion": "FK cross-axis contamination is largely explained by sentence length (coefficient reduced by 59.26%), though a residual direct effect remains significant (p=0.013241)."
+}

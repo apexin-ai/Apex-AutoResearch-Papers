@@ -1,0 +1,100 @@
+{
+  "method": "OLS log-log, error samples excluded",
+  "fix_description": ".get('winner', 'tie') treated API errors (1221/63000 = 1.94%, mostly gemini-3.5-flash:742, gemini-3.1-pro-preview:335) as ties. Corrected to skip samples with invalid scores.",
+  "K": 3,
+  "n_panels": 455,
+  "conditions": {
+    "mmlu_prompt_injection": {
+      "old": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.6159, "keff_beta_std": 0.2524, "R2": 0.6626},
+      "new": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.1821, "keff_beta_std": 0.5103, "R2": 0.4359},
+      "changed": false,
+      "note": "Sig/dom unchanged but betas flip relative magnitude: eta drops 0.62→0.18, K rises 0.25→0.51"
+    },
+    "mmlu_sycophancy": {
+      "old": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.4864, "keff_beta_std": 0.1656, "R2": 0.3342},
+      "new": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.1910, "keff_beta_std": 0.4795, "R2": 0.3557},
+      "changed": false,
+      "note": "Sig/dom unchanged but betas flip relative magnitude: eta drops 0.49→0.19, K rises 0.17→0.48"
+    },
+    "mmlu_score_manipulation": {
+      "old": {"eta_sig": "+*", "keff_sig": "n.s.", "dom": "eta", "eta_beta_std": 0.5977, "keff_beta_std": 0.0328, "R2": 0.3904},
+      "new": {"eta_sig": "n.s.", "keff_sig": "+*", "dom": "K", "eta_beta_std": 0.0817, "keff_beta_std": 0.5757, "R2": 0.4186},
+      "changed": true,
+      "note": "Dominance FLIPPED from eta to K. eta collapses 0.60→0.08 (loses sig), K rises 0.03→0.58 (gains sig)"
+    },
+    "mmlu_verbosity_bias": {
+      "old": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.5929, "keff_beta_std": 0.0903, "R2": 0.4072},
+      "new": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.2894, "keff_beta_std": 0.3797, "R2": 0.3517},
+      "changed": false,
+      "note": "Sig/dom unchanged but K effect strengthens 0.09→0.38"
+    },
+    "mmlu_position_bias": {
+      "old": {"eta_sig": "+*", "keff_sig": "n.s.", "dom": "eta", "eta_beta_std": 0.4181, "keff_beta_std": 0.1040, "R2": 0.2431},
+      "new": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.2356, "keff_beta_std": 0.3829, "R2": 0.3227},
+      "changed": true,
+      "note": "K gains significance. Dominance changes eta→Co. K rises 0.10→0.38"
+    },
+    "mmlu_authority_bias": {
+      "old": {"eta_sig": "+*", "keff_sig": "n.s.", "dom": "eta", "eta_beta_std": 0.3767, "keff_beta_std": 0.0104, "R2": 0.1469},
+      "new": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.1022, "keff_beta_std": 0.4972, "R2": 0.3145},
+      "changed": true,
+      "note": "K gains significance. Dominance changes eta→Co. K rises 0.01→0.50. R2 doubles"
+    },
+    "arc_prompt_injection": {
+      "old": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.2439, "keff_beta_std": 0.3297, "R2": 0.3032},
+      "new": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.2809, "keff_beta_std": 0.3378, "R2": 0.3178},
+      "changed": false,
+      "note": "Minor changes. ARC has fewer errors so less impact"
+    },
+    "arc_sycophancy": {
+      "old": {"eta_sig": "+*", "keff_sig": "-*", "dom": "Co", "eta_beta_std": 0.4924, "keff_beta_std": -0.1917, "R2": 0.1322},
+      "new": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.2844, "keff_beta_std": 0.2572, "R2": 0.2449},
+      "changed": true,
+      "note": "K sign FLIPPED from -0.19 to +0.26. Dom stays Co but K direction reverses"
+    },
+    "arc_score_manipulation": {
+      "old": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.2242, "keff_beta_std": 0.2522, "R2": 0.2186},
+      "new": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.1911, "keff_beta_std": 0.3707, "R2": 0.2959},
+      "changed": false,
+      "note": "Both stay sig. K strengthens. R2 increases"
+    },
+    "arc_verbosity_bias": {
+      "old": {"eta_sig": "+*", "keff_sig": "n.s.", "dom": "eta", "eta_beta_std": 0.3432, "keff_beta_std": 0.1455, "R2": 0.2217},
+      "new": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.2155, "keff_beta_std": 0.3870, "R2": 0.3127},
+      "changed": true,
+      "note": "K gains significance. Dominance changes eta→Co. K rises 0.15→0.39"
+    },
+    "arc_position_bias": {
+      "old": {"eta_sig": "n.s.", "keff_sig": "+*", "dom": "K", "eta_beta_std": -0.0112, "keff_beta_std": 0.5842, "R2": 0.3293},
+      "new": {"eta_sig": "n.s.", "keff_sig": "+*", "dom": "K", "eta_beta_std": -0.0758, "keff_beta_std": 0.6507, "R2": 0.3382},
+      "changed": false,
+      "note": "Already K-dominant, minor changes"
+    },
+    "arc_authority_bias": {
+      "old": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.2613, "keff_beta_std": 0.1946, "R2": 0.1806},
+      "new": {"eta_sig": "+*", "keff_sig": "+*", "dom": "Co", "eta_beta_std": 0.1738, "keff_beta_std": 0.3288, "R2": 0.2145},
+      "changed": false,
+      "note": "Both stay sig. K strengthens 0.19→0.33"
+    }
+  },
+  "summary": {
+    "eta_sig_count_old": "11/12",
+    "eta_sig_count_new": "10/12",
+    "keff_sig_count_old": "8/12",
+    "keff_sig_count_new": "12/12",
+    "n_conditions_changed": 5,
+    "changed_conditions": [
+      "mmlu_score_manipulation (eta→K)",
+      "mmlu_position_bias (eta→Co)",
+      "mmlu_authority_bias (eta→Co)",
+      "arc_sycophancy (K sign flip: -→+)",
+      "arc_verbosity_bias (eta→Co)"
+    ],
+    "old_dominance_dist": {"Co": 7, "eta": 4, "K": 1, "--": 0},
+    "new_dominance_dist": {"Co": 10, "K": 2, "eta": 0, "--": 0},
+    "interpretation": "Error-as-tie bug inflated eta_max effect (errors correlated with high-eta models like Gemini) and suppressed K_eff effect. After correction: K_eff is universally significant (12/12), always positive. Diversity is protective across ALL conditions. Dominance shifts strongly toward Co-dominance (10/12) with no pure eta-dominant conditions remaining."
+  },
+  "results_tex_discrepancy": {
+    "note": "The task-provided results.tex Table 1 shows 9/12 eta sig and 7/12 K sig, which differs from the JSON output (11/12 eta, 8/12 K). Conditions differing: mmlu_score_manipulation (tex=both n.s., json=eta sig) and arc_score_manipulation (tex=eta n.s., json=eta sig). The JSON values are used as 'old' baseline since they are the verifiable buggy script output."
+  }
+}

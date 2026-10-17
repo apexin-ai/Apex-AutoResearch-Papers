@@ -1,0 +1,1 @@
+Pythia-1.4B self-model ref: 78.55% +/- 0.59% (5-fold CV RF)\nOLMo-1B cross-model ref: 74.51% +/- 0.73% (5-fold CV RF)\nDelta: 4.04 pp < 5pp threshold\nConclusion: Reference model choice is ROBUST\nServer path: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/ref_model_ablation_001/

@@ -1,0 +1,72 @@
+% 14B Multi-Strategy Scenario Templates
+% Select one scenario when results arrive.
+% Baselines: 14B nucleus 54.05% (chance=25%), 1-1.5B top-k 68.9-75.8%
+% Placeholders: \TEMPACCURACY{} = 14B temperature accuracy
+%               \TOPKACCURACY{} = 14B top-k accuracy
+
+% ============================================================
+% SCENARIO A: both >50% — full three-strategy coverage
+% ============================================================
+
+%% --- §5.4 replacement ---
+\subsection{Cross-Scale Observations}
+\label{sec:gen:crossscale}
+
+At 7--8B (QLoRA), Llama-3.1-8B \cite{llama3} achieves 70.2\% (QLoRA, instruct-tuned) ($\mathrm{EDD}_{0.70}{=}4$) and Qwen2.5-7B \cite{qwen2.5} 60.1\%.
+At 14B (Qwen2.5-14B), depth signal persists across all three strategies: nucleus 54.1\%, temperature \TEMPACCURACY{}\%, top-$k$ \TOPKACCURACY{}\% (chance = 25\%).
+The strategy ranking %% [check: does it match 1-1.5B? If yes use next line, if no use the alternative]
+mirrors the 1--1.5B atlas ordering, confirming that strategy-dependent attenuation patterns generalize across scale.
+%% Alternative if ranking differs:
+%% diverges from the 1--1.5B atlas ordering, where temperature yields the highest accuracy; at 14B, [describe actual ranking], suggesting that scale interacts with strategy effects non-trivially.
+These results remain confounded by architecture differences, tokenizer vocabulary, and training data composition at 14B (Appendix~\ref{app:cross_scale_confounds}).
+Cross-model chains (66.4\%) and cross-domain arXiv (74.1\%) further confirm robustness at the primary 1--1.5B scale (Appendix~\ref{app:cross_scale_full}).
+
+%% --- Abstract L7 replacement ---
+% Cross-scale experiments at 7--14B (54--70\% across three strategies) confirm that depth signal persists at larger scales, though attenuated by architecture differences and vocabulary mismatch.
+
+%% --- Theory §3.5 supplement (not needed for Scenario A) ---
+% No change required.
+
+
+% ============================================================
+% SCENARIO B: one >50%, one ~chance — "scale amplifies strategy effects"
+% ============================================================
+
+%% --- §5.4 replacement ---
+\subsection{Preliminary Cross-Scale Observations}
+\label{sec:gen:crossscale}
+
+These results show that scale amplifies strategy-dependent effects on depth signal.
+At 7--8B (QLoRA), Llama-3.1-8B \cite{llama3} achieves 70.2\% (QLoRA, instruct-tuned) ($\mathrm{EDD}_{0.70}{=}4$) and Qwen2.5-7B \cite{qwen2.5} 60.1\%.
+At 14B (Qwen2.5-14B), nucleus retains signal (54.1\%) and temperature reaches \TEMPACCURACY{}\%, but top-$k$ drops to \TOPKACCURACY{}\% (near chance = 25\%).
+%% [Swap temperature/top-k labels above if temperature is the one at chance]
+The top-$k$ collapse represents the limiting case of tail truncation at scale: larger models produce flatter logit distributions where hard vocabulary cutoffs eliminate the remaining depth-discriminative tokens, consistent with the $\alpha \to 1$ prediction (\S\ref{sec:method:theory}).
+These results are confounded by architecture differences, tokenizer vocabulary, training data composition, and sample size at 14B (Appendix~\ref{app:cross_scale_confounds}).
+Cross-model chains (66.4\%) and cross-domain arXiv (74.1\%) further confirm robustness at the primary 1--1.5B scale (Appendix~\ref{app:cross_scale_full}).
+
+%% --- Abstract L7 replacement ---
+% Preliminary cross-scale experiments (7--14B, 54--70\%) provide an existence proof that depth signal persists at larger scales under nucleus and temperature sampling, while top-$k$ drops to chance, confirming that scale amplifies strategy-dependent attenuation.
+
+%% --- Theory §3.5 supplement (add after existing top-k sentence) ---
+% At 14B, top-$k$ accuracy drops to \TOPKACCURACY{}\% (near chance), representing the predicted limiting case where $\alpha \to 1$ leaves insufficient tail mass for discrimination after vocabulary truncation.
+
+
+% ============================================================
+% SCENARIO C: both ~chance — boundary condition
+% ============================================================
+
+%% --- §5.4 replacement ---
+\subsection{Preliminary Cross-Scale Observations}
+\label{sec:gen:crossscale}
+
+At 7--8B (QLoRA), Llama-3.1-8B \cite{llama3} achieves 70.2\% (QLoRA, instruct-tuned) ($\mathrm{EDD}_{0.70}{=}4$) and Qwen2.5-7B \cite{qwen2.5} 60.1\%.
+At 14B (Qwen2.5-14B), only nucleus sampling retains depth signal (54.1\%, d1--d3: 57.4\%); temperature (\TEMPACCURACY{}\%) and top-$k$ (\TOPKACCURACY{}\%) fall to chance, indicating that the current perplexity-tail feature set reaches its discriminative limit under non-nucleus strategies at this scale.
+The nucleus result is not a statistical artifact (d1--d3 balanced accuracy 57.4\% vs.\ 33\% chance), but it may reflect strategy-specific properties rather than a general depth signal at 14B.
+These results are confounded by architecture differences, tokenizer vocabulary, training data composition, and sample size (Appendix~\ref{app:cross_scale_confounds}).
+Cross-model chains (66.4\%) and cross-domain arXiv (74.1\%) confirm robustness at the primary 1--1.5B scale (Appendix~\ref{app:cross_scale_full}).
+
+%% --- Abstract L7 replacement ---
+% Preliminary cross-scale experiments (7--14B) reveal a boundary condition: at 14B, depth signal persists under nucleus sampling (54\%) but vanishes under temperature and top-$k$, indicating strategy-dependent limits of the current feature set.
+
+%% --- Theory §3.5 supplement (add after existing top-k sentence) ---
+% At 14B, only nucleus sampling retains discriminability (54.1\%), while temperature and top-$k$ fall to chance; the perplexity tail features that drive depth estimation at 1--1.5B may require augmentation with scale-adapted statistics at larger model sizes.

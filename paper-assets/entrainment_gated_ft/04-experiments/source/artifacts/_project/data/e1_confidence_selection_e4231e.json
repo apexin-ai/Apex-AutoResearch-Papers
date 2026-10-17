@@ -1,0 +1,177 @@
+{
+  "analysis": "e1_confidence_selection",
+  "date": "2026-05-22",
+  "method": {
+    "attention_ratio": "h3-1 (25%)",
+    "architectures": ["GDN", "RetNet", "HGRN2"],
+    "cv": "50/50 random split x 10 repeats",
+    "confidence_measure": {
+      "lambada": "target word loglikelihood",
+      "hellaswag": "max char-length-normalized loglikelihood",
+      "piqa": "max raw loglikelihood across choices",
+      "arc_easy": "max raw loglikelihood across choices"
+    }
+  },
+  "results": {
+    "lambada": {
+      "strategies": {
+        "max_confidence": {
+          "mean_acc": 0.525378,
+          "std_acc": 0.006802,
+          "vs_mv_pp": 1.634,
+          "vs_best_single_pp": 1.649
+        },
+        "rescue_threshold": {
+          "mean_acc": 0.562321,
+          "std_acc": 0.005296,
+          "vs_mv_pp": 5.328,
+          "vs_best_single_pp": 5.343,
+          "mean_threshold": 1.7244,
+          "std_threshold": 0.1688
+        },
+        "confidence_weighted": {
+          "mean_acc": 0.527163,
+          "std_acc": 0.006393,
+          "vs_mv_pp": 1.812,
+          "vs_best_single_pp": 1.828
+        }
+      },
+      "baselines": {
+        "majority_vote_acc": 0.509042,
+        "majority_vote_std": 0.005642,
+        "best_single_acc": 0.508886,
+        "best_single_std": 0.005018,
+        "oracle_acc": 0.654637,
+        "oracle_std": 0.005371,
+        "random_acc": 0.50683,
+        "random_std": 0.008304
+      },
+      "per_arch": {
+        "GDN": {"pure_acc": 0.543373, "hybrid_acc": 0.513293},
+        "RetNet": {"pure_acc": 0.517369, "hybrid_acc": 0.502426},
+        "HGRN2": {"pure_acc": 0.48399, "hybrid_acc": 0.514264}
+      },
+      "n_samples": 5153
+    },
+    "hellaswag": {
+      "strategies": {
+        "max_confidence": {
+          "mean_acc": 0.596415,
+          "std_acc": 0.004721,
+          "vs_mv_pp": 0.118,
+          "vs_best_single_pp": -0.44
+        },
+        "rescue_threshold": {
+          "mean_acc": 0.595041,
+          "std_acc": 0.004511,
+          "vs_mv_pp": -0.02,
+          "vs_best_single_pp": -0.578,
+          "mean_threshold": 0.5435,
+          "std_threshold": 0.0805
+        },
+        "confidence_weighted": {
+          "mean_acc": 0.59524,
+          "std_acc": 0.005038,
+          "vs_mv_pp": 0.0,
+          "vs_best_single_pp": -0.558
+        }
+      },
+      "baselines": {
+        "majority_vote_acc": 0.59524,
+        "majority_vote_std": 0.005038,
+        "best_single_acc": 0.600817,
+        "best_single_std": 0.004614,
+        "oracle_acc": 0.668552,
+        "oracle_std": 0.005935,
+        "random_acc": 0.593169,
+        "random_std": 0.004782
+      },
+      "per_arch": {
+        "GDN": {"pure_acc": 0.607648, "hybrid_acc": 0.603167},
+        "RetNet": {"pure_acc": 0.579765, "hybrid_acc": 0.577674},
+        "HGRN2": {"pure_acc": 0.598984, "hybrid_acc": 0.603963}
+      },
+      "n_samples": 10042
+    },
+    "piqa": {
+      "strategies": {
+        "max_confidence": {
+          "mean_acc": 0.728945,
+          "std_acc": 0.009303,
+          "vs_mv_pp": -1.121,
+          "vs_best_single_pp": -0.272
+        },
+        "rescue_threshold": {
+          "mean_acc": 0.734059,
+          "std_acc": 0.010268,
+          "vs_mv_pp": -0.609,
+          "vs_best_single_pp": 0.239,
+          "mean_threshold": 70.8392,
+          "std_threshold": 62.5899
+        },
+        "confidence_weighted": {
+          "mean_acc": 0.730686,
+          "std_acc": 0.009662,
+          "vs_mv_pp": -0.947,
+          "vs_best_single_pp": -0.098
+        }
+      },
+      "baselines": {
+        "majority_vote_acc": 0.740152,
+        "majority_vote_std": 0.010581,
+        "best_single_acc": 0.731665,
+        "best_single_std": 0.011772,
+        "oracle_acc": 0.795647,
+        "oracle_std": 0.01089,
+        "random_acc": 0.728618,
+        "random_std": 0.008949
+      },
+      "per_arch": {
+        "GDN": {"pure_acc": 0.723613, "hybrid_acc": 0.737758},
+        "RetNet": {"pure_acc": 0.726333, "hybrid_acc": 0.729053},
+        "HGRN2": {"pure_acc": 0.734494, "hybrid_acc": 0.730141}
+      },
+      "n_samples": 1838
+    },
+    "arc_easy": {
+      "strategies": {
+        "max_confidence": {
+          "mean_acc": 0.710943,
+          "std_acc": 0.008495,
+          "vs_mv_pp": 0.471,
+          "vs_best_single_pp": -0.236
+        },
+        "rescue_threshold": {
+          "mean_acc": 0.716414,
+          "std_acc": 0.007323,
+          "vs_mv_pp": 1.019,
+          "vs_best_single_pp": 0.311,
+          "mean_threshold": 19.8566,
+          "std_threshold": 6.608
+        },
+        "confidence_weighted": {
+          "mean_acc": 0.714141,
+          "std_acc": 0.007671,
+          "vs_mv_pp": 0.791,
+          "vs_best_single_pp": 0.084
+        }
+      },
+      "baselines": {
+        "majority_vote_acc": 0.706229,
+        "majority_vote_std": 0.005494,
+        "best_single_acc": 0.7133,
+        "best_single_std": 0.009897,
+        "oracle_acc": 0.808418,
+        "oracle_std": 0.005883,
+        "random_acc": 0.707407,
+        "random_std": 0.008846
+      },
+      "per_arch": {
+        "GDN": {"pure_acc": 0.712121, "hybrid_acc": 0.708333},
+        "RetNet": {"pure_acc": 0.712963, "hybrid_acc": 0.696128},
+        "HGRN2": {"pure_acc": 0.712963, "hybrid_acc": 0.720539}
+      },
+      "n_samples": 2376
+    }
+  }
+}

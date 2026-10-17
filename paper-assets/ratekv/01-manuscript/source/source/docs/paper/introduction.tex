@@ -1,0 +1,45 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Per-head mixed-precision quantization of the KV cache is a natural strategy for reducing memory during LLM inference: assign fewer bits to insensitive heads and more bits to sensitive ones, achieving lower perplexity than uniform quantization at the same average bit-width.
+Recent work on KV cache quantization explores both uniform schemes~\cite{liu2024kivi,hooper2024kvquant,lin2024qserve,he2024zipcache} and token-level mixed-precision approaches~\cite{ge2024fastgen,lei2026arkv}, while complementary methods reduce cache size through eviction~\cite{zhang2023h2o,li2024snapkv}.
+RateQuant~\cite{zuo2026ratequant} formalizes per-head allocation as a rate-distortion optimization and shows that greedy allocation is optimal when bit-widths are consecutive integers $\{2,3,4,5,6\}$, exploiting the polymatroid structure of the feasible set (their Proposition~6).
+
+In practice, hardware-efficient inference requires bit-widths drawn from $\{2, 4, 8, 16\}$---the formats natively supported by modern accelerators.
+On this non-consecutive set, the polymatroid structure breaks down, and greedy is no longer provably optimal.
+One might expect that exact MCKP solvers would fill this gap.
+They do not.
+On Qwen2.5-7B at $4\times$ compression, unconstrained greedy achieves 32.45 PPL and unconstrained MCKP achieves 36.92---both \emph{far worse} than uniform 4-bit (15.45).
+The optimization does not merely underperform; it fails catastrophically.
+
+The issue traces not to solver suboptimality but to a violation of the additive distortion assumption.
+Both solvers assign 68--75 of 112 KV heads to 2-bit, where per-head quantization errors compound through the residual stream.
+The additive model predicts $\sim$11 PPL; the actual PPL is $3$--$4\times$ higher, because 2-bit distortions are orders of magnitude larger than 4-bit and compound super-linearly when many heads are quantized simultaneously.
+
+This observation points to a minimal intervention: cap the number of 2-bit assignments.
+We add a single cardinality constraint $\sum_h \mathbb{1}[b_h{=}2] \leq k$ to the standard MCKP formulation (\S\ref{sec:method}).
+On Qwen2.5-7B, setting $k{=}8$ (7\% of heads) yields 10.91 PPL---a 29.4\% reduction over uniform 4-bit.
+The constraint works by forcing the solver to use 2-bit only on the least-sensitive heads, while redistributing the freed budget to protect sensitive heads at 8-bit or 16-bit.
+This is not a heuristic patch: the constraint directly addresses the identified failure mode and is compatible with any solver.
+The constraint is beneficial even on flat-distribution architectures: on Gemma-2-9B, unconstrained MCKP assigns 31.5\% of heads to 2-bit, producing a moderate $1.47\times$ degradation; the constraint reduces this to within 0.5\% of uniform.
+
+A surprising consequence is that the cardinality constraint renders solver choice irrelevant.
+Constrained greedy and MCKP produce identical allocations across all tested architectures (112/112 heads on Qwen, 256/256 on Llama, 255/256 on Mistral), enabling practitioners to use the simpler $O(H \log H)$ greedy algorithm.
+A per-layer brute-force oracle confirms near-optimality: the maximum gap is 0.02 PPL, 0.4\% of the total improvement (\S\ref{sec:solver_equiv}).
+
+However, non-uniform allocation does not help universally.
+On the remaining eight models---including Qwen2.5-14B, where the $3.4\times$ increase in head count dilutes spread into flat---constrained MCKP provides no meaningful improvement.
+The difference traces to the \emph{distribution shape} of head sensitivity, not GQA ratio or model scale alone: Qwen-7B's Layer-0 heads form a cluster of high sensitivity across multiple bitwidths (``spread''); Yi-1.5, CodeLlama, and Llama have dominant outliers (``spike''); Gemma-2, Mistral, Phi-3-medium, Qwen-14B, and Pythia show near-uniform or diluted sensitivity (``flat'').
+
+This motivates a question prior work does not address: \emph{when} should a practitioner use per-head mixed-precision quantization?
+We propose a joint empirical decision rule based on concentration and distribution shape (\S\ref{sec:heterogeneity}) that correctly classifies all nine models (9/9), including a within-family scale contrast.
+Yi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen-7B's, but its single-outlier spike has no cross-bitwidth gradient, so MCKP cannot redistribute budget.
+
+Our contributions are:
+\begin{enumerate}[nosep]
+\item We identify 2-bit distortion compounding as a major contributing factor in the degradation observed under unconstrained per-head KV cache quantization on hardware-aligned bit-widths, and show that a single cardinality constraint on 2-bit assignments suffices to prevent it, reducing Qwen2.5-7B PPL from 32--37 (unconstrained) to 10.91 (constrained) at $4\times$ compression (\S\ref{sec:compounding}, \S\ref{sec:experiments}).
+
+\item RateQuant~\cite{zuo2026ratequant} formalized per-head MCKP and proved greedy optimality for consecutive integer bit-widths. Our algorithmic contribution is a single cardinality constraint (Eq.~\ref{eq:constraint}); the scientific contribution is the systematic finding that this constraint suffices to prevent compounding, yet eight of nine tested models do not benefit from non-uniform allocation---the constraint renders solver choice irrelevant, with constrained greedy and MCKP producing equivalent allocations across all tested architectures (\S\ref{sec:solver_equiv}).
+
+\item We provide an empirical characterization of head sensitivity heterogeneity across nine models, revealing three distribution shapes (spread, spike, flat) that predict allocation benefit. Concentration and $t_1/t_5$ ratio correctly classify all nine models (9/9), though the spread pattern is observed in only one model ($N{=}1$, Qwen2.5-7B); the suggested thresholds should be treated as preliminary (\S\ref{sec:heterogeneity}).
+\end{enumerate}

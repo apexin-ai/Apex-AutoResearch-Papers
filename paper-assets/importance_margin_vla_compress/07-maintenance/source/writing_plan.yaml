@@ -1,0 +1,335 @@
+meta:
+  venue: CoRL 2026
+  track: main
+  template: docs/paper/corl_2026.sty
+  template_note: "CoRL 2026 template already configured in project paper directory"
+  page_limit: 8
+  deadline_abstract: "2026-05-26"
+  deadline_paper: "2026-05-29"
+  core_claim: >
+    VLA token pruning robustness is governed by two interacting axes —
+    connector architecture (token-independent vs token-entangling, diagnosed
+    by importance CV 0.038→0.314) and task complexity (simple vs multi-step) —
+    with CV determining the compression threshold at which pruning method
+    becomes critical across 5 models × 4 task suites.
+  created_at: "2026-05-22T23:30:00Z"
+  updated_at: "2026-05-23T00:15:00Z"
+  update_log: "D175: Claim 3 upgraded — CV determines method-critical threshold; added fig_method_gap; BART structural property in Discussion"
+
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "Problem: Vision token pruning accelerates ViT inference with negligible accuracy loss, but whether this transfers to VLA closed-loop control across diverse architectures is untested"
+      - "Framework: 2-axis — (1) token coupling (independent vs entangling, connector-determined, diagnosed by CV) × (2) task complexity (simple single-step vs complex multi-step)"
+      - "Result 1: Token-entangling connectors show task-amplified collapse — X-VLA drops 27.8pp on Goal vs 1.6pp on Object at k=0.9; SmolVLA pixel-shuffle collapses to 0% at 5% removal"
+      - "Result 2: CV determines the compression threshold at which method choice becomes critical — low CV (0.055): 15× more method-sensitive than high CV (≥0.15) at k=0.95; at aggressive compression (k≤0.5) random outperforms L2norm by 36pp for low-CV models"
+      - "Result 3: VTR recovers 60%+ SR where hard pruning yields 0%, M-curve flat (near-lossless at any compression ratio)"
+      - "Scale: 5 VLAs (450M–7B), 3 connector families, 4 LIBERO suites"
+    dependencies: [experiments, method]
+
+  - section: introduction
+    word_budget: 800
+    core_bullets:
+      - "Hook: Removing 5% of vision tokens crashes one VLA to 0% SR but leaves another at 98% — the difference is not model size but a single architectural choice: the vision connector"
+      - "Context: VLAs inherit ViT encoders where token pruning saves 50%+ FLOPs. Growing literature proposes VLA-specific pruning (VLA-IAP, VLA-Cache, EfficientVLA) on individual models, implicitly assuming architecture-independent effectiveness"
+      - "Gap: No work systematically compares pruning robustness across VLA connector architectures and task distributions. The critical factor determining prunability is unknown"
+      - "Insight: 2-axis framework — pruning sensitivity = f(connector coupling × task complexity). Token-independent connectors (linear, MLP) degrade gracefully; token-entangling connectors (pixel-shuffle, BART encoder) catastrophically collapse, amplified by multi-step tasks"
+      - "Mechanism: CV of token L2 norms captures coupling on a continuous spectrum (0.038→0.314), predicting tolerance ceiling AND the threshold at which pruning method becomes critical — low-CV models are 15× more method-sensitive than high-CV models at k=0.95"
+      - "Contributions: [C1: 2-axis compressibility framework validated across 5 VLAs × 4 suites, C2: CV as zero-cost diagnostic for tolerance + method-critical threshold, C3: VTR learned re-encoding recovers entangled tokens from 0% to baseline]"
+    dependencies: [experiments]
+    citation_hints:
+      - "VLA models: π0, OpenVLA, SmolVLA for context"
+      - "Token pruning: FastV, ToMe, DynamicViT as ViT pruning context"
+      - "VLA efficiency: VLA-IAP, VLA-Cache, EfficientVLA as concurrent work"
+      - "LIBERO benchmark"
+    figures: [fig_teaser]
+
+  - section: related_work
+    word_budget: 500
+    core_bullets:
+      - "Cluster 1 — ViT token pruning (DynamicViT, ToMe, EViT): 50-66% removal with <0.5% ImageNet drop, but untested in closed-loop VLA control where spatial information drives actions"
+      - "Cluster 2 — VLM/VLA token efficiency (FastV, PruMerge, VLA-Cache, VLA-IAP, EfficientVLA, VLA-Pruner): VLM methods exploit attention patterns; VLA-specific works test individual models. None compare across architectures"
+      - "Cluster 3 — Vision connectors (LLaVA MLP, BLIP-2 Q-Former, pixel-shuffle): connector design shapes downstream token structure, but pruning implications unstudied"
+      - "Differentiation: First cross-architecture, cross-task VLA token analysis; our framework explains when and why single-model pruning methods succeed or fail"
+    dependencies: [introduction]
+
+  - section: method
+    word_budget: 900
+    core_bullets:
+      - "§3.1 Models and Connectors: 5 VLAs spanning 3 connector families — pure linear (π0 3.3B, π0.5 4B), MLP (OpenVLA 7B), BART encoder (X-VLA 880M), pixel-shuffle (SmolVLA 450M). Table 1: model properties including token count and CV"
+      - "§3.2 Pruning Protocol: Post-connector token pruning at retention ratio k ∈ {0.3, 0.5, 0.7, 0.85, 0.9, 0.95}. Two strategies: L2 norm selection (importance-based, deterministic) and random subsampling (uniform, stochastic). Pruned positions replaced with zero vectors"
+      - "§3.3 Compressibility Diagnostic — Importance CV: CV = σ/μ of post-connector token L2 norms. Zero-cost: one forward pass, no pruning required. Continuous predictor ranging from 0.038 (uniform, token-independent) to 0.314 (heterogeneous, token-entangled)"
+      - "§3.4 Vision Token Re-encoder (VTR): Lightweight cross-attention module (~22M params) that learns to re-encode M output tokens from pruned input. For token-entangling connectors where hard pruning yields 0%"
+    dependencies: []
+    notation_table:
+      k: "retention ratio (fraction of tokens kept)"
+      CV: "coefficient of variation of token L2 norms (σ/μ)"
+      M: "number of VTR output tokens"
+      SR: "success rate on LIBERO (500 episodes per condition)"
+    tables: [tab_model_properties]
+
+  - section: experiments
+    word_budget: 2800
+    core_bullets:
+      - "§4.1 Setup: LIBERO benchmark (4 suites: Object, Spatial, Goal, Long; 10 tasks × 50 episodes each). 4 models evaluated closed-loop (π0.5, X-VLA, OpenVLA, SmolVLA); 2 via offline metrics (π0, OFT). Evaluation: mean SR over 500 episodes with Wilson CI"
+      - "§4.2 2-Axis Framework Overview (Claim 1): Token-independent connectors (π0.5, OpenVLA) degrade gracefully across suites; token-entangling connectors (SmolVLA, X-VLA) show task-dependent collapse. Key evidence: X-VLA Object k=0.9=97.6% vs Goal k=0.9=70.2% (-27.8pp) — same connector, same k, only task differs. Table 2 main results"
+      - "§4.3 Pixel-Shuffle Entanglement (Claim 2): SmolVLA 0% at k=0.95 on all 4 suites × 2 methods. Official + reproduced checkpoints confirm. 5% removal destroys performance regardless of method or task. Spatial folding creates irreversible cross-token dependencies"
+      - >
+        §4.4 When Does Pruning Method Matter? CV as Sensitivity Predictor (Claim 3, D175 upgraded):
+        CV determines the compression threshold at which pruning method becomes
+        critical. High CV (≥0.15): method-independent at k≥0.9 (X-VLA Spatial
+        Δ=1.2pp). Low CV (0.055): method-critical even at k=0.95 (π0.5 Object
+        Δ=28.8pp) — 15× sensitivity ratio. ⚠️ Caveat: high-CV method-independence
+        breaks at k≤0.5 (X-VLA Random>>L2norm 28-40pp). At aggressive compression
+        (k=0.5), gap(R−L2) scales monotonically: π0.5=+36pp, X-VLA=+27pp,
+        OpenVLA=−1.8pp. Fig: Method Gap at k=0.95 grouped bar chart.
+      - "§4.5 Cross-Suite Task Complexity (Claim 5): Simple (Object/Spatial) vs Complex (Goal/Long). π0.5 L2 k=0.95: Object −0pp, Spatial −0.2pp, Goal −7.0pp, Long −4.8pp. Task complexity creates 5-7pp additional penalty even for token-independent connectors; entangling connectors amplify dramatically"
+      - "§4.6 VTR Recovery (Claim 4): SmolVLA VTR recovers from 0% to 60.1±1.3% (cross-attention) and 63.4±2.6% (MLP adapter) at M=32, p=0.15 (architecture-independent). M-curve flat: M=16(56.9%)≈M=128(58.0%), near-lossless at any compression ratio. Cross-suite: Spatial 53.2%, Goal 56.4% where pruning yields 0%"
+    dependencies: []
+    registry_refs:
+      - "eval_pi05_l2norm_*"
+      - "eval_pi05_random_*"
+      - "eval_xvla_l2norm_*"
+      - "eval_xvla_random_*"
+      - "eval_openvla_l2norm_*"
+      - "eval_openvla_random_*"
+      - "eval_official_smolvla_*"
+      - "train_smolvla_sc_*"
+      - "eval_smolvla_sc_*"
+    tables: [tab_main_results, tab_vtr_results]
+    figures: [fig_pruning_overview, fig_method_gap]
+
+  - section: discussion
+    word_budget: 300
+    core_bullets:
+      - "Limitations: LIBERO simulation only (no real robot). Models differ in backbone, encoder, and fusion strategy, preventing full causal isolation of connector effect. π0 analyzed offline only. CV correlation spans 3 evaluated models"
+      - "Non-monotonicity as structural property: X-VLA Goal exhibits identical non-monotonicity in both L2norm and random pruning (Δ=0.2pp), confirming this is a structural property of the BART encoder's position sensitivity, not an artifact of any particular token scoring criterion (D173-D175)"
+      - "π0.5 random cliff at k=0.85–0.95 (hypergeometric model RMSE=0.025 captures onset, Appendix); V-shape recovery at k≤0.7 unexplained"
+      - "Small-N regime: X-VLA has only 50 tokens — removing 3 tokens at k=0.95 already catastrophic on Goal. Absolute token budget interacts with CV"
+      - "Design implications: Practitioners should compute CV before deploying token pruning; pixel-shuffle VLAs require learned re-encoding; task complexity must be factored into pruning budget"
+    dependencies: [experiments]
+
+  - section: conclusion
+    word_budget: 200
+    core_bullets:
+      - "Summary: 2-axis framework (connector coupling × task complexity) explains VLA token pruning robustness across 5 models (450M–7B) × 4 LIBERO suites"
+      - "CV provides zero-cost diagnostic predicting both tolerance and the method-critical threshold from a single forward pass"
+      - "VTR recovers entangled tokens from 0% to near-baseline at any compression ratio"
+      - "Findings inform principled deployment of token pruning in VLA systems"
+    dependencies: [experiments, discussion]
+
+visualization_plan:
+  - fig_id: fig_teaser
+    type: statistical
+    tool: matplotlib
+    description: >
+      2-axis framework teaser (multi-panel). Panel (a): Conceptual 2×2 matrix
+      showing token-independent/entangling × simple/complex with model positions
+      and observed behaviors. Panel (b): X-VLA pruning curves for Object vs Goal
+      suites, demonstrating task-complexity amplification at same k.
+    narrative_intent: >
+      Pruning robustness is governed by TWO interacting axes — connector
+      architecture AND task complexity — and the interaction is dramatic:
+      X-VLA drops 1.6pp on Object but 27.8pp on Goal at the same k=0.9.
+    design_notes:
+      - "Multi-panel: (a) conceptual diagram + (b) statistical curves"
+      - "Panel (a): 2×2 grid with axes labeled 'Token Coupling' (independent→entangling) and 'Task Complexity' (simple→complex). Place model names in cells with SR annotations. Color gradient green→red for severity"
+      - "Panel (b): X-VLA SR vs k (0.5→1.0) for Object (blue-ish) and Goal (red-ish). Shade the gap at k=0.9 to emphasize 27.8pp. Add baseline dashed lines"
+      - "Pattern F: direct annotation on key data points (97.6% vs 70.2%)"
+      - "Full textwidth, 2 subplots side by side"
+    data_source: "registry: eval_xvla_l2norm_* (Object + Goal suites)"
+    placement: introduction
+    aspect_ratio: "2:1"
+
+  - fig_id: fig_pruning_overview
+    type: statistical
+    tool: matplotlib
+    description: >
+      Pruning degradation overview: SR vs retention ratio k for all 4 evaluated
+      models on LIBERO-Object (L2 norm). Shows the full spectrum from tolerant
+      (π0.5 plateau) to catastrophic (SmolVLA 0% flatline).
+    narrative_intent: >
+      Four VLAs span a complete degradation spectrum determined by their
+      connector: π0.5 maintains 98% through k=0.85, OpenVLA degrades linearly,
+      X-VLA cliffs at k=0.7, SmolVLA collapses at k=0.95 — confirming
+      connector architecture as the primary axis.
+    design_notes:
+      - "Line plot: k (x-axis, 0.3→1.0) vs SR% (y-axis, 0→100)"
+      - "4 curves with distinct colors and markers per model: π0.5=blue circle, OpenVLA=green square, X-VLA=orange triangle, SmolVLA=red X"
+      - "Pattern A: light gray regime bands separating 'safe' (k≥0.9) and 'aggressive' (k≤0.5) zones"
+      - "Pattern F: annotate SmolVLA 0% flatline, X-VLA cliff at k=0.7, π0.5 plateau"
+      - "Dashed horizontal lines for each model's baseline"
+      - "Include CV value in legend: 'π0.5 (CV=0.055)' etc."
+    data_source: "registry: eval_pi05_l2norm_*_object, eval_xvla_l2norm_*_object, eval_openvla_l2norm_*_object, eval_official_smolvla_*_object"
+    placement: experiments
+    aspect_ratio: "4:3"
+
+  - fig_id: fig_method_gap
+    type: statistical
+    tool: matplotlib
+    description: >
+      Method Gap at k=0.95 (D175 Reviewer design). Panel A: Grouped bar chart —
+      x-axis: model/suite combinations, y-axis: |SR(Random) - SR(L2norm)| in pp.
+      π0.5 bars 21-29pp (red/warm), all others ≤1.4pp (blue/cool). One-glance
+      evidence that CV determines method sensitivity. Panel B (supplementary or
+      inset): X-VLA Goal L2norm (solid) + Random (dashed) curves, k≥0.9 region
+      shaded showing near-complete overlap (Δ≤1.4pp), annotated.
+    narrative_intent: >
+      CV determines the compression threshold at which pruning method becomes
+      critical: π0.5 (CV=0.055) shows 15× larger method gap at k=0.95 than
+      X-VLA (CV=0.151), establishing CV as a predictor of method sensitivity,
+      not just tolerance.
+    design_notes:
+      - "Panel A: grouped bars, model/suite on x-axis, |Δ(R-L2)| on y-axis"
+      - "Color-code by magnitude: π0.5 bars warm/red (large gap), others cool/blue (small gap)"
+      - "Horizontal dashed line at ~2pp as 'method-independent' reference"
+      - "Direct value annotation on each bar"
+      - "Panel B (if space): X-VLA Goal curves, L2norm solid + Random dashed, nearly overlapping at k≥0.9"
+      - "Pattern F: annotate 'Δ ≤ 1.4pp' in overlap region"
+      - "If tight on space: Panel B → appendix, Panel A standalone"
+    data_source: >
+      registry: eval_pi05_l2norm_k095_*, eval_pi05_random_k095_*,
+      eval_xvla_l2norm_k095_*, eval_xvla_random_k095_*,
+      eval_xvla_l2norm_*_goal, eval_xvla_random_*_goal
+    placement: experiments
+    aspect_ratio: "4:3"
+
+table_plan:
+  - table_id: tab_model_properties
+    caption: >
+      VLA models studied. Token coupling type is determined by the vision
+      connector architecture. CV = coefficient of variation of token L2 norms
+      (one forward pass). Evaluated = closed-loop LIBERO; Analyzed = offline
+      metrics or literature only.
+    placement: method
+    type: configuration
+    columns: [Model, Params, Connector, Tokens, CV, Coupling, Eval]
+    data_source: "manual"
+    notes: >
+      7 rows: π0 (3.3B, linear, 256, 0.038, independent, offline),
+      π0.5 (4B, linear, 768, 0.055, independent, closed-loop),
+      X-VLA (880M, linear+BART 12L, 50, 0.151, entangling, closed-loop),
+      OpenVLA (7B, MLP 3L, 256, 0.215, independent, closed-loop),
+      OFT (7B, MLP 3L, 512, 0.219, independent, offline),
+      SmolVLA (450M, pixel-shuffle, 128, 0.314, entangling, closed-loop).
+      Horizontal rule between closed-loop and offline-only models.
+
+  - table_id: tab_main_results
+    caption: >
+      Pruning results on LIBERO (success rate %, 500 episodes each).
+      L2 = L2 norm selection, R = random subsampling. Baseline = unpruned.
+      SmolVLA collapses to 0% at all pruning levels on all suites.
+    placement: experiments
+    type: comparison
+    columns: [Model, Suite, Baseline, "k=0.95 (L2/R)", "k=0.9 (L2/R)", "k=0.7 (L2/R)", "k=0.5 (L2/R)"]
+    data_source: "registry: eval_pi05_*, eval_xvla_*, eval_openvla_*, eval_smolvla_*"
+    notes: >
+      Core evidence table covering all 4 models × key suites × 2 methods.
+      Show Object + Goal for all models (2-axis illustration).
+      Spatial/Long rows for π0.5 and X-VLA where data available.
+      Bold best per cell. [TODO] cells for missing data.
+      Full k-ratio curves in Appendix Table.
+
+  - table_id: tab_cv_prediction
+    caption: >
+      CV predicts method sensitivity. At k=0.95, low-CV π0.5 shows 15×
+      larger method gap than high-CV models. At k=0.5, Δ(R−L2) scales
+      monotonically with CV. Caveat: high-CV method-independence breaks
+      at k≤0.5 for X-VLA.
+    placement: appendix
+    type: comparison
+    columns: [Model, CV, "k=0.95 Δ(R−L2)", "k=0.5 L2", "k=0.5 R", "Δ(R−L2)", "k=0.7 L2", "k=0.7 R", "Δ(R−L2)"]
+    data_source: "registry: eval_pi05_*, eval_xvla_*, eval_openvla_*"
+    notes: >
+      3 models ordered by CV. Key evidence for Claim 3 (D175 upgraded).
+      k=0.95 column captures method-critical threshold finding.
+      k=0.5 and k=0.7 columns capture aggressive-compression scaling law.
+      May merge with fig_method_gap if space tight (figure shows k=0.95, table shows k=0.5/0.7).
+
+  - table_id: tab_vtr_results
+    caption: >
+      VTR recovery on SmolVLA (pixel-shuffle connector). Hard pruning yields
+      0% SR; VTR recovers to near-baseline at all compression ratios.
+      Mean ± std over 3 seeds.
+    placement: experiments
+    type: ablation
+    columns: [Architecture, M, Compression, "SR (mean±std)"]
+    data_source: "registry: train_smolvla_sc_*, eval_smolvla_sc_*"
+    baseline_row: "SmolVLA baseline (59.2%)"
+    notes: >
+      Show: cross-attention M={16,32,64,128}, MLP adapter M=32.
+      All within ±3pp of baseline. Flat M-curve is key finding.
+      p=0.15 for cross-attention vs MLP at M=32.
+      Cross-suite row: M=32 Spatial=53.2%, Goal=56.4%.
+
+literature_strategy:
+  citation_budget: 35
+  macro_context:
+    - "VLA token efficiency and inference acceleration"
+    - "Vision connector design and token compression in VLMs"
+    - "Task complexity and multi-step manipulation"
+  micro_clusters:
+    - cluster_name: "VLA Models"
+      search_queries:
+        - "vision language action model robotics 2024 2025 2026"
+        - "pi0 OpenVLA SmolVLA robot policy"
+      must_cite:
+        - "black2024pi0"
+        - "kim2024openvla"
+        - "shukor2025smolvla"
+        - "zitkovich2023rt2"
+      target_count: 6
+
+    - cluster_name: "VLM/LLM Token Efficiency"
+      search_queries:
+        - "visual token pruning VLM 2024 2025"
+        - "VLA inference acceleration token reduction"
+      must_cite:
+        - "chen2024fastv"
+        - "hsu2025vlacache"
+        - "wang2026vlaiap"
+        - "yang2025efficientvla"
+      target_count: 8
+
+    - cluster_name: "ViT Token Pruning/Merging"
+      search_queries:
+        - "vision transformer token pruning merging efficient inference 2021 2022 2023"
+      must_cite:
+        - "rao2021dynamicvit"
+        - "bolya2023tome"
+        - "liang2022evit"
+      target_count: 4
+
+    - cluster_name: "Vision Connectors & Token Compression"
+      search_queries:
+        - "vision language model connector projection pixel shuffle"
+        - "Q-Former Perceiver Resampler cross-attention compression"
+      must_cite:
+        - "li2023blip2"
+        - "liu2023llava"
+        - "shi2016subpixel"
+      target_count: 5
+
+    - cluster_name: "Closed-Loop Evaluation"
+      search_queries:
+        - "LIBERO benchmark robotic manipulation lifelong learning"
+        - "closed-loop evaluation robot simulation"
+      must_cite:
+        - "liu2023libero"
+      target_count: 3
+
+    - cluster_name: "Negative Results & Evaluation"
+      search_queries:
+        - "negative results machine learning evaluation pitfalls"
+      must_cite: []
+      target_count: 2
+
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - discussion
+  - conclusion
+  - abstract

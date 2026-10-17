@@ -1,0 +1,8 @@
+n_low=25, n_high=25, n_total_batches=50
+low_mean_acc=0.8521, high_mean_acc=0.5967
+delta_pp=+25.54, 95% CI=[+22.42, +28.62]
+permutation_p=0.0000
+pearson_r=-0.919, pearson_r_p=0.0
+low_bcs_range=[0.3563, 0.3668]
+high_bcs_range=[0.7908, 0.8109]
+Server artifacts: /root/schema-dag-extraction/artifacts/exp_v2_re_n25/

@@ -1,0 +1,53 @@
+{
+  "analysis": "K3_keff_fdr_by_attack_type",
+  "K3_keff_fdr_values": {
+    "targeted": {
+      "mmluxprompt_injection": 0.0658,
+      "mmluxscore_manipulation": 0.0875,
+      "mmluxposition_bias": 0.1032,
+      "arc_challengexprompt_injection": 0.076,
+      "arc_challengexscore_manipulation": 0.162,
+      "arc_challengexposition_bias": 0.076
+    },
+    "shared_bias": {
+      "mmluxsycophancy": 0.032,
+      "mmluxverbosity_bias": 0.032,
+      "mmluxauthority_bias": 0.032,
+      "arc_challengexsycophancy": 0.1944,
+      "arc_challengexverbosity_bias": 0.0417,
+      "arc_challengexauthority_bias": 0.1055
+    }
+  },
+  "significant_conditions_fdr005": [
+    {
+      "condition": "mmluxsycophancy",
+      "fdr_p": 0.032,
+      "attack_type": "shared_bias"
+    },
+    {
+      "condition": "mmluxverbosity_bias",
+      "fdr_p": 0.032,
+      "attack_type": "shared_bias"
+    },
+    {
+      "condition": "mmluxauthority_bias",
+      "fdr_p": 0.032,
+      "attack_type": "shared_bias"
+    },
+    {
+      "condition": "arc_challengexverbosity_bias",
+      "fdr_p": 0.0417,
+      "attack_type": "shared_bias"
+    }
+  ],
+  "all_4_significant_are_shared_bias": true,
+  "mann_whitney_u_test": {
+    "test": "Mann-Whitney U (one-sided: targeted > shared_bias)",
+    "U": 25.0,
+    "p_value": 0.14684704542539267,
+    "targeted_median": 0.08174999999999999,
+    "shared_bias_median": 0.03685,
+    "rank_biserial_r": -0.38888888888888884,
+    "interpretation": "p=0.147: trend-level but not significant at 0.05 (n=6 per group limits power). Direction consistent: shared-bias attacks show lower FDR p-values (stronger K_eff significance) than targeted attacks at K=3."
+  }
+}

@@ -1,0 +1,445 @@
+# Experiment Plan — causal_style_decomp_judge
+# Each experiment maps to a Core Claim in paper_framing.md
+# Priority: P0 = must-run for submission, P1 = important, P2 = nice-to-have
+
+experiments:
+  # === C1 (Method) + C3 (Axis-dependent): Multi-judge generalization ===
+  - id: exp-001
+    claim: [1, 3]
+    title: "Multi-judge formality pairwise"
+    description: >
+      Replicate formality pairwise experiment on Claude-3.5/4-Sonnet and Gemini-2.0-Flash.
+      Same counterfactuals (already generated), different judge APIs.
+      Dual-direction pairwise with position control.
+    priority: P0
+    gpu_budget_hours: 0  # API-only, no GPU needed
+    api_budget: "~$20-30 per judge (200 pairwise calls × 2 directions)"
+    deps: []
+    registry_id: null
+    status: planned
+
+  - id: exp-002
+    claim: [1, 3]
+    title: "Multi-benchmark formality pairwise"
+    description: >
+      Run CSD pipeline on AlpacaEval and MT-Bench/Arena-Hard subsets.
+      New counterfactual generation needed (different source texts).
+      GPT-4o + Claude + Gemini as judges.
+    priority: P0
+    gpu_budget_hours: 4  # vLLM Qwen3-32B for counterfactual gen
+    api_budget: "~$60-90 (3 judges × 2 benchmarks × 200 pairwise calls)"
+    deps: [exp-001]
+    registry_id: null
+    status: planned
+
+  # === C2 (Measurement Insight): Likert vs Pairwise gap ===
+  - id: exp-003
+    claim: [2]
+    title: "Likert vs Pairwise sensitivity analysis across judges"
+    description: >
+      For each judge × benchmark combination, compute both Likert ATE and
+      pairwise win rate on the same counterfactual data. Systematic comparison
+      of measurement sensitivity. If Likert detects strong effects (e.g. verbosity
+      on some judge), that constrains C2 to "Likert fails on weak signals" rather
+      than "Likert always fails."
+    priority: P0
+    gpu_budget_hours: 0  # piggybacks on exp-001/002 data
+    api_budget: "included in exp-001/002"
+    deps: [exp-001, exp-002]
+    registry_id: null
+    status: planned
+
+  # === C3 (Axis-dependent): New surface-level axis ===
+  - id: exp-004
+    claim: [1, 3]
+    title: "Tone axis (assertive/hedging) — PILOT FAILED"
+    description: >
+      D014: Tone pilot failed (NLI 65%, joint gate 45%). Epistemic commitment
+      change is structurally incompatible with NLI verification. Tone serves
+      as NEGATIVE CONTROL in paper — axis boundary evidence for C3.
+    priority: P2  # downgraded — negative control only
+    gpu_budget_hours: 0  # pilot data sufficient
+    deps: []
+    registry_id: tone_pilot
+    status: done_negative
+
+  # === RC3 mitigation: Original preference control ===
+  - id: exp-005
+    claim: [1]
+    title: "Pairwise RATE control (original vs double-rewrite)"
+    description: >
+      Pairwise comparison between original text and its RATE double-rewrite
+      (same style). Quantifies original preference confound independent of
+      style. DREAM: Must extend to ALL judge × benchmark combinations, not
+      just GPT-4o × LLMBar. If original preference varies by judge, correction
+      may not generalize.
+    priority: P0  # C1's biggest vulnerability (RC3), dream三档一致要求扩展scope
+    gpu_budget_hours: 2  # reuse existing double-rewrites or generate new
+    api_budget: "~$15-20"
+    deps: []
+    registry_id: null
+    status: planned
+
+  # === RC5 mitigation: Sample size ===
+  - id: exp-006
+    claim: [1, 2, 3]
+    title: "Scaled replication (n=300-500)"
+    description: >
+      Scale up primary formality experiment from n=100 to n=300-500.
+      Power analysis to determine minimum detectable effect size.
+      Run on best-performing judge × benchmark combination from exp-001/002.
+    priority: P1
+    gpu_budget_hours: 8  # larger counterfactual generation
+    api_budget: "~$40-60"
+    deps: [exp-001, exp-002]
+    registry_id: null
+    status: planned
+
+  # === C3 supplementary: Verbosity recovery + boundary analysis ===
+  - id: exp-007b
+    claim: [3]
+    title: "Verbosity direction-aware NLI verification + full pipeline"
+    description: >
+      D012: Fix content_verification.py to use direction-aware NLI for verbosity.
+      Expansion (concise→verbose): backward NLI only (cf→orig).
+      Compression (verbose→concise): forward NLI only (orig→cf).
+      If H1 passes (≥80%), run full pipeline (scoring + pairwise + ATE).
+      Success recovers verbosity as second working axis → Main competitiveness.
+    priority: P1  # already dispatched to Agent (D012)
+    gpu_budget_hours: 1  # NLI model on cuda:1 + API for scoring
+    api_budget: "~$30-40"
+    deps: []
+    registry_id: verbosity_32b
+    status: done
+
+  - id: exp-007
+    claim: [3]
+    title: "Verbosity method boundary analysis"
+    description: >
+      Regardless of exp-007b outcome, document bidirectional NLI's structural
+      incompatibility with information-changing axes. Concise→verbose 46% vs
+      verbose→concise 87% with bidirectional min(). Direction-aware NLI as
+      methodological contribution. If exp-007b fails, verbosity serves as
+      negative control.
+    priority: P1
+    gpu_budget_hours: 0  # analysis of existing data
+    deps: [exp-007b]
+    registry_id: verbosity_32b
+    status: planned
+
+  # === Additional axes ===
+  - id: exp-008
+    claim: [3]
+    title: "Register axis (academic/conversational)"
+    description: >
+      Third surface-level axis test. Academic vs conversational register.
+      n=100 CF gen ✅, NLI-only verification 94/100 (94%) PASS (D022).
+      Wilson CI [0.875, 0.972], lower bound > 80%. Pilot 95% → full 94%.
+      Register-formality 50% agreement = orthogonal (D019).
+      Scoring blocked on API 402.
+    priority: P1
+    gpu_budget_hours: 4
+    api_budget: "~$60-90"
+    deps: []
+    registry_id: register_100_cf  # was register_pilot (n=20); n=100 results tracked here
+    status: done  # killed — API 402 blocked + Reviewer #84 approved abandon
+
+  # === Method robustness ===
+  - id: exp-009
+    claim: [1]
+    title: "Non-Qwen rewriter control"
+    description: >
+      Use a non-Qwen model (e.g. Llama-3.1-70B or Mistral) as rewriter
+      to rule out Qwen-family artifacts in counterfactual generation.
+      Compare NLI pass rate and pairwise results with Qwen3-32B.
+    priority: P2
+    gpu_budget_hours: 8  # vLLM for alternative model
+    deps: [exp-001]
+    registry_id: null
+    status: planned
+
+  # === Dream-mandated additions (zero/low cost reanalysis) ===
+  - id: exp-010
+    claim: [2]
+    title: "Binarized Likert sign test (C2 critical control)"
+    description: >
+      DREAM CRITICAL: Sign test on binarized Likert scores. Result: binarized
+      Likert p=0.296 (NLI≥0.9, 60.6%) vs pairwise p=0.006 (69.1%). Same sign
+      test, different measurement → confirms C2 is measurement structure not
+      test choice (D016). Dream 2 flags: extend to ALL 9 cells when multi-judge
+      Likert data available (RC11).
+    priority: P0
+    gpu_budget_hours: 0
+    api_budget: "$0"
+    deps: []
+    registry_id: exp010_binarized_likert
+    status: done  # D016 PASS
+
+  - id: exp-011
+    claim: [1, 3]
+    title: "NLI threshold sensitivity analysis"
+    description: >
+      Result: formality pairwise win rate 72-74% across NLI 0.70-0.95, all
+      p<0.005. Tone flat at 65% across all thresholds (bimodal NLI distribution).
+      NLI 0.90 NOT on cliff edge (D017). Addresses RC8.
+    priority: P1
+    gpu_budget_hours: 0
+    api_budget: "$0"
+    deps: []
+    registry_id: exp011_nli_sensitivity
+    status: done  # D017 PASS
+
+  - id: exp-012
+    claim: [1]
+    title: "Consistency filter bias analysis"
+    description: >
+      Result: No systematic bias. NLI p=0.824, BERTScore p=0.120, length
+      p=0.137, length_diff p=0.715. All MWU p>0.12, KS p=0.68 (D017).
+      43% discard rate is selection on position consistency, not quality.
+    priority: P1
+    gpu_budget_hours: 0
+    api_budget: "$0"
+    deps: []
+    registry_id: exp012_consistency_bias
+    status: done  # D017 PASS
+
+  - id: exp-013
+    claim: [1]
+    title: "LLM-as-Annotator NLI validation (n=100)"
+    description: >
+      Qwen3-32B as annotator validates NLI gate decisions on 100 formality
+      pairs. Result: precision=98.9% (1/88 FP), recall=91.6% (87/95),
+      agreement=91%, kappa=0.43 (low due to kappa paradox — 95:5 base rate
+      skew, Feinstein & Cicchetti 1990). NLI gate is precision-oriented
+      conservative filter. Limitation: annotator=rewriter (evaluator-producer
+      bias). TODO: 20-pair GPT-4o spot check when API available (D021).
+    priority: P1
+    gpu_budget_hours: 0
+    api_budget: "$0 (local Qwen3-32B); ~$1 for GPT-4o spot check TODO"
+    deps: []
+    registry_id: exp013_nli_validation
+    status: done
+
+  - id: exp-014
+    claim: [1]
+    title: "Formal statistical model for original-preference decomposition"
+    description: >
+      Pair-level bootstrap + GEE logistic regression. Formality OR=2.21
+      [1.21, 4.04] p=0.010 (GEE, significant). Original preference OR=1.82
+      [0.99, 3.32] p=0.052 (marginal). Direction subset: formal→casual 78.8%
+      p=0.001, casual→formal 54.5% p=0.832 (D018). Independence violation
+      fixed (M005→resolved).
+    priority: P1
+    gpu_budget_hours: 0
+    api_budget: "$0"
+    deps: []
+    registry_id: exp014_logistic_decomposition
+    status: done  # D018 PASS
+
+  # === Round 1 Review Response experiments ===
+  - id: exp-015
+    claim: [2]
+    title: "CLMM ordinal regression (Likert Blindspot existential test)"
+    description: >
+      Cumulative Link Model (OrderedModel, logit link) on NLI≥0.90 Likert data.
+      Long-format 176 obs (88 pairs × 2). Result: is_formal coef=-0.079 p=0.769,
+      Wilcoxon p=0.905. Blindspot confirmed — NOT an ATE artifact. Coefficient
+      direction reversal (formal lower in Likert) supports measurement construct
+      difference between absolute scoring and forced comparison. D026.
+    priority: P0
+    gpu_budget_hours: 0
+    api_budget: "$0"
+    deps: []
+    registry_id: exp015_clmm
+    status: done  # D026
+
+  - id: exp-016
+    claim: [1, 2]
+    title: "Bradley-Terry model on ALL pairwise data"
+    description: >
+      BT model (choix library) on ALL 176 comparisons including position-
+      inconsistent pairs. Result: formal win prob 61.9% [55.1%, 68.8%] p=0.001.
+      More significant than filtered sign test (p=0.006). Simultaneously addresses:
+      (1) BT modeling requirement (R2-W2), (2) 43% consistency filter data loss
+      concern (R1-W2), (3) validates sign test result with parametric approach. D027.
+    priority: P0
+    gpu_budget_hours: 0
+    api_budget: "$0"
+    deps: []
+    registry_id: exp016_bradley_terry
+    status: done  # D027
+
+  # === Cross-judge replication (Qwen3-32B as second judge) ===
+  - id: exp-017
+    claim: [1, 2, 3]
+    title: "Qwen3-32B formality — cross-judge BT + GEE"
+    description: >
+      Qwen3-32B local judge on same 100 formality counterfactual pairs.
+      BT 66.5% [58.5, 73.9] p<0.0001. GEE: formal OR=4.20 p=0.0002,
+      originality OR=4.70 p<0.0001. Likert ATE=0.011 p=0.908.
+      Blindspot confirmed cross-model. D034/D035.
+    priority: P0
+    gpu_budget_hours: 2
+    api_budget: "$0 (local vLLM)"
+    deps: []
+    registry_id: qwen32b_formality
+    status: done
+
+  - id: exp-018
+    claim: [1, 2, 3]
+    title: "Qwen3-32B verbosity — BT + GEE decomposition"
+    description: >
+      Qwen3-32B on 100 verbosity counterfactual pairs. BT 77.3% [70.3, 84.3]
+      p<0.0001. GEE: verbose OR=13.10 p=2.6e-09 (strongest), originality
+      OR=0.49 p=0.096 (NS). Likert ATE=-0.151 p=0.179. Blindspot confirmed.
+      Verbosity is confound-free: pure style effect. D035.
+    priority: P0
+    gpu_budget_hours: 2
+    api_budget: "$0 (local vLLM)"
+    deps: []
+    registry_id: qwen32b_verbosity
+    status: done
+
+  - id: exp-019
+    claim: [3]
+    title: "Qwen3-32B register — GEE decomposition (exploratory)"
+    description: >
+      Qwen3-32B on 100 register counterfactual pairs. Sign test 59.3% p=0.220.
+      GEE: academic OR=1.91 p=0.046, originality OR=5.72 p<0.0001.
+      Register is originality-dominated — academic→conv direction shows 89.3%
+      prefer original, masking any style effect. Exploratory, not primary. D035.
+    priority: P1
+    gpu_budget_hours: 2
+    api_budget: "$0 (local vLLM)"
+    deps: []
+    registry_id: qwen32b_register
+    status: done
+
+  - id: exp-020
+    claim: [1, 2]
+    title: "GPT-4o verbosity + register scoring (API)"
+    description: >
+      GPT-4o API scoring on verbosity and register counterfactual pairs.
+      Verbosity pairwise: 86.3% p<10⁻⁶ (strongest cross-judge signal).
+      Register pairwise: 63.3% p=0.085 (NS, originality-dominated).
+      Likert data collected; ATE analysis pending.
+      Verbosity Likert ATE is the key missing Blindspot confirmation. D035+.
+      Associated registry: gpt4o_register.
+    priority: P0
+    gpu_budget_hours: 0
+    api_budget: "~$20"
+    deps: []
+    registry_id: gpt4o_verbosity
+    status: done
+
+  # === Round 5 冲刺 4.0 — 补充实验 (D055) ===
+  - id: exp-021
+    claim: [1, 3]
+    title: "Third target judge — Llama-3.3-70B-Instruct"
+    description: >
+      Add Llama-3.3-70B as third target judge. Reuse existing NLI-filtered
+      pairs (rewriting + NLI independent of judge). Run pairwise comparison
+      + Likert scoring on verbosity + formality (LLMBar). Three independent
+      architecture families: GPT-4o (proprietary US) + Qwen3-32B (open CN)
+      + Llama (open US). Addresses SF3 + strengthens MF1 anti-amplification.
+    priority: P0
+    gpu_budget_hours: 4
+    api_budget: "$0 (local vLLM)"
+    deps: []
+    registry_id: llama70b_third_judge
+    status: done
+
+  - id: exp-022
+    claim: [1, 2]
+    title: "Double-rewrite placebo BT (anti-amplification control)"
+    description: >
+      MF1 strongest defense. Compare original vs double-rewrite pairs (same
+      style direction, only rewriting artifact difference). If BT ≈ 50%,
+      pairwise format does NOT create bias from rewriting artifacts → eliminates
+      format amplification hypothesis. Run with GPT-4o (API) + Qwen3-32B (local).
+      Data: double_rewrite_text field in verified_scaled_formality.jsonl and
+      verified_verbosity.jsonl.
+      Associated registry: double_rewrite_placebo_gpt4o.
+    priority: P0
+    gpu_budget_hours: 2
+    api_budget: "~$10"
+    deps: []
+    registry_id: double_rewrite_placebo_qwen32b
+    status: done
+
+  - id: exp-023
+    claim: [1]
+    title: "NLI gate ablation (content-mediated signal quantification)"
+    description: >
+      Bounding analysis: compute BT on NLI-pass vs NLI-fail vs all pairs for
+      verbosity and formality. Quantifies how much of BT signal is content-
+      mediated. NLI-fail n is small (~12-14), report as bounds not causal claims.
+    priority: P1
+    gpu_budget_hours: 0
+    api_budget: "$0"
+    deps: []
+    registry_id: nli_gate_ablation
+    status: done
+
+  - id: exp-024
+    claim: [1]
+    title: "Cross-axis gradient formalization"
+    description: >
+      Qualitative anti-amplification argument: compute NLI rejection rate
+      (manipulation invasiveness proxy) vs BT for 3 axes. If amplification
+      were uniform, all axes would show similar BT. Per-axis variation
+      supports detection interpretation. 3 points only — qualitative, not
+      statistical test.
+    priority: P1
+    gpu_budget_hours: 0
+    api_budget: "$0"
+    deps: []
+    registry_id: cross_axis_gradient
+    status: done
+
+  # === Round 7 冲刺 4.0 — Gemini confirmatory (D062) ===
+  - id: exp-025
+    claim: [1, 2, 3]
+    title: "Gemini-2.5-Flash confirmatory 4th judge"
+    description: >
+      Gemini-2.5-Flash as confirmatory 4th target judge on formality + verbosity.
+      Verbosity: BT 70.8% [63.5, 77.8] p<0.0001; Likert d=0.051 NS; GEE Style OR=9.16 p<0.0001, Orig OR=0.45 NS.
+      Formality: BT 57.4% [50.0, 64.8] p=0.045; Likert d=-0.082 NS; GEE Style OR=1.64 NS, Orig OR=2.51 p=0.002.
+      Both axes confirm Blindspot (BT sig + Likert NS). Confirmatory, not in Holm family.
+      Formality originality-dominated in Gemini (unlike other 3 judges) — enriches per-axis confound taxonomy.
+    priority: P0
+    gpu_budget_hours: 0
+    api_budget: "~$15 (OpenRouter proxy)"
+    deps: []
+    registry_id: gemini_flash_fourth_judge
+    status: done
+
+# MVP experiments (completed, linked for reference)
+mvp_experiments:
+  - registry_id: mvp_8b_ate
+    claim: [1, 2]
+    result: "H2 FAIL (Likert ATE=0.120, d=0.117, p=0.246)"
+  - registry_id: mvp_32b_ate
+    claim: [1, 2]
+    result: "H2 FAIL (Likert ATE=0.102, d=0.104, p=0.332)"
+  - registry_id: pairwise_32b
+    claim: [1, 2]
+    result: "H2 CONDITIONAL PASS (69.1%, p=0.006)"
+  - registry_id: verbosity_32b
+    claim: [3]
+    result: "H1 PASS (direction-aware NLI 86%, D012/D013). Scoring blocked API 402."
+
+# Statistical method requirements (Reviewer, distilled-research standard)
+statistical_methods:
+  primary: "Bootstrap 95% CIs (n≥2000 resamples)"
+  comparison: "McNemar test for paired judge comparisons"
+  multiple_testing: "Holm-Bonferroni correction across judges × benchmarks × axes"
+  note: "Introduce in exp-001, apply consistently across all experiments"
+
+# Resource summary
+resource_summary:
+  total_gpu_hours: 31  # P0: 10h (incl exp-005 upgrade), P1: 9h, P2: 12h
+  total_api_budget: "$270-400"
+  gpu_available: "4× RTX PRO 6000 96GB (westb-29275), cuda:3 unusable"
+  timeline_estimate: "P0 experiments: 3-5 days; P1: +2-3 days; P2: +3-5 days"
+  parallel_batch_1: "exp-001 + exp-004 (pilot) + exp-005 — all can start simultaneously"

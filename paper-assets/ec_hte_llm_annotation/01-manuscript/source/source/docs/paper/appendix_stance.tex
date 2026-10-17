@@ -1,0 +1,38 @@
+\subsection{Stance Detection: Cross-Task Sign Reversal Validation}
+\label{app:stance}
+
+To test whether global correction introduces sign reversals beyond sentiment and toxicity, we extend the semi-synthetic evaluation to stance detection using TweetEval~\cite{barbieri2020tweeteval}.
+The binary label is \emph{favor} ($Z{=}1$) vs.\ \emph{not-favor} ($Z{=}0$) toward five stance targets (Atheism, Climate Change, Feminist Movement, Hillary Clinton, Abortion), yielding $K{=}5$ subgroups with $n{=}300$ each.
+CATE heterogeneity is $\tau(\text{favor}){=}0.20$, $\tau(\text{not-favor}){=}0.05$, with 200 MC replications.
+GPT-4o annotations are from the real API; GPT-4o-mini and GPT-3.5-Turbo use simulated error profiles (FPR/FNR scaling $+$ additive shift; see Appendix~\ref{app:dgp}).
+
+Table~\ref{tab:stance_signrev} reports subgroups with sign reversal or $\kappa > 3$.
+Global correction produces sign reversals in 4/30 subgroup-$z$ combinations (13.3\%); EC-HTE reduces this to 1/30 (3.3\%); the remaining reversal occurs in an ill-conditioned subgroup ($\kappa{=}15.0$, GPT-3.5-Turbo Climate Change) that violates the operating conditions of Section~\ref{sec:ec_hte_eval}.
+Global correction amplifies bias in 15/30 cases (50\%).
+
+The stance task exposes an operating-conditions limitation: GPT-3.5-Turbo achieves FNR ${>}\,0.50$ on all five targets, violating the classifier quality precondition and producing $\kappa$ values up to 15.0 (Climate Change) vs.\ 4.6 (Hillary Clinton), a ${\sim}10{\times}$ range within the same LLM.
+This $\kappa$ heterogeneity inflates correction variance; EC-HTE preserves sign correctness but at the cost of higher variance when $\kappa \gg 3$.
+Mean RMSE: naive${=}0.116$, global${=}0.272$, EC-HTE${=}0.271$; correction reduces sign reversals but does not improve overall RMSE at $K{=}5$, $n{=}300$ per subgroup, consistent with the operating-conditions threshold ($n_{\text{expert}} \geq 250$ for $K{=}2$; Section~\ref{sec:diagnostic}).
+Practitioners should verify per-subgroup FNR before applying correction.
+
+\begin{table}[h]
+\centering
+\caption{Stance detection: subgroups with sign reversal or $\kappa > 3$. \checkmark\ indicates at least one $z$-level affected. GPT-4o-mini and GPT-3.5-Turbo use simulated error profiles.}
+\label{tab:stance_signrev}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccc}
+\toprule
+LLM & Target & $\kappa$ & \makecell{Sign Rev\\(Global)} & \makecell{Sign Rev\\(EC-HTE)} & \makecell{Bias Amp\\(Global)} \\
+\midrule
+GPT-4o & Fem.\ Mov.\ & 1.79 & \checkmark & --- & \checkmark \\
+GPT-4o & Hillary C.\ & 1.86 & \checkmark & --- & \checkmark \\
+\midrule
+GPT-3.5-T & Atheism & 7.21 & --- & --- & --- \\
+GPT-3.5-T & Climate Ch.\ & 15.01 & --- & \checkmark & \checkmark \\
+GPT-3.5-T & Fem.\ Mov.\ & 3.28 & \checkmark & --- & \checkmark \\
+GPT-3.5-T & Hillary C.\ & 4.60 & \checkmark & --- & \checkmark \\
+GPT-3.5-T & Abortion & 14.17 & --- & --- & \checkmark \\
+\bottomrule
+\end{tabular}}
+\end{table}

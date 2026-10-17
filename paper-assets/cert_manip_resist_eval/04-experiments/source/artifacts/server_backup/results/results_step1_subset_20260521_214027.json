@@ -1,0 +1,104 @@
+{
+  "mmlu": {
+    "pairwise": [
+      {
+        "judge_i": "llama3.1-8b",
+        "judge_j": "qwen2.5-14b",
+        "agreement": 0.46,
+        "agreement_ci_lower": 0.4033333333333333,
+        "agreement_ci_upper": 0.5166666666666667,
+        "mi": 0.037399086818825804,
+        "mi_ci_lower": 0.01607921450093615,
+        "mi_ci_upper": 0.07274885585513056,
+        "copula_rho": 0.1768076114656346,
+        "copula_rho_ci_lower": 0.05555436384898493,
+        "copula_rho_ci_upper": 0.2612307366108871
+      },
+      {
+        "judge_i": "llama3.1-8b",
+        "judge_j": "qwen2.5-32b",
+        "agreement": 0.5333333333333333,
+        "agreement_ci_lower": 0.47991666666666666,
+        "agreement_ci_upper": 0.5933333333333334,
+        "mi": 0.023505075579531964,
+        "mi_ci_lower": 0.009633571001861529,
+        "mi_ci_upper": 0.053408429566003286,
+        "copula_rho": 0.14373747496444378,
+        "copula_rho_ci_lower": -0.025608399297736055,
+        "copula_rho_ci_upper": 0.1980813378383397
+      },
+      {
+        "judge_i": "qwen2.5-14b",
+        "judge_j": "qwen2.5-32b",
+        "agreement": 0.6666666666666666,
+        "agreement_ci_lower": 0.6166666666666667,
+        "agreement_ci_upper": 0.72,
+        "mi": 0.19114914240721279,
+        "mi_ci_lower": 0.1408233355747071,
+        "mi_ci_upper": 0.2673245393635053,
+        "copula_rho": 0.26291195658870786,
+        "copula_rho_ci_lower": 0.09502547377356922,
+        "copula_rho_ci_upper": 0.33349971980220716
+      }
+    ],
+    "validation": {
+      "within_family_mi_mean": 0.19114914240721279,
+      "cross_family_mi_mean": 0.030452081199178884,
+      "hypothesis_holds": true,
+      "mannwhitney_U": null,
+      "mannwhitney_p": null,
+      "permutation_p": 0.3314
+    }
+  },
+  "arc_challenge": {
+    "pairwise": [
+      {
+        "judge_i": "llama3.1-8b",
+        "judge_j": "qwen2.5-14b",
+        "agreement": 0.67,
+        "agreement_ci_lower": 0.62,
+        "agreement_ci_upper": 0.72,
+        "mi": 0.13235500449760104,
+        "mi_ci_lower": 0.08518049544213772,
+        "mi_ci_upper": 0.19044762970199092,
+        "copula_rho": 0.2028190429129362,
+        "copula_rho_ci_lower": 0.07780885812695641,
+        "copula_rho_ci_upper": 0.29983494173753983
+      },
+      {
+        "judge_i": "llama3.1-8b",
+        "judge_j": "qwen2.5-32b",
+        "agreement": 0.7,
+        "agreement_ci_lower": 0.6466666666666666,
+        "agreement_ci_upper": 0.7500833333333332,
+        "mi": 0.1119040896970149,
+        "mi_ci_lower": 0.06640676022105926,
+        "mi_ci_upper": 0.16575956933310906,
+        "copula_rho": 0.30072281925152256,
+        "copula_rho_ci_lower": 0.18390298701024882,
+        "copula_rho_ci_upper": 0.37760691122936607
+      },
+      {
+        "judge_i": "qwen2.5-14b",
+        "judge_j": "qwen2.5-32b",
+        "agreement": 0.7233333333333334,
+        "agreement_ci_lower": 0.67325,
+        "agreement_ci_upper": 0.77,
+        "mi": 0.31900727543514146,
+        "mi_ci_lower": 0.24705973236219875,
+        "mi_ci_upper": 0.3972587892508272,
+        "copula_rho": 0.2778397021936382,
+        "copula_rho_ci_lower": 0.108923671861236,
+        "copula_rho_ci_upper": 0.3347370046994012
+      }
+    ],
+    "validation": {
+      "within_family_mi_mean": 0.31900727543514146,
+      "cross_family_mi_mean": 0.12212954709730797,
+      "hypothesis_holds": true,
+      "mannwhitney_U": null,
+      "mannwhitney_p": null,
+      "permutation_p": 0.3314
+    }
+  }
+}

@@ -1,0 +1,5 @@
+source,total,helps,hurts,severe_hurts,hurts_pct,severe_hurts_pct,worst_ratio
+Synthetic (exp002 grid),2080,1560,520,320,25.0,15.384615384615385,7.142857142857148
+Synthetic (extreme examples),12,8,4,4,33.333333333333336,33.333333333333336,2.857142857142855
+Real LLM (MC validation),39,0,39,0,100.0,0.0,1.4535634717454298
+F-L comparison,1,0,1,0,100.0,0.0,1.036490637341523

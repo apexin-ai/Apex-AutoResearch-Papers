@@ -1,0 +1,344 @@
+{
+  "analysis": "cross_benchmark_confidence_margin",
+  "date": "2026-05-21",
+  "method": {
+    "confidence_proxy": "abs(correct_option_loglikelihood) from pure model",
+    "margin_semantics": {
+      "pure_correct": "higher |loglik| = lower probability = less confident correct = closer to boundary",
+      "pure_wrong": "lower |loglik| = higher probability for target = near-miss = closer to boundary"
+    },
+    "control_1": "Within pure-correct: hurt (pure-right, hybrid-wrong) vs stayed-right (pure-right, hybrid-right)",
+    "control_2": "Within pure-wrong: helped (pure-wrong, hybrid-right) vs stayed-wrong (pure-wrong, hybrid-wrong)",
+    "hypotheses": {
+      "C1": "hurt has higher |loglik| than stayed-right (less confident correct -> vulnerable)",
+      "C2": "helped has lower |loglik| than stayed-wrong (near-miss wrong -> rescuable)"
+    },
+    "tests": ["Mann-Whitney U (two-sided)", "Cohen's d (pooled std)", "rank-biserial r_rb"],
+    "note": "GDN uses h12-1 (consistent with LAMBADA analysis); RetNet/HGRN2 use h3-1",
+    "acc_field": "hellaswag: acc_norm (length-normalized); others: acc (raw loglik)"
+  },
+  "results": {
+    "arc_easy": {
+      "GDN": {
+        "hybrid_config": "GDN-12-1",
+        "control_1_pure_correct": {
+          "hurt_n": 206,
+          "stayed_right_n": 1486,
+          "hurt_margin": {
+            "mean": 13.0903,
+            "median": 11.75,
+            "std": 6.8196,
+            "q25": 8.6094,
+            "q75": 16.625
+          },
+          "stayed_right_margin": {
+            "mean": 11.4494,
+            "median": 10.0,
+            "std": 6.1443,
+            "q25": 7.1875,
+            "q75": 14.375
+          },
+          "U": 176684.0,
+          "p": 3.243414390089927e-04,
+          "cohens_d": 0.2634,
+          "r_rb": -0.1544,
+          "direction": "stayed_right_lower",
+          "hypothesis_supported": true,
+          "interpretation": "Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping."
+        },
+        "control_2_pure_wrong": {
+          "helped_n": 176,
+          "stayed_wrong_n": 508,
+          "helped_margin": {
+            "mean": 13.574,
+            "median": 12.5625,
+            "std": 5.7884,
+            "q25": 9.4844,
+            "q75": 15.6562
+          },
+          "stayed_wrong_margin": {
+            "mean": 19.3195,
+            "median": 18.0,
+            "std": 10.6652,
+            "q25": 11.6875,
+            "q75": 24.625
+          },
+          "U": 27901.0,
+          "p": 1.024783320635381e-13,
+          "cohens_d": -0.5953,
+          "r_rb": 0.3759,
+          "direction": "helped_lower",
+          "hypothesis_supported": true,
+          "interpretation": "Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention."
+        }
+      },
+      "RetNet": {
+        "hybrid_config": "RetNet-3-1",
+        "control_1_pure_correct": {
+          "hurt_n": 184,
+          "stayed_right_n": 1510,
+          "hurt_margin": {
+            "mean": 12.4564,
+            "median": 11.0312,
+            "std": 6.1998,
+            "q25": 7.7422,
+            "q75": 16.125
+          },
+          "stayed_right_margin": {
+            "mean": 11.1141,
+            "median": 9.7188,
+            "std": 6.003,
+            "q25": 6.8125,
+            "q75": 14.0625
+          },
+          "U": 157633.5,
+          "p": 2.8160312616937067e-03,
+          "cohens_d": 0.2228,
+          "r_rb": -0.1347,
+          "direction": "stayed_right_lower",
+          "hypothesis_supported": true,
+          "interpretation": "Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping."
+        },
+        "control_2_pure_wrong": {
+          "helped_n": 144,
+          "stayed_wrong_n": 538,
+          "helped_margin": {
+            "mean": 13.656,
+            "median": 12.9062,
+            "std": 6.6249,
+            "q25": 8.4688,
+            "q75": 17.5
+          },
+          "stayed_wrong_margin": {
+            "mean": 18.6489,
+            "median": 17.5625,
+            "std": 10.4439,
+            "q25": 11.5312,
+            "q75": 23.4688
+          },
+          "U": 25695.0,
+          "p": 5.290958372060238e-10,
+          "cohens_d": -0.5113,
+          "r_rb": 0.3367,
+          "direction": "helped_lower",
+          "hypothesis_supported": true,
+          "interpretation": "Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention."
+        }
+      },
+      "HGRN2": {
+        "hybrid_config": "HGRN2-3-1",
+        "control_1_pure_correct": {
+          "hurt_n": 146,
+          "stayed_right_n": 1548,
+          "hurt_margin": {
+            "mean": 11.243,
+            "median": 9.7812,
+            "std": 6.334,
+            "q25": 6.5391,
+            "q75": 13.75
+          },
+          "stayed_right_margin": {
+            "mean": 10.4497,
+            "median": 8.875,
+            "std": 5.8665,
+            "q25": 6.1797,
+            "q75": 13.3125
+          },
+          "U": 121237.5,
+          "p": 0.14507403073727496,
+          "cohens_d": 0.1343,
+          "r_rb": -0.0729,
+          "direction": "stayed_right_lower",
+          "hypothesis_supported": true,
+          "interpretation": "Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping."
+        },
+        "control_2_pure_wrong": {
+          "helped_n": 164,
+          "stayed_wrong_n": 518,
+          "helped_margin": {
+            "mean": 13.3307,
+            "median": 12.4688,
+            "std": 6.0558,
+            "q25": 8.75,
+            "q75": 16.6562
+          },
+          "stayed_wrong_margin": {
+            "mean": 18.1982,
+            "median": 17.0625,
+            "std": 10.0373,
+            "q25": 10.8125,
+            "q75": 23.125
+          },
+          "U": 28828.0,
+          "p": 5.414589758384048e-10,
+          "cohens_d": -0.5268,
+          "r_rb": 0.3213,
+          "direction": "helped_lower",
+          "hypothesis_supported": true,
+          "interpretation": "Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention."
+        }
+      }
+    },
+    "hellaswag": {
+      "GDN": {
+        "hybrid_config": "GDN-12-1",
+        "control_1_pure_correct": {
+          "hurt_n": 513,
+          "stayed_right_n": 5589,
+          "hurt_margin": {
+            "mean": 73.3556,
+            "median": 73.5,
+            "std": 38.5808,
+            "q25": 40.75,
+            "q75": 100.0
+          },
+          "stayed_right_margin": {
+            "mean": 73.0199,
+            "median": 73.0,
+            "std": 36.4864,
+            "q25": 46.25,
+            "q75": 97.0
+          },
+          "U": 1433605.0,
+          "p": 0.9994567375206164,
+          "cohens_d": 0.0092,
+          "r_rb": -0.0,
+          "direction": "stayed_right_lower",
+          "hypothesis_supported": true,
+          "interpretation": "Hurt samples had higher abs(loglik) = lower target probability = less confident correct. Supports hypothesis: weakly-correct answers are vulnerable to attention flipping."
+        },
+        "control_2_pure_wrong": {
+          "helped_n": 538,
+          "stayed_wrong_n": 3402,
+          "helped_margin": {
+            "mean": 75.8864,
+            "median": 76.75,
+            "std": 39.8191,
+            "q25": 41.5625,
+            "q75": 101.0
+          },
+          "stayed_wrong_margin": {
+            "mean": 82.643,
+            "median": 82.0,
+            "std": 40.93,
+            "q25": 48.5,
+            "q75": 109.875
+          },
+          "U": 831116.0,
+          "p": 6.101431078827679e-04,
+          "cohens_d": -0.1657,
+          "r_rb": 0.0918,
+          "direction": "helped_lower",
+          "hypothesis_supported": true,
+          "interpretation": "Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention."
+        }
+      },
+      "RetNet": {
+        "hybrid_config": "RetNet-3-1",
+        "control_1_pure_correct": {
+          "hurt_n": 433,
+          "stayed_right_n": 5389,
+          "hurt_margin": {
+            "mean": 69.6416,
+            "median": 70.5,
+            "std": 37.1275,
+            "q25": 36.0,
+            "q75": 95.0
+          },
+          "stayed_right_margin": {
+            "mean": 70.8867,
+            "median": 71.0,
+            "std": 35.4167,
+            "q25": 44.75,
+            "q75": 94.0
+          },
+          "U": 1141481.5,
+          "p": 0.4532646798522191,
+          "cohens_d": -0.035,
+          "r_rb": 0.0216,
+          "direction": "hurt_lower",
+          "hypothesis_supported": false,
+          "interpretation": "Direction opposite to hypothesis."
+        },
+        "control_2_pure_wrong": {
+          "helped_n": 412,
+          "stayed_wrong_n": 3808,
+          "helped_margin": {
+            "mean": 75.2362,
+            "median": 75.5,
+            "std": 38.7724,
+            "q25": 41.9375,
+            "q75": 102.0
+          },
+          "stayed_wrong_margin": {
+            "mean": 80.4334,
+            "median": 80.0,
+            "std": 39.3771,
+            "q25": 48.5,
+            "q75": 106.0
+          },
+          "U": 726926.0,
+          "p": 0.014340986575636603,
+          "cohens_d": -0.1322,
+          "r_rb": 0.0733,
+          "direction": "helped_lower",
+          "hypothesis_supported": true,
+          "interpretation": "Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention."
+        }
+      },
+      "HGRN2": {
+        "hybrid_config": "HGRN2-3-1",
+        "control_1_pure_correct": {
+          "hurt_n": 396,
+          "stayed_right_n": 5619,
+          "hurt_margin": {
+            "mean": 68.3054,
+            "median": 70.0,
+            "std": 35.8286,
+            "q25": 36.375,
+            "q75": 93.0
+          },
+          "stayed_right_margin": {
+            "mean": 70.4761,
+            "median": 70.5,
+            "std": 34.8126,
+            "q25": 45.5,
+            "q75": 92.5
+          },
+          "U": 1076050.0,
+          "p": 0.2743135627420754,
+          "cohens_d": -0.0622,
+          "r_rb": 0.0328,
+          "direction": "hurt_lower",
+          "hypothesis_supported": false,
+          "interpretation": "Direction opposite to hypothesis."
+        },
+        "control_2_pure_wrong": {
+          "helped_n": 446,
+          "stayed_wrong_n": 3581,
+          "helped_margin": {
+            "mean": 72.2155,
+            "median": 72.5,
+            "std": 38.2433,
+            "q25": 37.5,
+            "q75": 99.0
+          },
+          "stayed_wrong_margin": {
+            "mean": 78.5834,
+            "median": 78.5,
+            "std": 38.9495,
+            "q25": 46.25,
+            "q75": 104.5
+          },
+          "U": 724709.0,
+          "p": 0.0014241923977402118,
+          "cohens_d": -0.1638,
+          "r_rb": 0.0925,
+          "direction": "helped_lower",
+          "hypothesis_supported": true,
+          "interpretation": "Helped samples had lower abs(loglik) = higher target probability = near-miss wrong. Supports hypothesis: near-miss wrong answers are rescuable by attention."
+        }
+      }
+    }
+  }
+}

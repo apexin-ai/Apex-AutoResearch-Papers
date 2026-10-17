@@ -1,0 +1,82 @@
+{
+  "B": 9999,
+  "seed": 42,
+  "EPS": 1e-06,
+  "n_panels": 455,
+  "methods": {
+    "majority_vote": {
+      "R2_original": 0.3269219685179668,
+      "R2_bootstrap_mean": 0.32982020602291545,
+      "R2_ci_lower": 0.30901890372261187,
+      "R2_ci_upper": 0.3508368322393931,
+      "R2_bootstrap_std": 0.010651824600986222,
+      "n_valid_conditions": 12,
+      "n_bootstrap": 9999
+    },
+    "weighted_vote": {
+      "R2_original": 0.3280601061793484,
+      "R2_bootstrap_mean": 0.33105896872928675,
+      "R2_ci_lower": 0.31075171230201376,
+      "R2_ci_upper": 0.3515584754168057,
+      "R2_bootstrap_std": 0.010522460582681142,
+      "n_valid_conditions": 12,
+      "n_bootstrap": 9999
+    },
+    "threshold_unanimous": {
+      "R2_original": 0.8287215780201674,
+      "R2_bootstrap_mean": 0.8327070613132088,
+      "R2_ci_lower": 0.8060219417525297,
+      "R2_ci_upper": 0.8585926434326908,
+      "R2_bootstrap_std": 0.01329857491469562,
+      "n_valid_conditions": 12,
+      "n_bootstrap": 9999
+    },
+    "bayesian": {
+      "R2_original": 0.0871505514839111,
+      "R2_bootstrap_mean": 0.0914036172305376,
+      "R2_ci_lower": 0.07739648947574666,
+      "R2_ci_upper": 0.10638107525030288,
+      "R2_bootstrap_std": 0.007322971260769862,
+      "n_valid_conditions": 12,
+      "n_bootstrap": 9999
+    }
+  },
+  "pairwise_differences": {
+    "majority_vote_minus_weighted_vote": {
+      "diff_mean": -0.001238762706371329,
+      "diff_ci_lower": -0.030531476362602124,
+      "diff_ci_upper": 0.028448878777790308,
+      "prob_positive": 0.46604660466046605
+    },
+    "majority_vote_minus_threshold_unanimous": {
+      "diff_mean": -0.5028868552902934,
+      "diff_ci_lower": -0.5357615962344144,
+      "diff_ci_upper": -0.4696494101735767,
+      "prob_positive": 0.0
+    },
+    "majority_vote_minus_bayesian": {
+      "diff_mean": 0.23841658879237784,
+      "diff_ci_lower": 0.21324568641004735,
+      "diff_ci_upper": 0.2636221581528882,
+      "prob_positive": 1.0
+    },
+    "weighted_vote_minus_threshold_unanimous": {
+      "diff_mean": -0.5016480925839222,
+      "diff_ci_lower": -0.5345902659567352,
+      "diff_ci_upper": -0.4679277163666599,
+      "prob_positive": 0.0
+    },
+    "weighted_vote_minus_bayesian": {
+      "diff_mean": 0.23965535149874914,
+      "diff_ci_lower": 0.21458560104540786,
+      "diff_ci_upper": 0.2647874865268376,
+      "prob_positive": 1.0
+    },
+    "threshold_unanimous_minus_bayesian": {
+      "diff_mean": 0.7413034440826712,
+      "diff_ci_lower": 0.7115952739741817,
+      "diff_ci_upper": 0.7707081076472175,
+      "prob_positive": 1.0
+    }
+  }
+}

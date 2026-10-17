@@ -1,0 +1,2989 @@
+paper:
+  title: ''
+  version: 226
+  generated_at: '2026-05-28T04:02:03.673616+00:00'
+claims:
+- id: C001
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: All six pruning conditions produce 0% SR vs 44.8% baseline
+  type: quantitative
+  evidence: D187 2x2 crossover
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-suite cliff-edge: Object 0%, Spatial 0%, Goal 0%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_spatial_prune_k05
+    metric: overall_sr
+  - exp_id: eval_goal_prune_k05
+    metric: overall_sr
+  decisions: []
+  deprecated: false
+- id: C004
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Attention entropy ratio 0.98
+  type: quantitative
+  evidence:
+  - exp_id: attention_entropy_analysis
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C005
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Attention entropy ratio reaches 0.98 (6.86/7.0 bits), Gini coefficient 0.246
+  type: quantitative
+  evidence:
+  - exp_id: attention_entropy_analysis
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C007
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Single-step L2 increases from 0.414 to 1.391 (3.4x degradation), relative
+    error 111.5%
+  type: quantitative
+  evidence:
+  - exp_id: offline_singlestep_action_error
+    metric: l2_distance
+  decisions: []
+  deprecated: true
+- id: C010
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Gripper error 1.02 indicates complete inversion
+  type: quantitative
+  evidence:
+  - exp_id: offline_singlestep_action_error
+    metric: gripper_error
+  decisions: []
+  deprecated: true
+- id: C014
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Trajectory divergence mean L2 = 1.117, onset at step 0
+  type: quantitative
+  evidence:
+  - exp_id: action_divergence_v2_clean
+    metric: l2_divergence_mean
+  decisions: []
+  deprecated: true
+- id: C019
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: G1 = 93x, G3 = 0.87, Spearman = 0.41 yet closed-loop SR = 0%
+  type: quantitative
+  evidence:
+  - exp_id: mvp_imm_v8b_twostage
+    metric: importance_margin_g1
+  - exp_id: plan_009_token_importance
+    metric: spearman_correlation
+  decisions: []
+  deprecated: true
+- id: C020
+  location:
+    section: background
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA has approximately 451.5M parameters
+  type: quantitative
+  evidence:
+  - exp_id: plan_011_acis_overhead
+    metric: params_baseline_M
+  decisions: []
+  deprecated: true
+- id: C022
+  location:
+    section: background
+    paragraph: 0
+    sentence: 0
+  text: 'Baseline SR: Object 44.8%, Spatial 51.8%, Goal 63.0%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1_only
+    metric: overall_success_rate
+  - exp_id: eval_spatial_prune_k05
+    metric: baseline_sr
+  - exp_id: eval_goal_prune_k05
+    metric: baseline_sr
+  decisions: []
+  deprecated: true
+- id: C023
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: ACIS scorer has 3.46M parameters (0.77% of 451.5M total), 0.24% FLOPs overhead,
+    0.63% latency overhead
+  type: quantitative
+  evidence:
+  - exp_id: plan_011_acis_overhead
+    metric: params_overhead_pct
+  - exp_id: plan_011_acis_overhead
+    metric: flops_overhead_pct
+  - exp_id: plan_011_acis_overhead
+    metric: latency_overhead_pct
+  decisions: []
+  deprecated: true
+- id: C024
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA baseline achieves 44.8% SR (224/500, Wilson CI [40.5%, 49.2%])
+  type: quantitative
+  evidence:
+  - exp_id: baseline_bypass_object
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C026
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'ACIS k=0.5 zero-mask: 0% SR (0/300, Wilson CI [0%, 1.26%])'
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1only_object_v2_fixed
+    metric: overall_success_rate
+  decisions: []
+  deprecated: true
+- id: C029
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'ACIS k=0.7 zero-mask: 0% SR (0/500)'
+  type: quantitative
+  evidence:
+  - exp_id: eval_k07_zero_mask
+    metric: libero_object_sr
+  decisions: []
+  deprecated: true
+- id: C033
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'ACIS k=0.9 zero-mask: 0% SR (0/500)'
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1only_k09
+    metric: libero_object_sr
+  decisions: []
+  deprecated: true
+- id: C038
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Random k=0.5 zero-mask: 0% SR (0/500)'
+  type: quantitative
+  evidence:
+  - exp_id: eval_random_prune_k05
+    metric: libero_object_sr
+  decisions: []
+  deprecated: true
+- id: C044
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'ACIS k=0.5 true removal: 0% SR (0/500)'
+  type: quantitative
+  evidence:
+  - exp_id: eval_true_removal_k05
+    metric: libero_object_sr
+  decisions: []
+  deprecated: true
+- id: C051
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'ACIS k=0.5 merge: 0% SR (0/500)'
+  type: quantitative
+  evidence:
+  - exp_id: eval_merge_k05
+    metric: libero_object_sr
+  decisions: []
+  deprecated: true
+- id: C059
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Geometric prior at k=0.5/0.7/0.9 all produce 0% SR (different checkpoint)
+  type: quantitative
+  evidence:
+  - exp_id: geometric_prior_k05_eval
+    metric: sr
+  - exp_id: eval_geometric_prior_k07
+    metric: sr
+  - exp_id: eval_geometric_prior_k09
+    metric: sr
+  decisions: []
+  deprecated: true
+- id: C068
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'LIBERO-Spatial: baseline 51.8%, pruned 0% (0/500)'
+  type: quantitative
+  evidence:
+  - exp_id: eval_spatial_prune_k05
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C078
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'LIBERO-Goal: baseline 63.0%, pruned 0% (0/500)'
+  type: quantitative
+  evidence:
+  - exp_id: eval_goal_prune_k05
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C089
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA baseline: 74.0% SR (370/500, Wilson CI [70.0%, 77.7%])'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_crossmodel_pruning
+    metric: baseline_sr
+  decisions: []
+  deprecated: true
+- id: C101
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA k=0.5: 37.4% SR (187/500, Wilson CI [33.3%, 41.7%]), relative drop
+    49.5%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_pruning_k05
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C114
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA per-task range 2% (butter) to 72% (orange_juice) at k=0.5
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_pruning_k05
+    metric: per_task_sr
+  decisions: []
+  deprecated: true
+- id: C128
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Official SmolVLA LIBERO SR is 87.3% with batch size 64
+  type: qualitative
+  evidence:
+  - exp_id: baseline_bypass_object
+    metric: note
+  decisions:
+  - Footnote explains lower baseline due to compute constraints
+  deprecated: true
+- id: C143
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Scale confound acknowledged: 0.5B vs 7B parameters, cannot fully disentangle
+    from connector design'
+  type: qualitative
+  evidence: []
+  decisions:
+  - 'Reviewer #2 requested explicit acknowledgment; k=0.9 argument provided as counter-evidence'
+  deprecated: true
+- id: C144
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress M=32 achieves 61.6% SR at 75% token reduction
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C146
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress M=64 achieves 61.6% SR at 50% token reduction
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m64
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C149
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Both M=32 and M=64 exceed baseline 44.8% by 16.8pp
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_success_rate
+  - exp_id: eval_smart_compress_m64
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C153
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: M=32 and M=64 plateau at identical 61.6% SR
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_success_rate
+  - exp_id: eval_smart_compress_m64
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C158
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Attention entropy ratio 0.98 (SmolVLA) vs 0.617 (OpenVLA)
+  type: quantitative
+  evidence:
+  - exp_id: attention_entropy_analysis
+    metric: entropy_ratio
+  - exp_id: openvla_attention_entropy
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C164
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA deep layers entropy ratio 0.37-0.40, layer 28 minimum 0.371
+  type: quantitative
+  evidence:
+  - exp_id: openvla_attention_entropy
+    metric: layerwise_entropy
+  decisions: []
+  deprecated: true
+- id: C165
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: All six SmolVLA pruning configurations collapse to 0% SR vs 44.8% baseline
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1_only
+    metric: overall_success_rate
+  - exp_id: eval_stage1only_object_v2_fixed
+    metric: overall_success_rate
+  decisions: []
+  deprecated: true
+- id: C167
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-suite cliff-edge: Object 0%, Spatial 0%, Goal 0%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_spatial_prune_k05
+    metric: overall_sr
+  - exp_id: eval_goal_prune_k05
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C170
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA k=0.5 achieves 37.4% SR (187/500), relative drop 49.5% from 74.0%
+    baseline
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_pruning_k05
+    metric: overall_success_rate
+  - exp_id: eval_openvla_crossmodel_pruning
+    metric: overall_success_rate
+  decisions:
+  - D068
+  deprecated: true
+- id: C174
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress M=32 achieves 61.6% SR (308/500) at 75% token reduction
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C179
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress M=64 achieves 61.6% SR (308/500) at 50% token reduction
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m64
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C185
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Both M=32 and M=64 surpass baseline 44.8% by 16.8pp (p<0.001)
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_success_rate
+  - exp_id: eval_smart_compress_m64
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C192
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: M=32 and M=64 plateau at identical 61.6% SR with different per-task distributions
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: per_task_sr
+  - exp_id: eval_smart_compress_m64
+    metric: per_task_sr
+  decisions:
+  - D070
+  deprecated: true
+- id: C193
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA all 6 pruning configs collapse to 0% SR from 44.8% baseline
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1_only
+    metric: overall_success_rate
+  - exp_id: eval_stage1only_object_v2_fixed
+    metric: overall_success_rate
+  decisions: []
+  deprecated: true
+- id: C195
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA k=0.5 yields 37.4% SR vs 74.0% baseline (49.5% relative drop)
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_pruning_k05
+    metric: overall_success_rate
+  decisions:
+  - D068
+  deprecated: true
+- id: C198
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA attention entropy ratio 0.98, OpenVLA 0.617
+  type: quantitative
+  evidence:
+  - exp_id: attention_entropy_analysis
+    metric: entropy_ratio
+  - exp_id: openvla_attention_entropy
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C202
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress M=32 achieves 61.6% SR at 75% reduction, exceeding 44.8% baseline
+    by 16.8pp
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C207
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress M=64 achieves 61.6% SR at 50% reduction
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m64
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C208
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'SmolVLA cliff-edge: 44.8% to 0% across all 6 pruning configs'
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1_only
+    metric: overall_success_rate
+  decisions: []
+  deprecated: true
+- id: C210
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA degrades 74.0% to 37.4% at 50% removal
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_pruning_k05
+    metric: overall_success_rate
+  decisions:
+  - D068
+  deprecated: true
+- id: C213
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Entropy ratio 0.98 (SmolVLA) vs 0.62 (OpenVLA)
+  type: quantitative
+  evidence:
+  - exp_id: attention_entropy_analysis
+    metric: entropy_ratio
+  - exp_id: openvla_attention_entropy
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C217
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress 32 queries (75% reduction) achieves 61.6% SR, +16.8pp over
+    baseline
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C218
+  location:
+    section: background
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA pixel-shuffle compresses 1024 SigLIP patches into 64 tokens per camera
+    (128 total)
+  type: architectural
+  evidence:
+  - type: source
+    ref: SmolVLA model config (SigLIP patches pixel-shuffle compressed to 64 tokens
+      per camera)
+    note: Architectural fact from SmolVLA codebase and paper
+  decisions: []
+  deprecated: false
+- id: C220
+  location:
+    section: background
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA uses MLP projector producing 256 independently projected vision tokens
+  type: architectural
+  evidence:
+  - type: source
+    ref: OpenVLA model config (DinoSigLIP 256 patches MLP projected to 256 vision
+      tokens)
+    note: Architectural fact from OpenVLA codebase and paper
+  decisions: []
+  deprecated: false
+- id: C223
+  location:
+    section: background
+    paragraph: 0
+    sentence: 0
+  text: 'SmolVLA baseline: Object 44.8%, Spatial 51.8%, Goal 63.0%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1_only
+    metric: overall_success_rate
+  decisions: []
+  deprecated: false
+- id: C224
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: ACIS scorer is 3.46M parameters (0.77% of SmolVLA)
+  type: architectural
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C226
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress adds 22.2M parameters (5% of SmolVLA)
+  type: architectural
+  evidence:
+  - exp_id: train_smart_compress_m32
+    metric: model_params
+  decisions: []
+  deprecated: true
+- id: C229
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA baseline 74.0% SR on LIBERO-Object
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_crossmodel_pruning
+    metric: overall_success_rate
+  decisions: []
+  deprecated: true
+- id: C230
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'SmolVLA cliff-edge: 44.8% to 0% across all configurations'
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1_only
+    metric: overall_success_rate
+  decisions: []
+  deprecated: true
+- id: C232
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA graded degradation: 74.0% to 37.4%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_pruning_k05
+    metric: overall_success_rate
+  decisions:
+  - D068
+  deprecated: true
+- id: C235
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Attention entropy ratio 0.98 vs 0.62
+  type: quantitative
+  evidence:
+  - exp_id: attention_entropy_analysis
+    metric: entropy_ratio
+  - exp_id: openvla_attention_entropy
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C239
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress 61.6% SR at 75% reduction, +16.8pp over baseline
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C240
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA collapses at k=0.9 (removing only 13 of 128 tokens)
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1only_object_v2_fixed
+    metric: overall_success_rate
+  decisions: []
+  deprecated: true
+- id: C242
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Attention entropy ratio 0.98 vs 0.62 is architectural, not capacity
+  type: qualitative
+  evidence:
+  - exp_id: attention_entropy_analysis
+    metric: entropy_ratio
+  - exp_id: openvla_attention_entropy
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C245
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Single-step action error 111.5% relative error with gripper inversion
+  type: quantitative
+  evidence:
+  - exp_id: single_step_action_analysis
+    metric: relative_action_error
+  decisions: []
+  deprecated: true
+- id: C249
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress 22.2M params, 75% token reduction = 16x attention cost reduction
+  type: quantitative
+  evidence:
+  - exp_id: train_smart_compress_m32
+    metric: model_params
+  decisions: []
+  deprecated: true
+- id: C254
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: M=32 and M=64 plateau suggests 32 queries near-optimal for LIBERO-Object
+  type: qualitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_success_rate
+  - exp_id: eval_smart_compress_m64
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C255
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'SmolVLA cliff-edge: 44.8% to 0% across all configurations'
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1_only
+    metric: overall_success_rate
+  decisions: []
+  deprecated: true
+- id: C257
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA graded: 74.0% to 37.4%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_pruning_k05
+    metric: overall_success_rate
+  decisions:
+  - D068
+  deprecated: true
+- id: C260
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress 61.6% at 75% reduction, +16.8pp
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_success_rate
+  decisions:
+  - D070
+  deprecated: true
+- id: C261
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: VLA-IAP reports 97.8% SR on OpenVLA with 1.54x speedup
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C263
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: EfficientVLA achieves 1.93x speedup on CogACT
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: true
+- id: C264
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: 'SmolVLA baseline per-task SR: alphabet_soup 22%, bbq_sauce 60%, butter 42%,
+    chocolate_pudding 38%, cream_cheese 58%, ketchup 26%, milk 62%, orange_juice 38%,
+    salad_dressing 50%, tomato_sauce 52%'
+  type: quantitative
+  evidence: D187 PRUNE-DIAG
+  decisions: []
+  deprecated: false
+- id: C266
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA k=0.5 per-task SR: alphabet_soup 60%, cream_cheese 8%, butter 2%,
+    orange_juice 72%, overall 37.4%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_pruning_k05
+    metric: per_task_sr
+  decisions: []
+  deprecated: false
+- id: C269
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Smart Compress M=32 per-task: cream_cheese 64%, chocolate_pudding 90%, milk
+    76%, orange_juice 28%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: per_task_sr
+  decisions: []
+  deprecated: false
+- id: C273
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Smart Compress M=64 per-task: cream_cheese 38%, chocolate_pudding 74%, milk
+    62%, orange_juice 46%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m64
+    metric: per_task_sr
+  decisions: []
+  deprecated: false
+- id: C278
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: M=32 train loss 0.11, eval loss 0.052; M=64 train loss 0.045, eval loss 0.062
+  type: quantitative
+  evidence:
+  - exp_id: train_smart_compress_m32
+    metric: train_action_loss
+  - exp_id: train_smart_compress_m64
+    metric: train_action_loss
+  decisions: []
+  deprecated: false
+- id: C284
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA entropy ratio 0.98, measured on 2400 LIBERO rollout frames
+  type: quantitative
+  evidence:
+  - exp_id: attention_entropy_analysis
+    metric: entropy_ratio
+  decisions: []
+  deprecated: false
+- id: C291
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA entropy ratio 0.617, layer-wise: shallow 0.96-0.99, mid 0.75-0.85,
+    deep 0.37-0.40'
+  type: quantitative
+  evidence:
+  - exp_id: attention_entropy_analysis
+    metric: entropy_ratio_layerwise
+  decisions: []
+  deprecated: false
+- id: C292
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: M=32 cream_cheese 64% vs M=64 38%; M=32 chocolate_pudding 90% vs M=64 74%;
+    M=64 orange_juice 46% vs M=32 28%; M=64 tomato_sauce 54% vs M=32 36%
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: per_task_sr
+  - exp_id: eval_smart_compress_m64
+    metric: per_task_sr
+  decisions: []
+  deprecated: true
+- id: C293
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA evaluated at k=0.5 and k=0.7 with random true removal
+  type: methodological
+  evidence:
+  - exp_id: eval_openvla_pruning_k05
+    metric: setup
+  - exp_id: eval_openvla_pruning_k07
+    metric: setup
+  decisions: []
+  deprecated: true
+- id: C294
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA k=0.7: 49.0% SR (245/500), 33.8% relative drop'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_pruning_k07
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C295
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA k=0.5: 37.4% SR (187/500), 49.5% relative drop'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_pruning_k05
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C296
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Smart Compress M=96: 52.6% SR (CI [48.2, 56.9])'
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m96
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C297
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Smart Compress M=16: 55.8% SR (CI [51.4, 60.1])'
+  type: quantitative
+  evidence:
+  - exp_id: eval_smart_compress_m16
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C298
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Inverted-U curve: M=32-64 peak, M=16 and M=96 both lower'
+  type: qualitative
+  evidence:
+  - exp_id: eval_smart_compress_m16
+    metric: overall_sr
+  - exp_id: eval_smart_compress_m32
+    metric: overall_sr
+  - exp_id: eval_smart_compress_m64
+    metric: overall_sr
+  - exp_id: eval_smart_compress_m96
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C299
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'Inverted-U: M=96 (52.6%) underperforms M=32 (61.6%) despite 3x query vectors,
+    proving bottleneck regularization is dominant mechanism'
+  type: qualitative
+  evidence:
+  - exp_id: eval_smart_compress_m32
+    metric: overall_sr
+  - exp_id: eval_smart_compress_m96
+    metric: overall_sr
+  decisions: []
+  deprecated: true
+- id: C300
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA overall entropy ratio 0.64 (measured on 250 real LIBERO frames)
+  type: quantitative
+  evidence:
+  - exp_id: openvla_entropy_libero250
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C301
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA layer-wise: shallow 0.95-0.98, early 0.70-0.80, mid 0.57-0.66, deep
+    0.48-0.57, min 0.477 at layer 29'
+  type: quantitative
+  evidence:
+  - exp_id: openvla_entropy_libero250
+    metric: entropy_ratio_layerwise
+  decisions: []
+  deprecated: true
+- id: C302
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA vision attention fraction 12.1%
+  type: quantitative
+  evidence:
+  - exp_id: openvla_entropy_libero250
+    metric: vision_attention_fraction
+  decisions: []
+  deprecated: true
+- id: C303
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA attention sharpening begins at layer 2 (ratio 0.80), indicating MLP
+    projector outputs are semantically distinguishable early
+  type: qualitative
+  evidence:
+  - exp_id: openvla_entropy_libero250
+    metric: entropy_ratio_layerwise
+  decisions: []
+  deprecated: true
+- id: C304
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA has 451.5M parameters with SigLIP encoder producing 1024 patches on
+    32x32 grid
+  type: architectural
+  evidence:
+  - exp_id: smolvla_architecture
+    detail: model specification
+  decisions: []
+  deprecated: true
+- id: C306
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: Pixel-shuffle folds 4x4 blocks into one token, 64 per camera, 128 total
+  type: architectural
+  evidence:
+  - exp_id: smolvla_architecture
+    detail: connector design
+  decisions: []
+  deprecated: true
+- id: C309
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA has 7B parameters with MLP projector producing 256 independent tokens
+  type: architectural
+  evidence:
+  - exp_id: openvla_architecture
+    detail: model specification
+  decisions: []
+  deprecated: true
+- id: C313
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: 'SmolVLA baselines: 44.8% Object, 51.8% Spatial, 63.0% Goal'
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1_only
+    metric: success_rate
+  - exp_id: eval_spatial_prune_k05
+    metric: baseline_sr
+  - exp_id: eval_goal_prune_k05
+    metric: baseline_sr
+  decisions: []
+  deprecated: true
+- id: C318
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA baseline: 74.0% Object'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_baseline
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C324
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: ACIS module has 3.46M parameters, 0.77% of SmolVLA
+  type: quantitative
+  evidence:
+  - exp_id: acis_training
+    metric: param_count
+  decisions: []
+  deprecated: true
+- id: C331
+  location:
+    section: experimental_setup
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress adds 22.2M parameters, ~5% of SmolVLA
+  type: quantitative
+  evidence:
+  - exp_id: smart_compress_training
+    metric: compressor_params
+  decisions: []
+  deprecated: true
+- id: C332
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA attention entropy ratio is 0.95, range 0.93-0.98 across 16 layers,
+    total variation 0.05
+  type: quantitative
+  evidence:
+  - exp_id: entropy_analysis_smolvla
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C334
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA attention entropy ratio is 0.64 overall, sharpening from 0.98 to 0.48
+    across layers, total variation 0.50
+  type: quantitative
+  evidence:
+  - exp_id: entropy_analysis_openvla
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C337
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: OpenVLA retains 37.4% SR at k=0.50 against 74.0% baseline
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_k05
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C341
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA collapses to 0% even at k=0.95
+  type: quantitative
+  evidence:
+  - exp_id: eval_k095_random
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C346
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: M=128 passthrough confirms ~15-point gain from re-encoding
+  type: quantitative
+  evidence:
+  - exp_id: smart_compress_m128
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C352
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 111.5% relative action error with gripper inversion under pruning
+  type: quantitative
+  evidence:
+  - exp_id: offline_singlestep_action_error
+    metric: relative_action_error
+  decisions: []
+  deprecated: true
+- id: C359
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: CogACT retains 97.8% SR under 78% MLP-projector pruning
+  type: quantitative
+  evidence:
+  - exp_id: external_efficientvla
+    metric: success_rate_retention
+  decisions: []
+  deprecated: true
+- id: C360
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA baseline 44.8% SR (224/500, CI [40.5%, 49.2%])
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1_only
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C362
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: All 7 pruning configurations produce 0% SR
+  type: quantitative
+  evidence:
+  - exp_id: eval_stage1only_object_v2_fixed
+    metric: success_rate
+  - exp_id: eval_k07_zero_mask
+    metric: success_rate
+  - exp_id: eval_stage1only_k09
+    metric: success_rate
+  - exp_id: eval_random_prune_k05
+    metric: success_rate
+  - exp_id: eval_true_removal_k05
+    metric: success_rate
+  - exp_id: eval_merge_k05
+    metric: success_rate
+  - exp_id: eval_k095_random
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C365
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Official checkpoint 59.2% SR baseline, 0% under pruning
+  type: quantitative
+  evidence:
+  - exp_id: eval_official_checkpoint
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C369
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-suite: Spatial 51.8%->0%, Goal 63.0%->0%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_spatial_prune_k05
+    metric: success_rate
+  - exp_id: eval_goal_prune_k05
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C374
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA: 49.0% at k=0.70, 37.4% at k=0.50, 20.6% at k=0.30'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_k070
+    metric: success_rate
+  - exp_id: eval_openvla_k050
+    metric: success_rate
+  - exp_id: eval_openvla_k030
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C380
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress M=32 and M=64 both 61.6%, M=128 59.8%, M=16 55.8%, M=96 52.6%
+  type: quantitative
+  evidence:
+  - exp_id: smart_compress_m32
+    metric: success_rate
+  - exp_id: smart_compress_m64
+    metric: success_rate
+  - exp_id: smart_compress_m128
+    metric: success_rate
+  - exp_id: smart_compress_m16
+    metric: success_rate
+  - exp_id: smart_compress_m96
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C387
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress trains 122.1M total vs 99.9M baseline
+  type: quantitative
+  evidence:
+  - exp_id: smart_compress_training
+    metric: total_trainable_params
+  decisions: []
+  deprecated: true
+- id: C388
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 59.2% to 0% on official checkpoint
+  type: quantitative
+  evidence:
+  - exp_id: eval_official_checkpoint
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C390
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 74.0% to 37.4% on OpenVLA
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_k050
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C393
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Entropy ratio 0.98 for SmolVLA vs 0.64 for OpenVLA
+  type: quantitative
+  evidence:
+  - exp_id: entropy_analysis_smolvla
+    metric: entropy_ratio
+  - exp_id: entropy_analysis_openvla
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C397
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 61.6% SR at 75% token reduction
+  type: quantitative
+  evidence:
+  - exp_id: smart_compress_m32
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C398
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 59.2% to 0% on official checkpoint
+  type: quantitative
+  evidence:
+  - exp_id: eval_official_checkpoint
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C400
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 74.0% to 37.4%
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_k050
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C403
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Entropy ratio 0.98 vs 0.64
+  type: quantitative
+  evidence:
+  - exp_id: entropy_analysis_smolvla
+    metric: entropy_ratio
+  - exp_id: entropy_analysis_openvla
+    metric: entropy_ratio
+  decisions: []
+  deprecated: true
+- id: C407
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 44.8% to ~60%, 61.6% at 75% reduction
+  type: quantitative
+  evidence:
+  - exp_id: smart_compress_m32
+    metric: success_rate
+  - exp_id: eval_stage1_only
+    metric: success_rate
+  decisions: []
+  deprecated: true
+- id: C408
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress M=32 achieves 53.2% on LIBERO-Spatial
+  type: quantitative
+  evidence:
+  - exp_id: smart_compress_m32_spatial
+    metric: success_rate
+  decisions: []
+  deprecated: false
+- id: C409
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: Smart Compress M=32 achieves 56.4% on LIBERO-Goal
+  type: quantitative
+  evidence:
+  - exp_id: smart_compress_m32_goal
+    metric: success_rate
+  decisions: []
+  deprecated: false
+- id: C410
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: X-VLA cliff threshold lies in k=0.7-0.9 interval (35-45 of 50 tokens)
+  type: quantitative
+  evidence: 'eval_xvla results: k=0.9 98.3±0.8%, k=0.7 57.2±1.6%'
+  decisions: []
+  deprecated: true
+- id: C411
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: X-VLA k=0.5 3-seed mean 43.7±1.0%
+  type: quantitative
+  evidence: 3-seed mean including seed44 k=0.5=44.4%
+  decisions: []
+  deprecated: true
+- id: C412
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: X-VLA cross-seed std <= 1.6pp across all retention ratios (3 seeds x 500 episodes),
+    confirming pruning sensitivity is intrinsic architectural property
+  type: quantitative
+  evidence: k=0.9 std=0.8pp, k=0.7 std=1.6pp, k=0.5 std=1.0pp
+  decisions: []
+  deprecated: true
+- id: C413
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Scale ordering (450M<880M<3.3B<7B) is non-monotonic with pruning tolerance
+    ordering (SmolVLA<OpenVLA<X-VLA<pi0), sharing only the minimum
+  type: quantitative
+  evidence: pi0 3.3B immune, OpenVLA 7B vulnerable; CV tracks connector complexity
+    not scale
+  decisions: []
+  deprecated: true
+- id: C414
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'Matched-scale experiment not feasible: no public VLA pair shares identical
+    backbone with different connectors'
+  type: quantitative
+  evidence: Survey of available VLA models
+  decisions: []
+  deprecated: true
+- id: C415
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'X-VLA k=0.9 3-seed: 97.8±0.4% SR'
+  type: quantitative
+  evidence: seed42=97.6%, seed43=97.6%, seed44=98.2%
+  decisions: []
+  deprecated: true
+- id: C416
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'X-VLA k=0.9 3-seed: 97.8±0.4% SR'
+  type: quantitative
+  evidence: seed42=97.6%, seed43=97.6%, seed44=98.2%
+  decisions: []
+  deprecated: true
+- id: C417
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'X-VLA k=0.9 3-seed: 97.8±0.4% SR'
+  type: quantitative
+  evidence: seed42=97.6%, seed43=97.6%, seed44=98.2%
+  decisions: []
+  deprecated: true
+- id: C418
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'X-VLA k=0.3 3-seed: 22.3±1.1%'
+  type: quantitative
+  evidence: seed42=23.0%, seed43=21.0%, seed44=22.8%
+  decisions: []
+  deprecated: true
+- id: C419
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: X-VLA k=0.3 closed-loop SR 22.3±1.1% vs offline loss 1.0014
+  type: quantitative
+  evidence: seed42=23.0%, seed43=21.0%, seed44=22.8%
+  decisions: []
+  deprecated: true
+- id: C420
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: L2 norm on OpenVLA within 2pp of random at k<=0.7; +8.5pp at k=0.9 (70.6%
+    vs 62.0%)
+  type: quantitative
+  evidence: 'D108 cross-validation: L2 k=0.95=70.6%, k=0.9=70.6%, k=0.7=49.8%, k=0.5=39.2%
+    vs random k=0.95=69.4%, k=0.9=62.0%, k=0.7=49.0%, k=0.5=37.4%'
+  decisions: []
+  deprecated: true
+- id: C421
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'CV predicts scoring method utility: OpenVLA CV=0.215 yields weak L2 advantage
+    (0.8-1.8pp at k<=0.7, 8.5pp at k=0.9)'
+  type: quantitative
+  evidence: D108 L2 vs random comparison
+  decisions: []
+  deprecated: true
+- id: C422
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'X-VLA k=0.2 3-seed: 4.7±0.6%'
+  type: quantitative
+  evidence: seed42=5.2%, seed43=4.8%, seed44=4.0%
+  decisions: []
+  deprecated: true
+- id: C423
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: OFT CV=0.219 matches OpenVLA CV=0.215, confirming connector determines token
+    importance
+  type: quantitative
+  evidence: 'OFT CV measurement: 0.219 (100 images x 10 tasks, 51200 tokens, per-image
+    CV std=0.0188)'
+  decisions: []
+  deprecated: true
+- id: C424
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'X-VLA k=0.95 3-seed: 99.1±0.2%'
+  type: quantitative
+  evidence: seed42=99.0%, seed43=99.0%, seed44=99.4%
+  decisions: []
+  deprecated: true
+- id: C425
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA 2-seed consistency: all k values within 4pp (seed7 vs seed43)'
+  type: quantitative
+  evidence: 'k=0.9: 62.0/62.2, k=0.7: 49.0/52.6, k=0.5: 37.4/35.6'
+  decisions: []
+  deprecated: true
+- id: C426
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Random vs importance-based pruning within 4pp for MLP connectors at k<=0.7
+  type: quantitative
+  evidence: 'D108: L2 vs random on OpenVLA'
+  decisions: []
+  deprecated: true
+- id: C427
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: X-VLA cliff onset at k=0.85 (67.8%, -30pp), non-monotonic recovery at k=0.80
+    (88.6%)
+  type: quantitative
+  evidence: 'k=0.85: seed42=68.0%, seed43=67.6%; k=0.80: seed42=88.8%, seed43=88.4%'
+  decisions: []
+  deprecated: true
+- id: C428
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Non-monotonic dip task-specific: 4 tasks lose ~50pp each (cream_cheese, ketchup,
+    butter, chocolate_pudding), 6 unaffected'
+  type: quantitative
+  evidence: Per-task 2-seed data
+  decisions: []
+  deprecated: true
+- id: C429
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'k=0.85 vs k=0.80 non-monotonic: 67.8% vs 88.6%, caused by L2 rank 41-42 tokens
+    interfering on 4 specific tasks'
+  type: quantitative
+  evidence: '2-seed data: k=0.85 seed42=68.0%/seed43=67.6%, k=0.80 seed42=88.8%/seed43=88.4%'
+  decisions: []
+  deprecated: true
+- id: C430
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: At k≤0.7, random removal degrades monotonically (77.2%, 69.4%, 36.4% at k=0.7,
+    0.5, 0.3; seed43 within 1pp)
+  type: quantitative
+  evidence:
+  - eval_pi05_random_k07_object_seed42
+  - eval_pi05_random_k05_object_seed42
+  - eval_pi05_random_k03_object_seed42
+  - eval_pi05_random_k05_object_seed43
+  decisions: []
+  deprecated: false
+- id: C431
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Task-specific random cliff on LIBERO-Object: SR drops from 69.4% (k=0.95)
+    to 5.0% (k=0.85) before recovering to 77.2% (k=0.7), a 72pp swing'
+  type: quantitative
+  evidence:
+  - eval_pi05_random_k095_object_seed42_v2
+  - eval_pi05_random_k085_object_seed42_v2
+  - eval_pi05_random_k07_object_seed42
+  decisions:
+  - D152
+  - D153
+  deprecated: false
+- id: C432
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Same k=0.85 on LIBERO-Spatial retains 58.4%
+  type: quantitative
+  evidence:
+  - eval_pi05_random_k085_spatial_seed42
+  decisions:
+  - D152
+  deprecated: false
+- id: C433
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Object random cliff at k in [0.85, 0.925]: 69.4% (k=0.95) to 5.0% (k=0.85),
+    absent on Spatial (58.4% at k=0.85)'
+  type: quantitative
+  evidence:
+  - eval_pi05_random_k095_object_seed42_v2
+  - eval_pi05_random_k085_object_seed42_v2
+  - eval_pi05_random_k085_spatial_seed42
+  decisions:
+  - D152
+  - D153
+  deprecated: false
+- id: C434
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: 'L2 norm consistent across suites at k>=0.85: Object and Spatial differ by
+    <=2.4pp'
+  type: quantitative
+  evidence:
+  - eval_pi05_l2norm_k095_object_seed42_v2
+  - eval_pi05_l2norm_k09_object_seed42_v2
+  - eval_pi05_l2norm_k085_object_seed42_v4
+  - eval_pi05_l2norm_k095_spatial_seed42
+  - eval_pi05_l2norm_k09_spatial_seed42
+  - eval_pi05_l2norm_k085_spatial_seed42
+  decisions: []
+  deprecated: false
+- id: C435
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: Method preference (random > L2 at k=0.5; L2 > random at k=0.3) consistent
+    across suites
+  type: qualitative
+  evidence:
+  - eval_pi05_l2norm_k05_spatial_seed42
+  - eval_pi05_random_k05_spatial_seed42
+  - eval_pi05_l2norm_k03_spatial_seed42
+  - eval_pi05_random_k03_spatial_seed42
+  decisions: []
+  deprecated: false
+- id: C436
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Cliff zone exhibits suite x method interaction: at k<=0.7 task-independent,
+    at k in [0.85, 0.95] Object collapses under random while Spatial degrades gracefully'
+  type: qualitative
+  evidence:
+  - eval_pi05_random_k085_object_seed42_v2
+  - eval_pi05_random_k085_spatial_seed42
+  - eval_pi05_random_k07_object_seed42
+  - eval_pi05_random_k07_spatial_seed42
+  decisions:
+  - D152
+  - D153
+  - D154
+  deprecated: false
+- id: C437
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: L2 norm maintains near-baseline plateau in random's cliff zone on both suites
+    (<=2.4pp at k>=0.85; no sudden >20pp collapse)
+  type: quantitative
+  evidence:
+  - eval_pi05_l2norm_k095_object_seed42_v2
+  - eval_pi05_l2norm_k09_object_seed42_v2
+  - eval_pi05_l2norm_k085_object_seed42_v4
+  - eval_pi05_l2norm_k095_spatial_seed42
+  - eval_pi05_l2norm_k09_spatial_seed42
+  - eval_pi05_l2norm_k085_spatial_seed42
+  decisions:
+  - D154
+  deprecated: false
+- id: C438
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: CV=0.055 correctly predicts L2 plateau on both Object and Spatial despite
+    qualitatively different random cliff profiles, confirming CV as model-level diagnostic
+  type: qualitative
+  evidence:
+  - eval_pi05_l2norm_k085_object_seed42_v4
+  - eval_pi05_l2norm_k085_spatial_seed42
+  - eval_pi05_random_k085_object_seed42_v2
+  - eval_pi05_random_k085_spatial_seed42
+  decisions:
+  - D154
+  deprecated: false
+- id: C439
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: 'Spatial random mild non-monotonicity: k=0.925 (60.4%) > k=0.9 (54.6%), delta=5.8pp,
+    order of magnitude smaller than Object''s 65pp V-dip'
+  type: quantitative
+  evidence:
+  - eval_pi05_random_k0925_spatial_seed42
+  - eval_pi05_random_k09_spatial_seed42
+  decisions: []
+  deprecated: false
+- id: C440
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Token importance heatmaps reveal center-high edge-low spatial pattern; L2
+    norm retains center tokens, random creates combinatorial risk
+  type: qualitative
+  evidence:
+  - plan_009_token_importance
+  decisions:
+  - D156
+  deprecated: false
+- id: C441
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: π0.5 vision tokens exhibit center-high edge-low L2 norm pattern; at k=0.9
+    50% of removed tokens from outermost ring (23% of grid)
+  type: quantitative
+  evidence:
+  - plan_009_token_importance
+  decisions:
+  - D156
+  deprecated: false
+- id: C442
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: Random removal creates combinatorial probability of removing center tokens,
+    explaining cliff onset; L2 norm preserves center region
+  type: qualitative
+  evidence:
+  - plan_009_token_importance
+  decisions:
+  - D156
+  deprecated: false
+- id: C443
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Hypergeometric cliff model does not explain V-shape recovery at k≤0.7
+  type: limitation
+  evidence:
+  - exp_id: binomial_cliff_model
+    metric: model scope limitation
+  decisions: []
+  deprecated: false
+- id: C444
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA collapses from 59.2% to 0.0% at k=0.95
+  type: quantitative
+  evidence: D185 extra evidence point 3
+  decisions: []
+  deprecated: false
+- id: C446
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: pi0.5 retains 98.2% at k=0.95 on Object
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_l2norm_k095_seed42_object
+  decisions: []
+  deprecated: false
+- id: C449
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 15x method sensitivity difference at k=0.95 (Spatial)
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_l2norm_k095_seed42_spatial
+  - exp_id: eval_pi05_random_k095_seed42_spatial
+  - exp_id: eval_xvla_l2norm_k095_seed42_spatial
+  - exp_id: eval_xvla_random_k095_seed42_spatial
+  decisions: []
+  deprecated: false
+- id: C453
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: X-VLA loses 1.6pp Object but 27.8pp Goal at k=0.9
+  type: quantitative
+  evidence:
+  - exp_id: eval_xvla_l2norm_k09_seed42_object
+  - exp_id: eval_xvla_l2norm_k09_seed42_goal
+  decisions: []
+  deprecated: false
+- id: C458
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: VTR recovers over 60% SR at 75% compression
+  type: quantitative
+  evidence:
+  - exp_id: eval_smolvla_sc_cross_attn_m32
+  decisions: []
+  deprecated: false
+- id: C459
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'X-VLA Goal non-monotonic: k=0.95 drops to 53.8/54.0%, k=0.9 recovers to 70.2%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_xvla_l2norm_k095_seed42_goal
+  - exp_id: eval_xvla_random_k095_seed42_goal
+  - exp_id: eval_xvla_l2norm_k09_seed42_goal
+  decisions: []
+  deprecated: false
+- id: C461
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'X-VLA 3 tokens removed: -44.2pp Goal, -47.0pp Long'
+  type: quantitative
+  evidence:
+  - exp_id: eval_xvla_l2norm_k095_seed42_goal
+  - exp_id: eval_xvla_l2norm_k095_seed42_long
+  decisions: []
+  deprecated: false
+- id: C462
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA 0% at 5% removal
+  type: quantitative
+  evidence:
+  - exp_id: eval_official_smolvla_l2norm_k095_seed42_object
+  decisions: []
+  deprecated: false
+- id: C464
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: X-VLA retains 99.2% Object at k=0.9, -27.8pp Goal
+  type: quantitative
+  evidence:
+  - exp_id: eval_xvla_l2norm_k09_seed42_object
+  - exp_id: eval_xvla_l2norm_k09_seed42_goal
+  decisions: []
+  deprecated: false
+- id: C467
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 15x method sensitivity (CV=0.055 vs CV>=0.15)
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_l2norm_k095_seed42_spatial
+  - exp_id: eval_pi05_random_k095_seed42_spatial
+  - exp_id: eval_xvla_l2norm_k095_seed42_spatial
+  - exp_id: eval_xvla_random_k095_seed42_spatial
+  decisions: []
+  deprecated: false
+- id: C471
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: VTR recovers to 60%+ at 75% compression
+  type: quantitative
+  evidence:
+  - exp_id: eval_smolvla_sc_cross_attn_m32
+  decisions: []
+  deprecated: false
+- id: C472
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA 59.2% to 0.0% at 5% removal
+  type: quantitative
+  evidence: 'Table 2 pi0.5 k=0.9 Object: L2=98.2 vs R=12.0 → but that''s 86pp. At
+    k=0.85: delta is smaller. Actually k>=0.85 range is 17-34pp per Director'
+  decisions: []
+  deprecated: false
+- id: C474
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: pi0.5 retains 98.2% at k=0.95
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_l2norm_k095_seed42_object
+  decisions: []
+  deprecated: false
+- id: C477
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: X-VLA 99.2% Object at 90% retention, -27.8pp Goal
+  type: quantitative
+  evidence:
+  - exp_id: eval_xvla_l2norm_k09_seed42_object
+  - exp_id: eval_xvla_l2norm_k09_seed42_goal
+  decisions: []
+  deprecated: false
+- id: C481
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 15x method sensitivity (low CV vs high CV)
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_l2norm_k095_seed42_spatial
+  - exp_id: eval_pi05_random_k095_seed42_spatial
+  - exp_id: eval_xvla_l2norm_k095_seed42_spatial
+  - exp_id: eval_xvla_random_k095_seed42_spatial
+  decisions: []
+  deprecated: false
+- id: C486
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Random outperforms L2 by 36pp at aggressive compression for low-CV
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_l2norm_k05_seed42_object
+  - exp_id: eval_pi05_random_k05_seed42_object
+  decisions: []
+  deprecated: false
+- id: C492
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: VTR recovers 60%+ at 75% compression
+  type: quantitative
+  evidence:
+  - exp_id: eval_smolvla_sc_cross_attn_m32
+  decisions: []
+  deprecated: false
+- id: C493
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: at k=0.95, π0.5 preserves 98% while SmolVLA collapses to 0%
+  type: quantitative
+  evidence: 'Table 1: π0.5 Object k=0.95 L2=98.2%; SmolVLA Object k=0.95 L2/R=0.0%'
+  decisions: []
+  deprecated: false
+- id: C494
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: CV ranges from 0.038 (linear) to 0.314 (pixel-shuffle)
+  type: quantitative
+  evidence: 'Section 4.1 model properties: π0 CV=0.038, SmolVLA CV=0.314'
+  decisions: []
+  deprecated: false
+- id: C495
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: π0 and OpenVLA both 256 tokens, CV 0.038 vs 0.215
+  type: quantitative
+  evidence: 'Section 4.1: π0 256 tokens CV=0.038, OpenVLA 256 tokens CV=0.215'
+  decisions: []
+  deprecated: false
+- id: C496
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: five VLA architectures 450M-7B, four LIBERO suites
+  type: quantitative
+  evidence: 'Study scope: π0.5, X-VLA, OpenVLA, SmolVLA (closed-loop) + π0 (diagnostic)'
+  decisions: []
+  deprecated: false
+- id: C497
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA collapses when 6 of 128 tokens removed
+  type: quantitative
+  evidence: 'Table 1: SmolVLA k=0.95 all suites ≤6.6%; 128*(1-0.95)=6.4≈6 tokens'
+  decisions: []
+  deprecated: false
+- id: C498
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: L2 preserves 98% on π0.5, random yields 9% (89pp gap at k=0.9)
+  type: quantitative
+  evidence: 'Table 1: π0.5 Object k=0.9 L2=98.2% R=9.0%, gap=89.2pp'
+  decisions: []
+  deprecated: false
+- id: C499
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: X-VLA random outperforms L2 by +28pp at aggressive ratios
+  type: quantitative
+  evidence: 'Table 1: X-VLA Object k=0.5 R=70.6% L2=43.4%, gap=27.2pp≈28pp'
+  decisions: []
+  deprecated: false
+- id: C500
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: multi-step tasks magnify entangling-connector losses by up to 20×
+  type: quantitative
+  evidence: 'Section 4.2: X-VLA random k=0.9 Object -1.4pp vs Goal -27.8pp = 20× amplification'
+  decisions: []
+  deprecated: false
+- id: C501
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: independent connectors show ≤11pp degradation
+  type: quantitative
+  evidence: Cross-suite analysis of independent connector models
+  decisions: []
+  deprecated: false
+- id: C502
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: re-encoding module (~5% params) recovers >60% at 75% compression
+  type: quantitative
+  evidence: VTR experiments on SmolVLA
+  decisions: []
+  deprecated: false
+- id: C503
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: L2 preserves 98% on π0.5, random yields 5% (93pp gap at k=0.85)
+  type: quantitative
+  evidence: 'Director-confirmed k=0.85 data: L2=98.0% R=5.0%, gap=93pp. Cliff zone
+    maximum separation.'
+  decisions: []
+  deprecated: false
+- id: C504
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Attention-based scoring: +[XX]pp on X-VLA, -[XX]pp on π0.5 at k=0.9 Object'
+  type: quantitative
+  evidence: PLACEHOLDER — awaiting Attn k=0.9 Object data (ETA ~30min)
+  decisions: []
+  deprecated: false
+- id: C505
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Attention on OpenVLA: -12.6pp on Object, +0.4pp on Spatial at k=0.9'
+  type: quantitative
+  evidence: 'OpenVLA k=0.9: Object baseline=74.0% Attn=61.4% (-12.6pp); Spatial baseline=80.0%
+    Attn=80.4% (+0.4pp). Source: eval_openvla_attn_k09_object_seed42_v3, Reviewer
+    cross-verified.'
+  decisions: []
+  deprecated: false
+- id: C506
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: connector is primary determinant of pruning robustness
+  type: quantitative
+  evidence: 'Reframing per Reviewer deep review: Axis 1 (connector) has CV as actionable
+    scalar predictor; Axis 2 (task) has only qualitative classification'
+  decisions: []
+  deprecated: false
+- id: C507
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'scoring effectiveness is connector-dependent: L2 effective on π0.5, anti-informative
+    on X-VLA; attention converse'
+  type: quantitative
+  evidence: Replaces 'double dissociation' label with 'connector-dependent' per Director
+    framing guidance. Same underlying data.
+  decisions: []
+  deprecated: false
+- id: C508
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA attention on Object: 61.4% (-12.6pp from baseline), worst of three
+    methods'
+  type: quantitative
+  evidence: 'eval_openvla_attn_k09_object_seed42_v3: Attn=61.4%, baseline=74.0%, delta=-12.6pp.
+    L2=70.6%, R=62.8%.'
+  decisions: []
+  deprecated: false
+- id: C509
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA attention on Spatial: 80.4% (+0.4pp), best of three methods (lossless)'
+  type: quantitative
+  evidence: 'Director-confirmed: Attn=80.4%, baseline=80.0%, L2=75.0%, R=79.8%.'
+  decisions: []
+  deprecated: false
+- id: C510
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA attention on Goal: 73.2% (-1.6pp, near-lossless)'
+  type: quantitative
+  evidence: 'Director-confirmed: Attn=73.2%, baseline=74.8%.'
+  decisions: []
+  deprecated: false
+- id: C511
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Within-model crossover: attention worst on Object (-12.6pp) yet best on Spatial
+    (+0.4pp)'
+  type: quantitative
+  evidence: 'Object: Attn=61.4 worst, L2=70.6 best. Spatial: Attn=80.4 best, L2=75.0
+    worst. Complete scoring-method ranking reversal within single architecture.'
+  decisions: []
+  deprecated: false
+- id: C512
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: L2 preserves 98% on π0.5 at k=0.85 (93pp gap); reverses at k=0.5 (-35pp on
+    π0.5, -28pp on X-VLA)
+  type: quantitative
+  evidence: 'Table 1: π0.5 k=0.85 L2=98.0% R=5.0% gap=93pp (Director-confirmed). π0.5
+    k=0.5 Object L2=33.4% R=68.2% gap=-34.8pp≈-35pp. X-VLA k=0.5 Object L2=43.4% R=70.6%
+    gap=-27.2pp≈-28pp.'
+  decisions: []
+  deprecated: false
+- id: C513
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Under sufficient compression, scoring effectiveness becomes connector-dependent;
+    L2 aids π0.5 at k≥0.85 but reverses at k=0.5 (-35pp)
+  type: quantitative
+  evidence: 'C1: conditional per Reviewer. C2: π0.5 k=0.5 Object L2=33.4 R=68.2 gap=-34.8pp.
+    Intro now shows k-dependent reversal.'
+  decisions: []
+  deprecated: false
+- id: C514
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Attention recovers +31pp on X-VLA Long (moderate claim, single suite)
+  type: quantitative
+  evidence: 'C4: Kept MODERATE per Reviewer. +31pp is Long suite at k=0.5. Specified
+    ''Long'' to indicate limited scope.'
+  decisions: []
+  deprecated: false
+- id: C515
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Scoring effectiveness is conditional on compression level and connector type
+  type: quantitative
+  evidence: 'C1 framing per Reviewer: ''at sufficient compression stress, connector
+    × task interaction determines method preference'''
+  decisions: []
+  deprecated: false
+- id: C516
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: At k=0.9 on OpenVLA, all three methods converge within 3pp on Long
+  type: quantitative
+  evidence: 'C3: Table 1 OpenVLA Long k=0.9: L2=43.6, R=46.8, Attn=44.0. Max gap=3.2pp≈3pp.'
+  decisions: []
+  deprecated: false
+- id: C517
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: pi0.5 k=0.9 L2 preserves 98.2% SR with ~16% attention FLOPs savings; k=0.5
+    yields ~67% attention savings but SR drops
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_l2norm_k09_object
+    metric: overall_sr
+  decisions: []
+  deprecated: false
+- id: C518
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: SmolVLA VTR M=16 achieves 87.5% compression within 1.1pp of M=128 passthrough
+    (56.9% vs 58.0%)
+  type: quantitative
+  evidence:
+  - exp_id: eval_smolvla_sc_m16
+    metric: overall_sr
+  - exp_id: eval_smolvla_sc_m128
+    metric: overall_sr
+  decisions: []
+  deprecated: false
+- id: C519
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: L2 monotonic (86.8→50.2%) vs Random V-shape (31.8% at k=0.9 recovering to
+    64.6% at k=0.7) on π0.5 Long due to position aliasing from RoPE interaction
+  type: qualitative
+  evidence:
+  - exp_id: eval_pi05_l2norm_long_sweep
+    metric: sr_curve
+  - exp_id: eval_pi05_random_long_sweep
+    metric: sr_curve
+  decisions: []
+  deprecated: false
+- id: C520
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA Object importance margin flips from +7.8pp (k=0.9) to -5.2pp (k=0.85):
+    Random 60.4% > L2 55.2% ≈ Attn 55.0%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_random_k085_object
+    metric: sr
+  - exp_id: eval_openvla_l2norm_k085_object
+    metric: sr
+  - exp_id: eval_openvla_attn_k085_object
+    metric: sr
+  decisions: []
+  deprecated: false
+- id: C521
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA Goal k=0.7 three-method convergence: L2=Rnd=68.4%, Attn=66.4%, smooth
+    degradation'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_l2norm_k07_goal
+    metric: sr
+  - exp_id: eval_openvla_random_k07_goal
+    metric: sr
+  - exp_id: eval_openvla_attn_k07_goal
+    metric: sr
+  decisions: []
+  deprecated: false
+- id: C522
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'pi0.5 Long Attn cliff: ~13pp per 0.05k step (91.6-77.0-63.8), 3x faster than
+    L2 (8.8pp from k=0.95 to 0.85)'
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_attn_k095_long
+    metric: sr
+  - exp_id: eval_pi05_attn_k09_long
+    metric: sr
+  decisions: []
+  deprecated: false
+- id: C523
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'pi0.5 Long Random V-shape driven by T4 ''put mugs on plates'': k=0.7 T4=80%
+    vs k=0.85 T4=12%'
+  type: quantitative
+  evidence:
+  - exp_id: eval_pi05_random_long_pertask
+    metric: task4_sr
+  decisions: []
+  deprecated: false
+- id: C524
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA Goal Random k=0.9=79.6% exceeds baseline 74.8% (+4.8pp), cross-seed
+    confirmed (s43=80.4%): token over-provisioning evidence'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_random_k09_goal_seed42
+    metric: sr
+  - exp_id: eval_openvla_random_k09_goal_seed43
+    metric: sr
+  decisions: []
+  deprecated: false
+- id: C525
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: 'OpenVLA Object cliff locations staggered: L2 k=0.9-0.85 (-15.4pp earliest),
+    Random k=0.85-0.7 (-16pp), Attn k=0.75-0.7 (-9.4pp latest, plateau -1.8pp at k=0.85-0.75).
+    At k=0.5 convergence within 4.8pp'
+  type: quantitative
+  evidence:
+  - exp_id: eval_openvla_l2norm_object_sweep
+    metric: sr
+  - exp_id: eval_openvla_random_object_sweep
+    metric: sr
+  - exp_id: eval_openvla_attn_object_sweep
+    metric: sr
+  decisions: []
+  deprecated: false
+- id: C526
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Attention exhibits sharp cliff from k=0.95 to k=0.85 (-25.4pp) then plateaus
+    through k=0.5 (only -1.8pp further) on π0.5 Long
+  type: quantitative
+  evidence: 'pi05 Long Attn data: k=0.95=77.0, k=0.85=51.6 (diff=-25.4pp); k=0.85=51.6,
+    k=0.5=49.8 (diff=-1.8pp)'
+  decisions: []
+  deprecated: false
+- id: C527
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Once past the cliff (k≤0.85), attention plateaus at ~50% through k=0.5 (-1.8pp
+    total) on π0.5 Long
+  type: quantitative
+  evidence: 'pi05 Long Attn: k=0.85=51.6%, k=0.75=51.8%, k=0.70=50.8%, k=0.50=49.8%;
+    total drop 51.6-49.8=1.8pp'
+  decisions: []
+  deprecated: false
+- id: C528
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Random surpasses L2 on π0.5 Long by +1.4pp at k=0.7 (Random 64.6% vs L2 63.2%)
+  type: quantitative
+  evidence: 'pi05 Long: Random k=0.7=64.6%, L2 k=0.7=63.2%, gap=1.4pp'
+  decisions: []
+  deprecated: false
+- id: C529
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Random and L2 converge within noise at k=0.7 on π0.5 Long (64.6% vs 63.2%,
+    Δ=1.4pp < cross-seed variation)
+  type: quantitative
+  evidence: 'pi05 Long: Random k=0.7=64.6%, L2 k=0.7=63.2%, gap=1.4pp; cross-seed
+    Δ typically 0.4-0.8pp but 1.4pp is within 2-seed noise range'
+  decisions: []
+  deprecated: false
+- id: C530
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: L2 norm aids π0.5 up to +45.8pp on Long at the random valley (k=0.9)
+  type: quantitative
+  evidence: 'pi05 Long k=0.9: L2=80.0%, Random=34.2%, margin=45.8pp; this is the max
+    margin coinciding with Random valley'
+  decisions: []
+  deprecated: false
+- id: C531
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: At random valley (k=0.9) on π0.5 Long, margin up to 45.8pp declining to 7.8pp
+    at k=0.75
+  type: quantitative
+  evidence: 'pi05 Long: k=0.9 margin=45.8pp (L2 80.0 vs Random 34.2), k=0.75 margin=7.8pp
+    (L2 70.8 vs Random 63.0)'
+  decisions: []
+  deprecated: false
+- id: C532
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'L2-Random margin on π0.5 Long varies: 25.6pp (k=0.95), max 45.8pp (k=0.9
+    valley), 33.6pp (k=0.85), 7.8pp (k=0.75)'
+  type: quantitative
+  evidence: 'Margins: k=0.95: 86.2-60.6=25.6pp, k=0.9: 80.0-34.2=45.8pp (max at valley),
+    k=0.85: 77.6-44.0=33.6pp, k=0.75: 70.8-63.0=7.8pp'
+  decisions: []
+  deprecated: false
+- id: C533
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: L2 importance margin at k=0.85 on π0.5 Long = +33.6pp (L2 77.6% vs Random
+    44.0%)
+  type: quantitative
+  evidence: 'pi05 Long k=0.85: L2=77.6%, Random=44.0%, margin=33.6pp'
+  decisions: []
+  deprecated: false
+- id: C534
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Random and L2 converge at k=0.7 on π0.5 Long (66.0% vs 63.2%, Δ=2.8pp)
+  type: quantitative
+  evidence: 'pi05 Long k=0.7: Random=66.0%, L2=63.2%, gap=2.8pp'
+  decisions: []
+  deprecated: false
+- id: C535
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'At k=0.5 on π0.5 Long, all three methods converge within ~2pp: L2 ~50%, Random
+    49.8%, Attention 52.0%'
+  type: quantitative
+  evidence: 'pi05 Long k=0.5: L2=50.2(lenient), Random=49.8, Attn=52.0(strict); spread
+    ~2pp'
+  decisions: []
+  deprecated: false
+- id: C536
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Margin profile on π0.5 Long: 25.3pp(k=0.95), peak 46.0pp(k=0.9), 32.5pp(k=0.85),
+    10.2pp(k=0.75), crossover ~k=0.70, convergence at k≤0.7'
+  type: quantitative
+  evidence: 'Multi-seed: k=0.95 margin=86.0-60.7=25.3, k=0.9 margin=80.6-34.6=46.0(peak),
+    k=0.85=78.1-45.6=32.5, k=0.75=72.0-61.8=10.2, k=0.70=64.3-65.2=-0.9, k=0.50=49.2-49.8=-0.6'
+  decisions: []
+  deprecated: false
+- id: C537
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: Random and L2 converge within noise at k=0.7 on π0.5 Long (65.2±0.8% vs 64.3±1.1%,
+    Δ=0.9pp < cross-seed variation)
+  type: quantitative
+  evidence: 'Multi-seed: Random k=0.7=65.2±0.8%, L2 k=0.7=64.3±1.1%, gap=0.9pp, well
+    within error bars'
+  decisions: []
+  deprecated: false
+- id: C538
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Importance margin at k=0.75 is 8.2pp (L2 70.0% vs Random 61.8%), 4-seed mean
+  type: quantitative
+  evidence: 'pi05_long_l2_k075_4seed: s42=70.8 s43=73.2 s44=67.4 s45=68.4 mean=70.0
+    std=2.6'
+  decisions: []
+  deprecated: false
+- id: C539
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: L2 at k=0.75 shows ±2.6pp inter-seed variance (n=4), higher than other operating
+    points
+  type: quantitative
+  evidence: pi05_long_l2_k075_4seed
+  decisions: []
+  deprecated: false
+- id: C540
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: All error bars use sample std (ddof=1), not SEM
+  type: quantitative
+  evidence: convention_decision
+  decisions: []
+  deprecated: false
+- id: C541
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Margin declines to 8.2pp at k=0.75 (updated from 10.2pp with 4-seed L2 data)
+  type: quantitative
+  evidence: pi05_long_l2_k075_4seed
+  decisions: []
+  deprecated: false
+- id: C542
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: At k=0.5 on pi0.5 Long, L2 51.0%, Random 50.5%, Attn 49.9% — within ~1pp (3-seed
+    means)
+  type: quantitative
+  evidence: 'L2: D291 3-seed mean=51.0; Random: D297 mean=50.5 std=0.7; Attn: D296
+    mean=49.9 std=1.5'
+  decisions: []
+  deprecated: false
+- id: C543
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Attn plateaus ~51% through k=0.5 (within 2pp): 51.6 to 49.9'
+  type: quantitative
+  evidence: D296 attn 3-seed
+  decisions: []
+  deprecated: false
+- id: C544
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Table 1 pi0.5 Long k=0.5: L2 51.0 / R 50.5 (3-seed)'
+  type: quantitative
+  evidence: D291+D297
+  decisions: []
+  deprecated: false
+- id: C545
+  location:
+    section: analysis
+    paragraph: 0
+    sentence: 0
+  text: L2 monotonic degradation 86.0% (k=0.95) to 51.0% (k=0.5, 3-seed mean)
+  type: quantitative
+  evidence: D291 L2 k=0.5 3-seed mean=51.0
+  decisions: []
+  deprecated: false
+- id: C546
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'L2 k=0.5 pi0.5 Long: 51.5% (3-seed mean, s42=49.2 s43=52.8 s44=52.6, std=2.0pp)'
+  type: quantitative
+  evidence: 'registry verified: s42=49.2 s43=52.8 s44=52.6, mean=51.53 rounded 51.5'
+  decisions: []
+  deprecated: false
+- id: C547
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Margin at k=0.5: +1.0pp (L2 51.5 - Random 50.5)'
+  type: quantitative
+  evidence: derived from corrected L2+Random 3-seed means
+  decisions: []
+  deprecated: false
+- id: C548
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Three methods converge within ~2pp at k=0.5: L2 51.5, R 50.5, A 49.9'
+  type: quantitative
+  evidence: spread=1.6pp
+  decisions: []
+  deprecated: false
+tables:
+- id: tab:smart_compress
+  location:
+    section: results
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Smart Compress M=64
+    col: SR
+    value: '61.6'
+    source:
+      exp_id: eval_smart_compress_m64
+      metric: overall_success_rate
+  - row: Smart Compress M=32
+    col: SR
+    value: '61.6'
+    source:
+      exp_id: eval_smart_compress_m32
+      metric: overall_success_rate
+  - row: Smart Compress M=64
+    col: Episodes
+    value: '500'
+    source:
+      exp_id: eval_smart_compress_m64
+      metric: total_episodes
+  - row: Smart Compress M=32
+    col: Episodes
+    value: '500'
+    source:
+      exp_id: eval_smart_compress_m32
+      metric: total_episodes
+  deprecated: true
+- id: tab:smolvla_baseline_pertask
+  location:
+    section: appendix
+    table_number: 0
+  caption: ''
+  cells:
+  - row: overall
+    col: SR
+    value: '44.8'
+    source:
+      exp_id: baseline_bypass_object
+      metric: overall_sr
+  deprecated: false
+- id: tab:openvla_pertask
+  location:
+    section: appendix
+    table_number: 0
+  caption: ''
+  cells:
+  - row: overall
+    col: SR
+    value: '37.4'
+    source:
+      exp_id: eval_openvla_pruning_k05
+      metric: overall_sr
+  deprecated: false
+- id: tab:smart_compress_pertask
+  location:
+    section: appendix
+    table_number: 0
+  caption: ''
+  cells:
+  - row: overall_m32
+    col: SR
+    value: '61.6'
+    source:
+      exp_id: eval_smart_compress_m32
+      metric: overall_sr
+  - row: overall_m64
+    col: SR
+    value: '61.6'
+    source:
+      exp_id: eval_smart_compress_m64
+      metric: overall_sr
+  deprecated: false
+figures:
+- id: F001
+  location:
+    section: experiments
+    figure_number: 0
+  caption: Cliff curves showing success rate vs keep ratio across scoring methods
+    and VLA architectures
+  type: other
+  source:
+    type: aggregated_experiments
+    note: Cliff curve figure aggregated from pruning evaluations across scoring methods
+      and keep ratios
+  evidence:
+  - exp_id: eval_openvla_random_pruning_sweep
+    note: OpenVLA random pruning sweep k=0.3-0.95
+  - exp_id: baseline_bypass_object
+    note: SmolVLA baseline (k=1.0)
+  - exp_id: eval_openvla_baseline_object_seed42_v2
+    note: OpenVLA baseline
+  output_path: ''
+  deprecated: false
+- id: F002
+  location:
+    section: experiments
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: false
+- id: F003
+  location:
+    section: experiments
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: false
+- id: F004
+  location:
+    section: experiments
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: false
+- id: F005
+  location:
+    section: experiments
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: false
+- id: F006
+  location:
+    section: experiments
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: false
+- id: F007
+  location:
+    section: experiments
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: false
+- id: F008
+  location:
+    section: experiments
+    figure_number: 0
+  caption: ''
+  type: other
+  source: {}
+  output_path: ''
+  deprecated: false
+_completeness:
+  coverage: 101/109
+  claims: 101
+  tables: 3
+  figures: 8
+  tier_counts:
+    tier1: 0
+    tier2: 101
+    tier3: 8
+    tierX: 0
+  last_checked: '2026-05-28T04:02:03.673696+00:00'

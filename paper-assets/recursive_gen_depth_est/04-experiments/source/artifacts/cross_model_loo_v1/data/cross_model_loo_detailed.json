@@ -1,0 +1,10 @@
+See server file: /root/autodl-tmp/recursive_gen_depth_est/results/cross_model_loo_detailed.json
+
+Summary:
+- mean_4class_acc: 0.664
+- mean_3class_acc: 0.5544
+- holdout_pythia: 4c=0.6242, 3c=0.499
+- holdout_olmo: 4c=0.6921, 3c=0.592
+- holdout_gpt2xl: 4c=0.6756, 3c=0.5723
+- lowest recall class: d2 (mean=0.4086)
+- d2 recall by rotation: pythia=0.2677, olmo=0.4327, gpt2xl=0.5255

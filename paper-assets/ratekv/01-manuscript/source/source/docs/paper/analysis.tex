@@ -1,0 +1,96 @@
+\section{Analysis}
+\label{sec:analysis}
+
+\subsection{Heterogeneity Characterization}
+\label{sec:heterogeneity}
+
+The benefit of non-uniform allocation depends on how unevenly head sensitivities are distributed.
+We quantify this with a \emph{top-5\% concentration metric}: sort per-head 2-bit distortions $d_h(2)$ in descending order and compute the fraction of total distortion contributed by the top 5\% of heads.
+High concentration indicates that a few heads are disproportionately sensitive; low concentration indicates near-uniform sensitivity.
+
+Table~\ref{tab:heterogeneity} summarizes the results across nine models at $4\times$ compression.
+The central finding is that MCKP benefit requires \emph{spread heterogeneity}---multiple heads with cross-bitwidth sensitivity gradients---rather than sensitivity concentrated in a single outlier at one bitwidth.
+
+Qwen2.5-7B exemplifies the spread pattern (top-5\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.
+Constrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.10 PPL, a 29.4\% improvement over uniform 4-bit. %exp_id=qwen_constrained_mckp
+
+Yi-1.5-9B is a critical counterexample: despite high concentration ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\ $+$0.20). %exp_id=yi15_hires_constrained_mckp
+Yi-1.5's sensitivity is dominated by a single extreme outlier: Layer-4 Head-3 ($d_h(2){=}13.12$, second-ranked head: $0.55$, a $24\times$ gap; $t_1/t_5{=}0.90$). %exp_id=yi15_hires_profiling
+Critically, L4H3's 4-bit and 8-bit deltas are ${\approx}\,0$, so upgrading it from 2-bit to 4-bit removes the distortion, but budget freed by downgrading other heads has nowhere useful to go---a ``spike'' pattern with sensitivity at only one bitwidth.
+In contrast, Qwen's Layer-0 heads exhibit non-zero deltas at multiple bitwidths (e.g., L0H0: 2-bit delta ${=}6.74$, with positive 4-bit and 8-bit deltas), giving the solver a multi-bitwidth gradient across several heads---a ``spread'' pattern enabling meaningful reallocation. %exp_id=qwen_hires_profiling
+
+Llama-3.1-8B has concentration $0.57$---comparable to Qwen's $0.61$---yet its spike pattern ($t_1/t_5{=}0.85$), dominated by a single head (L2H5), yields allocation indistinguishable from uniform ($+$0.36 vs.\ $+$0.38), demonstrating that concentration alone is insufficient without spread structure. %exp_id=llama_hires_bf16_2bitonly %exp_id=llama_hires_constrained
+CodeLlama-7B reinforces this: the highest concentration tested ($0.80$) with an extreme spike ($t_1/t_5{=}0.81$, L1H1 contributes $81\%$ of top-5 delta, $11.3\times$ the second-ranked head) yields no benefit when dominated by a single outlier; constrained MCKP ($k{=}2$) confirms: $+$0.17 vs.\ uniform $+$0.19, consistent with a near-uniform allocation (1021/1024 heads at 4-bit). %exp_id=codellama_constrained_mckp
+Mistral-7B-v0.3 ($t_1/t_5{=}0.41$) and Gemma-2-9B ($t_1/t_5{=}0.38$) both exhibit flat distributions with low concentration ($0.24$ and $0.23$), leaving no reliable signal; constrained MCKP is slightly worse than uniform in both cases ($+$0.13 vs.\ $+$0.10 for Mistral; $+$0.16 vs.\ $+$0.14 for Gemma-2). %exp_id=mistral_c4_cross_dataset %exp_id=gemma2_full_pipeline
+
+Pythia-1.4B extends the evaluation to MHA (1:1 ratio, 384 heads).
+Low concentration ($0.24$) and $t_1/t_5{=}0.28$ place it in the flat category; constrained MCKP confirms this ($+$7.96 vs.\ uniform $+$7.80, $+$0.7\%). %exp_id=pythia14b_constrained_pipeline
+
+Phi-3-medium-14B (GQA 4:1, 400 heads) has the lowest concentration in our test set ($0.17$) with $t_1/t_5{=}0.23$; the joint rule classifies it as flat, confirmed by evaluation (constrained $+$0.18 vs.\ uniform $+$0.16 PPL).
+Although $t_1/t_5$ is low (indicating no dominant outlier), the concentration of 0.17 places the cumulative top-5\% delta below the level required for meaningful reallocation---spread structure without sufficient absolute magnitude does not create optimization opportunities. %exp_id=phi3_medium_hires_profiling_v2 %exp_id=phi3_medium_constrained_mckp
+
+\paragraph{Scale-dependent concentration dilution.}
+Qwen2.5-14B (GQA 5:1, 384 heads) provides a within-family comparison: $t_1/t_5$ is similar (0.57 vs.\ 0.68), but concentration drops from 0.61 (7B) to 0.33 (14B)---diluted by $3.4\times$ more heads into the flat regime.
+Sensitivity is dominated by a single head (L0H5, $d_h(2){=}1.845$; second-ranked: $0.237$, a $7.8\times$ gap), but 384 heads dilute cumulative signal below the concentration threshold.
+Concentration, not within-head structure, is thus the primary discriminator: the rule correctly identifies Qwen-7B as the single model$\times$scale combination where non-uniform allocation helps.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Head sensitivity heterogeneity and constrained allocation benefit at $4\times$ compression. $t_1/t_5$: ratio of the most sensitive head's 2-bit distortion to the sum of the top-5\% of heads' distortions (low${=}$spread, high${=}$spike); the percentage threshold ensures comparability across models with different head counts (112--400). $^*$BOS-corrected.}
+\label{tab:heterogeneity}
+\begin{tabular}{lcccccc}
+\toprule
+Model & GQA & Top-5\% & $t_1/t_5$ & $\Delta$ PPL & $\Delta$ PPL & Shape \\
+ & Ratio & Conc. & & (Uniform) & (Ours) & \\
+\midrule
+Qwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.10 & Spread \\
+Qwen2.5-14B & 5:1 & 0.33 & 0.68 & $+$0.33 & $+$0.35 & Flat \\
+Yi-1.5-9B & 8:1 & 0.71 & 0.90 & $+$0.20 & $+$0.20 & Spike \\
+Llama-3.1-8B & 4:1 & 0.57 & 0.85 & $+$0.38 & $+$0.36 & Spike \\
+Mistral-7B-v0.3 & 4:1 & 0.24 & 0.41 & $+$0.10 & $+$0.10 & Flat \\
+Gemma-2-9B$^*$ & 2:1 & 0.23 & 0.38 & $+$0.14 & $+$0.16 & Flat \\
+Phi-3-medium-14B & 4:1 & 0.17 & 0.23 & $+$0.16 & $+$0.18 & Flat \\
+CodeLlama-7B & 1:1 & 0.80 & 0.81 & $+$0.19 & $+$0.17 & Spike \\
+Pythia-1.4B & 1:1 & 0.24 & 0.28 & $+$7.80 & $+$7.96 & Flat \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The per-head heatmap (Figure~\ref{fig:heatmap}, Appendix~\ref{sec:heatmap_appendix}) confirms this visually: Qwen's Layer-0 heads show high distortion while mid-to-deep layers are near-zero (spread); Yi-1.5 shows a single bright spot at Layer-4 Head-3 (64\% of total delta) with the remaining 191 heads near-uniform (spike); Gemma-2 and Mistral show uniformly low distortion.
+
+\subsection{Empirical Decision Rule}
+\label{sec:diagnostic}
+
+MCKP benefit requires not just high concentration but a specific \emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.
+This motivates a joint empirical decision rule for deciding when non-uniform allocation is worthwhile.
+Given the profiling results from \S\ref{sec:profiling}, compute the top-5\% concentration and $t_1/t_5$ ratio, then select:
+\begin{itemize}[nosep]
+\item \textbf{Spread} (concentration $\geq 0.50$ \emph{and} $t_1/t_5 \leq 0.70$): non-uniform recommended. Qwen-7B (0.61, $t_1/t_5{=}0.57$): $-$29.4\% PPL.
+\item \textbf{Spike} ($t_1/t_5 > 0.70$ \emph{and} concentration $\geq 0.25$): use uniform. A dominant outlier with no cross-bitwidth gradient cannot be exploited. Yi-1.5 (0.71, 0.90), CodeLlama (0.80, 0.81), and Llama (0.57, 0.85): no benefit.
+\item \textbf{Flat} (concentration $< 0.25$, or concentration $\in [0.25, 0.50)$ with $t_1/t_5 \leq 0.70$): use uniform. Too little cumulative delta for meaningful reallocation. Mistral (0.24), Gemma-2 (0.23), Phi-3-medium (0.17), Qwen-14B (0.33), and Pythia (0.24): no benefit or counterproductive.
+\end{itemize}
+
+Both conditions are needed: CodeLlama ($0.80$), Llama ($0.57$), and Yi-1.5 ($0.71$) all exceed the concentration threshold yet show no MCKP benefit; their spike shapes ($t_1/t_5 \geq 0.70$) correctly override.
+A concentration-only rule would misclassify all three as spread; $t_1/t_5$ is the critical second discriminator.
+The rule is experimentally confirmed on all nine models (9/9), including the within-family scale contrast (Qwen-7B spread vs.\ 14B flat), Pythia-1.4B (MHA, flat), and CodeLlama-7B (MHA, spike).
+Only Qwen-7B exhibits the spread pattern ($N{=}1$); the suggested thresholds should be treated as preliminary until confirmed on additional models.
+The rule reuses profiling data already required by the solver and adds no overhead.
+
+\paragraph{Why is Qwen-7B the only spread model?}
+We offer two non-exclusive hypotheses, both requiring further validation.
+First, Qwen-7B's high GQA ratio (7:1) means each KV head aggregates attention from 7 query heads, potentially driving greater functional specialization and thus larger inter-head sensitivity differences.
+However, Yi-1.5 (8:1) and Qwen-14B (5:1) have comparable or higher GQA ratios yet do not exhibit spread, so GQA ratio alone is insufficient.
+Second, scale-dependent concentration dilution may play a role: Qwen-14B (same architecture family, $3.4\times$ more heads) dilutes into the flat regime despite similar within-head structure ($t_1/t_5$ 0.68 vs.\ 0.57).
+This suggests that increasing head count may systematically reduce concentration, making spread less likely at larger scales---a hypothesis consistent with the Qwen-7B/14B contrast but requiring evaluation on additional model families and scales.
+
+On Qwen-7B, a simple L0-protection heuristic with random downgrade captures 93\% of the MCKP benefit under standard-resolution profiling (median PPL 11.52 vs MCKP 11.23), suggesting that identifying which heads to \emph{protect} matters more than the optimization algorithm---consistent with our solver-equivalence finding.
+
+Additional analyses---granularity tradeoff (Appendix~\ref{sec:granularity}), aggressive compression, profiling resolution and stability, per-layer optimality, and KV separation---are in Appendices~\ref{sec:granularity}--\ref{sec:kv_separation}.
+
+\paragraph{Architectural bottleneck.}
+The method's ceiling is architectural, not algorithmic.
+KIVI-style per-channel asymmetric quantization~\cite{liu2024kivi} achieves 9.91 PPL on Qwen (vs.\ 9.81 bf16) with uniform 4-bit allocation alone---completely subsuming the head-level reallocation signal that our symmetric constrained MCKP exploits (10.91).
+The 100\% gap between KIVI~9.91 and symmetric uniform~15.45 originates in the quantization scheme, not the allocation strategy; composing KIVI with MCKP yields 9.90, identical to KIVI alone, confirming that per-channel information renders head-level optimization redundant.
+The practical implication is clear: when hardware supports per-channel asymmetric quantization, practitioners should use it directly; our cardinality-constrained allocation provides independent value only in symmetric-only deployment environments---common in hardware accelerators that lack per-channel support---where it is the sole mechanism for exploiting sensitivity heterogeneity.
+In those symmetric environments, the constraint's value is not PPL optimization per se but catastrophic-failure prevention: on Qwen, unconstrained symmetric allocation degrades to 32.45 PPL ($3.3\times$ bf16), while the cardinality constraint reduces this to 10.91, a safeguard that no allocation strategy can replicate under per-channel schemes because the failure mode itself disappears.

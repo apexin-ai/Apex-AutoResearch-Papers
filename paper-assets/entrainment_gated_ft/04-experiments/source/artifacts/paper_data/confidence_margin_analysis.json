@@ -1,0 +1,80 @@
+{
+  "analysis": "confidence_margin",
+  "date": "2026-05-20",
+  "purpose": "rebuttal_reserve",
+  "method": {
+    "confidence_proxy": "abs(target_token_loglikelihood) from pure model",
+    "interpretation": "lower value = closer to decision boundary",
+    "comparison": "helped (pure wrong, hybrid right) vs hurt (pure right, hybrid wrong)",
+    "tests": ["Mann-Whitney U (two-sided)", "KS two-sample", "Cohen's d"],
+    "note": "GDN uses h12-1 (h3-1 unavailable at 1.3B); RetNet/HGRN2 use h3-1"
+  },
+  "per_architecture": {
+    "GDN": {
+      "hybrid_config": "GDN-h12-1",
+      "n_total": 5153,
+      "n_helped": 480,
+      "n_hurt": 519,
+      "n_same": 4154,
+      "helped_margin": {"mean": 2.4587, "median": 2.1641, "std": 1.2315, "q25": 1.6172, "q75": 3.0},
+      "hurt_margin": {"mean": 1.049, "median": 1.0, "std": 0.6053, "q25": 0.5781, "q75": 1.4297},
+      "mann_whitney": {"U": 221269.5, "p": 5.563e-100, "r_rb": -0.7764},
+      "ks_test": {"D": 0.5907, "p": 2.515e-81},
+      "cohens_d": 1.4528,
+      "borderline_rates": {
+        "<1.0": {"helped": 0.019, "hurt": 0.499},
+        "<2.0": {"helped": 0.427, "hurt": 0.929},
+        "<3.0": {"helped": 0.746, "hurt": 0.994}
+      },
+      "interpretation": "hurt_lower_confidence"
+    },
+    "RetNet": {
+      "hybrid_config": "RetNet-h3-1",
+      "n_total": 5153,
+      "n_helped": 420,
+      "n_hurt": 497,
+      "n_same": 4236,
+      "helped_margin": {"mean": 2.4778, "median": 2.2812, "std": 1.025, "q25": 1.7344, "q75": 2.957},
+      "hurt_margin": {"mean": 1.2931, "median": 1.2188, "std": 0.6349, "q25": 0.8438, "q75": 1.6953},
+      "mann_whitney": {"U": 178600.0, "p": 5.047e-77, "r_rb": -0.7112},
+      "ks_test": {"D": 0.5368, "p": 1.123e-60},
+      "cohens_d": 1.3896,
+      "borderline_rates": {
+        "<1.0": {"helped": 0.014, "hurt": 0.360},
+        "<2.0": {"helped": 0.355, "hurt": 0.865},
+        "<3.0": {"helped": 0.762, "hurt": 0.992}
+      },
+      "interpretation": "hurt_lower_confidence"
+    },
+    "HGRN2": {
+      "hybrid_config": "HGRN2-h3-1",
+      "n_total": 5153,
+      "n_helped": 548,
+      "n_hurt": 392,
+      "n_same": 4213,
+      "helped_margin": {"mean": 2.5004, "median": 2.3125, "std": 0.9797, "q25": 1.7949, "q75": 2.9844},
+      "hurt_margin": {"mean": 1.4809, "median": 1.4375, "std": 0.6631, "q25": 0.9824, "q75": 1.916},
+      "mann_whitney": {"U": 176188.5, "p": 4.925e-63, "r_rb": -0.6404},
+      "ks_test": {"D": 0.4588, "p": 5.816e-44},
+      "cohens_d": 1.2187,
+      "borderline_rates": {
+        "<1.0": {"helped": 0.009, "hurt": 0.263},
+        "<2.0": {"helped": 0.358, "hurt": 0.788},
+        "<3.0": {"helped": 0.752, "hurt": 0.980}
+      },
+      "interpretation": "hurt_lower_confidence"
+    }
+  },
+  "cross_arch_narrative": "hurt_borderline_consistent",
+  "narrative_text": "All 3 architectures show hurt samples have significantly lower pure-model confidence margins than helped samples (all p < 1e-60, Cohen d > 1.2). This is the OPPOSITE of the borderline hypothesis: attention does NOT primarily help borderline cases. Instead, attention corrects high-confidence errors (helped: mean margin ~2.5) while disrupting low-confidence correct predictions (hurt: mean margin ~1.0-1.5). The pure model confidence is a strong predictor of whether attention will help or hurt on a given example.",
+  "rebuttal_implications": {
+    "overturns_opaque": true,
+    "finding": "Attention effect is NOT opaque w.r.t. confidence margin. Hurt samples cluster near the decision boundary; helped samples are confidently wrong under pure model.",
+    "rebuttal_use": "If reviewer asks why attention helps/hurts unpredictably: confidence margin analysis shows attention systematically rescues high-confidence errors and destabilizes borderline-correct predictions. The effect is predictable from pure-model confidence, even though surface/perplexity features show no signal.",
+    "effect_sizes": {
+      "GDN": "Cohen d=1.45, r_rb=-0.78",
+      "RetNet": "Cohen d=1.39, r_rb=-0.71",
+      "HGRN2": "Cohen d=1.22, r_rb=-0.64"
+    }
+  }
+}

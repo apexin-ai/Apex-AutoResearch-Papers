@@ -1,0 +1,95 @@
+{
+  "B": 9999,
+  "seed": 42,
+  "EPS": 1e-06,
+  "n_panels": 455,
+  "regression": "log(ASR+eps) ~ log(K_eff) + log(eta_max+eps), standardized betas, OLS",
+  "methods": {
+    "majority_vote": {
+      "R2_original": 0.3269,
+      "R2_bootstrap_mean": 0.3298,
+      "R2_ci_lower": 0.3090,
+      "R2_ci_upper": 0.3508,
+      "R2_bootstrap_std": 0.0107,
+      "n_valid_conditions": 12,
+      "n_bootstrap": 9999
+    },
+    "weighted_vote": {
+      "R2_original": 0.3281,
+      "R2_bootstrap_mean": 0.3311,
+      "R2_ci_lower": 0.3108,
+      "R2_ci_upper": 0.3516,
+      "R2_bootstrap_std": 0.0105,
+      "n_valid_conditions": 12,
+      "n_bootstrap": 9999
+    },
+    "threshold_unanimous": {
+      "R2_original": 0.8287,
+      "R2_bootstrap_mean": 0.8327,
+      "R2_ci_lower": 0.8060,
+      "R2_ci_upper": 0.8586,
+      "R2_bootstrap_std": 0.0133,
+      "n_valid_conditions": 12,
+      "n_bootstrap": 9999
+    },
+    "bayesian": {
+      "R2_original": 0.0872,
+      "R2_bootstrap_mean": 0.0914,
+      "R2_ci_lower": 0.0774,
+      "R2_ci_upper": 0.1064,
+      "R2_bootstrap_std": 0.0073,
+      "n_valid_conditions": 12,
+      "n_bootstrap": 9999
+    }
+  },
+  "pairwise_differences": {
+    "majority_vote_minus_weighted_vote": {
+      "diff_mean": -0.0012,
+      "diff_ci_lower": -0.0305,
+      "diff_ci_upper": 0.0284,
+      "prob_positive": 0.466,
+      "significant": false
+    },
+    "majority_vote_minus_threshold_unanimous": {
+      "diff_mean": -0.5029,
+      "diff_ci_lower": -0.5358,
+      "diff_ci_upper": -0.4696,
+      "prob_positive": 0.000,
+      "significant": true
+    },
+    "majority_vote_minus_bayesian": {
+      "diff_mean": 0.2384,
+      "diff_ci_lower": 0.2132,
+      "diff_ci_upper": 0.2636,
+      "prob_positive": 1.000,
+      "significant": true
+    },
+    "weighted_vote_minus_threshold_unanimous": {
+      "diff_mean": -0.5016,
+      "diff_ci_lower": -0.5346,
+      "diff_ci_upper": -0.4679,
+      "prob_positive": 0.000,
+      "significant": true
+    },
+    "weighted_vote_minus_bayesian": {
+      "diff_mean": 0.2397,
+      "diff_ci_lower": 0.2146,
+      "diff_ci_upper": 0.2648,
+      "prob_positive": 1.000,
+      "significant": true
+    },
+    "threshold_unanimous_minus_bayesian": {
+      "diff_mean": 0.7413,
+      "diff_ci_lower": 0.7116,
+      "diff_ci_upper": 0.7707,
+      "prob_positive": 1.000,
+      "significant": true
+    }
+  },
+  "key_findings": [
+    "R² ordering robustly confirmed: Threshold (0.829) >> Majority (0.327) ≈ Weighted (0.328) >> Bayesian (0.087)",
+    "All pairwise differences significant except Majority vs Weighted (CI includes 0)",
+    "Threshold-Bayesian gap: 0.741 [0.712, 0.771] — massive, non-overlapping CIs",
+    "Majority-Weighted gap: -0.001 [-0.031, +0.028] — no difference, as expected"
+  ]
+}

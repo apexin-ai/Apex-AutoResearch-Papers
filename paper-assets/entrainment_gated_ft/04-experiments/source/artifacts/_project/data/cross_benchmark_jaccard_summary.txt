@@ -1,0 +1,22 @@
+A1 Cross-Benchmark Jaccard Trajectory Analysis
+
+Full data: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json
+
+Key Findings:
+1. Jaccard saturation is universal: All 4 benchmarks show flat Jaccard trajectories (all p>0.33)
+2. sigma convergence is LAMBADA-only: rho=-1.0, p=0.017. Others all p>0.45
+3. Decoupling confirmed cross-benchmark: sigma and Jaccard operate on different timescales
+
+Summary Table:
+Benchmark   | sigma_pure  sigma_h3-1  reduction | sigma_rho  sigma_p | J_rho  J_p
+LAMBADA     | 0.024047    0.004943    79.4%     | -1.00      0.017   | 0.80   0.333
+HellaSwag   | 0.011685    0.011831    -1.2%     |  0.30      0.683   | 0.60   0.417
+PIQA        | 0.004624    0.003873    16.2%     | -0.50      0.450   | 0.00   1.000
+ARC-Easy    | 0.000397    0.009966    -2411%    |  0.30      0.683   | 0.80   0.333
+
+Jaccard Trajectories (mean pairwise, 3 arch pairs):
+           h24-1    h12-1    h6-1     h3-1
+LAMBADA    0.091    0.088    0.096    0.097
+HellaSwag  0.084    0.081    0.091    0.086
+PIQA       0.089    0.096    0.089    0.095
+ARC-Easy   0.084    0.099    0.091    0.109

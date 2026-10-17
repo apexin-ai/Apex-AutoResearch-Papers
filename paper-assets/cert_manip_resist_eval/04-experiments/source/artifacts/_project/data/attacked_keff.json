@@ -1,0 +1,1 @@
+See /root/cert_manip_resist_eval/artifacts/results/plan001/attacked_keff.json on seetacloud-rtx6000. Key results: score_manipulation r=0.98, authority_bias r=0.96, sycophancy r=0.92, verbosity_bias r=0.92 (stable). prompt_injection r=0.61 (moderate). position_bias r=0.08-0.60 (unstable). Overall Spearman r=0.79.

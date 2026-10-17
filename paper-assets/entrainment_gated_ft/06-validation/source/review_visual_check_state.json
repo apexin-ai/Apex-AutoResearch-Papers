@@ -1,0 +1,62 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:16:31.795121+00:00",
+  "completed_at": "2026-05-25T21:20:28.007961+00:00",
+  "findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 7",
+      "message": "页面过度拥挤：1 figure + 2 tables 共 3 个 display items 挤在一页。Figure 6 散点图尺寸过小，细节（数据点、趋势线、轴标签）在打印尺寸下难以辨认。建议将 Figure 6 放大或将 Table 3/4 之一移至相邻页"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 5",
+      "message": "Figure 3 的柱状图使用红色（Helped）和绿色类（Hurt/Net）色系并列，对红绿色盲读者区分度不足。建议改用 Okabe-Ito 色板或 blue+orange 方案，或辅以不同 hatch pattern"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 6",
+      "message": "Figure 5(b) confidence-based routing 图中正值/负值柱使用绿色和红色对比，同样存在色盲可辨识性问题"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 22",
+      "message": "末页仅 ~15% 内容填充（Section Z 约 6 行），85% 空白。虽是 appendix 末尾的必要声明，但可考虑与前页合并或在此页补充额外分析"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item（纯 Abstract+Intro），但 Figure 1 在 page 2 顶部紧接出现，符合前 3 页内有视觉锚点的最佳实践"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2（Experimental framework 概念图）内部文字较小，尤其方框内的描述文本在缩小打印时可能难以辨读。建议适当增大图内字号或简化文字"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 7 热力图单元格内数值字号偏小（约 6-7pt），部分审稿人在屏幕阅读时可能需要放大查看"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 11-21",
+      "message": "Appendix 全为表格+文字，无任何 figure。视觉上较为单调，如有可能可为关键附录分析添加辅助图表"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 4 中 bold 标注了显著结果，格式正确；所有表格均使用 booktabs 风格，无竖线——专业规范"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 9-10",
+      "message": "参考文献格式统一，未发现 [?] 未解析引用或格式不一致"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 4,
+    "info": 6
+  }
+}

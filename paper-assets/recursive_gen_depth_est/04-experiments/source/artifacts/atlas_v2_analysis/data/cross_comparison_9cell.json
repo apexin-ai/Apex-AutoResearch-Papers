@@ -1,0 +1,241 @@
+{
+  "cross_model_rank_correlation": {
+    "nucleus095": [
+      {
+        "pair": "pythia_nucleus095_vs_gpt2xl_nucleus095",
+        "spearman_rho": 0.8614035087719297
+      },
+      {
+        "pair": "pythia_nucleus095_vs_olmo_nucleus095",
+        "spearman_rho": 0.6192982456140351
+      },
+      {
+        "pair": "gpt2xl_nucleus095_vs_olmo_nucleus095",
+        "spearman_rho": 0.8578947368421052
+      }
+    ],
+    "temp09": [
+      {
+        "pair": "pythia_temp09_vs_gpt2xl_temp09",
+        "spearman_rho": 0.882456140350877
+      },
+      {
+        "pair": "pythia_temp09_vs_olmo_temp09",
+        "spearman_rho": 0.819298245614035
+      },
+      {
+        "pair": "gpt2xl_temp09_vs_olmo_temp09",
+        "spearman_rho": 0.9140350877192982
+      }
+    ],
+    "topk50": [
+      {
+        "pair": "pythia_topk50_vs_gpt2xl_topk50",
+        "spearman_rho": 0.8403508771929825
+      },
+      {
+        "pair": "pythia_topk50_vs_olmo_topk50",
+        "spearman_rho": 0.8842105263157896
+      },
+      {
+        "pair": "gpt2xl_topk50_vs_olmo_topk50",
+        "spearman_rho": 0.9543859649122807
+      }
+    ]
+  },
+  "cross_strategy_rank_correlation": {
+    "Pythia-1.4B": [
+      {
+        "pair": "pythia_nucleus095_vs_pythia_temp09",
+        "spearman_rho": 0.8140350877192982
+      },
+      {
+        "pair": "pythia_nucleus095_vs_pythia_topk50",
+        "spearman_rho": 0.8421052631578947
+      },
+      {
+        "pair": "pythia_temp09_vs_pythia_topk50",
+        "spearman_rho": 0.9245614035087718
+      }
+    ],
+    "GPT-2 XL": [
+      {
+        "pair": "gpt2xl_nucleus095_vs_gpt2xl_temp09",
+        "spearman_rho": 0.9491228070175438
+      },
+      {
+        "pair": "gpt2xl_nucleus095_vs_gpt2xl_topk50",
+        "spearman_rho": 0.9403508771929823
+      },
+      {
+        "pair": "gpt2xl_temp09_vs_gpt2xl_topk50",
+        "spearman_rho": 0.9228070175438597
+      }
+    ],
+    "OLMo-1B": [
+      {
+        "pair": "olmo_nucleus095_vs_olmo_temp09",
+        "spearman_rho": 0.8964912280701753
+      },
+      {
+        "pair": "olmo_nucleus095_vs_olmo_topk50",
+        "spearman_rho": 0.8105263157894737
+      },
+      {
+        "pair": "olmo_temp09_vs_olmo_topk50",
+        "spearman_rho": 0.8912280701754386
+      }
+    ]
+  },
+  "jaccard_top3_by_strategy": {
+    "nucleus095": [
+      {
+        "pair": "pythia_nucleus095_vs_gpt2xl_nucleus095",
+        "jaccard": 0.5
+      },
+      {
+        "pair": "pythia_nucleus095_vs_olmo_nucleus095",
+        "jaccard": 0.5
+      },
+      {
+        "pair": "gpt2xl_nucleus095_vs_olmo_nucleus095",
+        "jaccard": 1.0
+      }
+    ],
+    "temp09": [
+      {
+        "pair": "pythia_temp09_vs_gpt2xl_temp09",
+        "jaccard": 0.2
+      },
+      {
+        "pair": "pythia_temp09_vs_olmo_temp09",
+        "jaccard": 0.5
+      },
+      {
+        "pair": "gpt2xl_temp09_vs_olmo_temp09",
+        "jaccard": 0.5
+      }
+    ],
+    "topk50": [
+      {
+        "pair": "pythia_topk50_vs_gpt2xl_topk50",
+        "jaccard": 0.5
+      },
+      {
+        "pair": "pythia_topk50_vs_olmo_topk50",
+        "jaccard": 0.5
+      },
+      {
+        "pair": "gpt2xl_topk50_vs_olmo_topk50",
+        "jaccard": 1.0
+      }
+    ]
+  },
+  "jaccard_top3_by_model": {
+    "Pythia-1.4B": [
+      {
+        "pair": "pythia_nucleus095_vs_pythia_temp09",
+        "jaccard": 1.0
+      },
+      {
+        "pair": "pythia_nucleus095_vs_pythia_topk50",
+        "jaccard": 1.0
+      },
+      {
+        "pair": "pythia_temp09_vs_pythia_topk50",
+        "jaccard": 1.0
+      }
+    ],
+    "GPT-2 XL": [
+      {
+        "pair": "gpt2xl_nucleus095_vs_gpt2xl_temp09",
+        "jaccard": 0.5
+      },
+      {
+        "pair": "gpt2xl_nucleus095_vs_gpt2xl_topk50",
+        "jaccard": 1.0
+      },
+      {
+        "pair": "gpt2xl_temp09_vs_gpt2xl_topk50",
+        "jaccard": 0.5
+      }
+    ],
+    "OLMo-1B": [
+      {
+        "pair": "olmo_nucleus095_vs_olmo_temp09",
+        "jaccard": 1.0
+      },
+      {
+        "pair": "olmo_nucleus095_vs_olmo_topk50",
+        "jaccard": 1.0
+      },
+      {
+        "pair": "olmo_temp09_vs_olmo_topk50",
+        "jaccard": 1.0
+      }
+    ]
+  },
+  "cross_model_accuracy_consistency": {
+    "nucleus095": {
+      "mean_acc": 0.8057500000000001,
+      "std_acc": 0.025050748491811593,
+      "per_model": {
+        "pythia_nucleus095": 0.78685,
+        "gpt2xl_nucleus095": 0.8411500000000001,
+        "olmo_nucleus095": 0.78925
+      }
+    },
+    "temp09": {
+      "mean_acc": 0.8157166666666665,
+      "std_acc": 0.0374299419656985,
+      "per_model": {
+        "pythia_temp09": 0.7674,
+        "gpt2xl_temp09": 0.8586,
+        "olmo_temp09": 0.82115
+      }
+    },
+    "topk50": {
+      "mean_acc": 0.7308666666666667,
+      "std_acc": 0.030637132517402636,
+      "per_model": {
+        "pythia_topk50": 0.68835,
+        "gpt2xl_topk50": 0.7593500000000001,
+        "olmo_topk50": 0.7449
+      }
+    }
+  },
+  "cross_strategy_accuracy_consistency": {
+    "Pythia-1.4B": {
+      "mean_acc": 0.7475333333333335,
+      "std_acc": 0.04259558532159042,
+      "per_strategy": {
+        "pythia_nucleus095": 0.78685,
+        "pythia_temp09": 0.7674,
+        "pythia_topk50": 0.68835
+      }
+    },
+    "GPT-2 XL": {
+      "mean_acc": 0.8197000000000001,
+      "std_acc": 0.04326443882297175,
+      "per_strategy": {
+        "gpt2xl_nucleus095": 0.8411500000000001,
+        "gpt2xl_temp09": 0.8586,
+        "gpt2xl_topk50": 0.7593500000000001
+      }
+    },
+    "OLMo-1B": {
+      "mean_acc": 0.7851,
+      "std_acc": 0.03126694207412467,
+      "per_strategy": {
+        "olmo_nucleus095": 0.78925,
+        "olmo_temp09": 0.82115,
+        "olmo_topk50": 0.7449
+      }
+    }
+  },
+  "summary": {
+    "rank_corr_min": 0.6192982456140351,
+    "rank_corr_max": 0.9543859649122807,
+    "rank_corr_mean": 0.8680311890838206
+  }
+}

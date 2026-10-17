@@ -1,0 +1,49 @@
+9-Cell Baseline Battery Results (2026-05-15)
+=============================================
+Settings: seed=42, test_size=0.15, val_size=0.15, CORAL epochs=100, 20K samples/cell
+
+Best 4-class Accuracy Matrix (3 models x 3 strategies):
+               nucleus    temp09    topk50
+  Pythia         78.2%     77.2%     68.8%
+  OLMo           79.6%     82.7%     75.9%
+  GPT-2 XL       84.3%     85.3%     75.4%
+
+4-class accuracy (all methods):
+Cell                   RF       LR    CORAL   DivEye
+pythia_nucleus       78.1%    75.0%    78.1%    78.2%
+pythia_temp09        76.8%    74.1%    77.2%    76.6%
+pythia_topk50        68.7%    68.3%    68.8%    68.4%
+olmo_nucleus         78.8%    75.5%    79.6%    77.4%
+olmo_temp09          82.7%    81.5%    82.1%    80.9%
+olmo_topk50          73.7%    75.9%    75.6%    73.6%
+gpt2xl_nucleus       84.0%    81.4%    84.3%    83.6%
+gpt2xl_temp09        85.3%    81.1%    84.7%    82.6%
+gpt2xl_topk50        75.4%    71.3%    74.8%    71.0%
+
+3-class accuracy (d1-d3 only):
+pythia_nucleus       70.9%    66.7%    70.9%    71.0%
+pythia_temp09        69.1%    65.6%    69.7%    68.8%
+pythia_topk50        58.4%    58.3%    59.2%    58.2%
+olmo_nucleus         72.1%    68.0%    73.5%    70.4%
+olmo_temp09          77.0%    75.3%    76.1%    74.7%
+olmo_topk50          65.1%    67.9%    67.7%    65.0%
+gpt2xl_nucleus       78.9%    75.5%    79.6%    78.5%
+gpt2xl_temp09        80.5%    75.4%    79.7%    77.3%
+gpt2xl_topk50        67.7%    63.0%    66.6%    62.5%
+
+d1_vs_d2 AUC:
+pythia_nucleus       0.859    0.776    0.816    0.865
+pythia_temp09        0.834    0.785    0.781    0.832
+pythia_topk50        0.741    0.721    0.706    0.725
+olmo_nucleus         0.862    0.830    0.833    0.853
+olmo_temp09          0.903    0.894    0.854    0.888
+olmo_topk50          0.822    0.826    0.800    0.802
+gpt2xl_nucleus       0.914    0.839    0.889    0.906
+gpt2xl_temp09        0.937    0.886    0.895    0.916
+gpt2xl_topk50        0.811    0.789    0.774    0.768
+
+Notes:
+- DivEye on gpt2xl_temp09/topk50 required feature clipping (max 1e10) due to extreme PPL values
+- CORAL trained 100 epochs with early stopping (patience=10)
+- All results use identical train/val/test splits (seed=42, 70/15/15)
+- Full JSON at results/baseline_battery_9cell/all_results.json on gpu-6000pro-2

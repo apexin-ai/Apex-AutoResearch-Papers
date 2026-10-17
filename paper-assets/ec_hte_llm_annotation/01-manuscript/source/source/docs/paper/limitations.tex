@@ -1,0 +1,6 @@
+\section*{Limitations}
+\label{sec:limitations}
+
+Per-subgroup correction requires sufficient expert labels ($n_{\text{expert}} \geq 250$ for $K{=}2$, $\geq 500$ for $K{=}4$) and moderate classifier accuracy ($\mathrm{FPR}_s, \mathrm{FNR}_s < 0.50$); at $K{=}8$, RMSE exceeds global correction under fixed budget (Appendix~\ref{app:k8_subgroups}).
+Assumption~(A1), conditional independence of misclassification and potential outcomes, is not empirically testable; sensitivity analysis shows robustness up to $\gamma_T \leq 0.05$ (Appendix~\ref{app:treatment_dep}).
+All evaluations use synthetic CATE injection on real text features because public causal benchmarks lack the LLM annotation step we address (Appendices~\ref{app:dgp},~\ref{app:multilm}).

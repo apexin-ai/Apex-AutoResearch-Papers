@@ -1,0 +1,113 @@
+\section*{Responsible NLP Research Checklist}
+
+For each question, the answer is \textbf{Yes}, \textbf{No}, or \textbf{N/A}. If Yes, the relevant section is indicated. If No, a justification is provided.
+
+\subsection*{A \quad For Every Submission}
+
+\begin{enumerate}[label=\textbf{A\arabic*.},leftmargin=*,itemsep=4pt]
+
+\item \textbf{Did you describe the limitations of your work?}
+
+Yes. The Limitations section (after \S\ref{sec:discussion}) discusses model coverage, effect size and statistical design (including TOST equivalence), task scope, causal mechanism, data contamination, and domain/language scope.
+
+\item \textbf{Did you discuss any potential risks of your work?}
+
+Yes (Limitations). SCS/BCS may be misused as a standalone deployment criterion. Since they are proxies for confusability and do not capture domain-specific ambiguity or downstream harms, they should be used for diagnostic monitoring rather than automatic schema rejection or high-stakes deployment decisions.
+
+\item \textbf{Do the abstract and introduction summarize the paper's main claims?}
+
+Yes. The abstract and \S\ref{sec:introduction} state the two-dimensional degradation pattern (count and confusability), the cross-model consistency check, and the negative SDGD result.
+
+\item \textbf{Did you use AI assistants (e.g., ChatGPT, Copilot) when working on this paper?}
+
+Yes. We used Claude (Anthropic) for writing assistance and experimental code development. All scientific claims, experimental designs, and analyses were conducted by the authors.
+
+\end{enumerate}
+
+\subsection*{B \quad Scientific Artifacts}
+
+\begin{enumerate}[label=\textbf{B\arabic*.},leftmargin=*,itemsep=4pt]
+
+\item \textbf{Did you cite the creators of artifacts you used?}
+
+Yes. Few-NERD \citep{fewnerd-2021}, FewRel \citep{fewrel-2018}, DocRED \citep{docred-2019}, MAVEN \citep{maven-2020}, Qwen3-32B \citep{qwen3-2025}, Meta-Llama-3.1-70B-Instruct and Meta-Llama-3.1-8B-Instruct \citep{llama3-2024}, Gemini 2.5 Flash \citep{gemini-2025}, vLLM \citep{vllm-2023}, and all-MiniLM-L6-v2 \citep{minilm-2020} are cited in \S\ref{sec:datasets} and \S\ref{sec:model}.
+
+\item \textbf{Did you discuss the license or terms for use and/or distribution of any artifacts?}
+
+Yes. All four datasets are publicly available research benchmarks. Few-NERD is released under CC-BY-SA 4.0; FewRel, DocRED, and MAVEN are publicly released for research use. Open-weight models are used under their respective licenses; Gemini 2.5 Flash is accessed via the Google API under its terms of service.
+
+\item \textbf{Did you discuss if your use of existing artifacts is consistent with their intended use?}
+
+Yes. All datasets are used for their intended purpose (IE evaluation). No data is used outside the scope specified by the dataset creators.
+
+\item \textbf{Did you discuss whether the data contains personally identifiable information or offensive content?}
+
+N/A. We use established benchmarks that have been vetted by the research community. No new data collection or annotation was performed.
+
+\item \textbf{Did you provide documentation of the artifacts, e.g., coverage of languages, coverage of domains, etc.?}
+
+Yes. Table~\ref{tab:datasets} reports type counts, evaluation unit counts, domain characteristics, and BCS ranges for each dataset. \S\ref{sec:datasets} describes dataset provenance and sampling procedures.
+
+\item \textbf{Did you report relevant statistics for your dataset(s)?}
+
+Yes. \S\ref{sec:datasets} and Table~\ref{tab:datasets} report evaluation set sizes, type counts, and sampling methodology. Count levels and batch sizes are specified in \S\ref{sec:exp_design}.
+
+\end{enumerate}
+
+\subsection*{C \quad Computational Experiments}
+
+\begin{enumerate}[label=\textbf{C\arabic*.},leftmargin=*,itemsep=4pt]
+
+\item \textbf{Did you report the number of parameters in the models used, the total computational budget, and computing infrastructure?}
+
+Yes. \S\ref{sec:model}: Qwen3-32B (32B parameters, FP8), Meta-Llama-3.1-70B-Instruct (70B parameters, FP8), and Meta-Llama-3.1-8B-Instruct (8B parameters). Gemini 2.5 Flash was additionally accessed via API for cross-architecture validation. Inference was conducted on NVIDIA RTX PRO 6000 GPUs (96\,GB) served via vLLM. Total compute was approximately 72 GPU-hours of inference (no training).
+
+\item \textbf{Did you discuss the experimental setup, including hyperparameter search and best-found values?}
+
+Yes. \S\ref{sec:exp_design} describes both experimental paradigms (count curves and BCS-controlled). \S\ref{sec:model} reports decoding parameters (greedy, temperature${}=0$, seed${}=42$) and prompt versions. No hyperparameter search was conducted as this is a zero-shot evaluation study.
+
+\item \textbf{Did you report descriptive statistics about your results?}
+
+Yes. All key metrics include 95\% bootstrap confidence intervals (10{,}000 resamples, percentile method) as stated in \S\ref{sec:model}. Spearman correlations are reported with $p$-values throughout \S\ref{sec:count_curves}--\ref{sec:centrality_confound}. Permutation tests are used for slope comparisons.
+
+\item \textbf{Did you report implementation details, e.g., versions of packages?}
+
+Yes. \S\ref{sec:model} specifies vLLM v0.20.2 for model serving. Embedding models are named with version identifiers (\S\ref{sec:scs}). Code and scripts are available at \url{https://anonymous.4open.science/r/schema-dag-extraction-4C10/}.
+
+\end{enumerate}
+
+\subsection*{D \quad Human Annotators or Crowdworkers}
+
+\begin{enumerate}[label=\textbf{D\arabic*.},leftmargin=*,itemsep=4pt]
+
+\item \textbf{Did you report the full text of instructions given to participants?}
+
+N/A. No human annotation or crowdsourcing was conducted.
+
+\item \textbf{Did you report information about how you recruited and paid participants?}
+
+N/A.
+
+\item \textbf{Did you discuss whether and how consent was obtained?}
+
+N/A.
+
+\item \textbf{Did you report whether the data collection was approved by an institutional review board (IRB)?}
+
+N/A.
+
+\item \textbf{Did you report the basic demographic and geographic characteristics of the annotator population?}
+
+N/A.
+
+\end{enumerate}
+
+\subsection*{E \quad AI-Assisted Research}
+
+\begin{enumerate}[label=\textbf{E\arabic*.},leftmargin=*,itemsep=4pt]
+
+\item \textbf{Did you report the use of AI assistants?}
+
+Yes. See A4 above. AI assistants were used for code development and document formatting. The research design, execution, and interpretation are the authors' own work.
+
+\end{enumerate}

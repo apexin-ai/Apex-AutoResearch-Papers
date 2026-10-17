@@ -1,0 +1,3 @@
+See server: /root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas/edd_matrix.json
+
+Key finding: All 19 features across all 4 chains have EDD=3 (max), meaning degradation has NOT saturated by depth 3. This suggests deeper recursion would continue to degrade.

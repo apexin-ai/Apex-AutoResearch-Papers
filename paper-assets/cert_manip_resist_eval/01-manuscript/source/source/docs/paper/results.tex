@@ -1,0 +1,101 @@
+\section{Results}
+\label{sec:results}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig1_robustness_comparison.pdf}
+\caption{Significance counts (FDR $< 0.05$) for $\eta_{\max}$ and $K_{\mathrm{eff}}$ across four correction methods over 12 experimental conditions ($K{=}3$). Wild cluster bootstrap and clustered standard errors are recommended for the 15-judge combinatorial design.}
+\label{fig:robustness}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Bench.} & \textbf{Attack} & $\boldsymbol{\eta_{\max}}$ & $\boldsymbol{K_{\mathrm{eff}}}$ & \textbf{Dom.} \\
+\midrule
+MMLU & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\
+MMLU & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\
+MMLU & Score manip.   & n.s.    & $+^{*}$ & $K$ \\
+MMLU & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\
+MMLU & Position bias  & $+^{*}$ & $-^{*}$ & $\eta$ \\
+MMLU & Authority bias & n.s.    & $+^{*}$ & $K$ \\
+\addlinespace
+ARC  & Prompt inj.    & $+^{*}$ & $+^{*}$ & Co \\
+ARC  & Sycophancy     & $+^{*}$ & $+^{*}$ & Co \\
+ARC  & Score manip.   & n.s.    & $+^{*}$ & $K$ \\
+ARC  & Verbosity      & $+^{*}$ & $+^{*}$ & Co \\
+ARC  & Position bias  & $+^{*}$ & $-^{*}$ & $\eta$ \\
+ARC  & Authority bias & $+^{*}$ & $+^{*}$ & Co \\
+\bottomrule
+\end{tabular}
+\caption{Standardized regression coefficients for $\eta_{\max}$ and $K_{\mathrm{eff}}$ across 12 conditions (455 panels, log-log OLS). $+^{*}$/$-^{*}$: FDR-significant positive/negative (Benjamini--Hochberg, $q < 0.05$); n.s.: not significant. Dom.\ column: $\eta$ = $\eta_{\max}$ sole dominant, $K$ = $K_{\mathrm{eff}}$ sole dominant, Co = co-dominant \citep{budescu1993dominance}.}
+\label{tab:dominance}
+\end{table}
+
+\subsection{Weakest-Link Dominance at \texorpdfstring{$K{=}3$}{K=3}}
+\label{sec:dominance}
+
+Table~\ref{tab:dominance} reports the log-log OLS regression (Equation~\ref{eq:regression}) for all 12 conditions across the 455 panels ($K{=}3$, 15 judges from Table~\ref{tab:models}).
+
+Under OLS, $K_{\mathrm{eff}}$ is FDR-significant in all 12/12 conditions (positive in 10, negative in 2 position-bias conditions). $\eta_{\max}$ is significant in 9/12 (exceptions: both score-manipulation conditions and MMLU $\times$ authority bias), consistent with weakest-link monotonicity (\S\ref{sec:threat_model}). Dominance analysis yields 7 co-dominant, 3 $K_{\mathrm{eff}}$-dominant, and 2 $\eta_{\max}$-dominant (both position-bias) conditions (Figure~\ref{fig:dominance_heatmap}, Appendix~\ref{app:extended_analysis}), but the $r{=}0.70$ correlation raises confound concerns (\S\ref{sec:analysis}).
+
+Figure~\ref{fig:robustness} compares five correction methods (Table~\ref{tab:method_comparison}, Appendix~\ref{app:clustered_se}): $K_{\mathrm{eff}}$ significance ranges from 0/12 (clustered SE) to 12/12 (OLS), with wild bootstrap at 8/12. Positive direction is preserved in 10/12 conditions across all methods (minimum detectable effect [MDE] $\beta_{\mathrm{std}} {=} 0.14$; Appendix~\ref{app:power_analysis}).
+
+\subsection{Predictor Relevance Across Panel Sizes}
+\label{sec:cross_k}
+
+The $K{=}3$ pattern is method-sensitive (Table~\ref{tab:method_comparison}), contrasting with $K{\geq}5$ where $K_{\mathrm{eff}}$'s association is consistent (bootstrap 8/12; fractional logit 11--12/12). We repeat the bootstrap at $K \in \{3, 5, 7\}$ with max-$p$ correction.
+
+Meta-analytic pooling \citep{dersimonian1986meta} quantifies trajectories independent of significance thresholds. $\eta_{\max}$'s pooled $\hat{\beta}_{\mathrm{std}}$ is $0.243$ [$0.163, 0.323$] at $K{=}3$ but drops to $0.091$ [$-0.031, 0.212$] at $K{=}5$ and $0.086$ [$-0.039, 0.211$] at $K{=}7$, becoming non-significant at $K{\geq}5$ (CI crosses zero). $K_{\mathrm{eff}}$'s pooled coefficient remains positive ($0.286$--$0.353$, CI excluding zero; Appendix~\ref{app:meta_analytic_details}). Figure~\ref{fig:regime_transition} shows significance counts; per-condition effect sizes with 95\% CIs are in Figure~\ref{fig:forest_plot} (Appendix~\ref{app:effect_size_forest}). The $\eta_{\max}$ decline holds under both $K_{\mathrm{eff}}$ and $\kappa$-diversity.
+
+Random faults yield $R^2{=}0.730$; adaptive attack reduces predictability ($R^2{=}0.285$ at $K{=}5$) but $K_{\mathrm{eff}}$ retains significance (7/12; Appendix~\ref{app:rf_contrast_detail}). The positive $K_{\mathrm{eff}}$ coefficient reverses the BFT/Condorcet intuition: under random faults, independence helps (more independent judges $=$ lower joint failure); under adaptive adversaries, diverse panels expose a wider attack surface because the adversary can exploit heterogeneous vulnerabilities that do not overlap across judges.
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lllccc}
+\toprule
+\textbf{Model} & \textbf{Family} & \textbf{Tier} & \textbf{Deploy} & \textbf{MMLU} & \textbf{ARC} \\
+\midrule
+gpt-5.5              & OpenAI    & frontier    & API   & .957 & .983 \\
+gemini-3.1-pro-preview & Google  & frontier    & API   & .955 & .987 \\
+claude-opus-4-6       & Anthropic & frontier   & API   & .890 & .987 \\
+gemini-3.5-flash      & Google    & frontier   & API   & .968 & 1.00$^\dagger$ \\
+\addlinespace
+gpt-4.1               & OpenAI    & mid-tier   & API   & .837 & .967 \\
+claude-sonnet-4-6     & Anthropic & mid-tier   & API   & .810 & .953 \\
+\addlinespace
+gpt-4.1-mini          & OpenAI    & lightweight & API  & .800 & .963 \\
+gpt-4.1-nano          & OpenAI    & lightweight & API  & .633 & .853 \\
+claude-3-haiku        & Anthropic & lightweight & API  & .767 & .450 \\
+mistral-large (123B)  & Mistral   & lightweight & local & .537 & .533 \\
+llama3.1-70b          & Llama     & lightweight & local & .523 & .520 \\
+llama3.1-8b           & Llama     & lightweight & local & .543 & .320 \\
+qwen2.5-72b           & Qwen      & lightweight & local & .333 & .410 \\
+qwen2.5-32b           & Qwen      & lightweight & local & .373 & .450 \\
+qwen2.5-14b           & Qwen      & lightweight & local & .253 & .240 \\
+\bottomrule
+\end{tabular}}
+\caption{Judge models used in the study (clean accuracy on 300-item samples). API models accessed via OpenRouter (fixed API snapshots); local models served with vLLM + AWQ INT4 quantization. $^\dagger$\,gemini-3.5-flash achieves perfect ARC accuracy but with 26.3\% format error rate. Tier assignment follows provider capability classification (frontier $>$85\% clean accuracy on both benchmarks, mid-tier 80--85\%, lightweight ${\leq}$80\% or quantized); all six local AWQ INT4 models fall into lightweight, where quantization-induced accuracy reduction conflates genuine capability limitations with quantization damage (\S\ref{sec:analysis}).}
+\label{tab:models}
+\end{table}
+
+\subsection{Attack-Type Heterogeneity}
+\label{sec:gam_taxonomy}
+
+GAM bootstrap confirms positive $K_{\mathrm{eff}}$ association in 10/12 conditions with no magnitude difference between targeted and shared-bias attacks (Appendix~\ref{app:bft_reversal}). The two exceptions are position bias: $K_{\mathrm{eff}}$'s coefficient is negative in both benchmarks ($\hat{\beta}_{\mathrm{std}} = -0.334, -0.372$), indicating that diverse panels are \emph{less} susceptible. Because position bias is a shared vulnerability where all judges exhibit the same directional preference, independent judges provide genuine redundancy, consistent with the Condorcet intuition and the targeted-vs-shared distinction in the attack taxonomy.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_regime_transition.pdf}
+\caption{Predictor relevance across panel sizes. $\eta_{\max}$ significance (orange) drops from 5/12 to 0--1/12, while $K_{\mathrm{eff}}$ (blue) remains consistently high (8--8--7/12). Shaded region: $K^* \in (3, 5)$. Bootstrap: $B{=}9999$, Rademacher, max-$p$, BH FDR $\alpha{=}0.05$.}
+\label{fig:regime_transition}
+\end{figure}
+
+\subsection{Aggregation Rules and the Diversity Channel}
+\label{sec:aggregation}
+
+Aggregation rules influence predictability but not $K_{\mathrm{eff}}$'s direction (Table~\ref{tab:aggregation}, Appendix~\ref{app:aggregation_details}). Threshold voting yields the highest $R^2$ ($0.745$), while Bayesian calibration nearly neutralizes panel composition effects ($R^2{=}0.136$, $K_{\mathrm{eff}}$ 5+/1$-$). At $K{=}5$ all methods converge (7/12; Appendix~\ref{app:aggregation_k5}); at $K{=}7$ Bayesian neutralization returns (Appendix~\ref{app:aggregation_k7}). Fractional logit \citep{papke1996econometric} with clustered SE confirms the association: $K_{\mathrm{eff}}$ significance ranges from 9/12 ($K{=}3$) to 12/12 ($K{=}7$), with 98.6\% directional concordance (Appendix~\ref{app:robustness_checks}).

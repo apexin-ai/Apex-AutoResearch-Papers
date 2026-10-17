@@ -1,0 +1,18 @@
+Location: seetacloud-rtx6000:/root/cert_manip_resist_eval/artifacts/results/plan001/dbei_predictor_shift.json
+Runtime: 2175.2s (~36 min)
+Diversity metric: Shannon MI entropy (as DBEI substitute)
+
+Predictor shift (Shannon):
+  K=3: diversity_sig 4/12, eta_sig 12/12
+  K=5: diversity_sig 4/12, eta_sig 11/12
+  K=7: diversity_sig 0/12, eta_sig 0/12
+
+K_eff comparison:
+  K=3: keff_sig 6/12, diversity_sig 4/12
+  K=5: keff_sig 8/12, diversity_sig 4/12
+  K=7: keff_sig 2/12, diversity_sig 0/12
+
+Correlation DBEI vs K_eff: K3=-0.625, K5=-0.735, K7=-0.759
+shift_pattern_matches_keff: false
+
+NOTE: K=7 keff_sig=2/12 here differs from main analysis (8/12). Possible cause: different FDR method, panel set, or bootstrap params.

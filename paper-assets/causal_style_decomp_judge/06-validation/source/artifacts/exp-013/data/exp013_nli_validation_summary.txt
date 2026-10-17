@@ -1,0 +1,13 @@
+exp-013 NLI Validation Results Summary
+========================================
+Cohen's kappa: 0.4304
+Agreement rate: 91% (91/100)
+False positive rate: 1.14% (1/88 NLI pass cases)
+False negative rate: 66.67% (8/12 NLI fail cases)
+
+Confusion Matrix:
+                     LLM=YES  LLM=NO
+NLI pass (>=0.90)      87       1
+NLI fail (<0.90)         8       4
+
+Full CSV: /root/causal_style_decomp_judge/artifacts/reanalysis_outputs/exp013_nli_validation.csv (100 rows)

@@ -1,0 +1,58 @@
+\documentclass[11pt]{article}
+
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+
+\title{The Likert Blindspot: Measurement-Mode Divergence\\in LLM Judge Style Evaluation}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+
+\input{sections/introduction}
+
+\input{sections/related_work}
+
+\input{sections/method}
+
+\input{sections/experiments}
+
+\input{sections/conclusion}
+
+\section*{Limitations}
+\label{sec:limitations}
+
+\noindent\textbf{Residual confounding.}
+The NLI gate blocks content changes but cannot block quality perception shifts mediated by style itself; residual confounding is not fully eliminated despite logistic adjustment.
+
+\noindent\textbf{Detection vs.\ amplification.}
+The Blindspot may partly reflect pairwise format amplification \citep{jeong2025comparative} rather than pure detection; six controls bound this risk (\S\ref{sec:amplification}), but we cannot precisely quantify the amplification factor.
+
+\noindent\textbf{Scope.}
+CSD applies only to surface-level axes whose rewrites preserve semantic content. Primary analyses use LLMBar ($n = 100$) with five judges; generalization to additional axes, benchmarks, and judges remains open.
+
+\section*{Ethical Considerations}
+
+This work studies biases in automated evaluation systems and does not involve generating harmful content. Human annotation (100 pairs, two annotators) was conducted by compensated research collaborators; no crowdsourcing platforms were used. All data are drawn from publicly available benchmarks.
+
+\bibliography{references}
+
+\input{sections/appendix}
+
+\end{document}

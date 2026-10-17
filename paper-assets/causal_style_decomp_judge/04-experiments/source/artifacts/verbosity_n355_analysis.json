@@ -1,0 +1,252 @@
+{
+  "qwen32b": {
+    "bt": {
+      "n_records": 330,
+      "n_comparisons": 660,
+      "n_pairs": 330,
+      "bt_p_verbose": 0.7333,
+      "bt_ci_95": [
+        0.6955,
+        0.7697
+      ],
+      "n_consistent": 226,
+      "verbose_wins": 190,
+      "sign_p": 0.0
+    },
+    "likert": {
+      "n": 330,
+      "mean_orig": 6.755,
+      "mean_cf": 6.915,
+      "mean_diff": 0.161,
+      "cohen_d": 0.1493,
+      "wilcoxon_p": 0.0006,
+      "paired_t_p": 0.007,
+      "tie_rate": 0.585,
+      "n_nonzero": 137
+    },
+    "gee": {
+      "n_obs": 660,
+      "n_pairs": 330,
+      "intercept_or": 3.8333,
+      "intercept_ci": [
+        2.7872,
+        5.272
+      ],
+      "intercept_p": 0.0,
+      "base_p_verbose": 0.7931,
+      "orig_or": 0.5217,
+      "orig_ci": [
+        0.3535,
+        0.7701
+      ],
+      "orig_p": 0.001058
+    },
+    "non_tie_concordance": {
+      "concordant": 96,
+      "discordant": 13,
+      "ties_excluded": 193,
+      "total_non_tie": 109,
+      "concordance_rate": 0.881
+    }
+  },
+  "llama70b": {
+    "bt": {
+      "n_records": 330,
+      "n_comparisons": 646,
+      "n_pairs": 325,
+      "bt_p_verbose": 0.7585,
+      "bt_ci_95": [
+        0.722,
+        0.7934
+      ],
+      "n_consistent": 219,
+      "verbose_wins": 192,
+      "sign_p": 0.0
+    },
+    "likert": {
+      "n": 330,
+      "mean_orig": 7.591,
+      "mean_cf": 7.788,
+      "mean_diff": 0.197,
+      "cohen_d": 0.1597,
+      "wilcoxon_p": 0.0001,
+      "paired_t_p": 0.004,
+      "tie_rate": 0.585,
+      "n_nonzero": 137
+    },
+    "gee": {
+      "n_obs": 646,
+      "n_pairs": 325,
+      "intercept_or": 4.0145,
+      "intercept_ci": [
+        2.9617,
+        5.4415
+      ],
+      "intercept_p": 0.0,
+      "base_p_verbose": 0.8006,
+      "orig_or": 0.6116,
+      "orig_ci": [
+        0.4146,
+        0.9022
+      ],
+      "orig_p": 0.013174
+    },
+    "non_tie_concordance": {
+      "concordant": 95,
+      "discordant": 11,
+      "ties_excluded": 193,
+      "total_non_tie": 106,
+      "concordance_rate": 0.896
+    }
+  },
+  "gpt54": {
+    "bt": {
+      "n_records": 330,
+      "n_comparisons": 644,
+      "n_pairs": 322,
+      "bt_p_verbose": 0.5901,
+      "bt_ci_95": [
+        0.5435,
+        0.6351
+      ],
+      "n_consistent": 238,
+      "verbose_wins": 148,
+      "sign_p": 0.000206
+    },
+    "likert": {
+      "n": 330,
+      "mean_orig": 5.821,
+      "mean_cf": 5.779,
+      "mean_diff": -0.042,
+      "cohen_d": -0.0261,
+      "wilcoxon_p": 0.813,
+      "paired_t_p": 0.6354,
+      "tie_rate": 0.585,
+      "n_nonzero": 137
+    },
+    "gee": {
+      "n_obs": 644,
+      "n_pairs": 322,
+      "intercept_or": 1.0602,
+      "intercept_ci": [
+        0.8139,
+        1.3812
+      ],
+      "intercept_p": 0.664618,
+      "base_p_verbose": 0.5146,
+      "orig_or": 1.9634,
+      "orig_ci": [
+        1.3404,
+        2.8758
+      ],
+      "orig_p": 0.000531
+    },
+    "non_tie_concordance": {
+      "concordant": 91,
+      "discordant": 14,
+      "ties_excluded": 193,
+      "total_non_tie": 105,
+      "concordance_rate": 0.867
+    }
+  },
+  "gemini": {
+    "bt": {
+      "n_records": 330,
+      "n_comparisons": 658,
+      "n_pairs": 330,
+      "bt_p_verbose": 0.6778,
+      "bt_ci_95": [
+        0.638,
+        0.7169
+      ],
+      "n_consistent": 218,
+      "verbose_wins": 168,
+      "sign_p": 0.0
+    },
+    "likert": {
+      "n": 330,
+      "mean_orig": 7.412,
+      "mean_cf": 7.588,
+      "mean_diff": 0.176,
+      "cohen_d": 0.0872,
+      "wilcoxon_p": 0.0213,
+      "paired_t_p": 0.114,
+      "tie_rate": 0.539,
+      "n_nonzero": 152
+    },
+    "gee": {
+      "n_obs": 658,
+      "n_pairs": 330,
+      "intercept_or": 2.5152,
+      "intercept_ci": [
+        1.8849,
+        3.3561
+      ],
+      "intercept_p": 0.0,
+      "base_p_verbose": 0.7155,
+      "orig_or": 0.6902,
+      "orig_ci": [
+        0.4797,
+        0.9929
+      ],
+      "orig_p": 0.045674
+    },
+    "non_tie_concordance": {
+      "concordant": 92,
+      "discordant": 13,
+      "ties_excluded": 178,
+      "total_non_tie": 105,
+      "concordance_rate": 0.876
+    }
+  },
+  "claude": {
+    "bt": {
+      "n_records": 330,
+      "n_comparisons": 660,
+      "n_pairs": 330,
+      "bt_p_verbose": 0.6076,
+      "bt_ci_95": [
+        0.5667,
+        0.6485
+      ],
+      "n_consistent": 205,
+      "verbose_wins": 138,
+      "sign_p": 1e-06
+    },
+    "likert": {
+      "n": 330,
+      "mean_orig": 5.752,
+      "mean_cf": 5.794,
+      "mean_diff": 0.042,
+      "cohen_d": 0.0321,
+      "wilcoxon_p": 0.3169,
+      "paired_t_p": 0.5605,
+      "tie_rate": 0.555,
+      "n_nonzero": 147
+    },
+    "gee": {
+      "n_obs": 660,
+      "n_pairs": 330,
+      "intercept_or": 1.2166,
+      "intercept_ci": [
+        0.9412,
+        1.5725
+      ],
+      "intercept_p": 0.134422,
+      "base_p_verbose": 0.5489,
+      "orig_or": 1.6923,
+      "orig_ci": [
+        1.2099,
+        2.3671
+      ],
+      "orig_p": 0.002118
+    },
+    "non_tie_concordance": {
+      "concordant": 105,
+      "discordant": 7,
+      "ties_excluded": 183,
+      "total_non_tie": 112,
+      "concordance_rate": 0.938
+    }
+  }
+}

@@ -1,0 +1,1020 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:shannon_shift} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:gam_split} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:panel_design_guide} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:bootstrap_convergence} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:diversity_capability} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:stat_framework} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:sensitivity_contour} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:sensitivity_contour_K7} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:per_condition_regression} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:pipeline} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:percond_k5} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:keff_stability} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:panel_composition} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:oracle} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:keff_dist} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:attack_details} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:infrastructure} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:fractional_logit_detail} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:attack_taxonomy} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:aggregation_formal} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:aggregation_comparison} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:beta_trajectory} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cjt_failure} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{def:adversary} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:model_profiles} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:aggregation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:vif_diagnostics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:keff_full} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:alt_diversity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:alt_diversity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:529"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:574"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1083"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1149"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:1209"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "results.tex:55"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "threat_model.tex:6"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 39 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 8,
+          "num_cites": 0
+        },
+        {
+          "file": "analysis.tex",
+          "role": "result",
+          "num_numbers": 13,
+          "num_cites": 1
+        },
+        {
+          "file": "appendix_attacks.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 9,
+          "num_cites": 1
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 22,
+          "num_cites": 10
+        },
+        {
+          "file": "methodology.tex",
+          "role": "other",
+          "num_numbers": 6,
+          "num_cites": 12
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 35
+        },
+        {
+          "file": "results.tex",
+          "role": "result",
+          "num_numbers": 32,
+          "num_cites": 3
+        },
+        {
+          "file": "threat_model.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 3
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'blanchard2017byzantine' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'breiman2001random' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'cameron2015practitioners' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'chen2025incentivizing' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dietterich2000ensemble' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'feng2026noisy' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'genest2008validity' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hong2004groups' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'horvath2022boosting' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'jung2026logarithmic' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kwon2023efficient' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lakshminarayanan2017simple' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lin2024awq' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'papernot2017practical' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'qiu2026truthfulness' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'robertson2025stepwise' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'tramer2018ensemble' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhou2002ensembling' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\beta",
+              "\\eta",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\leq",
+              "\\max"
+            ],
+            "analysis": [
+              "\\approx",
+              "\\eta",
+              "\\geq",
+              "\\kappa",
+              "\\leq",
+              "\\max",
+              "\\min",
+              "\\rho",
+              "\\to"
+            ],
+            "appendix_attacks": [
+              "\\sim"
+            ],
+            "conclusion": [
+              "\\beta",
+              "\\eta",
+              "\\geq",
+              "\\hat",
+              "\\leq",
+              "\\max",
+              "\\min",
+              "\\rho"
+            ],
+            "introduction": [
+              "\\beta",
+              "\\eta",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\max"
+            ],
+            "methodology": [
+              "\\Pr",
+              "\\alpha",
+              "\\approx",
+              "\\beta",
+              "\\binom",
+              "\\cdot",
+              "\\epsilon",
+              "\\eta",
+              "\\exp",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\kappa",
+              "\\lceil",
+              "\\log",
+              "\\max",
+              "\\mid",
+              "\\propto",
+              "\\rceil",
+              "\\rho",
+              "\\sim",
+              "\\times"
+            ],
+            "related_work": [
+              "\\kappa"
+            ],
+            "results": [
+              "\\alpha",
+              "\\beta",
+              "\\boldsymbol",
+              "\\dagger",
+              "\\eta",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\kappa",
+              "\\leq",
+              "\\max",
+              "\\times"
+            ],
+            "threat_model": [
+              "\\Pr",
+              "\\approx",
+              "\\arg",
+              "\\beta",
+              "\\bigl",
+              "\\bigr",
+              "\\cdot",
+              "\\eta",
+              "\\geq",
+              "\\in",
+              "\\infty",
+              "\\lceil",
+              "\\ldots",
+              "\\max",
+              "\\rceil",
+              "\\sim",
+              "\\sup",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 18,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/_audit_compile_qj4suzj7",
+        "main_tex": "main.tex",
+        "log_tail": " []\n\n[36] [37]\nUnderfull \\hbox (badness 1728) in paragraph at lines 1310--1311\n[]\\T1/ptm/b/n/10.95 (+20) Verbosity bias\\T1/ptm/m/n/10.95 (+20) : Re-sponse B i\ns padded\n []\n\n\nUnderfull \\hbox (badness 1303) in paragraph at lines 1311--1312\n[]\\T1/ptm/b/n/10.95 (+20) Position bias\\T1/ptm/m/n/10.95 (+20) : Re-sponses A a\nnd B are\n []\n\n) (./appendix_attacks.tex\nUnderfull \\hbox (badness 3965) in paragraph at lines 1328--1\n []\\T1/ptm/b/n/10.95 (+20) Software.[] \\T1/ptm/m/n/10.95 (+20) Anal-y-sis uses \nPython 3.11 with\n []\n\n[38]\nLaTeX Font Info:    Font shape `T1/zi4/m/n' will be\n(Font)              scaled to size 10.95pt on input line 26.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n) [39] [40\n\n] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 671AC7F76BF575BF014A6E50F5205648;16051.\n ) \nHere is how much of TeX's memory you used:\n 29833 strings out of 469438\n 561406 string characters out of 5468411\n 1035312 words of memory out of 5000000\n 57127 multiletter control sequences out of 15000+600000\n 711618 words of font info for 469 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 98i,16n,108p,1813b,731s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4\nr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy6\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/t\nexmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\nonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\nextra/cmmib9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/\ncmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/te\nxlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/te\nxmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts\n/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/\npublic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/\namsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont\ns/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo\nls/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/t\nexlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-d\nist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/urw/times/utmri8a.pfb>\nOutput written on main.pdf (40 pages, 7628120 bytes).\nPDF statistics:\n 2934 PDF objects out of 2984 (max. 8388607)\n 1603 compressed objects within 17 object streams\n 328 named destinations out of 1000 (max. 500000)\n 71391 words of extra memory for PDF output out of 74296 (max. 10000000)\n",
+        "error": "",
+        "pages": 40,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 40,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 5652) in paragraph at lines 46--47",
+        "Underfull \\hbox (badness 1132) in paragraph at lines 46--47",
+        "Underfull \\hbox (badness 2080) in paragraph at lines 53--54",
+        "Underfull \\vbox (badness 1142) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2653) in paragraph at lines 31--32",
+        "Underfull \\hbox (badness 4713) in paragraph at lines 31--32",
+        "Overfull \\hbox (5.3564pt too wide) detected at line 40",
+        "Underfull \\hbox (badness 1389) in paragraph at lines 40--42",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 5345) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 1708) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 3942) in paragraph at lines 53--54",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 53--54",
+        "Underfull \\hbox (badness 1147) in paragraph at lines 53--54",
+        "Underfull \\hbox (badness 1303) in paragraph at lines 94--94",
+        "Underfull \\hbox (badness 1622) in paragraph at lines 101--1",
+        "Underfull \\hbox (badness 1558) in paragraph at lines 101--1",
+        "Underfull \\hbox (badness 3965) in paragraph at lines 101--1",
+        "Underfull \\hbox (badness 1701) in paragraph at lines 5--6",
+        "Underfull \\hbox (badness 2653) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 3--4",
+        "Underfull \\hbox (badness 3492) in paragraph at lines 3--4",
+        "Underfull \\hbox (badness 2376) in paragraph at lines 5--6",
+        "Underfull \\hbox (badness 1178) in paragraph at lines 6--13",
+        "Underfull \\hbox (badness 1014) in paragraph at lines 120--127",
+        "Underfull \\hbox (badness 5431) in paragraph at lines 291--296",
+        "Underfull \\hbox (badness 4060) in paragraph at lines 291--296",
+        "Underfull \\hbox (badness 2269) in paragraph at lines 305--310",
+        "Underfull \\hbox (badness 5189) in paragraph at lines 305--310",
+        "Underfull \\hbox (badness 5771) in paragraph at lines 324--331",
+        "Underfull \\hbox (badness 3439) in paragraph at lines 334--340",
+        "Underfull \\hbox (badness 2460) in paragraph at lines 334--340",
+        "Underfull \\hbox (badness 3849) in paragraph at lines 370--377",
+        "Underfull \\hbox (badness 3049) in paragraph at lines 38--39",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 40--41",
+        "Underfull \\hbox (badness 1655) in paragraph at lines 40--41",
+        "Overfull \\hbox (11.94873pt too wide) in paragraph at lines 47--56",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 58--59",
+        "Underfull \\hbox (badness 4328) in paragraph at lines 58--59",
+        "Underfull \\hbox (badness 2050) in paragraph at lines 58--59",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1789) in paragraph at lines 274--275",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Overfull \\vbox (162.88986pt too high) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 354--356",
+        "Underfull \\hbox (badness 3039) in paragraph at lines 354--356",
+        "Underfull \\hbox (badness 1142) in paragraph at lines 420--421",
+        "Underfull \\hbox (badness 2181) in paragraph at lines 487--488",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 552--553",
+        "Underfull \\hbox (badness 1221) in paragraph at lines 557--558",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 559--560",
+        "Underfull \\hbox (badness 6775) in paragraph at lines 559--560",
+        "Underfull \\hbox (badness 2538) in paragraph at lines 607--608",
+        "Underfull \\vbox (badness 2443) has occurred while \\output is active []",
+        "Overfull \\hbox (12.62889pt too wide) in paragraph at lines 644--655",
+        "Overfull \\hbox (1.39194pt too wide) in paragraph at lines 706--753",
+        "Underfull \\vbox (badness 2837) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1168) in paragraph at lines 954--955",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 959--960",
+        "Underfull \\hbox (badness 6204) in paragraph at lines 959--960",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 959--960",
+        "Underfull \\hbox (badness 2865) in paragraph at lines 983--984",
+        "Overfull \\hbox (12.24326pt too wide) detected at line 1008",
+        "Underfull \\hbox (badness 1571) in paragraph at lines 1015--1016",
+        "Underfull \\vbox (badness 3612) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1460) in paragraph at lines 1102--1103",
+        "Underfull \\hbox (badness 1629) in paragraph at lines 1145--1146",
+        "Underfull \\hbox (badness 2293) in paragraph at lines 1147--1148",
+        "Underfull \\hbox (badness 2662) in paragraph at lines 1147--1148",
+        "Underfull \\hbox (badness 1755) in paragraph at lines 1151--1151",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1484) in paragraph at lines 1196--1197",
+        "Underfull \\hbox (badness 5008) in paragraph at lines 1229--1230",
+        "Underfull \\hbox (badness 1728) in paragraph at lines 1310--1311",
+        "Underfull \\hbox (badness 1303) in paragraph at lines 1311--1312",
+        "Underfull \\hbox (badness 3965) in paragraph at lines 1328--1"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract 问题定义（diversity vs. capability 的 confound 未被分离）== Intro 的 gap 定义 == Method 的回归设计 == Results 的发现 == Conclusion 的总结。全文叙事链高度一致，无 A→B 漂移。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract 的\"two patterns\" == Intro 的\"two robust patterns\" == Results §5.1-5.2 的实验发现。三条 contribution 中前两条对应 two patterns，第三条（aggregation）是 additional finding，abstract 中以独立一句提及 Bayesian calibration，结构清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Conclusion 的 practical recommendations（min η_max 选择、calibrated aggregation、clean K_eff monitoring）均有 Results/Analysis 中的实验证据支撑，无凭空建议。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "\"all findings are associational\" 的 caveat 在 Abstract、Introduction 末尾、Analysis、Conclusion 中反复出现，confound 的 hedging 贯穿全文，claim 强度与证据匹配。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 回答了四个问题：问题（diversity-robustness 假设未验证）、方法（regression on η_max + K_eff）、结果（two patterns）、意义（confound precludes causal claims + practical guidance）。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Introduction 遵循 5 段结构：背景（§1 para 1）→ gap（para 2）→ 方法概述（para 3）→ 结果（para 4）→ 贡献列表。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 按三个主题归纳：LLM-as-Judge、Fault Tolerance/Voting Theory/Ensemble Diversity、Adversarial Robustness。每个主题有归纳和定位，非 \"A did X. B did Y.\" 堆砌。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Contribution 1（diversity–vulnerability association）→ Results §5.1 Table 2 + Analysis §6 confound analysis。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Contribution 2（weakest-link significance transition）→ Results §5.2 meta-analytic pooling + Figure 5。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Contribution 3（aggregation as predictability control）→ Results §5.4 + Analysis §6 aggregation paragraph。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "无孤儿章节。Threat Model §2 定义了正文使用的形式化框架，非独立贡献。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Title \"across panel sizes\" 与实验 K∈{3,5,7} 匹配；Abstract \"15 models, six attack types, two benchmarks\" 与 methodology 精确对应。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "全文无 \"significantly outperforms\"、\"state-of-the-art\"、\"novel\"（作为过度宣传）等过强表述。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "使用 \"associational\"、\"precludes causal claims\"、\"suggestive\" 等恰当 hedging。Claim 强度与单 seed（deterministic temperature=0）exhaustive enumeration 设计匹配。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Claim强度",
+      "message": "introduction.tex:14 \"reveal two robust patterns\" — \"robust\" 在此指 across specifications 而非统计显著，但审稿人可能误读为 \"statistically robust\"。建议改为 \"reveal two consistent patterns\" 或明确 \"(direction consistent across specifications)\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "主结果使用 wild cluster bootstrap p-values + BH FDR 校正，meta-analytic pooling 报告 95% CI。对 exhaustive enumeration 设计而言，这比 error bars/std 更适合。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Ablation 等价物充分：5 种 inference methods（Table S in appendix）、3 种 diversity measures（K_eff, κ-diversity, Shannon MI）、capability-matched subsampling、ε sensitivity、quantization dummy control、API-only subset。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "引用覆盖 2023-2026 的近期工作（Almasoud 2026, Kim 2025, Yang 2026, Turkmen 2026 等）。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "模型名、tier、部署方式（API/local）、量化方法（AWQ INT4）、推理框架（vLLM 0.21.0）、GPU（NVIDIA RTX PRO 6000 Blackwell 96GB）、temperature=0、random seed=42、每 benchmark 300 items、bootstrap B=9999 — 均已披露。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "匿名代码仓库链接已提供。✅"
+    },
+    {
+      "severity": "warning",
+      "dimension": "可复现性",
+      "message": "未披露 total API cost 或 total evaluation time（wall-clock hours）。对于 ~1.6M judgments 的实验规模，审稿人可能关注计算成本以评估可复现性门槛。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "$K_{\\mathrm{eff}}$、$\\eta_{\\max}$、$\\hat{\\beta}_{\\mathrm{std}}$、ASR、FDR 全文定义一致，无歧义。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "$K_{\\mathrm{eff}}$ 首次定义在 Equation 1（threat_model.tex:29-32），后续引用一致。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "\"Pool A\"、\"Pool B\" 在 Analysis 和 Appendix 中含义一致。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "过渡",
+      "message": "各章节衔接自然。Threat Model 结尾的 \"relative importance of η_max vs K_eff depends on K\" 直接引出 Methodology。Results 结尾的 aggregation findings 引出 Analysis 的 confound discussion。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "过渡",
+      "message": "Analysis §6 不只重复数字，提供了更高层解读：confound 的 Cinelli-Hazlett sensitivity、quantization compound confound、metric sensitivity 的 operationalization 依赖性。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "main.tex:48-52 包含 3 个 distinct limitations（confound、inference sensitivity、scope）。符合 EMNLP 规则\"覆盖 3 个点左右\"。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "内容实质性：confound 是核心限制并给出了定量描述（r=0.70-0.81, Pool A r=0.50），inference sensitivity 给出了具体数字（OLS 12/12 vs bootstrap 8/12），scope 明确了 MC format + 1-2 templates + no version hashes。非回避式。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "~68 words，紧凑但符合用户规则（\"只需写一小段\"）。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "去AI",
+      "message": "正文中大量使用解释性 em-dash (---) — 最显著的 AI 写作痕迹。具体位置："
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "appendix_attacks.tex:10 使用 \"leveraging\" — AI 高频词。建议改为 \"exploiting\" 或 \"using\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "无 \"delve into\"、\"utilize\"、\"facilitate\"、\"myriad\"、\"plethora\"。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "仅 appendix 有一处 \"Furthermore\"（appendix.tex:954），正文无连续过渡词堆砌。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "段落长度正常（5-8 句），无过度分段。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "-ing 分词结尾句存在但不严重：methodology.tex:8 \"eliminating...and enabling...\" 是最明显的一处。可考虑改写。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "无内部实验编号、服务器名、IP 地址、内部路径泄露。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "匿名 URL 中的 \"cert_manip_resist_eval\" 是项目代号，在 anonymous submission 中可接受。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "无 \"第N轮实验\" 等隐含内部流程的表述。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract ≤ 200 words：约 190 words（渲染后）。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations 一小段覆盖 3 个点：✅（confound, inference sensitivity, scope）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Appendix 无 Limitations section：已验证，appendix.tex 中无 Limitations 相关 section。✅"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "ARR Checklist 不在 paper PDF 中：paper 内无 checklist 内容。✅"
+    },
+    {
+      "severity": "warning",
+      "dimension": "审稿规则",
+      "message": "EMNLP 2026 正文 8 页限制：Phase 1 报告总页数 40 页（含 appendix）。主正文（Introduction 至 Conclusion）包含 6 figures + 3 tables，内容密度高。需要编译后确认主正文是否严格 ≤ 8 页。Limitations 不计入页数限制。"
+    },
+    {
+      "severity": "info",
+      "dimension": "一致性",
+      "message": "abstract.tex 标注为 \"Mirror of abstract in main.tex — do not edit here\" 但内容与 main.tex abstract 有差异：abstract.tex 包含 \"(up to 6,435 panels)\" 而 main.tex 不含。abstract.tex 未被 \\input，不影响编译产物，但建议同步或删除以避免混淆。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1",
+      "message": "Abstract 篇幅偏长——在 ACL 双栏格式中占据左栏约 2/3，目测约 250-280 words，可能超过 EMNLP 2026 的 200 words 硬限制。需用工具精确计数确认。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item（纯 Title/Abstract/Introduction 文本），但 Figure 1 出现在第 2 页顶部，在前 3 页窗口内，可接受。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 三面板概念图（Individual weakness / Panel size / Structural diversity）作为第一个 display item，有效传达核心 message（predictor relevance 随 panel size 变化的三种模式），与 Title-Abstract 一致。锚定效果良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 中节点颜色使用红色/绿色对比（Healthy vs Vulnerable Judge），对红绿色盲不友好。建议改用蓝/橙或 Okabe-Ito 色板中的色盲安全配色。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Table 1（Attack taxonomy）排版规范，使用 booktabs 风格，内容清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2（scatter plot）清晰，回归线和置信区间可读。文字-公式-图表节奏良好（Equation 1 + Figure 2 + 文字解释）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 3（Experimental Pipeline）传达实验设计，caption 自包含。Section 标题无孤悬问题。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 4（bar chart）和 Table 2 在同一页，密度适当。Table 2 使用 booktabs 风格，显著性标记清晰。Figure 4 颜色可区分。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 3（Judge models）和 Figure 5 在同一页，布局合理。Figure 5 线图带置信区间阴影，可读。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 6（heatmap）颜色梯度清晰，R² 数值叠加在格子内增强可读性。Conclusion 和 Limitations 均在此页，排版紧凑但无溢出。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Limitations 作为正文的一部分出现在第 8 页底部右栏，符合 EMNLP 2026 规则（正文内、仅一处）。篇幅适中（约半栏），覆盖 diversity-capability confound、inference sensitivity、scope 三个点。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "正文 8 页内 display items 总计：6 figures + 3 tables = 9 个，对实证为主的论文而言密度合适。无连续 2 页纯文本。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 13",
+      "message": "Appendix 页面塞入 4 个 figure（Figures 8-11），每个 figure 尺寸较小（约占 1/4 页面），axis labels 和 legend 文字在打印时可能低于 8pt 可读阈值。建议将 Figures 8-9 和 10-11 分别合并为 subfigure，或调大尺寸分两页。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 15",
+      "message": "Figure 12（双面板 bar chart：MMLU + ARC-Challenge）整体尺寸偏小，位于页面底部约 1/3 区域。每个 bar 的标签在 150 dpi 下已难以辨认——模型名称和数值需放大查看。建议使用 figure* 全宽或增大单面板尺寸。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "pages 24-26",
+      "message": "Figures 19/20/21 各为 3×4 contour plot 网格（Cinelli-Hazlett sensitivity），每个 subplot 的 axis labels、tick labels、标题文字非常小，在标准打印尺寸下可能难以阅读。三张图格式完全相同仅 K 值不同（K=3/5/7），考虑合并关键条件到一张更大的 figure，其余移入补充材料或缩减。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 17",
+      "message": "Figure 14（mutual information heatmaps）颜色方案（红-蓝渐变）清晰，block-diagonal 结构直观，caption 自包含。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 22",
+      "message": "Figure 18（box plot）清晰可读，展示三种 panel selection 策略对比。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 27",
+      "message": "Figure 22（cross-benchmark scatter plot）使用红/蓝/绿三色区分 K 值，配合不同 marker shape，色盲安全性尚可。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 29",
+      "message": "Figure 23（K_dl 分布直方图）三个子图清晰，灰色分布与理论线对比直观。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 32",
+      "message": "Figure 24（Monte Carlo null rejection rates bar chart）清晰，虚线标注 5% 阈值有效。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 35",
+      "message": "Figure 25（API model fraction vs panel ASR）和 Figure 26（regression coefficient trajectories with CI）均清晰可读，error bars/CI bands 显示良好。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 40",
+      "message": "末页（Appendix 最后一页）内容仅占约 55% 页面，底部约 45% 为空白。Table 34 和 Table 35 之后有大面积空白。虽然是 Appendix 末页影响较小，但可考虑调整 Table 34 的 prompt template boxes 间距来填充空间，或将 Table 35 前移与 Table 34 合并展示。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 9-10",
+      "message": "References 排版正常，无 overfull、无截断、引用编号连续，未见 [?] 未解析引用。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "所有 float 位置合理，均出现在首次引用附近（同页或下一页）。未发现 float 被推到不合理位置的情况。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "公式渲染正确，无 LaTeX 错误残留。Equation 1-4 排版清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-40",
+      "message": "无 margin overflow，双栏间距均匀，页眉页脚符合 ACL 模板规范。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "表格一致使用 booktabs 风格（\\toprule/\\midrule/\\bottomrule），无竖线。主要结果表格中最优值已加粗标注。小数精度在同列内保持一致。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 39",
+      "message": "Table 34 使用灰底文本框展示 prompt templates，视觉效果清晰，与正文区分明确。"
+    }
+  ],
+  "counts": {
+    "critical": 1,
+    "warning": 179,
+    "info": 62
+  },
+  "error": "",
+  "timestamp": "2026-05-26T07:22:08.710316+00:00"
+}

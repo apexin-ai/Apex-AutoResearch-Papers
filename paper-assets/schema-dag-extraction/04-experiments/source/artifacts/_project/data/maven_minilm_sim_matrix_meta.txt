@@ -1,0 +1,1 @@
+Remote path: /root/schema-dag-extraction/artifacts/maven_minilm_sim_matrix.pt (server cqa1-38874). PyTorch dict with 168×168 similarity matrix. tau=0.3191 (mean+1std), decomposition → 18 batches.

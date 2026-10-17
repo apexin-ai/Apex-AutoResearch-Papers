@@ -1,0 +1,8 @@
+Location: seetacloud-rtx6000:/root/cert_manip_resist_eval/artifacts/results/plan001/crossed_re_results.json
+Method: Multi-membership Clustered Robust Variance Estimation (CRVE)
+Comparison: Wild cluster bootstrap (existing method)
+K=3: Bootstrap 4/12, CRVE 0/12 (FDR), CRVE 5/12 (raw)
+K=5: Bootstrap 7/12, CRVE 8/12 (FDR), CRVE 8/12 (raw)
+K=7: Bootstrap 8/12, CRVE 8/12 (FDR), CRVE 9/12 (raw)
+eta_max: mostly non-significant across all methods
+Conclusion: K_eff robust predictor for K>=5, crossed RE structure accounted for

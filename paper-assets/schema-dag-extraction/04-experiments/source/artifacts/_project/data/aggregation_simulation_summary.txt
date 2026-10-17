@@ -1,0 +1,9 @@
+See server: /root/schema-dag-extraction/artifacts/aggregation_simulation/results.json
+
+Key results:
+- pair R²=0.074 (nonzero pairs) → simulated batch R²=0.219 [0.092, 0.361]
+- Observed batch R²=0.218 (computed BCS) — exact match
+- Effective factor EF=3.35 from intra-batch SCS correlation
+- Analytical formula: R²_batch = SNR × EF / (SNR × EF + 1)
+- Amplification factor: ~3× from pair to batch level
+- Mechanism: signal correlated (rho_SCS=0.35 for type-sharing pairs), noise independent

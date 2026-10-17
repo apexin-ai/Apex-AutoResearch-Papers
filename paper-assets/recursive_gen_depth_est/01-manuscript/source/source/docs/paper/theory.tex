@@ -1,0 +1,21 @@
+\subsection{Theoretical Motivation}
+\label{sec:method:theory}
+
+Recursive generation contracts the support of the learned distribution, with low-probability tokens lost first \cite{shumailov2024_nature}: tail mass $P_k(\mathrm{ppl} > t)$ decreases monotonically in depth $k$.
+This tail erosion predicts the perplexity tail feature family as a depth marker, confirmed jointly with surprisal variance across all 9 cells (\S\ref{sec:atlas:features}).
+Surprisal variance captures complementary distributional narrowing: as the support contracts, per-token surprise becomes more predictable.
+
+\paragraph{EDD upper bound.}
+Tail mass at depth $k$ scales as $\gamma^k$ for a contraction factor $\gamma \in (0,1)$ \cite{dohmatob2024_tale_of_tails}; EDD reaches its upper bound when adjacent-depth feature distance falls below classifier resolution.
+Our empirical AUC-excess contraction ratios (0.80 at d1v2$\to$d2v3, 0.69 at d3v4$\to$d4v5, averaged across three models under nucleus; \S\ref{sec:atlas:edd}) are consistent with geometric decay approaching a fixed point \cite{bertrand2024_stability}.
+5-class extensions to d4 (71--81\%, chance = 20\%; Appendix~\ref{app:depth4_ext}) confirm depth~4 discriminability; mean perplexity saturates before tail statistics, placing a physical ceiling on EDD.
+
+\paragraph{Scale-dependent attenuation.}
+Larger models approximate the training distribution more faithfully per step ($\gamma$ closer to 1), predicting weaker per-step signal.
+Qwen2.5-14B supports this: d0-vs-d1 AUC drops to 0.643 (vs.\ ${>}0.98$ at 1--1.5B; \S\ref{sec:gen:crossscale}); 7--8B results are mixed, and additional confounds likely interact with the scale effect (Appendix~\ref{app:cross_scale_full}).
+
+\paragraph{Strategy-dependent convergence.}
+The contraction rate $\gamma$ varies with decoding strategy.
+Temperature scaling ($\tau < 1$) sharpens the logit distribution uniformly and accelerates convergence to the mode; temperature depth-$d$ text should therefore resemble nucleus depth-$(d{+}1)$ text in tail statistics.
+GPT-2~XL confirms this: temperature d1 median \texttt{p90\_ppl} (92.2) matches the nucleus d2 median (92.3).
+Top-$k$ truncation removes the low-probability tokens that carry depth signal, predicting weaker discriminability; top-$k$ cells yield the lowest accuracy (68.9--75.8\%) across the atlas (\S\ref{sec:atlas:strategy}).

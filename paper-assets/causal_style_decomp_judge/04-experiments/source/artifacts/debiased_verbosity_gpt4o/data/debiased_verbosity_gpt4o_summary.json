@@ -1,0 +1,22 @@
+{
+  "experiment": "debiased_verbosity_gpt4o",
+  "axis": "verbosity",
+  "judge": "GPT-4o",
+  "n_pairs": 86,
+  "original": {
+    "p_verbose": 76.0,
+    "ci": [
+      69.7,
+      83.5
+    ],
+    "p_value": 0.0001
+  },
+  "debiased": {
+    "p_verbose": 62.9,
+    "ci_lo": 54.5,
+    "ci_hi": 70.9,
+    "p_value": 0.0016,
+    "n_pairs": 86,
+    "n_comparisons": 167
+  }
+}

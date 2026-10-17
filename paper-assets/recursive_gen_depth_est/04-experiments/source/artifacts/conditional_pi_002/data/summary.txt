@@ -1,0 +1,34 @@
+Conditional Permutation Importance Summary (9 cells, seed=42, 1000 bootstrap)
+
+Top family: surprisal (avg_pi=0.0890, avg_rank=7.3)
+perplexity_is_top_family: False
+
+Cross-cell avg rank / avg PI:
+1. var_surprisal    rank=1.4  PI=0.2597  boot_CI=[1.4, 1.9]
+2. p90_ppl          rank=1.7  PI=0.2384  boot_CI=[1.4, 1.7]
+3. p75_ppl          rank=3.1  PI=0.0628  boot_CI=[2.8, 3.6]
+4. p50_ppl          rank=5.0  PI=0.0155  boot_CI=[4.0, 6.7]
+5. p25_ppl          rank=5.8  PI=0.0119  boot_CI=[4.2, 7.9]
+6. mean_ppl         rank=6.3  PI=0.0084  boot_CI=[5.1, 8.6]
+7. p10_ppl          rank=8.7  PI=0.0043  boot_CI=[6.9, 11.4]
+8. mean_surprisal   rank=8.7  PI=0.0050  boot_CI=[5.8, 10.4]
+9. type_token_ratio rank=9.3  PI=0.0047  boot_CI=[7.2, 12.3]
+10. var_ppl         rank=9.6  PI=0.0046  boot_CI=[7.2, 11.7]
+11. hapax_ratio     rank=10.1 PI=0.0040  boot_CI=[7.6, 12.4]
+12. entropy_of_surp rank=11.9 PI=0.0022  boot_CI=[9.8, 14.7]
+13. skewness_ppl    rank=13.3 PI=0.0021  boot_CI=[11.0, 16.3]
+14. kurtosis_ppl    rank=14.2 PI=0.0017  boot_CI=[11.2, 16.4]
+15. trigram_entropy  rank=15.3 PI=0.0018  boot_CI=[11.7, 18.2]
+16. rep_4gram       rank=15.4 PI=0.0009  boot_CI=[12.6, 18.1]
+17. bigram_entropy  rank=16.0 PI=0.0008  boot_CI=[12.7, 18.4]
+18. rep_2gram       rank=16.0 PI=0.0007  boot_CI=[13.0, 18.4]
+19. rep_3gram       rank=18.1 PI=0.0004  boot_CI=[15.0, 19.0]
+
+Family-level:
+surprisal      avg_pi=0.0890 avg_rank=7.3
+perplexity     avg_pi=0.0388 avg_rank=7.5
+lexical        avg_pi=0.0043 avg_rank=9.7
+ngram_entropy  avg_pi=0.0013 avg_rank=15.7
+repetition     avg_pi=0.0007 avg_rank=16.5
+
+Full JSON on server: /root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/summary.json

@@ -1,0 +1,1 @@
+See remote server: /root/autodl-tmp/recursive_gen_depth_est/artifacts/bootstrap_ci_table1.json on gpu-6000pro-2. Summary: All 9 cells computed, CI width ~1-2pp for accuracy, ~1-2pp for AUC. RF > LR in 8/9 cells (exception: olmo_topk50 where LR 0.749 > RF 0.745). Best cell: gpt2xl_temp09 RF 85.9% [85.4, 86.3].

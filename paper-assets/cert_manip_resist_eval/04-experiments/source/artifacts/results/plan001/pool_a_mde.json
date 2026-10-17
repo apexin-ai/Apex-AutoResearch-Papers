@@ -1,0 +1,73 @@
+{
+  "pool_a_models": [
+    "claude-opus-4-6",
+    "gpt-5.5",
+    "gemini-3.1-pro-preview",
+    "gpt-4.1",
+    "claude-sonnet-4-6",
+    "gpt-4.1-nano",
+    "gemini-3.5-flash",
+    "gpt-4.1-mini",
+    "claude-3-haiku"
+  ],
+  "pool_a_panels": {
+    "K3": 84,
+    "K5": 126
+  },
+  "beta_std_values": [
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.5,
+    0.7,
+    1.0
+  ],
+  "n_simulations": 1000,
+  "n_bootstrap": 999,
+  "bootstrap_weights": "webb_6point",
+  "seed": 42,
+  "clusters_per_position": {
+    "K3": [
+      7,
+      7,
+      7
+    ],
+    "K5": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ]
+  },
+  "power_by_beta": {
+    "K3": {
+      "0.1": 0.0151,
+      "0.15": 0.0251,
+      "0.2": 0.0458,
+      "0.25": 0.0806,
+      "0.3": 0.1263,
+      "0.5": 0.4212,
+      "0.7": 0.6895,
+      "1.0": 0.8578
+    },
+    "K5": {
+      "0.1": 0.0012,
+      "0.15": 0.0027,
+      "0.2": 0.0063,
+      "0.25": 0.0122,
+      "0.3": 0.0218,
+      "0.5": 0.0852,
+      "0.7": 0.1751,
+      "1.0": 0.3007
+    }
+  },
+  "mde_at_80pct": {
+    "K3": 0.897,
+    "K5": null
+  },
+  "elapsed_seconds": 4342.0,
+  "notes": "Power per-condition then averaged across 12 conditions (2 datasets x 6 attacks). Wild cluster bootstrap with Webb 6-point weights, B=999, max p-value across K judge positions. Regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps). Few clusters per position (7 for K=3, 5 for K=5) make WCB very conservative, limiting detectable effect size."
+}

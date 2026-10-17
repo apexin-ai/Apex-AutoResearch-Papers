@@ -1,0 +1,100 @@
+{
+  "GatedDeltaNet": {
+    "helped_jaccard": {
+      "h24-1_vs_h12-1": 0.3449,
+      "h24-1_vs_h6-1": 0.3348,
+      "h24-1_vs_h3-1": 0.3112,
+      "h12-1_vs_h6-1": 0.3442,
+      "h12-1_vs_h3-1": 0.3405,
+      "h6-1_vs_h3-1": 0.3521
+    },
+    "hurt_jaccard": {
+      "h24-1_vs_h12-1": 0.3095,
+      "h24-1_vs_h6-1": 0.3281,
+      "h24-1_vs_h3-1": 0.3204,
+      "h12-1_vs_h6-1": 0.3306,
+      "h12-1_vs_h3-1": 0.281,
+      "h6-1_vs_h3-1": 0.3451
+    },
+    "helped_counts": {
+      "h24-1": 487,
+      "h12-1": 480,
+      "h6-1": 426,
+      "h3-1": 461
+    },
+    "hurt_counts": {
+      "h24-1": 505,
+      "h12-1": 519,
+      "h6-1": 600,
+      "h3-1": 616
+    },
+    "pure_correct_count": 2800
+  },
+  "RetNet": {
+    "helped_jaccard": {
+      "h24-1_vs_h12-1": 0.3539,
+      "h24-1_vs_h6-1": 0.3141,
+      "h24-1_vs_h3-1": 0.3344,
+      "h12-1_vs_h6-1": 0.3221,
+      "h12-1_vs_h3-1": 0.3302,
+      "h6-1_vs_h3-1": 0.3449
+    },
+    "hurt_jaccard": {
+      "h24-1_vs_h12-1": 0.3156,
+      "h24-1_vs_h6-1": 0.3343,
+      "h24-1_vs_h3-1": 0.3068,
+      "h12-1_vs_h6-1": 0.3008,
+      "h12-1_vs_h3-1": 0.3235,
+      "h6-1_vs_h3-1": 0.3432
+    },
+    "helped_counts": {
+      "h24-1": 446,
+      "h12-1": 430,
+      "h6-1": 395,
+      "h3-1": 420
+    },
+    "hurt_counts": {
+      "h24-1": 457,
+      "h12-1": 485,
+      "h6-1": 501,
+      "h3-1": 497
+    },
+    "pure_correct_count": 2666
+  },
+  "HGRN2": {
+    "helped_jaccard": {
+      "h24-1_vs_h12-1": 0.3594,
+      "h24-1_vs_h6-1": 0.3694,
+      "h24-1_vs_h3-1": 0.3748,
+      "h12-1_vs_h6-1": 0.3678,
+      "h12-1_vs_h3-1": 0.3784,
+      "h6-1_vs_h3-1": 0.3877
+    },
+    "hurt_jaccard": {
+      "h24-1_vs_h12-1": 0.2919,
+      "h24-1_vs_h6-1": 0.2887,
+      "h24-1_vs_h3-1": 0.2977,
+      "h12-1_vs_h6-1": 0.2733,
+      "h12-1_vs_h3-1": 0.3089,
+      "h6-1_vs_h3-1": 0.2869
+    },
+    "helped_counts": {
+      "h24-1": 479,
+      "h12-1": 512,
+      "h6-1": 533,
+      "h3-1": 548
+    },
+    "hurt_counts": {
+      "h24-1": 397,
+      "h12-1": 413,
+      "h6-1": 393,
+      "h3-1": 392
+    },
+    "pure_correct_count": 2494
+  },
+  "summary": {
+    "mean_within_arch_helped_J": 0.348,
+    "mean_within_arch_hurt_J": 0.3104,
+    "interpretation": "Within-architecture helped/hurt sets show moderate overlap (mean helped J=0.348, mean hurt J=0.310). There is a shared core but also ratio-specific effects."
+  }
+}

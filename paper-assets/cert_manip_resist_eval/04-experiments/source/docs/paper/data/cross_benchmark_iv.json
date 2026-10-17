@@ -1,0 +1,111 @@
+{
+  "method": "Cross-benchmark IV analysis",
+  "instrument": "MMLU K_eff",
+  "outcome": "ARC panel ASR (and reverse)",
+  "panel_sizes": {"K3": 455, "K5": 3003, "K7": 6435},
+  "exclusion_restriction_test": {
+    "rho_keff_cross_benchmark": {
+      "K3": 0.784,
+      "K5": 0.762,
+      "K7": 0.763
+    },
+    "cross_lower_than_within": true,
+    "cross_eta_vs_within_eta": {
+      "K3": {"cross": 0.383, "within": 0.479},
+      "K5": {"cross": 0.386, "within": 0.807},
+      "K7": {"cross": 0.349, "within": 0.781}
+    },
+    "violated": true,
+    "reason": "K_eff is structurally determined by panel composition (judge identities), not benchmark-specific. Cross-benchmark rho=0.76-0.78 is high, and the instrument cannot be excluded from the outcome equation."
+  },
+  "reduced_form": {
+    "description": "OLS: ASR_target ~ K_eff_source + eta_source, where source and target are different benchmarks",
+    "results_by_K": {
+      "K3": {
+        "mmlu_keff_on_arc": {
+          "significant_keff": "5/6",
+          "conditions": {
+            "prompt_injection": {"keff_std_beta": 0.359, "keff_p": 2.78e-16, "r_sq": 0.371},
+            "sycophancy": {"keff_std_beta": 0.078, "keff_p": 0.108, "r_sq": 0.123},
+            "score_manipulation": {"keff_std_beta": 0.281, "keff_p": 2.04e-09, "r_sq": 0.270},
+            "verbosity_bias": {"keff_std_beta": 0.097, "keff_p": 0.036, "r_sq": 0.223},
+            "position_bias": {"keff_std_beta": 0.422, "keff_p": 6.26e-23, "r_sq": 0.417},
+            "authority_bias": {"keff_std_beta": 0.341, "keff_p": 1.22e-14, "r_sq": 0.266}
+          }
+        },
+        "arc_keff_on_mmlu": {
+          "significant_keff": "6/6",
+          "conditions": {
+            "prompt_injection": {"keff_std_beta": 0.402, "keff_p": 1.86e-42, "r_sq": 0.756},
+            "sycophancy": {"keff_std_beta": 0.292, "keff_p": 8.76e-12, "r_sq": 0.380},
+            "score_manipulation": {"keff_std_beta": 0.225, "keff_p": 2.76e-08, "r_sq": 0.430},
+            "verbosity_bias": {"keff_std_beta": 0.202, "keff_p": 7.62e-07, "r_sq": 0.432},
+            "position_bias": {"keff_std_beta": 0.505, "keff_p": 1.79e-55, "r_sq": 0.526},
+            "authority_bias": {"keff_std_beta": 0.231, "keff_p": 7.53e-08, "r_sq": 0.161}
+          }
+        }
+      },
+      "K5": {
+        "mmlu_keff_on_arc": {
+          "significant_keff": "6/6",
+          "conditions": {
+            "prompt_injection": {"keff_std_beta": 0.408, "keff_p": 3.83e-93, "r_sq": 0.305},
+            "sycophancy": {"keff_std_beta": -0.065, "keff_p": 6.76e-04, "r_sq": 0.070},
+            "score_manipulation": {"keff_std_beta": 0.284, "keff_p": 4.77e-44, "r_sq": 0.191},
+            "verbosity_bias": {"keff_std_beta": 0.155, "keff_p": 7.80e-19, "r_sq": 0.222},
+            "position_bias": {"keff_std_beta": 0.414, "keff_p": 9.86e-113, "r_sq": 0.312},
+            "authority_bias": {"keff_std_beta": 0.219, "keff_p": 9.16e-36, "r_sq": 0.157}
+          }
+        },
+        "arc_keff_on_mmlu": {
+          "significant_keff": "6/6",
+          "conditions": {
+            "prompt_injection": {"keff_std_beta": 0.470, "keff_p": 4.81e-89, "r_sq": 0.521},
+            "sycophancy": {"keff_std_beta": 0.188, "keff_p": 1.42e-16, "r_sq": 0.224},
+            "score_manipulation": {"keff_std_beta": 0.191, "keff_p": 4.05e-23, "r_sq": 0.242},
+            "verbosity_bias": {"keff_std_beta": 0.275, "keff_p": 6.58e-34, "r_sq": 0.312},
+            "position_bias": {"keff_std_beta": 0.155, "keff_p": 7.19e-16, "r_sq": 0.187},
+            "authority_bias": {"keff_std_beta": 0.177, "keff_p": 8.32e-09, "r_sq": 0.069}
+          }
+        }
+      },
+      "K7": {
+        "mmlu_keff_on_arc": {
+          "significant_keff": "6/6"
+        },
+        "arc_keff_on_mmlu": {
+          "significant_keff": "5/6"
+        }
+      }
+    },
+    "overall_significant": "34/36 conditions across K3/K5/K7"
+  },
+  "two_sls": {
+    "first_stage_F": {
+      "K3": 820.1,
+      "K5": 4508.2,
+      "K7": 9231.6
+    },
+    "strong_instrument": true,
+    "all_conditions_strong": "18/18",
+    "second_stage_computed": false,
+    "valid": false,
+    "reason": "Exclusion restriction violated: K_eff is structurally determined by panel composition, making it an invalid instrument for causal inference via 2SLS. First-stage F statistics are strong (820-9232 >> 10), but the structural link between MMLU K_eff and ARC K_eff (rho=0.76-0.78) means the instrument directly affects the outcome."
+  },
+  "bootstrap_permutation": {
+    "description": "Cluster bootstrap permutation tests with multiple cluster sizes",
+    "K3": {
+      "mmlu_keff_on_arc": {
+        "prompt_injection": {"keff_fdr_p": 0.0024, "significant": true},
+        "sycophancy": {"keff_fdr_p": 0.3694, "significant": false},
+        "score_manipulation": {"keff_fdr_p": 0.0038, "significant": true},
+        "verbosity_bias": {"keff_fdr_p": 0.3558, "significant": false},
+        "position_bias": {"keff_fdr_p": 0.0027, "significant": true},
+        "authority_bias": {"keff_fdr_p": 0.0164, "significant": true}
+      }
+    },
+    "note": "Permutation tests generally confirm OLS results; sycophancy and verbosity_bias weaker in some K sizes"
+  },
+  "conclusion": "Reduced-form regressions show K_eff has strong cross-benchmark predictive power for ASR (34/36 conditions significant). However, causal interpretation via 2SLS is invalid because the exclusion restriction is violated: K_eff is structurally determined by judge composition, creating a direct pathway from instrument to outcome that bypasses the endogenous variable. The reduced-form results serve as robustness evidence that K_eff captures a genuine panel-level property, not a benchmark-specific artifact.",
+  "summary_from_server": "K3: r(K_eff_MMLU,K_eff_ARC)=0.784, cross_eta=0.383 vs within_eta=0.479\n  mmlu_keff_on_arc: keff=5/6, eta=6/6\n  arc_keff_on_mmlu: keff=6/6, eta=6/6\n  2SLS strong instruments: 6/6\nK5: r(K_eff_MMLU,K_eff_ARC)=0.762, cross_eta=0.386 vs within_eta=0.807\n  mmlu_keff_on_arc: keff=6/6, eta=6/6\n  arc_keff_on_mmlu: keff=6/6, eta=6/6\n  2SLS strong instruments: 6/6\nK7: r(K_eff_MMLU,K_eff_ARC)=0.763, cross_eta=0.349 vs within_eta=0.781\n  mmlu_keff_on_arc: keff=6/6, eta=6/6\n  arc_keff_on_mmlu: keff=6/6, eta=5/6\n  2SLS strong instruments: 6/6"
+}

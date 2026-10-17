@@ -1,0 +1,75 @@
+{
+  "analysis": "retnet_hgrn2_only_decoupling",
+  "date": "2026-05-20",
+  "motivation": "Exclude GDN (16-head confound, D004) to test if decoupling holds with only RetNet + HGRN2",
+  "n_examples": 5153,
+  "architectures": ["RetNet", "HGRN2"],
+  "ratios": ["pure", "h24-1", "h12-1", "h6-1", "h3-1"],
+  "cross_arch_sigma": {
+    "pure": {
+      "retnet_acc": 0.5165922763438774,
+      "hgrn2_acc": 0.48418397050261985,
+      "abs_diff": 0.032408305841257534,
+      "sigma": 0.016204152920628767
+    },
+    "h24-1": {
+      "retnet_acc": 0.5152338443625073,
+      "hgrn2_acc": 0.5002910925674364,
+      "abs_diff": 0.014942751795070874,
+      "sigma": 0.007471375897535437
+    },
+    "h12-1": {
+      "retnet_acc": 0.5070832524742869,
+      "hgrn2_acc": 0.5030079565301766,
+      "abs_diff": 0.004075295944110269,
+      "sigma": 0.0020376479720551344
+    },
+    "h6-1": {
+      "retnet_acc": 0.4971861051814477,
+      "hgrn2_acc": 0.5088298078789055,
+      "abs_diff": 0.011643702697457847,
+      "sigma": 0.005821851348728924
+    },
+    "h3-1": {
+      "retnet_acc": 0.5032020182418009,
+      "hgrn2_acc": 0.5138754123811372,
+      "abs_diff": 0.010673394139336323,
+      "sigma": 0.0053366970696681615
+    }
+  },
+  "sigma_sequence": [0.016204, 0.007471, 0.002038, 0.005822, 0.005337],
+  "sigma_monotonic_decreasing": false,
+  "sigma_first3_monotonic": true,
+  "sigma_all_hybrid_below_pure": true,
+  "sigma_convergence_ratio": 0.539,
+  "sigma_spearman": {"rho": -0.7, "p": 0.188},
+  "per_example_jaccard": {
+    "h24-1": {
+      "helped": {"n_retnet": 448, "n_hgrn2": 479, "intersection": 79, "union": 848, "J": 0.0932},
+      "hurt": {"n_retnet": 455, "n_hgrn2": 396, "intersection": 74, "union": 777, "J": 0.0952}
+    },
+    "h12-1": {
+      "helped": {"n_retnet": 427, "n_hgrn2": 512, "intersection": 86, "union": 853, "J": 0.1008},
+      "hurt": {"n_retnet": 476, "n_hgrn2": 415, "intersection": 70, "union": 821, "J": 0.0853}
+    },
+    "h6-1": {
+      "helped": {"n_retnet": 399, "n_hgrn2": 524, "intersection": 73, "union": 850, "J": 0.0859},
+      "hurt": {"n_retnet": 499, "n_hgrn2": 397, "intersection": 78, "union": 818, "J": 0.0954}
+    },
+    "h3-1": {
+      "helped": {"n_retnet": 426, "n_hgrn2": 548, "intersection": 95, "union": 879, "J": 0.1081},
+      "hurt": {"n_retnet": 495, "n_hgrn2": 395, "intersection": 71, "union": 819, "J": 0.0867}
+    }
+  },
+  "helped_jaccard_sequence": [0.0932, 0.1008, 0.0859, 0.1081],
+  "hurt_jaccard_sequence": [0.0952, 0.0853, 0.0954, 0.0867],
+  "jaccard_saturates": true,
+  "jaccard_helped_range": 0.0222,
+  "jaccard_hurt_range": 0.0101,
+  "conclusion": "decoupling_holds_without_GDN",
+  "conclusion_detail": "σ not strictly monotonic across all 5 ratios (slight bounce at h6-1/h3-1 after minimum at h12-1), but first 3 steps are monotonic (0.016→0.007→0.002) and all hybrid σ ≤ 0.0075 vs pure σ = 0.0162 (≥54% reduction). Jaccard saturates at ~0.09 across all ratios (range < 0.023). Both signals confirm decoupling does not depend on GDN.",
+  "comparison_to_3arch": {
+    "note": "With 3 archs (incl GDN), σ dropped 0.024→0.005 monotonically. 2-arch results shown above.",
+    "3arch_sigma_range": "0.024 to 0.005"
+  }
+}

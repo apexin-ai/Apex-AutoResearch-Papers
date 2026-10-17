@@ -1,0 +1,260 @@
+{
+  "mmlu": {
+    "data_points": [
+      {
+        "judge_ids": [
+          "mistral-large",
+          "qwen2.5-14b",
+          "llama3.1-8b"
+        ],
+        "group": "high_keff",
+        "k_eff_mi": 2.7707908068842877,
+        "k_eff_formula": 2.7707908068842877,
+        "k_eff_empirical": 2.948607890080428,
+        "k_star_vn": null,
+        "mean_asr": 0.2572692793931732,
+        "attacks": {
+          "prompt_injection": 0.37168141592920356,
+          "sycophancy": 0.11504424778761062,
+          "score_manipulation": 0.1902654867256637
+        }
+      },
+      {
+        "judge_ids": [
+          "llama3.1-70b",
+          "qwen2.5-14b",
+          "llama3.1-8b"
+        ],
+        "group": "high_keff",
+        "k_eff_mi": 2.7503041024869144,
+        "k_eff_formula": 2.7503041024869144,
+        "k_eff_empirical": 2.9539417980575746,
+        "k_star_vn": null,
+        "mean_asr": 0.2393162393162393,
+        "attacks": {
+          "prompt_injection": 0.3974358974358974,
+          "sycophancy": 0.07264957264957266,
+          "score_manipulation": 0.13675213675213677
+        }
+      },
+      {
+        "judge_ids": [
+          "qwen2.5-32b",
+          "qwen2.5-14b",
+          "llama3.1-8b"
+        ],
+        "group": "high_keff",
+        "k_eff_mi": 2.709533311012622,
+        "k_eff_formula": 2.709533311012622,
+        "k_eff_empirical": 2.9193039399342404,
+        "k_star_vn": null,
+        "mean_asr": 0.24046541693600518,
+        "attacks": {
+          "prompt_injection": 0.3665158371040724,
+          "sycophancy": 0.06787330316742081,
+          "score_manipulation": 0.17194570135746606
+        }
+      },
+      {
+        "judge_ids": [
+          "qwen2.5-72b",
+          "mistral-large",
+          "qwen2.5-32b"
+        ],
+        "group": "low_keff",
+        "k_eff_mi": 2.2072417601680168,
+        "k_eff_formula": 2.2072417601680168,
+        "k_eff_empirical": 2.78999466247328,
+        "k_star_vn": null,
+        "mean_asr": 0.14226437462951988,
+        "attacks": {
+          "prompt_injection": 0.21991701244813278,
+          "sycophancy": 0.08713692946058091,
+          "score_manipulation": 0.08298755186721991
+        }
+      },
+      {
+        "judge_ids": [
+          "qwen2.5-72b",
+          "llama3.1-70b",
+          "mistral-large"
+        ],
+        "group": "low_keff",
+        "k_eff_mi": 2.1933520990753648,
+        "k_eff_formula": 2.147090607577506,
+        "k_eff_empirical": 2.7734121902829436,
+        "k_star_vn": 2.696723082721431,
+        "mean_asr": 0.14627205463858853,
+        "attacks": {
+          "prompt_injection": 0.23904382470119523,
+          "sycophancy": 0.09163346613545817,
+          "score_manipulation": 0.07171314741035857
+        }
+      },
+      {
+        "judge_ids": [
+          "qwen2.5-72b",
+          "llama3.1-70b",
+          "qwen2.5-32b"
+        ],
+        "group": "low_keff",
+        "k_eff_mi": 2.1398345543529227,
+        "k_eff_formula": 2.1398345543529227,
+        "k_eff_empirical": 2.7470014016292326,
+        "k_star_vn": null,
+        "mean_asr": 0.14285714285714282,
+        "attacks": {
+          "prompt_injection": 0.22727272727272727,
+          "sycophancy": 0.07024793388429752,
+          "score_manipulation": 0.08264462809917356
+        }
+      }
+    ],
+    "dual_keff_regression": {
+      "formula": {
+        "beta": 2.240253333013984,
+        "r_squared": 0.9856353553845234,
+        "p_value": 7.775215880724501e-05
+      },
+      "empirical": {
+        "beta": 8.660456119344033,
+        "r_squared": 0.9615252869905848,
+        "p_value": 0.0005623912516328832
+      }
+    },
+    "summary": {
+      "high_mean_asr": 0.24568364521513922,
+      "low_mean_asr": 0.14379785737508374,
+      "hypothesis_holds": false
+    }
+  },
+  "arc_challenge": {
+    "data_points": [
+      {
+        "judge_ids": [
+          "mistral-large",
+          "qwen2.5-14b",
+          "llama3.1-8b"
+        ],
+        "group": "high_keff",
+        "k_eff_mi": 2.5036775765440047,
+        "k_eff_formula": 2.5036775765440047,
+        "k_eff_empirical": 2.92662938993414,
+        "k_star_vn": null,
+        "mean_asr": 0.1155378486055777,
+        "attacks": {
+          "prompt_injection": 0.15139442231075698,
+          "sycophancy": 0.0199203187250996,
+          "score_manipulation": 0.11155378486055777
+        }
+      },
+      {
+        "judge_ids": [
+          "llama3.1-70b",
+          "qwen2.5-14b",
+          "llama3.1-8b"
+        ],
+        "group": "high_keff",
+        "k_eff_mi": 2.4901635238572157,
+        "k_eff_formula": 2.4901635238572157,
+        "k_eff_empirical": 2.9080044866084065,
+        "k_star_vn": null,
+        "mean_asr": 0.13597246127366608,
+        "attacks": {
+          "prompt_injection": 0.21686746987951808,
+          "sycophancy": 0.012048192771084338,
+          "score_manipulation": 0.0963855421686747
+        }
+      },
+      {
+        "judge_ids": [
+          "qwen2.5-72b",
+          "llama3.1-70b",
+          "llama3.1-8b"
+        ],
+        "group": "high_keff",
+        "k_eff_mi": 2.400802106059508,
+        "k_eff_formula": 2.400802106059508,
+        "k_eff_empirical": 2.7686516115835857,
+        "k_star_vn": null,
+        "mean_asr": 0.11693121693121691,
+        "attacks": {
+          "prompt_injection": 0.24074074074074073,
+          "sycophancy": 0.018518518518518517,
+          "score_manipulation": 0.025925925925925925
+        }
+      },
+      {
+        "judge_ids": [
+          "qwen2.5-72b",
+          "mistral-large",
+          "qwen2.5-32b"
+        ],
+        "group": "low_keff",
+        "k_eff_mi": 1.8428267137239054,
+        "k_eff_formula": 1.8428267137239054,
+        "k_eff_empirical": 2.612512168222016,
+        "k_star_vn": null,
+        "mean_asr": 0.08682483594144372,
+        "attacks": {
+          "prompt_injection": 0.14487632508833923,
+          "sycophancy": 0.0353356890459364,
+          "score_manipulation": 0.045936395759717315
+        }
+      },
+      {
+        "judge_ids": [
+          "qwen2.5-72b",
+          "llama3.1-70b",
+          "qwen2.5-32b"
+        ],
+        "group": "low_keff",
+        "k_eff_mi": 1.8351782971283566,
+        "k_eff_formula": 1.8351782971283566,
+        "k_eff_empirical": 2.582573488198489,
+        "k_star_vn": null,
+        "mean_asr": 0.09030612244897959,
+        "attacks": {
+          "prompt_injection": 0.16071428571428573,
+          "sycophancy": 0.03214285714285714,
+          "score_manipulation": 0.039285714285714285
+        }
+      },
+      {
+        "judge_ids": [
+          "llama3.1-70b",
+          "mistral-large",
+          "qwen2.5-32b"
+        ],
+        "group": "low_keff",
+        "k_eff_mi": 1.7771697757037952,
+        "k_eff_formula": 1.7771697757037952,
+        "k_eff_empirical": 2.4315138961223255,
+        "k_star_vn": null,
+        "mean_asr": 0.05684104627766599,
+        "attacks": {
+          "prompt_injection": 0.10915492957746478,
+          "sycophancy": 0.007042253521126761,
+          "score_manipulation": 0.02112676056338028
+        }
+      }
+    ],
+    "dual_keff_regression": {
+      "formula": {
+        "beta": 1.6130673800644717,
+        "r_squared": 0.7580687981367051,
+        "p_value": 0.024007239199335367
+      },
+      "empirical": {
+        "beta": 3.9996373717050018,
+        "r_squared": 0.8839905626450849,
+        "p_value": 0.005255792384840029
+      }
+    },
+    "summary": {
+      "high_mean_asr": 0.12281384227015357,
+      "low_mean_asr": 0.07799066822269643,
+      "hypothesis_holds": false
+    }
+  }
+}

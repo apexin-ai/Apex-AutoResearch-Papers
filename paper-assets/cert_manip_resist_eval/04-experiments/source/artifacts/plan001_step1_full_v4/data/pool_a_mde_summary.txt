@@ -1,0 +1,20 @@
+Location: seetacloud-rtx6000:/root/cert_manip_resist_eval/artifacts/results/plan001/pool_a_mde.json
+Runtime: 4342s (~72 min), n_sim=1000, n_boot=999
+
+Power by beta_std:
+  beta_std | K=3   | K=5
+  0.1      | 0.015 | 0.001
+  0.15     | 0.025 | 0.003
+  0.2      | 0.046 | 0.006
+  0.25     | 0.081 | 0.012
+  0.3      | 0.126 | 0.022
+  0.5      | 0.421 | 0.085
+  0.7      | 0.690 | 0.175
+  1.0      | 0.858 | 0.301
+
+MDE@80%:
+  K=3: 0.897
+  K=5: NOT ACHIEVABLE (max power 0.301)
+
+Interpretation: WCB is extremely conservative with few clusters per position.
+K=5 achieving 7/12 significance despite max power ~30% suggests very large true effects.

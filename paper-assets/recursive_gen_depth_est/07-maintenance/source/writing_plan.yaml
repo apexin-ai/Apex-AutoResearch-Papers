@@ -1,0 +1,397 @@
+# Writing Plan — recursive_gen_depth_est
+# Generated: 2026-05-15 by Paper Agent
+# Contract for all downstream Workers — Director 审批后生效
+
+meta:
+  venue: EMNLP 2026
+  track: "ARR May 2026 — New Missions for NLP Research"
+  template: "acl2023"
+  template_note: "需下载 ARR/ACL 官方 LaTeX 模板到 templates/latex/emnlp2026/；当前使用 acl2023 style 规范"
+  page_limit: 8
+  deadline: "2026-05-25"
+  title: "How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints"
+  core_claim: >
+    Recursive generation leaves quantifiable statistical fingerprints —
+    perplexity tail statistics (p90_ppl, var_surprisal) universally mark
+    generation depth across 3 model families × 3 decoding strategies,
+    enabling 70–85% four-class depth estimation (chance=25%). The Depth
+    Degradation Atlas reveals that decoding strategy fundamentally shapes
+    degradation trajectories rather than merely attenuating them.
+  contributions:
+    - "C1: Task formalization — define recursive generation depth estimation + EDD metric"
+    - "C2: Depth Degradation Atlas — 3×3 systematic map with p90_ppl/var_surprisal universality, strategy-dependent trajectories, EDD=4"
+    - "C3: Cross-model (66.4%) and cross-strategy (59.1%) generalization analysis, including temp09 d1v2 reversal mechanism + z-score mitigation"
+    - "C4: DCOL 6× failure as negative result — end-to-end contrastive ordinal learning insufficient vs statistical features + simple classifiers"
+  flags: []
+  created_at: "2026-05-15T12:00:00Z"
+
+# ============================================================
+# PAPER OUTLINE
+# ============================================================
+paper_outline:
+
+  - section: abstract
+    word_budget: 150
+    core_bullets:
+      - "问题: Web 语料中多代递归合成文本深度不可知，binary detectors 丢弃 ordinal 信息"
+      - "方法: 定义 recursive generation depth estimation，构建 3M×3S×4D benchmark，19-dim 统计特征 + RF"
+      - "结果: 70–85% 4-class acc (chance=25%), p90_ppl/var_surprisal 100%/78% top-2, EDD=4 (binary pairwise), cross-model 66.4%"
+      - "发现: 解码策略根本性塑造 degradation trajectory — temp d1/d2 boundary 反转 (AUC 0.13), z-score 部分恢复"
+    dependencies: [atlas, generalization, method]
+    tables: []
+    figures: []
+    registry_refs: []
+
+  - section: introduction
+    word_budget: 900
+    core_bullets:
+      - "Hook: LLM 语料中合成文本比例快速增长，model→data→model 递归循环已在 wild 中发生，但我们无法判断文本经历了多少轮递归——这一区分对 data curation 至关重要（1st-gen 可能有益，deeply recursive 驱动 collapse）"
+      - "Gap: Binary detectors (Binoculars, Fast-DetectGPT, DivEye) 仅区分 real/synthetic; model collapse 研究 (Shumailov Nature, Dohmatob ICML) 假设深度已知; EditLens 估计单次编辑程度但不涉及递归深度——没有方法从文本本身估计 ordinal recursive depth"
+      - "Insight: 递归生成在文本中留下可量化统计指纹，特别是 perplexity tail statistics (p90_ppl, var_surprisal)，跨 3 个模型族 × 3 种解码策略具有 universal stability"
+      - "Mechanism: 19-dim reference-model perplexity features + RF → ordinal depth estimation; Depth Degradation Atlas 系统性刻画 feature-depth 演变"
+      - "Contributions: C1-C4 (task formalization + EDD, Atlas, generalization analysis, DCOL negative result)"
+    dependencies: [atlas, generalization]
+    citation_hints:
+      - "shumailov2024_nature, alemohammad2024_mad: model collapse 基础"
+      - "editlens2026: 最近邻 (editing extent vs recursive depth)"
+      - "binoculars2024, fast_detectgpt2024, diveye2026: binary detectors"
+      - "drayson2025: detection prevents collapse"
+    figures: []
+    tables: []
+    registry_refs: []
+
+  - section: related_work
+    word_budget: 600
+    core_bullets:
+      - "Model Collapse Theory: Shumailov(Nature) tail erosion, Dohmatob(tale of tails) tail narrowing vs cutting, Alemohammad(MAD) precision-recall tradeoff, Gerstgrasser(accumulation) mitigation, Drayson(EMNLP2025) detection+collapse — 刻画 degradation patterns 但假设深度已知 a priori"
+      - "AI Text Detection: DetectGPT(curvature), Binoculars(ppl ratio), Fast-DetectGPT, DivEye(surprisal diversity), GLTR(statistical) — binary classification, 丢弃 ordinal depth"
+      - "Adjacent Tasks: EditLens(editing extent, continuous), Uchendu(multi-source attribution) — 相邻维度但不估计 recursive depth"
+      - "Decoding Strategy Effects: Holtzman(nucleus), Finlayson(closing), Garces Arias(COLING2025 model-dependent) — 我们揭示策略对 depth signal 的差异化影响，超越单纯 text quality 层面"
+    dependencies: [introduction]
+    citation_hints:
+      - "kirchenbauer2023_watermark: proactive vs post-hoc"
+      - "sadasivan2023_paraphrase: detection limits"
+      - "coral2020, cloc2025: ordinal classification methods"
+    figures: []
+    tables: []
+    registry_refs: []
+
+  - section: method
+    title: "Task Formulation"
+    subsections:
+      - "3.1 Problem Definition"
+      - "3.2 Multi-Generational Benchmark"
+      - "3.3 Statistical Feature Design"
+      - "3.4 Effective Discriminable Depth (EDD)"
+    word_budget: 1000
+    core_bullets:
+      - "Definition: Given text x, estimate recursive generation depth d ∈ {0,1,...,K}, where d=0 = human-written"
+      - "Benchmark: 3 models (Pythia-1.4B, OLMo-1B, GPT-2 XL) × 3 strategies (nucleus p=0.95, temp τ=0.9, top-k k=50) × 4 depths (d0-d3), 5000 samples/cell, total 180k samples"
+      - "Pipeline: seed text (OpenWebText/Dolma/WebText) → LoRA finetune → generate → repeat; reference model GPT-2 base (独立于生成模型)"
+      - "Features: 19-dim — perplexity statistics (mean/var/skewness/kurtosis/p10/p25/p50/p75/p90 PPL, 9 features), surprisal statistics (mean/var surprisal + entropy_of_surprisal, 3 features), lexical diversity (TTR, hapax ratio, bigram_entropy, trigram_entropy, 4 features), repetition (rep_2gram/rep_3gram/rep_4gram fractions, 3 features)"
+      - "EDD: EDD_T = max d* s.t. AUC(d*, d*+1) ≥ T, default T=0.75; report sensitivity at T ∈ {0.65, 0.70, 0.75, 0.80}"
+      - "Classifiers: RF(200 trees) primary, CORAL/DivEye/CE-MLP/LR as baselines; single-feature ppl regression as lower bound"
+      - "Reference model specification: GPT-2 base (124M), cross-model LOO 时不换 ref model, circularity discussion in §6"
+    dependencies: []
+    notation_table:
+      d: "recursive generation depth (d=0 human)"
+      K: "maximum depth in benchmark"
+      EDD_T: "Effective Discriminable Depth at AUC threshold T"
+      f_x: "19-dim statistical feature vector"
+      M: "{Pythia-1.4B, OLMo-1B, GPT-2 XL}"
+      S: "{nucleus p=0.95, temp τ=0.9, top-k k=50}"
+    figures: []
+    tables: [tab_features]
+    registry_refs: [mvp_pipeline_pythia_002]
+
+  - section: atlas
+    title: "The Depth Degradation Atlas"
+    subsections:
+      - "4.1 In-Distribution Performance"
+      - "4.2 Feature Universality"
+      - "4.3 Monotonicity and Inter-Depth Distances"
+      - "4.4 EDD Analysis"
+      - "4.5 Strategy-Dependent Trajectories"
+    word_budget: 1200
+    core_bullets:
+      - "3×3 matrix: 70–85% RF 4-class acc; GPT-2 XL temp09 best (85.4%), Pythia topk50 lowest (69.6%); model and strategy effects are comparable in magnitude (strategy slightly larger: 8.4pp vs 7.1pp)"
+      - "Feature universality: p90_ppl top-2 in 9/9 cells (100%), var_surprisal top-2 in 7/9 (78%); cross-model rank correlation mean=0.868 [0.619–0.954]"
+      - "Monotonicity: ρ = -0.82 to -0.89; non-uniform inter-depth distances (d0→d1 gap >> d2→d3 gap); feature importance evolves — var_surprisal dominant at shallow, p90_ppl/kurtosis at deep"
+      - "EDD: 7/9 cells EDD≥3 at T=0.75; binary pairwise verification EDD=4 (Pythia nucleus: d3v4 AUC=0.784 > 0.75, d4v5 AUC=0.683 < 0.75)"
+      - "EDD sensitivity: report at T ∈ {0.65, 0.70, 0.75, 0.80}"
+      - "Three-tier strategy classification: nucleus=baseline stable, temperature=signal enhancement BUT d1v2 boundary reversal risk, top-k=signal attenuation but direction preserved"
+      - "Temperature reversal mechanism: uniform logit scaling (vs truncation) accelerates convergence to attractor distribution — temp09 depth N features ≈ nucleus/topk50 depth N+1; GPT-2 XL temp09 d1 p90_ppl median=92.2 falls into nucleus/topk50 d2 range 65–92"
+    dependencies: []
+    tables: [tab_main_matrix, tab_feature_importance]
+    figures: [fig_auc_decay, fig_feature_trajectory, fig_atlas_heatmap]
+    registry_refs:
+      - mvp_pipeline_pythia_002
+      - pythia_temp09_001
+      - pythia_topk50_001
+      - cross_model_olmo_002
+      - olmo_temp09_001
+      - olmo_topk50_001
+      - cross_model_gpt2xl_001
+      - gpt2xl_temp09_001
+      - gpt2xl_topk50_001
+      - atlas_v2_analysis
+      - depth_extension_binary_pairwise_002
+      - depth_extension_pythia_d4d5_001
+
+  - section: generalization
+    title: "Generalization and Robustness"
+    subsections:
+      - "5.1 Baseline Comparison"
+      - "5.2 Cross-Model Transfer"
+      - "5.3 Cross-Strategy Transfer"
+      - "5.4 End-to-End Learning: A Negative Result"
+    word_budget: 1000
+    core_bullets:
+      - "Baselines (Pythia nucleus): RF 78.2% ≈ CORAL 78.1% ≈ DivEye 78.2% > CE-MLP 74.9% > LR 75.0% > DeepSeek V3.2 zero-shot 40.0% (200 samples, Pythia nucleus only) >> ppl-regression 25.1% (chance); feature-based methods outperform both LLM zero-shot and single-feature"
+      - "Cross-model LOO: mean 66.4% (gate 45% ✓); Pythia 62.4%, OLMo 69.2%, GPT-2 XL 67.6%; depth_0 recall >98% inflates headline — per-class: d2 recall as low as 26.8% (Pythia holdout)"
+      - "Cross-strategy LOO: mean 59.1%; nucleus holdout best (65.4–69.4%), topk50 holdout worst (51.5–54.9%); temp09 holdout d1v2 AUC inverts (GPT-2 XL 0.13, OLMo 0.25)"
+      - "Z-score normalization: two-layer structure — LR nucleus/topk holdout d1v2 AUC 0.61–0.89 (scale shift, normalization-fixable), BUT temp09 holdout d1v2 AUC remains <0.5 (GPT-2 XL 0.24); RF unchanged (Δ<0.02pp, tree-invariant). Temperature decoding induces qualitatively different feature distributions beyond linear rescaling"
+      - "DCOL v1-v6: 6 attempts all failed; v6 RoBERTa-large best 64.5% (vs RF 78.2%), severe overfitting (train 75% vs val 64.4% at epoch 1); embedding collapse (v1-v3), OOM (v4), NaN (v5) → end-to-end contrastive ordinal learning insufficient for text depth"
+    dependencies: []
+    tables: [tab_baselines, tab_cross_model, tab_cross_strategy]
+    figures: [fig_confusion_matrix]
+    registry_refs:
+      - baseline_battery_001
+      - baseline_battery_9cell_001
+      - cross_model_loo_v1
+      - cross_strategy_loo_001
+      - cross_strategy_loo_zscore_001
+      - dcol_roberta_v6_001
+
+  - section: discussion
+    title: "Discussion and Limitations"
+    subsections:
+      - "6.1 Implications"
+      - "6.2 Limitations"
+    word_budget: 500
+    core_bullets:
+      - "Depth-graduated curation: predicted depth as finer-grained quality proxy than binary labels (conceptual, empirical validation deferred)"
+      - "Feature evolution: var_surprisal→p90_ppl/kurtosis shift from shallow to deep consistent with Shumailov tail erosion theory"
+      - "Cross-strategy deployment: 需先验知道目标策略类型, 否则 d1/d2 预测可能反转"
+      - "Controlled setting: 固定 seed text + LoRA finetuning + 3 models at 1-1.5B scale; wild-data transfer + 7B+ scale 待验证"
+      - "Reference model circularity: GPT-2 base 作为 ref model, cross-model LOO 时 GPT-2 XL holdout 存在 partial overlap — 但 GPT-2 XL holdout 并非最高 (67.6% < OLMo 69.2%)"
+      - "Feature domain fragility: Pudasaini et al. 发现 detection features 在 domain shift 下退化, ordinal depth features 可能同样脆弱"
+    dependencies: [atlas, generalization]
+    citation_hints:
+      - "bakshi2026: non-monotonic dynamics complicating depth assumption"
+      - "dsir2023, qurating2024: data curation context"
+      - "marchi2024: temperature convergence theory support"
+      - "pudasaini2026: feature fragility under distribution shift"
+      - "falahati2026: curated pipelines harder case"
+      - "sugiyama2007: covariate shift theory"
+    figures: []
+    tables: []
+    registry_refs: []
+
+  - section: conclusion
+    word_budget: 200
+    core_bullets:
+      - "Summary: 定义 recursive depth estimation 任务, 构建 Depth Degradation Atlas, 揭示 universal (p90_ppl/var_surprisal) + strategy-dependent (temperature reversal) 双层信号结构"
+      - "Key numbers: 70–85% in-distribution, EDD=4, cross-model 66.4%, cross-strategy 59.1%"
+      - "Future: wild-data calibration, 7B+ scale, strategy-conditioned classifiers, depth-graduated curation experiments"
+    dependencies: [atlas, generalization, discussion]
+    figures: []
+    tables: []
+    registry_refs: []
+
+# ============================================================
+# VISUALIZATION PLAN (≥4 figures, Dream D002 requirement)
+# ============================================================
+visualization_plan:
+
+  - fig_id: fig_auc_decay
+    type: statistical
+    tool: matplotlib
+    description: "Pairwise AUC decay curve across adjacent depth pairs (d0v1 → d4v5) with horizontal EDD threshold lines at T=0.65/0.70/0.75/0.80. Show binary pairwise AUC (solid) vs 4-class pipeline AUC (dashed) for Pythia nucleus. Mark EDD=4 crossing point."
+    data_source: "registry: depth_extension_binary_pairwise_002, mvp_pipeline_pythia_002, depth_extension_pythia_d4d5_001"
+    placement: atlas
+    aspect_ratio: "4:3"
+    notes: "X-axis: depth pair (d0v1, d1v2, d2v3, d3v4, d4v5); Y-axis: AUC; horizontal lines at T thresholds"
+
+  - fig_id: fig_feature_trajectory
+    type: statistical
+    tool: matplotlib
+    description: "Feature trajectory panel: top-5 features (p90_ppl, var_surprisal, mean_ppl, mean_surprisal, p75_ppl) median values across depth 0-3, one subplot per model family (3 subplots). Each subplot shows 3 strategies as different line styles. Highlights non-uniform inter-depth distances and temperature reversal."
+    data_source: "registry: atlas_v2_analysis; raw feature data from 9 cell experiments"
+    placement: atlas
+    aspect_ratio: "16:5"
+    notes: "3-panel figure (Pythia | OLMo | GPT-2 XL). Shared legend. Log-scale y-axis for PPL features."
+
+  - fig_id: fig_atlas_heatmap
+    type: statistical
+    tool: matplotlib
+    description: "Atlas feature importance heatmap: 9-cell grid (3 models × 3 strategies) showing top-5 feature importance values. Color = importance magnitude, cell annotation = rank. Highlights p90_ppl/var_surprisal universality."
+    data_source: "registry: atlas_v2_analysis, baseline_battery_9cell_001"
+    placement: atlas
+    aspect_ratio: "4:3"
+    notes: "Rows = features (top-5), Columns = 9 cells grouped by model. Okabe-Ito colormap."
+
+  - fig_id: fig_confusion_matrix
+    type: statistical
+    tool: matplotlib
+    description: "Confusion matrix heatmap for best in-distribution setting (GPT-2 XL temp09, 85.4%) and best cross-model LOO setting (OLMo holdout, 69.2%). Two-panel figure showing in-distribution vs transfer performance."
+    data_source: "registry: gpt2xl_temp09_001, cross_model_loo_v1"
+    placement: generalization
+    aspect_ratio: "8:3"
+    notes: "2-panel. Normalized by true class. Annotate counts + percentages."
+
+# ============================================================
+# TABLE PLAN
+# ============================================================
+table_plan:
+
+  - table_id: tab_main_matrix
+    caption: "In-distribution 4-class depth estimation accuracy (\\%) across 3 model families × 3 decoding strategies. RF classifier, 19 statistical features."
+    placement: atlas
+    type: comparison
+    columns: [Model, "nucleus p=0.95", "temp τ=0.9", "top-k k=50"]
+    data_source: "registry: mvp_pipeline_pythia_002, pythia_temp09_001, pythia_topk50_001, cross_model_olmo_002, olmo_temp09_001, olmo_topk50_001, cross_model_gpt2xl_001, gpt2xl_temp09_001, gpt2xl_topk50_001"
+    notes: "Bold best per row. Also include 3-class (d1-d3 only) acc as companion metric (Dream D002 req #5)."
+
+  - table_id: tab_features
+    caption: "19 statistical features extracted from reference-model perplexity distributions."
+    placement: method
+    type: configuration
+    columns: [Feature, Description, Category]
+    data_source: "manual"
+    notes: "Grouped by category: perplexity stats, surprisal stats, lexical diversity, burstiness. 可移至 appendix 如空间不足."
+
+  - table_id: tab_feature_importance
+    caption: "Top-5 feature importance ranking across 9 benchmark cells. p90_ppl appears in top-2 for all 9 cells."
+    placement: atlas
+    type: statistics
+    columns: [Cell, "Rank 1", "Rank 2", "Rank 3", "Rank 4", "Rank 5"]
+    data_source: "registry: atlas_v2_analysis"
+    notes: "Highlight p90_ppl and var_surprisal entries. 可与 fig_atlas_heatmap 二选一如空间不足."
+
+  - table_id: tab_baselines
+    caption: "Comparison of classification methods on Pythia-1.4B nucleus (baseline setting)."
+    placement: generalization
+    type: comparison
+    columns: [Method, "4-class Acc", "3-class Acc", "d1v2 AUC", "d2v3 AUC"]
+    data_source: "registry: baseline_battery_001, mvp_pipeline_pythia_002"
+    notes: "Methods: RF, CORAL, DivEye, CE-MLP, LR, DeepSeek V3.2 (zero-shot, 200 samples), ppl-regression (single feature)."
+
+  - table_id: tab_cross_model
+    caption: "Cross-model leave-one-out generalization. Train on 2 model families, test on held-out 3rd."
+    placement: generalization
+    type: comparison
+    columns: [Holdout, "4-class Acc", "d0 Recall", "d1 Recall", "d2 Recall", "d3 Recall", "d1v2 AUC"]
+    data_source: "registry: cross_model_loo_v1"
+    notes: "Report per-class recall to expose d0 inflation. Chance = 25%."
+
+  - table_id: tab_cross_strategy
+    caption: "Cross-strategy leave-one-out transfer. Per-model accuracy when one strategy is held out."
+    placement: generalization
+    type: comparison
+    columns: [Holdout, "Pythia Acc", "OLMo Acc", "GPT-2 XL Acc", "d1v2 AUC (GPT-2 XL)", "d1v2 AUC (OLMo)"]
+    data_source: "registry: cross_strategy_loo_001, cross_strategy_loo_zscore_001"
+    notes: "Highlight temp09 d1v2 AUC inversion (0.13/0.25). Add z-score row for comparison."
+
+  - table_id: tab_edd_sensitivity
+    caption: "EDD at different AUC thresholds (Pythia-1.4B nucleus, binary pairwise)."
+    placement: atlas
+    type: statistics
+    columns: [Threshold, "d1v2", "d2v3", "d3v4", "d4v5", EDD]
+    data_source: "registry: depth_extension_binary_pairwise_002"
+    notes: "Dream D002 requirement #6. Show AUC values at each pair and resulting EDD."
+
+# ============================================================
+# LITERATURE STRATEGY
+# ============================================================
+literature_strategy:
+  citation_budget: 35
+  macro_context:
+    - "model collapse and recursive generation"
+    - "AI-generated text detection"
+    - "decoding strategy effects on text properties"
+    - "ordinal classification methods"
+    - "data curation for LLM training"
+  micro_clusters:
+    - cluster_name: "Model Collapse Theory"
+      search_queries:
+        - "model collapse recursive generation 2024 2025 2026"
+        - "self-consuming generative models iterative training"
+      must_cite:
+        - "shumailov2024_nature"
+        - "alemohammad2024_mad"
+        - "dohmatob2024_tale_of_tails"
+      target_count: 10
+    - cluster_name: "AI Text Detection"
+      search_queries:
+        - "machine-generated text detection statistical 2024 2025"
+        - "zero-shot LLM detection perplexity"
+      must_cite:
+        - "binoculars2024"
+        - "fast_detectgpt2024"
+        - "diveye2026"
+        - "gehrmann2019_gltr"
+      target_count: 8
+    - cluster_name: "Decoding Strategy Effects"
+      search_queries:
+        - "decoding strategy text generation sampling 2024 2025"
+        - "nucleus sampling temperature top-k effects"
+      must_cite:
+        - "holtzman2020_nucleus"
+        - "garces_arias2025_decoding_decoded"
+      target_count: 5
+    - cluster_name: "Ordinal Classification"
+      search_queries:
+        - "ordinal classification contrastive learning 2024 2025"
+        - "CORAL ordinal regression neural networks"
+      must_cite:
+        - "coral2020"
+        - "cloc2025"
+      target_count: 3
+    - cluster_name: "Data Curation & Adjacent"
+      search_queries:
+        - "data curation quality scoring LLM training 2024 2025"
+        - "AI text editing extent detection"
+      must_cite:
+        - "editlens2026"
+        - "kirchenbauer2023_watermark"
+      target_count: 5
+
+# ============================================================
+# WRITING ORDER (strict serial)
+# ============================================================
+writing_order:
+  - atlas           # Section 4 — PRIMARY contribution, data-driven, write first
+  - generalization   # Section 5 — secondary experiments, depends on atlas narrative
+  - method           # Section 3 — formalize based on what atlas/experiments need
+  - introduction     # Section 1 — frame story around established results
+  - related_work     # Section 2 — position relative to intro framing
+  - discussion       # Section 6 — synthesize, includes limitations
+  - abstract         # condense final narrative
+  - conclusion       # summarize
+
+# ============================================================
+# APPENDIX PLAN
+# ============================================================
+appendix:
+  - "A: Full 19-feature list with mathematical definitions"
+  - "B: Per-class precision/recall/F1 for all 9 in-distribution cells"
+  - "C: DCOL training details (hyperparameters, loss curves, failure modes)"
+  - "D: Confusion matrices for all 9 cells"
+  - "E: Full feature importance rankings"
+  - "F: Depth extension 6-class results (d0-d5)"
+  - "G: Hyperparameter configurations for benchmark construction"
+
+# ============================================================
+# WORD BUDGET SUMMARY
+# ============================================================
+# abstract:       150
+# introduction:   900
+# related_work:   600
+# method:        1000
+# atlas:         1200
+# generalization: 1000
+# discussion:     500
+# conclusion:     200
+# ─────────────────
+# Total:         5550 words + 4 figures + 6-7 tables ≈ 8 pages

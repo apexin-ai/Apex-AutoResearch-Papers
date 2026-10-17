@@ -1,0 +1,193 @@
+{
+  "models": {
+    "Llama-3.1-8B": {
+      "type": "spike",
+      "budget": 0.25,
+      "n_heads": 256,
+      "compounding_ratio": 187.73,
+      "k_values": {
+        "0": {
+          "ppl": 8.0922,
+          "n_2bit": 0,
+          "n_4bit": 0,
+          "n_8bit": 0,
+          "n_16bit": 256,
+          "mem_ratio": 1.0,
+          "total_distortion": 0.0
+        },
+        "2": {
+          "ppl": 8.1243,
+          "n_2bit": 2,
+          "n_4bit": 0,
+          "n_8bit": 0,
+          "n_16bit": 254,
+          "mem_ratio": 0.9932,
+          "total_distortion": 0.027718
+        },
+        "4": {
+          "ppl": 8.1803,
+          "n_2bit": 4,
+          "n_4bit": 0,
+          "n_8bit": 0,
+          "n_16bit": 252,
+          "mem_ratio": 0.9863,
+          "total_distortion": 0.058482
+        },
+        "8": {
+          "ppl": 8.2259,
+          "n_2bit": 8,
+          "n_4bit": 0,
+          "n_8bit": 0,
+          "n_16bit": 248,
+          "mem_ratio": 0.9727,
+          "total_distortion": 0.127558
+        },
+        "16": {
+          "ppl": 8.4378,
+          "n_2bit": 16,
+          "n_4bit": 0,
+          "n_8bit": 0,
+          "n_16bit": 240,
+          "mem_ratio": 0.9453,
+          "total_distortion": 0.285812
+        },
+        "32": {
+          "ppl": 9.0506,
+          "n_2bit": 32,
+          "n_4bit": 0,
+          "n_8bit": 0,
+          "n_16bit": 224,
+          "mem_ratio": 0.8906,
+          "total_distortion": 0.681079
+        },
+        "64": {
+          "ppl": 11.991,
+          "n_2bit": 64,
+          "n_4bit": 0,
+          "n_8bit": 0,
+          "n_16bit": 192,
+          "mem_ratio": 0.7812,
+          "total_distortion": 1.68866
+        },
+        "128": {
+          "ppl": 40.2067,
+          "n_2bit": 128,
+          "n_4bit": 0,
+          "n_8bit": 0,
+          "n_16bit": 128,
+          "mem_ratio": 0.5625,
+          "total_distortion": 4.411494
+        },
+        "256": {
+          "ppl": 1519.1888,
+          "n_2bit": 220,
+          "n_4bit": 0,
+          "n_8bit": 0,
+          "n_16bit": 36,
+          "mem_ratio": 0.248,
+          "total_distortion": 10.948538
+        }
+      }
+    },
+    "Mistral-7B-v0.3": {
+      "type": "flat",
+      "budget": 0.25,
+      "n_heads": 256,
+      "compounding_ratio": 1.065,
+      "k_values": {
+        "0": {
+          "ppl": 7.1308,
+          "n_2bit": 0,
+          "n_4bit": 256,
+          "n_8bit": 0,
+          "n_16bit": 0,
+          "mem_ratio": 0.25,
+          "total_distortion": 0.0
+        },
+        "2": {
+          "ppl": 7.1471,
+          "n_2bit": 2,
+          "n_4bit": 254,
+          "n_8bit": 0,
+          "n_16bit": 0,
+          "mem_ratio": 0.249,
+          "total_distortion": 0.0
+        },
+        "4": {
+          "ppl": 7.164,
+          "n_2bit": 4,
+          "n_4bit": 252,
+          "n_8bit": 0,
+          "n_16bit": 0,
+          "mem_ratio": 0.248,
+          "total_distortion": 0.0
+        },
+        "8": {
+          "ppl": 7.2001,
+          "n_2bit": 8,
+          "n_4bit": 247,
+          "n_8bit": 0,
+          "n_16bit": 1,
+          "mem_ratio": 0.249,
+          "total_distortion": 0.0
+        },
+        "16": {
+          "ppl": 7.31,
+          "n_2bit": 16,
+          "n_4bit": 238,
+          "n_8bit": 0,
+          "n_16bit": 2,
+          "mem_ratio": 0.248,
+          "total_distortion": 0.0
+        },
+        "32": {
+          "ppl": 7.4877,
+          "n_2bit": 32,
+          "n_4bit": 219,
+          "n_8bit": 0,
+          "n_16bit": 5,
+          "mem_ratio": 0.249,
+          "total_distortion": 0.0
+        },
+        "64": {
+          "ppl": 7.5932,
+          "n_2bit": 41,
+          "n_4bit": 209,
+          "n_8bit": 0,
+          "n_16bit": 6,
+          "mem_ratio": 0.2476,
+          "total_distortion": 0.0
+        },
+        "128": {
+          "ppl": 7.5932,
+          "n_2bit": 41,
+          "n_4bit": 209,
+          "n_8bit": 0,
+          "n_16bit": 6,
+          "mem_ratio": 0.2476,
+          "total_distortion": 0.0
+        },
+        "256": {
+          "ppl": 7.5932,
+          "n_2bit": 41,
+          "n_4bit": 209,
+          "n_8bit": 0,
+          "n_16bit": 6,
+          "mem_ratio": 0.2476,
+          "total_distortion": 0.0
+        }
+      }
+    }
+  },
+  "metadata": {
+    "generated_at": "2026-05-15",
+    "source_experiments": ["llama_compounding_sweep", "mistral_compounding_sweep"],
+    "description": "Compounding curves data for Figure 2: PPL vs forced 2-bit head count (k) under budget=0.25",
+    "notes": {
+      "llama_k0_baseline": "k=0 is unconstrained baseline (all 16-bit, no budget enforcement) — PPL=8.09",
+      "llama_k256_saturation": "k=256 forces only 220 actual 2-bit heads (budget-constrained), 36 remain 16-bit",
+      "mistral_k0_optimal": "k=0 solver chooses all 4-bit within budget — already optimal at mem_ratio=0.25",
+      "mistral_saturation": "k>=64 all identical — solver caps at 41 2-bit heads regardless of higher k"
+    }
+  }
+}

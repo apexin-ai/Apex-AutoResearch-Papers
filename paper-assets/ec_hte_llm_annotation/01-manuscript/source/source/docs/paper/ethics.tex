@@ -1,0 +1,6 @@
+\section*{Ethical Considerations}
+
+This work addresses bias in LLM-annotated causal inference, where misclassification rates can vary across demographic and text-feature subgroups.
+Our CivilComments case study involves hate speech annotations stratified by identity subgroups (race, gender, religion); we use only the publicly released dataset~\cite{borkan2019nuanced} with no additional data collection or human annotation.
+A central finding is that standard correction methods can mask or amplify disparities across subgroups. Practitioners applying global debiasing without subgroup-level auditing risk drawing incorrect causal conclusions that disproportionately affect underrepresented populations.
+We emphasize that EC-HTE is a diagnostic and correction tool, not a substitute for careful study design; subgroup definitions should be chosen based on domain knowledge and ethical considerations, not solely to optimize statistical metrics.

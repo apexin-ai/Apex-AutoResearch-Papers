@@ -1,0 +1,34 @@
+{
+  "n_batches": 525,
+  "count_levels": [
+    4,
+    8,
+    16,
+    32,
+    40,
+    64,
+    80
+  ],
+  "linear": {
+    "interaction_coeff": -0.09406,
+    "interaction_se": 0.090053,
+    "interaction_p": 0.296743,
+    "r_squared": 0.8092,
+    "tost_margin_pp": 3.0,
+    "tost_p": 0.761409,
+    "tost_conclusion": "inconclusive"
+  },
+  "logit": {
+    "interaction_coeff_logit": -0.097655,
+    "interaction_se": 0.70338,
+    "interaction_p": 0.889633,
+    "r_squared": 0.6865,
+    "tost_margin_logit": 0.131217,
+    "tost_p": 0.480981,
+    "tost_conclusion": "inconclusive",
+    "back_transformed_at_floor_pp": -2.4285,
+    "back_transformed_at_median_pp": -2.2641,
+    "floor_accuracy": 0.4766,
+    "median_accuracy": 0.6458
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "description": "BCS distribution comparison: Qwen3-32B mean-pool vs E5-large-v2 sentence embeddings on Few-NERD 66 types",
+  "date": "2026-05-14",
+  "num_types": 66,
+  "num_pairs": 2145,
+  "pairwise_cosine_similarity": {
+    "qwen3_mean_pool": {"min": 0.4422, "max": 0.9732, "mean": 0.8077, "std": 0.0599, "range": 0.5309, "dim": 5120},
+    "e5_name_def": {"min": 0.7863, "max": 0.9346, "mean": 0.8394, "std": 0.0254, "range": 0.1483, "dim": 1024},
+    "e5_name_only": {"min": 0.7976, "max": 0.9669, "mean": 0.8617, "std": 0.0287, "range": 0.1693, "dim": 1024}
+  },
+  "per_type_bcs_max_confusion": {
+    "qwen3_mean_pool": {"min": 0.8413, "max": 0.9732, "mean": 0.9139, "std": 0.0264, "range": 0.1319},
+    "e5_name_def": {"min": 0.879, "max": 0.9346, "mean": 0.9087, "std": 0.0147, "range": 0.0556},
+    "e5_name_only": {"min": 0.8984, "max": 0.9669, "mean": 0.9315, "std": 0.0155, "range": 0.0685}
+  },
+  "conclusion": "Qwen3 5120-dim hidden states have significantly better discriminability than E5 1024-dim sentence embeddings. Exp 2 uses Qwen3 BCS; E5 retained for ablation.",
+  "remote_files": {
+    "qwen3_embeddings": "/root/schema-dag-extraction/data/type_embeddings.pt",
+    "e5_embeddings": "/root/schema-dag-extraction/data/type_embeddings_e5.pt",
+    "qwen3_heatmap": "/root/schema-dag-extraction/data/heatmap.pdf",
+    "e5_heatmap_name_def": "/root/schema-dag-extraction/data/heatmap_e5_a_name_def.pdf",
+    "e5_heatmap_name_only": "/root/schema-dag-extraction/data/heatmap_e5_b_name_only.pdf"
+  }
+}

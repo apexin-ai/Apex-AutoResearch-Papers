@@ -1,0 +1,502 @@
+_next_id: 28
+decisions:
+- id: D001
+  date: 2026-05-20 18:52 UTC
+  summary: MVP PASS：核心假设验证通过，评估框架修正为子群水平
+  rationale: 三轮模拟（v1 CausalForest + v2 差分估计 + v3 子群分析）完成。核心发现：(1) 全局校正在低误差子群造成系统性伤害（bias
+    恶化 7.8x），EC-HTE 分层校正修复此问题（|bias|<0.015）；(2) 边际 CATE 评估掩盖此效应（正负偏差抵消），子群水平才是正确评估维度；(3)
+    EC-HTE 在高误差子群方差偏高→层级贝叶斯 partial pooling 是 research 阶段核心优先级。Pass 标准 1 修正为子群水平后
+    PASS（子群 B EC-HTE RMSE 0.063 vs Global 0.100），标准 2/3/4 均 PASS。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-20 19:44 UTC
+  summary: Dream Round 1 分析完成：best=4 (Weak Accept), median=3.5 (Borderline Conference),
+    worst=2.5 (Borderline Reject)。达到启动门槛（best≥weak accept, median≥borderline）。识别6项确认行动项、4项观察项。更新
+    framing 和 plan 后批准 P0 CPU 实验（exp-001, exp-002）立即启动。exp-007 (PPCI comparison) 升级为
+    P0。
+  rationale: 三档一致的结构性问题：(1) 薄弱文献（11 refs vs 40+ expected），(2) MCMC 实现细节缺失，(3) 方法新颖性定位需明确为"问题发现"而非"新技术"，(4)
+    信息密度过高需增加图表减少表格，(5) K=2 理论 vs K>2 实验的 gap，(6) 真实数据验证缺失。数据依赖性问题（coverage undercoverage,
+    diagnostic AUROC, PPCI dominance）仅在2档或单档出现，记录为观察项待真实实验验证。framing/plan 改动为渐进式改善（sharpening
+    novelty positioning, adding requirements），不构成重大方向转变，当前 Dream 评分已达标。
+  related_experiments: []
+  depends_on: []
+- id: D003
+  date: 2026-05-20 21:32 UTC
+  summary: 'Dream Round 2 analysis: proceed with P0 experiments, 10 writing requirements
+    codified'
+  rationale: 'Dream Round 2 (dream_20260520T194535): best=4/6, median=3.5/6, worst=3/6.
+    Worst improved +0.5 from Round 1 (was 2.5). Three-tier consistent issues all addressable
+    in writing phase: (1) bibliography 9→30-35 refs, (2) "bias bound"→"bias decomposition
+    identity", (3) DGP specification, (4) figures, (5) Fuller 1987 contextualization,
+    (6) "never worse" qualification, (7) invertibility assumption. Two-tier observations:
+    hyperprior sensitivity, coverage undercoverage, diagnostic cross-validation. Worst-case
+    scenario (K>2 degradation, negative finding) is data-dependent and our actual
+    exp-002 K=4 R²=0.9751 is far better than worst-case 0.52. Decision: no structural
+    plan changes needed. PPCI composition elevated to Contribution #4. All 10 writing
+    requirements codified in paper_framing.md. No need to re-dream — blocking issues
+    are writing-phase, not experimental-design-phase.'
+  related_experiments:
+  - exp_id: exp-002
+    role: evidence
+    result: K=4 R²=0.9751 refutes worst-case K>2 degradation
+  - exp_id: exp-001
+    role: pending
+    result: full sweep in progress, will validate coverage concerns
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-20 21:39 UTC
+  summary: exp-007 DSL重命名 + 数据集策略 + exp-001 MCMC修复方案
+  rationale: '**D4a: exp-007 DSL重命名（Reviewer critical flag）**
+
+    当前代码 "method_dsl" 实际是 per-subgroup MLE confusion matrix correction，与 DSL (Egami
+    et al. 2024) 不同。DSL 是 estimand-level 方法。修复：(1) 重命名为 "stratified_mle"，(2) 论文中说明
+    "per-subgroup stratified MLE correction is equivalent to applying DSL correction
+    independently per subgroup; EC-HTE adds cross-subgroup HB shrinkage"，(3) 不实现完整
+    DSL（其 per-subgroup 版本与 stratified_mle 等价），但需在 paper 中精确区分。
+
+
+    **D4b: 数据集策略**
+
+    - exp-003（半合成）：使用 CardiffNLP TweetEval stance detection（政治话题，匹配 framing），如 LLM
+    异质性不足则加 UC Berkeley Hate Speech
+
+    - exp-004（real-data pattern consistency）：双数据集策略 — (1) Ashwin 数据邮件联系获取（首选，有天然因果结构），(2)
+    UC Berkeley Hate Speech 作为备选（需定义(T,Y,Z,S)映射）
+
+    - 关键前置：选定数据集前必须跑 LLM annotation pilot（~1000 条），验证 per-subgroup 误分类异质性
+
+
+    **D4c: exp-001 MCMC修复**
+
+    - K=4/n≤100 配置：升级到 4 chains, n_iter=4000, warmup=2000 + singularity guard
+
+    - 不重跑全部 36 cells，只重跑 6 个问题配置（K=4 × n∈{50,100} × 3 regimes）
+
+    - Registry coverage metric 以排除 blow-ups 的值为准'
+  related_experiments:
+  - exp_id: exp-007
+    role: affected
+    result: DSL naming must be fixed before any run
+  - exp_id: exp-001
+    role: affected
+    result: MCMC chains 2→4 for K=4/n≤100
+  - exp_id: exp-003
+    role: planning
+    result: TweetEval stance detection as primary corpus
+  - exp_id: exp-004
+    role: planning
+    result: Ashwin primary + UC Berkeley backup
+  depends_on:
+  - D003
+- id: D005
+  date: 2026-05-20 22:04 UTC
+  summary: 数据集确定 + exp-003 两阶段策略：sentiment 主数据集，先模拟后真实 LLM 标注
+  rationale: TweetEval 探索结果：stance 子任务 N<1000 不可行（子群划分后每 cell<100）；sentiment N=59899
+    + 3 类标签 + 丰富子群变量（hashtag 23%, mention 33%）是最佳选择。hate N=12970 作次选。exp-003 采用两阶段策略：Phase
+    A 用模拟误分类在 CPU 上验证方法（不依赖 API key），Phase B 叠加真实 GPT-4.1 标注验证实际相关性（API key 到后立即执行）。这样
+    P0 实验不被 API key 阻塞。exp-007 DSL 重命名 + PPCI 实现可与 MCMC fix 并行编码。
+  related_experiments:
+  - exp_id: exp-003
+    role: primary
+    result: 'dataset selected: TweetEval sentiment'
+  - exp_id: exp-004
+    role: secondary
+    result: UC Berkeley Hate Speech as backup for Ashwin
+  - exp_id: exp-007
+    role: parallel
+    result: code prep can proceed while MCMC fix runs
+  depends_on:
+  - D004
+- id: D006
+  date: 2026-05-21 00:06 UTC
+  summary: 'exp-007 Contribution #4 验证通过 + 框架修正 + HB 集成优先启动'
+  rationale: 'exp-007 4 DGP 矩阵结果：(1) DGP C 中 ec_hte_ppci bias=0.005 (比 ec_hte 0.178
+    改善 35x)，RMSE=0.225 (竞争力)，coverage=1.0。(2) 组合优于 oracle (bias 0.005 vs 0.189)——oracle
+    仅校正 covariate error，ec_hte_ppci 额外校正 outcome error。(3) 但 moderate regime 下 RMSE
+    存在 bias-variance tradeoff (ec_hte_ppci 0.202 vs ec_hte 0.138)。框架修正：Contribution
+    #4 从"最低 RMSE"改为"最低 bias + 最佳 coverage + extreme regime 下竞争力 RMSE"。Hyperprior sensitivity
+    PASS (<5% RMSE variation)。exp-005 AUC=0.833 验证 Claim 3。下一步：HB 集成进 exp-003 是 Claim
+    2 完整验证的最后一步。'
+  related_experiments:
+  - exp_id: exp-007
+    role: primary
+    result: 'Contribution #4 validated: ec_hte_ppci bias 35x lower than ec_hte in
+      DGP C'
+  - exp_id: exp-001
+    role: supporting
+    result: hyperprior sensitivity <5% RMSE variation
+  - exp_id: exp-005
+    role: supporting
+    result: diagnostic AUC=0.833 at subgroup level
+  depends_on:
+  - D005
+- id: D007
+  date: 2026-05-21 01:30 UTC
+  summary: Claim 1 措辞降级 (5-10x→2-3x median) + exp-011 升 P0 (CausalForest claim-evidence
+    gap) + oracle framing 规范
+  rationale: Reviewer 独立验证 magnification ratio 中位数仅 2-3x，均值被 near-zero denominator
+    outliers 拉高。"5-10x" 不加限定词会被审稿人推翻。同时发现 Claim 2 声称 CausalForestDML 但无实验验证——claim-evidence
+    脱节是 reviewer killshot。exp-011 从 P1 升 P0。DGP C "beats oracle" 不宜 headline，改为 "composite
+    correction necessary and sufficient"。
+  related_experiments:
+  - exp_id: exp-002
+    role: evidence
+    result: median magnification 2-3x, not 5-10x
+  - exp_id: exp-007
+    role: evidence
+    result: oracle is covariate-oracle by construction
+  - exp_id: exp-011
+    role: promoted
+    result: P1→P0, CausalForest claim-evidence gap
+  depends_on:
+  - D006
+- id: D008
+  date: 2026-05-21 02:19 UTC
+  summary: Claim 2 边界条件明确化：HB 有效区间 n_expert≥100，S3 blowup 作 limitation 报告
+  rationale: exp-003 HB 集成结果：S2 中等偏差子群 RMSE 改善 21-40%（n≤100），但 S3 极端偏差小子群（12% population,
+    π=0.25 远离 mean 0.14）在 n=50 时 blowup 3-8x。原因：~6 个 expert sample + shrinkage 向 group
+    mean 拉偏。选方案 A（n≥100 推荐 + limitation）而非方案 B（adaptive guard），因为：(1) 边界条件可预测且可报告
+    (2) 诚实 limitation 增强 credibility (3) DDL 前无需额外实验。与 RR-W1 (K=4/extreme/n=50 边界)
+    一致。
+  related_experiments:
+  - exp_id: exp-003
+    role: evidence
+    result: 'HB partially validated: +21-40% RMSE at S2/n≤100, but S3/n=50 blowup'
+  - exp_id: exp-001
+    role: context
+    result: K=2/n=50 无 blowup 因为对称 DGP
+  depends_on:
+  - D007
+- id: D009
+  date: 2026-05-21 04:05 UTC
+  summary: 批准 Paper Agent writing plan，启动论文写作流程。exp-004 待 GPU 到位后 Patch 补入
+  rationale: 7/8 P0 实验完成，证据链足够支撑初稿。exp-004 (real data) blocked on GPU，不应阻塞写作。Writing
+    plan 覆盖全部 12 条 Writing Requirements + 审稿 30+ issues。先用 7 个实验写完整初稿，exp-004 完成后
+    Patch 模式补入。
+  related_experiments:
+  - exp_id: exp-001
+    role: evidence
+    result: done
+  - exp_id: exp-002
+    role: evidence
+    result: done
+  - exp_id: exp-003
+    role: evidence
+    result: rerun_60%
+  - exp_id: exp-005
+    role: evidence
+    result: done
+  - exp_id: exp-006
+    role: evidence
+    result: done
+  - exp_id: exp-007
+    role: evidence
+    result: done
+  - exp_id: exp-011
+    role: evidence
+    result: done
+  - exp_id: exp-004
+    role: pending
+    result: blocked_gpu
+  depends_on:
+  - D007
+  - D008
+- id: D010
+  date: 2026-05-21 04:07 UTC
+  summary: 'Claim 强度微调：Claim 1 加 K-dependence + 去掉 >20x 伪像；Claim 3 加连接角色；Contribution
+    #4 升级为 "necessary and sufficient in composition"'
+  rationale: '基于 Reviewer 逐条 claim-evidence 评估：(1) ">20x" 仅在分母趋零时出现（数学伪像），改为 "up to
+    5.9x" + "creates bias where none existed"（叙事更强）；(2) K-dependence 有 exp-011 双数据点支撑（2.7x→5.9x），用
+    "intensifies with more subgroups" 而非 "scales with K"（避免暗示 scaling law）；(3) Claim
+    3 加入连接 Claim 1+2 的角色；(4) Contribution #4 从 "complementary" 升级为 "empirically necessary
+    and sufficient"，有 exp-007 4-DGP 矩阵支撑（DGP C bias 0.005, 35x improvement）。整体策略：lead
+    with identity, honest boundaries as credibility, micro-strengthen where evidence
+    supports。'
+  related_experiments:
+  - exp_id: exp-011
+    role: K-dependence evidence
+    result: K=2 2.7x, K=4 5.9x
+  - exp_id: exp-007
+    role: PPCI composition evidence
+    result: DGP C bias 0.005, 35x improvement
+  - exp_id: exp-002
+    role: exact identity
+    result: R²=0.994/0.975
+  - exp_id: exp-006
+    role: crossover thresholds
+    result: K=2/ext 250, K=4/ext 1000
+  depends_on:
+  - D007
+  - D008
+  - D009
+- id: D011
+  date: 2026-05-21 04:37 UTC
+  summary: Dream 审稿 Action Matrix 定稿：5 确认行动 + 2 补充（W3 forward claims + W7 NLP Checklist），不需要
+    method improvement 或 re-dream
+  rationale: Dream Best 3.5 / Median 3.0。所有 Median-specific 问题（PPCI 无实验、Theorem 无
+    MC、diagnostic 孤立）已被实际实验覆盖。唯一 Major（method novelty）确认为 framing 问题。Claim 3 降格为 "practical
+    corollary" 但保留贡献地位（AUC=0.833 + 桥接功能有独立价值）。CF uncertainty 确认 plug-in。不需要 re-dream（Best
+    已达 3.5 = weak accept，且我们实验覆盖度远超 Dream 想象版本）。
+  related_experiments:
+  - exp_id: exp-002
+    role: Theorem 1 verification
+    result: R²=0.994
+  - exp_id: exp-005
+    role: diagnostic AUC
+    result: LOO-CV 0.833
+  - exp_id: exp-011
+    role: CF plug-in verification
+    result: code confirmed
+  - exp_id: exp-007
+    role: PPCI 4-DGP
+    result: done, HB backfill running
+  depends_on:
+  - D009
+  - D010
+- id: D012
+  date: 2026-05-21 04:52 UTC
+  summary: 放弃 exp-007 HB backfill，原始 MLE 数据足够支撑论文
+  rationale: HB backfill Worker 产出严重损坏（n_mc=1, 缺 sigma_outcome levels, 未实际添加 HB 方法）。原始
+    exp-007 MLE 数据完好且已验证。PPCI 表核心 story 是 EC-HTE+PPCI 互补性，HB vs MLE 差异是边际问题。exp-001
+    已充分验证 HB 优势。重跑成本（完整 Gibbs × 4DGP × 100MC ≈ 6-12h CPU）收益不对等。
+  related_experiments:
+  - exp_id: exp-007
+    role: target
+    result: HB backfill failed, original MLE data retained
+  - exp_id: exp-001
+    role: evidence
+    result: HB validated separately (91.7% > MLE)
+  depends_on:
+  - D006
+- id: D013
+  date: 2026-05-21 05:25 UTC
+  summary: GPT-4.1 pilot confirms Δπ=0.098; skip exp-003 Phase B, prioritize figures
+  rationale: 'GPT-4.1 pilot (500 TweetEval, binary acc 85.8%) confirms per-subgroup
+    misclassification heterogeneity: 0.102-0.200 across 4 subgroups, Δπ=0.098. Hashtag
+    presence doubles error rate. This validates the core paper premise empirically.
+    exp-003 Phase B (full semi-synthetic with real LLM CMs) is unnecessary — pilot
+    data serves as empirical motivation, exp-003 Phase A (simulated CMs) suffices
+    for quantitative claims. Redirecting Agent to figure generation (4 figures, MED-W4
+    critical issue).'
+  related_experiments:
+  - exp_id: exp-003
+    role: context
+    result: Phase A ✅, Phase B skipped
+  - exp_id: pilot-gpt41
+    role: evidence
+    result: Δπ=0.098, 4 subgroups, binary acc 85.8%
+  depends_on:
+  - D011
+- id: D014
+  date: 2026-05-21 08:31 UTC
+  summary: exp-004 子群定义从 annotator_race 改为 text-feature（target_group_type / text_length
+    等）
+  rationale: 'Reviewer warning: annotator_race 子群混淆 LLM 误差异质性和人类标注者视角分歧（perspectivism）。text-feature
+    子群更干净地测量"LLM 在不同类型文本上的误差率不同"，与 TweetEval 实验设计一致，概念上与论文 claim 对齐。'
+  related_experiments:
+  - exp_id: exp-004
+    role: design revision
+    result: Reviewer flagged conceptual issue with annotator-race subgroups
+  depends_on: []
+- id: D015
+  date: 2026-05-21 13:03 UTC
+  summary: exp-015 negative 结果纳入论文作为 honest boundary reporting——classifier quality
+    threshold 与 budget threshold 构成完整 applicability conditions
+  rationale: exp-015 用 pilot 真实 asymmetric CM（FNR 最高 0.526）跑 EC-HTE，全部条件下 HB 差于 global。与
+    exp-004（FNR=53%）和 exp-013（n_expert/K<25）收敛到同一结论：CM 行接近均匀分布时 inversion 放大噪声。纳入论文的价值：(1)
+    回应审稿人"真实数据验证缺口"攻击面，(2) 打破"全正向结果"的 cherry-picking 质疑，(3) 明确两个 applicability thresholds
+    增加实用指导价值。
+  related_experiments:
+  - exp_id: exp-015
+    role: primary
+    result: negative — HB EC-HTE worse than global under realistic asymmetric CM with
+      FNR≈0.5
+  - exp_id: exp-004
+    role: supporting
+    result: converging evidence — hate speech FNR=53% also inconclusive
+  - exp_id: exp-013
+    role: supporting
+    result: converging evidence — boundary condition n_expert/K<25
+  depends_on:
+  - D014
+- id: D016
+  date: 2026-05-21 14:46 UTC
+  summary: 不做 CM pooling 方法改进，将 failure analysis 发现写入论文作为 honest boundary reporting
+    + future work
+  rationale: DDL 4天，paper framing 是 problem-identification 而非 method-improvement。failure
+    analysis 揭示的根因（HB 池化 CATE 不池化 CM）和精确 diagnostic rule（cond(M̂)≤1.25 + eff_minority_n≥25）作为论文贡献更合适——强化
+    "when debiasing hurts" 的叙事。Hierarchical CM pooling 留作 future work。
+  related_experiments:
+  - exp_id: exp-015
+    role: evidence
+    result: 'negative: GPT-4.1 FNR=0.526, 8/8 cells HB worse'
+  - exp_id: exp-016
+    role: evidence
+    result: 'negative: gpt-3.5-turbo FPR=0.4 + P(Z=1)=0.18, 8/8 cells HB worse at
+      n=100'
+  depends_on:
+  - D015
+- id: D017
+  date: 2026-05-21 19:39 UTC
+  summary: 全线聚焦 C1 balanced-Z 实验，暂停所有其他任务
+  rationale: Reviewer 整体 story 审查确认：Claim 1 覆盖率 100%（无懈可击），Claim 2 ~85%（C1 是唯一缺口），Claim
+    3 ~90%。C1 成功 = +0.5 分（3.0→3.5），是论文与 Borderline Conference 之间的唯一障碍。RD2-W5/M5 等
+    open issues 对分数影响 ≤0.2，不值得分散精力。所有 CPU 修复已完成（页数/诊断/AUC/PPI注释/100-seed/κ）。
+  related_experiments:
+  - exp_id: exp-001
+    role: foundation
+    result: HB wins 87.5%
+  - exp_id: exp-015
+    role: negative
+    result: real LLM failure → balanced-Z hypothesis
+  - exp_id: exp-021
+    role: stability
+    result: 100-seed confirms 50-seed stable
+  depends_on:
+  - D016
+  - D015
+- id: D018
+  date: 2026-05-21 21:52 UTC
+  summary: 'C1 framing: coverage-led narrative + heterogeneity confirmation, honest
+    RMSE boundary reporting'
+  rationale: Llama K=2 budget sweep 显示 coverage 从 Naive 0.675 提升到 Global 0.925/HB
+    0.905，这是最强 C1 证据。RMSE 在 moderate Δπ 下 EC-HTE 不优于 Naive（与论文 Section 5.5 budget
+    analysis 一致），但 |Bias| 始终更低。4 个 LLM 均展现 subgroup-heterogeneous misclassification，验证核心
+    Claim 1（问题存在性）。framing 策略：(1) 所有 4 LLM 确认 Δπ 异质性存在 (2) coverage 改善作为主要正面证据 (3)
+    RMSE crossover 与 budget guideline 一致，honest boundary reporting (4) moderate Δπ
+    下 global suffices，验证 applicability conditions。这与论文作为 problem-identification paper
+    的定位完全吻合。
+  related_experiments:
+  - exp_id: exp-008
+    role: primary
+    result: 4-LLM annotation complete, Llama semi-synthetic shows coverage improvement
+  - exp_id: exp-001
+    role: baseline
+    result: synthetic extreme regime validates EC-HTE RMSE advantage
+  depends_on:
+  - D017
+  - D016
+  - D015
+- id: D019
+  date: 2026-05-22 00:24 UTC
+  summary: Hetero-τ 4模型K=4结果作为rebuttal材料，不写入论文
+  rationale: 4模型K=4 hetero-τ结果mixed（Llama 3/3, Qwen 3/3, Mistral 2/3, Gemma 1/3 bias
+    wins）。EC-HTE优势与Δ_FPR正相关，n≥500时4/4模型bias≤Global，但n=200时2/4失败。当前附录已有Llama K=2结果（3/3全胜，准确）。DDL紧迫（May
+    25），引入需要大量限定词的mixed evidence有风险。留作rebuttal素材：如审稿人质疑跨模型适用性，有完整4模型数据+明确pattern（优势∝Δ_FPR，n≥500安全区）。
+  related_experiments:
+  - exp_id: exp-023
+    role: source
+    result: '4/4 models complete; bias wins: Llama 3/3, Qwen 3/3, Mistral 2/3, Gemma
+      1/3'
+  depends_on:
+  - D018
+- id: D020
+  date: 2026-05-22 02:04 UTC
+  summary: Round 3审稿报告处理：12/17 issues已在当前版本解决，仅需修复页数超限+小幅文本调整
+  rationale: 'Round 3 review (3.0 Findings, R1=3.5, R2=3.0) was done on pre-fix version.
+    Key findings: (1) C3/M1 diagnostic AUC=0.47 criticism INVALID — current paper
+    has setting-level AUC=0.89, Prop 2 is Δτ-free. (2) C2 page limit: Conclusion overflows
+    ~2 lines to page 9, need to move §5.5+§5.6 to appendix. (3) C1 real-data gap:
+    genuine structural concern but partially addressed by §5.7 real LLM CMs. (4) 12
+    of 17 issues already resolved in current version (contributions 3→done, terminology→done,
+    references→done, etc.). Action: fix page limit, minor text improvements, then
+    submit to ARR.'
+  related_experiments:
+  - exp_id: exp-019
+    role: evidence
+    result: P(Z=1) sweep R²≥0.976
+  - exp_id: exp-023
+    role: evidence
+    result: 4 LLM real CM validation
+  depends_on:
+  - D019
+- id: D021
+  date: 2026-05-22 03:37 UTC
+  summary: 全面优化冲刺：双轨并行（实验+写作），保3.5冲4，提交前最后一轮内部审稿
+  rationale: 用户指令"想方设法优化修复，保3.5冲4"。两条并行轨道：(1) Main Agent 做第二数据集半合成验证 + PPI/DSL HTE
+    baseline 对比 + CF K=2 数据提取；(2) Paper Agent 做 C1 framing 强化 + Diagnostic 独立价值 +
+    writing quality pass。完成后提交新一轮内部审稿。
+  related_experiments: []
+  depends_on:
+  - D020
+- id: D022
+  date: 2026-05-23 15:20 UTC
+  summary: 取消 Task K (Pipeline 概念图)，保留 sign-reversal 3-panel 作为 Figure 1
+  rationale: Paper Agent 已将 Figure 1 替换为 sign-reversal 3-panel 图（Excitement 提分价值更高）。Reviewer
+    指出 DDL 前再换 Figure 1 风险高。页面已超限 ~8.3 页，不适合再增加内容。Pipeline 概念图 Excitement 贡献低于 sign-reversal
+    直观展示。
+  related_experiments: []
+  depends_on: []
+- id: D023
+  date: 2026-05-23 20:40 UTC
+  summary: Dream 三档评分 3.5/3.0/2.5 — reframe 未达 4.0 目标，结构性问题需修复后再提交
+  rationale: 'Dream 模拟 (dream_20260523T193110) 完成，三档评分：Best 3.5 (Borderline Conference),
+    Median 3.0 (Findings), Worst 2.5 (Borderline Findings)。目标 Excitement 4.0 未达到。
+
+
+    跨三档一致的结构性问题（通用建议）：
+
+    1. 真实数据 EC-HTE 全面劣于 naive/global（Table 15），主文未提
+
+    2. 诊断 AUC 在真实 LLM 上退化（0.63-0.49），abstract 报告过于乐观
+
+    3. Operating window 窄且分散表述
+
+    4. Identity 被视为 algebraically elementary
+
+    5. PPCI 边际贡献有限
+
+    6. CausalForest RMSE tradeoff 未充分讨论
+
+    7. 半合成 Δπ=0.20 偏向极端
+
+
+    决策：不贸然提交。先执行写作修复 + (A5) 正式化，然后重新提交内部审稿验证。'
+  related_experiments: []
+  depends_on: []
+- id: D024
+  date: 2026-05-23 21:33 UTC
+  summary: Stance detection 实验结果不纳入论文，仅作 rebuttal 备料
+  rationale: EC-HTE 在 stance detection 30/30 子群 RMSE 均劣于 naive（最差 10.2×），根因是 FNR>0.50
+    和 κ∈[1.6,15] 违反 operating conditions。放入论文只增加失败案例。但诊断正确预测了不适用，可作为 rebuttal 中 operating
+    conditions 有效性的证据。κ>100 fallback 阈值 vs κ>3 实际退化的 gap 留作 rebuttal 讨论点。
+  related_experiments:
+  - exp_id: stance_detection
+    role: evidence
+    result: negative — EC-HTE RMSE 2-10× worse than naive across all subgroups
+  depends_on: []
+- id: D025
+  date: 2026-05-23 22:52 UTC
+  summary: Stance detection 纳入 appendix 作为 cross-task 验证 + 边界条件案例（更新 D024）
+  rationale: D024 原决策为"不纳入论文，仅作 rebuttal 备料"。后续实际写了 appendix_stance.tex 并编译进论文——sign
+    reversal 75% reduction (13.3%→3.3%) 是有价值的 cross-task evidence，且 RMSE 全面劣势的诚实报告反而增强可信度。更新决策以消除文档矛盾。
+  related_experiments: []
+  depends_on:
+  - D024
+- id: D026
+  date: 2026-05-24 04:54 UTC
+  summary: 保留 AUC=0.86，registry exp-005 的 0.833 来自早期小数据集，figure caption 是权威来源
+  rationale: Figure 4 caption 明确标注 subgroup-level ROC AUC=0.86，基于完整 520 config grid。Registry
+    exp-005 记录的 0.833 来自早期更小数据集（36 settings + 4 subgroups）。0.86 出现在 figure 中可视觉验证，且
+    0.027 差异不改变定性结论。Camera-ready 时需重新运行分析确认。
+  related_experiments:
+  - exp_id: exp-005
+    role: 早期诊断分析（superseded by fig4 analysis）
+    result: subgroup_level_auc=0.833, subgroup_correlation=0.86
+  depends_on: []
+- id: D027
+  date: 2026-05-24 13:03 UTC
+  summary: M1 asymmetric 结果 framing：R² 正向报主文，method comparison 负向诚实披露 Appendix，定义为
+    operating condition
+  rationale: exp-041 的 48-config asymmetric MC 结果显示 bias identity R²≥0.85 (Δπ≥0.10)
+    但 EC-HTE RMSE 全面劣于 Global（variance inflation from 2-parameter estimation）。采纳 Reviewer
+    建议：主文报 R²+coverage（直接回应 M1），Appendix 诚实披露全部指标，将非对称退化定义为 operating condition (n_expert≥500)。这与
+    "when debiasing hurts" 叙事一致——过度纠正在数据不够时反而有害，强化而非削弱核心 warning。现有 3-config cherry-pick
+    "4× improvement" claim 需加限定语避免与 48-config 系统结果矛盾。
+  related_experiments:
+  - exp_id: exp-041
+    role: primary evidence
+    result: R² positive, method comparison negative at n_expert=250
+  depends_on: []

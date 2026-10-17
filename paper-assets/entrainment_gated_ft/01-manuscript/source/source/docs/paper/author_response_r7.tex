@@ -1,0 +1,263 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\definecolor{reviewercolor}{RGB}{0,0,140}
+\definecolor{responsecolor}{RGB}{0,100,0}
+
+\newcommand{\reviewer}[1]{\textcolor{reviewercolor}{\textbf{Reviewer comment:} \textit{#1}}}
+\newcommand{\response}[1]{\textcolor{responsecolor}{\textbf{Response:} #1}}
+\newcommand{\location}[1]{\textbf{Location:} #1}
+
+\title{Author Response --- Round 7\\(Addressing Round 6 Review)}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+We thank both reviewers for their thorough evaluation. We have revised the paper to address all Must-Fix, Should-Fix, and Minor items. Below we respond point-by-point.
+
+\section*{Overview of Changes}
+
+\begin{itemize}[leftmargin=*]
+\item Abstract, Introduction, and Conclusion: all convergence claims now qualified with ``preliminary evidence'' / ``suggestive''; ``scale-dependent'' replaced with ``differs between 340M and 1.3B'' throughout main text.
+\item Contribution 1 revised: removed ``not addressable by seed averaging''; replaced with nuanced statement acknowledging single-run limitation while noting architectural origin.
+\item Decoupling formalized as CI-overlap condition (Equation~1 in \S4.3).
+\item GDN 16-head confound discussion promoted from Appendix to main text \S4.4.
+\item Practical protocol added to Conclusion: three actionable recommendations for practitioners.
+\item Bootstrap CI usage: unified caveat that CIs are ``directional indicators''; all formal inference based on permutation tests.
+\item Binary decomposition limitation: explicit discussion added to \S4.2 with Cohen's $d$ cross-validation.
+\item Four references added: Swayamdipta et al.\ (2020), Fu et al.\ (2023), Cooper et al.\ (2024), Black et al.\ (2022).
+\item Claim scope restricted to ``within the controlled hybrid zoo'' in Abstract, Introduction, and Conclusion.
+\item Limitations: added ``accuracy-only'' limitation paragraph; seed caveat strengthened.
+\item Figure 1 and 2: axis labels and legend font sizes increased to $\geq 80\%$ of body text.
+\item Abstract: ``first systematic'' scoped to ``in hybrid recurrent architectures.''
+\item Title: ``Hybrid Recurrent'' $\to$ ``Hybrid Linear Recurrent'' for scope precision.
+\item ``Spectrum'' $\to$ ``variation'' throughout (PIQA/HellaSwag CIs overlap).
+\item Third contribution added: decoupling formalized as CI-overlap condition.
+\item Ensemble proof-of-concept: majority vote vs.\ oracle analysis added to Conclusion.
+\item Jaccard floor effect: normalized ES (5--7\% of achievable range) added to \S4.2.
+\end{itemize}
+
+\section*{Must-Fix Responses}
+
+\subsection*{MF1 [Critical]: n=5 Spearman statistical power}
+
+\reviewer{LAMBADA Bonferroni-adjusted $p = .100$ does not meet any conventional significance threshold. Abstract/Intro imply stronger conclusions than the evidence supports.}
+
+\response{We agree and have made three changes: (1) Abstract and Introduction now qualify convergence as ``preliminary evidence'' and ``suggestive''; (2) \S4.1 opens with ``suggestive rather than confirmatory'' framing; (3) Table~1 footnote explicitly states the Bonferroni-adjusted $p = .100$. We emphasize that convergence is a secondary finding. The paper's central contribution---the per-example multiplicity spectrum ($\alpha = 0.14$--$0.30$, Jaccard $\leq 0.10$)---does not depend on the convergence $p$-value. These multiplicity metrics are derived from per-example counts and set operations, not from rank correlations over $n = 5$ ratios. The 120-permutation test is exact, not an approximation; low power is inherent to the zoo's five-level attention design.}
+
+\location{Abstract, \S1 (paragraphs 1, 4), \S4.1 (opening paragraph), Table~1 footnote.}
+
+\subsection*{MF2 [Critical]: Single training run cannot disentangle seed from architecture}
+
+\reviewer{All 30 configurations are single runs. The ``3$\times$ Jaccard gap'' comparison conflates attention-ratio variation with seed variation. Contribution 1's claim that multiplicity is ``not addressable by seed averaging'' lacks direct support.}
+
+\response{We have revised Contribution~1 to: ``architectural variation---under matched training conditions---produces structured per-example predictive multiplicity [\ldots] though we cannot fully disentangle the two with single training runs.'' The phrase ``not addressable by seed averaging'' has been removed.}
+
+We acknowledge that the within-arch Jaccard (${\sim}0.33$) vs.\ cross-arch Jaccard (${\sim}0.10$) comparison is ``a proxy for, not a direct measurement of, seed-versus-architecture effects'' (\S4.3). We retain it as descriptive because the magnitude is informative: attributing the $3\times$ gap entirely to seed would require seed effects to exceed the impact of replacing 25\% of layers with attention---implausible, though not directly testable.
+
+Three indirect lines of evidence suggest architecture, not seed, drives the observed patterns:
+\begin{enumerate}[leftmargin=2em]
+\item \textbf{Attention weight similarity}: GDN and RetNet produce nearly identical attention distributions (cosine 0.995) yet diverge substantially in per-example effects (Jaccard $\leq 0.10$). Seed effects would not explain why identical attention produces different outcomes---the divergence must originate in the recurrent layers.
+\item \textbf{Cross-scale consistency}: Pairwise Jaccard is stable across 340M and 1.3B ($\bar{J} = 0.08$--$0.10$ vs.\ $0.09$--$0.095$), and architecture-specific helped/hurt profiles persist. Random seed artifacts would be unlikely to replicate across independently trained scale variants.
+\item \textbf{Task-dependent spectrum}: $\alpha$ varies systematically with task type (retrieval $>$ mixed $>$ reasoning) and is stable within each benchmark across attention ratios (variation $< 0.03$). A seed-driven explanation would predict uniform noise, not structured task dependence.
+\end{enumerate}
+
+We cannot substitute for multi-seed baselines, which we identify as the most important extension in Limitations.
+
+\location{Contribution list (item 1), \S4.3 (paragraph 3), Limitations.}
+
+\subsection*{MF3 [Critical, R2; R1 REBUT]: Limited novelty}
+
+\reviewer{R2: Core findings are direct applications of existing frameworks (Marx 2020, D'Amour 2022) to a new dataset. No new method, metric, or solution. R1: Empirical contributions (LAMBADA-only convergence, Transformer entrainment, decoupling trajectory) go beyond concept replication but excitement ceiling is limited.}
+
+\response{We agree this is primarily an empirical contribution and do not claim methodological novelty. However, the following findings are new to the literature and not predictable from prior work:}
+\begin{enumerate}[leftmargin=2em]
+\item \textbf{Task-dependent spectrum}: No prior work has measured how multiplicity magnitude varies across task types within a controlled architecture family. The spectrum from $\alpha = 0.14$ (reasoning) to $0.30$ (retrieval) was unknown.
+\item \textbf{Decoupling}: The observation that aggregate $\sigma$ decreases while per-example Jaccard saturates at the first attention level is a novel empirical pattern, now formalized as a CI-overlap condition (Equation~1).
+\item \textbf{Architecture-specificity}: That architectures with near-identical attention distributions (cosine 0.995) produce divergent per-example effects localizes the source to recurrent layer processing, a finding absent from seed-variation studies.
+\item \textbf{Confidence margin mechanism}: The rescue/disruption asymmetry across task formats (Cohen's $d$ gradient from open-ended to binary) provides a mechanistic account of \emph{why} certain examples are affected.
+\end{enumerate}
+
+In response to the actionability concern (MF4), we have added a practical protocol to the Conclusion.
+
+\location{Introduction (contribution framing), \S4.3 (formalization), Conclusion (practical protocol).}
+
+\subsection*{MF4 [Critical]: Lack of actionable insights}
+
+\reviewer{Conclusion says ``per-example evaluation should inform deployment decisions'' but provides no concrete guidance.}
+
+\response{We have added a practical protocol paragraph to the Conclusion with three actionable recommendations:}
+\begin{enumerate}[leftmargin=2em]
+\item \textbf{Per-example audit}: When hybrid architectures achieve comparable aggregate scores, compute pairwise Jaccard on helped/hurt sets. $\bar{J} \leq 0.10$ (as observed here) indicates ${\sim}90\%$ non-overlap---architectures are affecting nearly disjoint examples.
+\item \textbf{Confidence-margin screening}: Use pure-model target-token probability to identify examples at risk of disruption (low confidence among correct predictions) or rescue (high confidence among incorrect predictions). This is actionable with a single forward pass.
+\item \textbf{Task-type guidance}: Retrieval-heavy tasks show the highest multiplicity ($\alpha \approx 0.30$); reasoning tasks the lowest ($\alpha \approx 0.14$). Per-example audits are most warranted for retrieval and mixed tasks.
+\end{enumerate}
+
+\location{Conclusion, paragraph 2.}
+
+\subsection*{MF5 [Critical]: ``Scale-dependent'' unsupported by 2 data points}
+
+\reviewer{Two scales (340M, 1.3B) cannot support a ``scale-dependent'' claim. Appendix acknowledges ``binary observation, not a scaling law'' but main text weakens this caveat.}
+
+\response{We have replaced ``scale-dependent'' with ``differs between 340M and 1.3B'' throughout the main text. Contribution 2 now reads: ``this pattern differs between 340M and 1.3B (Appendix).'' The Appendix retains ``scale-robust'' only when describing the \emph{qualitative} pattern preservation of multiplicity (Jaccard stability), which is a descriptive claim about two observed data points, not a scaling law.}
+
+\location{Contribution 2, \S4.3 (cross-scale paragraph), Conclusion.}
+
+\section*{Should-Fix Responses}
+
+\subsection*{SF1: GDN 16-head confound}
+
+\reviewer{Excluding GDN weakens LAMBADA $\rho$ from $-1.0$ to $-0.7$ ($p = .233$) and reverses MMLU $\rho$ from $-0.7$ to $+0.6$. This should be in the main text, not just Appendix.}
+
+\response{The GDN confound discussion has been promoted to \S4.4 (Robustness). We explicitly state: ``The aggregate convergence result is therefore partially dependent on GDN; the decoupling result is not.'' The RetNet--HGRN2 pair preserves the decoupling (all hybrid $\sigma \leq 0.008$, Jaccard saturates at 0.086--0.108), confirming that our central finding is robust to GDN exclusion.}
+
+\location{\S4.4 (full subsection).}
+
+\subsection*{SF2: Binary decomposition information loss}
+
+\reviewer{Confidence 0.51$\to$0.49 and 0.99$\to$0.01 produce identical ``hurt'' labels. Log-probability shift would be more informative.}
+
+\response{We have added explicit discussion in \S4.2 acknowledging this limitation. The confidence margin analysis (Cohen's $d = 0.73$--$0.92$ between helped and hurt on LAMBADA) demonstrates that the binary decomposition captures genuine separation in continuous confidence space. We note that log-probability shift analysis is a valuable future direction and add this to Limitations. The binary decomposition aligns with the Marx (2020) multiplicity framework and provides the interpretable Jaccard overlap metric that supports our cross-architecture comparison.}
+
+\location{\S4.2 (paragraph 2), Limitations.}
+
+\subsection*{SF3: Decoupling lacks formal definition}
+
+\reviewer{Core concept has only natural language description, no mathematical definition.}
+
+\response{We have added a formal definition as Equation~1: decoupling holds when (i) $\rho(\mathrm{rank}(r), \sigma(r)) = -1.0$ (monotone aggregate convergence) AND (ii) $\mathrm{CI}[\bar{J}(r)] \cap \mathrm{CI}[\bar{J}(r')] \neq \emptyset$ for all non-zero ratio pairs (per-example overlap saturation). This CI-overlap formulation avoids the $n = 5$ power problem that would affect a correlation-based test (e.g., $\rho(\sigma, J)$ across 4 non-zero ratios has minimum $p \approx 0.083$). Both conditions hold on LAMBADA; no other benchmark satisfies (i).
+
+Regarding the Jaccard floor effect concern: observed $\bar{J} \approx 0.10$ is far below the theoretical maximum $J_{\max} = 0.78$--$0.92$ (given helped-set sizes of 426--548 out of $N = 5{,}153$). The normalized effect size is only 5--7\% of the achievable range above chance (\S4.2). This rules out ceiling constraints as an alternative explanation for Jaccard saturation---there is ample room for $J$ to increase if attention were homogenizing per-example behavior.}
+
+\location{\S4.3, Equation~1; \S4.2 (normalized ES).}
+
+\subsection*{SF4: Missing references}
+
+\reviewer{Swayamdipta et al.\ (2020) Dataset Cartography, Fu et al.\ (2023) H3, Cooper et al.\ (2024) Arbitrariness, Black et al.\ (2022) Model Multiplicity.}
+
+\response{We have added all four:}
+\begin{itemize}[leftmargin=2em]
+\item \textbf{Swayamdipta et al.\ (2020)}: Cited in Related Work as a methodological precursor for per-example analysis. We differentiate: Dataset Cartography characterizes examples via \emph{training dynamics} (variability, confidence across epochs), while our decomposition operates at \emph{deployment time} across architectures with no training signal.
+\item \textbf{Fu et al.\ (2023)}: Cited in Related Work for the H3 hybrid SSM-attention architecture.
+\item \textbf{Cooper et al.\ (2024)}: Cited in Introduction and Conclusion for fairness implications of per-example disagreement.
+\item \textbf{Black et al.\ (2022)}: ``Model Multiplicity: Opportunities, Concerns, and Solutions'' (FAccT 2022). Cited in Related Work as a comprehensive survey of the multiplicity landscape.
+\end{itemize}
+
+\location{Related Work (\S2), Introduction, Conclusion, \texttt{references.bib}.}
+
+\subsection*{SF5: Bootstrap CI coverage at n=3}
+
+\reviewer{Paper acknowledges CIs are ``heuristic indicators'' but then uses them to support claims.}
+
+\response{We have unified the caveat throughout: \S3.5 now states ``we treat these intervals as directional indicators and base all formal inference on permutation tests.'' All subsequent references to bootstrap CIs include ``heuristic'' qualification. The key claims rest on the permutation test ($p$ values) and on descriptive statistics (Jaccard values, $\alpha$ counts), not on CI coverage.}
+
+\location{\S3.5, \S4.1, \S4.3.}
+
+\subsection*{SF6: Narrow scope vs.\ general claims}
+
+\reviewer{R2: 3 architectures / 2 scales / 1 zoo cannot support ``hybrid recurrent architectures'' generality. R1 REBUT: controlled design is a deliberate tradeoff.}
+
+\response{We agree with the consensus that claim generality should match evidence scope. Abstract, Introduction, and Conclusion now specify ``within the controlled hybrid zoo'' or ``across three recurrent architectures under matched training conditions.'' Limitations explicitly identifies generalization to Mamba-based and MoE hybrids as an open question. We retain the argument that the controlled zoo design---identical data, tokenizer, hyperparameters---is the appropriate first step for isolating architectural effects, and that extending to uncontrolled model families would introduce confounds that are currently absent.}
+
+\location{Abstract, \S1, \S5, Limitations.}
+
+\section*{Minor Responses}
+
+\subsection*{m1/m2: Figure font sizes}
+
+\response{Figure 1 and 2 axis labels, legends, and annotations have been increased to $\geq 80\%$ of body text font size.}
+
+\subsection*{m3: Table 1 density}
+
+\response{We retain Table~1 in its current form because the exact $\rho$, $p$, $\sigma$ values are essential for reproducibility. The key pattern (only LAMBADA shows $\rho = -1.0$) is conveyed by Figure~2, which serves as the visual complement.}
+
+\subsection*{m4: ``Accuracy-only'' limitation}
+
+\response{Added to Limitations: ``We use accuracy as the sole evaluation metric; loss, perplexity, or calibration-based metrics may reveal patterns invisible to binary correctness.''}
+
+\subsection*{m5: ``First systematic'' scope}
+
+\response{Abstract now reads: ``the first systematic per-example analysis of attention effects in hybrid recurrent models.''}
+
+\section*{Questions}
+
+\subsection*{Q1: Expected seed variance relative to cross-architecture variance}
+
+\response{We do not have direct within-architecture seed variance data. Two indirect lines of evidence:}
+\begin{enumerate}[leftmargin=2em]
+\item McCoy et al.\ (2020) report pairwise agreement rates of 91.2--94.5\% (roughly Jaccard $\approx 0.5$--$0.7$) for BERT models differing only in fine-tuning seed on NLI tasks. Our cross-architecture Jaccard of $\leq 0.10$ is far below this range, suggesting architecture introduces divergence beyond typical seed variation. However, this comparison is imperfect: McCoy et al.\ study fine-tuning seeds (not pretraining seeds) on a different model family.
+\item Within our data, within-architecture Jaccard (${\sim}0.33$) exceeds cross-architecture Jaccard (${\sim}0.10$) by ${\sim}3\times$. As R2 correctly notes, this comparison mixes attention-ratio variation with architecture variation. Nonetheless, the $3\times$ ratio provides a lower bound on the relative scale.
+\end{enumerate}
+Multi-seed pretraining of at least one architecture would provide definitive evidence; we identify this as the most important future experiment.
+
+\subsection*{Q2: LAMBADA convergence as task-attention alignment}
+
+\response{Yes---this is precisely our interpretation. \S4.1 proposes that LAMBADA convergence reflects task-attention alignment: LAMBADA requires predicting a final word from long-range dependencies, and attention provides direct token-level access that compensates for differences in recurrent recall capacity (Arora et al., 2024; Zoology/Based framework). The empirical contribution is establishing that this alignment is task-specific: only retrieval tasks exhibit it, while reasoning and comprehension tasks show no convergence. This specificity was not predictable from prior work.}
+
+\subsection*{Q3: MMLU $\rho$ reversal after GDN exclusion}
+
+\response{With three architectures, removing one changes $n$ from 3 to 2, making $\rho$ unstable. The original MMLU $\rho = -0.7$ ($p = .233$) was already non-significant, so the reversal to $+0.6$ is within noise. This illustrates why we do not claim convergence on MMLU and why we treat the GDN exclusion as a sensitivity check rather than a definitive test. The mechanistic explanation: GDN's h3-1 uses 16 attention heads (vs.\ 32), which may create different attention allocation patterns on knowledge-intensive tasks like MMLU. This is now discussed in \S4.4.}
+
+\subsection*{Q4: $\alpha$ vs.\ benchmark sample size}
+
+\response{No confound. Spearman $\rho(N, \alpha) = -0.60$, $p = .24$ (not significant; reported in \S4.2). HellaSwag has the most examples ($N = 10{,}042$) yet nearly the lowest $\alpha$ ($0.15$). PIQA has the fewest main-text examples ($N = 1{,}838$) yet the lowest $\alpha$ ($0.14$). Subsample sensitivity analysis (Appendix~G) confirms $\alpha$ stabilizes at $n \geq 500$ with CI width $< 0.08$.}
+
+\subsection*{Q5: Cohen's $\kappa$ for the $3\times$ gap}
+
+\response{The $3\times$ Jaccard gap ($0.33$ within-arch vs.\ $0.10$ cross-arch) is reported as a descriptive observation, not a formal test. Cohen's $\kappa$ measures a different construct---agreement beyond chance on a per-example classification task---while Jaccard measures set overlap. Switching metrics would not address the underlying concern (R2's point about attention-ratio vs.\ architecture confound). We now explicitly state the comparison is ``a proxy for, not a direct measurement of, seed-versus-architecture effects'' (\S4.3) and defer definitive attribution to multi-seed experiments.}
+
+\subsection*{Q6: Token-level log-probability as continuous metric}
+
+\response{We have considered this and agree it is valuable. The confidence margin analysis (Cohen's $d = 0.73$--$0.92$) already provides a continuous complement to the binary decomposition. A full log-probability shift analysis---computing $\Delta \log p(\text{target})$ for each example---would be a natural extension. We add this as future work in Limitations. We retained the binary framework because it aligns with Marx (2020) multiplicity definitions and produces the interpretable Jaccard metric that underpins our cross-architecture comparisons.}
+
+\section*{Additional Changes (Addressing Round 7 Feedback)}
+
+\subsection*{C5: Ensemble proof-of-concept}
+
+\reviewer{The paper identifies per-example disagreement but does not test whether it can be exploited. Even a simple majority vote would demonstrate whether the observed multiplicity has practical consequences.}
+
+\response{We have added a proof-of-concept ensemble analysis to the Conclusion. A majority vote across three architectures at h3-1 does \emph{not} outperform the best individual architecture (LAMBADA: $-0.2$\,pp; ARC-Easy: $-1.1$\,pp), despite 15--45\% per-example disagreement. Oracle accuracy---correct if \emph{any} architecture is correct---reveals substantial complementarity potential ($+7$--$14$\,pp above best), but majority vote captures only 1--9\% of this ceiling. This gap quantifies the structural cost of multiplicity: when two of three architectures agree on the wrong answer, the correct minority prediction is inaccessible to naive ensembling, motivating future work on architecture-aware selection methods.}
+
+\location{Conclusion, paragraph 2.}
+
+\subsection*{W2: ``Spectrum'' $\to$ ``variation''}
+
+\reviewer{PIQA and HellaSwag CIs overlap substantially, so ``spectrum'' overstates the ordering.}
+
+\response{Replaced ``spectrum'' with ``variation'' throughout: \S4.2 paragraph header (``Multiplicity variation''), \S4.2 body text, \S4.3, Limitations, and ARR checklist.}
+
+\location{\S4.2, \S4.3, Limitations, \texttt{arr\_checklist.tex}.}
+
+\subsection*{W6: Third contribution (decoupling)}
+
+\reviewer{Decoupling is the paper's most distinctive finding but is not listed as a contribution.}
+
+\response{Added as Contribution~3: ``We demonstrate that aggregate convergence and per-example divergence are decoupled: cross-architecture $\sigma$ decreases monotonically with attention ratio while pairwise Jaccard saturates at the first attention level, formally operationalized via confidence-interval overlap conditions (\S4.3, Figure~1).''}
+
+\location{Introduction, contribution list (item 3).}
+
+\subsection*{C3 extension: Jaccard floor effect}
+
+\reviewer{Low Jaccard could reflect set-size constraints rather than genuine divergence.}
+
+\response{We have added a normalized effect size analysis to \S4.2: observed $\bar{J} \approx 0.10$ vs.\ theoretical maximum $J_{\max} = 0.78$--$0.92$ (given helped-set sizes). The normalized effect size is only 5--7\% of the achievable range above chance (normalized ES 0.065 helped, 0.047 hurt), ruling out ceiling constraints as an alternative explanation.}
+
+\location{\S4.2 (paragraph 2), Appendix~\ref{app:normalized_es}.}
+
+\subsection*{W4: Title precision}
+
+\reviewer{``Hybrid recurrent'' is imprecise; the paper studies hybrid \emph{linear} recurrent architectures.}
+
+\response{Title changed to ``Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures.'' Abstract opening updated correspondingly.}
+
+\location{Title, Abstract.}
+
+\end{document}

@@ -1,0 +1,397 @@
+# Writing Plan — schema-dag-extraction
+# Generated: 2026-05-15
+# Venue: EMNLP 2026 (ARR May 25 cycle)
+# Format: 8 pages main text + unlimited references
+# Mode: Full Draft (2-claim analysis paper + SDGD negative result)
+
+meta:
+  title: "Does Type Confusability Drive Schema-Induced Degradation in Training-Free LLM Information Extraction?"
+  venue: EMNLP 2026 Main
+  submission_deadline: "2026-05-25"
+  page_limit: 8
+  template: "acl2023"  # ARR uses ACL rolling review LaTeX template
+  template_note: "No EMNLP 2026 template found locally. Using acl2023.sty (standard ARR template). Worker must download from https://github.com/acl-org/acl-style-files if not available."
+  primary_model: "Qwen3-32B-FP8"
+  secondary_model: "LLaMA-3.1-8B-Instruct (exp-012, D022: 70B→8B cross-scale validation)"
+  datasets: ["Few-NERD (66 types)", "FewRel (80 relations)", "MAVEN (168 event types)"]
+
+# =============================================================================
+# PAPER OUTLINE
+# =============================================================================
+
+paper_outline:
+  - section: abstract
+    word_budget: 250
+    dependencies: [introduction, experiments, results, sdgd_negative, conclusion]
+    key_content:
+      - Problem: training-free LLM IE degrades on complex schemas; prior work conflates count and confusability
+      - Method: first controlled empirical study isolating type confusability from count across 3 tasks
+      - Findings: multi-channel degradation (count→recall, confusability→type confusion); pairwise SCS robust cross-task (r=0.11-0.13); effect amplifies 3.4× with schema complexity; per-type aggregation confounded on homogeneous schemas
+      - Negative result: naive confusability-aware decomposition fails due to merge amplification
+      - "Must report r² (~1.5%) and frame as 'one factor among many but first empirically isolated'"
+
+  - section: introduction
+    word_budget: 1200
+    dependencies: []
+    key_content:
+      - Hook: training-free LLM IE enables rapid deployment but degrades 20-60 F1 on complex schemas
+      - Gap: all prior decomposition approaches (UniNER per-type, LLM-PEE similarity partitioning, PARSE schema rewriting) operate on unvalidated assumptions about WHAT makes schemas complex
+      - RQ1: Does type confusability independently predict degradation beyond count?
+      - RQ2: Through what mechanisms do count and confusability degrade performance?
+      - RQ3: Can confusability-aware decomposition improve extraction? (→ negative result, itself informative)
+      - Contributions list (4 items): multi-channel model, pairwise robustness + centrality confound, cross-task validation, SDGD negative result identifying merge amplification
+      - "Address Dream feedback: frame effect size honestly from the start — 'partial but first isolated signal'"
+    dream_fixes:
+      - "Effect size contextualization: r=0.11-0.13 explains ~1.5% variance; present as 'one factor among many but first empirically isolated'"
+      - "Mention LLM-PEE as closest prior work in intro"
+
+  - section: related_work
+    word_budget: 1000
+    dependencies: [introduction]
+    key_content:
+      - "§2.1 Training-Free LLM IE: LLM4IE survey, InstructUIE, UniNER, GoLLIE, GLiNER, KnowCoder, GuideX, ZeroNER, Self-Improve-NER, NuNER"
+      - "§2.2 Schema Complexity in IE: LLM-PEE (MUST position extensively — similarity partitioning, not confusability-aware), IEPile (hard negatives for training), PARSE, DEE, CrossAgentIE (reactive debate vs proactive decomposition), CMAS-NER, SPT, DLISC, KGGen"
+      - "§2.3 Representation Degeneration: Gao et al. ICLR 2019, Ethayarajh EMNLP 2019, Cai et al. ICLR 2021 (cluster isotropy — directly explains centrality confound), Godey et al. EACL 2024"
+      - "§2.4 Context Length Effects: Lost in the Middle (TACL 2024) — first connection to IE schema prompts"
+    dream_fixes:
+      - "25+ references required — literature_map has 30+ entries, use all verified"
+      - "LLM-PEE positioning: discuss similarity partitioning vs confusability-aware decomposition, why no head-to-head (different task focus), our contribution is controlled analysis"
+      - "CrossAgentIE: reactive debate (post-hoc resolution) vs our proactive decomposition (prevention)"
+
+  - section: experimental_setup
+    word_budget: 900
+    dependencies: [introduction]
+    key_content:
+      - "§3.1 Tasks and Datasets: Few-NERD (NER, 66 types, cross-domain), FewRel (RE, 80 relations, cross-domain), MAVEN (ED, 168 event types, same-domain FrameNet). Dataset statistics table."
+      - "§3.2 Schema Confusability Score (SCS): formal definition of pairwise SCS, Batch Confusability Score (BCS). Embedding models: Qwen3-32B hidden states, all-MiniLM-L6-v2."
+      - "§3.3 Experimental Design: Exp1 count curve, Exp2 BCS-controlled factorial design. Formal definitions of all evaluation metrics."
+      - "§3.4 Evaluation Metrics: F1 (NER, token-level text match), Accuracy (RE, exact label match), Relaxed F1 (ED — FORMAL DEFINITION REQUIRED: trigger word overlap + correct event type). Justify cross-task metric differences."
+      - "§3.5 Model and Inference: Qwen3-32B-FP8 via vLLM, prompt template, decoding params."
+    dream_fixes:
+      - "MAVEN 'relaxed F1' must have formal definition in §3.4"
+      - "Cross-task metric differences must be justified"
+      - "Sample sizes: 5 batches per count level, 1000 samples, explicitly stated"
+      - "Bootstrap CI methodology described here"
+
+  - section: results
+    word_budget: 1500
+    dependencies: [experimental_setup]
+    key_content:
+      - "§4.1 Count-Degradation Curves (Exp1): Few-NERD recall 0.72→0.42, FewRel acc 85.7%→50.4%, MAVEN relaxed F1 stable. Fig 1 multi-task count curves."
+      - "§4.2 Pairwise Confusability → Type Confusion (Claim 1): Few-NERD r=0.112 [0.076,0.156], MAVEN MiniLM r=0.129 [0.104,0.156]. Report r² throughout. SCS validation (exp-015): Qwen3 ρ=0.168, MiniLM ρ=0.306 nonzero."
+      - "§4.3 BCS-Controlled Experiments (Claim 1 continued): FewRel 80-rel Δ=-31.2pp [17.7,42.7]. Scaling 3.4× vs 16-rel. Tab main results."
+      - "§4.4 Multi-Channel Degradation (Claim 2): Error taxonomy — IntraSub 0%→49.4% (NER, ρ=1.0), 0%→32.3% (RE, ρ=0.954). Missed rate flat. Fig error taxonomy."
+      - "§4.5 Centrality Confound on Homogeneous Schemas: MAVEN per-type positive direction. Explanation via Cai et al. 2021 cluster isotropy. Pairwise still works → aggregation is the problem, not the signal."
+      - "All CIs from bootstrap_ci_analysis. Report r² for every correlation."
+    dream_fixes:
+      - "Report r² throughout — r=0.112 → r²=0.013 (~1.3% variance explained)"
+      - "Discuss other contributing factors: entity frequency, prompt position, type definition quality"
+      - "Frame confusability as 'one factor among many but first empirically isolated'"
+      - "Bootstrap CI for all key metrics (already computed)"
+      - "Sample size limitations: 5 batches per count acknowledged"
+
+  - section: sdgd_negative
+    word_budget: 500
+    dependencies: [results]
+    key_content:
+      - "§5 Why Naive Decomposition Fails: SDGD-zero F1=0.241 vs single-pass 0.445. Decomposition boosts recall (0.19→0.31) but kills precision (0.32→0.21)."
+      - "Merge amplification mechanism: decomposed batches produce overlapping entity predictions → union merge inflates FP."
+      - "Confidence-gated merge (v2) did not help: 0.241 vs 0.251 (v1)."
+      - "Comparison with random_batch (0.320) and per_type (0.292): ALL decomposition modes worse than single-pass."
+      - "Structural insight: merge is the bottleneck, not decomposition quality."
+      - "Connection to LLM-PEE: both are similarity-based partitioning; our controlled negative result suggests the merge problem is general."
+      - "Future directions: calibration-based approaches, confidence-weighted extraction."
+    dream_fixes:
+      - "SDGD threshold τ=0.8 sensitivity: acknowledge no ablation in limitations"
+      - "Position relative to LLM-PEE: same fundamental challenge (merge amplification)"
+
+  - section: discussion
+    word_budget: 600
+    dependencies: [results, sdgd_negative]
+    key_content:
+      - "§6.1 Effect Size and Practical Implications: r²≈1.3-1.7% — confusability is one factor among many. Other factors: entity frequency, prompt position effects (Lost in the Middle), type definition quality, model capacity. First empirically isolated signal, not the only one."
+      - "§6.2 Embedding Choice: 2×3 ablation matrix summary. No single embedding dominates. Extraction-model embeddings better for cross-domain (Qwen3 on Few-NERD), generic embeddings for same-domain (MiniLM on MAVEN)."
+      - "§6.3 Limitations: (a) single primary model (Qwen3-32B), LLaMA pending; (b) 5 batches per count level → limited statistical power for factorial ANOVA; (c) SDGD τ=0.8 no ablation; (d) 3 datasets may not cover all IE scenarios; (e) text_match evaluation on NER (not exact span)."
+    dream_fixes:
+      - "LLaMA non-monotonicity: if exp-012 done → Patch. If not, acknowledge 'multi-model validation pending' in limitations"
+      - "Sample size: report CI widths, acknowledge ANOVA power insufficient"
+      - "SDGD threshold sensitivity acknowledged"
+
+  - section: conclusion
+    word_budget: 250
+    dependencies: [introduction, results, sdgd_negative, discussion]
+    key_content:
+      - Restate multi-channel degradation model
+      - Pairwise confusability as robust cross-task signal
+      - Centrality confound as methodological insight
+      - SDGD negative result → merge amplification → future calibration-based work
+      - "Tempered claims: 'partial explanatory power' not 'comprehensive model'"
+
+# =============================================================================
+# VISUALIZATION PLAN
+# =============================================================================
+
+visualization_plan:
+  - fig_id: fig_count_curves
+    type: line_plot
+    tool: matplotlib
+    description: "Multi-task count-degradation curves. 3 subplots: (a) Few-NERD recall vs count, (b) FewRel accuracy vs count (80-rel), (c) MAVEN relaxed F1 vs count. Error bars from 5 batches per count. X-axis: type/relation count. Y-axis: metric. Shows Channel 1 (count→recall decline)."
+    placement: "Section 4.1 (Results)"
+    aspect_ratio: "3:1 (three horizontal subplots)"
+    data_source: "registry: exp001_count_baseline (Few-NERD), exp_fewrel_formal_80rel (FewRel), exp004_maven_bcs (MAVEN)"
+    output_path: "projects/schema-dag-extraction/figures/paper/fig_count_curves.pdf"
+    notes: "Include bootstrap CI as shaded region where available. MAVEN shows non-monotonic pattern — plot honestly."
+
+  - fig_id: fig_error_taxonomy
+    type: grouped_bar
+    tool: matplotlib
+    description: "Error type distribution across BCS bins. 2 subplots: (a) Few-NERD NER, (b) FewRel RE. Stacked/grouped bars showing correct%, wrong_type% (IntraSub%), missed%. BCS bins on x-axis. Shows Channel 2 (confusability→type confusion) and cross-task IntraSub replication."
+    placement: "Section 4.4 (Multi-Channel Degradation)"
+    aspect_ratio: "2:1 (two horizontal subplots)"
+    data_source: "registry: exp007_error_taxonomy (Few-NERD), exp016_fewrel_error_taxonomy (FewRel)"
+    output_path: "projects/schema-dag-extraction/figures/paper/fig_error_taxonomy.pdf"
+    notes: "Highlight IntraSub rate monotonic increase. Include ρ values on plot."
+
+  - fig_id: fig_bcs_scaling
+    type: grouped_bar
+    tool: matplotlib
+    description: "BCS effect scaling with schema complexity. Grouped bar: 16-rel vs 80-rel on FewRel. For each: low-BCS accuracy, high-BCS accuracy, Δ. Shows 3.4× amplification. Include CI error bars."
+    placement: "Section 4.3 (BCS-Controlled)"
+    aspect_ratio: "1:1"
+    data_source: "registry: exp_fewrel_formal (16-rel), exp_fewrel_formal_80rel (80-rel), bootstrap_ci_analysis"
+    output_path: "projects/schema-dag-extraction/figures/paper/fig_bcs_scaling.pdf"
+    notes: "Annotate Δ values and 3.4× amplification factor."
+
+  - fig_id: fig_sdgd_comparison
+    type: bar_chart
+    tool: matplotlib
+    description: "SDGD vs baselines on Few-NERD. Grouped bars showing F1, Precision, Recall for 4 modes: single_pass, random_batch, sdgd_zero, per_type. Clearly shows decomposition boosts recall but kills precision."
+    placement: "Section 5 (SDGD Negative Result)"
+    aspect_ratio: "4:3"
+    data_source: "registry: exp008_sdgd_zero_fewnerd_r2"
+    output_path: "projects/schema-dag-extraction/figures/paper/fig_sdgd_comparison.pdf"
+    notes: "Highlight single_pass as strongest F1. Show precision-recall tradeoff visually."
+
+# =============================================================================
+# TABLE PLAN
+# =============================================================================
+
+table_plan:
+  - table_id: tab_datasets
+    type: statistics
+    columns: [Dataset, Task, "# Types", "# Samples", Domain, "SCS Range", Embedding]
+    data_source: "registry: exp-004 (MAVEN stats), exp001 (Few-NERD), exp_fewrel_formal_80rel (FewRel)"
+    placement: "Section 3.1"
+    notes: "Include mean/median/max SCS for each dataset."
+
+  - table_id: tab_pairwise
+    type: results
+    columns: [Dataset, Embedding, "n pairs", "Pearson r", "r²", "95% CI", "p-value", "ρ (nonzero)"]
+    data_source: "registry: exp002_confusability_controlled, exp004_maven_bcs, exp015_scs_validation, bootstrap_ci_analysis"
+    placement: "Section 4.2"
+    notes: "MUST include r² column per Dream feedback. All CIs from bootstrap."
+
+  - table_id: tab_bcs_controlled
+    type: results
+    columns: [Dataset, "Schema Size", Count, "Low-BCS Acc", "High-BCS Acc", "Δ (pp)", "95% CI"]
+    data_source: "registry: exp_fewrel_formal, exp_fewrel_formal_80rel, bootstrap_ci_analysis"
+    placement: "Section 4.3"
+    notes: "Show 16-rel → 80-rel scaling. Include bootstrap CI for Δ."
+
+  - table_id: tab_error_taxonomy
+    type: results
+    columns: [Task, BCS Bin, "Correct%", "IntraSub%", "Missed%", ρ]
+    data_source: "registry: exp007_error_taxonomy, exp016_fewrel_error_taxonomy"
+    placement: "Section 4.4"
+    notes: "Cross-task comparison. Highlight ρ=1.0 (NER) and ρ=0.954 (RE)."
+
+  - table_id: tab_sdgd
+    type: results
+    columns: [Mode, Batches, F1, Precision, Recall, "Time (s)"]
+    data_source: "registry: exp008_sdgd_zero_fewnerd_r2"
+    placement: "Section 5"
+    notes: "Include single_pass, random_batch, sdgd_zero, per_type. Bold single_pass F1."
+
+# =============================================================================
+# LITERATURE STRATEGY
+# =============================================================================
+
+literature_strategy:
+  citation_budget: 30
+  macro_context: "Training-free LLM IE is gaining traction for rapid deployment but quality gaps with supervised methods remain poorly understood. We provide the first controlled factor analysis."
+
+  micro_clusters:
+    - cluster_name: "training_free_llm_ie"
+      description: "Training-free / zero-shot LLM-based IE methods"
+      target_count: 8
+      must_cite:
+        - uniner-2024      # ICLR 2024, per-type splitting baseline
+        - gollie-2024       # ICLR 2024, code-style schema
+        - gliner-2024       # NAACL 2024, non-LLM competitive baseline
+        - knowcoder-2024    # ACL 2024, code-based schema knowledge
+        - zeroner-2025      # ACL 2025 Findings
+        - guidex-2025       # ACL 2025 Findings
+      search_queries:
+        - "zero-shot LLM information extraction 2024 2025"
+        - "training-free named entity recognition large language model"
+
+    - cluster_name: "schema_decomposition"
+      description: "Schema decomposition / complexity management for IE"
+      target_count: 8
+      must_cite:
+        - llm-pee-2025      # CRITICAL: closest competitor, embedding similarity partitioning
+        - iepile-2024        # ACL 2024, hard-negative schema
+        - crossagentie-2025  # ACL 2025 Findings, multi-agent type confusion
+        - kggen-2025         # NeurIPS 2025, two-stage decomposition
+        - parse-2025         # EMNLP 2025 Industry
+        - dee-2024           # task-level decomposition
+      search_queries:
+        - "schema decomposition information extraction LLM"
+        - "type confusion resolution information extraction"
+
+    - cluster_name: "representation_degeneration"
+      description: "Embedding anisotropy and representation degeneration literature"
+      target_count: 5
+      must_cite:
+        - gao-repr-degen-2019     # ICLR 2019, foundational
+        - ethayarajh-contextual-2019  # EMNLP 2019, contextual anisotropy
+        - cai-isotropy-clusters-2021  # ICLR 2021, cluster isotropy — KEY for centrality confound
+        - godey-anisotropy-inherent-2024  # EACL 2024
+      search_queries:
+        - "embedding anisotropy transformer representation degeneration"
+
+    - cluster_name: "context_length_ie"
+      description: "Context length effects and positional bias"
+      target_count: 2
+      must_cite:
+        - lost-in-middle-2024   # TACL 2024
+      search_queries:
+        - "lost in the middle long context language model"
+
+    - cluster_name: "ie_surveys_benchmarks"
+      description: "IE surveys and evaluation methodology"
+      target_count: 4
+      must_cite:
+        - llm4ie-survey-2024    # comprehensive survey
+        - familiarity-2025      # NAACL 2025, evaluation methodology
+      search_queries:
+        - "LLM information extraction survey 2024"
+        - "NER evaluation methodology zero-shot"
+
+    - cluster_name: "instructuie_baselines"
+      description: "Instruction-tuned universal IE baselines"
+      target_count: 3
+      must_cite: []
+      search_queries:
+        - "InstructUIE instruction-tuned information extraction"
+        - "universal information extraction instruction tuning 2024"
+
+# =============================================================================
+# WRITING ORDER (strict serial)
+# =============================================================================
+
+writing_order:
+  - section: experimental_setup
+    rationale: "Establishes methodology, metric definitions, and dataset descriptions. Foundation for all subsequent sections."
+    worker_type: paper_writing
+    worker_inputs:
+      - "paper_framing.md §Experimental Design"
+      - "registry: exp001, exp002, exp004, exp_fewrel_formal_80rel (design fields)"
+      - "latex-paper skill + red-section skill"
+      - "Dream feedback: formal metric definitions, sample size disclosure"
+
+  - section: results
+    rationale: "Core empirical findings. Depends on experimental_setup for metric definitions."
+    worker_type: paper_writing
+    worker_inputs:
+      - "experimental_setup.tex (completed)"
+      - "registry: ALL successful experiments (metrics fields)"
+      - "bootstrap_ci_analysis (all CIs)"
+      - "paper_framing.md §Evidence Hierarchy"
+      - "Dream feedback: r² throughout, effect size contextualization"
+
+  - section: sdgd_negative
+    rationale: "Negative result section. Depends on results for context."
+    worker_type: paper_writing
+    worker_inputs:
+      - "results.tex (completed)"
+      - "registry: exp008_sdgd_zero_fewnerd_r2, exp008_sdgd_v2_fewnerd"
+      - "Dream feedback: SDGD threshold sensitivity, LLM-PEE connection"
+
+  - section: related_work
+    rationale: "Positioned after empirical sections to ensure accurate framing. 25+ refs required."
+    worker_type: paper_writing
+    worker_inputs:
+      - "introduction.tex (not yet, but outline available)"
+      - "literature_map.yaml (full)"
+      - "references.bib (after Step 3)"
+      - "Dream feedback: LLM-PEE extensive positioning, CrossAgentIE differentiation"
+
+  - section: introduction
+    rationale: "Written after results and related work are stable to ensure accurate claims."
+    worker_type: paper_writing
+    worker_inputs:
+      - "results.tex + sdgd_negative.tex + related_work.tex (all completed)"
+      - "paper_framing.md §Story Spine"
+      - "Dream feedback: honest effect size framing from the start"
+
+  - section: conclusion
+    rationale: "Mirrors introduction. Written after all body sections."
+    worker_type: paper_writing
+    worker_inputs:
+      - "All completed .tex sections"
+      - "Dream feedback: tempered claims"
+
+  - section: abstract
+    rationale: "Last to write — summarizes the complete paper."
+    worker_type: paper_writing
+    worker_inputs:
+      - "All completed .tex sections"
+      - "Dream feedback: r² in abstract, honest framing"
+
+# =============================================================================
+# DREAM REVIEW ISSUES TRACKING
+# =============================================================================
+
+dream_review_fixes:
+  - id: DR1
+    issue: "Related work insufficient (need 25+ refs)"
+    severity: critical
+    addressed_in: [related_work]
+    strategy: "literature_map has 30+ entries. Step 3 will gap-fill and verify all."
+
+  - id: DR2
+    issue: "Effect size not contextualized (r²~1.5%)"
+    severity: critical
+    addressed_in: [abstract, introduction, results, discussion]
+    strategy: "Report r² everywhere. Frame as 'one factor among many, first empirically isolated'. Discuss other factors in §6.1."
+
+  - id: DR3
+    issue: "MAVEN relaxed F1 needs formal definition"
+    severity: major
+    addressed_in: [experimental_setup]
+    strategy: "§3.4 formal definition: trigger word overlap (any token overlap) + correct event type."
+
+  - id: DR4
+    issue: "LLM-PEE positioning missing"
+    severity: critical
+    addressed_in: [related_work, sdgd_negative]
+    strategy: "§2.2 extensive discussion. §5 connection to merge amplification. No head-to-head (different task/eval)."
+
+  - id: DR5
+    issue: "LLaMA count curve non-monotonicity"
+    severity: major
+    addressed_in: [discussion]
+    strategy: "If exp-012 done → Patch. If not → §6.3 acknowledge 'multi-model validation pending'."
+
+  - id: DR6
+    issue: "Sample size limitations (5 batches per count)"
+    severity: major
+    addressed_in: [experimental_setup, discussion]
+    strategy: "Report bootstrap CI for all metrics. §6.3 acknowledge ANOVA power limitations."
+
+  - id: DR7
+    issue: "SDGD τ=0.8 no ablation"
+    severity: minor
+    addressed_in: [discussion]
+    strategy: "§6.3 acknowledge. Note that all τ values face merge amplification (structural, not threshold-dependent)."

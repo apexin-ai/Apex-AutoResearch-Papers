@@ -1,0 +1,197 @@
+{
+  "benchmark": "piqa",
+  "n_samples": 1838,
+  "architectures": [
+    "GDN",
+    "RetNet",
+    "HGRN2"
+  ],
+  "ratios": [
+    "pure",
+    "h24-1",
+    "h12-1",
+    "h6-1",
+    "h3-1"
+  ],
+  "per_example_classification": {
+    "GDN": {
+      "h24-1": {
+        "n_helped": 96,
+        "n_hurt": 86,
+        "n_stayed_right": 1244,
+        "n_stayed_wrong": 412,
+        "net_effect": 10
+      },
+      "h12-1": {
+        "n_helped": 88,
+        "n_hurt": 84,
+        "n_stayed_right": 1246,
+        "n_stayed_wrong": 420,
+        "net_effect": 4
+      },
+      "h6-1": {
+        "n_helped": 100,
+        "n_hurt": 86,
+        "n_stayed_right": 1244,
+        "n_stayed_wrong": 408,
+        "net_effect": 14
+      },
+      "h3-1": {
+        "n_helped": 105,
+        "n_hurt": 79,
+        "n_stayed_right": 1251,
+        "n_stayed_wrong": 403,
+        "net_effect": 26
+      }
+    },
+    "RetNet": {
+      "h24-1": {
+        "n_helped": 66,
+        "n_hurt": 71,
+        "n_stayed_right": 1264,
+        "n_stayed_wrong": 437,
+        "net_effect": -5
+      },
+      "h12-1": {
+        "n_helped": 78,
+        "n_hurt": 78,
+        "n_stayed_right": 1257,
+        "n_stayed_wrong": 425,
+        "net_effect": 0
+      },
+      "h6-1": {
+        "n_helped": 82,
+        "n_hurt": 84,
+        "n_stayed_right": 1251,
+        "n_stayed_wrong": 421,
+        "net_effect": -2
+      },
+      "h3-1": {
+        "n_helped": 80,
+        "n_hurt": 75,
+        "n_stayed_right": 1260,
+        "n_stayed_wrong": 423,
+        "net_effect": 5
+      }
+    },
+    "HGRN2": {
+      "h24-1": {
+        "n_helped": 71,
+        "n_hurt": 68,
+        "n_stayed_right": 1282,
+        "n_stayed_wrong": 417,
+        "net_effect": 3
+      },
+      "h12-1": {
+        "n_helped": 80,
+        "n_hurt": 75,
+        "n_stayed_right": 1275,
+        "n_stayed_wrong": 408,
+        "net_effect": 5
+      },
+      "h6-1": {
+        "n_helped": 81,
+        "n_hurt": 83,
+        "n_stayed_right": 1267,
+        "n_stayed_wrong": 407,
+        "net_effect": -2
+      },
+      "h3-1": {
+        "n_helped": 72,
+        "n_hurt": 80,
+        "n_stayed_right": 1270,
+        "n_stayed_wrong": 416,
+        "net_effect": -8
+      }
+    }
+  },
+  "convergence_sigma": {
+    "pure": {
+      "mean_sigma": 0.004624,
+      "n_unanimous_correct": 1197,
+      "n_unanimous_wrong": 378,
+      "n_split": 263
+    },
+    "h24-1": {
+      "mean_sigma": 0.005123,
+      "n_unanimous_correct": 1210,
+      "n_unanimous_wrong": 375,
+      "n_split": 253
+    },
+    "h12-1": {
+      "mean_sigma": 0.005262,
+      "n_unanimous_correct": 1216,
+      "n_unanimous_wrong": 379,
+      "n_split": 243
+    },
+    "h6-1": {
+      "mean_sigma": 0.003451,
+      "n_unanimous_correct": 1207,
+      "n_unanimous_wrong": 368,
+      "n_split": 263
+    },
+    "h3-1": {
+      "mean_sigma": 0.003873,
+      "n_unanimous_correct": 1210,
+      "n_unanimous_wrong": 371,
+      "n_split": 257
+    },
+    "spearman": {
+      "rho": -0.5,
+      "p_exact_two_tailed": 0.45,
+      "n_permutations": 120
+    }
+  },
+  "ambiguity": {
+    "pure": {
+      "alpha": 0.14309,
+      "n_ambiguous": 263,
+      "disagreement_distribution": {
+        "0_of_3": 378,
+        "1_of_3": 102,
+        "2_of_3": 161,
+        "3_of_3": 1197
+      }
+    },
+    "h24-1": {
+      "alpha": 0.13765,
+      "n_ambiguous": 253,
+      "disagreement_distribution": {
+        "0_of_3": 375,
+        "1_of_3": 113,
+        "2_of_3": 140,
+        "3_of_3": 1210
+      }
+    },
+    "h12-1": {
+      "alpha": 0.132209,
+      "n_ambiguous": 243,
+      "disagreement_distribution": {
+        "0_of_3": 379,
+        "1_of_3": 110,
+        "2_of_3": 133,
+        "3_of_3": 1216
+      }
+    },
+    "h6-1": {
+      "alpha": 0.14309,
+      "n_ambiguous": 263,
+      "disagreement_distribution": {
+        "0_of_3": 368,
+        "1_of_3": 122,
+        "2_of_3": 141,
+        "3_of_3": 1207
+      }
+    },
+    "h3-1": {
+      "alpha": 0.139826,
+      "n_ambiguous": 257,
+      "disagreement_distribution": {
+        "0_of_3": 371,
+        "1_of_3": 106,
+        "2_of_3": 151,
+        "3_of_3": 1210
+      }
+    }
+  }
+}

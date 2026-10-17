@@ -1,0 +1,3 @@
+Remote path: /root/schema-dag-extraction/artifacts/exp_docred_confusability/scs_matrix.npy
+Format: numpy array, shape [96, 96]
+Also available as PyTorch: scs_matrix.pt (contains sim_matrix, type_names, type_to_idx)

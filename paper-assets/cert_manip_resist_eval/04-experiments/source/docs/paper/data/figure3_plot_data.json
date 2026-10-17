@@ -1,0 +1,45 @@
+{
+  "figure_type": "gam_bootstrap_ci_forest",
+  "description": "Forest plot showing GAM K_eff partial dependence slopes with 95% bootstrap CI",
+  "method": "LinearGAM, B=9999 bootstrap, slope = (pdep[-1] - pdep[0]) / (x_grid[-1] - x_grid[0])",
+  "panels": {
+    "K3": {
+      "n_panels": 455,
+      "ci_excludes_zero": "11/12",
+      "conditions": [
+        {"label": "MMLU × Prompt Inj.", "slope": 22.286153, "ci_lower": 3.949884, "ci_upper": 37.638554, "positive_rate": 0.9875, "attack_type": "prompt_injection", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 0.576},
+        {"label": "MMLU × Sycophancy", "slope": 25.839514, "ci_lower": 20.936431, "ci_upper": 39.821261, "positive_rate": 0.9998, "attack_type": "sycophancy", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 0.668},
+        {"label": "MMLU × Score Manip.", "slope": 7.067337, "ci_lower": -8.479621, "ci_upper": 44.002667, "positive_rate": 0.8895, "attack_type": "score_manipulation", "benchmark": "mmlu", "ci_excludes_zero": false, "normalized_slope": 0.183},
+        {"label": "MMLU × Verbosity", "slope": 14.841758, "ci_lower": 11.16183, "ci_upper": 18.265475, "positive_rate": 1.0, "attack_type": "verbosity_bias", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 0.383},
+        {"label": "MMLU × Position", "slope": 0.630759, "ci_lower": 0.462616, "ci_upper": 0.736347, "positive_rate": 1.0, "attack_type": "position_bias", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 0.016},
+        {"label": "MMLU × Authority", "slope": 38.712764, "ci_lower": 24.971521, "ci_upper": 54.343886, "positive_rate": 0.9998, "attack_type": "authority_bias", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 1.0},
+        {"label": "ARC × Prompt Inj.", "slope": 13.230832, "ci_lower": 8.321376, "ci_upper": 17.875311, "positive_rate": 1.0, "attack_type": "prompt_injection", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.342},
+        {"label": "ARC × Sycophancy", "slope": 15.429704, "ci_lower": 8.13517, "ci_upper": 21.500104, "positive_rate": 1.0, "attack_type": "sycophancy", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.399},
+        {"label": "ARC × Score Manip.", "slope": 24.939722, "ci_lower": 17.385257, "ci_upper": 34.426029, "positive_rate": 1.0, "attack_type": "score_manipulation", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.644},
+        {"label": "ARC × Verbosity", "slope": 19.324376, "ci_lower": 13.921529, "ci_upper": 23.902512, "positive_rate": 1.0, "attack_type": "verbosity_bias", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.499},
+        {"label": "ARC × Position", "slope": 0.839933, "ci_lower": 0.775788, "ci_upper": 0.929058, "positive_rate": 1.0, "attack_type": "position_bias", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.022},
+        {"label": "ARC × Authority", "slope": 22.970929, "ci_lower": 14.326455, "ci_upper": 29.567236, "positive_rate": 1.0, "attack_type": "authority_bias", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.593}
+      ]
+    },
+    "K5": {
+      "n_panels": 3003,
+      "ci_excludes_zero": "12/12",
+      "conditions": [
+        {"label": "MMLU × Prompt Inj.", "slope": 21.653688, "ci_lower": 17.497003, "ci_upper": 32.613685, "positive_rate": 1.0, "attack_type": "prompt_injection", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 0.678},
+        {"label": "MMLU × Sycophancy", "slope": 20.965962, "ci_lower": 15.939956, "ci_upper": 32.624946, "positive_rate": 1.0, "attack_type": "sycophancy", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 0.656},
+        {"label": "MMLU × Score Manip.", "slope": 25.233572, "ci_lower": 21.658225, "ci_upper": 30.497035, "positive_rate": 1.0, "attack_type": "score_manipulation", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 0.790},
+        {"label": "MMLU × Verbosity", "slope": 12.813748, "ci_lower": 10.351096, "ci_upper": 16.846865, "positive_rate": 1.0, "attack_type": "verbosity_bias", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 0.401},
+        {"label": "MMLU × Position", "slope": 0.404764, "ci_lower": 0.300272, "ci_upper": 0.481906, "positive_rate": 1.0, "attack_type": "position_bias", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 0.013},
+        {"label": "MMLU × Authority", "slope": 23.152729, "ci_lower": 19.147824, "ci_upper": 28.857134, "positive_rate": 1.0, "attack_type": "authority_bias", "benchmark": "mmlu", "ci_excludes_zero": true, "normalized_slope": 0.725},
+        {"label": "ARC × Prompt Inj.", "slope": 26.001016, "ci_lower": 20.881348, "ci_upper": 33.500816, "positive_rate": 1.0, "attack_type": "prompt_injection", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.814},
+        {"label": "ARC × Sycophancy", "slope": 12.213262, "ci_lower": 6.627867, "ci_upper": 18.857624, "positive_rate": 1.0, "attack_type": "sycophancy", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.382},
+        {"label": "ARC × Score Manip.", "slope": 31.943582, "ci_lower": 23.359024, "ci_upper": 49.499424, "positive_rate": 1.0, "attack_type": "score_manipulation", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 1.0},
+        {"label": "ARC × Verbosity", "slope": 20.09315, "ci_lower": 16.371621, "ci_upper": 25.381152, "positive_rate": 1.0, "attack_type": "verbosity_bias", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.629},
+        {"label": "ARC × Position", "slope": 0.366195, "ci_lower": 0.335363, "ci_upper": 0.397089, "positive_rate": 1.0, "attack_type": "position_bias", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.011},
+        {"label": "ARC × Authority", "slope": 13.946854, "ci_lower": 8.783432, "ci_upper": 17.743795, "positive_rate": 1.0, "attack_type": "authority_bias", "benchmark": "arc_challenge", "ci_excludes_zero": true, "normalized_slope": 0.437}
+      ]
+    }
+  },
+  "key_message": "All 12 conditions show positive K_eff slopes; 11/12 CIs exclude zero at K=3 (only MMLU×Score Manip. includes zero), 12/12 at K=5",
+  "scale_note": "position_bias slopes (~0.4-0.9) are ~30-60x smaller than other conditions (~7-39); normalized_slope divides by max slope in each panel for relative comparison. For proper ASR-range normalization, divide by each condition's observed ASR range."
+}

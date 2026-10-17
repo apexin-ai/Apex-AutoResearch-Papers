@@ -1,0 +1,5 @@
+n10: low_acc=0.8042 high_acc=0.725 delta=+7.92pp rho=-0.4303 p=0.214 oov=0%
+n25: low_acc=0.8093 high_acc=0.7812 delta=+2.80pp rho=-0.1442 p=0.492 oov=0.08% CI=[-4.53,+10.56]pp
+Details: 25 batches (13 low + 12 high), 2400 samples, 2 OOV (all high group)
+Files on cqa1: /root/schema-dag-extraction/results/unconstrained_decoding_ablation_n25/results.json
+              /root/schema-dag-extraction/artifacts/unconstrained_decoding_ablation_n25/

@@ -1,0 +1,111 @@
+{
+  "core_matrix_3x3": {
+    "pythia_nucleus": {"rf_4class_acc": 0.7812, "ci": [0.7677, 0.7935], "d1v2_auc": 0.868, "d2v3_auc": 0.804},
+    "pythia_temp09": {"rf_4class_acc": 0.7605, "ci": [0.7475, 0.7738], "d1v2_auc": 0.835, "d2v3_auc": 0.796},
+    "pythia_topk50": {"rf_4class_acc": 0.6943, "ci": [0.6805, 0.708], "d1v2_auc": 0.761, "d2v3_auc": 0.695},
+    "gpt2xl_nucleus": {"rf_4class_acc": 0.8393, "ci": [0.8283, 0.8502], "d1v2_auc": 0.916, "d2v3_auc": 0.885},
+    "gpt2xl_temp09": {"rf_4class_acc": 0.8552, "ci": [0.844, 0.866], "d1v2_auc": 0.939, "d2v3_auc": 0.886},
+    "gpt2xl_topk50": {"rf_4class_acc": 0.757, "ci": [0.743, 0.7702], "d1v2_auc": 0.824, "d2v3_auc": 0.762},
+    "olmo_nucleus": {"rf_4class_acc": 0.7897, "ci": [0.7772, 0.8027], "d1v2_auc": 0.87, "d2v3_auc": 0.816},
+    "olmo_temp09": {"rf_4class_acc": 0.8263, "ci": [0.8147, 0.8385], "d1v2_auc": 0.903, "d2v3_auc": 0.828},
+    "olmo_topk50": {"rf_4class_acc": 0.7435, "ci": [0.73, 0.758], "d1v2_auc": 0.831, "d2v3_auc": 0.738},
+    "_source": "plan_012 granularity_ablation_rf_001 (standardized evaluation across all 9 cells)"
+  },
+  "instruct_model": {
+    "qwen25_1.5b_instruct": {
+      "rf_4class_acc": 0.4742,
+      "ci": [0.467, 0.4811],
+      "d0v1_auc": 0.653,
+      "d1v2_auc": 0.620,
+      "d2v3_auc": 0.664,
+      "top_features": ["surprisal_range", "surprisal_position_corr", "prob_std", "surprisal_first_half_minus_second", "surprisal_std"],
+      "_source": "plan_021 qwen25-1p5b-instruct-001"
+    }
+  },
+  "learned_estimator_120k": {
+    "xgboost": {"pythia": 63.72, "olmo": 69.76, "gpt2xl": 68.05, "mean": 67.18},
+    "ordinal_mlp": {"pythia": 62.52, "olmo": 69.69, "gpt2xl": 67.9, "mean": 66.7},
+    "prototypical": {"pythia": 61.55, "olmo": 70.01, "gpt2xl": 68.35, "mean": 66.64},
+    "rf_baseline": {"mean": 66.4},
+    "_source": "plan_025 learned_estimator_001"
+  },
+  "baseline_comparison": {
+    "rf": 78.2,
+    "combined_binoculars_fdgpt": 74.2,
+    "coral": 78.07,
+    "diveye": 78.17,
+    "ce_mlp": 74.9,
+    "deberta": 58.3,
+    "_source": "plan_009 baseline_battery_001 + plan_008 deberta"
+  },
+  "prompted_gen": {
+    "gpt2xl_prompted": {"rf_4class_acc": 69.5},
+    "_source": "plan_016 prompted_gen_gpt2xl_001 (conclusion: failed, signal degraded from 83.3 to 69.5)"
+  },
+  "wild_data_fpr": {
+    "c4_fpr": 0.34,
+    "fineweb_fpr": 0.17,
+    "note": "OOD false positive rate, NOT contamination. C4 is pre-LLM (2019), d1+ predictions are distribution shift artifacts. See constraint C004.",
+    "_source": "wild_data_features analysis"
+  },
+  "downstream_train_loss": {
+    "d0": 2.558,
+    "d1": 1.920,
+    "d2": 1.286,
+    "note": "monotonically decreasing, supports information loss hypothesis"
+  },
+  "theory_auc_values": {
+    "d0v1": 0.922,
+    "d1v2": 0.802,
+    "d2v3": 0.712,
+    "d3v4": [0.750, 0.784],
+    "d4v5": [0.681, 0.684],
+    "note": "d3v4 and d4v5 are cross-model ranges [GPT2XL, Pythia]; from binary pairwise classifiers in depth extension experiments",
+    "_source": "plan_011/011b/011c depth_extension experiments"
+  },
+  "cross_model_loo": {
+    "pythia_holdout": 62.4,
+    "olmo_holdout": 69.2,
+    "gpt2xl_holdout": 67.6,
+    "mean": 66.4,
+    "_source": "plan_005 cross_model_loo_v1"
+  },
+  "depth_extension_edd": {
+    "pythia": 4,
+    "gpt2xl": 4,
+    "olmo": 4,
+    "threshold": 0.75,
+    "note": "All 3 models converge to EDD=4 at AUC threshold 0.75",
+    "_source": "plan_011/011b/011c"
+  },
+  "supplementary": {
+    "cross_strategy_loo": {
+      "mean_4class_acc": 0.5908,
+      "pipeline_depth_acc": 0.7053,
+      "_source": "plan_007 + plan_017"
+    },
+    "granularity_ablation": {
+      "binary_acc_mean": 0.995,
+      "4class_acc_mean": 0.783,
+      "6class_acc": 0.629,
+      "_source": "plan_012"
+    },
+    "mlp_19feat": {
+      "best_acc": 0.7906,
+      "best_delta_vs_rf": 0.0086,
+      "_source": "plan_019"
+    },
+    "finetune_losses_by_model": {
+      "pythia_nucleus": {"d0": 2.222, "d1": 1.37, "d2": 1.006},
+      "olmo_nucleus": {"d0": 2.269, "d1": 1.65, "d2": 1.226},
+      "gpt2xl_nucleus": {"d0": 2.55, "d1": 1.715, "d2": 1.342},
+      "_source": "plan_001b/002/003"
+    },
+    "depth_extension_binary_pairwise": {
+      "pythia": {"d1v2": 0.925, "d2v3": 0.8225, "d3v4": 0.7837, "d4v5": 0.6832},
+      "gpt2xl": {"d1v2": 0.966, "d2v3": 0.919, "d3v4": 0.750, "d4v5": 0.681},
+      "olmo": {"d1v2": 0.968, "d2v3": 0.843, "d3v4": 0.765, "d4v5": 0.684},
+      "_source": "plan_011/011b/011c"
+    }
+  }
+}

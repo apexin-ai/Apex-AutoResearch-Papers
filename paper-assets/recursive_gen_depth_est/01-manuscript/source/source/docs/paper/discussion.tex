@@ -1,0 +1,12 @@
+\section{Discussion and Conclusion}
+\label{sec:discussion}
+
+Four importance measures converge (Kendall's $W{=}0.90$); Binoculars cross-perplexity features independently reach 78.1\% (merged: 82.6\%; Appendix~\ref{app:feature_ablation_bino}); four classifiers converge within 0.8\,pp (\S\ref{sec:gen:baselines}).
+The accuracy ceiling resides in the feature space, not the classifier.
+End-to-end classifiers lag by 14--33\,pp: depth manifests as a global distributional shift requiring passage-level aggregation inaccessible to pretrained encoders (Appendix~\ref{app:e2e}).
+The strategy effect (9.3\,pp) exceeds the model effect (7.2\,pp), requiring decoding-conditioned deployment or two-stage routing (\S\ref{sec:gen:crossstrategy}).
+Reference-model mismatch costs 4--11\,pp (Appendix~\ref{app:ref_ablation}); a 7B self-reference probe reveals a scale ceiling ($\mathrm{EDD}_{0.70}{=}0$; Appendix~\ref{app:qwen7b_selfref}).
+Accumulation and cross-boundary experiments confirm depth fingerprints persist under partial mixing and across model boundaries (Appendix~\ref{app:accumulation_auc},~\ref{app:cross_boundary}).
+
+\paragraph{Practical implications.}
+Ordinal depth labels enable tiered curation, retaining $d{=}1$ text while filtering $d{\geq}2$; the lightweight pipeline (19 statistics, one 1.4B forward pass) supports inline deployment with ${\leq}$7\% calibrated false-positive rate (Appendix~\ref{app:calibration}). Scaling beyond 1.5B, paraphrase robustness, and curation remain open (Appendix~\ref{app:curation_poc}, \ref{app:downstream}).

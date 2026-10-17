@@ -1,0 +1,2685 @@
+{
+  "panel_size": 5,
+  "n_bootstrap": 9999,
+  "weights": "rademacher",
+  "n_positions": 5,
+  "seed": 42,
+  "n_total_panels": 3003,
+  "keff_formula": "mi_based_keff (average pairwise MI)",
+  "regression": "log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)",
+  "fdr_alpha": 0.05,
+  "aggregation_methods": {
+    "majority_vote": {
+      "eta_fdr_sig": "0/12",
+      "keff_fdr_sig": "7/12",
+      "keff_sig_positive": 7,
+      "keff_sig_negative": 0,
+      "per_condition": {
+        "mmluxprompt_injection": {
+          "condition": "mmluxprompt_injection",
+          "method": "majority_vote",
+          "dataset": "mmlu",
+          "attack": "prompt_injection",
+          "n_panels": 3003,
+          "keff_ols_beta": 3.2709126112073417,
+          "keff_ols_std_beta": 0.4928409040281672,
+          "keff_ols_p": 1.7625427376946098e-212,
+          "keff_position_ps": [
+            0.001,
+            0.001,
+            0.0016,
+            0.0016,
+            0.001
+          ],
+          "keff_final_p": 0.0016,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            1.1852678701932922,
+            5.34688331117461
+          ],
+          "eta_ols_beta": 0.5182149394366661,
+          "eta_ols_std_beta": 0.36966194073494907,
+          "eta_ols_p": 1.2143758928146846e-128,
+          "eta_position_ps": [
+            0.0329,
+            0.007,
+            0.0005,
+            0.0081,
+            0.0177
+          ],
+          "eta_final_p": 0.0329,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.03869510858114594,
+            0.9987159562564969
+          ],
+          "R2": 0.6038245457626201,
+          "keff_fdr_p": 0.016200000000000003,
+          "eta_fdr_p": 0.0987
+        },
+        "mmluxsycophancy": {
+          "condition": "mmluxsycophancy",
+          "method": "majority_vote",
+          "dataset": "mmlu",
+          "attack": "sycophancy",
+          "n_panels": 3003,
+          "keff_ols_beta": 1.9660456863792612,
+          "keff_ols_std_beta": 0.32127470899905575,
+          "keff_ols_p": 1.41755142074351e-82,
+          "keff_position_ps": [
+            0.0103,
+            0.0005,
+            0.0005,
+            0.0011,
+            0.0005
+          ],
+          "keff_final_p": 0.0103,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.23295294704445335,
+            3.717724487195663
+          ],
+          "eta_ols_beta": 0.5969730456852521,
+          "eta_ols_std_beta": 0.34945331258817797,
+          "eta_ols_p": 2.5277430214251907e-96,
+          "eta_position_ps": [
+            0.0276,
+            0.0005,
+            0.0005,
+            0.0064,
+            0.0109
+          ],
+          "eta_final_p": 0.0276,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.07359120096471528,
+            1.1219605489322113
+          ],
+          "R2": 0.29859413860523376,
+          "keff_fdr_p": 0.02472,
+          "eta_fdr_p": 0.0987
+        },
+        "mmluxscore_manipulation": {
+          "condition": "mmluxscore_manipulation",
+          "method": "majority_vote",
+          "dataset": "mmlu",
+          "attack": "score_manipulation",
+          "n_panels": 3003,
+          "keff_ols_beta": 2.7424168451456077,
+          "keff_ols_std_beta": 0.5056505761514368,
+          "keff_ols_p": 3.982613246710496e-94,
+          "keff_position_ps": [
+            0.001,
+            0.0024,
+            0.003,
+            0.0016,
+            0.0016
+          ],
+          "keff_final_p": 0.003,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.8202351969718238,
+            4.640915588791769
+          ],
+          "eta_ols_beta": 0.11370326511046715,
+          "eta_ols_std_beta": 0.07523418645924959,
+          "eta_ols_p": 0.0015189662037832215,
+          "eta_position_ps": [
+            0.4587,
+            0.6195,
+            0.1777,
+            0.1773,
+            0.4125
+          ],
+          "eta_final_p": 0.6195,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.27877360877799606,
+            0.5029931682794626
+          ],
+          "R2": 0.32011239208700004,
+          "keff_fdr_p": 0.016200000000000003,
+          "eta_fdr_p": 0.8260000000000001
+        },
+        "mmluxverbosity_bias": {
+          "condition": "mmluxverbosity_bias",
+          "method": "majority_vote",
+          "dataset": "mmlu",
+          "attack": "verbosity_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 2.224583076146635,
+          "keff_ols_std_beta": 0.2350509531835234,
+          "keff_ols_p": 2.266512802844506e-47,
+          "keff_position_ps": [
+            0.0054,
+            0.0005,
+            0.0005,
+            0.0011,
+            0.0005
+          ],
+          "keff_final_p": 0.0054,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.1846959175035643,
+            4.200617807366855
+          ],
+          "eta_ols_beta": 0.9555556200659958,
+          "eta_ols_std_beta": 0.44532815073897064,
+          "eta_ols_p": 2.8150016817926515e-152,
+          "eta_position_ps": [
+            0.0005,
+            0.0005,
+            0.0005,
+            0.0031,
+            0.0053
+          ],
+          "eta_final_p": 0.0053,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.05968523472983556,
+            1.8511834947134438
+          ],
+          "R2": 0.3259662305953288,
+          "keff_fdr_p": 0.016200000000000003,
+          "eta_fdr_p": 0.0636
+        },
+        "mmluxposition_bias": {
+          "condition": "mmluxposition_bias",
+          "method": "majority_vote",
+          "dataset": "mmlu",
+          "attack": "position_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.04445451915141475,
+          "keff_ols_std_beta": 0.14850167032307177,
+          "keff_ols_p": 2.046996834767115e-14,
+          "keff_position_ps": [
+            0.0767,
+            0.0222,
+            0.0464,
+            0.0307,
+            0.0698
+          ],
+          "keff_final_p": 0.0767,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.009389271651545732,
+            0.09885643064535571
+          ],
+          "eta_ols_beta": 0.1590441579746399,
+          "eta_ols_std_beta": 0.3331988597511952,
+          "eta_ols_p": 1.2959793674285043e-63,
+          "eta_position_ps": [
+            0.063,
+            0.0005,
+            0.0005,
+            0.0011,
+            0.0005
+          ],
+          "eta_final_p": 0.063,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.006438496571213592,
+            0.32481760453528297
+          ],
+          "R2": 0.18468992038469711,
+          "keff_fdr_p": 0.11505000000000001,
+          "eta_fdr_p": 0.126
+        },
+        "mmluxauthority_bias": {
+          "condition": "mmluxauthority_bias",
+          "method": "majority_vote",
+          "dataset": "mmlu",
+          "attack": "authority_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.4786456160733837,
+          "keff_ols_std_beta": 0.07517832470731468,
+          "keff_ols_p": 0.0003028467617607501,
+          "keff_position_ps": [
+            0.2022,
+            0.3136,
+            0.2318,
+            0.0315,
+            0.1541
+          ],
+          "keff_final_p": 0.3136,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.33037009346150686,
+            1.3022448407584748
+          ],
+          "eta_ols_beta": 0.6117885417814252,
+          "eta_ols_std_beta": 0.20325433547529462,
+          "eta_ols_p": 2.961066560100304e-22,
+          "eta_position_ps": [
+            0.0179,
+            0.0047,
+            0.0055,
+            0.0223,
+            0.2769
+          ],
+          "eta_final_p": 0.2769,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.0926343811239575,
+            1.3157109356472816
+          ],
+          "R2": 0.06304888335410297,
+          "keff_fdr_p": 0.3136,
+          "eta_fdr_p": 0.4746857142857142
+        },
+        "arc_challengexprompt_injection": {
+          "condition": "arc_challengexprompt_injection",
+          "method": "majority_vote",
+          "dataset": "arc_challenge",
+          "attack": "prompt_injection",
+          "n_panels": 3003,
+          "keff_ols_beta": 6.3866088544320965,
+          "keff_ols_std_beta": 0.5825190792008176,
+          "keff_ols_p": 4.735304269495733e-92,
+          "keff_position_ps": [
+            0.0184,
+            0.0005,
+            0.006,
+            0.0025,
+            0.0154
+          ],
+          "keff_final_p": 0.0184,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.35873958205333256,
+            12.413341212735965
+          ],
+          "eta_ols_beta": -0.07467434161568526,
+          "eta_ols_std_beta": -0.03764648008906532,
+          "eta_ols_p": 0.17332221981977822,
+          "eta_position_ps": [
+            0.4994,
+            0.7173,
+            0.7138,
+            0.7456,
+            0.6463
+          ],
+          "eta_final_p": 0.7456,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.3153194005865271,
+            0.16548342946793737
+          ],
+          "R2": 0.30414386978201924,
+          "keff_fdr_p": 0.03154285714285714,
+          "eta_fdr_p": 0.8688
+        },
+        "arc_challengexsycophancy": {
+          "condition": "arc_challengexsycophancy",
+          "method": "majority_vote",
+          "dataset": "arc_challenge",
+          "attack": "sycophancy",
+          "n_panels": 3003,
+          "keff_ols_beta": -3.5767465968112555,
+          "keff_ols_std_beta": -0.15668492586647137,
+          "keff_ols_p": 2.805736212048625e-09,
+          "keff_position_ps": [
+            0.1723,
+            0.1491,
+            0.085,
+            0.0534,
+            0.165
+          ],
+          "keff_final_p": 0.1723,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -8.069679232180238,
+            0.8333973110174808
+          ],
+          "eta_ols_beta": 1.6700002421227904,
+          "eta_ols_std_beta": 0.3739438198239394,
+          "eta_ols_p": 1.7224224511528656e-44,
+          "eta_position_ps": [
+            0.0107,
+            0.0088,
+            0.001,
+            0.0063,
+            0.0058
+          ],
+          "eta_final_p": 0.0107,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.09594073504963996,
+            3.2440597491953973
+          ],
+          "R2": 0.07710107966581581,
+          "keff_fdr_p": 0.1879636363636364,
+          "eta_fdr_p": 0.06420000000000001
+        },
+        "arc_challengexscore_manipulation": {
+          "condition": "arc_challengexscore_manipulation",
+          "method": "majority_vote",
+          "dataset": "arc_challenge",
+          "attack": "score_manipulation",
+          "n_panels": 3003,
+          "keff_ols_beta": 6.571545721381453,
+          "keff_ols_std_beta": 0.44289970678437385,
+          "keff_ols_p": 3.483288720703827e-32,
+          "keff_position_ps": [
+            0.001,
+            0.0001,
+            0.0012,
+            0.0021,
+            0.0042
+          ],
+          "keff_final_p": 0.0042,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.3574828881108214,
+            12.816127020322346
+          ],
+          "eta_ols_beta": -0.07790470060136484,
+          "eta_ols_std_beta": -0.025661646817356377,
+          "eta_ols_p": 0.4887796547896148,
+          "eta_position_ps": [
+            0.7365,
+            0.5195,
+            0.8126,
+            0.7357,
+            0.9117
+          ],
+          "eta_final_p": 0.9117,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.5549252732911176,
+            0.39676871337384345
+          ],
+          "R2": 0.17648495819517218,
+          "keff_fdr_p": 0.016200000000000003,
+          "eta_fdr_p": 0.9117
+        },
+        "arc_challengexverbosity_bias": {
+          "condition": "arc_challengexverbosity_bias",
+          "method": "majority_vote",
+          "dataset": "arc_challenge",
+          "attack": "verbosity_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 4.459227063825295,
+          "keff_ols_std_beta": 0.2148417865314105,
+          "keff_ols_p": 2.3354781201517557e-15,
+          "keff_position_ps": [
+            0.001,
+            0.0232,
+            0.0158,
+            0.0036,
+            0.0995
+          ],
+          "keff_final_p": 0.0995,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.3087110317828605,
+            9.22716515943168
+          ],
+          "eta_ols_beta": 1.0151460357150086,
+          "eta_ols_std_beta": 0.2762218263575182,
+          "eta_ols_p": 3.2756373342245072e-24,
+          "eta_position_ps": [
+            0.001,
+            0.0034,
+            0.001,
+            0.001,
+            0.0583
+          ],
+          "eta_final_p": 0.0583,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.010296673073101337,
+            2.0405864308284443
+          ],
+          "R2": 0.21752149273946386,
+          "keff_fdr_p": 0.13266666666666668,
+          "eta_fdr_p": 0.126
+        },
+        "arc_challengexposition_bias": {
+          "condition": "arc_challengexposition_bias",
+          "method": "majority_vote",
+          "dataset": "arc_challenge",
+          "attack": "position_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.1767354752413038,
+          "keff_ols_std_beta": 0.881376752575771,
+          "keff_ols_p": 1.2959570336873556e-156,
+          "keff_position_ps": [
+            0.017,
+            0.001,
+            0.001,
+            0.003,
+            0.0016
+          ],
+          "keff_final_p": 0.017,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.01745525820595012,
+            0.3369234941018384
+          ],
+          "eta_ols_beta": -0.06443901253203888,
+          "eta_ols_std_beta": -0.34812871815595403,
+          "eta_ols_p": 1.699764506937649e-28,
+          "eta_position_ps": [
+            0.0191,
+            0.0063,
+            0.0038,
+            0.0231,
+            0.7964
+          ],
+          "eta_final_p": 0.7964,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.1551843075063714,
+            0.025562523602486356
+          ],
+          "R2": 0.35656942396232505,
+          "keff_fdr_p": 0.03154285714285714,
+          "eta_fdr_p": 0.8688
+        },
+        "arc_challengexauthority_bias": {
+          "condition": "arc_challengexauthority_bias",
+          "method": "majority_vote",
+          "dataset": "arc_challenge",
+          "attack": "authority_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 6.690359817182015,
+          "keff_ols_std_beta": 0.26411290279365285,
+          "keff_ols_p": 1.6886354701395368e-27,
+          "keff_position_ps": [
+            0.1514,
+            0.0606,
+            0.0111,
+            0.006,
+            0.0069
+          ],
+          "keff_final_p": 0.1514,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -1.4732947545201913,
+            14.849977296468376
+          ],
+          "eta_ols_beta": 0.565965347405172,
+          "eta_ols_std_beta": 0.14598940125938623,
+          "eta_ols_p": 1.476768146273256e-09,
+          "eta_position_ps": [
+            0.0359,
+            0.3415,
+            0.1573,
+            0.0838,
+            0.1364
+          ],
+          "eta_final_p": 0.3415,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.14222940295578013,
+            1.2820513111562337
+          ],
+          "R2": 0.14606358256916363,
+          "keff_fdr_p": 0.18168,
+          "eta_fdr_p": 0.5122500000000001
+        }
+      }
+    },
+    "weighted_vote": {
+      "eta_fdr_sig": "1/12",
+      "keff_fdr_sig": "9/12",
+      "keff_sig_positive": 9,
+      "keff_sig_negative": 0,
+      "per_condition": {
+        "mmluxprompt_injection": {
+          "condition": "mmluxprompt_injection",
+          "method": "weighted_vote",
+          "dataset": "mmlu",
+          "attack": "prompt_injection",
+          "n_panels": 3003,
+          "keff_ols_beta": 4.524490721197784,
+          "keff_ols_std_beta": 0.44894604502567614,
+          "keff_ols_p": 1.276299888758989e-140,
+          "keff_position_ps": [
+            0.001,
+            0.001,
+            0.0016,
+            0.0016,
+            0.001
+          ],
+          "keff_final_p": 0.0016,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            1.4290066095384892,
+            7.619974832856819
+          ],
+          "eta_ols_beta": 0.6639098700680393,
+          "eta_ols_std_beta": 0.31188219298835385,
+          "eta_ols_p": 1.5218983770084483e-72,
+          "eta_position_ps": [
+            0.0165,
+            0.0105,
+            0.0016,
+            0.0081,
+            0.0277
+          ],
+          "eta_final_p": 0.0277,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.028985187735098616,
+            1.3002656602484333
+          ],
+          "R2": 0.4711957654578153,
+          "keff_fdr_p": 0.0124,
+          "eta_fdr_p": 0.1108
+        },
+        "mmluxsycophancy": {
+          "condition": "mmluxsycophancy",
+          "method": "weighted_vote",
+          "dataset": "mmlu",
+          "attack": "sycophancy",
+          "n_panels": 3003,
+          "keff_ols_beta": 3.3655436206104006,
+          "keff_ols_std_beta": 0.35330524841200045,
+          "keff_ols_p": 1.4778241788779178e-92,
+          "keff_position_ps": [
+            0.0085,
+            0.0005,
+            0.0005,
+            0.0011,
+            0.0005
+          ],
+          "keff_final_p": 0.0085,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.7354729611658128,
+            5.995614280055914
+          ],
+          "eta_ols_beta": 0.686689840028987,
+          "eta_ols_std_beta": 0.2582301770095541,
+          "eta_ols_p": 7.240249693629399e-52,
+          "eta_position_ps": [
+            0.0275,
+            0.0005,
+            0.0005,
+            0.0064,
+            0.0102
+          ],
+          "eta_final_p": 0.0275,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.1281637428252087,
+            1.240970665599455
+          ],
+          "R2": 0.25103974943047447,
+          "keff_fdr_p": 0.0204,
+          "eta_fdr_p": 0.1108
+        },
+        "mmluxscore_manipulation": {
+          "condition": "mmluxscore_manipulation",
+          "method": "weighted_vote",
+          "dataset": "mmlu",
+          "attack": "score_manipulation",
+          "n_panels": 3003,
+          "keff_ols_beta": 3.7407237332236454,
+          "keff_ols_std_beta": 0.6114396257686401,
+          "keff_ols_p": 1.3549473507886128e-138,
+          "keff_position_ps": [
+            0.0048,
+            0.001,
+            0.003,
+            0.0016,
+            0.0016
+          ],
+          "keff_final_p": 0.0048,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.9107934663213131,
+            6.573393458916113
+          ],
+          "eta_ols_beta": -0.039469471341764775,
+          "eta_ols_std_beta": -0.023151786541700494,
+          "eta_ols_p": 0.3169701391449681,
+          "eta_position_ps": [
+            0.8737,
+            0.9339,
+            0.49,
+            0.5915,
+            0.5249
+          ],
+          "eta_final_p": 0.9339,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.36603685247156437,
+            0.2849707828340877
+          ],
+          "R2": 0.35252557554620667,
+          "keff_fdr_p": 0.0144,
+          "eta_fdr_p": 0.999
+        },
+        "mmluxverbosity_bias": {
+          "condition": "mmluxverbosity_bias",
+          "method": "weighted_vote",
+          "dataset": "mmlu",
+          "attack": "verbosity_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 3.206029057651517,
+          "keff_ols_std_beta": 0.2865943544405475,
+          "keff_ols_p": 2.539989618933989e-68,
+          "keff_position_ps": [
+            0.0031,
+            0.0005,
+            0.0005,
+            0.0011,
+            0.0005
+          ],
+          "keff_final_p": 0.0031,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.6782768670248771,
+            5.719659058694123
+          ],
+          "eta_ols_beta": 1.0226314277012447,
+          "eta_ols_std_beta": 0.4032088934497084,
+          "eta_ols_p": 2.0973439864398375e-127,
+          "eta_position_ps": [
+            0.0005,
+            0.0005,
+            0.0005,
+            0.0031,
+            0.0031
+          ],
+          "eta_final_p": 0.0031,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.2935195939991223,
+            1.7337639478640172
+          ],
+          "R2": 0.32464098059995616,
+          "keff_fdr_p": 0.0124,
+          "eta_fdr_p": 0.037200000000000004
+        },
+        "mmluxposition_bias": {
+          "condition": "mmluxposition_bias",
+          "method": "weighted_vote",
+          "dataset": "mmlu",
+          "attack": "position_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.13689844773912155,
+          "keff_ols_std_beta": 0.44832817980940004,
+          "keff_ols_p": 3.671007997175802e-129,
+          "keff_position_ps": [
+            0.0139,
+            0.0014,
+            0.0014,
+            0.0034,
+            0.0034
+          ],
+          "keff_final_p": 0.0139,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.010715394965115227,
+            0.2630893599079889
+          ],
+          "eta_ols_beta": 0.08911433741037489,
+          "eta_ols_std_beta": 0.18302712581264896,
+          "eta_ols_p": 8.590417495822665e-25,
+          "eta_position_ps": [
+            0.1945,
+            0.0013,
+            0.0029,
+            0.0011,
+            0.0005
+          ],
+          "eta_final_p": 0.1945,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.032406087864733035,
+            0.21067607230038166
+          ],
+          "R2": 0.320094062075273,
+          "keff_fdr_p": 0.023828571428571425,
+          "eta_fdr_p": 0.3334285714285714
+        },
+        "mmluxauthority_bias": {
+          "condition": "mmluxauthority_bias",
+          "method": "weighted_vote",
+          "dataset": "mmlu",
+          "attack": "authority_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 1.701523043053394,
+          "keff_ols_std_beta": 0.1273472944421264,
+          "keff_ols_p": 1.4045870181267905e-09,
+          "keff_position_ps": [
+            0.0264,
+            0.0478,
+            0.0276,
+            0.0016,
+            0.0016
+          ],
+          "keff_final_p": 0.0478,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.019217314817348452,
+            3.3950416208904675
+          ],
+          "eta_ols_beta": 0.7561252381438539,
+          "eta_ols_std_beta": 0.11970314009670054,
+          "eta_ols_p": 1.2444912134839607e-08,
+          "eta_position_ps": [
+            0.0555,
+            0.0295,
+            0.0247,
+            0.1176,
+            0.2427
+          ],
+          "eta_final_p": 0.2427,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.17011218125174443,
+            1.6827202803696566
+          ],
+          "R2": 0.046592584767955136,
+          "keff_fdr_p": 0.05736,
+          "eta_fdr_p": 0.36405000000000004
+        },
+        "arc_challengexprompt_injection": {
+          "condition": "arc_challengexprompt_injection",
+          "method": "weighted_vote",
+          "dataset": "arc_challenge",
+          "attack": "prompt_injection",
+          "n_panels": 3003,
+          "keff_ols_beta": 7.778432256488767,
+          "keff_ols_std_beta": 0.5846595058262669,
+          "keff_ols_p": 9.452874635727932e-86,
+          "keff_position_ps": [
+            0.0183,
+            0.0005,
+            0.0068,
+            0.0056,
+            0.0167
+          ],
+          "keff_final_p": 0.0183,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.3505986428970189,
+            15.21130911746133
+          ],
+          "eta_ols_beta": -0.2774892777168042,
+          "eta_ols_std_beta": -0.1152843317244105,
+          "eta_ols_p": 6.551913061350923e-05,
+          "eta_position_ps": [
+            0.2257,
+            0.2744,
+            0.2962,
+            0.0754,
+            0.1368
+          ],
+          "eta_final_p": 0.2962,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.7779778001120237,
+            0.22502318559144763
+          ],
+          "R2": 0.24261994332240944,
+          "keff_fdr_p": 0.027450000000000002,
+          "eta_fdr_p": 0.39493333333333336
+        },
+        "arc_challengexsycophancy": {
+          "condition": "arc_challengexsycophancy",
+          "method": "weighted_vote",
+          "dataset": "arc_challenge",
+          "attack": "sycophancy",
+          "n_panels": 3003,
+          "keff_ols_beta": -1.0052635227587938,
+          "keff_ols_std_beta": -0.04052113645613377,
+          "keff_ols_p": 0.12227011630434223,
+          "keff_position_ps": [
+            0.6918,
+            0.7911,
+            0.5215,
+            0.5177,
+            0.7631
+          ],
+          "keff_final_p": 0.7911,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -5.459328046071049,
+            3.4168698522360135
+          ],
+          "eta_ols_beta": 1.5314828027821634,
+          "eta_ols_std_beta": 0.315547395316314,
+          "eta_ols_p": 1.2644484646527524e-32,
+          "eta_position_ps": [
+            0.0589,
+            0.0571,
+            0.01,
+            0.0132,
+            0.0058
+          ],
+          "eta_final_p": 0.0589,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.04536219958684362,
+            3.1137559312621024
+          ],
+          "R2": 0.08216441703275579,
+          "keff_fdr_p": 0.7911,
+          "eta_fdr_p": 0.17670000000000002
+        },
+        "arc_challengexscore_manipulation": {
+          "condition": "arc_challengexscore_manipulation",
+          "method": "weighted_vote",
+          "dataset": "arc_challenge",
+          "attack": "score_manipulation",
+          "n_panels": 3003,
+          "keff_ols_beta": 6.2531725518195325,
+          "keff_ols_std_beta": 0.4218024548866094,
+          "keff_ols_p": 1.2416598159776067e-28,
+          "keff_position_ps": [
+            0.001,
+            0.0001,
+            0.0001,
+            0.0021,
+            0.0007
+          ],
+          "keff_final_p": 0.0021,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            1.7341951621640757,
+            10.652124123333918
+          ],
+          "eta_ols_beta": -0.10782409912440329,
+          "eta_ols_std_beta": -0.03554737453741753,
+          "eta_ols_p": 0.34458243859464055,
+          "eta_position_ps": [
+            0.5688,
+            0.5009,
+            0.5665,
+            0.5367,
+            0.7757
+          ],
+          "eta_final_p": 0.7757,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.3836090627182317,
+            0.17159797554897344
+          ],
+          "R2": 0.15235570081825023,
+          "keff_fdr_p": 0.0124,
+          "eta_fdr_p": 0.9308399999999999
+        },
+        "arc_challengexverbosity_bias": {
+          "condition": "arc_challengexverbosity_bias",
+          "method": "weighted_vote",
+          "dataset": "arc_challenge",
+          "attack": "verbosity_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 7.82116360400367,
+          "keff_ols_std_beta": 0.3159373255993253,
+          "keff_ols_p": 8.538853094331661e-32,
+          "keff_position_ps": [
+            0.0099,
+            0.0043,
+            0.0134,
+            0.0036,
+            0.0249
+          ],
+          "keff_final_p": 0.0249,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.34917943895858006,
+            15.448594019281828
+          ],
+          "eta_ols_beta": 0.8634424632713782,
+          "eta_ols_std_beta": 0.19698505202958072,
+          "eta_ols_p": 1.7405172624534847e-13,
+          "eta_position_ps": [
+            0.072,
+            0.1255,
+            0.005,
+            0.0308,
+            0.1578
+          ],
+          "eta_final_p": 0.1578,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.2558090050641648,
+            1.9808558716489795
+          ],
+          "R2": 0.23831664264312746,
+          "keff_fdr_p": 0.0332,
+          "eta_fdr_p": 0.3156
+        },
+        "arc_challengexposition_bias": {
+          "condition": "arc_challengexposition_bias",
+          "method": "weighted_vote",
+          "dataset": "arc_challenge",
+          "attack": "position_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.1492592733723461,
+          "keff_ols_std_beta": 0.8867252086172502,
+          "keff_ols_p": 1.2960851010857981e-157,
+          "keff_position_ps": [
+            0.0117,
+            0.001,
+            0.001,
+            0.003,
+            0.0016
+          ],
+          "keff_final_p": 0.0117,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.017520098503071763,
+            0.28166113900146716
+          ],
+          "eta_ols_beta": -0.055778068487058324,
+          "eta_ols_std_beta": -0.3589750944523986,
+          "eta_ols_p": 5.0557889830944654e-30,
+          "eta_position_ps": [
+            0.0181,
+            0.0089,
+            0.0038,
+            0.0187,
+            0.1553
+          ],
+          "eta_final_p": 0.1553,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.11299920998199287,
+            0.0013608743085537015
+          ],
+          "R2": 0.3534379987184828,
+          "keff_fdr_p": 0.0234,
+          "eta_fdr_p": 0.3156
+        },
+        "arc_challengexauthority_bias": {
+          "condition": "arc_challengexauthority_bias",
+          "method": "weighted_vote",
+          "dataset": "arc_challenge",
+          "attack": "authority_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 9.856255397023315,
+          "keff_ols_std_beta": 0.3699322027937091,
+          "keff_ols_p": 8.231729246065748e-52,
+          "keff_position_ps": [
+            0.0602,
+            0.0054,
+            0.0088,
+            0.0016,
+            0.0031
+          ],
+          "keff_final_p": 0.0602,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.1687077393400287,
+            19.881218533386242
+          ],
+          "eta_ols_beta": 0.12325885509185075,
+          "eta_ols_std_beta": 0.030228713362730343,
+          "eta_ols_p": 0.2071666383043655,
+          "eta_position_ps": [
+            0.6474,
+            0.999,
+            0.7817,
+            0.7128,
+            0.7869
+          ],
+          "eta_final_p": 0.999,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.5536518172132509,
+            0.8193928189848404
+          ],
+          "R2": 0.15371338147758096,
+          "keff_fdr_p": 0.06567272727272727,
+          "eta_fdr_p": 0.999
+        }
+      }
+    },
+    "threshold_supermajority": {
+      "eta_fdr_sig": "6/12",
+      "keff_fdr_sig": "10/12",
+      "keff_sig_positive": 10,
+      "keff_sig_negative": 0,
+      "per_condition": {
+        "mmluxprompt_injection": {
+          "condition": "mmluxprompt_injection",
+          "method": "threshold_supermajority",
+          "dataset": "mmlu",
+          "attack": "prompt_injection",
+          "n_panels": 3003,
+          "keff_ols_beta": 2.084650051478285,
+          "keff_ols_std_beta": 0.39825287066462284,
+          "keff_ols_p": 2.8756970370922325e-223,
+          "keff_position_ps": [
+            0.001,
+            0.001,
+            0.0016,
+            0.0016,
+            0.001
+          ],
+          "keff_final_p": 0.0016,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.7423159955618996,
+            3.417412595123465
+          ],
+          "eta_ols_beta": 0.6255249418838978,
+          "eta_ols_std_beta": 0.5657536850354989,
+          "eta_ols_p": 0.0,
+          "eta_position_ps": [
+            0.0094,
+            0.0005,
+            0.0005,
+            0.0005,
+            0.002
+          ],
+          "eta_final_p": 0.0094,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.11572883977441384,
+            1.1353344535562995
+          ],
+          "R2": 0.7560593540577456,
+          "keff_fdr_p": 0.0032,
+          "eta_fdr_p": 0.02376
+        },
+        "mmluxsycophancy": {
+          "condition": "mmluxsycophancy",
+          "method": "threshold_supermajority",
+          "dataset": "mmlu",
+          "attack": "sycophancy",
+          "n_panels": 3003,
+          "keff_ols_beta": 1.4260942574974174,
+          "keff_ols_std_beta": 0.4092409849811883,
+          "keff_ols_p": 7.582613001293475e-206,
+          "keff_position_ps": [
+            0.0058,
+            0.0005,
+            0.0025,
+            0.0011,
+            0.0005
+          ],
+          "keff_final_p": 0.0058,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.3903056389842008,
+            2.4618682442219413
+          ],
+          "eta_ols_beta": 0.5171346242881871,
+          "eta_ols_std_beta": 0.5316012734799622,
+          "eta_ols_p": 3.2567271e-316,
+          "eta_position_ps": [
+            0.0005,
+            0.0005,
+            0.0005,
+            0.0031,
+            0.002
+          ],
+          "eta_final_p": 0.0031,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.16350852453692272,
+            0.8556925406122076
+          ],
+          "R2": 0.5920364361474639,
+          "keff_fdr_p": 0.009942857142857142,
+          "eta_fdr_p": 0.018600000000000002
+        },
+        "mmluxscore_manipulation": {
+          "condition": "mmluxscore_manipulation",
+          "method": "threshold_supermajority",
+          "dataset": "mmlu",
+          "attack": "score_manipulation",
+          "n_panels": 3003,
+          "keff_ols_beta": 2.871817416047822,
+          "keff_ols_std_beta": 0.6673062431566603,
+          "keff_ols_p": 8.781528038543625e-280,
+          "keff_position_ps": [
+            0.001,
+            0.001,
+            0.001,
+            0.0016,
+            0.0016
+          ],
+          "keff_final_p": 0.0016,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.8109032328990424,
+            4.821586729466211
+          ],
+          "eta_ols_beta": 0.2145406354260006,
+          "eta_ols_std_beta": 0.17889705041128498,
+          "eta_ols_p": 3.0172004857767447e-26,
+          "eta_position_ps": [
+            0.2385,
+            0.1016,
+            0.0015,
+            0.0173,
+            0.0111
+          ],
+          "eta_final_p": 0.2385,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.042272277698730765,
+            0.4698716036002693
+          ],
+          "R2": 0.6617252245593609,
+          "keff_fdr_p": 0.0032,
+          "eta_fdr_p": 0.28619999999999995
+        },
+        "mmluxverbosity_bias": {
+          "condition": "mmluxverbosity_bias",
+          "method": "threshold_supermajority",
+          "dataset": "mmlu",
+          "attack": "verbosity_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 1.9142938698109189,
+          "keff_ols_std_beta": 0.2738265728041619,
+          "keff_ols_p": 1.1828127825571943e-75,
+          "keff_position_ps": [
+            0.0123,
+            0.0005,
+            0.0005,
+            0.0011,
+            0.0005
+          ],
+          "keff_final_p": 0.0123,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.22441865183099363,
+            3.6150794261708388
+          ],
+          "eta_ols_beta": 0.8293671452604409,
+          "eta_ols_std_beta": 0.5232685098042298,
+          "eta_ols_p": 2.550892398012541e-238,
+          "eta_position_ps": [
+            0.0005,
+            0.0005,
+            0.0005,
+            0.0011,
+            0.0011
+          ],
+          "eta_final_p": 0.0011,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.23151615188882657,
+            1.4034318304613627
+          ],
+          "R2": 0.44789632097685605,
+          "keff_fdr_p": 0.0164,
+          "eta_fdr_p": 0.013200000000000002
+        },
+        "mmluxposition_bias": {
+          "condition": "mmluxposition_bias",
+          "method": "threshold_supermajority",
+          "dataset": "mmlu",
+          "attack": "position_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.27265195510245577,
+          "keff_ols_std_beta": 0.4408797433806375,
+          "keff_ols_p": 3.4262424195828915e-159,
+          "keff_position_ps": [
+            0.0005,
+            0.0005,
+            0.0005,
+            0.0005,
+            0.0011
+          ],
+          "keff_final_p": 0.0011,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.01888593876100686,
+            0.5279317869504273
+          ],
+          "eta_ols_beta": 0.3475201158295765,
+          "eta_ols_std_beta": 0.35242105026131315,
+          "eta_ols_p": 1.0582928577243285e-106,
+          "eta_position_ps": [
+            0.0468,
+            0.0013,
+            0.0005,
+            0.0005,
+            0.0005
+          ],
+          "eta_final_p": 0.0468,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.0018178632373122006,
+            0.6933395869437377
+          ],
+          "R2": 0.4806553528125612,
+          "keff_fdr_p": 0.0032,
+          "eta_fdr_p": 0.07020000000000001
+        },
+        "mmluxauthority_bias": {
+          "condition": "mmluxauthority_bias",
+          "method": "threshold_supermajority",
+          "dataset": "mmlu",
+          "attack": "authority_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 1.5369588219366523,
+          "keff_ols_std_beta": 0.41176150842314657,
+          "keff_ols_p": 2.922977157805455e-153,
+          "keff_position_ps": [
+            0.001,
+            0.001,
+            0.001,
+            0.0016,
+            0.0016
+          ],
+          "keff_final_p": 0.0016,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.5125662949319947,
+            2.5143022958264982
+          ],
+          "eta_ols_beta": 0.7442428108717202,
+          "eta_ols_std_beta": 0.4217529058491142,
+          "eta_ols_p": 7.40388537185784e-160,
+          "eta_position_ps": [
+            0.0019,
+            0.0018,
+            0.001,
+            0.0063,
+            0.0099
+          ],
+          "eta_final_p": 0.0099,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.02805459378720454,
+            1.4614991514194382
+          ],
+          "R2": 0.5302273665047654,
+          "keff_fdr_p": 0.0032,
+          "eta_fdr_p": 0.02376
+        },
+        "arc_challengexprompt_injection": {
+          "condition": "arc_challengexprompt_injection",
+          "method": "threshold_supermajority",
+          "dataset": "arc_challenge",
+          "attack": "prompt_injection",
+          "n_panels": 3003,
+          "keff_ols_beta": 3.9131486414177528,
+          "keff_ols_std_beta": 0.4967457668049512,
+          "keff_ols_p": 3.50374879912567e-86,
+          "keff_position_ps": [
+            0.0413,
+            0.0158,
+            0.0052,
+            0.0011,
+            0.0134
+          ],
+          "keff_final_p": 0.0413,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.023630871395152298,
+            7.800449697415447
+          ],
+          "eta_ols_beta": 0.28928808606172124,
+          "eta_ols_std_beta": 0.20297919067369313,
+          "eta_ols_p": 1.4683152603610242e-16,
+          "eta_position_ps": [
+            0.1445,
+            0.0367,
+            0.0088,
+            0.0352,
+            0.2222
+          ],
+          "eta_final_p": 0.2222,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.13843103869311152,
+            0.6996103490756003
+          ],
+          "R2": 0.4562453853666172,
+          "keff_fdr_p": 0.04956,
+          "eta_fdr_p": 0.28619999999999995
+        },
+        "arc_challengexsycophancy": {
+          "condition": "arc_challengexsycophancy",
+          "method": "threshold_supermajority",
+          "dataset": "arc_challenge",
+          "attack": "sycophancy",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.6294188679242894,
+          "keff_ols_std_beta": 0.07294693248968995,
+          "keff_ols_p": 0.001875527107120644,
+          "keff_position_ps": [
+            0.2393,
+            0.5356,
+            0.2999,
+            0.3438,
+            0.3141
+          ],
+          "keff_final_p": 0.5356,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.9000145046031118,
+            2.1662960460516816
+          ],
+          "eta_ols_beta": 0.7752525158967787,
+          "eta_ols_std_beta": 0.459262772073137,
+          "eta_ols_p": 1.5634567867836814e-80,
+          "eta_position_ps": [
+            0.001,
+            0.001,
+            0.0062,
+            0.0036,
+            0.0044
+          ],
+          "eta_final_p": 0.0062,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.1369273157047851,
+            1.4253584365111511
+          ],
+          "R2": 0.26615092027360077,
+          "keff_fdr_p": 0.5842909090909091,
+          "eta_fdr_p": 0.02376
+        },
+        "arc_challengexscore_manipulation": {
+          "condition": "arc_challengexscore_manipulation",
+          "method": "threshold_supermajority",
+          "dataset": "arc_challenge",
+          "attack": "score_manipulation",
+          "n_panels": 3003,
+          "keff_ols_beta": 4.565358184056213,
+          "keff_ols_std_beta": 0.8042535159140886,
+          "keff_ols_p": 2.7673362687529833e-174,
+          "keff_position_ps": [
+            0.0001,
+            0.0001,
+            0.0001,
+            0.0001,
+            0.0001
+          ],
+          "keff_final_p": 0.0001,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.8060893687588191,
+            8.296281204658332
+          ],
+          "eta_ols_beta": -0.06241160244374848,
+          "eta_ols_std_beta": -0.053736137508310314,
+          "eta_ols_p": 0.04431692190375131,
+          "eta_position_ps": [
+            0.24,
+            0.5651,
+            0.602,
+            0.596,
+            0.9964
+          ],
+          "eta_final_p": 0.9964,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.3162480612942996,
+            0.19007410854929557
+          ],
+          "R2": 0.5723923006162887,
+          "keff_fdr_p": 0.0012000000000000001,
+          "eta_fdr_p": 0.9964
+        },
+        "arc_challengexverbosity_bias": {
+          "condition": "arc_challengexverbosity_bias",
+          "method": "threshold_supermajority",
+          "dataset": "arc_challenge",
+          "attack": "verbosity_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 2.2266332233050177,
+          "keff_ols_std_beta": 0.31827119306082763,
+          "keff_ols_p": 8.350188808520755e-44,
+          "keff_position_ps": [
+            0.0054,
+            0.0034,
+            0.0106,
+            0.0057,
+            0.0029
+          ],
+          "keff_final_p": 0.0106,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.41387477243384874,
+            4.008673624114916
+          ],
+          "eta_ols_beta": 0.4835257315162341,
+          "eta_ols_std_beta": 0.39033593899285357,
+          "eta_ols_p": 5.294183258000622e-64,
+          "eta_position_ps": [
+            0.0337,
+            0.001,
+            0.0026,
+            0.0074,
+            0.001
+          ],
+          "eta_final_p": 0.0337,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.03489549151896493,
+            0.9319556454742842
+          ],
+          "R2": 0.45267303027762407,
+          "keff_fdr_p": 0.0159,
+          "eta_fdr_p": 0.05777142857142857
+        },
+        "arc_challengexposition_bias": {
+          "condition": "arc_challengexposition_bias",
+          "method": "threshold_supermajority",
+          "dataset": "arc_challenge",
+          "attack": "position_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.7677361791268087,
+          "keff_ols_std_beta": 1.0101789395797907,
+          "keff_ols_p": 1.003988299807926e-309,
+          "keff_position_ps": [
+            0.0001,
+            0.0001,
+            0.0001,
+            0.0001,
+            0.0007
+          ],
+          "keff_final_p": 0.0007,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.11723510749452892,
+            1.4190779007722163
+          ],
+          "eta_ols_beta": -0.1821206344086454,
+          "eta_ols_std_beta": -0.25959634449720304,
+          "eta_ols_p": 2.708509827841085e-27,
+          "eta_position_ps": [
+            0.0362,
+            0.0226,
+            0.014,
+            0.0604,
+            0.9924
+          ],
+          "eta_final_p": 0.9924,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.49534180907878006,
+            0.1291897531966672
+          ],
+          "R2": 0.6250946155265744,
+          "keff_fdr_p": 0.0032,
+          "eta_fdr_p": 0.9964
+        },
+        "arc_challengexauthority_bias": {
+          "condition": "arc_challengexauthority_bias",
+          "method": "threshold_supermajority",
+          "dataset": "arc_challenge",
+          "attack": "authority_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": -0.01800861875488144,
+          "keff_ols_std_beta": -0.002464120634300363,
+          "keff_ols_p": 0.9144290696473059,
+          "keff_position_ps": [
+            0.9903,
+            0.9791,
+            0.9776,
+            0.9334,
+            0.9767
+          ],
+          "keff_final_p": 0.9903,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -1.6155231642797578,
+            1.5793197833608037
+          ],
+          "eta_ols_beta": 0.5323460727633087,
+          "eta_ols_std_beta": 0.4759561676534188,
+          "eta_ols_p": 1.556759346382351e-89,
+          "eta_position_ps": [
+            0.0162,
+            0.001,
+            0.001,
+            0.001,
+            0.0016
+          ],
+          "eta_final_p": 0.0162,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.06432823343295885,
+            1.000363912093531
+          ],
+          "R2": 0.2248675547593123,
+          "keff_fdr_p": 0.9903,
+          "eta_fdr_p": 0.0324
+        }
+      }
+    },
+    "bayesian": {
+      "eta_fdr_sig": "1/12",
+      "keff_fdr_sig": "0/12",
+      "keff_sig_positive": 0,
+      "keff_sig_negative": 0,
+      "per_condition": {
+        "mmluxprompt_injection": {
+          "condition": "mmluxprompt_injection",
+          "method": "bayesian",
+          "dataset": "mmlu",
+          "attack": "prompt_injection",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.5683490897808451,
+          "keff_ols_std_beta": 0.08385323784003747,
+          "keff_ols_p": 3.4440860517035845e-05,
+          "keff_position_ps": [
+            0.1843,
+            0.0469,
+            0.2081,
+            0.0932,
+            0.6065
+          ],
+          "keff_final_p": 0.6065,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.5669844034998802,
+            1.6979765891066485
+          ],
+          "eta_ols_beta": 0.6189884190412761,
+          "eta_ols_std_beta": 0.43235869529809245,
+          "eta_ols_p": 1.3961038238520787e-94,
+          "eta_position_ps": [
+            0.0329,
+            0.0058,
+            0.001,
+            0.0038,
+            0.0066
+          ],
+          "eta_final_p": 0.0329,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.039955590697636656,
+            1.1993414296073643
+          ],
+          "R2": 0.23859755804857785,
+          "keff_fdr_p": 0.7278,
+          "eta_fdr_p": 0.1316
+        },
+        "mmluxsycophancy": {
+          "condition": "mmluxsycophancy",
+          "method": "bayesian",
+          "dataset": "mmlu",
+          "attack": "sycophancy",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.9593429169600672,
+          "keff_ols_std_beta": 0.14726753923671282,
+          "keff_ols_p": 1.0211612060829833e-16,
+          "keff_position_ps": [
+            0.0613,
+            0.034,
+            0.0242,
+            0.0036,
+            0.0029
+          ],
+          "keff_final_p": 0.0613,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.04356946458336253,
+            1.9483283319783624
+          ],
+          "eta_ols_beta": 0.6097660775222314,
+          "eta_ols_std_beta": 0.33531109400832626,
+          "eta_ols_p": 3.324890956800306e-76,
+          "eta_position_ps": [
+            0.0241,
+            0.0005,
+            0.0005,
+            0.0064,
+            0.0143
+          ],
+          "eta_final_p": 0.0241,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.05830551662248207,
+            1.1680196973101635
+          ],
+          "R2": 0.16634312675947094,
+          "keff_fdr_p": 0.1839,
+          "eta_fdr_p": 0.1316
+        },
+        "mmluxscore_manipulation": {
+          "condition": "mmluxscore_manipulation",
+          "method": "bayesian",
+          "dataset": "mmlu",
+          "attack": "score_manipulation",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.7439975112227081,
+          "keff_ols_std_beta": 0.10040004512392782,
+          "keff_ols_p": 0.0003588181846563475,
+          "keff_position_ps": [
+            0.0837,
+            0.1431,
+            0.133,
+            0.1847,
+            0.7069
+          ],
+          "keff_final_p": 0.7069,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.3206448258125144,
+            1.8075545535942443
+          ],
+          "eta_ols_beta": 0.2546038525872413,
+          "eta_ols_std_beta": 0.12329704002724345,
+          "eta_ols_p": 1.18593982666649e-05,
+          "eta_position_ps": [
+            0.4008,
+            0.3425,
+            0.1608,
+            0.1295,
+            0.2831
+          ],
+          "eta_final_p": 0.4008,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.18288485783048986,
+            0.6880118466588048
+          ],
+          "R2": 0.04440613504985769,
+          "keff_fdr_p": 0.7711636363636364,
+          "eta_fdr_p": 0.678
+        },
+        "mmluxverbosity_bias": {
+          "condition": "mmluxverbosity_bias",
+          "method": "bayesian",
+          "dataset": "mmlu",
+          "attack": "verbosity_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.4702744872548956,
+          "keff_ols_std_beta": 0.05109676822972866,
+          "keff_ols_p": 0.002617368911073007,
+          "keff_position_ps": [
+            0.4894,
+            0.1625,
+            0.1203,
+            0.2027,
+            0.4767
+          ],
+          "keff_final_p": 0.4894,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.7125737641094934,
+            1.6382315083532608
+          ],
+          "eta_ols_beta": 0.9801715551077766,
+          "eta_ols_std_beta": 0.4697371403022455,
+          "eta_ols_p": 1.779990757174968e-150,
+          "eta_position_ps": [
+            0.0014,
+            0.0005,
+            0.0005,
+            0.0031,
+            0.0031
+          ],
+          "eta_final_p": 0.0031,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            0.3003391270868181,
+            1.654346495126569
+          ],
+          "R2": 0.23986528851493005,
+          "keff_fdr_p": 0.6525333333333333,
+          "eta_fdr_p": 0.037200000000000004
+        },
+        "mmluxposition_bias": {
+          "condition": "mmluxposition_bias",
+          "method": "bayesian",
+          "dataset": "mmlu",
+          "attack": "position_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.06929652970388085,
+          "keff_ols_std_beta": 0.24488208170781997,
+          "keff_ols_p": 7.123685806582757e-32,
+          "keff_position_ps": [
+            0.0455,
+            0.0034,
+            0.001,
+            0.004,
+            0.0124
+          ],
+          "keff_final_p": 0.0455,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.00020640879285929725,
+            0.1385040506983093
+          ],
+          "eta_ols_beta": 0.01984171252003527,
+          "eta_ols_std_beta": 0.043973905532901,
+          "eta_ols_p": 0.03288086326415281,
+          "eta_position_ps": [
+            0.6074,
+            0.3629,
+            0.8294,
+            0.3692,
+            0.4577
+          ],
+          "eta_final_p": 0.8294,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.03508863046419641,
+            0.07427462070126255
+          ],
+          "R2": 0.07313402149045722,
+          "keff_fdr_p": 0.182,
+          "eta_fdr_p": 0.9183
+        },
+        "mmluxauthority_bias": {
+          "condition": "mmluxauthority_bias",
+          "method": "bayesian",
+          "dataset": "mmlu",
+          "attack": "authority_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.07131554692114217,
+          "keff_ols_std_beta": 0.01288461545684067,
+          "keff_ols_p": 0.5292549318235742,
+          "keff_position_ps": [
+            0.5044,
+            0.7754,
+            0.7718,
+            0.7612,
+            0.7986
+          ],
+          "keff_final_p": 0.7986,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.5111518183398662,
+            0.653946693912389
+          ],
+          "eta_ols_beta": 0.7690170726014031,
+          "eta_ols_std_beta": 0.29388887540132497,
+          "eta_ols_p": 3.1483184260295714e-45,
+          "eta_position_ps": [
+            0.008,
+            0.001,
+            0.001,
+            0.0043,
+            0.0817
+          ],
+          "eta_final_p": 0.0817,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.011727183410782271,
+            1.5474634619982586
+          ],
+          "R2": 0.0905226836904266,
+          "keff_fdr_p": 0.7986,
+          "eta_fdr_p": 0.1764
+        },
+        "arc_challengexprompt_injection": {
+          "condition": "arc_challengexprompt_injection",
+          "method": "bayesian",
+          "dataset": "arc_challenge",
+          "attack": "prompt_injection",
+          "n_panels": 3003,
+          "keff_ols_beta": 1.7759782853336818,
+          "keff_ols_std_beta": 0.1034305995783477,
+          "keff_ols_p": 0.0017313755895023376,
+          "keff_position_ps": [
+            0.3114,
+            0.1307,
+            0.1952,
+            0.0342,
+            0.2113
+          ],
+          "keff_final_p": 0.3114,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -1.4234705931416753,
+            4.9361447430683825
+          ],
+          "eta_ols_beta": -0.03028053129293913,
+          "eta_ols_std_beta": -0.009747382759307931,
+          "eta_ols_p": 0.7676282406110424,
+          "eta_position_ps": [
+            0.8675,
+            0.8336,
+            0.873,
+            0.8311,
+            0.9183
+          ],
+          "eta_final_p": 0.9183,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.36789752111542917,
+            0.30124619324627466
+          ],
+          "R2": 0.00911020405851004,
+          "keff_fdr_p": 0.5338285714285714,
+          "eta_fdr_p": 0.9183
+        },
+        "arc_challengexsycophancy": {
+          "condition": "arc_challengexsycophancy",
+          "method": "bayesian",
+          "dataset": "arc_challenge",
+          "attack": "sycophancy",
+          "n_panels": 3003,
+          "keff_ols_beta": -0.615867672599629,
+          "keff_ols_std_beta": -0.04285017303692417,
+          "keff_ols_p": 0.11720688061667836,
+          "keff_position_ps": [
+            0.135,
+            0.3968,
+            0.177,
+            0.1621,
+            0.2595
+          ],
+          "keff_final_p": 0.3968,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -1.7753012701314153,
+            0.5443710509714095
+          ],
+          "eta_ols_beta": 0.15417057094180472,
+          "eta_ols_std_beta": 0.05482989757592172,
+          "eta_ols_p": 0.045035340947479796,
+          "eta_position_ps": [
+            0.0411,
+            0.2347,
+            0.2878,
+            0.1315,
+            0.452
+          ],
+          "eta_final_p": 0.452,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.18288310626308432,
+            0.49039125692292096
+          ],
+          "R2": 0.0013424679669379325,
+          "keff_fdr_p": 0.5952000000000001,
+          "eta_fdr_p": 0.678
+        },
+        "arc_challengexscore_manipulation": {
+          "condition": "arc_challengexscore_manipulation",
+          "method": "bayesian",
+          "dataset": "arc_challenge",
+          "attack": "score_manipulation",
+          "n_panels": 3003,
+          "keff_ols_beta": 4.151175545582739,
+          "keff_ols_std_beta": 0.2559619018700401,
+          "keff_ols_p": 3.077401908318091e-10,
+          "keff_position_ps": [
+            0.0309,
+            0.0023,
+            0.0001,
+            0.0057,
+            0.002
+          ],
+          "keff_final_p": 0.0309,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.36658244964909725,
+            7.924609002699511
+          ],
+          "eta_ols_beta": -0.5938606048618105,
+          "eta_ols_std_beta": -0.17896650096055053,
+          "eta_ols_p": 1.0398469744877796e-05,
+          "eta_position_ps": [
+            0.0465,
+            0.0342,
+            0.0121,
+            0.0313,
+            0.0423
+          ],
+          "eta_final_p": 0.0465,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -1.1540282326165965,
+            -0.031652553186314214
+          ],
+          "R2": 0.015590809972076958,
+          "keff_fdr_p": 0.182,
+          "eta_fdr_p": 0.1395
+        },
+        "arc_challengexverbosity_bias": {
+          "condition": "arc_challengexverbosity_bias",
+          "method": "bayesian",
+          "dataset": "arc_challenge",
+          "attack": "verbosity_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 2.386438428136012,
+          "keff_ols_std_beta": 0.11095880225451028,
+          "keff_ols_p": 0.0002442608805516434,
+          "keff_position_ps": [
+            0.2942,
+            0.0761,
+            0.0022,
+            0.0074,
+            0.0007
+          ],
+          "keff_final_p": 0.2942,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -1.2087450397254225,
+            5.974280074240529
+          ],
+          "eta_ols_beta": 0.11288722821844177,
+          "eta_ols_std_beta": 0.029643306031795574,
+          "eta_ols_p": 0.3265908848089427,
+          "eta_position_ps": [
+            0.2446,
+            0.3703,
+            0.4069,
+            0.7141,
+            0.9065
+          ],
+          "eta_final_p": 0.9065,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.36315030301112133,
+            0.6027919774691892
+          ],
+          "R2": 0.01845968672708509,
+          "keff_fdr_p": 0.5338285714285714,
+          "eta_fdr_p": 0.9183
+        },
+        "arc_challengexposition_bias": {
+          "condition": "arc_challengexposition_bias",
+          "method": "bayesian",
+          "dataset": "arc_challenge",
+          "attack": "position_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 0.04154021364211481,
+          "keff_ols_std_beta": 0.4589738640180083,
+          "keff_ols_p": 9.63457002517739e-34,
+          "keff_position_ps": [
+            0.0375,
+            0.0177,
+            0.001,
+            0.0065,
+            0.0016
+          ],
+          "keff_final_p": 0.0375,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            0.0007295798468326259,
+            0.08245510518657659
+          ],
+          "eta_ols_beta": -0.021529808896155272,
+          "eta_ols_std_beta": -0.2576988733836619,
+          "eta_ols_p": 7.133255961389169e-12,
+          "eta_position_ps": [
+            0.0404,
+            0.0882,
+            0.0012,
+            0.0318,
+            0.0193
+          ],
+          "eta_final_p": 0.0882,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.04643870334711569,
+            0.0029480010000242675
+          ],
+          "R2": 0.06834924867882608,
+          "keff_fdr_p": 0.182,
+          "eta_fdr_p": 0.1764
+        },
+        "arc_challengexauthority_bias": {
+          "condition": "arc_challengexauthority_bias",
+          "method": "bayesian",
+          "dataset": "arc_challenge",
+          "attack": "authority_bias",
+          "n_panels": 3003,
+          "keff_ols_beta": 2.6084681085698183,
+          "keff_ols_std_beta": 0.10910886401709978,
+          "keff_ols_p": 2.629802693995712e-05,
+          "keff_position_ps": [
+            0.088,
+            0.1493,
+            0.095,
+            0.0921,
+            0.0513
+          ],
+          "keff_final_p": 0.1493,
+          "keff_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "keff_ci_95": [
+            -0.7656021962360042,
+            6.0067494240431305
+          ],
+          "eta_ols_beta": -0.05604115983109749,
+          "eta_ols_std_beta": -0.015316973492063866,
+          "eta_ols_p": 0.5545665837676004,
+          "eta_position_ps": [
+            0.6578,
+            0.7846,
+            0.7497,
+            0.8685,
+            0.863
+          ],
+          "eta_final_p": 0.8685,
+          "eta_n_clusters": [
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "eta_ci_95": [
+            -0.7110360716816588,
+            0.6060831006448718
+          ],
+          "R2": 0.009755686439676947,
+          "keff_fdr_p": 0.35831999999999997,
+          "eta_fdr_p": 0.9183
+        }
+      }
+    }
+  },
+  "ols_vs_bootstrap_comparison": {
+    "majority_vote": {
+      "ols_eta": "10/12",
+      "boot_eta": "0/12",
+      "ols_keff": "12/12",
+      "boot_keff": "7/12",
+      "ols_keff_pos": 11,
+      "ols_keff_neg": 1,
+      "boot_keff_pos": 7,
+      "boot_keff_neg": 0
+    },
+    "weighted_vote": {
+      "ols_eta": "9/12",
+      "boot_eta": "1/12",
+      "ols_keff": "11/12",
+      "boot_keff": "9/12",
+      "ols_keff_pos": 11,
+      "ols_keff_neg": 0,
+      "boot_keff_pos": 9,
+      "boot_keff_neg": 0
+    },
+    "threshold_supermajority": {
+      "ols_eta": "12/12",
+      "boot_eta": "6/12",
+      "ols_keff": "11/12",
+      "boot_keff": "10/12",
+      "ols_keff_pos": 11,
+      "ols_keff_neg": 0,
+      "boot_keff_pos": 10,
+      "boot_keff_neg": 0
+    },
+    "bayesian": {
+      "ols_eta": "8/12",
+      "boot_eta": "1/12",
+      "ols_keff": "10/12",
+      "boot_keff": "0/12",
+      "ols_keff_pos": 10,
+      "ols_keff_neg": 0,
+      "boot_keff_pos": 0,
+      "boot_keff_neg": 0
+    }
+  },
+  "bayesian_keff_reversal_under_bootstrap": false,
+  "validation": {
+    "arc_sycophancy_majority_keff_std_beta": -0.15668492586647137,
+    "arc_sycophancy_majority_keff_negative": true
+  },
+  "elapsed_seconds": 444.00008964538574
+}

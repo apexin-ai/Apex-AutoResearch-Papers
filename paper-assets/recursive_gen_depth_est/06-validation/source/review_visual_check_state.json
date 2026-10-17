@@ -1,0 +1,72 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:51.623812+00:00",
+  "completed_at": "2026-05-25T21:19:19.997011+00:00",
+  "findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1-2",
+      "message": "连续 2 页纯文本无任何 display item。首个视觉锚点（Figure 1）延迟到 page 3。审稿人前 2 分钟内只看到文字，缺少视觉锚定。建议：若版面允许，可考虑将 Figure 1 提前至 page 2 底部"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 2（特征重要性热力图）单元格内数字字号偏小（约 6pt），9×7 网格密集。在屏幕阅读或打印时可能需要放大才能辨认具体数值。建议：增大字号或简化为 top-5 特征子集"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 2 列数较多（9 个 model-strategy cells），单栏内紧凑但未溢出。精度统一（小数点后一位百分比），最优值加粗，格式规范"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 3 三面板折线图，线条颜色可区分（蓝/橙/绿），但图例字号偏小。建议确认灰度打印时线型（solid/dashed/dotted）也能区分"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 4 AUC 衰减曲线含 bootstrap 置信带，清晰可读。Table 4 与 Figure 4 同页，布局紧凑但无溢出"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "Limitations 简短（约 6 行），覆盖 3 个关键点（规模限制、real-world 混合比例未知、分类器 vs 特征空间），符合 EMNLP 要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "Figure 5 混淆矩阵（3×1 排列）整体偏小，单个矩阵约 3cm 宽。单元格数字可读但较紧凑"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 13",
+      "message": "该页密度极高：Table 9 + Figure 6 + Table 10 + Table 11 + B.10 零样本提示模板文本，附录页面紧凑但不影响主文审稿体验"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 26",
+      "message": "最后一页内容仅占约 35-40%，剩余为空白。该页为 AI Assistance 声明和计算资源尾部，非主文内容，不影响审稿印象"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "所有表格均使用 booktabs 风格（toprule/midrule/bottomrule），无竖线，最优结果加粗，格式专业统一"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "未发现 LaTeX 渲染错误、margin 溢出、[?] 未解析引用、section heading 孤悬页底等排版问题"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "参考文献格式统一（pp.9-10），编号连续，无异常截断"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 1,
+    "info": 11
+  }
+}

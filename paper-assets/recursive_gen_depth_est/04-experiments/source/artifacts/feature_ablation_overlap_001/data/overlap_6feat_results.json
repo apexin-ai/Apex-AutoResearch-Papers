@@ -1,0 +1,1 @@
+overlap_6feat: 9-cell mean accuracy = 0.7593. Per cell: pythia_nucleus=0.7671, pythia_temp09=0.7386, pythia_topk50=0.6527, olmo_nucleus=0.7640, olmo_temp09=0.8096, olmo_topk50=0.7248, gpt2xl_nucleus=0.8169, gpt2xl_temp09=0.8398, gpt2xl_topk50=0.7206

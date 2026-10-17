@@ -1,0 +1,132 @@
+{
+  "analysis": "K_eff stability split - wild cluster bootstrap significance by Spearman rho tier",
+  "fdr_alpha": 0.05,
+  "stable_4attacks": {
+    "attacks": [
+      "sycophancy",
+      "score_manipulation",
+      "verbosity_bias",
+      "authority_bias"
+    ],
+    "rho_range": ">=0.90",
+    "n_conditions": 8,
+    "K3_keff_sig": "4/8",
+    "K5_keff_sig": "6/8"
+  },
+  "moderate_1attack": {
+    "attacks": [
+      "prompt_injection"
+    ],
+    "rho_range": "~0.60",
+    "n_conditions": 2,
+    "K3_keff_sig": "0/2",
+    "K5_keff_sig": "2/2"
+  },
+  "unstable_1attack": {
+    "attacks": [
+      "position_bias"
+    ],
+    "rho_range": "<0.10 on ARC",
+    "n_conditions": 2,
+    "K3_keff_sig": "0/2",
+    "K5_keff_sig": "2/2"
+  },
+  "detail": [
+    {
+      "condition": "mmluxsycophancy",
+      "stability_tier": "stable_4attacks",
+      "K3_keff_fdr_p": 0.032,
+      "K3_sig": true,
+      "K5_keff_fdr_p": 0.006,
+      "K5_sig": true
+    },
+    {
+      "condition": "mmluxscore_manipulation",
+      "stability_tier": "stable_4attacks",
+      "K3_keff_fdr_p": 0.0875,
+      "K3_sig": false,
+      "K5_keff_fdr_p": 0.0112,
+      "K5_sig": true
+    },
+    {
+      "condition": "mmluxverbosity_bias",
+      "stability_tier": "stable_4attacks",
+      "K3_keff_fdr_p": 0.032,
+      "K3_sig": true,
+      "K5_keff_fdr_p": 0.0118,
+      "K5_sig": true
+    },
+    {
+      "condition": "mmluxauthority_bias",
+      "stability_tier": "stable_4attacks",
+      "K3_keff_fdr_p": 0.032,
+      "K3_sig": true,
+      "K5_keff_fdr_p": 0.006,
+      "K5_sig": true
+    },
+    {
+      "condition": "arc_challengexsycophancy",
+      "stability_tier": "stable_4attacks",
+      "K3_keff_fdr_p": 0.1944,
+      "K3_sig": false,
+      "K5_keff_fdr_p": 0.4136,
+      "K5_sig": false
+    },
+    {
+      "condition": "arc_challengexscore_manipulation",
+      "stability_tier": "stable_4attacks",
+      "K3_keff_fdr_p": 0.162,
+      "K3_sig": false,
+      "K5_keff_fdr_p": 0.0168,
+      "K5_sig": true
+    },
+    {
+      "condition": "arc_challengexverbosity_bias",
+      "stability_tier": "stable_4attacks",
+      "K3_keff_fdr_p": 0.0417,
+      "K3_sig": true,
+      "K5_keff_fdr_p": 0.0282,
+      "K5_sig": true
+    },
+    {
+      "condition": "arc_challengexauthority_bias",
+      "stability_tier": "stable_4attacks",
+      "K3_keff_fdr_p": 0.1055,
+      "K3_sig": false,
+      "K5_keff_fdr_p": 0.1409,
+      "K5_sig": false
+    },
+    {
+      "condition": "mmluxprompt_injection",
+      "stability_tier": "moderate_1attack",
+      "K3_keff_fdr_p": 0.0658,
+      "K3_sig": false,
+      "K5_keff_fdr_p": 0.006,
+      "K5_sig": true
+    },
+    {
+      "condition": "arc_challengexprompt_injection",
+      "stability_tier": "moderate_1attack",
+      "K3_keff_fdr_p": 0.076,
+      "K3_sig": false,
+      "K5_keff_fdr_p": 0.0446,
+      "K5_sig": true
+    },
+    {
+      "condition": "mmluxposition_bias",
+      "stability_tier": "unstable_1attack",
+      "K3_keff_fdr_p": 0.1032,
+      "K3_sig": false,
+      "K5_keff_fdr_p": 0.0168,
+      "K5_sig": true
+    },
+    {
+      "condition": "arc_challengexposition_bias",
+      "stability_tier": "unstable_1attack",
+      "K3_keff_fdr_p": 0.076,
+      "K3_sig": false,
+      "K5_keff_fdr_p": 0.0141,
+      "K5_sig": true
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "source": "r3w5_baselines/results.json on gpu-6000pro-2",
+    "script": "src/r3w5_xgboost_lgbm.py",
+    "dataset": "features_all.jsonl (20000 samples, 4 classes d0-d3, 19-dim features)",
+    "cv": "5-fold StratifiedKFold, seed=42",
+    "extracted_date": "2026-05-15"
+  },
+  "table2_rows": [
+    {
+      "method": "XGBoost (GPU)",
+      "acc_pct": 79.0,
+      "acc_std_pct": 0.5,
+      "acc_mean_raw": 0.78995,
+      "acc_std_raw": 0.004554
+    },
+    {
+      "method": "LightGBM (CPU)",
+      "acc_pct": 78.8,
+      "acc_std_pct": 0.8,
+      "acc_mean_raw": 0.78805,
+      "acc_std_raw": 0.007661
+    }
+  ],
+  "per_class_recall": {
+    "xgboost": {"d0": 0.9938, "d1": 0.8158, "d2": 0.5960, "d3": 0.7542},
+    "lightgbm": {"d0": 0.9936, "d1": 0.8154, "d2": 0.5964, "d3": 0.7468}
+  },
+  "pairwise_auc": {
+    "xgboost": {"d0v1": 0.9999, "d1v2": 0.9309, "d2v3": 0.8162},
+    "lightgbm": {"d0v1": 0.9999, "d1v2": 0.9308, "d2v3": 0.8137}
+  },
+  "fold_accuracies": {
+    "xgboost": [0.78325, 0.79325, 0.78850, 0.78825, 0.79650],
+    "lightgbm": [0.77550, 0.79075, 0.78500, 0.79025, 0.79875]
+  },
+  "feature_importance": {
+    "note": "XGBoost/LightGBM script did not compute feature importance. RF importance provided for reference.",
+    "rf_top5": [
+      {"feature": "var_surprisal", "importance": 0.1692},
+      {"feature": "p90_ppl", "importance": 0.1582},
+      {"feature": "mean_ppl", "importance": 0.1204},
+      {"feature": "mean_surprisal", "importance": 0.0884},
+      {"feature": "p75_ppl", "importance": 0.0671}
+    ]
+  },
+  "comparison_context": {
+    "RF": 78.2,
+    "CORAL": 78.1,
+    "DivEye": 78.2,
+    "CE-MLP": 74.9,
+    "LR": 75.0,
+    "DeepSeek_V3.2_zeroshot": 36.2,
+    "ppl_regression": 25.1
+  }
+}

@@ -1,0 +1,79 @@
+R6 Batch 1A: κ-diversity vs K_eff Regression Comparison
+========================================================
+
+Method: Wild Cluster Bootstrap (B=9999, Rademacher, max-p across K positions, BH FDR α=0.05)
+15 models, 2 benchmarks × 6 attacks = 12 conditions per K
+
+PREDICTOR SHIFT COMPARISON
+--------------------------
+  K    κ_div FDR sig    K_eff FDR sig    Mean ρ(κ_div, K_eff)
+  3         8/12             3/12              0.9893
+  5         7/12             7/12              0.9867
+  7         6/12             8/12              0.9855
+
+KEY FINDING: κ-diversity and K_eff are rank-correlated at ρ > 0.985 across
+all panel sizes, yet their FDR-significance patterns diverge in OPPOSITE
+directions as K grows:
+  - κ-diversity: 8 → 7 → 6 (DECREASING)
+  - K_eff:       3 → 7 → 8 (INCREASING)
+
+All significant coefficients are positive (none negative) for both predictors.
+
+REBUTTAL IMPLICATION:
+K_eff is NOT "dressed up" κ-diversity. Despite near-perfect rank correlation,
+the MI-based K_eff formulation increasingly outperforms agreement-based κ-diversity
+at larger panel sizes. The predictor shift pattern (few→many significant conditions
+as K grows) is UNIQUE to K_eff — κ-diversity shows the opposite trend. This
+demonstrates that K_eff captures information-theoretic structure (conditional
+independence via MI) that goes beyond pairwise agreement.
+
+PER-CONDITION DETAILS (K=3)
+----------------------------
+Condition                             κ_div std_β  κ_div FDR_p  K_eff std_β  K_eff FDR_p
+mmluxprompt_injection                    0.4921     0.0244*        0.4831     0.0540
+mmluxsycophancy                          0.4769     0.0244*        0.4835     0.0336*
+mmluxscore_manipulation                  0.4988     0.0326*        0.5423     0.0653
+mmluxverbosity_bias                      0.3518     0.0289*        0.3775     0.0336*
+mmluxposition_bias                       0.0705     0.3269         0.1139     0.2992
+mmluxauthority_bias                      0.7362     0.0244*        0.5229     0.0336*
+arc_challengexprompt_injection            0.4019     0.0289*        0.3573     0.0540
+arc_challengexsycophancy                  0.3107     0.0495*        0.2831     0.0723
+arc_challengexscore_manipulation          0.8849     0.0289*        0.4657     0.1250
+arc_challengexverbosity_bias              0.4009     0.0326*        0.3469     0.0540
+arc_challengexposition_bias               0.0095     0.9851         -0.0835    0.9412
+arc_challengexauthority_bias              0.3085     0.1876         0.2914     0.1157
+
+PER-CONDITION DETAILS (K=5)
+----------------------------
+Condition                             κ_div std_β  κ_div FDR_p  K_eff std_β  K_eff FDR_p
+mmluxprompt_injection                    0.5505     0.0050*        0.5290     0.0050*
+mmluxsycophancy                          0.4593     0.0050*        0.4545     0.0050*
+mmluxscore_manipulation                  0.6831     0.0060*        0.6451     0.0071*
+mmluxverbosity_bias                      0.3456     0.0195*        0.3352     0.0111*
+mmluxposition_bias                       0.1937     0.1408         0.2041     0.1380
+mmluxauthority_bias                      0.4840     0.0054*        0.4990     0.0050*
+arc_challengexprompt_injection            0.4677     0.0334*        0.5579     0.0754
+arc_challengexsycophancy                  0.0588     0.5621         0.0650     0.5621
+arc_challengexscore_manipulation          1.2120     0.0050*        1.1717     0.0050*
+arc_challengexverbosity_bias              0.3512     0.1572         0.4179     0.0230*
+arc_challengexposition_bias               0.2929     0.8342         0.1394     0.9790
+arc_challengexauthority_bias              0.1407     0.3217         0.2260     0.1799
+
+PER-CONDITION DETAILS (K=7)
+----------------------------
+Condition                             κ_div std_β  κ_div FDR_p  K_eff std_β  K_eff FDR_p
+mmluxprompt_injection                    0.5336     0.0029*        0.5446     0.0020*
+mmluxsycophancy                          0.4373     0.0091*        0.4426     0.0101*
+mmluxscore_manipulation                  0.5683     0.0091*        0.5563     0.0101*
+mmluxverbosity_bias                      0.2925     0.0216*        0.2952     0.0225*
+mmluxposition_bias                       0.2426     0.0518         0.2519     0.0313*
+mmluxauthority_bias                      0.4166     0.0101*        0.4588     0.0101*
+arc_challengexprompt_injection            0.4916     0.0891         0.6085     0.0900
+arc_challengexsycophancy                  0.0238     0.8057         0.0456     0.6580
+arc_challengexscore_manipulation          1.0309     0.0216*        0.8447     0.0101*
+arc_challengexverbosity_bias              0.2953     0.1407         0.3669     0.0441*
+arc_challengexposition_bias               0.4793     0.7616         0.2676     0.8383
+arc_challengexauthority_bias              0.0418     0.9763         0.1271     0.4290
+
+Script: /root/cert_manip_resist_eval/scripts/run_kappa_diversity_regression.py
+Output: /root/cert_manip_resist_eval/artifacts/results/plan001/kappa_diversity_regression.json

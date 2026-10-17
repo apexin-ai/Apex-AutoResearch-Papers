@@ -1,0 +1,4 @@
+Full results on server: /root/cert_manip_resist_eval/artifacts/results/plan001/k5_wild_cluster_bootstrap.json
+
+Summary: K_eff 7/12 FDR sig (7+ / 0-), eta_max 0/12 FDR sig
+Validation: arc×sycophancy K_eff std_beta = -0.1567 (K=3 ref: -0.192, direction matches)

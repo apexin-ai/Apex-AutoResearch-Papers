@@ -1,0 +1,8 @@
+vllm
+transformers
+datasets
+numpy
+scipy
+pandas
+scikit-learn
+tqdm

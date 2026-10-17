@@ -1,0 +1,32 @@
+Conditional PI Family-Grouped Results (9 cells)
+
+surprisal (avg_pi=0.0890, avg_rank=7.33)
+  var_surprisal:        PI=0.2597 rank=1.4 boot=[1.4, 1.9]
+  mean_surprisal:       PI=0.0050 rank=8.7 boot=[5.8, 10.4]
+  entropy_of_surprisal: PI=0.0022 rank=11.9 boot=[9.8, 14.7]
+
+perplexity (avg_pi=0.0388, avg_rank=7.52)
+  p90_ppl:      PI=0.2384 rank=1.7 boot=[1.4, 1.7]
+  p75_ppl:      PI=0.0628 rank=3.1 boot=[2.8, 3.6]
+  p50_ppl:      PI=0.0155 rank=5.0 boot=[4.0, 6.7]
+  p25_ppl:      PI=0.0119 rank=5.8 boot=[4.2, 7.9]
+  mean_ppl:     PI=0.0084 rank=6.3 boot=[5.1, 8.6]
+  p10_ppl:      PI=0.0043 rank=8.7 boot=[6.9, 11.4]
+  var_ppl:      PI=0.0046 rank=9.6 boot=[7.2, 11.7]
+  skewness_ppl: PI=0.0021 rank=13.3 boot=[11.0, 16.3]
+  kurtosis_ppl: PI=0.0017 rank=14.2 boot=[11.2, 16.4]
+
+lexical (avg_pi=0.0043, avg_rank=9.72)
+  type_token_ratio: PI=0.0047 rank=9.3 boot=[7.2, 12.3]
+  hapax_ratio:      PI=0.0040 rank=10.1 boot=[7.6, 12.4]
+
+ngram_entropy (avg_pi=0.0013, avg_rank=15.67)
+  trigram_entropy: PI=0.0018 rank=15.3 boot=[11.7, 18.2]
+  bigram_entropy:  PI=0.0008 rank=16.0 boot=[12.7, 18.4]
+
+repetition (avg_pi=0.0007, avg_rank=16.52)
+  rep_4gram: PI=0.0009 rank=15.4 boot=[12.6, 18.1]
+  rep_2gram: PI=0.0007 rank=16.0 boot=[13.0, 18.4]
+  rep_3gram: PI=0.0004 rank=18.1 boot=[15.0, 19.0]
+
+Full JSON on server: /root/autodl-tmp/recursive_gen_depth_est/results/conditional_pi/family_grouped.json

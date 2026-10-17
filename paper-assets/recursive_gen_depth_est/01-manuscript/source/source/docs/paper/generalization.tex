@@ -1,0 +1,97 @@
+\section{Generalization and Robustness}
+\label{sec:generalization}
+
+We test whether atlas accuracy (68.9--85.9\% four-class; d1--d3: 58.9--81.5\%) reflects genuine statistical regularities across eight generalization axes (five below, three in Appendix).
+
+\subsection{Classifier Comparison and Surface-Text Ablation}
+\label{sec:gen:baselines}
+
+Table~\ref{tab:baselines} compares methods across all 9 cells.
+Four classifiers (RF, XGBoost, ordinal multilayer perceptron (MLP), prototypical) converge within 0.8\,pp under cross-model transfer (Appendix~\ref{app:learned_estimator}), which confirms a feature-determined accuracy ceiling.
+
+\paragraph{Neural end-to-end baselines.}
+DeBERTa-v3-base (LoRA, 53--61\%) and RoBERTa-DCOL (ordinal contrastive, 64.5\%) lag RF by 14--33\,pp; note that RF features access reference-model log-probabilities unavailable to end-to-end pretrained language model (PLM) baselines (\S\ref{sec:discussion}).
+
+\paragraph{Binary detectors and membership inference.}
+Perturbation-based (DetectGPT, 28.8\%) and membership-inference (Min-K\% Prob, 33.2\%) methods produce scores with no ordinal resolution (Table~\ref{tab:baselines}); Binoculars d1v2 AUC\,=\,0.50--0.53 vs.\ RF 0.93 (Appendix~\ref{app:detector_baselines}). Binoculars convergence with our pipeline is discussed in \S\ref{sec:discussion}.
+
+\paragraph{Surface-text ablation.}
+Single-feature regression on mean perplexity (25.1\%) and zero-shot LLMs (best 36.2\%; Appendix~\ref{app:zeroshot_prompt}) confirm depth signal is inaccessible from surface text.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Method comparison (RF mean across 9 cells, 5-fold CV). Chance = 25\% / 33.3\% (d1--d3). $^\dagger$Adapted from binary detection; Binoculars 11-feat: $p{>}0.05$ vs.\ 19-feat RF (paired permutation test).}
+\label{tab:baselines}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Method & Calibration & 4-Cl (\%) & d1--d3 (\%) \\
+\midrule
+RF 19-feature (ours) & RF & 78.4 & \textbf{71.6} \\
+Binoculars$^\dagger$ \cite{binoculars2024} & RF (11 feat) & 78.1 & --- \\
+Merged (30 feat)$^\dagger$ & RF & \textbf{82.6} & --- \\
+Binoculars \cite{binoculars2024} & threshold & 69.8 & --- \\
+Binoculars \cite{binoculars2024} & RF (1 feat) & 63.7 & --- \\
+RoBERTa-DCOL (ordinal) & contrastive & 64.5 & --- \\
+DeBERTa-v3 (end-to-end) & cross-entropy & 53.1--60.6 & --- \\
+\midrule
+Zero-shot LLM (best) & --- & 36.2 & --- \\
+Min-K\% Prob \cite{shi2024_minkprob} & CORAL & 33.2 & 40.4 \\
+DetectGPT \cite{mitchell2023_detectgpt} & best-of-3 & 28.8 & 24.3 \\
+Random & --- & 25.0 & 33.3 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsection{Cross-Model Transfer}
+\label{sec:gen:crossmodel}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-model transfer (leave-one-out, nucleus only). Chance = 25\% / 33\% (d1--d3). d1--d3 mean 55.4\%; QWK\,=\,0.81; 94.8\% errors at $|\Delta| \leq 1$.}
+\label{tab:cross_model}
+\begin{tabular}{lccccc}
+\toprule
+Holdout & Acc & d0 & d1 & d2 & d3 \\
+ & (\%) & Rec. & Rec. & Rec. & Rec. \\
+\midrule
+Pythia & 62.4 & 100.0 & 49.3 & 26.8 & 73.6 \\
+OLMo & \textbf{69.2} & 99.3 & 75.5 & 43.3 & 58.8 \\
+GPT-2 XL & 67.6 & 98.5 & 74.7 & 52.6 & 44.5 \\
+\midrule
+Mean & 66.4 & 99.3 & 66.5 & 40.9 & 59.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Mean transfer accuracy is 66.4\% ($2.7{\times}$ chance; Table~\ref{tab:cross_model}; d1--d3: 55.4\%); d2 worst case 26.8\% (Pythia holdout).
+Ordinal structure persists (QWK\,=\,0.81; 94.8\% errors at $|\Delta| \leq 1$), supporting that depth estimation exploits process-level regularity rather than model-specific artifacts.
+
+\subsection{Cross-Strategy Transfer}
+\label{sec:gen:crossstrategy}
+
+Cross-strategy transfer reveals a structural barrier: d1--d3 balanced accuracy drops to 45.9\% (four-class: 59.1\%), 7\,pp below cross-model transfer (Table~\ref{tab:cross_strategy}; Appendix~\ref{app:cross_strategy}).
+A two-stage pipeline (strategy classifier $\to$ depth classifier) recovers much of this gap (70.6\%, $+$11.5\,pp; oracle: 78.4\%).
+Our claims hold most strongly within-strategy or when the decoding configuration is known.
+
+%% ----------------------------------------------------------------
+\subsection{Preliminary Cross-Scale Observations (14B)}
+\label{sec:gen:crossscale}
+
+At 14B (Qwen2.5-14B), self-reference yields 50.8\% ($2{\times}$ chance, $\mathrm{EDD}_{0.70}{=}0$); cross-reference (Pythia-1.4B) raises $\mathrm{EDD}_{0.70}$ to 2 for nucleus and temperature but reduces accuracy by 6.8\,pp, making reference-model choice a major confound (Appendix~\ref{app:cross_scale_full}).
+At matched 1.5B scale, instruction tuning preserves depth signal (Appendix~\ref{app:instruct_1p5b}); cross-domain transfer to arXiv reaches 74.1\% (Appendix~\ref{app:cross_boundary}).
+
+\paragraph{Partial-mixing (accumulation).}
+\label{sec:gen:accumulation}
+Real-world contamination mixes synthetic and human text.
+We test robustness under 25\% and 50\% synthetic mixing across three cells (Table~\ref{tab:accum_auc}).
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_auc_decay.pdf}
+\caption{AUC decay curves for Pythia-1.4B (nucleus, depths 0--5) under three pipeline configurations: binary pairwise RF, 4-class RF, and 6-class RF. Horizontal dashed lines mark $T \in \{0.65, 0.70, 0.75, 0.80\}$. All curves converge below 0.70 at d4-vs-d5. Shaded bands: bootstrap 95\% CIs.}
+\label{fig:auc_decay}
+\end{figure}
+At 25\% mixing, all three cells preserve $\mathrm{EDD}_{0.70}{=}3$ with 8--15\,pp accuracy attenuation; at 50\%, 2/3 cells retain $\mathrm{EDD}{=}3$ (the sole failure falls 0.5\,pp below threshold).
+Per-passage predictions remain composition-independent (${\leq}$2.4\,pp recall shift; Appendix~\ref{app:mixed_depth}).

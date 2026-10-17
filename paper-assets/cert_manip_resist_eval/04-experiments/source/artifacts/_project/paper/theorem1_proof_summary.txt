@@ -1,0 +1,10 @@
+Theorem 1 Proof — Weakest-Link Theorem
+
+Server path: /root/cert_manip_resist_eval/artifacts/theorem1_proof.tex (6 pages, compiled)
+
+Structure:
+1. Lemma 1 (K=3, independent): ASR = η₁η₂ + η₁η₃ + η₂η₃ − 2η₁η₂η₃, ∂ASR/∂η_max ≥ 0
+2. Lemma 2 (general K, independent): ASR affine in η_K with slope P(Y=t−1) ≥ 0 (pivotal voter probability)
+3. Theorem 1 (general K, correlated + adaptive): Decompose by s=Σx_j into three cases (s≥t, s=t−1, s≤t−2), pointwise dominance at pivotal state
+4. Tightness: ASR = Θ(η_max^t), strict monotonicity in non-degenerate case
+5. Corollary: Robustness-first two-stage design — filter η_max ≤ τ, then maximize K_eff

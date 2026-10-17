@@ -1,0 +1,104 @@
+{
+  "figure_1a": {
+    "data_source": "hardcoded in /root/schema-dag-extraction/scripts/gen_fig_count_curves.py",
+    "recall_type": "micro (pooled across entities)",
+    "evidence": "hardcoded 0.527/0.551 match pooled_recall from round2 JSON (0.5268/0.5512), NOT mean_recall (0.5222/0.5491)",
+    "count_22_value": 0.527,
+    "count_44_value": 0.551,
+    "all_hardcoded_values": {
+      "counts": [1, 2, 6, 12, 22, 44, 64],
+      "recall": [0.720, 0.698, 0.620, 0.539, 0.527, 0.551, 0.418]
+    },
+    "round2_json_cross_reference": {
+      "count_22_pooled_recall": 0.5268,
+      "count_22_mean_recall": 0.5222,
+      "count_44_pooled_recall": 0.5512,
+      "count_44_mean_recall": 0.5491
+    }
+  },
+  "round2_json": {
+    "found": true,
+    "path": "/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json",
+    "cluster_bootstrap_ci": {
+      "fewnerd": {
+        "point_estimate": 0.1372,
+        "ci_95": [0.0693, 0.2186],
+        "n_types": 63,
+        "n_pairs": 1953,
+        "significant": true,
+        "original_r_paper": 0.112
+      },
+      "maven": {
+        "point_estimate": 0.1286,
+        "ci_95": [0.0807, 0.1850],
+        "n_types": 149,
+        "n_pairs": 11026,
+        "significant": true,
+        "original_r_paper": 0.129
+      }
+    },
+    "w4_recall_ci": {
+      "count_22": {
+        "pooled_recall": 0.5268,
+        "mean_recall": 0.5222,
+        "pooled_ci": [0.4842, 0.569],
+        "mean_ci": [0.4874, 0.5624],
+        "n_batches": 5
+      },
+      "count_44": {
+        "pooled_recall": 0.5512,
+        "mean_recall": 0.5491,
+        "pooled_ci": [0.5248, 0.5699],
+        "mean_ci": [0.5209, 0.5699],
+        "n_batches": 5
+      },
+      "overlap": true,
+      "delta_pooled": 0.0244
+    }
+  },
+  "practical_magnitude_sources": [
+    {
+      "path": "server: round2_statistical_analyses.json → W2_practical_effect.80pool_16sub",
+      "description": "80-type pool, 16-type subsets, from round2 server JSON",
+      "slope": -0.401,
+      "slope_ci_95": [-0.684, -0.062],
+      "bcs_Q1": 0.5037,
+      "bcs_Q3": 0.5692,
+      "iqr": 0.0655,
+      "gap_pp": 2.63,
+      "one_sd_gap_pp": 1.76
+    },
+    {
+      "path": "local: artifacts/d037_statistical_analyses/w2_practical_effect_results.json",
+      "description": "100 random 16-type subsets from 80-rel pool, local W2 JSON",
+      "slope": -0.401,
+      "slope_ci_95": [-0.684, -0.0625],
+      "r_value": -0.2206,
+      "p_value": 0.027389,
+      "bcs_Q1": 0.5281,
+      "bcs_Q3": 0.582,
+      "iqr": 0.0539,
+      "gap_pp": 2.16,
+      "bootstrap_ci_pp": [0.41, 4.01]
+    },
+    {
+      "path": "server: round2_statistical_analyses.json → W2_practical_effect.16rel_pool",
+      "description": "16-relation pool (NOT 80-pool subsets), separate experiment",
+      "slope": -0.449,
+      "bcs_Q1": 0.7818,
+      "bcs_Q3": 0.892,
+      "iqr": 0.1102,
+      "gap_pp": 4.95,
+      "one_sd_gap_pp": 3.02,
+      "note": "This is the 16-rel pool, not the 80-pool 16-type subsets"
+    }
+  ],
+  "practical_magnitude_discrepancy": {
+    "paper_current": {"iqr": 0.054, "gap_pp": 2.2, "source": "rounded from local W2 JSON"},
+    "local_w2_json": {"iqr": 0.0539, "gap_pp": 2.16, "source": "100 random subsets, local file"},
+    "server_round2_80pool": {"iqr": 0.0655, "gap_pp": 2.63, "source": "round2 JSON on server"},
+    "root_cause": "Same slope (-0.401) but different BCS distributions: local W2 has Q1=0.5281/Q3=0.582 (IQR=0.054), server round2 has Q1=0.5037/Q3=0.5692 (IQR=0.066). Likely different random seeds or sampling runs producing different 100-batch BCS distributions.",
+    "recommendation": "Verify which run is authoritative. The server round2 JSON (IQR=0.066, gap=2.63pp) may be from a newer/corrected run."
+  },
+  "audit_date": "2026-05-16"
+}

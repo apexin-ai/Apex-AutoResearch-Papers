@@ -1,0 +1,12 @@
+See remote server westd-37397:/root/ratekv/qwen_hires_f32_constrained_results.json
+
+Key metrics:
+- Baseline (bf16) WikiText-2 PPL: 9.8106
+- Constrained MCKP (k=8) PPL: 10.8921
+- Uniform 4-bit PPL: 15.4484
+- MCKP improvement over uniform: +4.5563 (+80.8%)
+- Bit distribution: 8-bit: 4, 4-bit: 100, 2-bit: 8
+- top5_concentration: 0.6156
+- Memory ratio: 0.25
+- Total distortion: 0.8104
+- Profiling source: qwen_hires_results.json (D048 float32 hires, 64 samples x 2048 tokens)

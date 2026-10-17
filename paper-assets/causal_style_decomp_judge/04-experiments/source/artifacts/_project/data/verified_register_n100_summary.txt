@@ -1,0 +1,17 @@
+Register n=100 Content Verification (NLI-only gating)
+=====================================================
+Server file: westb-29275:/root/causal_style_decomp_judge/data/verified_register.jsonl
+Records: 100 (312K)
+
+Original vs Counterfactual:
+  BERTScore  — mean: 0.8589, std: 0.0842
+  NLI        — mean: 0.9410, std: 0.2170
+  Passed     — 94/100 (94.0%)
+
+Original vs Double-Rewrite:
+  BERTScore  — mean: 0.8477, std: 0.0904
+  NLI        — mean: 0.8208, std: 0.3663
+  Passed     — 81/100 (81.0%)
+
+Gating: NLI-only (threshold 0.90), BERTScore not used for register axis.
+Pilot was 19/20 (95%) — n=100 result (94%) is consistent.

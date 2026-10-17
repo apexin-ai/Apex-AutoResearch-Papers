@@ -1,0 +1,10 @@
+count_4: mean=0.75, batches=[1.0, 0.55, 0.7], n_per_batch=[20, 20, 20]
+count_16: mean=0.5667, batches=[0.5132, 0.6494, 0.5375], n_per_batch=[76, 77, 80]
+count_64: mean=0.4256, batches=[0.4399, 0.3912, 0.4459], n_per_batch=[316, 317, 314]
+n_relation_types: 96
+n_eval_samples: 1240
+scs_matrix_shape: [96, 96]
+bcs_range: [0.5841, 0.9866]
+pipeline_status: OK
+notes: DocRED pilot closed-set RE classification Qwen3-32B-FP8 greedy decoding
+server_path: /root/schema-dag-extraction/artifacts/exp_docred_confusability/pilot_results.json

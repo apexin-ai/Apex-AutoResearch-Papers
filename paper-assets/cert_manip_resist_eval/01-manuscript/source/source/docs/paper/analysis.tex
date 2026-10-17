@@ -1,0 +1,21 @@
+\section{Analysis}
+\label{sec:analysis}
+
+\paragraph{Diversity--Capability Confound.}
+$K_{\mathrm{eff}}$ and $\eta_{\max}$ correlate at $r{=}0.70$--$0.81$ (variance inflation factor [VIF]${\approx}2.0$--$2.9$; Figure~\ref{fig:keff_eta_scatter}, Appendix~\ref{app:extended_analysis}). Cinelli--Hazlett sensitivity analysis \citep{cinelli2020making} shows the confound could account for the $K_{\mathrm{eff}}$--ASR association in 25/36 conditions (69\%; Appendix~\ref{app:sensitivity}): $K_{\mathrm{eff}}$'s RV exceeds the $\eta_{\max}$ benchmark in only 11/36 conditions, concentrated in MMLU (9/11) and sycophancy/prompt-injection attacks (RV${\geq}0.30$). Pool~A capability matching ($r{=}0.50$) improves survival to 10/12 at $K{=}5$ (Appendix~\ref{app:sensitivity_poolA}). Fractional logit confirms the positive association (9--12/12 across $K$), but establishing a causal relationship requires training-based diversity manipulation (Appendix~\ref{app:cross_benchmark}).
+
+\paragraph{AWQ Quantization and the API-Only Pool.}
+All six local models use INT4 quantization, which reduces accuracy by 5--30pp relative to provider-reported FP16 baselines (Table~\ref{tab:models}), placing them uniformly in the lightweight tier. This creates a compound confound: quantized models are simultaneously less capable and more diverse (cross-family), so the positive $K_{\mathrm{eff}}$--ASR association may partly reflect quantization-induced vulnerability rather than diversity per se. Adding a binary quantization dummy ($D_{\mathrm{quant}}$) to the regression attenuates $K_{\mathrm{eff}}$ at $K{=}3$ (from 8/12 to 6/12) but not at $K{\geq}5$ (Appendix~\ref{app:quant_dummy}). Restricting to 9 API models removes the quantization confound but increases collinearity ($r{=}0.85$): $\eta_{\max}$ retains significance (8/12) while $K_{\mathrm{eff}}$ drops (2--3/12); the API-only pool lacks statistical power (MDE $> 0.9$; Appendix~\ref{app:random_subsample}), meaning it cannot rule out a genuine diversity effect; it merely lacks the sample size to detect one. Conclusions about the diversity--vulnerability association therefore depend on the full pool, where quantization remains a potential confound.
+
+\paragraph{Aggregation and Deployment.}
+Aggregation rules influence predictability but not $K_{\mathrm{eff}}$'s direction (Figure~\ref{fig:aggregation_r2_heatmap}). Threshold voting yields the highest $R^2$ ($0.745$ at $K{=}3$), while Bayesian calibration nearly neutralizes panel composition effects ($R^2{\leq}0.17$ across all $K$). At $K{=}7$, Bayesian calibration fully neutralizes $K_{\mathrm{eff}}$ (0/12; Appendix~\ref{app:bayesian_entropy}). Robustness-first selection ($\min \eta_{\max}$) achieves lowest ASR in all 12 conditions (Appendix~\ref{app:panel_selection}), confirming that selecting judges by individual robustness dominates diversity-maximizing strategies regardless of panel size. Clean $K_{\mathrm{eff}}$ is stable under 4/6 attacks ($\rho{\geq}0.91$; Appendix~\ref{app:attacked_keff}), offering a deployable metric from clean-condition agreement alone.
+
+\paragraph{Metric Sensitivity.}
+The diversity trajectory is operationalization-dependent: $K_{\mathrm{eff}}$ remains high ($8 \to 8 \to 7$/12) while $\kappa$-diversity decreases ($8 \to 7 \to 6$/12) and Shannon MI shows a third pattern ($4 \to 4 \to 0$; Appendix~\ref{app:kappa_regime},~\ref{app:shannon_entropy}). Inference method compounds this: fractional logit with clustered SE shows an upward $K_{\mathrm{eff}}$ trajectory ($9 \to 11 \to 12$/12), opposite to the bootstrap's decline ($8 \to 8 \to 7$). The $\eta_{\max}$ decline holds under all three operationalizations.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_aggregation_r2_heatmap.pdf}
+\caption{Mean $R^2$ across aggregation methods and panel sizes. Threshold voting maintains high predictability ($R^2{=}0.745$ at $K{=}3$); Bayesian calibration nearly neutralizes composition effects ($R^2{\leq}0.17$).}
+\label{fig:aggregation_r2_heatmap}
+\end{figure}

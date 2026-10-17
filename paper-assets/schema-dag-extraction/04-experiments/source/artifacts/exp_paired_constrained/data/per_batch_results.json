@@ -1,0 +1,61 @@
+{
+  "description": "Paired constrained vs unconstrained decoding on 25 identical batch type sets (FewRel, Qwen3-32B-FP8)",
+  "batches": [
+    {"batch_id": "low_0",  "group": "low",  "bcs": 0.4715, "constrained_acc": 0.8333, "unconstrained_acc": 0.8333},
+    {"batch_id": "low_1",  "group": "low",  "bcs": 0.6465, "constrained_acc": 0.8125, "unconstrained_acc": 0.8125},
+    {"batch_id": "low_2",  "group": "low",  "bcs": 0.6653, "constrained_acc": 0.8750, "unconstrained_acc": 0.8750},
+    {"batch_id": "low_3",  "group": "low",  "bcs": 0.6724, "constrained_acc": 0.8229, "unconstrained_acc": 0.8229},
+    {"batch_id": "low_4",  "group": "low",  "bcs": 0.6742, "constrained_acc": 0.6771, "unconstrained_acc": 0.6771},
+    {"batch_id": "low_5",  "group": "low",  "bcs": 0.6783, "constrained_acc": 0.7292, "unconstrained_acc": 0.7292},
+    {"batch_id": "low_6",  "group": "low",  "bcs": 0.6788, "constrained_acc": 0.8021, "unconstrained_acc": 0.8021},
+    {"batch_id": "low_7",  "group": "low",  "bcs": 0.6869, "constrained_acc": 0.8750, "unconstrained_acc": 0.8750},
+    {"batch_id": "low_8",  "group": "low",  "bcs": 0.6916, "constrained_acc": 0.7708, "unconstrained_acc": 0.7708},
+    {"batch_id": "low_9",  "group": "low",  "bcs": 0.6919, "constrained_acc": 0.9167, "unconstrained_acc": 0.9167},
+    {"batch_id": "low_10", "group": "low",  "bcs": 0.6921, "constrained_acc": 0.8750, "unconstrained_acc": 0.8750},
+    {"batch_id": "low_11", "group": "low",  "bcs": 0.7092, "constrained_acc": 0.8438, "unconstrained_acc": 0.8438},
+    {"batch_id": "low_12", "group": "low",  "bcs": 0.7092, "constrained_acc": 0.6875, "unconstrained_acc": 0.6875},
+    {"batch_id": "high_0",  "group": "high", "bcs": 0.7123, "constrained_acc": 0.9167, "unconstrained_acc": 0.9167},
+    {"batch_id": "high_1",  "group": "high", "bcs": 0.7239, "constrained_acc": 0.7708, "unconstrained_acc": 0.7708},
+    {"batch_id": "high_2",  "group": "high", "bcs": 0.7348, "constrained_acc": 0.6771, "unconstrained_acc": 0.6771},
+    {"batch_id": "high_3",  "group": "high", "bcs": 0.7423, "constrained_acc": 0.8646, "unconstrained_acc": 0.8646},
+    {"batch_id": "high_4",  "group": "high", "bcs": 0.7423, "constrained_acc": 0.8646, "unconstrained_acc": 0.8646},
+    {"batch_id": "high_5",  "group": "high", "bcs": 0.7469, "constrained_acc": 0.8125, "unconstrained_acc": 0.8229},
+    {"batch_id": "high_6",  "group": "high", "bcs": 0.7677, "constrained_acc": 0.8333, "unconstrained_acc": 0.8333},
+    {"batch_id": "high_7",  "group": "high", "bcs": 0.7778, "constrained_acc": 0.7708, "unconstrained_acc": 0.7708},
+    {"batch_id": "high_8",  "group": "high", "bcs": 0.7908, "constrained_acc": 0.7188, "unconstrained_acc": 0.7188},
+    {"batch_id": "high_9",  "group": "high", "bcs": 0.8201, "constrained_acc": 0.7083, "unconstrained_acc": 0.7083},
+    {"batch_id": "high_10", "group": "high", "bcs": 0.8226, "constrained_acc": 0.9271, "unconstrained_acc": 0.9271},
+    {"batch_id": "high_11", "group": "high", "bcs": 0.9706, "constrained_acc": 0.4896, "unconstrained_acc": 0.5000}
+  ],
+  "aggregate": {
+    "n_batches": 25,
+    "n_low": 13,
+    "n_high": 12,
+    "n_samples_per_batch": 96,
+    "constrained_mean_acc": 0.7950,
+    "unconstrained_mean_acc": 0.7958,
+    "acc_improvement": -0.0008,
+    "constrained_pearson_r": -0.4479,
+    "constrained_pearson_p": 0.024742,
+    "unconstrained_pearson_r": -0.4393,
+    "unconstrained_pearson_p": 0.028008,
+    "constrained_spearman_rho": -0.1566,
+    "constrained_spearman_p": 0.454806,
+    "unconstrained_spearman_rho": -0.1442,
+    "unconstrained_spearman_p": 0.491539,
+    "low_mean_acc_constrained": 0.8093,
+    "high_mean_acc_constrained": 0.7795,
+    "delta_pp": 2.98,
+    "ci_lower_pp": -4.41,
+    "ci_upper_pp": 10.91
+  },
+  "notes": {
+    "batches_with_acc_diff": ["high_5 (constrained 0.8125 vs unconstrained 0.8229, delta=-1/96)", "high_11 (constrained 0.4896 vs unconstrained 0.5000, delta=-1/96)"],
+    "batches_identical": "23 of 25 batches have identical accuracy between constrained and unconstrained decoding",
+    "oov_in_unconstrained": "2 OOV predictions in unconstrained (high_1: 'work by', high_6: 'member of'), total OOV rate 0.08%",
+    "data_sources": {
+      "constrained": "artifacts/exp_paired_constrained/eval_results.json + results.jsonl",
+      "unconstrained": "artifacts/unconstrained_decoding_ablation_n25/eval_results.json + bootstrap_ci.json"
+    }
+  }
+}

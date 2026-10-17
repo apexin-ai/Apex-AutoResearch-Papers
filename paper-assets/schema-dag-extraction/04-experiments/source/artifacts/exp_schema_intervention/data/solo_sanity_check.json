@@ -1,0 +1,110 @@
+[
+  {
+    "original_type": "country of citizenship",
+    "renamed_type": "nationality",
+    "n_samples": 12,
+    "solo_acc_original": 0.8333,
+    "solo_acc_renamed": 0.8333,
+    "delta": 0.0,
+    "pass": true
+  },
+  {
+    "original_type": "country of origin",
+    "renamed_type": "land of origin",
+    "n_samples": 12,
+    "solo_acc_original": 0.6667,
+    "solo_acc_renamed": 0.6667,
+    "delta": 0.0,
+    "pass": true
+  },
+  {
+    "original_type": "father",
+    "renamed_type": "paternal figure",
+    "n_samples": 12,
+    "solo_acc_original": 1.0,
+    "solo_acc_renamed": 1.0,
+    "delta": 0.0,
+    "pass": true
+  },
+  {
+    "original_type": "follows",
+    "renamed_type": "comes after",
+    "n_samples": 12,
+    "solo_acc_original": 0.8333,
+    "solo_acc_renamed": 0.9167,
+    "delta": 0.0833,
+    "pass": true
+  },
+  {
+    "original_type": "located in the administrative territorial entity",
+    "renamed_type": "situated within governing region",
+    "n_samples": 12,
+    "solo_acc_original": 1.0,
+    "solo_acc_renamed": 1.0,
+    "delta": 0.0,
+    "pass": true
+  },
+  {
+    "original_type": "member of",
+    "renamed_type": "affiliated with",
+    "n_samples": 12,
+    "solo_acc_original": 1.0,
+    "solo_acc_renamed": 1.0,
+    "delta": 0.0,
+    "pass": true
+  },
+  {
+    "original_type": "military rank",
+    "renamed_type": "service rank designation",
+    "n_samples": 12,
+    "solo_acc_original": 1.0,
+    "solo_acc_renamed": 1.0,
+    "delta": 0.0,
+    "pass": true
+  },
+  {
+    "original_type": "mother",
+    "renamed_type": "maternal parent",
+    "n_samples": 12,
+    "solo_acc_original": 0.8333,
+    "solo_acc_renamed": 0.75,
+    "delta": -0.0833,
+    "pass": false
+  },
+  {
+    "original_type": "part of",
+    "renamed_type": "integral segment of",
+    "n_samples": 12,
+    "solo_acc_original": 1.0,
+    "solo_acc_renamed": 1.0,
+    "delta": 0.0,
+    "pass": true
+  },
+  {
+    "original_type": "participant of",
+    "renamed_type": "event involvement",
+    "n_samples": 12,
+    "solo_acc_original": 1.0,
+    "solo_acc_renamed": 1.0,
+    "delta": 0.0,
+    "pass": true
+  },
+  {
+    "original_type": "position played on team",
+    "renamed_type": "athletic role on roster",
+    "n_samples": 12,
+    "solo_acc_original": 1.0,
+    "solo_acc_renamed": 1.0,
+    "delta": 0.0,
+    "pass": true
+  },
+  {
+    "original_type": "winner",
+    "renamed_type": "contest victor",
+    "n_samples": 12,
+    "solo_acc_original": 0.9167,
+    "solo_acc_renamed": 0.9167,
+    "delta": 0.0,
+    "pass": true
+  }
+]

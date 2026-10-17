@@ -1,0 +1,1068 @@
+meta:
+  last_updated: '2026-05-20T14:17:17.135Z'
+  total_papers: 45
+categories:
+- model-collapse
+- decoding-strategies
+- binary-detection
+- adjacent-tasks
+- ordinal-classification
+- watermarking
+- data-curation
+- covariate-shift
+papers:
+  shumailov2024_nature:
+    title: AI models collapse when trained on recursively generated data
+    authors:
+    - Shumailov
+    - Shumaylov
+    - Zhao
+    - Papernot
+    - Anderson
+    - Gal
+    venue: Nature
+    year: 2024
+    doi: 10.1038/s41586-024-07566-y
+    tags:
+    - model-collapse
+    - recursive-generation
+    - tail-erosion
+    relevance: direct
+    cite_in:
+    - introduction
+    - related-work
+    - background
+    notes: 'Foundational model collapse paper. Tail erosion across recursive generations.
+      Perplexity monotonically increases over 40 generations. Does NOT compare sampling
+      strategies—uses standard sampling (T=1).
+
+      '
+  marchi2024_heat_death:
+    title: Heat Death of Generative Models in Closed-Loop Learning
+    authors:
+    - Marchi
+    - Soatto
+    - Chaudhari
+    - Tabuada
+    venue: ICASSP 2025
+    year: 2024
+    arxiv: '2404.02325'
+    tags:
+    - temperature
+    - convergence
+    - dynamical-systems
+    - mode-collapse
+    relevance: direct
+    cite_in:
+    - discussion
+    notes: 'Proves any T!=1 causes asymptotic degeneration. T<1 amplifies probability
+      differences (mode collapse), T>1 contracts toward uniform. Key theoretical support
+      for our tau=0.9 accelerated convergence finding.
+
+      '
+  dohmatob2024_tale_of_tails:
+    title: 'A Tale of Tails: Model Collapse as a Change of Scaling Laws'
+    authors:
+    - Dohmatob
+    - Feng
+    - Yang
+    - Charton
+    - Kempe
+    venue: ICML 2024
+    year: 2024
+    arxiv: '2402.07043'
+    tags:
+    - scaling-laws
+    - tail-narrowing
+    - tail-cutting
+    - temperature
+    - top-p
+    - top-k
+    relevance: direct
+    cite_in:
+    - related-work
+    - discussion
+    notes: 'Distinguishes tail narrowing (temperature: q_i^T ~ i^{-beta/T}) from tail
+      cutting (top-p/top-k: hard truncation). Different degradation patterns. Explains
+      why temp produces different statistical fingerprint from truncation.
+
+      '
+    role: background
+    verified: false
+  dohmatob2025_strong_collapse:
+    title: Strong Model Collapse
+    authors:
+    - Dohmatob
+    - Feng
+    - Subramonian
+    - Kempe
+    venue: ICLR 2025 Spotlight
+    year: 2025
+    arxiv: '2410.04840'
+    tags:
+    - model-collapse
+    - scaling
+    - synthetic-data
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Even 0.1% synthetic data fraction causes collapse. Larger models amplify
+      collapse. Bias-variance decomposition via random projections.
+
+      '
+    role: background
+    verified: false
+  dohmatob2024_demystified:
+    title: 'Model Collapse Demystified: The Case of Regression'
+    authors:
+    - Dohmatob
+    - Feng
+    - Kempe
+    venue: NeurIPS 2024
+    year: 2024
+    arxiv: '2402.07712'
+    tags:
+    - model-collapse
+    - regression
+    - random-matrix-theory
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Test error grows linearly with iteration count in regression. Supports
+      our finding of monotonically evolving features across depths.
+
+      '
+    role: background
+    verified: false
+  alemohammad2024_mad:
+    title: Self-Consuming Generative Models Go MAD
+    authors:
+    - Alemohammad
+    - Casco-Rodriguez
+    - et al.
+    venue: ICLR 2024
+    year: 2024
+    arxiv: '2307.01850'
+    tags:
+    - autophagous
+    - sampling-bias
+    - precision-recall
+    - MAD
+    relevance: indirect
+    cite_in:
+    - introduction
+    - related-work
+    notes: 'Biased sampling keeps precision but kills recall. Unbiased causes mode
+      drift. tau=0.9 maps to their biased sampling regime.
+
+      '
+    role: background
+    verified: false
+  gerstgrasser2024_accumulate:
+    title: Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating
+      Real and Synthetic Data
+    authors:
+    - Gerstgrasser
+    - Schaeffer
+    - et al.
+    venue: arXiv preprint
+    year: 2024
+    arxiv: '2404.01413'
+    tags:
+    - model-collapse
+    - data-accumulation
+    - mitigation
+    relevance: indirect
+    cite_in:
+    - related-work
+    - discussion
+    notes: 'Data accumulation prevents collapse (bounded test error). Important caveat:
+      in accumulation regime, depth signal may be weaker.
+
+      '
+  drayson2025_detection_prevents_collapse:
+    title: Machine-generated text detection prevents language model collapse
+    authors:
+    - Drayson et al.
+    venue: EMNLP 2025 Findings
+    year: 2025
+    arxiv: '2502.15654'
+    tags:
+    - temperature
+    - diversity
+    - recursive-training
+    - detection
+    relevance: direct
+    cite_in:
+    - related-work
+    notes: 'Temperature tau=0.9 produces most repetitive outputs; diversity drops
+      ~70% over 99 recursive generations (GPT-2, SmolLM2). Perplexity degradation
+      more moderate than deterministic methods. Detection as filter vs our depth estimation.
+
+      '
+    role: background
+    verified: false
+  bakshi2026_collapse_improvement:
+    title: 'From Collapse to Improvement: Statistical Perspectives on Iterative Training'
+    authors:
+    - Bakshi
+    - Chakraborty
+    venue: arXiv preprint
+    year: 2026
+    arxiv: '2602.10531'
+    tags:
+    - model-collapse
+    - non-monotonic
+    - data-mixing
+    relevance: indirect
+    cite_in:
+    - discussion
+    notes: 'Iterative training with fresh real data can *improve* performance. Non-monotonic
+      dynamics complicate simple depth-signal assumptions.
+
+      '
+  wang2026_contamination:
+    title: Can Generative AI Survive Data Contamination? Theoretical Guarantees
+    authors:
+    - Wang
+    - Niu
+    - Li
+    venue: arXiv preprint
+    year: 2026
+    arxiv: '2602.16065'
+    tags:
+    - model-collapse
+    - contamination
+    - theoretical
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Extends collapse theory beyond Gaussian/discrete to realistic distributions.
+      Provides theoretical grounding for depth signal existence.
+
+      '
+  falahati2026_curated:
+    title: Curated Synthetic Data Doesn't Have to Collapse
+    authors:
+    - Falahati
+    - Amiri
+    - Larson
+    - Golab
+    venue: arXiv preprint
+    year: 2026
+    arxiv: '2605.07724'
+    tags:
+    - curation
+    - collapse-prevention
+    - pluralistic
+    relevance: indirect
+    cite_in:
+    - discussion
+    - limitations
+    notes: 'Pluralistic curation prevents collapse. Harder case for our method — curated
+      pipelines may produce depth-invariant text.
+
+      '
+  knowledge_collapse2025:
+    title: 'Knowledge Collapse in LLMs: Fluency Survives but Facts Fail'
+    authors:
+    - Keisha
+    - Wu
+    - Wang
+    - Koshiyama
+    - Treleaven
+    venue: arXiv preprint
+    year: 2025
+    arxiv: '2509.04796'
+    tags:
+    - knowledge-collapse
+    - fluency
+    - factual-degradation
+    relevance: indirect
+    cite_in:
+    - discussion
+    notes: 'Three-stage collapse: factual accuracy degrades while fluency persists.
+      Surface perplexity features still capture depth signal despite fluency preservation.
+
+      '
+  synthetic_eggs2026:
+    title: 'Synthetic Eggs in Many Baskets: Impact of Synthetic Data Diversity on
+      LLM Fine-Tuning'
+    authors:
+    - Schaffelder
+    - Gatt
+    venue: ACL 2026 Findings
+    year: 2026
+    arxiv: '2511.01490'
+    tags:
+    - diversity
+    - collapse-mitigation
+    - Self-BLEU
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Multi-source synthetic data reduces collapse. Their diversity metrics
+      (Self-BLEU, lexical diversity) are candidate depth features.
+
+      '
+    role: background
+    verified: false
+  mohamed2025_broken_telephone:
+    title: 'LLM as a Broken Telephone: Iterative Generation Distorts Information'
+    authors:
+    - Mohamed
+    - Geng
+    - Vazirgiannis
+    - Shang
+    venue: ACL 2025
+    year: 2025
+    arxiv: '2502.20258'
+    tags:
+    - iterative-generation
+    - information-distortion
+    - translation-chain
+    relevance: indirect
+    cite_in:
+    - discussion
+    notes: 'Iterative generation (translation/paraphrase chains) produces monotonically
+      increasing information distortion. Cross-task evidence that iterated signals
+      accumulate — supports our depth signal persistence finding.
+
+      '
+    role: background
+    verified: false
+  sigma2026_spectral:
+    title: 'SIGMA: Scalable Spectral Insights for LLM Model Collapse'
+    authors:
+    - (multiple)
+    venue: arXiv preprint
+    year: 2026
+    arxiv: '2601.03385'
+    tags:
+    - spectral-analysis
+    - gram-matrix
+    - representation-collapse
+    - 50-generations
+    relevance: direct
+    cite_in:
+    - related-work
+    - discussion
+    notes: 'Gram matrix spectral analysis tracks representation space contraction
+      over 50 recursive generations. Proposes Sigma-UB metric. Complementary to our
+      EDD — they measure geometric collapse, we measure statistical distinguishability.
+      Tests 50 generations but does NOT do inter-generation classification.
+
+      '
+  shi2025_closer_look:
+    title: 'A Closer Look at Model Collapse: From a Generalization-to-Memorization
+      Perspective'
+    authors:
+    - Shi
+    - Wu
+    - Zhang
+    - Zhang
+    - Tao
+    - Qu
+    venue: NeurIPS 2025 (Spotlight)
+    year: 2025
+    arxiv: '2509.16499'
+    tags:
+    - model-collapse
+    - entropy
+    - memorization
+    - intrinsic-dimension
+    relevance: direct
+    role: background
+    verified: true
+    integration: 整合，entropy ↔ depth signal 支撑特征选择论证
+    cite_in:
+    - related-work
+    - discussion
+    notes: 'Identifies generalization-to-memorization transition during recursive
+      training. Entropy of training data decreases over iterations, strongly correlated
+      with model degradation. Entropy decline IS a measurable depth signal — directly
+      supports our statistical feature approach to depth estimation.
+
+      '
+  yi2026_escaping_collapse:
+    title: 'Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements
+      and Long-term Convergence'
+    authors:
+    - Yi
+    - Liu
+    - Cheng
+    - Xu
+    venue: 3rd DATA-FM Workshop @ ICLR 2026
+    year: 2026
+    arxiv: '2510.16657'
+    tags:
+    - model-collapse
+    - verification
+    - synthetic-data
+    - mitigation
+    relevance: indirect
+    role: background
+    verified: true
+    integration: 引用但降级——related work 提一句，不支撑核心 claim（workshop paper）
+    cite_in:
+    - related-work
+    notes: 'Verifier-guided retraining prevents collapse. Our depth estimation can
+      serve AS the verifier — depth score enables graduated filtering rather than
+      binary accept/reject. NOTE: workshop paper, not main conference.
+
+      '
+  holtzman2020_nucleus:
+    title: The Curious Case of Neural Text Degeneration
+    authors:
+    - Holtzman
+    - Buys
+    - Du
+    - Forbes
+    - Choi
+    venue: ICLR 2020
+    year: 2020
+    arxiv: '1904.09751'
+    tags:
+    - nucleus-sampling
+    - temperature
+    - text-degeneration
+    - unreliable-tail
+    relevance: indirect
+    cite_in:
+    - background
+    - method
+    notes: 'Proposes nucleus sampling. Temperature+top-k leads to repetition. Key
+      concept: unreliable tail of low-probability tokens.
+
+      '
+  finlayson2024_closing:
+    title: Closing the Curious Case of Neural Text Degeneration
+    authors:
+    - Finlayson
+    - Hewitt
+    - Koller
+    - Swayamdipta
+    - Sabharwal
+    venue: ICLR 2024
+    year: 2024
+    arxiv: '2310.01693'
+    tags:
+    - softmax-bottleneck
+    - truncation-sampling
+    - precise-sampling
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Truncation sampling eliminates softmax bottleneck errors. Mechanistic
+      difference between truncation and scaling approaches.
+
+      '
+    role: background
+    verified: false
+  garces_arias2025_decoding_decoded:
+    title: 'Decoding Decoded: Understanding Hyperparameter Effects in Open-Ended Text
+      Generation'
+    authors:
+    - Garces Arias et al.
+    venue: COLING 2025
+    year: 2025
+    tags:
+    - decoding
+    - hyperparameters
+    - model-dependent
+    relevance: direct
+    cite_in:
+    - related-work
+    - discussion
+    notes: 'Confirms optimal decoding configuration is model-dependent. Directly supports
+      D006 finding (strategy effect is model-dependent). Key external validation for
+      our interaction effects claim.
+
+      '
+  wiher2022_decoding:
+    title: On Decoding Strategies for Neural Text Generators
+    authors:
+    - Wiher
+    - Meister
+    - Cotterell
+    venue: TACL 2022
+    year: 2022
+    tags:
+    - decoding
+    - task-dependent
+    - evaluation
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Decoding strategy effects are task-dependent. Supports our finding that
+      strategy effects on depth signal vary by model.
+
+      '
+  basu2021_mirostat:
+    title: 'Mirostat: A Neural Text Decoding Algorithm that Directly Controls Perplexity'
+    authors:
+    - Basu
+    - Sachdev
+    - Kamdar
+    - Nishi
+    venue: ICLR 2021
+    year: 2021
+    tags:
+    - perplexity-control
+    - sampling
+    - cross-entropy
+    relevance: indirect
+    cite_in:
+    - related-work
+    - discussion
+    notes: 'Perplexity and sampling parameters have non-linear relationship. Relevant
+      to p90_ppl capturing depth signal better than mean_ppl under heavy-tailed distributions.
+
+      '
+  mitchell2023_detectgpt:
+    title: 'DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability
+      Curvature'
+    authors:
+    - Mitchell
+    - Lee
+    - Khazatsky
+    - Manning
+    - Finn
+    venue: ICML 2023
+    year: 2023
+    arxiv: '2301.11305'
+    tags:
+    - zero-shot
+    - detection
+    - curvature
+    - perturbation
+    - binary
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Foundational zero-shot detector using log-probability curvature via random
+      perturbations. Binary only. Fast-DetectGPT improves efficiency.
+
+      '
+    role: background
+    verified: false
+  sadasivan2023_paraphrase:
+    title: Can AI-Generated Text be Reliably Detected?
+    authors:
+    - Sadasivan
+    - Kumar
+    - Balasubramanian
+    - Wang
+    - Feizi
+    venue: arXiv preprint
+    year: 2023
+    arxiv: '2303.11156'
+    tags:
+    - detection-limits
+    - paraphrase-attack
+    - impossibility
+    relevance: indirect
+    cite_in:
+    - related-work
+    - limitations
+    notes: 'Shows paraphrase attacks evade all detectors; proves impossibility result
+      when model and human distributions overlap sufficiently. Important limitation
+      context for our depth estimation approach.
+
+      '
+  binoculars2024:
+    title: 'Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated
+      Text'
+    authors:
+    - Hans
+    - Schwarzschild
+    - Manber
+    - et al.
+    venue: ICML 2024
+    year: 2024
+    arxiv: '2401.12070'
+    tags:
+    - zero-shot
+    - detection
+    - perplexity-ratio
+    - binary
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Two-model perplexity ratio for zero-shot binary detection. We extend beyond
+      binary to ordinal depth.
+
+      '
+    role: background
+    verified: false
+  fast_detectgpt2024:
+    title: 'Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text
+      via Conditional Probability Curvature'
+    authors:
+    - Bao et al.
+    venue: ICLR 2024
+    year: 2024
+    arxiv: '2310.05130'
+    tags:
+    - zero-shot
+    - detection
+    - curvature
+    - binary
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Conditional probability curvature for efficient binary detection. Cannot
+      distinguish depth levels.
+
+      '
+    role: background
+    verified: false
+  diveye2026:
+    title: 'DivEye: Diversity Boosts AI-Generated Text Detection'
+    authors:
+    - Basani
+    - Chen
+    venue: ICLR 2026 / TMLR
+    year: 2026
+    arxiv: '2509.18880'
+    tags:
+    - surprisal-diversity
+    - statistical-features
+    - detection
+    relevance: direct
+    cite_in:
+    - related-work
+    - method
+    notes: 'Token-level surprisal diversity features for binary detection. Feature
+      overlap with our pipeline. We extend similar features to ordinal depth regression.
+
+      '
+    role: background
+    verified: false
+  loki2025:
+    title: 'LOKI: A Comprehensive Synthetic Data Detection Benchmark using Large Multimodal
+      Models'
+    authors:
+    - Ye
+    - Zhou
+    - Huang
+    - Zhang
+    - Bai
+    - Kang
+    - He
+    - Lin
+    - Wang
+    - Wu
+    - Wu
+    - Chen
+    - Lin
+    - He
+    - Li
+    venue: ICLR 2025 Spotlight
+    year: 2025
+    arxiv: '2410.09732'
+    tags:
+    - benchmark
+    - multimodal
+    - detection
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Multimodal synthetic data detection benchmark. Binary only, no depth.
+
+      '
+    role: background
+    verified: false
+  gehrmann2019_gltr:
+    title: 'GLTR: Statistical Detection and Visualization of Generated Text'
+    authors:
+    - Gehrmann
+    - Strobelt
+    - Rush
+    venue: ACL 2019
+    year: 2019
+    arxiv: '1906.04043'
+    tags:
+    - detection
+    - statistical-features
+    - perplexity
+    - rank
+    - entropy
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Foundational statistical detection using log-likelihood, rank, entropy.
+      Our feature system extends this paradigm to recursive depth estimation.
+
+      '
+  pudasaini2026_detection_fails:
+    title: 'Why AI-Generated Text Detection Fails: Evidence from Explainable AI'
+    authors:
+    - Pudasaini et al.
+    venue: arXiv preprint
+    year: 2026
+    arxiv: '2603.23146'
+    tags:
+    - detection-failure
+    - distribution-shift
+    - fragility
+    relevance: indirect
+    cite_in:
+    - limitations
+    notes: 'Detection features degrade under distribution shift. If binary features
+      are domain-fragile, ordinal depth features may be too.
+
+      '
+  tulchinskii2024_intrinsic_dim:
+    title: Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts
+    authors:
+    - Tulchinskii
+    - Kuznetsov
+    - et al.
+    venue: NeurIPS 2023
+    year: 2023
+    arxiv: '2306.04723'
+    tags:
+    - intrinsic-dimension
+    - geometric-features
+    - detection
+    - cross-domain
+    relevance: direct
+    role: method-component
+    cite_in:
+    - related-work
+    - method
+    notes: 'Intrinsic dimension of text embeddings ~9 for human, ~7.5 for AI-generated.
+      Geometric invariant enables cross-domain, cross-model robust detection. Complementary
+      feature family to our statistical perplexity features — intrinsic dimension
+      could serve as additional depth feature.
+
+      '
+  verma2024_ghostbuster:
+    title: 'Ghostbuster: Detecting Text Ghostwritten by Large Language Models'
+    authors:
+    - Verma
+    - Fleisig
+    - Tomlin
+    - Klein
+    venue: NAACL 2024
+    year: 2024
+    arxiv: '2305.15047'
+    tags:
+    - detection
+    - structured-search
+    - statistical-features
+    - cross-domain
+    relevance: indirect
+    role: direct-competitor
+    cite_in:
+    - related-work
+    notes: 'Structured search over combinations of weaker LM features for detection.
+      99.0 F1 cross-domain. Binary only. Feature engineering approach parallels our
+      multi-feature pipeline but targets binary classification, not ordinal depth.
+
+      '
+  li2024_mage:
+    title: 'MAGE: Machine-generated Text Detection in the Wild'
+    authors:
+    - Li
+    - Li
+    - et al.
+    venue: ACL 2024
+    year: 2024
+    arxiv: '2305.13242'
+    tags:
+    - benchmark
+    - cross-domain
+    - cross-model
+    - detection
+    relevance: indirect
+    role: evaluation
+    cite_in:
+    - related-work
+    notes: 'Cross-domain cross-model detection benchmark. Finds significant OOD performance
+      degradation — same generalization challenge our cross-model depth estimation
+      faces. Binary detection only.
+
+      '
+  wu2025_detection_survey:
+    title: 'A Survey on LLM-Generated Text Detection: Necessity, Methods, and Future
+      Directions'
+    authors:
+    - Wu
+    - Yang
+    - Zhan
+    - Yuan
+    - Chao
+    - Wong
+    venue: Computational Linguistics, Vol. 51, Issue 1
+    year: 2025
+    arxiv: '2310.14724'
+    tags:
+    - survey
+    - detection-taxonomy
+    - watermarking
+    - statistical
+    - neural
+    relevance: indirect
+    role: background
+    verified: true
+    integration: 整合，survey 定位
+    cite_in:
+    - related-work
+    notes: 'Comprehensive survey of detection paradigms: watermarking, statistical,
+      neural, human-assisted. Positions our work as extending the statistical paradigm
+      from binary detection to ordinal depth estimation.
+
+      '
+  editlens2026:
+    title: 'EditLens: Quantifying the Extent of AI Editing in Text'
+    authors:
+    - Thai et al.
+    venue: ICLR 2026
+    year: 2026
+    arxiv: '2510.03154'
+    tags:
+    - editing-extent
+    - continuous-score
+    - mixed-authorship
+    relevance: direct
+    cite_in:
+    - introduction
+    - related-work
+    notes: 'Closest conceptual neighbor — both go beyond binary classification. EditLens
+      = single-pass editing extent; ours = multi-generation depth.
+
+      '
+    role: background
+    verified: false
+  uchendu2020_attribution:
+    title: Authorship Attribution for Neural Text Generation
+    authors:
+    - Uchendu
+    - Le
+    - Shu
+    - Lee
+    venue: EMNLP 2020
+    year: 2020
+    tags:
+    - attribution
+    - multi-source
+    - authorship
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Multi-source attribution (which model?). We solve a different axis (how
+      many iterations?) — complementary problems.
+
+      '
+  pu2026_generator_barrier:
+    title: 'Breaking the Generator Barrier: Disentangled Representation for Generalizable
+      AI-Text Detection'
+    authors:
+    - Pu
+    - Cheng
+    - Yuan
+    - Wu
+    - Bi
+    venue: arXiv preprint
+    year: 2026
+    arxiv: '2604.13692'
+    tags:
+    - disentanglement
+    - cross-generator
+    - generalization
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Cross-generator generalization via disentanglement. Analogous to our cross-model
+      generalization challenge.
+
+      '
+  bevendorff2025_two_paradigms:
+    title: 'The Two Paradigms of LLM Detection: Authorship Attribution vs. Authorship
+      Verification'
+    authors:
+    - Bevendorff
+    - Wiegmann
+    - Richter
+    - Potthast
+    - Stein
+    venue: ACL 2025 Findings
+    year: 2025
+    tags:
+    - attribution
+    - verification
+    - detection-paradigm
+    - authorship
+    relevance: direct
+    role: background
+    verified: true
+    integration: 整合，'第三范式' framing（attribution/verification 之外的正交第三维度）
+    cite_in:
+    - related-work
+    notes: 'Reframes LLM detection as authorship verification (not attribution). Our
+      depth estimation is a third paradigm — ordinal characterization beyond binary
+      verification or multi-class attribution. Key framing reference for positioning
+      our contribution.
+
+      '
+  coral2020:
+    title: Rank Consistent Ordinal Regression for Neural Networks with Application
+      to Age Estimation
+    authors:
+    - Cao
+    - Mirjalili
+    - Raschka
+    venue: Pattern Recognition Letters
+    year: 2020
+    arxiv: '1901.07884'
+    tags:
+    - ordinal-classification
+    - rank-consistency
+    - cumulative-logits
+    relevance: direct
+    cite_in:
+    - method
+    - experiments
+    notes: 'CORAL ordinal classification framework used in our baseline battery. Rank-consistent
+      cumulative logits for ordinal targets.
+
+      '
+  cloc2025:
+    title: 'CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin
+      N-pair Loss'
+    authors:
+    - Pitawela
+    - Carneiro
+    - et al.
+    venue: CVPR 2025
+    year: 2025
+    arxiv: '2504.17813'
+    tags:
+    - contrastive-learning
+    - ordinal
+    - multi-margin
+    - N-pair
+    relevance: direct
+    cite_in:
+    - method
+    - dcol-section
+    notes: 'DCOL is our adaptation of CLOC to text depth estimation. Multi-margin
+      N-pair loss for ordinal-aware contrastive learning. Must cite as methodological
+      basis for DCOL section.
+
+      '
+    role: background
+    verified: false
+  kirchenbauer2023_watermark:
+    title: A Watermark for Large Language Models
+    authors:
+    - Kirchenbauer
+    - Geiping
+    - Wen
+    - Katz
+    - Miers
+    - Goldstein
+    venue: ICML 2023
+    year: 2023
+    arxiv: '2301.10226'
+    tags:
+    - watermarking
+    - proactive-detection
+    - green-list
+    relevance: indirect
+    cite_in:
+    - related-work
+    notes: 'Proactive detection via watermarking. Complementary — watermarking requires
+      generator cooperation; our method is post-hoc.
+
+      '
+    role: background
+    verified: false
+  dsir2023:
+    title: Data Selection for Language Models via Importance Resampling
+    authors:
+    - Xie
+    - Santurkar
+    - Ma
+    - Liang
+    venue: NeurIPS 2023
+    year: 2023
+    arxiv: '2302.03169'
+    tags:
+    - data-selection
+    - importance-resampling
+    - curation
+    relevance: indirect
+    cite_in:
+    - discussion
+    notes: 'Quality-based data selection for LM training. Our depth estimation enables
+      depth-graduated curation (Claim 3 / Discussion).
+
+      '
+  qurating2024:
+    title: 'QuRating: Selecting High-Quality Data for Training Language Models'
+    authors:
+    - Wettig
+    - Gupta
+    - et al.
+    venue: ICML 2024
+    year: 2024
+    arxiv: '2402.09739'
+    tags:
+    - quality-rating
+    - data-curation
+    - LLM-judgments
+    relevance: indirect
+    cite_in:
+    - discussion
+    notes: 'LLM-based quality rating for data selection. Our depth score is a complementary
+      quality axis.
+
+      '
+    role: background
+    verified: false
+  penedo2024_fineweb:
+    title: 'The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale'
+    authors:
+    - Penedo
+    - Kydlicek
+    - et al.
+    venue: NeurIPS 2024
+    year: 2024
+    arxiv: '2406.17557'
+    tags:
+    - data-curation
+    - quality-filtering
+    - deduplication
+    - web-scale
+    relevance: indirect
+    role: background
+    cite_in:
+    - discussion
+    notes: '15T token dataset with systematic quality filtering pipeline (dedup, heuristic
+      filters, classifier-based selection). Our depth estimation adds a synthetic
+      contamination axis complementary to FineWeb-style quality curation — depth score
+      can flag recursively degraded text that passes standard quality filters.
+
+      '
+  sugiyama2007_importance_weighting:
+    title: Covariate Shift Adaptation by Importance Weighted Cross Validation
+    authors:
+    - Sugiyama
+    - Krauledat
+    - Mueller
+    venue: JMLR
+    year: 2007
+    tags:
+    - covariate-shift
+    - importance-weighting
+    - domain-adaptation
+    relevance: background
+    cite_in:
+    - discussion
+    notes: 'Theoretical foundation for covariate shift correction. Our z-score normalization
+      is a simplified distribution alignment.
+
+      '

@@ -1,0 +1,92 @@
+{
+  "topk_curve": {
+    "pythia_nucleus095": {"top1": 0.6215, "top2": 0.69, "top3": 0.7328, "top5": 0.7649, "top10": 0.7731, "top15": 0.7847, "top19": 0.7849},
+    "pythia_temp09": {"top1": 0.6396, "top2": 0.701, "top3": 0.7288, "top5": 0.7492, "top10": 0.7527, "top15": 0.7651, "top19": 0.7657},
+    "pythia_topk50": {"top1": 0.5626, "top2": 0.6209, "top3": 0.6457, "top5": 0.6609, "top10": 0.6832, "top15": 0.6857, "top19": 0.6876},
+    "gpt2xl_nucleus095": {"top1": 0.6442, "top2": 0.7764, "top3": 0.7996, "top5": 0.8221, "top10": 0.8371, "top15": 0.839, "top19": 0.8412},
+    "gpt2xl_temp09": {"top1": 0.8029, "top2": 0.8175, "top3": 0.8345, "top5": 0.8494, "top10": 0.85745, "top15": 0.8592, "top19": 0.86035},
+    "gpt2xl_topk50": {"top1": 0.69365, "top2": 0.66865, "top3": 0.71235, "top5": 0.7378, "top10": 0.7575, "top15": 0.75545, "top19": 0.7589},
+    "olmo_nucleus095": {"top1": 0.6354, "top2": 0.7152, "top3": 0.7456, "top5": 0.7703, "top10": 0.783, "top15": 0.7867, "top19": 0.7903},
+    "olmo_temp09": {"top1": 0.6572, "top2": 0.7685, "top3": 0.7853, "top5": 0.8037, "top10": 0.8176, "top15": 0.8202, "top19": 0.8195},
+    "olmo_topk50": {"top1": 0.5597, "top2": 0.6797, "top3": 0.6987, "top5": 0.7236, "top10": 0.7415, "top15": 0.7445, "top19": 0.7448}
+  },
+  "topk_mean": {"top1": 0.6463, "top2": 0.7153, "top3": 0.7426, "top5": 0.7647, "top10": 0.7781, "top15": 0.7823, "top19": 0.7837},
+  "topk_std": {"top1": 0.0726, "top2": 0.0614, "top3": 0.0571, "top5": 0.0564, "top10": 0.0534, "top15": 0.0529, "top19": 0.0527},
+  "per_category": {
+    "per_cell": {
+      "pythia_nucleus095": {"perplexity": 0.7694, "surprisal": 0.7476, "lexical_diversity": 0.4711, "ngram_entropy": 0.4299, "repetition": 0.4519},
+      "pythia_temp09": {"perplexity": 0.7432, "surprisal": 0.7326, "lexical_diversity": 0.4816, "ngram_entropy": 0.4471, "repetition": 0.4711},
+      "pythia_topk50": {"perplexity": 0.6607, "surprisal": 0.6464, "lexical_diversity": 0.4148, "ngram_entropy": 0.3731, "repetition": 0.383},
+      "gpt2xl_nucleus095": {"perplexity": 0.8229, "surprisal": 0.7927, "lexical_diversity": 0.4451, "ngram_entropy": 0.3703, "repetition": 0.4187},
+      "gpt2xl_temp09": {"perplexity": 0.8458, "surprisal": 0.79995, "lexical_diversity": 0.4636, "ngram_entropy": 0.3993, "repetition": 0.43735},
+      "gpt2xl_topk50": {"perplexity": 0.73445, "surprisal": 0.65465, "lexical_diversity": 0.39725, "ngram_entropy": 0.3021, "repetition": 0.36135},
+      "olmo_nucleus095": {"perplexity": 0.774, "surprisal": 0.7281, "lexical_diversity": 0.5196, "ngram_entropy": 0.4361, "repetition": 0.4936},
+      "olmo_temp09": {"perplexity": 0.8117, "surprisal": 0.7852, "lexical_diversity": 0.5278, "ngram_entropy": 0.469, "repetition": 0.5156},
+      "olmo_topk50": {"perplexity": 0.7342, "surprisal": 0.7038, "lexical_diversity": 0.4276, "ngram_entropy": 0.3245, "repetition": 0.3966}
+    },
+    "mean": {
+      "perplexity": {"mean": 0.7663, "std": 0.0563},
+      "surprisal": {"mean": 0.7323, "std": 0.0565},
+      "lexical_diversity": {"mean": 0.4609, "std": 0.0447},
+      "ngram_entropy": {"mean": 0.3946, "std": 0.0568},
+      "repetition": {"mean": 0.4366, "std": 0.0517}
+    }
+  },
+  "forward_selection": {
+    "pythia_nucleus095": ["var_surprisal","mean_ppl","p75_ppl","rep_2gram","skewness_ppl","type_token_ratio","trigram_entropy","rep_4gram","p90_ppl","mean_surprisal","hapax_ratio","p50_ppl","var_ppl","p25_ppl","p10_ppl","rep_3gram","bigram_entropy","entropy_of_surprisal","kurtosis_ppl"],
+    "pythia_temp09": ["var_surprisal","mean_surprisal","var_ppl","trigram_entropy","type_token_ratio","rep_4gram","p50_ppl","bigram_entropy","hapax_ratio","p75_ppl","p90_ppl","rep_2gram","kurtosis_ppl","p10_ppl","rep_3gram","mean_ppl","entropy_of_surprisal","p25_ppl","skewness_ppl"],
+    "pythia_topk50": ["var_surprisal","p75_ppl","mean_ppl","trigram_entropy","rep_4gram","mean_surprisal","p90_ppl","bigram_entropy","p10_ppl","rep_3gram","type_token_ratio","entropy_of_surprisal","p50_ppl","hapax_ratio","p25_ppl","kurtosis_ppl","rep_2gram","var_ppl","skewness_ppl"],
+    "olmo_nucleus095": ["p90_ppl","p75_ppl","mean_surprisal","rep_4gram","var_ppl","var_surprisal","bigram_entropy","p50_ppl","type_token_ratio","trigram_entropy","p25_ppl","kurtosis_ppl","skewness_ppl","hapax_ratio","entropy_of_surprisal","rep_2gram","p10_ppl","rep_3gram","mean_ppl"],
+    "olmo_temp09": ["p90_ppl","p25_ppl","mean_ppl","var_surprisal","rep_3gram","kurtosis_ppl","p75_ppl","type_token_ratio","entropy_of_surprisal","p10_ppl","p50_ppl","trigram_entropy","bigram_entropy","skewness_ppl","mean_surprisal","hapax_ratio","var_ppl","rep_2gram","rep_4gram"],
+    "olmo_topk50": ["p90_ppl","var_surprisal","mean_ppl","p75_ppl","entropy_of_surprisal","hapax_ratio","p50_ppl","skewness_ppl","bigram_entropy","rep_3gram","p25_ppl","var_ppl","p10_ppl","rep_4gram","mean_surprisal","type_token_ratio","trigram_entropy","kurtosis_ppl","rep_2gram"],
+    "gpt2xl_nucleus095": ["p90_ppl","var_surprisal","mean_ppl","rep_2gram","p75_ppl","p50_ppl","p25_ppl","rep_4gram","type_token_ratio","bigram_entropy","skewness_ppl","kurtosis_ppl","rep_3gram","trigram_entropy","hapax_ratio","mean_surprisal","p10_ppl","var_ppl","entropy_of_surprisal"]
+  },
+  "vif": {
+    "per_feature_mean": {
+      "mean_ppl": 126.79, "var_ppl": 126.72, "skewness_ppl": 78.18, "kurtosis_ppl": 75.89,
+      "p10_ppl": 3.87, "p25_ppl": 12.09, "p50_ppl": 15.53, "p75_ppl": 11.59, "p90_ppl": 7.6,
+      "mean_surprisal": 90.48, "var_surprisal": 38.64, "entropy_of_surprisal": 13.38,
+      "type_token_ratio": 28.28, "hapax_ratio": 4.22,
+      "bigram_entropy": 282.98, "trigram_entropy": 251.96,
+      "rep_2gram": 304.78, "rep_3gram": 472.65, "rep_4gram": 175.5
+    },
+    "n_features_high_vif": 16,
+    "n_features_total": 19,
+    "per_cell_high_vif_count": {
+      "pythia_nucleus095": 14, "pythia_temp09": 16, "pythia_topk50": 15,
+      "olmo_nucleus095": 16, "olmo_temp09": 16, "olmo_topk50": 14,
+      "gpt2xl_nucleus095": 14
+    },
+    "n_cells_available": 7
+  },
+  "pca": {
+    "n_95pct_per_cell": {
+      "pythia_nucleus095": 8, "pythia_temp09": 8, "pythia_topk50": 9,
+      "gpt2xl_nucleus095": 9, "gpt2xl_temp09": 8, "gpt2xl_topk50": 9,
+      "olmo_nucleus095": 7, "olmo_temp09": 7, "olmo_topk50": 8
+    },
+    "n_95pct_mean": 8.1,
+    "n_95pct_range": [7, 9],
+    "merged_all_n_95pct": 9
+  },
+  "metadata": {
+    "experiment": "feat_ablation_v1",
+    "n_cells": 9,
+    "cell_names": ["pythia_nucleus095","pythia_temp09","pythia_topk50","gpt2xl_nucleus095","gpt2xl_temp09","gpt2xl_topk50","olmo_nucleus095","olmo_temp09","olmo_topk50"],
+    "n_features_total": 19,
+    "feature_categories": {
+      "perplexity": ["mean_ppl","var_ppl","skewness_ppl","kurtosis_ppl","p10_ppl","p25_ppl","p50_ppl","p75_ppl","p90_ppl"],
+      "surprisal": ["mean_surprisal","var_surprisal","entropy_of_surprisal"],
+      "lexical_diversity": ["type_token_ratio","hapax_ratio"],
+      "ngram_entropy": ["bigram_entropy","trigram_entropy"],
+      "repetition": ["rep_2gram","rep_3gram","rep_4gram"]
+    },
+    "data_sources": {
+      "topk_curve": "7 from top_k_ablation.json + 2 from topk_ablation.json",
+      "per_category": "7 from per_category_ablation.json + 2 from category_ablation.json",
+      "forward_selection": "7 cells (gpt2xl_temp09/topk50 unavailable)",
+      "vif": "7 cells (gpt2xl_temp09/topk50 unavailable)",
+      "pca": "9 cells from pca_effective_dims.json"
+    }
+  }
+}

@@ -1,0 +1,858 @@
+paper:
+  title: ''
+  version: 9
+  generated_at: '2026-05-21T05:43:35.037166+00:00'
+claims:
+- id: C001
+  location:
+    section: theory
+    paragraph: 0
+    sentence: 0
+  text: test claim
+  type: theoretical
+  evidence:
+  - exp_id: exp-002
+    detail: R2=0.994
+  decisions: []
+  deprecated: true
+- id: C002
+  location:
+    section: theory
+    paragraph: 0
+    sentence: 0
+  text: 'Bias decomposition identity: exact product form delta_s * Delta_tau / (1-2*pi_bar)'
+  type: theoretical
+  evidence:
+  - exp_id: exp-002
+    detail: R2=0.994 K=2, 0.974 K=4
+  decisions: []
+  deprecated: false
+- id: C004
+  location:
+    section: theory
+    paragraph: 0
+    sentence: 0
+  text: Multi-class extension generalizes to K>2 with sum-of-products form
+  type: theoretical
+  evidence:
+  - exp_id: exp-002
+    detail: R2=0.974 for K=4
+  decisions: []
+  deprecated: false
+- id: C007
+  location:
+    section: theory
+    paragraph: 0
+    sentence: 0
+  text: Finite-sample remainder R_n = O_p(n_expert^{-1/2} * kappa(C_s))
+  type: theoretical
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C011
+  location:
+    section: theory
+    paragraph: 0
+    sentence: 0
+  text: Debiasing can increase bias iff |delta_s|/((1-2*pi_bar)*pi_s) > 1
+  type: theoretical
+  evidence:
+  - exp_id: exp-002
+    detail: 50% of 520 configs debiasing hurts
+  decisions: []
+  deprecated: false
+- id: C016
+  location:
+    section: theory
+    paragraph: 0
+    sentence: 0
+  text: R2=0.994 (K=2), R2=0.974 (K=4)
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+    detail: analytic vs mc bias regression
+  decisions: []
+  deprecated: false
+- id: C022
+  location:
+    section: theory
+    paragraph: 0
+    sentence: 0
+  text: 50% of configurations (260/520) show debiasing hurts
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+    detail: excluding delta_c=0 rows
+  decisions: []
+  deprecated: false
+- id: C029
+  location:
+    section: theory
+    paragraph: 0
+    sentence: 0
+  text: Max amplification 2.86x (K=2), 5.9x (K=4 CausalForest)
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+    detail: K=2 synthetic max
+  - exp_id: exp-011
+    detail: K=4 CausalForest max
+  decisions: []
+  deprecated: false
+- id: C030
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: R2=0.994 (K=2), R2=0.974 (K=4) bias identity verification
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+    detail: analytic vs mc bias regression
+  decisions: []
+  deprecated: false
+- id: C032
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 50% of configurations (260/520) global correction worsens bias
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+    detail: debiasing hurts count
+  decisions: []
+  deprecated: false
+- id: C035
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 84.6% of low-pi subgroups show increased bias from global
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+    detail: low-pi subgroup analysis
+  decisions: []
+  deprecated: false
+- id: C039
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Max amplification 2.86x (K=2), 2.41x (K=4) in synthetic DIM
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+    detail: max bias ratio
+  decisions: []
+  deprecated: false
+- id: C044
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'K=2/extreme: EC-HTE |bias|=0.011 vs global 0.059 (5.4x reduction)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    detail: K=2 extreme n=250
+  decisions: []
+  deprecated: false
+- id: C050
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'K=4/extreme: EC-HTE |bias|=0.009 vs global 0.056 (6.2x reduction)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    detail: K=4 extreme n=500
+  decisions: []
+  deprecated: false
+- id: C057
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'K=2/moderate: global 0.009, EC-HTE 0.005, EC-HTE conditional advantage'
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    detail: K=2 moderate n=250
+  decisions: []
+  deprecated: false
+- id: C065
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'TweetEval: global |bias|=0.023 best, EC-HTE 0.027 with higher RMSE 0.225
+    vs 0.124'
+  type: quantitative
+  evidence:
+  - exp_id: exp-003
+    detail: semi-synthetic extreme n=250
+  decisions: []
+  deprecated: false
+- id: C074
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'CausalForest K=4/extreme: EC-HTE Forest |bias|=0.040 vs global 0.191 (4.8x)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-011
+    detail: K=4 extreme n=500
+  decisions: []
+  deprecated: false
+- id: C084
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: CausalForest debiasing-hurts max 5.9x (vs 2.41x for DIM)
+  type: quantitative
+  evidence:
+  - exp_id: exp-011
+    detail: worst subgroup amplification
+  decisions: []
+  deprecated: false
+- id: C095
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: K=4/n=100 EC-HTE Forest RMSE=1.43 (3.5x naive)
+  type: quantitative
+  evidence:
+  - exp_id: exp-011
+    detail: K=4 n=100 RMSE
+  decisions: []
+  deprecated: false
+- id: C107
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Diagnostic AUC=0.833 at subgroup level, r=0.86
+  type: quantitative
+  evidence:
+  - exp_id: exp-005
+    detail: LOO-CV subgroup diagnostic
+  decisions: []
+  deprecated: false
+- id: C120
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Setting-level AUC=0.49 (no better than random)
+  type: quantitative
+  evidence:
+  - exp_id: exp-005
+    detail: setting-level diagnostic
+  decisions: []
+  deprecated: false
+- id: C134
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Crossover K=2/extreme at n=250, K=4/extreme at n=1000, K=2/moderate never
+  type: quantitative
+  evidence:
+  - exp_id: exp-006
+    detail: budget crossover analysis
+  decisions: []
+  deprecated: false
+- id: C149
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: HB beats MLE in 21/24 budget-regime configs, +42.4% RMSE improvement at K=4
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    detail: HB vs MLE comparison
+  decisions: []
+  deprecated: false
+- id: C165
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'DGP C: EC-HTE+PPCI bias 0.007/0.008 vs EC-HTE alone 0.179/0.216 (25-27x)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-007
+    detail: DGP C both errors
+  decisions: []
+  deprecated: false
+- id: C182
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'DGP A: EC-HTE+PPCI identical to EC-HTE (PPCI adds nothing for covariate-only
+    error)'
+  type: quantitative
+  evidence:
+  - exp_id: exp-007
+    detail: DGP A covariate only
+  decisions: []
+  deprecated: false
+- id: C183
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: R-hat < 1.0034 and ESS > 1618 across all Gibbs sampler runs
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    detail: HB convergence diagnostics
+  decisions: []
+  deprecated: false
+- id: C185
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: HB beats stratified MLE in 87.5% (21/24) of configurations
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    detail: HB vs MLE comparison across budget-regime grid
+  decisions: []
+  deprecated: false
+- id: C188
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: <5% RMSE variation under 2x hyperprior perturbation
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    detail: sensitivity analysis
+  decisions: []
+  deprecated: false
+- id: C192
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Plug-in SE approximation valid at n_expert >= 100
+  type: methodological
+  evidence:
+  - exp_id: exp-001
+    detail: CM estimation variance analysis
+  decisions: []
+  deprecated: false
+- id: C197
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Diagnostic AUC = 0.833 at subgroup level via LOO-CV
+  type: quantitative
+  evidence:
+  - exp_id: exp-005
+    detail: diagnostic criterion evaluation
+  decisions: []
+  deprecated: false
+- id: C203
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: EC-HTE+PPCI composition reduces |bias| from 0.179 to below 0.01
+  type: quantitative
+  evidence:
+  - exp_id: exp-007
+    detail: DGP C both errors
+  decisions: []
+  deprecated: false
+- id: C204
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: LLM misclassification rates vary by up to 5x across demographic subgroups
+  type: literature
+  evidence:
+  - exp_id: literature
+    detail: Ashwin et al. 2025
+  decisions: []
+  deprecated: false
+- id: C206
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: R2=0.994 (K=2) and R2=0.974 (K=4) identity verification
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+    detail: analytic vs MC regression
+  decisions: []
+  deprecated: false
+- id: C209
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 50% of configurations global correction worsens bias
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+    detail: 260/520 configs
+  decisions: []
+  deprecated: false
+- id: C213
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Amplification 2.86x (K=2) and 5.9x (K=4 CausalForest)
+  type: quantitative
+  evidence:
+  - exp_id: exp-002
+    detail: K=2 DIM max
+  - exp_id: exp-011
+    detail: K=4 CF max
+  decisions: []
+  deprecated: false
+- id: C218
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: EC-HTE reduces |bias| from 0.059 to 0.011 (K=2 extreme)
+  type: quantitative
+  evidence:
+  - exp_id: exp-001
+    detail: K=2 extreme n=250
+  decisions: []
+  deprecated: false
+- id: C224
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Diagnostic AUC=0.833
+  type: quantitative
+  evidence:
+  - exp_id: exp-005
+    detail: LOO-CV subgroup
+  decisions: []
+  deprecated: false
+- id: C231
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: EC-HTE+PPCI reduces |bias| from 0.179 to 0.007 in dual error
+  type: quantitative
+  evidence:
+  - exp_id: exp-007
+    detail: DGP C
+  decisions: []
+  deprecated: false
+- id: C239
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 520 synthetic configs (100 MC each) + TweetEval N=5000
+  type: methodological
+  evidence:
+  - exp_id: exp-001
+    detail: synthetic grid
+  - exp_id: exp-003
+    detail: TweetEval semi-synthetic
+  decisions: []
+  deprecated: false
+- id: C240
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Misspecified correction can amplify MSE vs ignoring error (classical result)
+  type: positioning
+  evidence:
+  - source: fuller1987measurement, carroll2006measurement
+    type: citation
+  decisions: []
+  deprecated: false
+- id: C242
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'Ashwin et al.: LLM misclassification varies by up to 5x across demographic
+    subgroups'
+  type: positioning
+  evidence:
+  - source: ashwin2025bias
+    type: citation
+  decisions: []
+  deprecated: false
+- id: C245
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: DSL operates at estimand level without cross-subgroup borrowing, strictly
+    higher variance than EC-HTE measurement-model approach
+  type: positioning
+  evidence:
+  - source: egami2024dsl
+    type: citation
+  - source: paper_framing.md
+    type: design_decision
+  decisions:
+  - 'R2-W4: DSL distinction at measurement model vs estimand level'
+  deprecated: false
+- id: C249
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: PPCI corrects outcome-side prediction error, not covariate-side misclassification
+  type: positioning
+  evidence:
+  - source: sui2026ppci
+    type: citation
+  decisions: []
+  deprecated: false
+- id: C254
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Mozer extends PPI to arm-specific ATE correction but not CATE heterogeneity
+  type: positioning
+  evidence:
+  - source: mozer2026ppi
+    type: citation
+  decisions: []
+  deprecated: false
+- id: C260
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'Imai & Yamamoto: treatment variable misclassification is structurally distinct
+    from effect modifier misclassification'
+  type: positioning
+  evidence:
+  - source: imai2010causal
+    type: citation
+  decisions:
+  - 'D010-4: dedicated Imai & Yamamoto paragraph'
+  deprecated: false
+- id: C267
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: No existing method corrects bias when the mismeasured variable is the effect
+    modifier indexing the CATE function
+  type: gap
+  evidence:
+  - source: literature_review
+    type: argument
+  decisions: []
+  deprecated: false
+- id: C268
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Global correction introduces bias proportional to Δπ×Δτ (exact population-level
+    identity, R²=0.994 for K=2)
+  type: quantitative
+  evidence:
+  - source: exp-002
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C270
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Global correction worsens subgroup CATE bias in 50% of configurations
+  type: quantitative
+  evidence:
+  - source: exp-002
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C273
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Amplification up to 2.86× (K=2 DIM) and 5.9× (K=4 CausalForest)
+  type: quantitative
+  evidence:
+  - source: exp-002
+    type: experiment
+  - source: exp-011
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C277
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: EC-HTE reduces |bias| from 0.059 to 0.011 under extreme heterogeneity (K=2)
+  type: quantitative
+  evidence:
+  - source: exp-003
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C282
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Diagnostic criterion AUC=0.833
+  type: quantitative
+  evidence:
+  - source: exp-005
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C288
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: EC-HTE+PPCI composition reduces |bias| from 0.179 to 0.007
+  type: quantitative
+  evidence:
+  - source: exp-007
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C295
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: EC-HTE advantage is conditional on sufficient error heterogeneity
+  type: qualitative
+  evidence:
+  - source: exp-006
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C303
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Validation: 520 synthetic configs (100 MC each) + semi-synthetic TweetEval
+    (N=5000)'
+  type: scope
+  evidence:
+  - source: exp-001,exp-002,exp-003
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C304
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Global debiasing worsens subgroup CATE in 50% of configurations
+  type: quantitative
+  evidence:
+  - source: exp-002
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C306
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Diagnostic AUC=0.833
+  type: quantitative
+  evidence:
+  - source: exp-005
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C309
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: EC-HTE+PPCI reduces |bias| from 0.179 to 0.007
+  type: quantitative
+  evidence:
+  - source: exp-007
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C313
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Pilot n_expert ≥ 50 suffices for diagnostic
+  type: quantitative
+  evidence:
+  - source: exp-005
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C318
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'EC-HTE crossover: n_expert ≥ 250 (K=2), ≥ 1000 (K=4)'
+  type: quantitative
+  evidence:
+  - source: exp-006
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C319
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: EC-HTE requires n_expert/K ≥ 25 per subgroup for stable HB shrinkage
+  type: quantitative
+  evidence:
+  - source: exp-003
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C321
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: At n_expert ≥ 1000, HB and MLE converge to within 0.5%
+  type: quantitative
+  evidence:
+  - source: exp-003
+    type: experiment
+  decisions: []
+  deprecated: false
+- id: C324
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: 'K=4/extreme/n≤100: EC-HTE RMSE reaches 3.5× naive'
+  type: quantitative
+  evidence:
+  - source: exp-011
+    type: experiment
+  decisions:
+  - 'D009: RMSE tradeoff disclosure'
+  deprecated: false
+- id: C328
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Plug-in SE does not propagate CM estimation uncertainty
+  type: methodological
+  evidence:
+  - source: method_design
+    type: design_decision
+  decisions:
+  - 'D010: plug-in SE limitation must be stated'
+  deprecated: false
+- id: C333
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: 'Symmetric misclassification: empirical validation under asymmetry is future
+    work'
+  type: scope
+  evidence:
+  - source: experiment_design
+    type: design_decision
+  decisions:
+  - D009/RR-W6
+  deprecated: false
+tables:
+- id: tab1_main_results
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: K=2/extreme/n=250/HB EC-HTE
+    col: '|Bias|'
+    value: '0.011'
+    source:
+      exp_id: exp-001
+      metric: bias_abs_avg
+  - row: K=4/extreme/n=500/HB EC-HTE
+    col: '|Bias|'
+    value: '0.009'
+    source:
+      exp_id: exp-001
+      metric: bias_abs_avg
+  - row: K=4/extreme/n=500/EC-HTE Forest
+    col: '|Bias|'
+    value: '0.040'
+    source:
+      exp_id: exp-011
+      metric: bias_abs_avg
+  - row: TweetEval/extreme/n=250/HB EC-HTE
+    col: '|Bias|'
+    value: '0.027'
+    source:
+      exp_id: exp-003
+      metric: bias_abs_avg
+  deprecated: false
+- id: tab2_ppci
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: DGP_C/EC-HTE+PPCI
+    col: '|Bias|_z0'
+    value: '0.007'
+    source:
+      exp_id: exp-007
+      metric: bias_z0
+  - row: DGP_C/EC-HTE+PPCI
+    col: '|Bias|_z1'
+    value: '0.008'
+    source:
+      exp_id: exp-007
+      metric: bias_z1
+  deprecated: false
+figures: []
+_completeness:
+  coverage: 62/63
+  claims: 63
+  tables: 2
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 62
+    tier3: 1
+    tierX: 0
+  last_checked: '2026-05-23T11:08:12.571120+00:00'

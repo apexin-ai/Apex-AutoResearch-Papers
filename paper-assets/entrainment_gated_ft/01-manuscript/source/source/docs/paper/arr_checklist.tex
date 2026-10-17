@@ -1,0 +1,85 @@
+\section*{Responsible NLP Research Checklist}
+
+\subsection*{A. For every submission:}
+
+\begin{itemize}
+\item[\checkmark] \textbf{A1.} Did you describe the limitations of your work?
+
+\textit{Yes. The Limitations section (after \S5) discusses statistical power constraints ($n = 5$ attention ratios), per-example scope (four benchmarks, two supplementary), scale coverage (two scale points), architecture coverage (five architectures from one model zoo---three primary at two scales, two additional at 340M---single training run per configuration), observational design (descriptive, not causal), and pre-training-only evaluation.}
+
+\item[\checkmark] \textbf{A2.} Did you discuss any potential risks of your work?
+
+\textit{Yes. The Ethics Statement notes that this work analyzes existing public models and introduces no new risks. Per-example behavioral differences may inform practitioners about limitations of aggregate benchmarks.}
+
+\item[\checkmark] \textbf{A3.} Do all claims in the paper match the paper's contributions and scope?
+
+\textit{Yes. Claims are scoped to five architectures (three primary, two extended at 340M) and four benchmarks spanning retrieval, reasoning, and mixed tasks. We explicitly note that Bonferroni-adjusted $p = .170$ does not reach conventional significance, that the scale comparison is a preliminary observation from two data points, and that per-example multiplicity is characterized as a task-dependent variation ($\alpha = 0.14$--$0.30$) rather than claimed as universal. BoolQ and WinoGrande are reported as supplementary in the Appendix due to structural limitations of near-chance binary/two-choice classification on Jaccard significance.}
+
+\item[\checkmark] \textbf{A4.} Have you used AI writing assistants when working on this paper?
+
+\textit{Yes. AI writing assistants were used for drafting and editing. All scientific content, claims, and analyses were verified by the authors.}
+\end{itemize}
+
+\subsection*{B. Did you use or create scientific artifacts?}
+
+\textit{Yes. We use existing artifacts (pretrained models, evaluation framework).}
+
+\begin{itemize}
+\item[\checkmark] \textbf{B1.} Did you cite the creators of artifacts you used?
+
+\textit{Yes. We cite the model zoo \citep{wang2025hybrid}, the evaluation framework \citep{gao2024lmeval}, and all individual architecture papers (GatedDeltaNet, RetNet, HGRN2, GLA, DeltaNet).}
+
+\item[\checkmark] \textbf{B2.} Did you discuss the license or terms for use and/or distribution of any artifacts?
+
+\textit{The model zoo of \citet{wang2025hybrid} is publicly released. The lm-evaluation-harness \citep{gao2024lmeval} is open-source (MIT license). We do not release new artifacts.}
+
+\item[\checkmark] \textbf{B3.} Did you discuss if your use of existing artifact(s) was consistent with their intended use?
+
+\textit{Yes. The model zoo was designed for systematic comparison of hybrid architectures, which is exactly our use case. The evaluation harness was used with default prompts for standard benchmarks.}
+
+\item[N/A] \textbf{B4.} Did you discuss the steps taken to check whether the data contains information that names or uniquely identifies individual people or offensive content?
+
+\textit{Not applicable. We use established NLP benchmarks (LAMBADA, ARC-Easy, etc.) that have been widely used in prior work. No new data was collected.}
+
+\item[N/A] \textbf{B5.} Did you provide documentation of the artifacts?
+
+\textit{Not applicable. We do not release new artifacts.}
+
+\item[N/A] \textbf{B6.} Did you discuss whether and how consent was obtained from people whose existing data you're using/curating?
+
+\textit{Not applicable. All benchmarks used are established public datasets.}
+\end{itemize}
+
+\subsection*{C. Did you run computational experiments?}
+
+\textit{Yes. We ran inference-only evaluation (no training).}
+
+\begin{itemize}
+\item[\checkmark] \textbf{C1.} Did you report the number of parameters in the models used, the total computational budget, and computing infrastructure?
+
+\textit{Yes. We report model sizes (340M and 1.3B parameters) and the number of configurations evaluated (30 primary configurations from three architectures $\times$ five attention ratios $\times$ two scales, plus two additional architectures at 340M and Transformer baselines, across 10 benchmarks). All evaluation was inference-only using the pretrained checkpoints of \citet{wang2025hybrid}; no model training was performed. Inference was conducted on a single NVIDIA RTX PRO 6000 GPU with a total computational budget of approximately 5 GPU-hours.}
+
+\item[\checkmark] \textbf{C2.} Did you discuss the experimental setup, including hyperparameter search and best model selection?
+
+\textit{Yes. \S3 describes the model zoo, task taxonomy, and all metrics. All models use default lm-evaluation-harness settings with no hyperparameter tuning or model selection.}
+
+\item[\checkmark] \textbf{C3.} Did you report descriptive statistics about your results?
+
+\textit{Yes. We report exact permutation tests, BCa bootstrap confidence intervals, Bonferroni and Benjamini--Hochberg corrections, effect sizes (Cohen's $d$, Jaccard similarity, normalized ES), and the ambiguity metric $\alpha$ of \citet{marx2020predictive}.}
+\end{itemize}
+
+\subsection*{D. Did you use human annotators?}
+
+\textit{No.}
+
+\begin{itemize}
+\item[N/A] \textbf{D1--D5.} \textit{Not applicable. No human annotation was involved in this study.}
+\end{itemize}
+
+\subsection*{E. Did you use AI assistants?}
+
+\begin{itemize}
+\item[\checkmark] \textbf{E1.} Did you report the use of AI assistants?
+
+\textit{Yes; see A4 above.}
+\end{itemize}

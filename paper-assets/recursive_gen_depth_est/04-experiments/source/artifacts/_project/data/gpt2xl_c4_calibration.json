@@ -1,0 +1,1 @@
+Results saved at gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/gpt2xl_c4_calibration.json. GPT-2 XL RF (CV=0.8412) on C4 5000 passages: d0=77.62%, d1=9.04%, d2=3.72%, d3=9.62%. WikiText: 99.27% d0. Cross-model consistent with Pythia RF (79.76% d0).

@@ -1,0 +1,150 @@
+{
+  "vif": {
+    "per_condition": {
+      "mmluxprompt_injection": 1.9922828716344863,
+      "mmluxsycophancy": 1.2348778597481598,
+      "mmluxscore_manipulation": 3.0200892200294214,
+      "mmluxverbosity_bias": 1.245632953930677,
+      "mmluxposition_bias": 1.7789895566524156,
+      "mmluxauthority_bias": 1.6270015811735068,
+      "arc_challengexprompt_injection": 3.382809502843887,
+      "arc_challengexsycophancy": 2.5401914648440487,
+      "arc_challengexscore_manipulation": 7.027106504144041,
+      "arc_challengexverbosity_bias": 3.2006991933068116,
+      "arc_challengexposition_bias": 6.531761435887279,
+      "arc_challengexauthority_bias": 2.15952217426245
+    },
+    "mean": 2.978413693204765,
+    "min": 1.2348778597481598,
+    "max": 7.027106504144041
+  },
+  "partial_correlation": {
+    "per_condition": {
+      "mmluxprompt_injection": {
+        "eta_given_keff": {
+          "r": 0.6006430053561911,
+          "p": 5.948303485708445e-46
+        },
+        "keff_given_eta": {
+          "r": 0.29426750455007006,
+          "p": 1.5339005143126758e-10
+        }
+      },
+      "mmluxsycophancy": {
+        "eta_given_keff": {
+          "r": 0.47268697014852207,
+          "p": 1.0503947045842536e-26
+        },
+        "keff_given_eta": {
+          "r": 0.17967977347637146,
+          "p": 0.00011641054951380774
+        }
+      },
+      "mmluxscore_manipulation": {
+        "eta_given_keff": {
+          "r": 0.4031045846121381,
+          "p": 3.313541706728768e-19
+        },
+        "keff_given_eta": {
+          "r": 0.02419821908889673,
+          "p": 0.6066779619512037
+        }
+      },
+      "mmluxverbosity_bias": {
+        "eta_given_keff": {
+          "r": 0.5679290072305814,
+          "p": 3.2511422953072743e-40
+        },
+        "keff_given_eta": {
+          "r": 0.10449404187304313,
+          "p": 0.025820035552110876
+        }
+      },
+      "mmluxposition_bias": {
+        "eta_given_keff": {
+          "r": 0.3389783649505974,
+          "p": 1.0702251290259873e-13
+        },
+        "keff_given_eta": {
+          "r": 0.08925773879201966,
+          "p": 0.05710657155316638
+        }
+      },
+      "mmluxauthority_bias": {
+        "eta_given_keff": {
+          "r": 0.30457521888880185,
+          "p": 3.1951683351036006e-11
+        },
+        "keff_given_eta": {
+          "r": 0.00878666105673889,
+          "p": 0.8517281125283858
+        }
+      },
+      "arc_challengexprompt_injection": {
+        "eta_given_keff": {
+          "r": 0.15687171196788133,
+          "p": 0.0007856675272609023
+        },
+        "keff_given_eta": {
+          "r": 0.2099745338932051,
+          "p": 6.2709170946933066e-06
+        }
+      },
+      "arc_challengexsycophancy": {
+        "eta_given_keff": {
+          "r": 0.3147866459478705,
+          "p": 6.3477656553458046e-12
+        },
+        "keff_given_eta": {
+          "r": -0.1280405223139739,
+          "p": 0.006238965937718077
+        }
+      },
+      "arc_challengexscore_manipulation": {
+        "eta_given_keff": {
+          "r": 0.09523923469831218,
+          "p": 0.04230048560433311
+        },
+        "keff_given_eta": {
+          "r": 0.10700141564472271,
+          "p": 0.022448230813187267
+        }
+      },
+      "arc_challengexverbosity_bias": {
+        "eta_given_keff": {
+          "r": 0.21246802933692216,
+          "p": 4.832417779102736e-06
+        },
+        "keff_given_eta": {
+          "r": 0.0918067875647633,
+          "p": 0.05034116384665419
+        }
+      },
+      "arc_challengexposition_bias": {
+        "eta_given_keff": {
+          "r": -0.005367505898936388,
+          "p": 0.9090961386202184
+        },
+        "keff_given_eta": {
+          "r": 0.2688316314679899,
+          "p": 5.670528267860574e-09
+        }
+      },
+      "arc_challengexauthority_bias": {
+        "eta_given_keff": {
+          "r": 0.19273890785273612,
+          "p": 3.490935387649329e-05
+        },
+        "keff_given_eta": {
+          "r": 0.14472464225743037,
+          "p": 0.0019687969177468985
+        }
+      }
+    },
+    "summary": {
+      "eta_mean_partial_r": 0.30455451459096816,
+      "keff_mean_partial_r": 0.11624853561260645,
+      "eta_dominates": "9/12"
+    }
+  }
+}

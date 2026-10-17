@@ -1,0 +1,55 @@
+\section{Threat Model and Problem Formulation}
+\label{sec:threat_model}
+
+\subsection{Panel Composition and Metrics}
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+\textbf{Attack} & \textbf{Category} & \textbf{Mechanism} & \textbf{Target} \\
+\midrule
+Prompt inj.    & Targeted    & Override instruct. & Decision \\
+Score manip.   & Targeted    & Numeric anchoring  & Score \\
+Sycophancy     & Shared bias & Flattery/agreement & Preference \\
+Verbosity      & Shared bias & Content padding    & Attention \\
+Position bias  & Shared bias & Response reorder   & Position \\
+Authority bias & Shared bias & Credential appeal  & Trust \\
+\bottomrule
+\end{tabular}}
+\caption{Attack taxonomy. Targeted attacks exploit individual judge weaknesses; shared-bias attacks affect most judges similarly (\S\ref{sec:experiments}).}
+\label{tab:attack_taxonomy}
+\end{table}
+
+A \emph{panel} $\mathcal{P} = \{J_1, \ldots, J_K\}$ consists of $K$ judges (with $K$ odd) that evaluate a candidate text via majority vote: the text is accepted if at least $t = \lceil K/2 \rceil$ judges approve it. Under an attack $a$, each judge $J_j$ is compromised with marginal failure probability $\eta_j(a) = \Pr(X_j^a = 1)$, where $X_j^a \in \{0,1\}$ denotes the failure indicator. We write $\eta_{\max} = \max_j \eta_j$ for the vulnerability of the weakest judge. The \emph{panel attack success rate} is $\mathrm{ASR}(\mathcal{P}, a) = \Pr\!\bigl(\sum_{j=1}^K X_j^a \geq t\bigr)$.
+
+To quantify diversity, we define a \emph{pairwise-MI diversity index} $K_{\mathrm{eff}}$ from mutual information (MI) among judges:
+\begin{equation}
+\label{eq:keff}
+K_{\mathrm{eff}} = \frac{1}{K}\sum_{i=1}^{K} \Bigl[1 + \sum_{j \neq i} \exp\!\bigl(-2 \cdot \mathrm{MI}(i,j)\bigr)\Bigr].
+\end{equation}
+This formulation aggregates pairwise MI directly without matrix decomposition, and is more stable for small panels ($K{=}3$). It ranges from $K_{\mathrm{eff}} \approx K$ when judges are nearly independent ($\mathrm{MI} \to 0$) to $K_{\mathrm{eff}} \approx 1$ when judges are highly correlated ($\mathrm{MI} \to \infty$). Motivated by information-theoretic redundancy reduction, one can informally expect joint vulnerability to scale as $\eta_{\mathrm{joint}} \sim K_{\mathrm{eff}} \cdot \eta_{\max}$: independent channels multiply failure probabilities, so fewer effective channels (lower $K_{\mathrm{eff}}$) should reduce panel vulnerability. This motivating relationship assumes non-adaptive faults and independent channels; it serves as intuition rather than a formal bound.
+
+\subsection{Adversary Model}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_keff_eta_scatter_main.pdf}
+\caption{$K_{\mathrm{eff}}$--$\eta_{\max}$ scatter at $K{=}3$ (455 panels). The $r{=}0.70$ correlation reflects structural coupling between diversity and capability in the current LLM ecosystem.}
+\label{fig:keff_eta_scatter_main}
+\end{figure}
+
+\begin{definition}[Adaptive Adversary]
+\label{def:adversary}
+A \emph{full-knowledge (oracle) adaptive adversary} has complete knowledge of the panel composition $\mathcal{P}$, the per-judge vulnerability profiles $\{\eta_j(\cdot)\}_{j=1}^K$, and the inter-judge correlation structure. It selects the attack $a^* = \arg\max_{a \in \mathcal{A}} \mathrm{ASR}(\mathcal{P}, a)$ to maximize the panel ASR, yielding $\mathrm{ASR}^*(\mathcal{P}) = \sup_{a \in \mathcal{A}} \mathrm{ASR}(\mathcal{P}, a)$. This oracle model represents an \emph{upper bound} on adversarial capability; realistic adversaries with partial knowledge of panel composition would achieve lower ASR.
+\end{definition}
+
+This departs from BFT models~\cite{lamport1982byzantine,castro1999practical}, which tolerate $f < n/3$ faulty nodes but do not model adversaries that strategically target system structure. An adaptive adversary concentrates on the weakest link~\cite{schneier2000secrets}, suggesting a \emph{reversal}: under random faults, higher $K_{\mathrm{eff}}$ reduces joint failure probability, but under adaptive adversaries, diverse judges may present a wider attack surface.
+
+\paragraph{Weakest-Link Monotonicity.}
+\label{thm:monotonicity}
+Replacing any panel member with a pointwise more vulnerable judge can only increase $\mathrm{ASR}^*(\mathcal{P})$, for any adversary including adaptive ones (formal statement and proof in Appendix~\ref{app:proof}). This follows directly from the adversary model and is not a novel theoretical contribution. Stochastic dominance holds for 58\% of judge pairs (61/105), concentrating in cross-tier comparisons (79\% dominant) versus within-tier (28\%), predicting $\beta_2 > 0$ in Equation~\ref{eq:regression}. The relative importance of $\eta_{\max}$ versus $K_{\mathrm{eff}}$ depends on $K$: at small $K$, one weak judge flips the majority; at larger $K$, the adversary must compromise multiple judges (\S\ref{sec:experiments}).
+
+

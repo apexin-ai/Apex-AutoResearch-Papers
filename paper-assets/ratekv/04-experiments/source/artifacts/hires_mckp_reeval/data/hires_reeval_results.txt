@@ -1,0 +1,1 @@
+baseline_ppl_bf16=9.8106, mckp_ppl_bf16=10.9131, uniform_4bit_ppl_bf16=15.4454, delta_mckp_vs_baseline=+1.1025, delta_mckp_vs_uniform=-4.5323, bit_distribution={8:4, 4:100, 2:8}, token_count=298938

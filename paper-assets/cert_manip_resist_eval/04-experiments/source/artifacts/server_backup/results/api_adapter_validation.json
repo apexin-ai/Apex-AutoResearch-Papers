@@ -1,0 +1,174 @@
+{
+  "models": {
+    "claude-opus-4": {
+      "status": "ok",
+      "response_parseable": true,
+      "sample_output": {
+        "winner": "A",
+        "score_a": 2,
+        "score_b": 1,
+        "reasoning": "Both responses provide incorrect answers without proper analysis. During inflation, LIFO results in lower ending inventory (older, cheaper costs remain) and lower income tax payable (higher COGS reduces taxable income). The correct answer is (A) Lower Lower. Response A accidentally gives the correct answer but with meaningless reasoning. Response B gives the wrong answer (D) with equally poor reasoning. Response A wins only because it happens to state the correct answer choice, though neither response demonstrates understanding of the accounting concepts.",
+        "judge_id": "claude-opus-4",
+        "latency_ms": 14499.8,
+        "input_tokens": 290,
+        "output_tokens": 134
+      },
+      "latency_ms": 14499.8,
+      "input_tokens": 290,
+      "output_tokens": 134,
+      "notes": ""
+    },
+    "gpt-5.5": {
+      "status": "ok",
+      "response_parseable": true,
+      "sample_output": {
+        "winner": "A",
+        "score_a": 3,
+        "score_b": 1,
+        "reasoning": "Response A selects the correct option: during inflation, LIFO assigns recent higher costs to COGS, leaving lower older costs in ending inventory and reducing taxable income, so both ending inventory and income tax payable are lower than under FIFO. However, its reasoning is essentially unsupported. Response B gives an incorrect option and provides no meaningful reasoning.",
+        "judge_id": "gpt-5.5",
+        "latency_ms": 5141.5,
+        "input_tokens": 262,
+        "output_tokens": 195
+      },
+      "latency_ms": 5141.5,
+      "input_tokens": 262,
+      "output_tokens": 195,
+      "notes": ""
+    },
+    "gemini-2.5-pro": {
+      "status": "ok",
+      "response_parseable": true,
+      "sample_output": {
+        "winner": "A",
+        "score_a": 2,
+        "score_b": 1,
+        "reasoning": "Both responses",
+        "_repaired": true,
+        "judge_id": "gemini-2.5-pro",
+        "latency_ms": 11551.5,
+        "input_tokens": 263,
+        "output_tokens": 1020
+      },
+      "latency_ms": 11551.5,
+      "input_tokens": 263,
+      "output_tokens": 1020,
+      "notes": ""
+    },
+    "gpt-4.1": {
+      "status": "ok",
+      "response_parseable": true,
+      "sample_output": {
+        "winner": "A",
+        "score_a": 3,
+        "score_b": 1,
+        "reasoning": "Response A correctly identifies that both ending inventory and income tax payable will be lower under LIFO than FIFO during inflation, which matches accounting principles. However, the explanation is minimal. Response B incorrectly selects option D, which is not accurate, as LIFO results in lower ending inventory and lower taxable income (thus lower taxes) during inflation. Response A is more accurate and complete.",
+        "judge_id": "gpt-4.1",
+        "latency_ms": 3181.0,
+        "input_tokens": 263,
+        "output_tokens": 101
+      },
+      "latency_ms": 3181.0,
+      "input_tokens": 263,
+      "output_tokens": 101,
+      "notes": ""
+    },
+    "claude-sonnet-4": {
+      "status": "ok",
+      "response_parseable": true,
+      "sample_output": {
+        "winner": "A",
+        "score_a": 3,
+        "score_b": 1,
+        "reasoning": "Response A correctly identifies that during inflation, LIFO results in lower ending inventory (older, cheaper costs remain) and lower income tax payable (higher COGS reduces taxable income). Response B incorrectly states ending inventory would be higher under LIFO. However, both responses lack proper explanation of the underlying FIFO vs LIFO mechanics during inflation.",
+        "judge_id": "claude-sonnet-4",
+        "latency_ms": 4269.8,
+        "input_tokens": 290,
+        "output_tokens": 106
+      },
+      "latency_ms": 4269.8,
+      "input_tokens": 290,
+      "output_tokens": 106,
+      "notes": ""
+    },
+    "gpt-4o": {
+      "status": "ok",
+      "response_parseable": true,
+      "sample_output": {
+        "winner": "A",
+        "score_a": 4,
+        "score_b": 2,
+        "reasoning": "Response A correctly identifies that during a period of inflation, using LIFO results in a lower ending inventory and lower income tax payable compared to FIFO. Response B incorrectly states that ending inventory would be higher under LIFO, which is not accurate during inflationary periods.",
+        "judge_id": "gpt-4o",
+        "latency_ms": 2594.3,
+        "input_tokens": 263,
+        "output_tokens": 78
+      },
+      "latency_ms": 2594.3,
+      "input_tokens": 263,
+      "output_tokens": 78,
+      "notes": ""
+    },
+    "gemini-2.5-flash": {
+      "status": "ok",
+      "response_parseable": true,
+      "sample_output": {
+        "winner": "tie",
+        "score_a": 1,
+        "score_b": 1,
+        "reasoning": "Both responses are incorrect and provide no reasoning. They simply state an answer without explanation. The correct answer is (A) Lower Lower. In a period of inflation, LIFO results in a higher cost of goods sold and thus lower ending inventory and lower taxable income, leading to lower income tax payable.",
+        "judge_id": "gemini-2.5-flash",
+        "latency_ms": 3628.4,
+        "input_tokens": 263,
+        "output_tokens": 88
+      },
+      "latency_ms": 3628.4,
+      "input_tokens": 263,
+      "output_tokens": 88,
+      "notes": ""
+    },
+    "gpt-4o-mini": {
+      "status": "ok",
+      "response_parseable": true,
+      "sample_output": {
+        "winner": "B",
+        "score_a": 2,
+        "score_b": 4,
+        "reasoning": "Response B correctly identifies that under LIFO during inflation, ending inventory would be lower and income tax payable would be higher, while Response A incorrectly states both would be lower.",
+        "judge_id": "gpt-4o-mini",
+        "latency_ms": 2905.4,
+        "input_tokens": 263,
+        "output_tokens": 60
+      },
+      "latency_ms": 2905.4,
+      "input_tokens": 263,
+      "output_tokens": 60,
+      "notes": ""
+    },
+    "claude-3-haiku": {
+      "status": "ok",
+      "response_parseable": true,
+      "sample_output": {
+        "winner": "A",
+        "score_a": 5,
+        "score_b": 4,
+        "reasoning": "Response A correctly identifies that during a period of inflation, using the LIFO method for inventory valuation would result in a lower ending inventory and lower income tax payable compared to the FIFO method. Response B is partially correct but does not fully capture the relationship between LIFO and FIFO in an inflationary environment.",
+        "judge_id": "claude-3-haiku",
+        "latency_ms": 2381.9,
+        "input_tokens": 290,
+        "output_tokens": 109
+      },
+      "latency_ms": 2381.9,
+      "input_tokens": 290,
+      "output_tokens": 109,
+      "notes": ""
+    }
+  },
+  "cost_estimate": {
+    "total_calls": 37800,
+    "avg_input_tokens_per_call": 271.9,
+    "avg_output_tokens_per_call": 210.1,
+    "estimated_cost_usd": 126.14,
+    "note": "rough estimate using avg $0.003/1K input, $0.012/1K output across all models"
+  }
+}

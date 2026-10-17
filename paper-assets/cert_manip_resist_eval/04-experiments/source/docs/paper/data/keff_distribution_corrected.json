@@ -1,0 +1,33 @@
+{
+  "formula": "empirical_keff_from_rho: K - (1/K) * sum(rho_ij^2), rho from MI via Gaussian copula, averaged across mmlu & arc_challenge",
+  "K3": {
+    "n_panels": 455,
+    "mean": 2.1757,
+    "sd": 0.3038,
+    "min": 1.4705,
+    "max": 2.7991,
+    "median": 2.1791,
+    "Q1": 1.9149,
+    "Q3": 2.4375
+  },
+  "K5": {
+    "n_panels": 3003,
+    "mean": 3.3514,
+    "sd": 0.4213,
+    "min": 2.1628,
+    "max": 4.2963,
+    "median": 3.3857,
+    "Q1": 3.0621,
+    "Q3": 3.6826
+  },
+  "K7": {
+    "n_panels": 6435,
+    "mean": 4.5271,
+    "sd": 0.4746,
+    "min": 2.9749,
+    "max": 5.5453,
+    "median": 4.5792,
+    "Q1": 4.2105,
+    "Q3": 4.8824
+  }
+}

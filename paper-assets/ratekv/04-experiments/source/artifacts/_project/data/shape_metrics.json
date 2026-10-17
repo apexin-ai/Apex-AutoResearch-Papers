@@ -1,0 +1,62 @@
+[
+  {
+    "model": "Qwen2.5-7B",
+    "n_heads": 112,
+    "n_top5": 5,
+    "top5_concentration": 0.6104,
+    "top1_share": 0.3461,
+    "top1_top5_ratio": 0.567,
+    "top1_top2_ratio": 3.1741,
+    "cv": 3.8752,
+    "gini": 0.7065,
+    "top3_deltas": [6.738795, 2.123065, 1.310489]
+  },
+  {
+    "model": "Yi-1.5-9B",
+    "n_heads": 192,
+    "n_top5": 9,
+    "top5_concentration": 0.7139,
+    "top1_share": 0.6434,
+    "top1_top5_ratio": 0.9012,
+    "top1_top2_ratio": 23.721,
+    "cv": 8.8759,
+    "gini": 0.7772,
+    "top3_deltas": [13.123636, 0.55325, 0.229302]
+  },
+  {
+    "model": "Llama-3.1-8B",
+    "n_heads": 256,
+    "n_top5": 12,
+    "top5_concentration": 0.3387,
+    "top1_share": 0.2418,
+    "top1_top5_ratio": 0.7139,
+    "top1_top2_ratio": 21.7098,
+    "cv": 3.8343,
+    "gini": 0.3688,
+    "top3_deltas": [11.982141, 0.551924, 0.551924]
+  },
+  {
+    "model": "Mistral-7B-v0.3",
+    "n_heads": 256,
+    "n_top5": 12,
+    "top5_concentration": 0.22,
+    "top1_share": 0.0401,
+    "top1_top5_ratio": 0.182,
+    "top1_top2_ratio": 1.8655,
+    "cv": 1.0994,
+    "gini": 0.4941,
+    "top3_deltas": [0.215991, 0.115782, 0.115782]
+  },
+  {
+    "model": "Gemma-2-9B",
+    "n_heads": 336,
+    "n_top5": 16,
+    "top5_concentration": 0.2299,
+    "top1_share": 0.0404,
+    "top1_top5_ratio": 0.1757,
+    "top1_top2_ratio": 1.5213,
+    "cv": 1.2344,
+    "gini": 0.5305,
+    "top3_deltas": [0.215958, 0.141953, 0.089217]
+  }
+]

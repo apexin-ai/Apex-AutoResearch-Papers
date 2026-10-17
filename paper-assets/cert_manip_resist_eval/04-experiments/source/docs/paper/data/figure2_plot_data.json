@@ -1,0 +1,23 @@
+{
+  "figure_type": "regime_transition_crossing",
+  "x_axis": "K (panel size)",
+  "y_axis": "Number of FDR-significant conditions (out of 12)",
+  "method": "Wild cluster bootstrap, B=9999, Rademacher, max-p, BH FDR 0.05",
+  "data": {
+    "K_values": [3, 5, 7],
+    "eta_max_sig": [3, 0, 0],
+    "keff_sig": [4, 10, 9],
+    "old_eta_max_sig": [5, 0, 0],
+    "old_keff_sig": [1, 7, 5]
+  },
+  "annotations": {
+    "crossing_point": "K=3 (V2): K_eff already exceeds eta_max (4 vs 3)",
+    "old_crossing_point": "K~4 (V1): K_eff overtook eta_max between K=3 and K=5",
+    "note": "V2 corrected data shows regime transition occurs earlier — K_eff dominates from K=3 onward",
+    "v1_v2_diff": {
+      "K3": "eta_max: 5→3 (-2), K_eff: 1→4 (+3) — crossing moved to K=3",
+      "K5": "eta_max: 0→0 (same), K_eff: 7→10 (+3)",
+      "K7": "eta_max: 0→0 (same), K_eff: 5→9 (+4)"
+    }
+  }
+}

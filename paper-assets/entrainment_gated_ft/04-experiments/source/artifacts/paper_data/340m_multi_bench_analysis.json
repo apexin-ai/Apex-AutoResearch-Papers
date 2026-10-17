@@ -1,0 +1,135 @@
+{
+  "scale_comparison": {
+    "hellaswag": {
+      "340M_alpha_all": 0.333798,
+      "1.3B_alpha_all": 0.30233,
+      "delta_alpha_all": 0.031468,
+      "340M_alpha_pure": 0.166799,
+      "1.3B_alpha_pure": 0.148178,
+      "delta_alpha_pure": 0.018621,
+      "340M_convergence_rho": 0.4,
+      "340M_convergence_p": 0.5167,
+      "1.3B_convergence_rho": 0.4,
+      "1.3B_convergence_p": 0.5167,
+      "340M_mean_J_helped": 0.0841,
+      "1.3B_mean_J_helped": 0.0949,
+      "340M_mean_J_hurt": 0.0828,
+      "1.3B_mean_J_hurt": 0.0851
+    },
+    "piqa": {
+      "340M_alpha_all": 0.366159,
+      "1.3B_alpha_all": 0.277476,
+      "delta_alpha_all": 0.088683,
+      "340M_alpha_pure": 0.181175,
+      "1.3B_alpha_pure": 0.14309,
+      "delta_alpha_pure": 0.038085,
+      "340M_convergence_rho": 0.3,
+      "340M_convergence_p": 0.6833,
+      "1.3B_convergence_rho": -0.5,
+      "1.3B_convergence_p": 0.45,
+      "340M_mean_J_helped": 0.09,
+      "1.3B_mean_J_helped": 0.0911,
+      "340M_mean_J_hurt": 0.0847,
+      "1.3B_mean_J_hurt": 0.0935
+    },
+    "arc_easy": {
+      "340M_alpha_all": 0.564394,
+      "1.3B_alpha_all": 0.434343,
+      "delta_alpha_all": 0.130051,
+      "340M_alpha_pure": 0.288721,
+      "1.3B_alpha_pure": 0.204545,
+      "delta_alpha_pure": 0.084176,
+      "340M_convergence_rho": -0.1,
+      "340M_convergence_p": 0.95,
+      "1.3B_convergence_rho": 0.3,
+      "1.3B_convergence_p": 0.6833,
+      "340M_mean_J_helped": 0.0979,
+      "1.3B_mean_J_helped": 0.0922,
+      "340M_mean_J_hurt": 0.1031,
+      "1.3B_mean_J_hurt": 0.0988
+    }
+  },
+  "per_benchmark_340m_summary": {
+    "hellaswag": {
+      "metric_used": "acc_norm",
+      "n_samples": 10042,
+      "ambiguity": {
+        "per_ratio_pure": 0.166799,
+        "per_ratio_h24-1": 0.165804,
+        "per_ratio_h12-1": 0.167596,
+        "per_ratio_h6-1": 0.166999,
+        "per_ratio_h3-1": 0.157937,
+        "alpha_all_15": 0.333798,
+        "alpha_pure_only": 0.166799
+      },
+      "convergence_sigma": {
+        "pure": 0.008706,
+        "h24-1": 0.022876,
+        "h12-1": 0.009766,
+        "h6-1": 0.010928,
+        "h3-1": 0.012723,
+        "spearman_rho": 0.4,
+        "spearman_p_exact": 0.5167
+      },
+      "jaccard_summary": {
+        "mean_J_helped": 0.0841,
+        "mean_J_hurt": 0.0828
+      }
+    },
+    "piqa": {
+      "metric_used": "acc",
+      "n_samples": 1838,
+      "ambiguity": {
+        "per_ratio_pure": 0.181175,
+        "per_ratio_h24-1": 0.171925,
+        "per_ratio_h12-1": 0.177367,
+        "per_ratio_h6-1": 0.176278,
+        "per_ratio_h3-1": 0.187704,
+        "alpha_all_15": 0.366159,
+        "alpha_pure_only": 0.181175
+      },
+      "convergence_sigma": {
+        "spearman_rho": 0.3,
+        "spearman_p_exact": 0.6833
+      },
+      "jaccard_summary": {
+        "mean_J_helped": 0.09,
+        "mean_J_hurt": 0.0847
+      }
+    },
+    "arc_easy": {
+      "metric_used": "acc",
+      "n_samples": 2376,
+      "ambiguity": {
+        "per_ratio_pure": 0.288721,
+        "per_ratio_h24-1": 0.27462,
+        "per_ratio_h12-1": 0.292929,
+        "per_ratio_h6-1": 0.286195,
+        "per_ratio_h3-1": 0.286195,
+        "alpha_all_15": 0.564394,
+        "alpha_pure_only": 0.288721
+      },
+      "convergence_sigma": {
+        "spearman_rho": -0.1,
+        "spearman_p_exact": 0.95
+      },
+      "jaccard_summary": {
+        "mean_J_helped": 0.0979,
+        "mean_J_hurt": 0.1031
+      }
+    }
+  },
+  "conclusion": "scale_dependent",
+  "summary": {
+    "340M_mean_alpha": 0.4215,
+    "1.3B_mean_alpha": 0.338,
+    "max_absolute_delta": 0.1301,
+    "convergence_signs_consistent": false
+  },
+  "interpretation": {
+    "alpha": "340M models show 8.35pp higher multiplicity than 1.3B on average. The gap is largest on ARC-Easy (+13pp) and smallest on HellaSwag (+3.1pp). Smaller models exhibit more inter-architecture disagreement.",
+    "convergence": "No significant convergence trend at either scale (all p>0.45). Attention ratio does NOT reduce cross-architecture variance monotonically.",
+    "jaccard": "Cross-architecture Jaccard overlap is low (~0.08-0.10) at both scales, well above chance (all p=0.000) but far below independence. Helped/hurt sets are architecture-specific but overlap MORE than random, consistent across scales.",
+    "scale_verdict": "Multiplicity is scale-DEPENDENT in magnitude (larger at 340M) but scale-INVARIANT in qualitative pattern: (1) low Jaccard at both scales, (2) no convergence trend at both scales, (3) per-ratio alpha stable within each scale."
+  }
+}

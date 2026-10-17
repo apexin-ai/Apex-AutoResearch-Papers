@@ -1,0 +1,54 @@
+{
+  "model": "OpenVLA-OFT-7B-libero-object",
+  "dataset": "LIBERO-Object",
+  "n_images": 100,
+  "n_tasks_covered": 10,
+  "tasks": [
+    "pick_up_the_alphabet_soup_and_place_it_in_the_basket_demo",
+    "pick_up_the_bbq_sauce_and_place_it_in_the_basket_demo",
+    "pick_up_the_butter_and_place_it_in_the_basket_demo",
+    "pick_up_the_chocolate_pudding_and_place_it_in_the_basket_demo",
+    "pick_up_the_cream_cheese_and_place_it_in_the_basket_demo",
+    "pick_up_the_ketchup_and_place_it_in_the_basket_demo",
+    "pick_up_the_milk_and_place_it_in_the_basket_demo",
+    "pick_up_the_orange_juice_and_place_it_in_the_basket_demo",
+    "pick_up_the_salad_dressing_and_place_it_in_the_basket_demo",
+    "pick_up_the_tomato_sauce_and_place_it_in_the_basket_demo"
+  ],
+  "n_vision_tokens": 256,
+  "max_entropy_bits": 8.0,
+  "n_layers": 32,
+  "n_heads": 32,
+  "per_layer_entropy_ratio": {
+    "0": 0.9984, "1": 0.9993, "2": 0.9979, "3": 0.9969, "4": 0.9975,
+    "5": 0.9973, "6": 0.9947, "7": 0.9937, "8": 0.9946, "9": 0.9927,
+    "10": 0.9935, "11": 0.9918, "12": 0.9921, "13": 0.9892, "14": 0.9903,
+    "15": 0.9915, "16": 0.9908, "17": 0.9888, "18": 0.9877, "19": 0.9884,
+    "20": 0.9847, "21": 0.9838, "22": 0.9835, "23": 0.9758, "24": 0.9803,
+    "25": 0.9744, "26": 0.9759, "27": 0.9731, "28": 0.9713, "29": 0.9739,
+    "30": 0.9632, "31": 0.9694
+  },
+  "per_layer_entropy_std": {
+    "0": 0.0012, "1": 0.0003, "2": 0.001, "3": 0.0018, "4": 0.0012,
+    "5": 0.0012, "6": 0.0039, "7": 0.0033, "8": 0.0026, "9": 0.0048,
+    "10": 0.0034, "11": 0.0042, "12": 0.0038, "13": 0.0058, "14": 0.0053,
+    "15": 0.0044, "16": 0.0058, "17": 0.0053, "18": 0.0055, "19": 0.0057,
+    "20": 0.0107, "21": 0.0099, "22": 0.0085, "23": 0.0154, "24": 0.0109,
+    "25": 0.0197, "26": 0.0173, "27": 0.0105, "28": 0.0121, "29": 0.0106,
+    "30": 0.0164, "31": 0.014
+  },
+  "per_layer_vision_attention_fraction": {
+    "0": 0.7487, "1": 0.8842, "2": 0.9769, "3": 0.9293, "4": 0.947,
+    "5": 0.9465, "6": 0.89, "7": 0.9145, "8": 0.9463, "9": 0.9465,
+    "10": 0.9331, "11": 0.8784, "12": 0.8847, "13": 0.9118, "14": 0.8791,
+    "15": 0.9335, "16": 0.917, "17": 0.9241, "18": 0.9199, "19": 0.9357,
+    "20": 0.9253, "21": 0.896, "22": 0.8739, "23": 0.9179, "24": 0.9015,
+    "25": 0.8932, "26": 0.9238, "27": 0.896, "28": 0.9015, "29": 0.8896,
+    "30": 0.8447, "31": 0.818
+  },
+  "overall_entropy_ratio": 0.9868,
+  "overall_entropy_std": 0.0131,
+  "overall_vision_attention_fraction": 0.904,
+  "min_entropy_layer": { "layer": 30, "ratio": 0.9632 },
+  "max_entropy_layer": { "layer": 1, "ratio": 0.9993 }
+}

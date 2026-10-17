@@ -1,0 +1,7 @@
+\begin{abstract}
+Schema complexity affects training-free large language model (LLM) information extraction (IE), yet prior work conflates two factors: having more types to discriminate among (count) and having semantically similar types to confuse (confusability). We present, to our knowledge, the first controlled study isolating these factors in zero-shot LLM IE across four datasets, focusing on relation extraction (RE) as the primary testbed with named entity recognition (NER) and event detection as boundary conditions.
+Using embedding-based confusability metrics with controlled batch design, we find:
+(1)~count degradation spans NER and RE (up to $-$49 percentage points [pp]), and inter-type confusability independently predicts RE type substitution errors, with bounded interaction confirmed by equivalence testing;
+(2)~batch confusability independently explains ${\sim}$27\% of cross-batch RE accuracy variance on FewRel (semipartial $R^2 = 0.273$), replicating across two model families at three scales (8B--70B), while the NER null serves as a boundary condition;
+(3)~schema decomposition fails due to merge amplification and routing failure, though oracle routing recovers accuracy\footnote{Code and data are available at \url{https://anonymous.4open.science/r/schema-dag-extraction-4C10/}.}.
+\end{abstract}

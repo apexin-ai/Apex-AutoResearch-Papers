@@ -1,0 +1,45 @@
+{
+  "docred": {
+    "n_batches": 110,
+    "R2_full": 0.594948,
+    "R2_centrality_only": 0.539274,
+    "R2_BCS_only": 0.577867,
+    "delta_R2_BCS": 0.055675,
+    "delta_R2_centrality": 0.017081,
+    "shared_variance": 0.522192,
+    "old_bcs_unique_r2": 0.1208,
+    "old_was_partial_r_squared": true,
+    "verified_partial_r2_BCS": 0.120841,
+    "pct_shared": "87.8% of R2_full is shared",
+    "zero_order_r_BCS": -0.7602,
+    "zero_order_r_cent": 0.7344,
+    "partial_r_BCS": -0.3476,
+    "corr_BCS_cent": 0.9901,
+    "VIF_approx": 50.9
+  },
+  "fewrel": {
+    "n_batches": 204,
+    "R2_full": 0.32529,
+    "R2_centrality_only": 0.052368,
+    "R2_BCS_only": 0.325261,
+    "delta_R2_BCS": 0.272922,
+    "delta_R2_centrality": 2.9e-05,
+    "shared_variance": 0.052339,
+    "old_bcs_unique_r2": 0.288,
+    "old_was_partial_r_squared": true,
+    "verified_partial_r2_BCS": 0.288004,
+    "pct_shared": "16.1% of R2_full is shared",
+    "zero_order_r_BCS": -0.5703,
+    "zero_order_r_cent": 0.2288,
+    "partial_r_BCS": -0.5367,
+    "corr_BCS_cent": 0.3925,
+    "VIF_approx": 1.18
+  },
+  "error_analysis": {
+    "description": "The old 'bcs_unique_r2' was computed as r_partial^2 (squared partial correlation), not as true semipartial R2 (delta R2 = R2_full - R2_Z_only). Partial r^2 = (R2_full - R2_Z) / (1 - R2_Z), which always >= delta R2.",
+    "docred_error_magnitude": "partial_r²=0.1208 vs true ΔR²=0.0557, ratio=2.17x overestimate",
+    "fewrel_error_magnitude": "partial_r²=0.288 vs true ΔR²=0.2729, ratio=1.06x overestimate",
+    "original_code_line": "bcs_unique_r2 = r_partial**2  # line 167 in r1_statistical_supplements.py",
+    "correct_formula": "delta_R2_BCS = R2_full - R2_centrality_only"
+  }
+}

@@ -1,0 +1,9 @@
+See full file on server westb-48145 at /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json
+
+Summary:
+- 6 architectures: GDN, RetNet, HGRN2, GLA, DeltaNet, HGRN
+- 15 pairwise comparisons x 2 benchmarks = 30 tests, all significant (p<0.05)
+- arc_easy (2376 samples): mean_J_helped=0.1109, mean_J_hurt=0.1032
+- lambada_openai (5153 samples): mean_J_helped=0.1295, mean_J_hurt=0.0906
+- Subgroup trend (lambada J_helped): 3arch=0.1194 -> 4arch=0.1219 -> 5arch=0.1221 -> 6arch=0.1295
+- Notable: HGRN2-HGRN pair has highest J_helped on lambada (0.1629)

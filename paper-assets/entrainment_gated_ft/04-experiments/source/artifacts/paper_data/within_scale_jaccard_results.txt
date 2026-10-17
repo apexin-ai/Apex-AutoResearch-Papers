@@ -1,0 +1,38 @@
+=== 340M Within-Scale Pairwise Jaccard ===
+GDN-RetNet: J_helped=0.092, J_hurt=0.109
+GDN-HGRN2: J_helped=0.084, J_hurt=0.075
+HGRN2-RetNet: J_helped=0.108, J_hurt=0.085
+Mean: J_helped=0.094, J_hurt=0.090
+
+=== 1.3B Within-Scale Pairwise Jaccard ===
+GDN-RetNet: J_helped=0.092, J_hurt=0.103
+GDN-HGRN2: J_helped=0.100, J_hurt=0.088
+HGRN2-RetNet: J_helped=0.108, J_hurt=0.087
+Mean: J_helped=0.100, J_hurt=0.093
+
+=== Debug Info ===
+340M (pure -> h3-1, 5153 LAMBADA samples):
+  GDN:    helped=422, hurt=678
+  RetNet: helped=373, hurt=479
+  HGRN2:  helped=575, hurt=337
+
+1.3B (pure -> h3-1, 5153 LAMBADA samples):
+  GDN:    helped=462, hurt=615
+  RetNet: helped=426, hurt=495
+  HGRN2:  helped=548, hurt=395
+
+=== Full Precision 1.3B Pairwise Values ===
+GDN_vs_HGRN2:   J_helped=0.1002, J_hurt=0.0884
+GDN_vs_RetNet:   J_helped=0.0923, J_hurt=0.1034
+HGRN2_vs_RetNet: J_helped=0.1081, J_hurt=0.0867
+Mean:            J_helped=0.1002, J_hurt=0.0928
+
+=== Full Precision 340M Pairwise Values ===
+GDN_vs_RetNet:   J_helped=0.0920, J_hurt=0.1093
+GDN_vs_HGRN2:    J_helped=0.0837, J_hurt=0.0752
+RetNet_vs_HGRN2: J_helped=0.1075, J_hurt=0.0851
+Mean:            J_helped=0.0944, J_hurt=0.0899
+
+=== Data Sources ===
+340M: exp007_340m_analysis.json (computed from /root/entrainment_gated_ft/lm_eval_clean/exp007/340m/)
+1.3B: exp-010 bridge analysis (computed from /root/entrainment_gated_ft/lm_eval_clean/ 1.3B log_samples)

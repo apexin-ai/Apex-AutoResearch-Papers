@@ -1,0 +1,7 @@
+See server: /root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas/monotonicity_scores.json
+
+Key findings (Spearman rho, all p < 1e-100):
+- var_surprisal: Pythia=-0.832, Pythia_t09=-0.840, OLMo=-0.834, GPT2XL=-0.874
+- p90_ppl: Pythia=-0.824, Pythia_t09=-0.823, OLMo=-0.870, GPT2XL=-0.887
+- mean_surprisal: Pythia=-0.760, Pythia_t09=-0.769, OLMo=-0.773, GPT2XL=-0.767
+- p75_ppl: Pythia=-0.750, Pythia_t09=-0.760, OLMo=-0.772, GPT2XL=-0.759

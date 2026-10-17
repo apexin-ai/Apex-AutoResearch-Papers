@@ -1,0 +1,142 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:16:13.927027+00:00",
+  "completed_at": "2026-05-25T21:19:44.626904+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Figure 1 作为视觉锚点出现在首页，清晰传达核心 message（schema complexity 导致 zero-shot extraction 性能退化的两个维度），审稿人第一印象优秀"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Title/Abstract/Anonymous 排版整洁，符合 ACL 模板规范，abstract 长度适中"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "主文 8 页内每页至少 1 个 display item（Figure 或 Table），无连续纯文本页，视觉节奏优秀"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "主文最后一页（p8）内容饱满：Figure 7 + Table 3 + Table 4 + Discussion/Conclusion 文字，无大面积空白"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 17",
+      "message": "Appendix G（Prompt Templates）整页为 monospace 纯文本，无任何 figure/table 穿插。作为 prompt 展示页可以理解，但审稿人快速翻阅时视觉疲劳较高"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "主文共 7 个 Figure + 4 个 Table = 11 个 display items / 8 页，密度优秀，符合实证论文预期"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 12-26",
+      "message": "Appendix 含大量补充表格（Table 5-32），支撑充分"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "Figure 7（Schema Decomposition Pipeline）内部注释文字偏小（\"75% instances match multiple sub-schemas\"、\"Routing Failure\" 等标注），在打印或缩放查看时可能不易辨认，建议字号提升至正文的 70% 以上"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 3 多面板组合（line plots + bar charts）结构清晰，error bars 标注完整（±1 SD），caption 自包含"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 6 双面板（Few-NERD NER / FewRel RE）error taxonomy 分解图颜色对比度足够（红/粉 vs 绿/青），但 x 轴 BCS bin 标签字号略小"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 2 实验设计概览图清晰，Dimension 1/2 标注明确"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 4 散点图清晰，IQR box 可读"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 5 三模型族 cross-model count-curve 复现图，线条和颜色区分度良好"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "所有 Figure/Table 均出现在首次引用后的合理位置，无 float 被推至论文末尾"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Figure 1 紧随 Introduction 首段引用，位置最优"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "主文无异常大面积空白，双栏间距均匀，无 margin 溢出"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 26",
+      "message": "末页（Appendix Z）仅约 1/3 内容，但作为 appendix 最后一页属正常情况"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "Limitations 约占页面 1/3 后紧接 References，页面填充合理"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "公式渲染正确，未发现 LaTeX 错误残留"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 1-8",
+      "message": "Section heading 无孤悬页底现象"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 3-8",
+      "message": "表格均使用 booktabs 风格（clean horizontal rules, 无 vertical rules），专业"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 19",
+      "message": "Appendix 多个表格（Table 15-18）在同一页内高度压缩，部分表格字号接近正文 70% 下限，打印后可读性可能受影响"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 25",
+      "message": "Table 28-30（Qualitative Error Analysis / Confusion Instances）字号偏小，尤其 Table 30 的 illustrative confusion examples 文字密集"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Table 3 中 Oracle 行有明确标注为上界参照，其他 strategy 的对比清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 26",
+      "message": "Appendix Z \"Use of AI Assistants\" 披露 AI 辅助使用，符合会议要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "overall",
+      "message": "主文排版专业，视觉节奏优秀，审稿人第一印象良好。7 个 Figure 覆盖核心实验维度，首页即有清晰视觉锚点。无 critical 级别问题。4 个 warning 均在 appendix 或图内小字号层面，不影响主文阅读体验。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 4,
+    "info": 22
+  }
+}

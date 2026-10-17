@@ -1,0 +1,7 @@
+benchmark,rho_with_gdn,p_with_gdn,rho_without_gdn,p_without_gdn,direction_change
+LAMBADA,-1.0,0.0167,-0.7,0.2333,WEAKER
+HellaSwag,0.3,0.6833,0.5,0.45,STRONGER
+WinoGrande,0.1,0.95,0.3,0.6833,STRONGER
+ARC-Easy,-0.7,0.2333,-0.9,0.0833,STRONGER
+ARC-Challenge,0.6,0.35,-0.2,0.7833,WEAKER
+MMLU,-0.7,0.2333,0.6,0.35,WEAKER

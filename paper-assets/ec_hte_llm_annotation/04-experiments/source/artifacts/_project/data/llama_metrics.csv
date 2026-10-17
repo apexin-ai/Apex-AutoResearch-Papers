@@ -1,0 +1,3 @@
+model,P_Z1,n_total,n_subgroups,delta_pi,max_kappa,prop2_triggered,n_prop2_triggered,overall_accuracy,mean_pi,min_pi,max_pi
+llama-3.1-8b,0.652,500,4,0.1367,2.26,1,1,0.754,0.2292,0.1403,0.277
+gemini-pilot,0.652,500,4,0.1316,2.4,1,3,0.78,0.1834,0.1317,0.2633

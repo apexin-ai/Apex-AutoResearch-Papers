@@ -1,0 +1,209 @@
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible
+}
+
+\section{Prompt Templates}
+\label{sec:appendix_prompts}
+
+This appendix reproduces the complete prompt templates used for all three extraction tasks.
+All prompts are injected into a single \texttt{user} message (no system prompt); the model's chat template adds the system/assistant framing.
+Both versions provide a JSON-formatted type schema to the vLLM constrained-decoding engine; the schema is \emph{not} included in the natural-language prompt itself.
+We use greedy decoding (\texttt{temperature=0}, \texttt{seed=42}) throughout.
+
+\medskip\noindent
+\textbf{Notation.}
+Placeholders are shown in \texttt{\{braces\}}.
+Text \textbf{added in v2} (relative to v1) is marked with $\triangleright$.
+Text \textbf{removed in v2} is marked with \sout{strikethrough}.
+
+\subsection{Named Entity Recognition (Few-NERD)}
+
+\paragraph{v1 prompt (with character offsets).}
+
+\begin{small}
+\begin{lstlisting}
+Extract all named entities from the following text.
+Only extract entities of the following types:
+- {type_1}: {definition_1}
+- {type_2}: {definition_2}
+  ...
+
+Text: {input_text}
+
+Output as JSON: [{"text": "...", "type": "...",
+                  "start": ..., "end": ...}]
+\end{lstlisting}
+\end{small}
+
+\noindent
+\textbf{v1 constrained-decoding schema:}
+\begin{small}
+\begin{lstlisting}
+{"type": "array",
+ "items": {"type": "object",
+   "properties": {
+     "text":  {"type": "string"},
+     "type":  {"type": "string",
+               "enum": [<sorted_types>]},
+     "start": {"type": "integer"},
+     "end":   {"type": "integer"}},
+   "required": ["text","type","start","end"]}}
+\end{lstlisting}
+\end{small}
+
+\paragraph{v2 prompt (text+type only).}
+
+\begin{small}
+\begin{lstlisting}
+Extract all named entities from the following text.
+Only extract entities of the following types:
+- {type_1}: {definition_1}
+- {type_2}: {definition_2}
+  ...
+
+Text: {input_text}
+\end{lstlisting}
+\end{small}
+\vspace{-0.5em}
+\noindent$\triangleright$~\textbf{Added in v2:}
+\begin{small}
+\begin{lstlisting}
+Only extract entities that clearly match one of the
+given types. If no entities of these types exist in
+the text, output an empty list [].
+\end{lstlisting}
+\end{small}
+\vspace{-0.5em}
+\begin{small}
+\begin{lstlisting}
+Output as JSON: [{"text": "...", "type": "..."}]
+\end{lstlisting}
+\end{small}
+
+\noindent
+\textbf{v2 constrained-decoding schema:}
+\begin{small}
+\begin{lstlisting}
+{"type": "array",
+ "items": {"type": "object",
+   "properties": {
+     "text": {"type": "string"},
+     "type": {"type": "string",
+              "enum": [<sorted_types>]}},
+   "required": ["text","type"]}}
+\end{lstlisting}
+\end{small}
+
+\paragraph{v1 $\to$ v2 differences (NER).}
+\begin{enumerate}[leftmargin=*,itemsep=2pt]
+\item \textbf{Offset fields removed.} The \texttt{start}/\texttt{end} integer fields are dropped from both the natural-language instruction and the JSON schema. In v1, 96.5\% of predicted offsets were hallucinated (\S\ref{sec:model}).
+\item \textbf{Format constraints added.} Two sentences are appended: (a)~``Only extract entities that clearly match one of the given types'' suppresses spurious predictions; (b)~``If no entities \ldots output an empty list~\texttt{[]}'' provides an explicit empty-output path.
+\end{enumerate}
+
+\subsection{Event Detection (MAVEN)}
+
+\paragraph{v1 prompt (with character offsets).}
+
+\begin{small}
+\begin{lstlisting}
+Extract all event triggers from the following text.
+A trigger is the word or phrase that most clearly
+expresses the event occurrence. Only extract triggers
+of the following event types:
+- {type_1}: {definition_1}
+- {type_2}: {definition_2}
+  ...
+
+Text: {input_text}
+
+Output as JSON: [{"text": "...", "type": "...",
+                  "start": ..., "end": ...}]
+\end{lstlisting}
+\end{small}
+
+\paragraph{v2 prompt (text+type only).}
+
+\begin{small}
+\begin{lstlisting}
+Extract all event triggers from the following text.
+A trigger is the word or phrase that most clearly
+expresses the event occurrence. Only extract triggers
+of the following event types:
+- {type_1}: {definition_1}
+- {type_2}: {definition_2}
+  ...
+
+Text: {input_text}
+\end{lstlisting}
+\end{small}
+\vspace{-0.5em}
+\noindent$\triangleright$~\textbf{Added in v2:}
+\begin{small}
+\begin{lstlisting}
+Only extract triggers that clearly match one of the
+given event types. If no events of these types exist
+in the text, output an empty list [].
+\end{lstlisting}
+\end{small}
+\vspace{-0.5em}
+\begin{small}
+\begin{lstlisting}
+Output as JSON: [{"text": "...", "type": "..."}]
+\end{lstlisting}
+\end{small}
+
+\noindent The JSON schemas for ED are identical to the NER schemas above; only the natural-language framing differs (``event triggers'' instead of ``named entities'').
+
+\paragraph{v1 $\to$ v2 differences (ED).}
+Same two changes as NER: offset fields removed, format constraints added.
+
+\subsection{Relation Extraction (FewRel)}
+
+RE uses only a v2-style prompt (no offset fields are applicable to classification).
+
+\paragraph{Prompt.}
+
+\begin{small}
+\begin{lstlisting}
+Given the following sentence and two entities,
+classify the relation between them.
+
+Sentence: "{sentence}"
+Head entity: "{head_entity}"
+Tail entity: "{tail_entity}"
+
+Candidate relations: {type_1}, {type_2}, ...
+
+Output a single JSON object:
+  {"relation": "<relation_type>"}
+If none of the candidate relations apply, output:
+  {"relation": "none"}
+\end{lstlisting}
+\end{small}
+
+\noindent
+\textbf{Constrained-decoding schema:}
+\begin{small}
+\begin{lstlisting}
+{"type": "object",
+ "properties": {
+   "relation": {"type": "string",
+     "enum": [<sorted_types>, "none"]}},
+ "required": ["relation"]}
+\end{lstlisting}
+\end{small}
+
+\subsection{Type Definitions}
+\label{sec:appendix_type_defs}
+
+All prompts include per-type natural-language definitions sourced from the respective dataset documentation:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item \textbf{Few-NERD:} 66 fine-grained entity types with definitions derived from the Few-NERD type ontology \citep{fewnerd-2021}.
+\item \textbf{MAVEN:} 168 event types with FrameNet-based definitions \citep{maven-2020}.
+\item \textbf{FewRel:} 80 relation types with Wikidata property descriptions \citep{fewrel-2018}.
+\end{itemize}
+
+\noindent Type definitions are injected as ``\texttt{- \{type\_name\}: \{definition\}}'' lines in alphabetical order. The number of types per prompt varies by experimental condition (count${}= 1$ to full schema; \S\ref{sec:exp_design}).

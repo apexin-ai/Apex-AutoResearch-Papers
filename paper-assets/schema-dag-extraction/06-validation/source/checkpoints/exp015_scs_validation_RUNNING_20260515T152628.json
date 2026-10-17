@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp015_scs_validation",
+  "project": "schema-dag-extraction",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:26:21.582Z",
+    "updated_at": "2026-05-15T15:26:28.284Z",
+    "spec": {
+      "hypothesis": "Embedding SCS is a valid proxy for empirical confusion: significant rank correlation with pairwise confusion counts",
+      "dataset": "Few-NERD",
+      "model": "Qwen3-32B + MiniLM",
+      "design": "Spearman/Kendall correlation between SCS matrix and empirical confusion counts from exp-002. All pairs + nonzero-only subsets.",
+      "data_path": "/root/schema-dag-extraction/artifacts/exp015_scs_validation.json",
+      "data_count": "1953 pairs (216 nonzero)",
+      "model_name": "N/A (analysis)",
+      "seed": 42,
+      "command": "python3 src/scs_validation.py",
+      "server": "cqa1-38874",
+      "checkpoint_path": "/root/schema-dag-extraction/artifacts/exp015_scs_validation.json",
+      "log_path": "/root/schema-dag-extraction/artifacts/exp015_scs_validation.json"
+    }
+  },
+  "timestamp": "2026-05-15T15:26:28.331564+00:00",
+  "trigger": "update_registry"
+}

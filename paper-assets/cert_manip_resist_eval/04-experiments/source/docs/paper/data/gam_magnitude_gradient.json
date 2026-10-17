@@ -1,0 +1,358 @@
+{
+  "K3": {
+    "slopes_ranked": [
+      {
+        "condition": "mmluxauthority_bias",
+        "attack_type": "shared_bias",
+        "slope_mean": 36.571666,
+        "slope_ci": [
+          24.971521,
+          54.343886
+        ],
+        "direction_positive_rate": 0.9998
+      },
+      {
+        "condition": "mmluxsycophancy",
+        "attack_type": "shared_bias",
+        "slope_mean": 28.757223,
+        "slope_ci": [
+          20.936431,
+          39.821261
+        ],
+        "direction_positive_rate": 0.9998
+      },
+      {
+        "condition": "arc_challengexscore_manipulation",
+        "attack_type": "targeted",
+        "slope_mean": 26.303223,
+        "slope_ci": [
+          17.385257,
+          34.426029
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "mmluxprompt_injection",
+        "attack_type": "targeted",
+        "slope_mean": 25.086282,
+        "slope_ci": [
+          3.949884,
+          37.638554
+        ],
+        "direction_positive_rate": 0.9875
+      },
+      {
+        "condition": "arc_challengexauthority_bias",
+        "attack_type": "shared_bias",
+        "slope_mean": 22.067471,
+        "slope_ci": [
+          14.326455,
+          29.567236
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "arc_challengexverbosity_bias",
+        "attack_type": "shared_bias",
+        "slope_mean": 18.783755,
+        "slope_ci": [
+          13.921529,
+          23.902512
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "mmluxscore_manipulation",
+        "attack_type": "targeted",
+        "slope_mean": 16.796658,
+        "slope_ci": [
+          -8.479621,
+          44.002667
+        ],
+        "direction_positive_rate": 0.8895
+      },
+      {
+        "condition": "arc_challengexsycophancy",
+        "attack_type": "shared_bias",
+        "slope_mean": 14.926042,
+        "slope_ci": [
+          8.13517,
+          21.500104
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "mmluxverbosity_bias",
+        "attack_type": "shared_bias",
+        "slope_mean": 14.831337,
+        "slope_ci": [
+          11.16183,
+          18.265475
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "arc_challengexprompt_injection",
+        "attack_type": "targeted",
+        "slope_mean": 13.064178,
+        "slope_ci": [
+          8.321376,
+          17.875311
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "arc_challengexposition_bias",
+        "attack_type": "targeted",
+        "slope_mean": 0.849684,
+        "slope_ci": [
+          0.775788,
+          0.929058
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "mmluxposition_bias",
+        "attack_type": "targeted",
+        "slope_mean": 0.598576,
+        "slope_ci": [
+          0.462616,
+          0.736347
+        ],
+        "direction_positive_rate": 1.0
+      }
+    ],
+    "kruskal_wallis": {
+      "H": 1.6410256410256494,
+      "p": 0.20018480417757442,
+      "groups": [
+        "targeted",
+        "shared_bias"
+      ],
+      "targeted_slopes": [
+        26.303223,
+        25.086282,
+        16.796658,
+        13.064178,
+        0.849684,
+        0.598576
+      ],
+      "shared_slopes": [
+        36.571666,
+        28.757223,
+        22.067471,
+        18.783755,
+        14.926042,
+        14.831337
+      ],
+      "targeted_mean": 13.783100166666664,
+      "shared_mean": 22.656249,
+      "targeted_median": 14.930418,
+      "shared_median": 20.425613
+    },
+    "normalized_effect": {
+      "method": "log-transform to handle position_bias scale difference",
+      "kruskal_wallis_log": {
+        "H": 1.6410256410256494,
+        "p": 0.20018480417757442
+      },
+      "targeted_log_slopes": [
+        3.2696914792077028,
+        3.2223211628731114,
+        2.8211799380548257,
+        2.5698739808126345,
+        -0.16289076320759657,
+        -0.5132017777518637
+      ],
+      "shared_log_slopes": [
+        3.5992737875934093,
+        3.3588889704752725,
+        3.0941046237661514,
+        2.9329924005506167,
+        2.7031074725937536,
+        2.696742307183889
+      ],
+      "targeted_log_mean": 1.867829003331469,
+      "shared_log_mean": 3.0641849270271817,
+      "note": "position_bias slopes (~0.4-0.85) are 30-60x smaller than others (~13-35) due to ASR scale difference (0-1 vs 0-100%)"
+    }
+  },
+  "K5": {
+    "slopes_ranked": [
+      {
+        "condition": "arc_challengexscore_manipulation",
+        "attack_type": "targeted",
+        "slope_mean": 34.90742,
+        "slope_ci": [
+          23.359024,
+          49.499424
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "arc_challengexprompt_injection",
+        "attack_type": "targeted",
+        "slope_mean": 27.17512,
+        "slope_ci": [
+          20.881348,
+          33.500816
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "mmluxscore_manipulation",
+        "attack_type": "targeted",
+        "slope_mean": 25.103394,
+        "slope_ci": [
+          21.658225,
+          30.497035
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "mmluxauthority_bias",
+        "attack_type": "shared_bias",
+        "slope_mean": 23.223063,
+        "slope_ci": [
+          19.147824,
+          28.857134
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "mmluxprompt_injection",
+        "attack_type": "targeted",
+        "slope_mean": 23.05288,
+        "slope_ci": [
+          17.497003,
+          32.613685
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "mmluxsycophancy",
+        "attack_type": "shared_bias",
+        "slope_mean": 21.662039,
+        "slope_ci": [
+          15.939956,
+          32.624946
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "arc_challengexverbosity_bias",
+        "attack_type": "shared_bias",
+        "slope_mean": 20.262407,
+        "slope_ci": [
+          16.371621,
+          25.381152
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "arc_challengexauthority_bias",
+        "attack_type": "shared_bias",
+        "slope_mean": 13.556438,
+        "slope_ci": [
+          8.783432,
+          17.743795
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "mmluxverbosity_bias",
+        "attack_type": "shared_bias",
+        "slope_mean": 13.385899,
+        "slope_ci": [
+          10.351096,
+          16.846865
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "arc_challengexsycophancy",
+        "attack_type": "shared_bias",
+        "slope_mean": 12.405421,
+        "slope_ci": [
+          6.627867,
+          18.857624
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "mmluxposition_bias",
+        "attack_type": "targeted",
+        "slope_mean": 0.396727,
+        "slope_ci": [
+          0.300272,
+          0.481906
+        ],
+        "direction_positive_rate": 1.0
+      },
+      {
+        "condition": "arc_challengexposition_bias",
+        "attack_type": "targeted",
+        "slope_mean": 0.366956,
+        "slope_ci": [
+          0.335363,
+          0.397089
+        ],
+        "direction_positive_rate": 1.0
+      }
+    ],
+    "kruskal_wallis": {
+      "H": 0.6410256410256494,
+      "p": 0.42333964158244053,
+      "groups": [
+        "targeted",
+        "shared_bias"
+      ],
+      "targeted_slopes": [
+        34.90742,
+        27.17512,
+        25.103394,
+        23.05288,
+        0.396727,
+        0.366956
+      ],
+      "shared_slopes": [
+        23.223063,
+        21.662039,
+        20.262407,
+        13.556438,
+        13.385899,
+        12.405421
+      ],
+      "targeted_mean": 18.500416166666668,
+      "shared_mean": 17.415877833333333,
+      "targeted_median": 24.078136999999998,
+      "shared_median": 16.909422499999998
+    },
+    "normalized_effect": {
+      "method": "log-transform to handle position_bias scale difference",
+      "kruskal_wallis_log": {
+        "H": 0.6410256410256494,
+        "p": 0.42333964158244053
+      },
+      "targeted_log_slopes": [
+        3.552699414063342,
+        3.30230184882457,
+        3.223003056123946,
+        3.1377907074119875,
+        -0.9245068920184331,
+        -1.0025133288507304
+      ],
+      "shared_log_slopes": [
+        3.1451458797191125,
+        3.075561373804317,
+        3.0087672972967887,
+        2.6068615636462633,
+        2.594201839460982,
+        2.518133554504202
+      ],
+      "targeted_log_mean": 1.8814624675924472,
+      "shared_log_mean": 2.824778584738611,
+      "note": "position_bias slopes (~0.4-0.85) are 30-60x smaller than others (~13-35) due to ASR scale difference (0-1 vs 0-100%)"
+    }
+  }
+}

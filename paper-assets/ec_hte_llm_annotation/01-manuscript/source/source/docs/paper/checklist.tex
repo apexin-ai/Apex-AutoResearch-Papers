@@ -1,0 +1,46 @@
+\section*{Responsible NLP Research Checklist}
+
+\paragraph{A. Did you describe the limitations of your work?}
+Yes. Section ``Limitations'' discusses seven specific limitations: expert budget thresholds, RMSE tradeoff at small sample sizes, baseline classifier quality, plug-in standard error approximation, symmetric misclassification assumption, additive CATE structure, and known subgroup structure requirement.
+
+\paragraph{B. Did you discuss any potential risks of your work?}
+Yes. The method corrects bias in treatment effect estimates used for resource allocation decisions. We explicitly discuss conditions under which EC-HTE should \textit{not} be applied (low error heterogeneity, insufficient expert budget), preventing misuse of stratified correction where global correction is more appropriate.
+
+\paragraph{C. Do the abstract and introduction summarize the paper's main claims?}
+Yes. The abstract states all five contributions with specific quantitative results. The introduction provides detailed context and a numbered contribution list.
+
+\paragraph{D1. Did you describe the experimental setup, including hyperparameter search?}
+Yes. Section~\ref{sec:bias_mechanism} specifies all DGP parameters, Monte Carlo configurations, and method variants. Appendix~\ref{app:dgp} provides the complete data generating process specification. The hierarchical Bayesian estimator uses a $\text{Gamma}(3, 1)$ hyperprior with sensitivity analysis (Appendix~\ref{app:mcmc}).
+
+\paragraph{D2. Did you report error bars or statistical significance?}
+Yes. All results are averaged over 100 Monte Carlo runs. We report 95\% CI coverage as a primary metric. RMSE captures both bias and variance. We do not use the term ``significant'' without formal testing.
+
+\paragraph{D3. Did you include the number of parameters and computational budget?}
+Yes. Main experiments use empirical Bayes point estimates ($<$5ms per subgroup); MCMC validation (4 chains $\times$ 4000 iterations) confirms agreement (Appendix~\ref{app:mcmc}). The number of estimated parameters scales as $O(K \cdot J^2)$ where $K$ is subgroups and $J$ is effect-modifier levels.
+
+\paragraph{D4. Did you report the number and range of hyperparameters searched?}
+Yes. Hyperprior sensitivity analysis covers $0.5\times$ to $2\times$ scaling of the $\text{Gamma}(3,1)$ concentration prior (Appendix~\ref{app:mcmc}). No other hyperparameters are tuned.
+
+\paragraph{E1. Did you use or create scientific artifacts?}
+Yes. We use the TweetEval sentiment corpus for semi-synthetic experiments. Yes. Our experimental code and synthetic data generation scripts are publicly available (see footnote on page 1).
+
+\paragraph{E2. Did you discuss the license or terms for use and/or distribution of any artifacts?}
+The TweetEval corpus is publicly available under its original license. Our code is publicly available under an open-source license (see footnote on page 1).
+
+\paragraph{E3. Did you discuss if your use of existing artifact(s) was consistent with their intended use?}
+Yes. TweetEval is a benchmark for tweet classification. We use it as a source of realistic text features for semi-synthetic CATE experiments, which is consistent with its role as a research benchmark.
+
+\paragraph{F1. Did you include the full text of instructions given to participants?}
+Not applicable. No human participants were involved in this study. Expert labels in the semi-synthetic experiments are simulated from known ground truth.
+
+\paragraph{F2. Did you report information about how you recruited participants?}
+Not applicable.
+
+\paragraph{F3. Did you discuss if and how consent was obtained?}
+Not applicable.
+
+\paragraph{F4. Were the individuals in the dataset informed about the data collection?}
+The TweetEval corpus is a pre-existing public dataset. No new data was collected from individuals.
+
+\paragraph{G. Did you discuss whether and how your work could be misused?}
+The primary risk is applying EC-HTE when its assumptions are violated (asymmetric misclassification, unknown subgroup structure). We provide a computable diagnostic criterion that guards against inappropriate application and discuss boundary conditions explicitly.

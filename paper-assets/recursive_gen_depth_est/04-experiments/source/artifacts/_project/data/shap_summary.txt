@@ -1,0 +1,15 @@
+SHAP TreeExplainer 9-Cell Summary (R3-N3 Rebuttal)
+Remote: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/shap_summary.json
+
+Key findings:
+- p90_ppl: avg SHAP rank = 0.56, top-4 in 9/9 cells
+- var_surprisal: avg SHAP rank = 0.56, top-4 in 9/9 cells
+- SHAP vs Permutation Spearman rho: mean=0.8302, range=[0.7491, 0.9158]
+
+Average SHAP importance ranking (mean |SHAP value|):
+  1. p90_ppl = 0.0894
+  2. var_surprisal = 0.0803
+  3. p75_ppl = 0.0426
+  4. mean_surprisal = 0.0287
+  5. mean_ppl = 0.0262
+  (remaining 14 features all below 0.016)

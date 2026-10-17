@@ -1,0 +1,51 @@
+_next_id: 8
+constraints:
+- id: C001
+  added: 2026-05-19 12:50 UTC
+  summary: Spatial suite 对比必须用 official baseline 或 full-FT 作基准，禁止用 LoRA baseline (6.2%)
+    作对照
+  scope: all
+  reason: SmolVLA LoRA baseline Spatial 6.2% vs Smart Compress 53.2% 的差距主要来自训练策略差异（LoRA
+    vs 完整 expert），不是压缩方法贡献。公平对比应为 Smart Compress (53.2%) vs Full-FT (48.0%) 或 official
+    baseline。
+- id: C002
+  added: 2026-05-26 15:12 UTC
+  summary: 硬截止：所有实验必须在 2026-05-28 12:00 UTC (北京时间 20:00) 前完成，最后 12h 留给论文定稿
+  scope: all
+  reason: 用户指令：5月28日20:00北京时间前所有实验必须结束。实验截止实际为 5月28日 08:00 UTC（北京时间 16:00），留 4h buffer
+    给最终数据整合。
+- id: C003
+  added: 2026-05-27 09:11 UTC
+  summary: westd-41074 禁止部署运行时间 >6h 的实验（系统 timeout ~8-9h，Long suite OV 实验 ~10h 会被
+    EXIT_CODE=124 kill）。仅部署 π0.5 实验（~3h）或短时 OV 实验。Long suite OV 实验全部在 westd-38929
+    运行。
+  scope: all
+  reason: OV Random k=0.95 Long 和 OV Attn k=0.75 Long 均在 Task 9 附近被 timeout kill（EXIT_CODE=124），累计浪费
+    ~16h GPU 时间。M149 同期发现。
+- id: C004
+  added: 2026-05-27 10:32 UTC
+  summary: 所有 π0.5 实验在所有服务器都必须加 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache
+    MUJOCO_GL=egl（不仅是 cqa1）。464 行脚本的 make_pre_post_processors() 会尝试访问 HF Hub。
+  scope: all
+  reason: M149 + westd-41074 GPU 2/3 连续崩溃。westd-41074 同样无法访问外网，GPU 0/1 有 offline flags
+    正常运行，GPU 2/3 缺 flags 崩溃。之前约束仅覆盖 cqa1 不够。
+- id: C005
+  added: 2026-05-27 23:17 UTC
+  summary: 所有实验必须通过 submit_training_job 提交，禁止 nohup 直接部署
+  scope: worker
+  reason: nohup 嵌套中 CUDA_VISIBLE_DEVICES 被 conda activate 覆盖或未传递到子进程，导致多实验挤同一 GPU、目标
+    GPU 空闲。已多次发生。
+- id: C006
+  added: 2026-05-28 12:02 UTC
+  summary: OpenVLA Long suite 实验（预估 >6h）禁止在 westd-27271 和 westd-41074 上部署，仅允许 westd-38929
+    和 cqa1-33015
+  scope: all
+  reason: w27 和 w41 均存在 ~6h 系统 timeout，OV Long 需 8-10h，会在 Task 8-9 附近被 kill。已发生两次：w41
+    (C003原始事故) + w27 (eval_openvla_l2norm_k095_long_seed43, EXIT_CODE=124)。
+- id: C007
+  added: 2026-05-29 02:25 UTC
+  summary: westd-41074 和 westd-38929 各只有 1 块物理 GPU (cuda:0)，仅 cqa1-33015 有 4 块 GPU
+    (cuda:0-3)。westd-27271 离线。项目总计 6 张物理卡。
+  scope: all
+  reason: 项目 config gpu_ids=[cuda:0-3] 是 cqa1 的配置，不适用于 westd 服务器。Agent 实际探测确认 westd
+    服务器均为单卡 RTX PRO 6000 Black 98GB。

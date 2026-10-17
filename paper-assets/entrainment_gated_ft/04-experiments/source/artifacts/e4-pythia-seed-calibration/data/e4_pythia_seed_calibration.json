@@ -1,0 +1,44 @@
+{
+  "lambada_openai": {
+    "n_seeds": 9,
+    "seed_accuracies": {
+      "seed1": 0.2292, "seed2": 0.2012, "seed3": 0.1948,
+      "seed4": 0.1716, "seed5": 0.2082, "seed6": 0.2069,
+      "seed7": 0.2220, "seed8": 0.2086, "seed9": 0.1836
+    },
+    "correct_set_jaccard": {"mean": 0.4915, "std": 0.0192, "min": 0.4471, "max": 0.5315},
+    "helped_set_jaccard": {"mean": 0.2730, "std": 0.0283},
+    "hurt_set_jaccard": {"mean": 0.3930, "std": 0.0385},
+    "ambiguity_alpha": 0.3551,
+    "reference_comparison": {
+      "cross_arch_j_helped": 0.10, "cross_arch_j_hurt": 0.09, "cross_arch_alpha": 0.30
+    }
+  },
+  "arc_easy": {
+    "n_seeds": 9,
+    "seed_accuracies": {
+      "seed1": 0.4007, "seed2": 0.3645, "seed3": 0.4104,
+      "seed4": 0.3754, "seed5": 0.3641, "seed6": 0.3779,
+      "seed7": 0.3817, "seed8": 0.3801, "seed9": 0.3729
+    },
+    "correct_set_jaccard": {"mean": 0.5931, "std": 0.0164, "min": 0.5523, "max": 0.6222},
+    "helped_set_jaccard": {"mean": 0.3115, "std": 0.0306},
+    "hurt_set_jaccard": {"mean": 0.3537, "std": 0.0303},
+    "ambiguity_alpha": 0.4907,
+    "reference_comparison": {
+      "cross_arch_j_helped": null, "cross_arch_j_hurt": null, "cross_arch_alpha": 0.21
+    }
+  },
+  "metadata": {
+    "model_size": "70M",
+    "model_family": "pythia",
+    "n_seeds": 9,
+    "tasks": ["lambada_openai", "arc_easy"],
+    "server": "westb-48145",
+    "date": "2026-05-22"
+  },
+  "summary_judgment": {
+    "lambda_openai": "within-seed J_helped=0.273 >> cross-arch ref=0.10 (2.73x). Within-seed overlap is much higher than cross-architecture, as expected for same-architecture models.",
+    "arc_easy": "within-seed alpha=0.491 >> cross-arch ref=0.21 (2.34x). High ambiguity across seeds."
+  }
+}

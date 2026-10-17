@@ -1,0 +1,233 @@
+{
+  "nontie_concordance": {
+    "gpt4o_formality": {
+      "n_total": 84,
+      "n_nontie_likert": 29,
+      "n_pairwise_tied_in_nontie": 14,
+      "n_effective": 15,
+      "tie_rate": 0.6548,
+      "concordant": 8,
+      "concordance_rate": 0.5333,
+      "ci_95": [0.3012, 0.7519]
+    },
+    "gpt4o_verbosity": {
+      "n_total": 86,
+      "n_nontie_likert": 36,
+      "n_pairwise_tied_in_nontie": 5,
+      "n_effective": 31,
+      "tie_rate": 0.5814,
+      "concordant": 25,
+      "concordance_rate": 0.8065,
+      "ci_95": [0.6372, 0.9081]
+    },
+    "qwen3_formality": {
+      "n_total": 88,
+      "n_nontie_likert": 24,
+      "n_pairwise_tied_in_nontie": 7,
+      "n_effective": 17,
+      "tie_rate": 0.7273,
+      "concordant": 9,
+      "concordance_rate": 0.5294,
+      "ci_95": [0.3096, 0.7384]
+    },
+    "qwen3_verbosity": {
+      "n_total": 86,
+      "n_nontie_likert": 36,
+      "n_pairwise_tied_in_nontie": 9,
+      "n_effective": 27,
+      "tie_rate": 0.5814,
+      "concordant": 20,
+      "concordance_rate": 0.7407,
+      "ci_95": [0.5532, 0.8683]
+    },
+    "llama70b_formality": {
+      "n_total": 88,
+      "n_nontie_likert": 24,
+      "n_pairwise_tied_in_nontie": 6,
+      "n_effective": 18,
+      "tie_rate": 0.7273,
+      "concordant": 15,
+      "concordance_rate": 0.8333,
+      "ci_95": [0.6078, 0.9416]
+    },
+    "llama70b_verbosity": {
+      "n_total": 86,
+      "n_nontie_likert": 33,
+      "n_pairwise_tied_in_nontie": 7,
+      "n_effective": 26,
+      "tie_rate": 0.6163,
+      "concordant": 22,
+      "concordance_rate": 0.8462,
+      "ci_95": [0.6647, 0.9385]
+    },
+    "gemini_formality": {
+      "n_total": 88,
+      "n_nontie_likert": 31,
+      "n_pairwise_tied_in_nontie": 16,
+      "n_effective": 15,
+      "tie_rate": 0.6477,
+      "concordant": 10,
+      "concordance_rate": 0.6667,
+      "ci_95": [0.4171, 0.8482]
+    },
+    "gemini_verbosity": {
+      "n_total": 86,
+      "n_nontie_likert": 39,
+      "n_pairwise_tied_in_nontie": 15,
+      "n_effective": 24,
+      "tie_rate": 0.5465,
+      "concordant": 17,
+      "concordance_rate": 0.7083,
+      "ci_95": [0.5083, 0.8509]
+    }
+  },
+  "item_correlation": {
+    "gpt4o_formality": {
+      "pearson_r": 0.1244,
+      "pearson_p": 0.262358,
+      "spearman_rho": 0.0207,
+      "spearman_p": 0.852351,
+      "n": 83
+    },
+    "gpt4o_verbosity": {
+      "pearson_r": 0.3777,
+      "pearson_p": 0.000336,
+      "spearman_rho": 0.3859,
+      "spearman_p": 0.000243,
+      "n": 86
+    },
+    "qwen3_formality": {
+      "pearson_r": 0.0402,
+      "pearson_p": 0.709957,
+      "spearman_rho": -0.0081,
+      "spearman_p": 0.940377,
+      "n": 88
+    },
+    "qwen3_verbosity": {
+      "pearson_r": 0.3276,
+      "pearson_p": 0.002078,
+      "spearman_rho": 0.3028,
+      "spearman_p": 0.004595,
+      "n": 86
+    },
+    "llama70b_formality": {
+      "pearson_r": 0.3533,
+      "pearson_p": 0.00098,
+      "spearman_rho": 0.2827,
+      "spearman_p": 0.00916,
+      "n": 84
+    },
+    "llama70b_verbosity": {
+      "pearson_r": 0.3534,
+      "pearson_p": 0.000976,
+      "spearman_rho": 0.3504,
+      "spearman_p": 0.001087,
+      "n": 84
+    },
+    "gemini_formality": {
+      "pearson_r": 0.2581,
+      "pearson_p": 0.015195,
+      "spearman_rho": 0.1291,
+      "spearman_p": 0.230436,
+      "n": 88
+    },
+    "gemini_verbosity": {
+      "pearson_r": 0.2607,
+      "pearson_p": 0.015327,
+      "spearman_rho": 0.2017,
+      "spearman_p": 0.062556,
+      "n": 86
+    }
+  },
+  "bias_corrected_or": {
+    "gpt4o_formality": {
+      "raw_or": 2.70,
+      "n": 86,
+      "corrected_or_nemes": 2.669,
+      "corrected_or_hedges": 2.6764,
+      "correction_factor_nemes": 0.988372,
+      "correction_factor_hedges": 0.99115,
+      "shrinkage_pct_nemes": 1.15,
+      "shrinkage_pct_hedges": 0.88
+    },
+    "qwen3_formality": {
+      "raw_or": 4.20,
+      "n": 88,
+      "corrected_or_nemes": 4.1321,
+      "corrected_or_hedges": 4.1482,
+      "correction_factor_nemes": 0.988636,
+      "correction_factor_hedges": 0.991354,
+      "shrinkage_pct_nemes": 1.62,
+      "shrinkage_pct_hedges": 1.23
+    },
+    "llama70b_formality": {
+      "raw_or": 4.81,
+      "n": 83,
+      "corrected_or_nemes": 4.7198,
+      "corrected_or_hedges": 4.7412,
+      "correction_factor_nemes": 0.987952,
+      "correction_factor_hedges": 0.990826,
+      "shrinkage_pct_nemes": 1.87,
+      "shrinkage_pct_hedges": 1.43
+    },
+    "gpt4o_verbosity": {
+      "raw_or": 8.55,
+      "n": 86,
+      "corrected_or_nemes": 8.3393,
+      "corrected_or_hedges": 8.3892,
+      "correction_factor_nemes": 0.988372,
+      "correction_factor_hedges": 0.99115,
+      "shrinkage_pct_nemes": 2.46,
+      "shrinkage_pct_hedges": 1.88
+    },
+    "qwen3_verbosity": {
+      "raw_or": 8.98,
+      "n": 86,
+      "corrected_or_nemes": 8.7537,
+      "corrected_or_hedges": 8.8072,
+      "correction_factor_nemes": 0.988372,
+      "correction_factor_hedges": 0.99115,
+      "shrinkage_pct_nemes": 2.52,
+      "shrinkage_pct_hedges": 1.92
+    },
+    "llama70b_verbosity": {
+      "raw_or": 8.21,
+      "n": 83,
+      "corrected_or_nemes": 8.0044,
+      "corrected_or_hedges": 8.0529,
+      "correction_factor_nemes": 0.987952,
+      "correction_factor_hedges": 0.990826,
+      "shrinkage_pct_nemes": 2.50,
+      "shrinkage_pct_hedges": 1.91
+    },
+    "gemini_formality": {
+      "raw_or": 1.64,
+      "n": 88,
+      "corrected_or_nemes": 1.6308,
+      "corrected_or_hedges": 1.633,
+      "correction_factor_nemes": 0.988636,
+      "correction_factor_hedges": 0.991354,
+      "shrinkage_pct_nemes": 0.56,
+      "shrinkage_pct_hedges": 0.43
+    },
+    "gemini_verbosity": {
+      "raw_or": 8.98,
+      "n": 86,
+      "corrected_or_nemes": 8.7537,
+      "corrected_or_hedges": 8.8072,
+      "correction_factor_nemes": 0.988372,
+      "correction_factor_hedges": 0.99115,
+      "shrinkage_pct_nemes": 2.52,
+      "shrinkage_pct_hedges": 1.92
+    }
+  },
+  "interpretation": "MIXED pattern supporting primarily attenuation with axis-dependent divergence component. Verbosity: concordance 71-85% across all 4 judges (mean 77.5%) with significant correlations (r=0.26-0.39, all p<.02) → consistent with attenuation (Likert direction is correct but magnitude compressed). Formality: concordance is judge-dependent — Llama-70B 83% (attenuation), but GPT-4o 53% and Qwen3 53% (near-chance, suggesting partial construct divergence). Formality correlations are also judge-split: Llama-70B r=0.35 p<.001 and Gemini r=0.26 p=.015 (significant), but GPT-4o r=0.12 p=.26 and Qwen3 r=0.04 p=.71 (NS). Bias-corrected ORs show negligible shrinkage (0.4-2.5%), confirming raw ORs are robust at n≈85. Bottom line: the blindspot is predominantly attenuation (especially for verbosity), but formality shows a judge-dependent divergence component where some judges' Likert rankings disagree with their own pairwise preferences at item level.",
+  "methodology_notes": {
+    "nli_filter": "nli_cf >= 0.90 applied to both scored and pairwise data",
+    "pairwise_tie_handling": "Inconsistent pairwise trials (trial1 != trial2) excluded from concordance denominator; scored as 0.5 in correlation",
+    "concordance_ci": "Wilson score interval at 95%",
+    "correlation_method": "Pearson r + Spearman rho (both reported, Pearson primary)",
+    "bias_correction": "Nemes (2009) log(OR)*(n-1)/n + Hedges (1981) J=1-3/(4df-1)",
+    "gpt4o_formality_pairwise_note": "pairwise_results_32b.jsonl is the GPT-4o formality pairwise file (naming artifact from early experiments); confirmed 100% ID overlap with scored.jsonl"
+  }
+}

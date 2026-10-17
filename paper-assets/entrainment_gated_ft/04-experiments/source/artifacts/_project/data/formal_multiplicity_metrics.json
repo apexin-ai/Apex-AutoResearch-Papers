@@ -1,0 +1,45 @@
+{
+  "description": "Formal Predictive Multiplicity Metrics (Marx et al. 2020)",
+  "model_set": "3 architectures (GDN, RetNet, HGRN2) at each attention ratio",
+  "arc_easy": {
+    "n_samples": 2376,
+    "metrics": {
+      "pure": {"ambiguity_alpha": 0.204545, "discrepancy_delta_mean": 2.547774, "discrepancy_delta_std": 1.60719, "discrepancy_delta_median": 2.195312, "n_concordant_correct": 1434, "disagreement_distribution": {"0_of_3": 456, "1_of_3": 194, "2_of_3": 292, "3_of_3": 1434}, "n_samples": 2376},
+      "h24-1": {"ambiguity_alpha": 0.226431, "discrepancy_delta_mean": 2.981579, "discrepancy_delta_std": 1.794458, "discrepancy_delta_median": 2.625, "n_concordant_correct": 1421, "disagreement_distribution": {"0_of_3": 417, "1_of_3": 235, "2_of_3": 303, "3_of_3": 1421}, "n_samples": 2376},
+      "h12-1": {"ambiguity_alpha": 0.223064, "discrepancy_delta_mean": 3.124677, "discrepancy_delta_std": 1.788919, "discrepancy_delta_median": 2.8125, "n_concordant_correct": 1427, "disagreement_distribution": {"0_of_3": 419, "1_of_3": 226, "2_of_3": 304, "3_of_3": 1427}, "n_samples": 2376},
+      "h6-1": {"ambiguity_alpha": 0.201178, "discrepancy_delta_mean": 2.321217, "discrepancy_delta_std": 1.510742, "discrepancy_delta_median": 2.0, "n_concordant_correct": 1469, "disagreement_distribution": {"0_of_3": 429, "1_of_3": 191, "2_of_3": 287, "3_of_3": 1469}, "n_samples": 2376},
+      "h3-1": {"ambiguity_alpha": 0.210017, "discrepancy_delta_mean": 2.663469, "discrepancy_delta_std": 1.86627, "discrepancy_delta_median": 2.1875, "n_concordant_correct": 1432, "disagreement_distribution": {"0_of_3": 445, "1_of_3": 245, "2_of_3": 254, "3_of_3": 1432}, "n_samples": 2376}
+    }
+  },
+  "lambada": {
+    "n_samples": 5153,
+    "metrics": {
+      "pure": {"ambiguity_alpha": 0.306618, "discrepancy_delta_mean": 0.609696, "discrepancy_delta_std": 0.453239, "discrepancy_delta_median": 0.507812, "n_concordant_correct": 1854, "disagreement_distribution": {"0_of_3": 1719, "1_of_3": 762, "2_of_3": 818, "3_of_3": 1854}, "n_samples": 5153},
+      "h24-1": {"ambiguity_alpha": 0.300019, "discrepancy_delta_mean": 0.579046, "discrepancy_delta_std": 0.432728, "discrepancy_delta_median": 0.492188, "n_concordant_correct": 1886, "disagreement_distribution": {"0_of_3": 1721, "1_of_3": 737, "2_of_3": 809, "3_of_3": 1886}, "n_samples": 5153},
+      "h12-1": {"ambiguity_alpha": 0.315932, "discrepancy_delta_mean": 0.545544, "discrepancy_delta_std": 0.409817, "discrepancy_delta_median": 0.464111, "n_concordant_correct": 1824, "disagreement_distribution": {"0_of_3": 1701, "1_of_3": 763, "2_of_3": 865, "3_of_3": 1824}, "n_samples": 5153},
+      "h6-1": {"ambiguity_alpha": 0.293615, "discrepancy_delta_mean": 0.531844, "discrepancy_delta_std": 0.404355, "discrepancy_delta_median": 0.436768, "n_concordant_correct": 1828, "disagreement_distribution": {"0_of_3": 1812, "1_of_3": 690, "2_of_3": 823, "3_of_3": 1828}, "n_samples": 5153},
+      "h3-1": {"ambiguity_alpha": 0.295944, "discrepancy_delta_mean": 0.549026, "discrepancy_delta_std": 0.433378, "discrepancy_delta_median": 0.442871, "n_concordant_correct": 1860, "disagreement_distribution": {"0_of_3": 1768, "1_of_3": 746, "2_of_3": 779, "3_of_3": 1860}, "n_samples": 5153}
+    }
+  },
+  "boolq": {
+    "n_samples": 3270,
+    "metrics": {
+      "pure": {"ambiguity_alpha": 0.504893, "n_ambiguous": 1651, "disagreement_distribution": {"0_of_3": 540, "1_of_3": 752, "2_of_3": 899, "3_of_3": 1079}, "n_samples": 3270},
+      "h24-1": {"ambiguity_alpha": 0.520795, "n_ambiguous": 1703, "disagreement_distribution": {"0_of_3": 602, "1_of_3": 736, "2_of_3": 967, "3_of_3": 965}, "n_samples": 3270},
+      "h12-1": {"ambiguity_alpha": 0.444954, "n_ambiguous": 1455, "disagreement_distribution": {"0_of_3": 555, "1_of_3": 642, "2_of_3": 813, "3_of_3": 1260}, "n_samples": 3270},
+      "h6-1": {"ambiguity_alpha": 0.511009, "n_ambiguous": 1671, "disagreement_distribution": {"0_of_3": 497, "1_of_3": 732, "2_of_3": 939, "3_of_3": 1102}, "n_samples": 3270},
+      "h3-1": {"ambiguity_alpha": 0.453517, "n_ambiguous": 1483, "disagreement_distribution": {"0_of_3": 556, "1_of_3": 644, "2_of_3": 839, "3_of_3": 1231}, "n_samples": 3270}
+    }
+  },
+  "hellaswag": {
+    "n_samples": 10042,
+    "note": "FIXED 2026-05-21: switched from acc to acc_norm (length-normalized). Old values used raw acc (~0.46), new values use acc_norm (~0.60).",
+    "metrics": {
+      "pure": {"ambiguity_alpha": 0.148178, "n_ambiguous": 1488, "disagreement_distribution": {"0_of_3": 3321, "1_of_3": 736, "2_of_3": 752, "3_of_3": 5233}, "n_samples": 10042},
+      "h24-1": {"ambiguity_alpha": 0.150468, "n_ambiguous": 1511, "disagreement_distribution": {"0_of_3": 3327, "1_of_3": 742, "2_of_3": 769, "3_of_3": 5204}, "n_samples": 10042},
+      "h12-1": {"ambiguity_alpha": 0.148178, "n_ambiguous": 1488, "disagreement_distribution": {"0_of_3": 3258, "1_of_3": 739, "2_of_3": 749, "3_of_3": 5296}, "n_samples": 10042},
+      "h6-1": {"ambiguity_alpha": 0.146286, "n_ambiguous": 1469, "disagreement_distribution": {"0_of_3": 3299, "1_of_3": 718, "2_of_3": 751, "3_of_3": 5274}, "n_samples": 10042},
+      "h3-1": {"ambiguity_alpha": 0.150468, "n_ambiguous": 1511, "disagreement_distribution": {"0_of_3": 3320, "1_of_3": 732, "2_of_3": 779, "3_of_3": 5211}, "n_samples": 10042}
+    }
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "benchmark": "piqa",
+  "n_samples": 1838,
+  "jaccard_analysis": {
+    "h24-1": {
+      "GDN_vs_RetNet": {
+        "helped": {
+          "J": 0.0872,
+          "J_null": 0.0217,
+          "J_max": 0.6875,
+          "nES": 0.0984,
+          "p": 0.0,
+          "n_A": 96,
+          "n_B": 66,
+          "n_intersection": 13
+        },
+        "hurt": {
+          "J": 0.0608,
+          "J_null": 0.0216,
+          "J_max": 0.8256,
+          "nES": 0.0488,
+          "p": 0.0051,
+          "n_A": 86,
+          "n_B": 71,
+          "n_intersection": 9
+        }
+      },
+      "GDN_vs_HGRN2": {
+        "helped": {
+          "J": 0.0637,
+          "J_null": 0.0227,
+          "J_max": 0.7396,
+          "nES": 0.0572,
+          "p": 0.0026,
+          "n_A": 96,
+          "n_B": 71,
+          "n_intersection": 10
+        },
+        "hurt": {
+          "J": 0.1241,
+          "J_null": 0.0211,
+          "J_max": 0.7907,
+          "nES": 0.1338,
+          "p": 0.0,
+          "n_A": 86,
+          "n_B": 68,
+          "n_intersection": 17
+        }
+      },
+      "RetNet_vs_HGRN2": {
+        "helped": {
+          "J": 0.1048,
+          "J_null": 0.019,
+          "J_max": 0.9296,
+          "nES": 0.0943,
+          "p": 0.0,
+          "n_A": 66,
+          "n_B": 71,
+          "n_intersection": 13
+        },
+        "hurt": {
+          "J": 0.0945,
+          "J_null": 0.0193,
+          "J_max": 0.9577,
+          "nES": 0.0802,
+          "p": 0.0,
+          "n_A": 71,
+          "n_B": 68,
+          "n_intersection": 12
+        }
+      }
+    },
+    "h12-1": {
+      "GDN_vs_RetNet": {
+        "helped": {
+          "J": 0.071,
+          "J_null": 0.023,
+          "J_max": 0.8864,
+          "nES": 0.0555,
+          "p": 0.0011,
+          "n_A": 88,
+          "n_B": 78,
+          "n_intersection": 11
+        },
+        "hurt": {
+          "J": 0.0946,
+          "J_null": 0.0225,
+          "J_max": 0.9286,
+          "nES": 0.0796,
+          "p": 0.0,
+          "n_A": 84,
+          "n_B": 78,
+          "n_intersection": 14
+        }
+      },
+      "GDN_vs_HGRN2": {
+        "helped": {
+          "J": 0.098,
+          "J_null": 0.0233,
+          "J_max": 0.9091,
+          "nES": 0.0843,
+          "p": 0.0,
+          "n_A": 88,
+          "n_B": 80,
+          "n_intersection": 15
+        },
+        "hurt": {
+          "J": 0.1197,
+          "J_null": 0.022,
+          "J_max": 0.8929,
+          "nES": 0.1122,
+          "p": 0.0,
+          "n_A": 84,
+          "n_B": 75,
+          "n_intersection": 17
+        }
+      },
+      "RetNet_vs_HGRN2": {
+        "helped": {
+          "J": 0.0897,
+          "J_null": 0.022,
+          "J_max": 0.975,
+          "nES": 0.071,
+          "p": 0.0,
+          "n_A": 78,
+          "n_B": 80,
+          "n_intersection": 13
+        },
+        "hurt": {
+          "J": 0.1007,
+          "J_null": 0.0212,
+          "J_max": 0.9615,
+          "nES": 0.0845,
+          "p": 0.0,
+          "n_A": 78,
+          "n_B": 75,
+          "n_intersection": 14
+        }
+      }
+    },
+    "h6-1": {
+      "GDN_vs_RetNet": {
+        "helped": {
+          "J": 0.0833,
+          "J_null": 0.0251,
+          "J_max": 0.82,
+          "nES": 0.0732,
+          "p": 0.0001,
+          "n_A": 100,
+          "n_B": 82,
+          "n_intersection": 14
+        },
+        "hurt": {
+          "J": 0.1039,
+          "J_null": 0.0237,
+          "J_max": 0.9767,
+          "nES": 0.0842,
+          "p": 0.0,
+          "n_A": 86,
+          "n_B": 84,
+          "n_intersection": 16
+        }
+      },
+      "GDN_vs_HGRN2": {
+        "helped": {
+          "J": 0.0647,
+          "J_null": 0.025,
+          "J_max": 0.81,
+          "nES": 0.0506,
+          "p": 0.0044,
+          "n_A": 100,
+          "n_B": 81,
+          "n_intersection": 11
+        },
+        "hurt": {
+          "J": 0.1046,
+          "J_null": 0.0235,
+          "J_max": 0.9651,
+          "nES": 0.0861,
+          "p": 0.0,
+          "n_A": 86,
+          "n_B": 83,
+          "n_intersection": 16
+        }
+      },
+      "RetNet_vs_HGRN2": {
+        "helped": {
+          "J": 0.094,
+          "J_null": 0.0227,
+          "J_max": 0.9878,
+          "nES": 0.0739,
+          "p": 0.0,
+          "n_A": 82,
+          "n_B": 81,
+          "n_intersection": 14
+        },
+        "hurt": {
+          "J": 0.0844,
+          "J_null": 0.0232,
+          "J_max": 0.9881,
+          "nES": 0.0634,
+          "p": 0.0,
+          "n_A": 84,
+          "n_B": 83,
+          "n_intersection": 13
+        }
+      }
+    },
+    "h3-1": {
+      "GDN_vs_RetNet": {
+        "helped": {
+          "J": 0.1145,
+          "J_null": 0.0253,
+          "J_max": 0.7619,
+          "nES": 0.121,
+          "p": 0.0,
+          "n_A": 105,
+          "n_B": 80,
+          "n_intersection": 19
+        },
+        "hurt": {
+          "J": 0.0694,
+          "J_null": 0.0214,
+          "J_max": 0.9494,
+          "nES": 0.0518,
+          "p": 0.0013,
+          "n_A": 79,
+          "n_B": 75,
+          "n_intersection": 10
+        }
+      },
+      "GDN_vs_HGRN2": {
+        "helped": {
+          "J": 0.0793,
+          "J_null": 0.0238,
+          "J_max": 0.6857,
+          "nES": 0.0838,
+          "p": 0.0001,
+          "n_A": 105,
+          "n_B": 72,
+          "n_intersection": 13
+        },
+        "hurt": {
+          "J": 0.1042,
+          "J_null": 0.0221,
+          "J_max": 0.9875,
+          "nES": 0.085,
+          "p": 0.0,
+          "n_A": 79,
+          "n_B": 80,
+          "n_intersection": 15
+        }
+      },
+      "RetNet_vs_HGRN2": {
+        "helped": {
+          "J": 0.1429,
+          "J_null": 0.0211,
+          "J_max": 0.9,
+          "nES": 0.1386,
+          "p": 0.0,
+          "n_A": 80,
+          "n_B": 72,
+          "n_intersection": 19
+        },
+        "hurt": {
+          "J": 0.0616,
+          "J_null": 0.0215,
+          "J_max": 0.9375,
+          "nES": 0.0438,
+          "p": 0.0042,
+          "n_A": 75,
+          "n_B": 80,
+          "n_intersection": 9
+        }
+      }
+    }
+  }
+}

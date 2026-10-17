@@ -1,0 +1,26 @@
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Measurement Error in Causal Inference}
+
+Classical measurement error theory shows that naive regression with mismeasured covariates yields attenuated coefficients~\cite{fuller1987measurement,carroll2006measurement}.
+\citet{frazis2003estimating} derive exact bias formulas for ordinary least squares (OLS) with a misclassified binary regressor, showing attenuation proportional to the error rate, but restricted to average effects without subgroup heterogeneity.
+In the econometrics literature, \citet{knox2020administrative} demonstrate that misclassification in administrative records biases estimates of racial disparities, and \citet{bound2001measurement} survey how binary misclassification attenuates regression coefficients.
+Our Theorem~\ref{thm:bias_identity} generalizes the Frazis--Loewenstein scalar result to subgroup-heterogeneous error rates, revealing a qualitatively new product-form bias that can reverse effect signs across subgroups.
+These works treat misclassification as a uniform nuisance; none models the interaction between heterogeneous error rates and heterogeneous treatment effects that arises when noisy labels serve as effect modifiers.
+
+\subsection{Post-Prediction Causal Inference}
+
+Several frameworks correct for machine-generated label noise in causal estimation.
+PPI~\cite{angelopoulos2023ppi} and DSL~\cite{egami2023dsl} use a small expert-labeled sample to debias predictions, assuming homogeneous prediction quality across observations.
+PPCI~\cite{sui2026ppci} extends this to conditional prediction correction, and ForestIV~\cite{bu2023forestiv} uses forest-based instrumental variables.
+\citet{audinet2025benchmarking} benchmark these methods and report that debiasing can \emph{increase} MSE when prediction error is heterogeneous---a finding we explain: their population-level MSE increase is a direct consequence of the $\delta_s \cdot \Delta\tau$ product in Theorem~\ref{thm:bias_identity}, which shows that global correction amplifies bias whenever error-rate deviation interacts with effect heterogeneity.
+All of these frameworks assume a single global error model; none addresses per-subgroup effect modifier misclassification, leaving a blind spot precisely where LLM annotation heterogeneity meets causal heterogeneity.
+
+\subsection{Heterogeneous Treatment Effects}
+
+The gap left by global error correction becomes consequential when corrected labels feed into HTE estimation.
+Modern HTE estimators, including causal forests~\cite{wager2018causal}, double machine learning (DML)~\cite{chernozhukov2018dml}, and recursive partitioning~\cite{athey2016recursive}, assume error-free covariates.
+When the effect modifier $Z$ is an LLM annotation, error rates vary substantially across demographic subgroups~\cite{ashwin2025bias}, violating this assumption.
+\citet{imai2010causal} study treatment misclassification (errors in $T$, not $Z$), requiring instrumental variables; our setting preserves the treatment contrast but corrupts the heterogeneity structure, making confusion matrix inversion feasible.
+Extended discussion appears in Appendix~\ref{app:related}.

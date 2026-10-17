@@ -1,0 +1,41 @@
+Pairwise AUC Verification Report — 3 mix50 Accumulation Cells
+Method: Binary RF, 500 trees, 5-fold stratified CV, seed=42
+Date: 2026-05-22
+
+GPT-2 XL nucleus mix50:
+  d0v1: 500-tree=0.9996  200-tree=0.9995
+  d1v2: 500-tree=0.8305  200-tree=0.8314
+  d2v3: 500-tree=0.6945  200-tree=0.6903
+  EDD_0.70 = 2 (both 500 and 200 tree)
+
+Pythia nucleus mix50:
+  d0v1: 500-tree=0.9999  200-tree=0.9998
+  d1v2: 500-tree=0.7925  200-tree=0.7915
+  d2v3: 500-tree=0.7159  200-tree=0.7133
+  EDD_0.70 = 3 (both 500 and 200 tree)
+
+OLMo temp09 mix50:
+  d0v1: 500-tree=0.9999  200-tree=0.9999
+  d1v2: 500-tree=0.8166  200-tree=0.8162
+  d2v3: 500-tree=0.7262  200-tree=0.7223
+  EDD_0.70 = 3 (both 500 and 200 tree)
+
+CLAIM CHECK: 2/3 mix50 cells have EDD>=3 (GPT-2 XL is the exception).
+Combined with 3/3 mix25 cells having EDD=3, paper claim "5/6 cells preserve EDD_0.70=3" is CONFIRMED.
+
+BASELINE ANALYSIS:
+- accumulation_pairwise_auc.json was computed with 200-tree binary RF (matching compute_accum_edd.py method)
+- 500-tree results differ by at most +0.0042 from 200-tree, EDD conclusions unchanged
+- GPT-2 XL d2v3 remains below 0.70 threshold (0.6945 at 500-tree vs 0.6903 at 200-tree)
+
+BASELINE SOURCE ISSUE:
+- GPT-2 XL pipeline hardcodes full_replacement_baseline=0.8428 (line 633/646)
+- Pythia pipeline ALSO hardcodes 0.8428 (same lines)
+- 0.8428 = GPT-2 XL seed-43 rerun accuracy (results/gpt2xl/rf_eval_seed42_rerun/summary.json)
+- Atlas v2 data shows: GPT-2 XL=83.3%, Pythia=78.2%, OLMo=82.0% (100-tree, 1000 samples/depth)
+- GPT-2 XL v2 mix25/mix50 summaries correctly used 0.859 as baseline (from an earlier pipeline run)
+- The current script was later modified to 0.8428, which is incorrect for GPT-2 XL (should be ~0.859)
+- Pythia baseline 0.8428 is completely wrong (should be ~0.78, it's GPT-2 XL's value)
+- OLMo pipeline has no baseline field at all
+
+Files on server: /root/autodl-tmp/recursive_gen_depth_est/results/accum_mix50_pairwise_auc_verified.json

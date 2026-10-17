@@ -1,0 +1,278 @@
+{
+  "benchmark": "winogrande",
+  "n_samples": 1267,
+  "jaccard_analysis": {
+    "h24-1": {
+      "GDN_vs_RetNet": {
+        "helped": {
+          "J": 0.092,
+          "J_null": 0.0777,
+          "J_max": 0.84,
+          "nES": 0.0188,
+          "p": 0.1832,
+          "n_A": 200,
+          "n_B": 168,
+          "n_intersection": 31
+        },
+        "hurt": {
+          "J": 0.1054,
+          "J_null": 0.0778,
+          "J_max": 0.8918,
+          "nES": 0.0339,
+          "p": 0.0342,
+          "n_A": 173,
+          "n_B": 194,
+          "n_intersection": 35
+        }
+      },
+      "GDN_vs_HGRN2": {
+        "helped": {
+          "J": 0.0822,
+          "J_null": 0.0813,
+          "J_max": 0.91,
+          "nES": 0.001,
+          "p": 0.5065,
+          "n_A": 200,
+          "n_B": 182,
+          "n_intersection": 29
+        },
+        "hurt": {
+          "J": 0.1081,
+          "J_null": 0.069,
+          "J_max": 0.896,
+          "nES": 0.0473,
+          "p": 0.0064,
+          "n_A": 173,
+          "n_B": 155,
+          "n_intersection": 32
+        }
+      },
+      "RetNet_vs_HGRN2": {
+        "helped": {
+          "J": 0.1218,
+          "J_null": 0.0741,
+          "J_max": 0.9231,
+          "nES": 0.0562,
+          "p": 0.001,
+          "n_A": 168,
+          "n_B": 182,
+          "n_intersection": 38
+        },
+        "hurt": {
+          "J": 0.1115,
+          "J_null": 0.073,
+          "J_max": 0.799,
+          "nES": 0.053,
+          "p": 0.0067,
+          "n_A": 194,
+          "n_B": 155,
+          "n_intersection": 35
+        }
+      }
+    },
+    "h12-1": {
+      "GDN_vs_RetNet": {
+        "helped": {
+          "J": 0.1184,
+          "J_null": 0.0761,
+          "J_max": 0.9198,
+          "nES": 0.0501,
+          "p": 0.0042,
+          "n_A": 187,
+          "n_B": 172,
+          "n_intersection": 38
+        },
+        "hurt": {
+          "J": 0.1114,
+          "J_null": 0.0785,
+          "J_max": 0.9421,
+          "nES": 0.0382,
+          "p": 0.0166,
+          "n_A": 179,
+          "n_B": 190,
+          "n_intersection": 37
+        }
+      },
+      "GDN_vs_HGRN2": {
+        "helped": {
+          "J": 0.1134,
+          "J_null": 0.0794,
+          "J_max": 0.9947,
+          "nES": 0.0371,
+          "p": 0.014,
+          "n_A": 187,
+          "n_B": 186,
+          "n_intersection": 38
+        },
+        "hurt": {
+          "J": 0.0962,
+          "J_null": 0.0722,
+          "J_max": 0.9106,
+          "nES": 0.0286,
+          "p": 0.0608,
+          "n_A": 179,
+          "n_B": 163,
+          "n_intersection": 30
+        }
+      },
+      "RetNet_vs_HGRN2": {
+        "helped": {
+          "J": 0.1223,
+          "J_null": 0.0759,
+          "J_max": 0.9247,
+          "nES": 0.0546,
+          "p": 0.002,
+          "n_A": 172,
+          "n_B": 186,
+          "n_intersection": 39
+        },
+        "hurt": {
+          "J": 0.0963,
+          "J_null": 0.0744,
+          "J_max": 0.8579,
+          "nES": 0.0279,
+          "p": 0.076,
+          "n_A": 190,
+          "n_B": 163,
+          "n_intersection": 31
+        }
+      }
+    },
+    "h6-1": {
+      "GDN_vs_RetNet": {
+        "helped": {
+          "J": 0.0887,
+          "J_null": 0.0755,
+          "J_max": 0.9454,
+          "nES": 0.0152,
+          "p": 0.202,
+          "n_A": 183,
+          "n_B": 173,
+          "n_intersection": 29
+        },
+        "hurt": {
+          "J": 0.0991,
+          "J_null": 0.0775,
+          "J_max": 0.8769,
+          "nES": 0.027,
+          "p": 0.0858,
+          "n_A": 195,
+          "n_B": 171,
+          "n_intersection": 33
+        }
+      },
+      "GDN_vs_HGRN2": {
+        "helped": {
+          "J": 0.1006,
+          "J_null": 0.0792,
+          "J_max": 0.9683,
+          "nES": 0.0241,
+          "p": 0.0836,
+          "n_A": 183,
+          "n_B": 189,
+          "n_intersection": 34
+        },
+        "hurt": {
+          "J": 0.1084,
+          "J_null": 0.078,
+          "J_max": 0.8872,
+          "nES": 0.0376,
+          "p": 0.0264,
+          "n_A": 195,
+          "n_B": 173,
+          "n_intersection": 36
+        }
+      },
+      "RetNet_vs_HGRN2": {
+        "helped": {
+          "J": 0.1242,
+          "J_null": 0.0768,
+          "J_max": 0.9153,
+          "nES": 0.0566,
+          "p": 0.0013,
+          "n_A": 173,
+          "n_B": 189,
+          "n_intersection": 40
+        },
+        "hurt": {
+          "J": 0.0784,
+          "J_null": 0.0728,
+          "J_max": 0.9884,
+          "nES": 0.0061,
+          "p": 0.387,
+          "n_A": 171,
+          "n_B": 173,
+          "n_intersection": 25
+        }
+      }
+    },
+    "h3-1": {
+      "GDN_vs_RetNet": {
+        "helped": {
+          "J": 0.1211,
+          "J_null": 0.0766,
+          "J_max": 0.9514,
+          "nES": 0.0508,
+          "p": 0.0022,
+          "n_A": 185,
+          "n_B": 176,
+          "n_intersection": 39
+        },
+        "hurt": {
+          "J": 0.1131,
+          "J_null": 0.0774,
+          "J_max": 0.9891,
+          "nES": 0.0392,
+          "p": 0.0115,
+          "n_A": 183,
+          "n_B": 181,
+          "n_intersection": 37
+        }
+      },
+      "GDN_vs_HGRN2": {
+        "helped": {
+          "J": 0.1205,
+          "J_null": 0.0792,
+          "J_max": 0.9893,
+          "nES": 0.0453,
+          "p": 0.0029,
+          "n_A": 185,
+          "n_B": 187,
+          "n_intersection": 40
+        },
+        "hurt": {
+          "J": 0.0846,
+          "J_null": 0.073,
+          "J_max": 0.8907,
+          "nES": 0.0142,
+          "p": 0.2357,
+          "n_A": 183,
+          "n_B": 163,
+          "n_intersection": 27
+        }
+      },
+      "RetNet_vs_HGRN2": {
+        "helped": {
+          "J": 0.1169,
+          "J_null": 0.0771,
+          "J_max": 0.9412,
+          "nES": 0.0461,
+          "p": 0.0065,
+          "n_A": 176,
+          "n_B": 187,
+          "n_intersection": 38
+        },
+        "hurt": {
+          "J": 0.1169,
+          "J_null": 0.0726,
+          "J_max": 0.9006,
+          "nES": 0.0535,
+          "p": 0.0021,
+          "n_A": 181,
+          "n_B": 163,
+          "n_intersection": 36
+        }
+      }
+    }
+  }
+}

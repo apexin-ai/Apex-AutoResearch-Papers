@@ -1,0 +1,8 @@
+\begin{abstract}
+As language models increasingly train on web text containing their own outputs, a recursive model$\to$data$\to$model loop arises, yet no method estimates how many such iterations a text has undergone.
+We formalize \emph{recursive generation depth estimation} as ordinal classification and construct a benchmark of 180K cell-instances (140K unique passages) spanning three model families, three decoding strategies, and four depths under full-replacement chains at 1--1.5B scale.
+A lightweight pipeline (19 statistical features classified by Random Forest) achieves d1--d3 balanced accuracy of 59--82\% across nine model--strategy cells, with Effective Discriminable Depth $\mathrm{EDD}_{0.70} = 3$ in 8/9 cells.
+Three findings emerge: (1)~depth signal concentrates in perplexity distribution tails, corroborated by classifier convergence and independent cross-perplexity features; (2)~decoding strategy affects cross-condition transfer more than model architecture, consistent with structurally distinct degradation trajectories; (3)~signal attenuates with scale (14B: $\mathrm{EDD}_{0.70}{=}2$ under nucleus and temperature, 0 under top-$k$), with reference-model choice as a major confound.
+Our claims hold within-strategy or when decoding configuration is known; a two-stage routing pipeline recovers $+$11.5\,pp under cross-strategy transfer.
+Perturbation-based and membership-inference baselines lack ordinal resolution; depth estimation requires distributional statistics beyond binary detection scores\footnote{Code and data are available at \url{https://anonymous.4open.science/r/recursive_gen_depth_est-1BD0/}.}.
+\end{abstract}

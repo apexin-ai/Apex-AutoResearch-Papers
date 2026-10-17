@@ -1,0 +1,67 @@
+{
+  "high_bcs_group": {
+    "n": 25,
+    "mean_control_acc": 0.6933,
+    "mean_treatment_acc": 0.605,
+    "mean_delta": -0.0883,
+    "std_delta": 0.0302,
+    "paired_ttest_t": -14.6094,
+    "paired_ttest_p": 0.0,
+    "cohens_d": -2.9222
+  },
+  "low_bcs_group": {
+    "n": 25,
+    "mean_control_acc": 0.9008,
+    "mean_treatment_acc": 0.8712,
+    "mean_delta": -0.0296,
+    "std_delta": 0.0272,
+    "paired_ttest_t": -5.4451,
+    "paired_ttest_p": 1.4e-05,
+    "cohens_d": -1.0882
+  },
+  "interaction": {
+    "high_mean_delta": -0.0883,
+    "low_mean_delta": -0.0296,
+    "difference": -0.0588,
+    "ttest_t": -7.2263,
+    "ttest_p": 0.0
+  },
+  "per_type_effect": {
+    "country of citizenship": {
+      "mean_delta": -0.037,
+      "n_batches": 20
+    },
+    "follows": {
+      "mean_delta": -0.0883,
+      "n_batches": 25
+    },
+    "member of": {
+      "mean_delta": -0.089,
+      "n_batches": 24
+    },
+    "military rank": {
+      "mean_delta": -0.0208,
+      "n_batches": 3
+    },
+    "part of": {
+      "mean_delta": -0.0883,
+      "n_batches": 25
+    },
+    "participant of": {
+      "mean_delta": -0.0816,
+      "n_batches": 6
+    }
+  },
+  "rename_count_correlation": {
+    "pearson_r": -0.6254,
+    "p_value": 3e-06
+  },
+  "total_time_s": 210.4,
+  "solo_sanity_check": {
+    "n_pass": 11,
+    "n_total": 12,
+    "failed_types": [
+      "mother"
+    ]
+  }
+}

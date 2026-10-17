@@ -1,0 +1,17 @@
+X-VLA L2 Norm CV Results (100 images, 10 LIBERO-Object tasks)
+
+VLM features (64 tokens): CV=0.1509 mean=47.10 std=7.11
+Aux visual (150 tokens):   CV=1.4142 mean=10.63 std=15.04 (includes zero-padded tokens)
+All vision (214 tokens):   CV=0.9875 mean=21.54 std=21.27
+
+Per-image CV: VLM=0.1487±0.012, Aux=1.4142±0.000, Combined=0.9872±0.006
+
+Comparison:
+  pi0 (linear projection):              0.038
+  X-VLA (linear proj + BART encoder):   0.151
+  OpenVLA (MLP projector):              0.215
+  SmolVLA (pixel-shuffle):              0.314
+
+Server: westd-41074, GPU 0
+Script: /root/autodl-tmp/importance_margin_vla_compress/compute_xvla_l2norm_cv.py
+Full JSON: /root/autodl-tmp/importance_margin_vla_compress/eval_results/xvla_l2norm_cv.json

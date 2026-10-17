@@ -1,0 +1,40 @@
+{
+  "method": "OLS log-log, error samples excluded via _is_valid_score",
+  "K": 3,
+  "n_panels": 455,
+  "n_conditions": 12,
+  "fix_description": "Replaced .get('winner', 'tie') with _is_valid_score() filtering — error/format_error/api_error samples are now skipped instead of counted as 'tie' votes",
+  "aggregation_methods": {
+    "threshold": {
+      "old": {"eta_sig": "12/12", "keff_sig": "11/12", "keff_dir": "10+/1-", "R2": 0.89},
+      "new": {"eta_sig": "12/12", "keff_sig": "11/12", "keff_dir": "11+/0-", "R2": 0.829},
+      "changed": true,
+      "changes": "keff_dir flipped from 10+/1- to 11+/0- (spurious negative disappeared); R2 dropped 0.89→0.829"
+    },
+    "majority": {
+      "old": {"eta_sig": "9/12", "keff_sig": "8/12", "keff_dir": "7+/1-", "R2": 0.298},
+      "new": {"eta_sig": "10/12", "keff_sig": "12/12", "keff_dir": "12+/0-", "R2": 0.327},
+      "changed": true,
+      "changes": "keff_sig increased 8/12→12/12 (all significant); keff_dir 7+/1-→12+/0- (all positive); eta_sig 9→10; R2 improved 0.298→0.327"
+    },
+    "weighted": {
+      "old": {"eta_sig": "9/12", "keff_sig": "9/12", "keff_dir": "9+/0-", "R2": 0.284},
+      "new": {"eta_sig": "9/12", "keff_sig": "12/12", "keff_dir": "12+/0-", "R2": 0.328},
+      "changed": true,
+      "changes": "keff_sig increased 9/12→12/12; keff_dir 9+/0-→12+/0-; R2 improved 0.284→0.328"
+    },
+    "bayesian": {
+      "old": {"eta_sig": "9/12", "keff_sig": "7/12", "keff_dir": "1+/6-", "R2": 0.104},
+      "new": {"eta_sig": "9/12", "keff_sig": "6/12", "keff_dir": "5+/1-", "R2": 0.087},
+      "changed": true,
+      "changes": "keff_dir dramatically reversed from 1+/6- to 5+/1- — old negative direction was artifact of errors counted as 'tie'; R2 dropped 0.104→0.087; keff_sig 7→6"
+    }
+  },
+  "key_findings": [
+    "All 4 methods changed after error filtering",
+    "Majority and weighted vote: K_eff now universally significant (12/12) and positive — error-as-tie was masking the diversity signal",
+    "Bayesian direction reversal confirmed: 1+/6- → 5+/1- — the old negative K_eff was an artifact of log-odds bias from error='tie' votes",
+    "Threshold: spurious negative K_eff condition disappeared (10+/1- → 11+/0-), but R2 dropped slightly",
+    "Overall: error filtering strengthens the paper's main claim that judge diversity (K_eff) improves manipulation resistance"
+  ]
+}

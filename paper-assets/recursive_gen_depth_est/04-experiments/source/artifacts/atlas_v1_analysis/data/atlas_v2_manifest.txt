@@ -1,0 +1,1 @@
+Atlas v2 8-cell analysis complete. Files on server: artifacts/atlas_v2/{atlas_v2_data.json, atlas_v2_results.json, edd_sensitivity.json, atlas_summary.json}, scripts/atlas_v2_complete.py

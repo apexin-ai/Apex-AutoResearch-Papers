@@ -1,0 +1,131 @@
+% ============================================================
+% K=5 Aggregation Bootstrap Results
+% Source: k5_aggregation_bootstrap.json
+% Bootstrap: B=9999, Rademacher weights, 5 position permutations
+% FDR correction: BH at alpha=0.05
+% Regression: log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)
+% N panels = 3003 (C(15,5))
+% ============================================================
+
+% ----------------------------------------
+% Table 1: Summary (Bootstrap FDR-corrected)
+% ----------------------------------------
+% Columns: Method & eta_max sig & K_eff sig & mean R^2
+% "sig" = FDR-corrected wild cluster bootstrap p < 0.05
+
+% \begin{tabular}{lccc}
+% \toprule
+% Aggregation & $\eta_{\max}$ sig & $K_{\mathrm{eff}}$ sig & $\bar{R}^2$ \\
+% \midrule
+Majority       & 2/12  & 7/12  & 0.285 \\
+Weighted       & 2/12  & 7/12  & 0.275 \\
+Threshold      & 3/12  & 7/12  & 0.408 \\
+Bayesian       & 2/12  & 7/12  & 0.166 \\
+% \bottomrule
+% \end{tabular}
+
+
+% ----------------------------------------
+% Table 2: OLS vs Bootstrap comparison
+% ----------------------------------------
+% Columns: Method & OLS eta sig & Boot eta sig & OLS K_eff sig & Boot K_eff sig
+
+% \begin{tabular}{lcccc}
+% \toprule
+% Aggregation & \multicolumn{2}{c}{$\eta_{\max}$ sig} & \multicolumn{2}{c}{$K_{\mathrm{eff}}$ sig} \\
+% \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+%             & OLS & Bootstrap & OLS & Bootstrap \\
+% \midrule
+Majority       & 10/12 & 0/12  & 12/12 & 7/12  \\
+Weighted       & 9/12  & 1/12  & 11/12 & 9/12  \\
+Threshold      & 12/12 & 6/12  & 11/12 & 10/12 \\
+Bayesian       & 8/12  & 1/12  & 10/12 & 0/12  \\
+% \bottomrule
+% \end{tabular}
+
+
+% ============================================================
+% Table 3: Per-condition detail (Bootstrap FDR-corrected)
+% ============================================================
+% Columns: Condition & Method & beta_std(K_eff) & p_FDR(K_eff) & beta_std(eta) & p_FDR(eta) & R^2
+% Significance markers: * p<0.05, ** p<0.01, *** p<0.001
+
+% ========================
+% MAJORITY VOTE (7/12 K_eff sig, 0/12 eta sig)
+% ========================
+% mmlu
+mmlu $\times$ PI         & Majority & 0.493  & 0.016* & 0.370  & 0.099 & 0.604 \\
+mmlu $\times$ Syc        & Majority & 0.321  & 0.025* & 0.349  & 0.099 & 0.299 \\
+mmlu $\times$ SM         & Majority & 0.506  & 0.016* & 0.075  & 0.826 & 0.320 \\
+mmlu $\times$ Verb       & Majority & 0.235  & 0.016* & 0.445  & 0.064 & 0.326 \\
+mmlu $\times$ Pos        & Majority & 0.149  & 0.115  & 0.333  & 0.126 & 0.185 \\
+mmlu $\times$ Auth       & Majority & 0.075  & 0.314  & 0.203  & 0.475 & 0.063 \\
+% arc_challenge
+arc $\times$ PI          & Majority & 0.583  & 0.032* & $-$0.038 & 0.869 & 0.304 \\
+arc $\times$ Syc         & Majority & $-$0.157 & 0.188 & 0.374  & 0.064 & 0.077 \\
+arc $\times$ SM          & Majority & 0.443  & 0.016* & $-$0.026 & 0.912 & 0.176 \\
+arc $\times$ Verb        & Majority & 0.215  & 0.133  & 0.276  & 0.126 & 0.218 \\
+arc $\times$ Pos         & Majority & 0.881  & 0.032* & $-$0.348 & 0.869 & 0.357 \\
+arc $\times$ Auth        & Majority & 0.264  & 0.182  & 0.146  & 0.512 & 0.146 \\
+
+% ========================
+% WEIGHTED VOTE (9/12 K_eff sig, 1/12 eta sig)
+% ========================
+% mmlu
+mmlu $\times$ PI         & Weighted & 0.449  & 0.012* & 0.312  & 0.111 & 0.471 \\
+mmlu $\times$ Syc        & Weighted & 0.353  & 0.020* & 0.258  & 0.111 & 0.251 \\
+mmlu $\times$ SM         & Weighted & 0.611  & 0.014* & $-$0.023 & 0.999 & 0.353 \\
+mmlu $\times$ Verb       & Weighted & 0.287  & 0.012* & 0.403  & 0.037* & 0.325 \\
+mmlu $\times$ Pos        & Weighted & 0.448  & 0.024* & 0.183  & 0.333 & 0.320 \\
+mmlu $\times$ Auth       & Weighted & 0.127  & 0.057  & 0.120  & 0.364 & 0.047 \\
+% arc_challenge
+arc $\times$ PI          & Weighted & 0.585  & 0.027* & $-$0.115 & 0.395 & 0.243 \\
+arc $\times$ Syc         & Weighted & $-$0.041 & 0.791 & 0.316  & 0.177 & 0.082 \\
+arc $\times$ SM          & Weighted & 0.422  & 0.012* & $-$0.036 & 0.931 & 0.152 \\
+arc $\times$ Verb        & Weighted & 0.316  & 0.033* & 0.197  & 0.316 & 0.238 \\
+arc $\times$ Pos         & Weighted & 0.887  & 0.023* & $-$0.359 & 0.316 & 0.353 \\
+arc $\times$ Auth        & Weighted & 0.370  & 0.066  & 0.030  & 0.999 & 0.154 \\
+
+% ========================
+% THRESHOLD SUPERMAJORITY (10/12 K_eff sig, 6/12 eta sig)
+% ========================
+% mmlu
+mmlu $\times$ PI         & Threshold & 0.398  & 0.003** & 0.566  & 0.024* & 0.756 \\
+mmlu $\times$ Syc        & Threshold & 0.409  & 0.010** & 0.532  & 0.019* & 0.592 \\
+mmlu $\times$ SM         & Threshold & 0.667  & 0.003** & 0.179  & 0.286 & 0.662 \\
+mmlu $\times$ Verb       & Threshold & 0.274  & 0.016* & 0.523  & 0.013* & 0.448 \\
+mmlu $\times$ Pos        & Threshold & 0.441  & 0.003** & 0.352  & 0.070 & 0.481 \\
+mmlu $\times$ Auth       & Threshold & 0.412  & 0.003** & 0.422  & 0.024* & 0.530 \\
+% arc_challenge
+arc $\times$ PI          & Threshold & 0.497  & 0.050* & 0.203  & 0.286 & 0.456 \\
+arc $\times$ Syc         & Threshold & 0.073  & 0.584  & 0.459  & 0.024* & 0.266 \\
+arc $\times$ SM          & Threshold & 0.804  & 0.001*** & $-$0.054 & 0.996 & 0.572 \\
+arc $\times$ Verb        & Threshold & 0.318  & 0.016* & 0.390  & 0.058 & 0.453 \\
+arc $\times$ Pos         & Threshold & 1.010  & 0.003** & $-$0.260 & 0.996 & 0.625 \\
+arc $\times$ Auth        & Threshold & $-$0.002 & 0.990 & 0.476  & 0.032* & 0.225 \\
+
+% ========================
+% BAYESIAN (0/12 K_eff sig, 1/12 eta sig)
+% ========================
+% mmlu
+mmlu $\times$ PI         & Bayesian & 0.084  & 0.728  & 0.432  & 0.132 & 0.239 \\
+mmlu $\times$ Syc        & Bayesian & 0.147  & 0.184  & 0.335  & 0.132 & 0.166 \\
+mmlu $\times$ SM         & Bayesian & 0.100  & 0.771  & 0.123  & 0.678 & 0.044 \\
+mmlu $\times$ Verb       & Bayesian & 0.051  & 0.653  & 0.470  & 0.037* & 0.240 \\
+mmlu $\times$ Pos        & Bayesian & 0.245  & 0.182  & 0.044  & 0.918 & 0.073 \\
+mmlu $\times$ Auth       & Bayesian & 0.013  & 0.799  & 0.294  & 0.176 & 0.091 \\
+% arc_challenge
+arc $\times$ PI          & Bayesian & 0.103  & 0.534  & $-$0.010 & 0.918 & 0.009 \\
+arc $\times$ Syc         & Bayesian & $-$0.043 & 0.595 & 0.055  & 0.678 & 0.001 \\
+arc $\times$ SM          & Bayesian & 0.256  & 0.182  & $-$0.179 & 0.140 & 0.016 \\
+arc $\times$ Verb        & Bayesian & 0.111  & 0.534  & 0.030  & 0.918 & 0.018 \\
+arc $\times$ Pos         & Bayesian & 0.459  & 0.182  & $-$0.258 & 0.176 & 0.068 \\
+arc $\times$ Auth        & Bayesian & 0.109  & 0.358  & $-$0.015 & 0.918 & 0.010 \\
+
+
+% ============================================================
+% Raw precise values for programmatic use
+% ============================================================
+% mean_R2: majority=0.25618, weighted=0.24906, threshold=0.50550, bayesian=0.08129
+% keff_beta_std_mean: majority=0.33396, weighted=0.40121, threshold=0.44177, bayesian=0.13633
+% eta_beta_std_mean: majority=0.18007, weighted=0.10715, threshold=0.31574, bayesian=0.11011

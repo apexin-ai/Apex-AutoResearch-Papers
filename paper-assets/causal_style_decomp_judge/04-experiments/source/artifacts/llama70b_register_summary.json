@@ -1,0 +1,33 @@
+{
+  "axis": "register",
+  "judge": "Llama-70B",
+  "n_data": 94,
+  "nli_threshold": 0.9,
+  "bt": {
+    "n_pairs": 92,
+    "n_comparisons": 181,
+    "p_academic": 0.6353292090145825,
+    "ci_lo": 0.55493298176225,
+    "ci_hi": 0.7119104542490763,
+    "p_val": 0.0014
+  },
+  "likert": {
+    "n": 93,
+    "ate": 0.053763440860215055,
+    "cohen_d": 0.023702409211765623,
+    "wilcoxon_p": 0.5240890235246387,
+    "ttest_p": 0.6902368044775108,
+    "tie_rate": 0.6881720430107527
+  },
+  "gee": {
+    "style_or": 3.3303069547782016,
+    "style_p": 0.0003237345515949448,
+    "orig_or": 3.0736863594080464,
+    "orig_p": 0.0007906124287719913,
+    "n_obs": 188,
+    "n_pairs": 94
+  },
+  "bt_significant": true,
+  "likert_significant": false,
+  "blindspot": true
+}

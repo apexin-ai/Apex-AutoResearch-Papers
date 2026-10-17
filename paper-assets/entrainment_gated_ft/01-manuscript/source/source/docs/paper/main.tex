@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+% \usepackage{inconsolata} % optional per official ACL template; not available in this TeX distribution
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=1pt, parsep=0pt, topsep=2pt}
+
+% Float and display spacing (tightened to meet 8-page main-text limit)
+\setlength{\textfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\floatsep}{4pt plus 1pt minus 1pt}
+\setlength{\intextsep}{4pt plus 1pt minus 1pt}
+\setlength{\abovecaptionskip}{2pt}
+\setlength{\belowcaptionskip}{0pt}
+\setlength{\dbltextfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\dblfloatsep}{4pt plus 1pt minus 1pt}
+\setlength{\abovedisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\belowdisplayskip}{4pt plus 1pt minus 1pt}
+
+\title{Aggregate Equivalence $\neq$ Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Hybrid linear recurrent architectures that appear interchangeable by aggregate benchmarks can differ on which specific examples they handle correctly. Using a controlled model zoo \citep{wang2025hybrid} (three architectures, five attention ratios, two scales), we decompose per-example effects of adding attention and find structured predictive multiplicity \citep{marx2020predictive}: pairwise overlap of helped and hurt example sets is uniformly low (Jaccard $\leq 0.14$, roughly twice the independence baseline; all $p < .01$ across five architectures (three primary, two validation)). This multiplicity varies by task type or evaluation format ($\alpha = 0.14$--$0.30$) rather than attention ratio. Per-example overlap appears to stabilize at 4\% attention and remains flat across higher ratios, suggesting that minimal attention may establish which examples each architecture affects. \citet{yang2026benchmark} document analogous per-item disagreement (16--66\%) among frontier large language models (LLMs) despite comparable aggregate scores; our within-family design isolates backbone variation from training-regime differences. Confidence margins partially predict affected examples (area under the ROC curve [AUC] 0.70--0.74). Low cross-architecture overlap implies substantial complementarity, though routing-based exploitation remains task-dependent\footnote{Code and data are available at \url{https://anonymous.4open.science/r/entrainment_gated_ft-9444/}.}.
+\end{abstract}
+
+\input{sections/introduction}
+
+\input{sections/related_work}
+
+\input{sections/method}
+
+\input{sections/experiments}
+
+\input{sections/conclusion}
+
+\section*{Limitations}
+
+Each configuration is a single training run; consistency across all 40 architecture--benchmark combinations mitigates but cannot fully resolve seed confounds.
+We examine three architectures (plus two extended) from one model zoo at two scales; generalization to other hybrid families (Mamba, RWKV), larger scales (7B+), and open-ended generation remains open.
+All evaluations use pretrained checkpoints with greedy decoding; per-example effects may not persist after fine-tuning or under alternative sampling strategies.
+
+\bibliography{references}
+
+\appendix
+\input{sections/appendix}
+
+\end{document}

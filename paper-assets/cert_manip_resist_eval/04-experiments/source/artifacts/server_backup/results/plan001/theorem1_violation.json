@@ -1,0 +1,227 @@
+{
+  "total_ordered_pairs": 1081545,
+  "dominant_pairs": 791229,
+  "violating_pairs": 290316,
+  "violation_rate": 0.2684,
+  "violation_by_attack": {
+    "prompt_injection": {
+      "ordered": 180335,
+      "violations": 41538,
+      "rate": 0.2303
+    },
+    "sycophancy": {
+      "ordered": 180356,
+      "violations": 51768,
+      "rate": 0.287
+    },
+    "score_manipulation": {
+      "ordered": 179774,
+      "violations": 43583,
+      "rate": 0.2424
+    },
+    "verbosity_bias": {
+      "ordered": 180359,
+      "violations": 46747,
+      "rate": 0.2592
+    },
+    "position_bias": {
+      "ordered": 180362,
+      "violations": 50625,
+      "rate": 0.2807
+    },
+    "authority_bias": {
+      "ordered": 180359,
+      "violations": 56055,
+      "rate": 0.3108
+    }
+  },
+  "violation_by_dataset": {
+    "mmlu": {
+      "ordered": 540495,
+      "violations": 139079,
+      "rate": 0.2573
+    },
+    "arc_challenge": {
+      "ordered": 541050,
+      "violations": 151237,
+      "rate": 0.2795
+    }
+  },
+  "violation_by_composition": {
+    "mixed->mixed": {
+      "ordered": 631735,
+      "violations": 155180,
+      "rate": 0.2456
+    },
+    "api_only->mixed": {
+      "ordered": 118082,
+      "violations": 66107,
+      "rate": 0.5598
+    },
+    "mixed->api_only": {
+      "ordered": 207648,
+      "violations": 35430,
+      "rate": 0.1706
+    },
+    "mixed->local_only": {
+      "ordered": 27786,
+      "violations": 13603,
+      "rate": 0.4896
+    },
+    "api_only->api_only": {
+      "ordered": 32724,
+      "violations": 11204,
+      "rate": 0.3424
+    },
+    "api_only->local_only": {
+      "ordered": 7161,
+      "violations": 6073,
+      "rate": 0.8481
+    },
+    "local_only->mixed": {
+      "ordered": 41886,
+      "violations": 2350,
+      "rate": 0.0561
+    },
+    "local_only->local_only": {
+      "ordered": 1524,
+      "violations": 310,
+      "rate": 0.2034
+    },
+    "local_only->api_only": {
+      "ordered": 12999,
+      "violations": 59,
+      "rate": 0.0045
+    }
+  },
+  "violation_rate_by_eta_gap_quartile": {
+    "Q1": {
+      "ordered": 269307,
+      "violations": 108334,
+      "rate": 0.4023
+    },
+    "Q2": {
+      "ordered": 268944,
+      "violations": 71978,
+      "rate": 0.2676
+    },
+    "Q3": {
+      "ordered": 271053,
+      "violations": 65213,
+      "rate": 0.2406
+    },
+    "Q4": {
+      "ordered": 272150,
+      "violations": 44788,
+      "rate": 0.1646
+    }
+  },
+  "keff_gap_in_violations": {
+    "mean": 0.3015,
+    "median": 0.261,
+    "q25": 0.125,
+    "q75": 0.4443
+  },
+  "eta_gap_in_violations": {
+    "mean": 0.11,
+    "median": 0.0485,
+    "mean_all_ordered": 0.1526
+  },
+  "near_tie_fraction": {
+    "bottom_10pct_threshold": 0.0123,
+    "fraction_violations_in_bottom_10pct": 0.1729,
+    "bottom_25pct_threshold": 0.03,
+    "fraction_violations_in_bottom_25pct": 0.3763
+  },
+  "position_bias_effect": {
+    "position_bias_avg_violation_rate": 0.2806,
+    "other_attacks_avg_violation_rate": 0.266
+  },
+  "per_condition": {
+    "mmluxprompt_injection": {
+      "ordered_pairs": 90181,
+      "violations": 19087,
+      "violation_rate": 0.2117,
+      "mean_keff_gap_violations": 0.2612,
+      "mean_eta_gap_violations": 0.2804
+    },
+    "mmluxsycophancy": {
+      "ordered_pairs": 90178,
+      "violations": 23909,
+      "violation_rate": 0.2651,
+      "mean_keff_gap_violations": 0.2594,
+      "mean_eta_gap_violations": 0.0593
+    },
+    "mmluxscore_manipulation": {
+      "ordered_pairs": 89593,
+      "violations": 21614,
+      "violation_rate": 0.2412,
+      "mean_keff_gap_violations": 0.2064,
+      "mean_eta_gap_violations": 0.0863
+    },
+    "mmluxverbosity_bias": {
+      "ordered_pairs": 90181,
+      "violations": 21522,
+      "violation_rate": 0.2387,
+      "mean_keff_gap_violations": 0.2836,
+      "mean_eta_gap_violations": 0.0727
+    },
+    "mmluxposition_bias": {
+      "ordered_pairs": 90181,
+      "violations": 25769,
+      "violation_rate": 0.2857,
+      "mean_keff_gap_violations": 0.2428,
+      "mean_eta_gap_violations": 0.0531
+    },
+    "mmluxauthority_bias": {
+      "ordered_pairs": 90181,
+      "violations": 27178,
+      "violation_rate": 0.3014,
+      "mean_keff_gap_violations": 0.264,
+      "mean_eta_gap_violations": 0.0277
+    },
+    "arc_challengexprompt_injection": {
+      "ordered_pairs": 90154,
+      "violations": 22451,
+      "violation_rate": 0.249,
+      "mean_keff_gap_violations": 0.348,
+      "mean_eta_gap_violations": 0.3043
+    },
+    "arc_challengexsycophancy": {
+      "ordered_pairs": 90178,
+      "violations": 27859,
+      "violation_rate": 0.3089,
+      "mean_keff_gap_violations": 0.3642,
+      "mean_eta_gap_violations": 0.0616
+    },
+    "arc_challengexscore_manipulation": {
+      "ordered_pairs": 90181,
+      "violations": 21969,
+      "violation_rate": 0.2436,
+      "mean_keff_gap_violations": 0.3073,
+      "mean_eta_gap_violations": 0.0967
+    },
+    "arc_challengexverbosity_bias": {
+      "ordered_pairs": 90178,
+      "violations": 25225,
+      "violation_rate": 0.2797,
+      "mean_keff_gap_violations": 0.34,
+      "mean_eta_gap_violations": 0.1464
+    },
+    "arc_challengexposition_bias": {
+      "ordered_pairs": 90181,
+      "violations": 24856,
+      "violation_rate": 0.2756,
+      "mean_keff_gap_violations": 0.3484,
+      "mean_eta_gap_violations": 0.1371
+    },
+    "arc_challengexauthority_bias": {
+      "ordered_pairs": 90178,
+      "violations": 28877,
+      "violation_rate": 0.3202,
+      "mean_keff_gap_violations": 0.3604,
+      "mean_eta_gap_violations": 0.0635
+    }
+  },
+  "summary": "Overall violation rate: 0.268 (290316/1081545 ordered pairs); Highest violation rate: authority_bias (0.311), lowest: prompt_injection (0.230); Position bias conditions: 0.281 avg violation rate vs 0.266 for other attacks; K_eff gap in violations: mean=0.302, median=0.261"
+}

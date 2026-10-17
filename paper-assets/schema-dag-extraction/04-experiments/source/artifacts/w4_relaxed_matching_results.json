@@ -1,0 +1,65 @@
+{
+  "exact_match": {
+    "pearson_r": 0.0144,
+    "pearson_p": 0.7604,
+    "spearman_rho": -0.1005,
+    "spearman_p": 0.0331,
+    "bootstrap_ci_95": [-0.1046, 0.1224],
+    "n_batches": 450,
+    "mean_f1": 0.3036,
+    "std_f1": 0.1038
+  },
+  "relaxed_match": {
+    "pearson_r": 0.0032,
+    "pearson_p": 0.9463,
+    "spearman_rho": -0.1100,
+    "spearman_p": 0.0196,
+    "bootstrap_ci_95": [-0.1195, 0.1137],
+    "n_batches": 450,
+    "mean_f1": 0.3455,
+    "std_f1": 0.1144
+  },
+  "token_overlap": {
+    "pearson_r": 0.0038,
+    "pearson_p": 0.9356,
+    "spearman_rho": -0.1127,
+    "spearman_p": 0.0168,
+    "bootstrap_ci_95": [-0.1201, 0.1156],
+    "n_batches": 450,
+    "mean_f1": 0.3494,
+    "std_f1": 0.1146
+  },
+  "relaxed_type_ignored": {
+    "pearson_r": 0.0234,
+    "pearson_p": 0.6209,
+    "spearman_rho": -0.0974,
+    "spearman_p": 0.0388,
+    "bootstrap_ci_95": [-0.0777, 0.1173],
+    "n_batches": 450,
+    "mean_f1": 0.4247,
+    "std_f1": 0.1701
+  },
+  "gain_summary": {
+    "mean_f1_gain": 0.0419,
+    "median_f1_gain": 0.0400,
+    "pct_improved": 98.4,
+    "pct_same": 1.6,
+    "max_gain": 0.2353
+  },
+  "per_count": {
+    "count_2":  {"n": 75, "exact_f1": 0.2914, "relaxed_f1": 0.3414, "delta": 0.0499},
+    "count_6":  {"n": 75, "exact_f1": 0.2631, "relaxed_f1": 0.3007, "delta": 0.0376},
+    "count_12": {"n": 75, "exact_f1": 0.2516, "relaxed_f1": 0.2870, "delta": 0.0354},
+    "count_22": {"n": 75, "exact_f1": 0.2605, "relaxed_f1": 0.2954, "delta": 0.0349},
+    "count_44": {"n": 75, "exact_f1": 0.3117, "relaxed_f1": 0.3510, "delta": 0.0393},
+    "count_66": {"n": 75, "exact_f1": 0.4434, "relaxed_f1": 0.4974, "delta": 0.0540}
+  },
+  "per_count_within_correlation": {
+    "count_2":  {"exact_r": 0.0217, "exact_p": 0.853, "relaxed_r": 0.0088, "relaxed_p": 0.940},
+    "count_6":  {"exact_r": 0.1095, "exact_p": 0.350, "relaxed_r": 0.0821, "relaxed_p": 0.484},
+    "count_12": {"exact_r": 0.0284, "exact_p": 0.809, "relaxed_r": 0.0073, "relaxed_p": 0.950}
+  },
+  "summary": "Exact text match: r=0.0144 (p=0.76). Relaxed text match: r=0.0032 (p=0.95). Relaxed matching improves F1 by ~4.2pp on average (98.4% batches improved), but does NOT change BCS correlation. Boundary errors are not the primary cause of weak NER BCS signal. The hypothesis that exact-match F1 masks BCS signal by conflating boundary/type errors is falsified.",
+  "data_source": "d051_fewnerd_n25 × 3 seeds (s42, s123, s456), 6 count levels × 25 batches = 450 total",
+  "server_results_path": "/root/schema-dag-extraction/artifacts/w4_relaxed_matching/results.json"
+}

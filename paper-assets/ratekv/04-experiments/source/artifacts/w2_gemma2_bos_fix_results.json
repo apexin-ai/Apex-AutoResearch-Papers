@@ -1,0 +1,43 @@
+{
+  "model_name": "Gemma-2-9B",
+  "model_path": "/root/autodl-tmp/.hf_cache/google/gemma-2-9b",
+  "eval_method": "sliding_window_bos_fix",
+  "eval_params": {
+    "stride": 512,
+    "max_length": 2048,
+    "prepend_bos": true
+  },
+  "eval_data": "wikitext-2-raw-v1 (test split)",
+  "budget": 0.25,
+  "bit_options": [
+    2,
+    4,
+    8,
+    16
+  ],
+  "baseline_wt2_ppl": 6.0306,
+  "uniform_4bit_wt2_ppl": 6.1683,
+  "unconstrained_greedy_wt2_ppl": 8.8469,
+  "unconstrained_mckp_wt2_ppl": 8.8469,
+  "greedy_vs_baseline_ratio": 1.467,
+  "mckp_vs_baseline_ratio": 1.467,
+  "greedy": {
+    "bit_distribution": {
+      "4": 177,
+      "8": 53,
+      "2": 106
+    },
+    "n_2bit_heads": 106,
+    "actual_memory_ratio": 0.25
+  },
+  "mckp": {
+    "bit_distribution": {
+      "4": 177,
+      "8": 53,
+      "2": 106
+    },
+    "n_2bit_heads": 106,
+    "actual_memory_ratio": 0.25
+  },
+  "elapsed_seconds": 678.6
+}

@@ -1,0 +1,694 @@
+{
+  "analysis": "jaccard_upper_bound",
+  "date": "2026-05-20",
+  "method": {
+    "J_max": "min(|A|,|B|)/max(|A|,|B|) \u2014 theoretical max when smaller set \u2282 larger set",
+    "J_null": "analytical E[J] under random placement, validated against 10k permutation test (h3-1)",
+    "normalized_ES": "(J_obs - J_null) / (J_max - J_null)",
+    "J_null_permutation_validation": {
+      "GDN_vs_HGRN2_helped": {
+        "analytical": 0.051133,
+        "permutation_10k": 0.051056,
+        "abs_diff": 7.7e-05
+      },
+      "GDN_vs_HGRN2_hurt": {
+        "analytical": 0.048961,
+        "permutation_10k": 0.048967,
+        "abs_diff": 6e-06
+      },
+      "GDN_vs_RetNet_helped": {
+        "analytical": 0.044944,
+        "permutation_10k": 0.044946,
+        "abs_diff": 2e-06
+      },
+      "GDN_vs_RetNet_hurt": {
+        "analytical": 0.056215,
+        "permutation_10k": 0.056292,
+        "abs_diff": 7.7e-05
+      },
+      "HGRN2_vs_RetNet_helped": {
+        "analytical": 0.048782,
+        "permutation_10k": 0.048826,
+        "abs_diff": 4.4e-05
+      },
+      "HGRN2_vs_RetNet_hurt": {
+        "analytical": 0.044532,
+        "permutation_10k": 0.044571,
+        "abs_diff": 3.9e-05
+      }
+    }
+  },
+  "N": 5153,
+  "per_ratio": {
+    "h24-1": {
+      "attention_ratio": 0.04,
+      "pairs": {
+        "GDN_HGRN2": {
+          "helped": {
+            "n_A": 485,
+            "n_B": 479,
+            "J_obs": 0.100457,
+            "J_max": 0.987629,
+            "J_null": 0.049062,
+            "J_null_source": "analytical",
+            "norm_ES": 0.054759,
+            "J_obs_over_J_max_pct": 10.2
+          },
+          "hurt": {
+            "n_A": 501,
+            "n_B": 396,
+            "J_obs": 0.071685,
+            "J_max": 0.790419,
+            "J_null": 0.044847,
+            "J_null_source": "analytical",
+            "norm_ES": 0.035996,
+            "J_obs_over_J_max_pct": 9.1
+          }
+        },
+        "GDN_RetNet": {
+          "helped": {
+            "n_A": 485,
+            "n_B": 448,
+            "J_obs": 0.089953,
+            "J_max": 0.923711,
+            "J_null": 0.047333,
+            "J_null_source": "analytical",
+            "norm_ES": 0.048632,
+            "J_obs_over_J_max_pct": 9.7
+          },
+          "hurt": {
+            "n_A": 501,
+            "n_B": 455,
+            "J_obs": 0.095074,
+            "J_max": 0.908184,
+            "J_null": 0.048518,
+            "J_null_source": "analytical",
+            "norm_ES": 0.054156,
+            "J_obs_over_J_max_pct": 10.5
+          }
+        },
+        "HGRN2_RetNet": {
+          "helped": {
+            "n_A": 479,
+            "n_B": 448,
+            "J_obs": 0.09316,
+            "J_max": 0.935282,
+            "J_null": 0.047037,
+            "J_null_source": "analytical",
+            "norm_ES": 0.051927,
+            "J_obs_over_J_max_pct": 10.0
+          },
+          "hurt": {
+            "n_A": 396,
+            "n_B": 455,
+            "J_obs": 0.095238,
+            "J_max": 0.87033,
+            "J_null": 0.042849,
+            "J_null_source": "analytical",
+            "norm_ES": 0.063312,
+            "J_obs_over_J_max_pct": 10.9
+          }
+        }
+      }
+    },
+    "h12-1": {
+      "attention_ratio": 0.07692307692307693,
+      "pairs": {
+        "GDN_HGRN2": {
+          "helped": {
+            "n_A": 464,
+            "n_B": 512,
+            "J_obs": 0.097863,
+            "J_max": 0.90625,
+            "J_null": 0.049578,
+            "J_null_source": "analytical",
+            "norm_ES": 0.056363,
+            "J_obs_over_J_max_pct": 10.8
+          },
+          "hurt": {
+            "n_A": 512,
+            "n_B": 415,
+            "J_obs": 0.070439,
+            "J_max": 0.810547,
+            "J_null": 0.046552,
+            "J_null_source": "analytical",
+            "norm_ES": 0.031266,
+            "J_obs_over_J_max_pct": 8.7
+          }
+        },
+        "GDN_RetNet": {
+          "helped": {
+            "n_A": 464,
+            "n_B": 427,
+            "J_obs": 0.086585,
+            "J_max": 0.920259,
+            "J_null": 0.045099,
+            "J_null_source": "analytical",
+            "norm_ES": 0.047405,
+            "J_obs_over_J_max_pct": 9.4
+          },
+          "hurt": {
+            "n_A": 512,
+            "n_B": 476,
+            "J_obs": 0.086909,
+            "J_max": 0.929688,
+            "J_null": 0.050276,
+            "J_null_source": "analytical",
+            "norm_ES": 0.041656,
+            "J_obs_over_J_max_pct": 9.3
+          }
+        },
+        "HGRN2_RetNet": {
+          "helped": {
+            "n_A": 512,
+            "n_B": 427,
+            "J_obs": 0.100821,
+            "J_max": 0.833984,
+            "J_null": 0.047321,
+            "J_null_source": "analytical",
+            "norm_ES": 0.068009,
+            "J_obs_over_J_max_pct": 12.1
+          },
+          "hurt": {
+            "n_A": 415,
+            "n_B": 476,
+            "J_obs": 0.085262,
+            "J_max": 0.871849,
+            "J_null": 0.044959,
+            "J_null_source": "analytical",
+            "norm_ES": 0.04874,
+            "J_obs_over_J_max_pct": 9.8
+          }
+        }
+      }
+    },
+    "h6-1": {
+      "attention_ratio": 0.14285714285714285,
+      "pairs": {
+        "GDN_HGRN2": {
+          "helped": {
+            "n_A": 426,
+            "n_B": 524,
+            "J_obs": 0.099537,
+            "J_max": 0.812977,
+            "J_null": 0.047778,
+            "J_null_source": "analytical",
+            "norm_ES": 0.067641,
+            "J_obs_over_J_max_pct": 12.2
+          },
+          "hurt": {
+            "n_A": 598,
+            "n_B": 397,
+            "J_obs": 0.08506,
+            "J_max": 0.66388,
+            "J_null": 0.048551,
+            "J_null_source": "analytical",
+            "norm_ES": 0.059333,
+            "J_obs_over_J_max_pct": 12.8
+          }
+        },
+        "GDN_RetNet": {
+          "helped": {
+            "n_A": 426,
+            "n_B": 399,
+            "J_obs": 0.09127,
+            "J_max": 0.93662,
+            "J_null": 0.041648,
+            "J_null_source": "analytical",
+            "norm_ES": 0.055446,
+            "J_obs_over_J_max_pct": 9.7
+          },
+          "hurt": {
+            "n_A": 598,
+            "n_B": 499,
+            "J_obs": 0.115972,
+            "J_max": 0.834448,
+            "J_null": 0.05573,
+            "J_null_source": "analytical",
+            "norm_ES": 0.07736,
+            "J_obs_over_J_max_pct": 13.9
+          }
+        },
+        "HGRN2_RetNet": {
+          "helped": {
+            "n_A": 524,
+            "n_B": 399,
+            "J_obs": 0.085882,
+            "J_max": 0.76145,
+            "J_null": 0.04598,
+            "J_null_source": "analytical",
+            "norm_ES": 0.055771,
+            "J_obs_over_J_max_pct": 11.3
+          },
+          "hurt": {
+            "n_A": 397,
+            "n_B": 499,
+            "J_obs": 0.095355,
+            "J_max": 0.795591,
+            "J_null": 0.04483,
+            "J_null_source": "analytical",
+            "norm_ES": 0.067298,
+            "J_obs_over_J_max_pct": 12.0
+          }
+        }
+      }
+    },
+    "h3-1": {
+      "attention_ratio": 0.25,
+      "pairs": {
+        "GDN_HGRN2": {
+          "helped": {
+            "n_A": 462,
+            "n_B": 548,
+            "J_obs": 0.100218,
+            "J_max": 0.843066,
+            "J_null": 0.051056,
+            "J_null_source": "permutation_10k",
+            "norm_ES": 0.062072,
+            "J_obs_over_J_max_pct": 11.9
+          },
+          "hurt": {
+            "n_A": 615,
+            "n_B": 395,
+            "J_obs": 0.088362,
+            "J_max": 0.642276,
+            "J_null": 0.048967,
+            "J_null_source": "permutation_10k",
+            "norm_ES": 0.066399,
+            "J_obs_over_J_max_pct": 13.8
+          }
+        },
+        "GDN_RetNet": {
+          "helped": {
+            "n_A": 462,
+            "n_B": 426,
+            "J_obs": 0.092251,
+            "J_max": 0.922078,
+            "J_null": 0.044946,
+            "J_null_source": "permutation_10k",
+            "norm_ES": 0.053931,
+            "J_obs_over_J_max_pct": 10.0
+          },
+          "hurt": {
+            "n_A": 615,
+            "n_B": 495,
+            "J_obs": 0.10338,
+            "J_max": 0.804878,
+            "J_null": 0.056292,
+            "J_null_source": "permutation_10k",
+            "norm_ES": 0.062902,
+            "J_obs_over_J_max_pct": 12.8
+          }
+        },
+        "HGRN2_RetNet": {
+          "helped": {
+            "n_A": 548,
+            "n_B": 426,
+            "J_obs": 0.108077,
+            "J_max": 0.777372,
+            "J_null": 0.048826,
+            "J_null_source": "permutation_10k",
+            "norm_ES": 0.081328,
+            "J_obs_over_J_max_pct": 13.9
+          },
+          "hurt": {
+            "n_A": 395,
+            "n_B": 495,
+            "J_obs": 0.086691,
+            "J_max": 0.79798,
+            "J_null": 0.044571,
+            "J_null_source": "permutation_10k",
+            "norm_ES": 0.055906,
+            "J_obs_over_J_max_pct": 10.9
+          }
+        }
+      }
+    }
+  },
+  "summary_table": [
+    {
+      "ratio": "h24-1",
+      "attn_ratio": 0.04,
+      "pair": "GDN_HGRN2",
+      "category": "helped",
+      "n_A": 485,
+      "n_B": 479,
+      "J_obs": 0.1005,
+      "J_max": 0.9876,
+      "J_null": 0.0491,
+      "norm_ES": 0.0548
+    },
+    {
+      "ratio": "h24-1",
+      "attn_ratio": 0.04,
+      "pair": "GDN_HGRN2",
+      "category": "hurt",
+      "n_A": 501,
+      "n_B": 396,
+      "J_obs": 0.0717,
+      "J_max": 0.7904,
+      "J_null": 0.0448,
+      "norm_ES": 0.036
+    },
+    {
+      "ratio": "h24-1",
+      "attn_ratio": 0.04,
+      "pair": "GDN_RetNet",
+      "category": "helped",
+      "n_A": 485,
+      "n_B": 448,
+      "J_obs": 0.09,
+      "J_max": 0.9237,
+      "J_null": 0.0473,
+      "norm_ES": 0.0486
+    },
+    {
+      "ratio": "h24-1",
+      "attn_ratio": 0.04,
+      "pair": "GDN_RetNet",
+      "category": "hurt",
+      "n_A": 501,
+      "n_B": 455,
+      "J_obs": 0.0951,
+      "J_max": 0.9082,
+      "J_null": 0.0485,
+      "norm_ES": 0.0542
+    },
+    {
+      "ratio": "h24-1",
+      "attn_ratio": 0.04,
+      "pair": "HGRN2_RetNet",
+      "category": "helped",
+      "n_A": 479,
+      "n_B": 448,
+      "J_obs": 0.0932,
+      "J_max": 0.9353,
+      "J_null": 0.047,
+      "norm_ES": 0.0519
+    },
+    {
+      "ratio": "h24-1",
+      "attn_ratio": 0.04,
+      "pair": "HGRN2_RetNet",
+      "category": "hurt",
+      "n_A": 396,
+      "n_B": 455,
+      "J_obs": 0.0952,
+      "J_max": 0.8703,
+      "J_null": 0.0428,
+      "norm_ES": 0.0633
+    },
+    {
+      "ratio": "h12-1",
+      "attn_ratio": 0.07692307692307693,
+      "pair": "GDN_HGRN2",
+      "category": "helped",
+      "n_A": 464,
+      "n_B": 512,
+      "J_obs": 0.0979,
+      "J_max": 0.9062,
+      "J_null": 0.0496,
+      "norm_ES": 0.0564
+    },
+    {
+      "ratio": "h12-1",
+      "attn_ratio": 0.07692307692307693,
+      "pair": "GDN_HGRN2",
+      "category": "hurt",
+      "n_A": 512,
+      "n_B": 415,
+      "J_obs": 0.0704,
+      "J_max": 0.8105,
+      "J_null": 0.0466,
+      "norm_ES": 0.0313
+    },
+    {
+      "ratio": "h12-1",
+      "attn_ratio": 0.07692307692307693,
+      "pair": "GDN_RetNet",
+      "category": "helped",
+      "n_A": 464,
+      "n_B": 427,
+      "J_obs": 0.0866,
+      "J_max": 0.9203,
+      "J_null": 0.0451,
+      "norm_ES": 0.0474
+    },
+    {
+      "ratio": "h12-1",
+      "attn_ratio": 0.07692307692307693,
+      "pair": "GDN_RetNet",
+      "category": "hurt",
+      "n_A": 512,
+      "n_B": 476,
+      "J_obs": 0.0869,
+      "J_max": 0.9297,
+      "J_null": 0.0503,
+      "norm_ES": 0.0417
+    },
+    {
+      "ratio": "h12-1",
+      "attn_ratio": 0.07692307692307693,
+      "pair": "HGRN2_RetNet",
+      "category": "helped",
+      "n_A": 512,
+      "n_B": 427,
+      "J_obs": 0.1008,
+      "J_max": 0.834,
+      "J_null": 0.0473,
+      "norm_ES": 0.068
+    },
+    {
+      "ratio": "h12-1",
+      "attn_ratio": 0.07692307692307693,
+      "pair": "HGRN2_RetNet",
+      "category": "hurt",
+      "n_A": 415,
+      "n_B": 476,
+      "J_obs": 0.0853,
+      "J_max": 0.8718,
+      "J_null": 0.045,
+      "norm_ES": 0.0487
+    },
+    {
+      "ratio": "h6-1",
+      "attn_ratio": 0.14285714285714285,
+      "pair": "GDN_HGRN2",
+      "category": "helped",
+      "n_A": 426,
+      "n_B": 524,
+      "J_obs": 0.0995,
+      "J_max": 0.813,
+      "J_null": 0.0478,
+      "norm_ES": 0.0676
+    },
+    {
+      "ratio": "h6-1",
+      "attn_ratio": 0.14285714285714285,
+      "pair": "GDN_HGRN2",
+      "category": "hurt",
+      "n_A": 598,
+      "n_B": 397,
+      "J_obs": 0.0851,
+      "J_max": 0.6639,
+      "J_null": 0.0486,
+      "norm_ES": 0.0593
+    },
+    {
+      "ratio": "h6-1",
+      "attn_ratio": 0.14285714285714285,
+      "pair": "GDN_RetNet",
+      "category": "helped",
+      "n_A": 426,
+      "n_B": 399,
+      "J_obs": 0.0913,
+      "J_max": 0.9366,
+      "J_null": 0.0416,
+      "norm_ES": 0.0554
+    },
+    {
+      "ratio": "h6-1",
+      "attn_ratio": 0.14285714285714285,
+      "pair": "GDN_RetNet",
+      "category": "hurt",
+      "n_A": 598,
+      "n_B": 499,
+      "J_obs": 0.116,
+      "J_max": 0.8344,
+      "J_null": 0.0557,
+      "norm_ES": 0.0774
+    },
+    {
+      "ratio": "h6-1",
+      "attn_ratio": 0.14285714285714285,
+      "pair": "HGRN2_RetNet",
+      "category": "helped",
+      "n_A": 524,
+      "n_B": 399,
+      "J_obs": 0.0859,
+      "J_max": 0.7615,
+      "J_null": 0.046,
+      "norm_ES": 0.0558
+    },
+    {
+      "ratio": "h6-1",
+      "attn_ratio": 0.14285714285714285,
+      "pair": "HGRN2_RetNet",
+      "category": "hurt",
+      "n_A": 397,
+      "n_B": 499,
+      "J_obs": 0.0954,
+      "J_max": 0.7956,
+      "J_null": 0.0448,
+      "norm_ES": 0.0673
+    },
+    {
+      "ratio": "h3-1",
+      "attn_ratio": 0.25,
+      "pair": "GDN_HGRN2",
+      "category": "helped",
+      "n_A": 462,
+      "n_B": 548,
+      "J_obs": 0.1002,
+      "J_max": 0.8431,
+      "J_null": 0.0511,
+      "norm_ES": 0.0621
+    },
+    {
+      "ratio": "h3-1",
+      "attn_ratio": 0.25,
+      "pair": "GDN_HGRN2",
+      "category": "hurt",
+      "n_A": 615,
+      "n_B": 395,
+      "J_obs": 0.0884,
+      "J_max": 0.6423,
+      "J_null": 0.049,
+      "norm_ES": 0.0664
+    },
+    {
+      "ratio": "h3-1",
+      "attn_ratio": 0.25,
+      "pair": "GDN_RetNet",
+      "category": "helped",
+      "n_A": 462,
+      "n_B": 426,
+      "J_obs": 0.0923,
+      "J_max": 0.9221,
+      "J_null": 0.0449,
+      "norm_ES": 0.0539
+    },
+    {
+      "ratio": "h3-1",
+      "attn_ratio": 0.25,
+      "pair": "GDN_RetNet",
+      "category": "hurt",
+      "n_A": 615,
+      "n_B": 495,
+      "J_obs": 0.1034,
+      "J_max": 0.8049,
+      "J_null": 0.0563,
+      "norm_ES": 0.0629
+    },
+    {
+      "ratio": "h3-1",
+      "attn_ratio": 0.25,
+      "pair": "HGRN2_RetNet",
+      "category": "helped",
+      "n_A": 548,
+      "n_B": 426,
+      "J_obs": 0.1081,
+      "J_max": 0.7774,
+      "J_null": 0.0488,
+      "norm_ES": 0.0813
+    },
+    {
+      "ratio": "h3-1",
+      "attn_ratio": 0.25,
+      "pair": "HGRN2_RetNet",
+      "category": "hurt",
+      "n_A": 395,
+      "n_B": 495,
+      "J_obs": 0.0867,
+      "J_max": 0.798,
+      "J_null": 0.0446,
+      "norm_ES": 0.0559
+    }
+  ],
+  "mean_normalized_ES_by_ratio": {
+    "h24-1_helped": 0.0518,
+    "h24-1_hurt": 0.0512,
+    "h12-1_helped": 0.0573,
+    "h12-1_hurt": 0.0406,
+    "h6-1_helped": 0.0596,
+    "h6-1_hurt": 0.068,
+    "h3-1_helped": 0.0658,
+    "h3-1_hurt": 0.0617
+  },
+  "saturation_analysis": {
+    "helped": {
+      "trend": [
+        [
+          "h24-1",
+          0.0518
+        ],
+        [
+          "h12-1",
+          0.0573
+        ],
+        [
+          "h6-1",
+          0.0596
+        ],
+        [
+          "h3-1",
+          0.0658
+        ]
+      ],
+      "cv": 0.0856,
+      "mean": 0.0586
+    },
+    "hurt": {
+      "trend": [
+        [
+          "h24-1",
+          0.0512
+        ],
+        [
+          "h12-1",
+          0.0406
+        ],
+        [
+          "h6-1",
+          0.068
+        ],
+        [
+          "h3-1",
+          0.0617
+        ]
+      ],
+      "cv": 0.1883,
+      "mean": 0.0554
+    }
+  },
+  "overall_stats": {
+    "mean_norm_ES_helped": 0.0586,
+    "mean_norm_ES_hurt": 0.0554,
+    "std_norm_ES_helped": 0.0092,
+    "std_norm_ES_hurt": 0.0131,
+    "range_norm_ES_helped": [
+      0.0474,
+      0.0813
+    ],
+    "range_norm_ES_hurt": [
+      0.0313,
+      0.0774
+    ],
+    "mean_J_obs_over_J_max_pct": 11.1,
+    "range_J_obs_over_J_max_pct": [
+      8.7,
+      13.9
+    ]
+  },
+  "conclusion": "Normalized ES: helped [0.05, 0.08], hurt [0.03, 0.08]. Mean J_obs/J_max = 11.1%. Low absolute Jaccard reflects geometric ceiling from set-size asymmetry, not absence of signal. Normalized ES consistently exceeds chance across all ratios, confirming architecture-specific responses."
+}

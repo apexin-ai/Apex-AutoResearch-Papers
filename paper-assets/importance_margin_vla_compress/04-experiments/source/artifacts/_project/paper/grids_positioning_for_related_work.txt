@@ -1,0 +1,23 @@
+## GridS (See What Matters) — Related Work Positioning Text
+
+Suggested paragraph for Related Work section:
+
+"Concurrent work (GridS) proposes continuous resampling as an alternative to discrete pruning. Our work is complementary: we diagnose the architectural root cause (pixel-shuffle entanglement) that makes discrete pruning catastrophically fail, providing the mechanistic foundation for understanding when such strategies become necessary."
+
+## Supporting Evidence (for Paper Agent reference)
+
+GridS paper does NOT:
+- Mention "pixel shuffle", "space-to-depth", "token entanglement", "spatial mixing", or "cliff-edge"
+- Analyze WHY discrete pruning fails on specific architectures
+- Do cross-architecture comparison of compression behavior across different connector types
+- Test discrete pruning baselines on SmolVLA (only tests GridS on SmolVLA real robot)
+
+GridS paper DOES:
+- Propose continuous grid resampling (GridS) as replacement for discrete token selection
+- Achieve strong compression on π₀/π₀.₅ (LIBERO) and SmolVLA (real robot only)
+- Observe SmolVLA K=4→0% but attributes to "information bottleneck" (geometric resolution), not connector design
+- Frame as "continuous > discrete" (method improvement), not "why pruning fails on certain architectures" (diagnosis)
+
+Key differentiation:
+- GridS answers "how to compress better" (continuous > discrete)
+- We answer "why compression fails on certain architectures" (pixel-shuffle entanglement diagnosis) + "how to predict compressibility" (entropy ratio)

@@ -1,0 +1,48 @@
+\section{Experimental Methodology}
+\label{sec:experiments}
+
+\subsection{Models and Panel Construction}
+
+Separating diversity from capability requires panels that span the full range of both properties. We select 15 LLM judges spanning 6 provider families and 3 capability tiers (Table~\ref{tab:models}), ensuring that cross-family diversity varies independently of tier composition, a prerequisite for regression analysis. Nine models are accessed via the OpenRouter API;\footnote{All API models were accessed via OpenRouter; model snapshots may have changed after the evaluation period.} six open-weight models are served locally using vLLM~0.21.0 with AWQ INT4 quantization on an NVIDIA RTX PRO~6000 Blackwell (96\,GB). API models are assigned to \emph{frontier}, \emph{mid-tier}, or \emph{lightweight} tiers following provider capability classification; all six local models fall into the lightweight tier, as INT4 quantization substantially reduces judge accuracy (Table~\ref{tab:models}).
+
+We study three panel sizes $K \in \{3, 5, 7\}$ (all odd, majority-vote threshold $t = \lceil K/2 \rceil$). Rather than sampling, we exhaustively enumerate all $\binom{15}{K}$ combinations (455 at $K{=}3$, 3{,}003 at $K{=}5$, 6{,}435 at $K{=}7$), eliminating panel-selection bias and enabling exact computation of predictor statistics across every family-tier composition. Each panel evaluates all benchmark items under all attack types, producing a complete panel $\times$ item $\times$ attack tensor. The primary analysis uses $K{=}3$; \S\ref{sec:cross_k} extends to larger panels.
+
+\subsection{Benchmarks and Attack Types}
+
+Two benchmarks test distinct evaluation capabilities: MMLU \citep{hendrycks2021mmlu}, a knowledge-intensive multiple-choice benchmark spanning 57 subjects, and ARC \citep{clark2018arc}, a reasoning-intensive science question benchmark. We sample 300 items from each. All models use temperature~0 for deterministic outputs (temperature has negligible effect on $K_{\mathrm{eff}}$; Appendix~\ref{app:temperature}).
+
+Each benchmark is paired with six attack types spanning targeted and shared-bias categories (Table~\ref{tab:attack_taxonomy}): prompt injection \citep{perez2022ignore,greshake2023not}, sycophancy \citep{wang2023fair}, score manipulation, verbosity bias \citep{zheng2023judging}, position bias \citep{wang2023fair}, and authority bias. Each attack uses 1--2 prompt template variants; increasing template diversity is a priority for future work. The 2 benchmarks $\times$ 6 attacks produce 12 conditions, each evaluated across all 455 panels (Appendix~\ref{app:attacks}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_pipeline.pdf}
+\caption{Experimental pipeline. 15 judges from 6 families are combined into panels at $K \in \{3, 5, 7\}$, evaluated under 6 attack types across 2 benchmarks (12 conditions), yielding ${\sim}$1.6M total judgments. Panel ASR is regressed on $K_{\mathrm{eff}}$ (diversity) and $\eta_{\max}$ (weakest-link vulnerability).}
+\label{fig:pipeline}
+\end{figure}
+
+\subsection{Vulnerability Metrics}
+
+Our regression requires two panel-level predictors that capture complementary failure modes: \emph{individual weakness} and \emph{structural dependence}. Per-judge vulnerability $\eta_j(a) = \Pr(X_j^a {=} 1)$ is estimated empirically; $\eta_{\max}(a) = \max_{j \in \mathcal{P}} \eta_j(a)$ captures the weakest link, the single judge most likely to be compromised, which determines panel failure at small $K$ where one flip suffices.
+
+Panel diversity is measured by $K_{\mathrm{eff}}$ (Equation~\ref{eq:keff}), a pairwise-MI diversity index that aggregates judge independence via $\exp(-2\,\mathrm{MI})$ weighting (Appendix~\ref{app:keff_derivation}). We choose MI over agreement-based measures because MI captures all statistical dependence (not just linear correlation) and does not require a threshold for ``agreement.'' $K_{\mathrm{eff}}$ is used purely as an empirical predictor: the Gaussian copula from which it can be derived \citep{nelsen2006copulas} is rejected by goodness-of-fit tests for 97--100\% of judge pairs (Appendix~\ref{app:copula_gof}), though panel-level rankings agree closely ($\rho{\approx}0.86$). $K_{\mathrm{eff}}$ is computed from clean winner labels using the plug-in estimator with Miller--Madow correction. We also evaluate $\kappa$-diversity \citep{kuncheva2003measures} as an alternative operationalization. The $K_{\mathrm{eff}}$--$\eta_{\max}$ correlation is $r{=}0.70$ at $K{=}3$ (Figure~\ref{fig:keff_eta_scatter_main}), reflecting the structural coupling between diversity and capability: expanding family coverage inevitably introduces weaker judges.
+
+\subsection{Aggregation Methods}
+
+Beyond majority vote ($\geq \lceil K/2 \rceil$ approvals), we evaluate three alternatives: \emph{accuracy-weighted vote} ($w_j \propto \mathrm{acc}_j$; accept if $\sum_j w_j \cdot \mathbf{1}[J_j \text{ approves}] > 0.5$), \emph{threshold vote} (unanimity, $t{=}K$), and \emph{Bayesian calibration} ($P(\text{correct} \mid \mathbf{v}) \propto P(\text{correct}) \prod_j P(v_j \mid \text{correct})$; accept if posterior $> 0.5$).
+
+\subsection{Statistical Framework}
+\label{sec:stat_framework}
+
+To characterize the association between panel diversity and individual judge robustness, we need a model that captures multiplicative interactions: if doubling $\eta_{\max}$ multiplies ASR by some factor regardless of its level, the relationship is better described on a log scale than a linear one. We report log-log ordinary least squares (OLS) as primary and fractional logit as co-primary; key conclusions require convergence across both. We fit a log-log OLS regression for each of the 12 conditions:
+\begin{equation}
+\label{eq:regression}
+\log(\mathrm{ASR} + \epsilon) = \alpha + \beta_1 \log(K_{\mathrm{eff}}) + \beta_2 \log(\eta_{\max} + \epsilon),
+\end{equation}
+with $\epsilon = 10^{-6}$ to handle zero values (sensitivity to $\epsilon$ is analyzed in Appendix~\ref{app:epsilon}). Standardized coefficients $\hat{\beta}_{\mathrm{std}} = \hat{\beta} \cdot \mathrm{SD}(\log x) / \mathrm{SD}(\log y)$ enable direct comparison of effect magnitudes across predictors and conditions. We apply Benjamini--Hochberg (BH) correction \citep{benjamini1995controlling} for multiple testing, controlling the false discovery rate (FDR) per predictor across the 12 conditions.
+
+Dominance analysis \citep{budescu1993dominance} partitions $R^2$ into each predictor's incremental contribution. Generalized additive models (GAMs) with smooth terms test whether $K_{\mathrm{eff}}$'s effect varies between targeted and shared-bias attacks.
+
+\subsection{Robustness to Non-Independence}
+\label{sec:robustness_method}
+
+The 455 panels share judges combinatorially (each judge appears in 91 panels), so residuals are correlated: panels sharing a weak judge will have correlated ASR values regardless of their other members, violating the OLS independence assumption. We apply three corrections: clustered SE \citep[CR1, 3-position max-SE;][]{cameron2015practitioners}, mixed-effects models, and wild cluster bootstrap (WCB; $B{=}9{,}999$, Rademacher weights, max-$p$) following \citet{cameron2008bootstrap}. Fractional logit \citep{papke1996econometric} with clustered SE serves as an $\epsilon$-free robustness check. Monte Carlo calibration confirms the bootstrap does not over-reject (max null rejection $1.6\%$ at $\alpha{=}5\%$; Appendix~\ref{app:monte_carlo}).

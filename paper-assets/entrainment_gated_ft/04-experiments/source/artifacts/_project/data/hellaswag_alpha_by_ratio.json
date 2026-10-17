@@ -1,0 +1,22 @@
+{
+  "analysis": "hellaswag_ambiguity_alpha_by_attention_ratio",
+  "benchmark": "hellaswag",
+  "n_samples": 10042,
+  "definition": "ambiguity_alpha = fraction of examples where at least 1 of 3 architectures (GDN, RetNet, HGRN2) disagrees with another on correctness",
+  "source": "analyze_boolq_hellaswag.py (acc_norm)",
+  "alpha_by_ratio": {
+    "pure":  {"alpha": 0.1482, "n_ambiguous": 1488},
+    "h24-1": {"alpha": 0.1505, "n_ambiguous": 1511},
+    "h12-1": {"alpha": 0.1482, "n_ambiguous": 1488},
+    "h6-1":  {"alpha": 0.1463, "n_ambiguous": 1469},
+    "h3-1":  {"alpha": 0.1505, "n_ambiguous": 1511}
+  },
+  "summary": {
+    "min_alpha": 0.1463,
+    "max_alpha": 0.1505,
+    "range": 0.0042,
+    "within_benchmark_variation_lt_003": true,
+    "mean_alpha": 0.1487
+  },
+  "verification": "Within-benchmark variation = 0.004, confirming < 0.03 claim holds for HellaSwag. α is stable across attention ratios (14.6%-15.0%), higher than acc-based estimate (9.1%-10.3%) due to more per-example disagreement under length-normalized scoring."
+}

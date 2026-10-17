@@ -1,0 +1,85 @@
+meta:
+  venue: "EMNLP 2026 Main via ARR"
+  format: "Long paper, 8 pages + unlimited references"
+  deadline: "ARR June 2026 cycle (~June 15)"
+  template: "ACL style (acl.sty, review mode)"
+  core_claim: "Standard Likert scoring systematically underestimates style bias in LLM judges; binary style counterfactuals with pairwise comparison reveal causal bias that Likert misses."
+  status: partial_draft
+  partial_scope: [introduction, abstract_skeleton, figure_1_spec]
+
+visualization_plan:
+  - fig_id: fig1_likert_blindspot
+    type: statistical
+    tool: matplotlib
+    placement: introduction
+    aspect_ratio: "2.2:1"
+    layout: "2-panel, full-width (figure*)"
+    data_source: "registry: mvp_32b_ate (Likert scores), pairwise_32b (pairwise results)"
+    raw_data_paths:
+      likert: "/root/causal_style_decomp_judge/data/scored_32b.jsonl"
+      pairwise: "/root/causal_style_decomp_judge/data/pairwise_results_32b.jsonl"
+
+    narrative_intent: >
+      Standard Likert scoring sees no difference between formal and casual responses
+      (overlapping distributions, p=0.33), while pairwise comparison on the same data
+      reveals a 69.1% formal win rate (p=0.006). This measurement gap is the central
+      problem CSD exposes.
+
+    design_notes:
+      - "Pattern H: asymmetric 2-panel [1.4:1] — left panel wider (distribution needs more space), right panel narrower (single bar)"
+      - "Pattern C: dashed line at 50% baseline in right panel (chance level)"
+      - "Pattern A: light blue band above 50% in right panel marking 'formal preference zone'"
+      - "Pattern E: Wilson CI error bar on win rate bar [55.97%, 79.72%]"
+      - "Pattern J: path-effect white stroke on all in-panel annotations for legibility"
+      - "Color semantic: formal=#0072B2 (blue), casual=#E69F00 (orange), baseline=#999999 (gray)"
+      - "Bottom tagline spanning both panels: 'Same data, same judge, same counterfactuals — different measurement'"
+
+    left_panel:
+      title: "Likert Scoring (1–10)"
+      type: "overlapping histogram or KDE"
+      x_axis: "Likert Score"
+      y_axis: "Density"
+      data:
+        formal_scores: "formal_score from scored_32b.jsonl where nli_pass=true"
+        casual_scores: "casual_score from scored_32b.jsonl where nli_pass=true"
+      annotations:
+        - text: "ATE = +0.10, p = 0.33 (n.s.)"
+          position: "upper right"
+          style: "italic, gray"
+        - text: "64% of pairs: Δ = 0"
+          position: "center, with arrow pointing to stacked bars at same score"
+          style: "bold annotation, vermillion"
+      visual_message: "Distributions nearly identical — Likert cannot detect the bias"
+
+    right_panel:
+      title: "Pairwise Comparison"
+      type: "single bar with CI"
+      x_axis: null
+      y_axis: "Formal Win Rate (%)"
+      y_range: [30, 90]
+      data:
+        formal_win_rate: 69.1
+        wilson_ci: [55.97, 79.72]
+        n_consistent: 55
+      reference_lines:
+        - value: 50
+          style: "dashed, gray"
+          label: "chance"
+      annotations:
+        - text: "p = 0.006**"
+          position: "above bar"
+          style: "bold"
+        - text: "n = 55"
+          position: "below bar or in caption"
+      visual_message: "Clear formal preference — pairwise reveals what Likert hides"
+
+    bottom_tagline:
+      text: "Same data, same judge, same counterfactuals — different measurement"
+      style: "centered, italic, 9pt, gray"
+
+  - fig_id: fig2_method_overview
+    type: conceptual
+    tool: paperbanana
+    placement: method
+    status: deferred
+    note: "CSD pipeline diagram — deferred until Method section writing"

@@ -1,0 +1,435 @@
+{
+  "thresholds": [
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    0.98
+  ],
+  "seed": 42,
+  "n_bootstrap": 10000,
+  "results": {
+    "formality_qwen32b": {
+      "file": "data/pairwise_results_qwen32b_formality.jsonl",
+      "curve": [
+        {
+          "threshold": 0.5,
+          "n_pass": 91,
+          "bt_point": 0.6483,
+          "bt_median": 0.6483,
+          "ci_lo": 0.5714,
+          "ci_hi": 0.7252,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.55,
+          "n_pass": 91,
+          "bt_point": 0.6483,
+          "bt_median": 0.6483,
+          "ci_lo": 0.5714,
+          "ci_hi": 0.7252,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.6,
+          "n_pass": 90,
+          "bt_point": 0.6555,
+          "bt_median": 0.6555,
+          "ci_lo": 0.5778,
+          "ci_hi": 0.7277,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.65,
+          "n_pass": 90,
+          "bt_point": 0.6555,
+          "bt_median": 0.6555,
+          "ci_lo": 0.5833,
+          "ci_hi": 0.7277,
+          "p_value": 0.0002
+        },
+        {
+          "threshold": 0.7,
+          "n_pass": 89,
+          "bt_point": 0.6573,
+          "bt_median": 0.6573,
+          "ci_lo": 0.5786,
+          "ci_hi": 0.7303,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.75,
+          "n_pass": 89,
+          "bt_point": 0.6573,
+          "bt_median": 0.6573,
+          "ci_lo": 0.5786,
+          "ci_hi": 0.7303,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.8,
+          "n_pass": 89,
+          "bt_point": 0.6573,
+          "bt_median": 0.6573,
+          "ci_lo": 0.5786,
+          "ci_hi": 0.7303,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.85,
+          "n_pass": 89,
+          "bt_point": 0.6573,
+          "bt_median": 0.6573,
+          "ci_lo": 0.5786,
+          "ci_hi": 0.7303,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.9,
+          "n_pass": 88,
+          "bt_point": 0.6647,
+          "bt_median": 0.6647,
+          "ci_lo": 0.5909,
+          "ci_hi": 0.7386,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.95,
+          "n_pass": 85,
+          "bt_point": 0.6529,
+          "bt_median": 0.6529,
+          "ci_lo": 0.5765,
+          "ci_hi": 0.7235,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.98,
+          "n_pass": 77,
+          "bt_point": 0.6493,
+          "bt_median": 0.6493,
+          "ci_lo": 0.5649,
+          "ci_hi": 0.7272,
+          "p_value": 0.0005
+        }
+      ]
+    },
+    "formality_gpt4o": {
+      "file": "data/pairwise_results_32b.jsonl",
+      "curve": [
+        {
+          "threshold": 0.5,
+          "n_pass": 91,
+          "bt_point": 0.6145,
+          "bt_median": 0.6145,
+          "ci_lo": 0.5393,
+          "ci_hi": 0.6854,
+          "p_value": 0.0017
+        },
+        {
+          "threshold": 0.55,
+          "n_pass": 91,
+          "bt_point": 0.6145,
+          "bt_median": 0.6154,
+          "ci_lo": 0.5428,
+          "ci_hi": 0.6871,
+          "p_value": 0.0013
+        },
+        {
+          "threshold": 0.6,
+          "n_pass": 90,
+          "bt_point": 0.6214,
+          "bt_median": 0.6222,
+          "ci_lo": 0.548,
+          "ci_hi": 0.6936,
+          "p_value": 0.0007
+        },
+        {
+          "threshold": 0.65,
+          "n_pass": 90,
+          "bt_point": 0.6214,
+          "bt_median": 0.6221,
+          "ci_lo": 0.548,
+          "ci_hi": 0.6927,
+          "p_value": 0.001
+        },
+        {
+          "threshold": 0.7,
+          "n_pass": 89,
+          "bt_point": 0.6228,
+          "bt_median": 0.6228,
+          "ci_lo": 0.5486,
+          "ci_hi": 0.6936,
+          "p_value": 0.0006
+        },
+        {
+          "threshold": 0.75,
+          "n_pass": 89,
+          "bt_point": 0.6228,
+          "bt_median": 0.6236,
+          "ci_lo": 0.5491,
+          "ci_hi": 0.6931,
+          "p_value": 0.0005
+        },
+        {
+          "threshold": 0.8,
+          "n_pass": 89,
+          "bt_point": 0.6228,
+          "bt_median": 0.6228,
+          "ci_lo": 0.5506,
+          "ci_hi": 0.6949,
+          "p_value": 0.0007
+        },
+        {
+          "threshold": 0.85,
+          "n_pass": 89,
+          "bt_point": 0.6228,
+          "bt_median": 0.6228,
+          "ci_lo": 0.5486,
+          "ci_hi": 0.6931,
+          "p_value": 0.0008
+        },
+        {
+          "threshold": 0.9,
+          "n_pass": 88,
+          "bt_point": 0.63,
+          "bt_median": 0.6294,
+          "ci_lo": 0.5569,
+          "ci_hi": 0.6994,
+          "p_value": 0.0003
+        },
+        {
+          "threshold": 0.95,
+          "n_pass": 85,
+          "bt_point": 0.6287,
+          "bt_median": 0.6294,
+          "ci_lo": 0.5536,
+          "ci_hi": 0.7,
+          "p_value": 0.0004
+        },
+        {
+          "threshold": 0.98,
+          "n_pass": 77,
+          "bt_point": 0.6423,
+          "bt_median": 0.6423,
+          "ci_lo": 0.5629,
+          "ci_hi": 0.7189,
+          "p_value": 0.0001
+        }
+      ]
+    },
+    "verbosity_qwen32b": {
+      "file": "data/pairwise_results_qwen32b_verbosity.jsonl",
+      "curve": [
+        {
+          "threshold": 0.5,
+          "n_pass": 89,
+          "bt_point": 0.7696,
+          "bt_median": 0.7696,
+          "ci_lo": 0.6966,
+          "ci_hi": 0.837,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.55,
+          "n_pass": 89,
+          "bt_point": 0.7696,
+          "bt_median": 0.7696,
+          "ci_lo": 0.6966,
+          "ci_hi": 0.837,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.6,
+          "n_pass": 89,
+          "bt_point": 0.7696,
+          "bt_median": 0.7696,
+          "ci_lo": 0.6966,
+          "ci_hi": 0.837,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.65,
+          "n_pass": 88,
+          "bt_point": 0.767,
+          "bt_median": 0.767,
+          "ci_lo": 0.6931,
+          "ci_hi": 0.8352,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.7,
+          "n_pass": 88,
+          "bt_point": 0.767,
+          "bt_median": 0.767,
+          "ci_lo": 0.6931,
+          "ci_hi": 0.8352,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.75,
+          "n_pass": 86,
+          "bt_point": 0.7732,
+          "bt_median": 0.7732,
+          "ci_lo": 0.7034,
+          "ci_hi": 0.8429,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.8,
+          "n_pass": 86,
+          "bt_point": 0.7732,
+          "bt_median": 0.7732,
+          "ci_lo": 0.7034,
+          "ci_hi": 0.8429,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.85,
+          "n_pass": 86,
+          "bt_point": 0.7732,
+          "bt_median": 0.7732,
+          "ci_lo": 0.7034,
+          "ci_hi": 0.8429,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.9,
+          "n_pass": 86,
+          "bt_point": 0.7732,
+          "bt_median": 0.7732,
+          "ci_lo": 0.7034,
+          "ci_hi": 0.8429,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.95,
+          "n_pass": 83,
+          "bt_point": 0.765,
+          "bt_median": 0.765,
+          "ci_lo": 0.6927,
+          "ci_hi": 0.8312,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.98,
+          "n_pass": 72,
+          "bt_point": 0.7708,
+          "bt_median": 0.7708,
+          "ci_lo": 0.6944,
+          "ci_hi": 0.8471,
+          "p_value": 0.0001
+        }
+      ]
+    },
+    "verbosity_gpt4o": {
+      "file": "data/pairwise_results_gpt4o_verbosity.jsonl",
+      "curve": [
+        {
+          "threshold": 0.5,
+          "n_pass": 89,
+          "bt_point": 0.7683,
+          "bt_median": 0.7683,
+          "ci_lo": 0.6966,
+          "ci_hi": 0.8352,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.55,
+          "n_pass": 89,
+          "bt_point": 0.7683,
+          "bt_median": 0.7683,
+          "ci_lo": 0.7005,
+          "ci_hi": 0.8342,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.6,
+          "n_pass": 89,
+          "bt_point": 0.7683,
+          "bt_median": 0.7696,
+          "ci_lo": 0.7005,
+          "ci_hi": 0.8361,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.65,
+          "n_pass": 88,
+          "bt_point": 0.7657,
+          "bt_median": 0.7657,
+          "ci_lo": 0.6954,
+          "ci_hi": 0.8323,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.7,
+          "n_pass": 88,
+          "bt_point": 0.7657,
+          "bt_median": 0.7657,
+          "ci_lo": 0.6931,
+          "ci_hi": 0.8342,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.75,
+          "n_pass": 86,
+          "bt_point": 0.7602,
+          "bt_median": 0.7616,
+          "ci_lo": 0.6863,
+          "ci_hi": 0.8303,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.8,
+          "n_pass": 86,
+          "bt_point": 0.7602,
+          "bt_median": 0.7602,
+          "ci_lo": 0.69,
+          "ci_hi": 0.8293,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.85,
+          "n_pass": 86,
+          "bt_point": 0.7602,
+          "bt_median": 0.7616,
+          "ci_lo": 0.6882,
+          "ci_hi": 0.8303,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.9,
+          "n_pass": 86,
+          "bt_point": 0.7602,
+          "bt_median": 0.7602,
+          "ci_lo": 0.69,
+          "ci_hi": 0.8283,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.95,
+          "n_pass": 83,
+          "bt_point": 0.7515,
+          "bt_median": 0.7515,
+          "ci_lo": 0.6768,
+          "ci_hi": 0.822,
+          "p_value": 0.0001
+        },
+        {
+          "threshold": 0.98,
+          "n_pass": 72,
+          "bt_point": 0.7692,
+          "bt_median": 0.7692,
+          "ci_lo": 0.6874,
+          "ci_hi": 0.845,
+          "p_value": 0.0001
+        }
+      ]
+    }
+  }
+}

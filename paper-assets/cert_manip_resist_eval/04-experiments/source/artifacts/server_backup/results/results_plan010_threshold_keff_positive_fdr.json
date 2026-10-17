@@ -1,0 +1,593 @@
+{
+  "analysis": "threshold_vote K_eff positive direction FDR analysis",
+  "fdr_family_size": 48,
+  "fdr_alpha": 0.05,
+  "method": "Benjamini-Hochberg",
+  "note": "FDR correction over all 48 K_eff tests (4 methods x 12 conditions). Both positive and negative directions included.",
+  "threshold_vote_results": {
+    "mmlu__prompt_injection": {
+      "keff_beta": 1.7573729657496635,
+      "keff_p_raw": 1.9249164110434637e-06,
+      "keff_q_fdr": 9.239598773008625e-05,
+      "direction": "positive",
+      "significant_fdr": true,
+      "eta_max_beta": 0.6819169797015879,
+      "eta_max_p_raw": 3.2426458330059525e-10
+    },
+    "mmlu__sycophancy": {
+      "keff_beta": 0.029355580636360123,
+      "keff_p_raw": 0.9308841350410999,
+      "keff_q_fdr": 0.9506901804675063,
+      "direction": "positive",
+      "significant_fdr": false,
+      "eta_max_beta": 0.46983845468412033,
+      "eta_max_p_raw": 0.04290512466939131
+    },
+    "mmlu__score_manipulation": {
+      "keff_beta": 2.390512776773913,
+      "keff_p_raw": 0.0006631574655420509,
+      "keff_q_fdr": 0.005877814986783199,
+      "direction": "positive",
+      "significant_fdr": true,
+      "eta_max_beta": 0.7014981066424482,
+      "eta_max_p_raw": 7.514626042223724e-05
+    },
+    "mmlu__verbosity_bias": {
+      "keff_beta": 1.9745476018492294,
+      "keff_p_raw": 0.00015588571146638649,
+      "keff_q_fdr": 0.0024941713834621838,
+      "direction": "positive",
+      "significant_fdr": true,
+      "eta_max_beta": 1.0946464986480142,
+      "eta_max_p_raw": 0.001899061787546587
+    },
+    "mmlu__position_bias": {
+      "keff_beta": 5.1875638034051645,
+      "keff_p_raw": 0.00045840788884538323,
+      "keff_q_fdr": 0.005500894666144599,
+      "direction": "positive",
+      "significant_fdr": true,
+      "eta_max_beta": 0.3326752422958832,
+      "eta_max_p_raw": 0.08368868580453062
+    },
+    "mmlu__authority_bias": {
+      "keff_beta": 2.325188748108551,
+      "keff_p_raw": 1.4917414428560903e-05,
+      "keff_q_fdr": 0.00035801794628546164,
+      "direction": "positive",
+      "significant_fdr": true,
+      "eta_max_beta": 0.2754375319432025,
+      "eta_max_p_raw": 0.23392458132937258
+    },
+    "arc_challenge__prompt_injection": {
+      "keff_beta": 1.1621414624927524,
+      "keff_p_raw": 0.011218103499540782,
+      "keff_q_fdr": 0.048951724361632504,
+      "direction": "positive",
+      "significant_fdr": true,
+      "eta_max_beta": 0.672042312123393,
+      "eta_max_p_raw": 9.824687497635347e-10
+    },
+    "arc_challenge__sycophancy": {
+      "keff_beta": 0.9189884638575967,
+      "keff_p_raw": 0.006133415437409403,
+      "keff_q_fdr": 0.03271154899951681,
+      "direction": "positive",
+      "significant_fdr": true,
+      "eta_max_beta": 0.16037021271181962,
+      "eta_max_p_raw": 0.4195833167196091
+    },
+    "arc_challenge__score_manipulation": {
+      "keff_beta": 0.8817391565756107,
+      "keff_p_raw": 0.11968579173039576,
+      "keff_q_fdr": 0.3637525323418893,
+      "direction": "positive",
+      "significant_fdr": false,
+      "eta_max_beta": 0.6491885171651657,
+      "eta_max_p_raw": 2.398133561849547e-05
+    },
+    "arc_challenge__verbosity_bias": {
+      "keff_beta": 0.9381782370731927,
+      "keff_p_raw": 0.0007347268733478999,
+      "keff_q_fdr": 0.005877814986783199,
+      "direction": "positive",
+      "significant_fdr": true,
+      "eta_max_beta": 0.838814602062788,
+      "eta_max_p_raw": 1.7558305413332307e-09
+    },
+    "arc_challenge__position_bias": {
+      "keff_beta": -0.44065460947316204,
+      "keff_p_raw": 0.8194600360221688,
+      "keff_q_fdr": 0.9136505033820996,
+      "direction": "negative",
+      "significant_fdr": false,
+      "eta_max_beta": 0.9584202720465864,
+      "eta_max_p_raw": 0.1146815530591231
+    },
+    "arc_challenge__authority_bias": {
+      "keff_beta": 0.16598532669200794,
+      "keff_p_raw": 0.7020730697432558,
+      "keff_q_fdr": 0.9136505033820996,
+      "direction": "positive",
+      "significant_fdr": false,
+      "eta_max_beta": 0.30736136773370437,
+      "eta_max_p_raw": 0.2633375282062664
+    }
+  },
+  "summary": {
+    "threshold_keff_positive_sig_fdr": 8,
+    "threshold_keff_negative_sig_fdr": 0,
+    "threshold_keff_positive_conditions": [
+      "mmlu__prompt_injection",
+      "mmlu__sycophancy",
+      "mmlu__score_manipulation",
+      "mmlu__verbosity_bias",
+      "mmlu__position_bias",
+      "mmlu__authority_bias",
+      "arc_challenge__prompt_injection",
+      "arc_challenge__sycophancy",
+      "arc_challenge__score_manipulation",
+      "arc_challenge__verbosity_bias",
+      "arc_challenge__authority_bias"
+    ],
+    "threshold_keff_negative_conditions": [
+      "arc_challenge__position_bias"
+    ]
+  },
+  "cross_method_summary": {
+    "majority_vote": {
+      "keff_pos_sig_fdr": 0,
+      "keff_neg_sig_fdr": 1,
+      "keff_all_sig_fdr": 1
+    },
+    "weighted_vote": {
+      "keff_pos_sig_fdr": 0,
+      "keff_neg_sig_fdr": 1,
+      "keff_all_sig_fdr": 1
+    },
+    "threshold_vote": {
+      "keff_pos_sig_fdr": 8,
+      "keff_neg_sig_fdr": 0,
+      "keff_all_sig_fdr": 8
+    },
+    "bayesian": {
+      "keff_pos_sig_fdr": 1,
+      "keff_neg_sig_fdr": 0,
+      "keff_all_sig_fdr": 1
+    }
+  },
+  "full_48_tests": [
+    {
+      "method": "threshold_vote",
+      "condition": "mmlu__prompt_injection",
+      "keff_beta": 1.757373,
+      "keff_p_raw": 1.9249e-06,
+      "keff_q_fdr": 9.2396e-05,
+      "direction": "positive",
+      "significant_fdr": true
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "mmlu__authority_bias",
+      "keff_beta": 2.325189,
+      "keff_p_raw": 1.49174e-05,
+      "keff_q_fdr": 0.0003580179,
+      "direction": "positive",
+      "significant_fdr": true
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "mmlu__verbosity_bias",
+      "keff_beta": 1.974548,
+      "keff_p_raw": 0.0001558857,
+      "keff_q_fdr": 0.0024941714,
+      "direction": "positive",
+      "significant_fdr": true
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "mmlu__position_bias",
+      "keff_beta": 5.187564,
+      "keff_p_raw": 0.0004584079,
+      "keff_q_fdr": 0.0055008947,
+      "direction": "positive",
+      "significant_fdr": true
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "mmlu__score_manipulation",
+      "keff_beta": 2.390513,
+      "keff_p_raw": 0.0006631575,
+      "keff_q_fdr": 0.005877815,
+      "direction": "positive",
+      "significant_fdr": true
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "arc_challenge__verbosity_bias",
+      "keff_beta": 0.938178,
+      "keff_p_raw": 0.0007347269,
+      "keff_q_fdr": 0.005877815,
+      "direction": "positive",
+      "significant_fdr": true
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "arc_challenge__sycophancy",
+      "keff_beta": -3.097111,
+      "keff_p_raw": 0.0061247149,
+      "keff_q_fdr": 0.032711549,
+      "direction": "negative",
+      "significant_fdr": true
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "arc_challenge__sycophancy",
+      "keff_beta": 0.918988,
+      "keff_p_raw": 0.0061334154,
+      "keff_q_fdr": 0.032711549,
+      "direction": "positive",
+      "significant_fdr": true
+    },
+    {
+      "method": "bayesian",
+      "condition": "mmlu__authority_bias",
+      "keff_beta": 2.138593,
+      "keff_p_raw": 0.0054136983,
+      "keff_q_fdr": 0.032711549,
+      "direction": "positive",
+      "significant_fdr": true
+    },
+    {
+      "method": "majority_vote",
+      "condition": "arc_challenge__sycophancy",
+      "keff_beta": -2.379866,
+      "keff_p_raw": 0.0089946503,
+      "keff_q_fdr": 0.0431743214,
+      "direction": "negative",
+      "significant_fdr": true
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "arc_challenge__prompt_injection",
+      "keff_beta": 1.162141,
+      "keff_p_raw": 0.0112181035,
+      "keff_q_fdr": 0.0489517244,
+      "direction": "positive",
+      "significant_fdr": true
+    },
+    {
+      "method": "majority_vote",
+      "condition": "arc_challenge__position_bias",
+      "keff_beta": 10.492098,
+      "keff_p_raw": 0.0636863787,
+      "keff_q_fdr": 0.2547455146,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "majority_vote",
+      "condition": "arc_challenge__score_manipulation",
+      "keff_beta": 1.914926,
+      "keff_p_raw": 0.0932729186,
+      "keff_q_fdr": 0.3443923148,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "majority_vote",
+      "condition": "arc_challenge__verbosity_bias",
+      "keff_beta": -1.318637,
+      "keff_p_raw": 0.1117521589,
+      "keff_q_fdr": 0.3637525323,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "mmlu__sycophancy",
+      "keff_beta": -0.542201,
+      "keff_p_raw": 0.1212508441,
+      "keff_q_fdr": 0.3637525323,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "arc_challenge__score_manipulation",
+      "keff_beta": 0.881739,
+      "keff_p_raw": 0.1196857917,
+      "keff_q_fdr": 0.3637525323,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "majority_vote",
+      "condition": "mmlu__score_manipulation",
+      "keff_beta": 2.947958,
+      "keff_p_raw": 0.1311673207,
+      "keff_q_fdr": 0.370354788,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "arc_challenge__verbosity_bias",
+      "keff_beta": -1.858939,
+      "keff_p_raw": 0.1480305865,
+      "keff_q_fdr": 0.3947482306,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "arc_challenge__score_manipulation",
+      "keff_beta": 1.564952,
+      "keff_p_raw": 0.1609756501,
+      "keff_q_fdr": 0.4066753265,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "arc_challenge__position_bias",
+      "keff_beta": 6.344594,
+      "keff_p_raw": 0.2116861625,
+      "keff_q_fdr": 0.50804679,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "majority_vote",
+      "condition": "mmlu__authority_bias",
+      "keff_beta": 1.159717,
+      "keff_p_raw": 0.227179021,
+      "keff_q_fdr": 0.5192663338,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "mmlu__verbosity_bias",
+      "keff_beta": -1.133532,
+      "keff_p_raw": 0.2491007986,
+      "keff_q_fdr": 0.5434926515,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "mmlu__sycophancy",
+      "keff_beta": 0.44878,
+      "keff_p_raw": 0.2669877694,
+      "keff_q_fdr": 0.5571918665,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "mmlu__score_manipulation",
+      "keff_beta": 2.030362,
+      "keff_p_raw": 0.3180277084,
+      "keff_q_fdr": 0.6360554167,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "majority_vote",
+      "condition": "mmlu__position_bias",
+      "keff_beta": 2.346674,
+      "keff_p_raw": 0.3501160661,
+      "keff_q_fdr": 0.646368122,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "arc_challenge__position_bias",
+      "keff_beta": 5.727367,
+      "keff_p_raw": 0.3392380956,
+      "keff_q_fdr": 0.646368122,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "arc_challenge__authority_bias",
+      "keff_beta": 0.864558,
+      "keff_p_raw": 0.3998365328,
+      "keff_q_fdr": 0.7108205027,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "majority_vote",
+      "condition": "arc_challenge__prompt_injection",
+      "keff_beta": 0.653664,
+      "keff_p_raw": 0.4203108634,
+      "keff_q_fdr": 0.7205329088,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "mmlu__position_bias",
+      "keff_beta": 1.849308,
+      "keff_p_raw": 0.4532848326,
+      "keff_q_fdr": 0.7502645506,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "majority_vote",
+      "condition": "mmlu__verbosity_bias",
+      "keff_beta": 0.534813,
+      "keff_p_raw": 0.502699085,
+      "keff_q_fdr": 0.7941186463,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "majority_vote",
+      "condition": "arc_challenge__authority_bias",
+      "keff_beta": -0.408155,
+      "keff_p_raw": 0.525297728,
+      "keff_q_fdr": 0.7941186463,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "mmlu__prompt_injection",
+      "keff_beta": -1.440461,
+      "keff_p_raw": 0.5459565693,
+      "keff_q_fdr": 0.7941186463,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "mmlu__position_bias",
+      "keff_beta": 1.886757,
+      "keff_p_raw": 0.5413319073,
+      "keff_q_fdr": 0.7941186463,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "majority_vote",
+      "condition": "mmlu__sycophancy",
+      "keff_beta": 0.201281,
+      "keff_p_raw": 0.6125972125,
+      "keff_q_fdr": 0.8648431236,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "arc_challenge__score_manipulation",
+      "keff_beta": 0.535371,
+      "keff_p_raw": 0.6439592405,
+      "keff_q_fdr": 0.8831441012,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "majority_vote",
+      "condition": "mmlu__prompt_injection",
+      "keff_beta": 0.359948,
+      "keff_p_raw": 0.7726084024,
+      "keff_q_fdr": 0.9136505034,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "mmlu__prompt_injection",
+      "keff_beta": -0.318923,
+      "keff_p_raw": 0.8218200711,
+      "keff_q_fdr": 0.9136505034,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "arc_challenge__position_bias",
+      "keff_beta": -0.440655,
+      "keff_p_raw": 0.819460036,
+      "keff_q_fdr": 0.9136505034,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "arc_challenge__authority_bias",
+      "keff_beta": 0.165985,
+      "keff_p_raw": 0.7020730697,
+      "keff_q_fdr": 0.9136505034,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "mmlu__score_manipulation",
+      "keff_beta": 0.64759,
+      "keff_p_raw": 0.8375129614,
+      "keff_q_fdr": 0.9136505034,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "mmlu__verbosity_bias",
+      "keff_beta": 0.369596,
+      "keff_p_raw": 0.7552748739,
+      "keff_q_fdr": 0.9136505034,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "arc_challenge__prompt_injection",
+      "keff_beta": -0.386332,
+      "keff_p_raw": 0.8162041006,
+      "keff_q_fdr": 0.9136505034,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "arc_challenge__sycophancy",
+      "keff_beta": 0.185184,
+      "keff_p_raw": 0.7382295358,
+      "keff_q_fdr": 0.9136505034,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "bayesian",
+      "condition": "arc_challenge__verbosity_bias",
+      "keff_beta": -1.059455,
+      "keff_p_raw": 0.793691371,
+      "keff_q_fdr": 0.9136505034,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "arc_challenge__prompt_injection",
+      "keff_beta": 0.132792,
+      "keff_p_raw": 0.8833659056,
+      "keff_q_fdr": 0.942256966,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "mmlu__authority_bias",
+      "keff_beta": -0.104803,
+      "keff_p_raw": 0.9031409799,
+      "keff_q_fdr": 0.9424079791,
+      "direction": "negative",
+      "significant_fdr": false
+    },
+    {
+      "method": "threshold_vote",
+      "condition": "mmlu__sycophancy",
+      "keff_beta": 0.029356,
+      "keff_p_raw": 0.930884135,
+      "keff_q_fdr": 0.9506901805,
+      "direction": "positive",
+      "significant_fdr": false
+    },
+    {
+      "method": "weighted_vote",
+      "condition": "arc_challenge__authority_bias",
+      "keff_beta": -0.02466,
+      "keff_p_raw": 0.967419031,
+      "keff_q_fdr": 0.967419031,
+      "direction": "negative",
+      "significant_fdr": false
+    }
+  ]
+}

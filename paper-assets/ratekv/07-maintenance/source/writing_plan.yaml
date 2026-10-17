@@ -1,0 +1,302 @@
+meta:
+  venue: EMNLP 2026 Main (ARR)
+  track: Efficient Methods for NLP
+  template: null
+  template_note: "No local template found; will download latest ACL/ARR template (acl2023.sty or ARR 2026) in Step 2"
+  page_limit: 8
+  deadline: 2026-05-25
+  core_claim: >
+    A single cardinality constraint (max_2bit≤k) is both necessary and sufficient
+    for correct per-head KV cache quantization on hardware-aligned bit-widths {2,4,8,16}:
+    without it, both greedy and MCKP fail catastrophically (PPL 32–37); with it,
+    both produce identical near-optimal allocations (PPL 11.23 standard / 10.91 hires, Δ=0.0000).
+    The benefit scales with head sensitivity heterogeneity, providing practitioners
+    a diagnostic for when non-uniform allocation is worthwhile.
+  title_candidates:
+    - "Cardinality Constraints for Per-Head KV Cache Quantization on Hardware-Aligned Bit-Widths"
+    - "When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic"
+    - "One Constraint Is All You Need: Fixing Per-Head KV Cache Quantization for Hardware-Aligned Bit-Widths"
+  created_at: 2026-05-14T08:00:00Z
+
+# ── Story Arc (internal, distilled into section bullets) ──
+# Hook: Both greedy and MCKP produce catastrophic PPL (32–37) on {2,4,8,16} despite working on consecutive integers
+# Gap: (1) Polymatroid structure breaks on non-consecutive bit-widths → additive distortion assumption fails;
+#      (2) No framework for deciding WHEN non-uniform KV cache quantization helps
+# Insight: Root cause is 2-bit compounding — profiler distortions are non-additive; a cardinality cap is the minimal fix
+# Mechanism: (a) cap 2-bit assignments → prevents compounding → solver choice irrelevant; (b) heterogeneity predicts benefit
+# Evidence: Qwen 11.23 vs 15.45 (−27.3%) standard profiling; solver Δ=0.0000 across 3 models
+
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "Problem: per-head mixed-precision KV cache quantization on hardware-aligned {2,4,8,16} fails — both greedy (PPL 32) and MCKP (PPL 37) collapse"
+      - "Root cause: 2-bit compounding — per-head distortions non-additive when many heads at extreme quantization"
+      - "Fix: cardinality constraint (max_2bit≤k); solver-agnostic (greedy = MCKP, Δ=0.0000)"
+      - "Result: 27.3% PPL improvement on high-heterogeneity architecture (Qwen, 11.23 vs 15.45; hires 10.91 in §5.4 ablation)"
+      - "Analysis: head sensitivity concentration diagnostic — Top-5% > 0.50 → non-uniform; profiling distortion ≈ 0 → uniform"
+    dependencies: [experiments, method, analysis]
+
+  - section: introduction
+    word_budget: 900
+    core_bullets:
+      - "Hook: Per-head KV cache quantization should reduce memory while preserving quality. Yet on hardware-aligned {2,4,8,16} bit-widths, both greedy and MCKP — the two dominant allocation algorithms — produce catastrophic PPL 32–37, far worse than uniform 4-bit (15.45)."
+      - "Gap: (1) RateQuant's greedy is provably optimal on consecutive integers {2,...,6} (Prop. 6) but polymatroid structure breaks on non-consecutive {2,4,8,16}; (2) MCKP also fails due to non-additive distortion compounding; (3) No existing work addresses WHEN non-uniform allocation is beneficial."
+      - "Insight: The root cause is 2-bit compounding — unconstrained solvers assign 68–75 heads to 2-bit, where per-head distortions compound non-additively. A cardinality cap on 2-bit assignments is the minimal sufficient intervention."
+      - "Mechanism: (a) cardinality constraint max_2bit≤k; (b) constraint alone makes solver choice irrelevant — constrained greedy = constrained MCKP (Δ=0.0000); (c) benefit depends on head sensitivity heterogeneity."
+      - "Contributions: [C1] Identify compounding failure + cardinality fix for hardware-aligned bit-widths; [C2] Prove solver equivalence under constraint (greedy=MCKP, 3-model per-head verification); [C3] Heterogeneity-based diagnostic framework for when non-uniform allocation is worthwhile."
+    dependencies: [experiments, method]
+    citation_hints:
+      - "RateQuant (2026) — Algorithm 1 greedy, Theorem 2 continuous, Proposition 6 consecutive"
+      - "KIVI, KVQuant — KV cache quantization methods"
+      - "H2O, SnapKV — KV eviction (contrast)"
+    figures: [fig1_head_delta_heatmap]
+
+  - section: related_work
+    word_budget: 600
+    core_bullets:
+      - "KV cache quantization (KIVI, KVQuant, QServe, ZipCache): uniform bit-width per channel/token → we extend to per-head non-uniform with hardware-aligned action space"
+      - "KV cache eviction (H2O, SnapKV, FastGen, Scissorhands, PyramidInfer): orthogonal approach; our eviction experiments showed negative results → focus on quantization"
+      - "Mixed-precision rate-distortion allocation (RateQuant, ARKV, SqueezeLLM): RateQuant optimal on consecutive integers but fails on {2,4,8,16}; we provide the fix (constraint) + the missing 'when to use' analysis"
+      - "Attention head analysis (Voita et al. 2019, Michel et al. 2019): head importance/pruning → we study quantization sensitivity heterogeneity as a distinct phenomenon"
+    dependencies: [introduction]
+
+  - section: method
+    word_budget: 900
+    core_bullets:
+      - "§3.1 Problem formulation: per-head bit-width allocation as constrained optimization. Action space B={2,4,8,16}. Memory budget constraint. Objective: minimize total PPL degradation."
+      - "§3.2 PPL-based per-head profiling: quantize each head independently, measure PPL increase d_h(b). Additive distortion assumption: total ≈ Σ d_h(b_h)."
+      - "§3.3 Compounding effect: why additivity fails. When many heads at 2-bit simultaneously, actual PPL >> Σ individual d_h(2). Empirical: unconstrained assigns 68–75 heads to 2-bit → PPL 32–37 vs predicted ~11."
+      - "§3.4 Cardinality constraint: max_2bit≤k. Limits 2-bit assignments to prevent compounding. Optimal k via small-scale sweep (U-shaped PPL curve, k=8 optimal for 112 heads). Solver-agnostic: just one extra linear constraint."
+      - "§3.5 Solver equivalence: constrained greedy = constrained MCKP (Δ=0.0000). Constraint narrows feasible set so greedy's local decisions are globally optimal. Per-head verification: Qwen 112/112, Llama 256/256, Mistral 255/256 (1 zero-distortion tie)."
+    dependencies: []
+    notation_table:
+      h: "KV head index, h ∈ {1,...,H}"
+      b_h: "bit-width assigned to head h, b_h ∈ B"
+      B: "feasible bit-width set {2,4,8,16}"
+      d_h(b): "profiled distortion (PPL increase) when head h quantized to b bits"
+      R: "memory budget ratio (e.g. 0.25 for 4× compression)"
+      k: "cardinality constraint — max number of heads at 2-bit"
+    tables: [tab2_solver_equivalence]
+    figures: [fig2_compounding_curve]
+    registry_refs:
+      - greedy_cardinality_ablation
+      - ratequant_greedy_comparison
+      - compounding_sweep
+      - compounding_sweep_k10_12
+      - exp_d_no_l0_exclusion
+      - exp_b_hires_quant
+
+  - section: experiments
+    word_budget: 1200
+    core_bullets:
+      - "§4.1 Setup: 3 models (Qwen2.5-7B GQA 7:1 112 heads, Llama-3.1-8B GQA 4:1 256 heads, Mistral-7B-v0.3 GQA 4:1 256 heads); WikiText-2 eval; hires profiling 64×2048; bf16 inference; budget=0.25 (4× compression)"
+      - "§4.2 Main results (Table 1): constrained MCKP vs uniform vs unconstrained. Qwen −27.3% (11.23 vs 15.45), Llama −0.2% (8.45 vs 8.47), Mistral +0.4% genuine negative (7.16 vs 7.13). All standard profiling; hires in §5.4 ablation."
+      - "§4.3 Cardinality ablation (Fig 2): k-sweep on Qwen. U-shaped curve, k=8 optimal (11.23). k=0 = uniform (15.45), k=112 unconstrained (35.35)."
+      - "§4.4 Budget sweep (Table 3): 2×/4×/8× compression. 2× no benefit (uniform 8-bit suffices). 4× sweet spot (−27.3%). 8× catastrophic prevention (MCKP 907 vs uniform 14759)."
+      - "[FROZEN] §4.5 Cross-dataset stability: C4 data invalid (WikiText mislabel). Awaiting rerun with real C4 (plan_007/010 v2)."
+      - "§4.6 Heuristic baselines (L0-only comparison): MCKP 11.23 > L0-random 11.69±0.47 > naive positional 12.23 — profiling-guided allocation outperforms heuristics"
+      - "[TODO downstream_eval_qwen] §4.7 Downstream tasks: ARC-C/HellaSwag/PIQA/WinoGrande — to be patched when results arrive"
+    dependencies: []
+    registry_refs:
+      - hires_reeval
+      - hires_mckp_reeval
+      - llama_hires_pipeline
+      - mistral_hires_pipeline
+      - mistral_k_ablation
+      - greedy_cardinality_ablation
+      - ratequant_greedy_comparison
+      - compounding_sweep
+      - compounding_sweep_k10_12
+      - budget_sweep
+      - c4_cross_dataset_eval
+      - l0_heuristic_corrected
+      - downstream_eval_qwen
+    tables: [tab1_main_results, tab3_budget_sweep, tab4_robustness]
+    figures: [fig3_allocation_comparison]
+
+  - section: analysis
+    word_budget: 700
+    core_bullets:
+      - "§5.1 Heterogeneity characterization: per-head 2-bit sensitivity distribution across 3 architectures. Top-5% concentration: Qwen 0.59–0.66, Llama 0.34–0.59, Mistral 0.42."
+      - "§5.2 Diagnostic framework: (a) Top-5% concentration > 0.50 → non-uniform recommended; (b) total profiling distortion ≈ 0 → use uniform directly (Mistral case: profiler zero-signal). Decision tree for practitioners."
+      - "§5.3 Aggressive compression amplifies benefit: even low-heterogeneity models benefit at ≥5.3× compression. Llama 5.3×: constrained 57.60 vs uniform 2-bit 2644 (45× better). Mistral 5.3×: 11.91 vs 519 (44× better). Boundary shifts with compression ratio."
+      - "§5.4 Profiling resolution matters: hires (64×2048) vs lowres (16×512). Qwen: PPL degradation reduced 70% (2.52→0.75 above baseline). Hires recovers 2.7× more non-zero 2-bit signals."
+    dependencies: [experiments]
+    registry_refs:
+      - llama_aggressive_compression
+      - mistral_aggressive_compression
+      - exp_e_hires_profile
+      - llama_hires_pipeline
+      - mistral_hires_pipeline
+    figures: [fig1_head_delta_heatmap]
+    tables: [tab5_heterogeneity]
+
+  - section: conclusion
+    word_budget: 350
+    core_bullets:
+      - "Summary: cardinality constraint is necessary and sufficient fix for per-head KV cache quantization on {2,4,8,16}. Solver choice irrelevant (Δ=0.0000). Benefit scales with heterogeneity."
+      - "Limitations: (1) n=3 models — directional evidence, not statistically significant correlation; (2) single profiling method (PPL-based); (3) no runtime/latency benchmark; (4) 7B-scale only"
+      - "Future work: (a) larger model scale (70B+); (b) K/V separated allocation; (c) integration with inference engines (vLLM, TensorRT-LLM); (d) dynamic per-request allocation"
+    dependencies: [experiments, method, analysis]
+
+visualization_plan:
+  - fig_id: fig1_head_delta_heatmap
+    type: statistical
+    tool: matplotlib
+    description: "3-model side-by-side per-head 2-bit quantization sensitivity heatmap (Qwen 28L×4H / Llama 32L×8H / Mistral 32L×8H). Unified YlOrRd colorscale. L0 high-delta annotated."
+    data_source: "registry: exp_e_hires_profile, llama_hires_pipeline, mistral_hires_pipeline (profiling JSON on server)"
+    placement: analysis
+    aspect_ratio: "16:5"
+    status: done_on_server
+    server_path: "/root/ratekv/figures/fig1_head_delta_heatmap.pdf"
+
+  - fig_id: fig2_compounding_curve
+    type: statistical
+    tool: matplotlib
+    description: "Compounding effect: max_2bit (k) vs PPL on Qwen2.5-7B. 10 data points. U-shaped curve, k=8 optimal (11.23) annotated, uniform 4-bit baseline dashed line at 15.45."
+    data_source: "registry: compounding_sweep, compounding_sweep_k10_12"
+    placement: method
+    aspect_ratio: "4:3"
+    status: done_on_server
+    server_path: "/root/ratekv/figures/fig2_compounding_curve.pdf"
+
+  - fig_id: fig3_allocation_comparison
+    type: statistical
+    tool: matplotlib
+    description: "Uniform 4-bit vs constrained MCKP (k=8) bit-width allocation per layer, stacked bar chart on Qwen2.5-7B. L0 heads at 8-bit protection clearly visible."
+    data_source: "registry: exp_c_constrained_mckp, hires_reeval"
+    placement: experiments
+    aspect_ratio: "16:5"
+    status: done_on_server
+    server_path: "/root/ratekv/figures/fig3_allocation_comparison.pdf"
+
+table_plan:
+  - table_id: tab1_main_results
+    caption: "Main results: PPL (↓) on WikiText-2 at 4× compression across three architectures. Unconstrained allocation fails catastrophically on {2,4,8,16}; our cardinality constraint restores performance."
+    placement: experiments
+    type: comparison
+    columns: [Model, GQA Ratio, KV Heads, Baseline, Uniform 4-bit, Unconstr. Greedy, Unconstr. MCKP, "Constrained (Ours)"]
+    data_source: "registry: hires_reeval (Qwen), llama_hires_pipeline (Llama), mistral_hires_pipeline+mistral_k_ablation (Mistral), ratequant_greedy_comparison (unconstr. greedy), exp_b_hires_quant (unconstr. MCKP)"
+    notes: >
+      Qwen: baseline 9.81, uniform 15.45, unconstr. greedy 32.45, unconstr. MCKP 36.92, constrained 10.91.
+      Llama: baseline 8.09, uniform 8.47, constrained 8.45.
+      Mistral: baseline 7.04, uniform 7.13, constrained 7.16 (per-model optimal k=4, genuine negative).
+      Bold best per row. Unconstrained results only available for Qwen (lowres profiling).
+
+  - table_id: tab2_solver_equivalence
+    caption: "Solver equivalence under cardinality constraint (Qwen2.5-7B, budget=0.25). Constrained greedy and MCKP produce identical allocations."
+    placement: method
+    type: comparison
+    columns: [Method, Constraint, PPL, "Bit Distribution {2/4/8}", Budget]
+    data_source: "registry: greedy_cardinality_ablation, ratequant_greedy_comparison, exp_b_hires_quant, exp_c_constrained_mckp"
+    notes: >
+      5 rows: Greedy unconstrained (32.45, {68/30/4+10@16}), MCKP unconstrained (36.92),
+      Greedy constrained (11.2312, {8/100/4}), MCKP constrained (11.2312, {8/100/4}),
+      Uniform 4-bit (15.4454). Δ=0.0000 between constrained solvers.
+
+  - table_id: tab3_budget_sweep
+    caption: "Effect of compression ratio on constrained MCKP vs uniform (Qwen2.5-7B, WikiText-2)."
+    placement: experiments
+    type: comparison
+    columns: [Compression, Budget, Uniform PPL, MCKP PPL, Δ, "Δ%"]
+    data_source: "registry: budget_sweep"
+    notes: >
+      2× (budget=0.5): uniform 10.10, MCKP 10.66, −0.56 (worse, uniform 8-bit suffices).
+      4× (budget=0.25): uniform 15.45, MCKP 11.23, +4.21 (+29.3%).
+      8× (budget=0.125): uniform 14759, MCKP 907, +13852 (catastrophic prevention).
+
+  - table_id: tab4_robustness
+    caption: "Robustness evaluation: cross-dataset calibration stability, heuristic baselines, and downstream tasks (Qwen2.5-7B, 4× compression)."
+    placement: experiments
+    type: comparison
+    columns: [Evaluation, Metric, Value]
+    data_source: "registry: c4_cross_dataset_eval (FROZEN), l0_heuristic_corrected, downstream_eval_qwen"
+    notes: >
+      [FROZEN] Cross-dataset: C4 data confirmed WikiText mislabel. plan_007/plan_010 rerunning with real C4.
+      Heuristic baselines moved to separate tab:heuristic (§4.4).
+      Downstream moved to separate tab:downstream (§4.5).
+      C4 robustness row will be backfilled when rerun completes.
+
+  - table_id: tab5_heterogeneity
+    caption: "Head sensitivity heterogeneity and constrained allocation effectiveness across architectures."
+    placement: analysis
+    type: comparison
+    columns: [Model, GQA, "Top-5% Conc.", "Total Distortion", "Uniform Δ vs BL", "Constrained Δ vs BL", Recommendation]
+    data_source: "manual + registry cross-reference"
+    notes: >
+      Qwen (7:1): Top-5% 0.59–0.66, high distortion signal, uniform Δ=+5.63, constrained Δ=+1.10, → non-uniform.
+      Llama (4:1): Top-5% 0.34–0.59, medium signal, uniform Δ=+0.38, constrained Δ=+0.36, → marginal.
+      Mistral (4:1): Top-5% 0.42, ≈0 signal, uniform Δ=+0.10, constrained Δ=+0.28, → uniform.
+      Diagnostic: Top-5% > 0.50 → non-uniform; total distortion ≈ 0 → uniform.
+
+literature_strategy:
+  citation_budget: 35
+  macro_context:
+    - "KV cache compression for efficient LLM inference"
+    - "mixed-precision quantization with rate-distortion optimization"
+    - "attention head importance and sensitivity analysis"
+  micro_clusters:
+    - cluster_name: "KV Cache Quantization"
+      search_queries:
+        - "KV cache quantization large language models 2024 2025"
+        - "KIVI KVQuant per-channel quantization inference"
+        - "QServe quantization serving W4A8KV4"
+      must_cite:
+        - "KIVI (Liu et al. 2024)"
+        - "KVQuant (Hooper et al. 2024)"
+      target_count: 6
+
+    - cluster_name: "KV Cache Eviction and Sparsity"
+      search_queries:
+        - "KV cache eviction attention sparsity 2024"
+        - "H2O heavy hitter oracle SnapKV token eviction"
+        - "FastGen adaptive KV cache management"
+      must_cite:
+        - "H2O (Zhang et al. 2024)"
+      target_count: 5
+
+    - cluster_name: "Mixed-Precision Rate-Distortion Allocation"
+      search_queries:
+        - "RateQuant rate distortion KV cache quantization 2025 2026"
+        - "mixed precision quantization allocation knapsack"
+        - "ARKV adaptive rateless KV cache compression"
+      must_cite:
+        - "RateQuant (2026) — primary competitor: Algorithm 1, Theorem 2, Proposition 6"
+      target_count: 5
+
+    - cluster_name: "Model Compression and Quantization"
+      search_queries:
+        - "GPTQ AWQ post-training quantization LLM 2023 2024"
+        - "SmoothQuant activation-aware quantization"
+        - "weight quantization inference acceleration"
+      must_cite:
+        - "GPTQ (Frantar et al. 2023)"
+        - "AWQ (Lin et al. 2024)"
+      target_count: 6
+
+    - cluster_name: "Attention Head Analysis"
+      search_queries:
+        - "attention head pruning importance analysis transformer"
+        - "multi-head attention redundancy heterogeneity"
+      must_cite:
+        - "Voita et al. 2019 (attention head pruning)"
+        - "Michel et al. 2019 (head importance)"
+      target_count: 4
+
+    - cluster_name: "LLM Inference Efficiency"
+      search_queries:
+        - "LLM inference optimization memory efficiency 2024 2025"
+        - "long context KV cache memory management"
+        - "paged attention vLLM continuous batching"
+      must_cite: []
+      target_count: 5
+
+writing_order:
+  - experiments
+  - method
+  - analysis
+  - introduction
+  - related_work
+  - abstract
+  - conclusion

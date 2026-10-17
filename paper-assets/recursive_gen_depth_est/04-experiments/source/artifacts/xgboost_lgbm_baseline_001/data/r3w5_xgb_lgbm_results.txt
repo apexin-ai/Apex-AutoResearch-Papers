@@ -1,0 +1,1 @@
+See results on server: /root/autodl-tmp/recursive_gen_depth_est/results/r3w5_baselines/results.json. XGBoost 79.0%±0.5%, LightGBM 78.8%±0.8%, RF ref 78.2%. All converge to ~78-79%.

@@ -1,0 +1,194 @@
+ARR Responsible NLP Checklist — Draft Answers for OpenReview Submission Form
+=============================================================================
+Paper: "Per-Example Predictive Multiplicity in Hybrid Linear Recurrent
+        Architectures"
+Venue: EMNLP 2026 via ARR May/June cycle
+Prepared: 2026-05-22
+
+
+A. FOR EVERY SUBMISSION
+========================
+
+A1. Did you describe the limitations of your work?
+Answer: Yes
+Section: Limitations (after Section 5, unnumbered)
+Justification: The Limitations section covers: (1) single training runs per
+configuration — cannot fully disentangle architectural from seed-specific
+effects, though within- vs. cross-architecture Jaccard gap (3x) and Pythia
+70M seed calibration (2.7-4.3x) provide proxy evidence; (2) coverage —
+three primary architectures (+ two extended in appendix) from one model zoo, four main benchmarks + two
+supplementary, two scale points only; (3) pre-training only — no fine-tuning
+evaluation, discrete accuracy only; (4) statistical power — n=5 attention
+ratios limits minimum achievable p to 0.017, LAMBADA Bonferroni-adjusted
+p=0.170 does not reach conventional significance.
+
+A2. Did you discuss any potential risks of your work?
+Answer: Yes
+Section: Ethics Statement (after Limitations)
+Justification: This work analyzes existing publicly available pretrained
+models and introduces no new risks. The identified per-example behavioral
+differences may inform practitioners about limitations of aggregate benchmark
+comparisons. No new data collection, human subjects, or model training is
+involved.
+
+A3. Do the abstract and introduction summarize the paper's main claims?
+Answer: Yes
+Justification: Three scoped claims: (1) task-specific aggregate convergence
+(LAMBADA at 1.3B, rho=-1.0, p=0.017, with honest reporting that
+Bonferroni-adjusted p=0.170); (2) scale-dependent convergence (complete at
+1.3B, partial at 340M, two scale points only); (3) per-example predictive
+multiplicity — J ≤ 0.14 across five architectures at 340M, alpha
+spectrum 0.14-0.30 task-dependent. All claims explicitly scoped to the
+architectures and benchmarks studied.
+
+A4. Have you used AI writing assistants when working on this paper?
+Answer: Yes
+Justification: AI writing assistants were used for drafting and editing
+text. All scientific content, experimental design, analysis, and claims
+were verified by the authors.
+
+
+B. DID YOU USE OR CREATE SCIENTIFIC ARTIFACTS?
+===============================================
+
+Answer: Yes (use existing artifacts; no new artifacts created)
+
+B1. Did you cite the creators of artifacts you used?
+Answer: Yes
+Justification: We cite: Wang et al. (2025) for the hybrid architecture
+model zoo (HuggingFace m-a-p organization); Gao et al. (2024) for
+lm-evaluation-harness (v0.4.12); Yang et al. for flash-linear-attention
+(v0.5.0); individual architecture papers for GatedDeltaNet, RetNet, HGRN2,
+GLA, and DeltaNet; Marx et al. (2020) for the predictive multiplicity
+framework; van der Wal et al. (2025) for PolyPythias (Pythia seed variants).
+All benchmark datasets (LAMBADA, ARC-Easy, HellaSwag, PIQA) are cited.
+
+B2. Did you discuss the license or terms for use and/or distribution
+    of any artifacts?
+Answer: Yes
+Justification: The Wang et al. model zoo is publicly released on HuggingFace.
+lm-evaluation-harness is open-source under MIT license. flash-linear-attention
+is open-source. All benchmark datasets are publicly available standard NLP
+benchmarks. We do not release new artifacts (code release upon publication).
+
+B3. Did you discuss if your use of existing artifact(s) was consistent
+    with their intended use?
+Answer: Yes
+Justification: The model zoo was designed for systematic comparison of hybrid
+architectures, which is exactly our use case. The evaluation harness was used
+with default prompts and standard benchmark configurations.
+
+B4. Did you discuss the steps taken to check whether the data that you
+    are using/curating contains any information that names or uniquely
+    identifies individual people or offensive content?
+Answer: N/A
+Justification: We use established NLP benchmarks (LAMBADA, ARC-Easy,
+HellaSwag, PIQA) that have been widely vetted in prior work. No new data
+was collected or curated.
+
+B5. Did you provide documentation of the artifacts, e.g., coverage of
+    domains, languages, and linguistic phenomena, demographic groups
+    represented, etc.?
+Answer: N/A
+Justification: We do not release new artifacts. Analysis code and per-example
+outputs will be released upon publication with documentation.
+
+B6. Did you discuss whether and how consent was obtained from people
+    whose data you're using/curating?
+Answer: N/A
+Justification: All data used consists of established public benchmarks.
+
+
+C. DID YOU RUN COMPUTATIONAL EXPERIMENTS?
+==========================================
+
+Answer: Yes
+
+C1. Did you report the number of parameters in the models used, the total
+    computational budget (e.g., GPU hours), and computing infrastructure
+    used?
+Answer: Yes
+Section: Section 3 (Method) and Appendix
+Justification: Model sizes: 340M and 1.3B parameters. Five architectures
+(GatedDeltaNet, RetNet, HGRN2, GLA, DeltaNet) x 5 attention ratios x 2
+scales. All evaluation was inference-only using pretrained checkpoints from
+Wang et al. (2025); no model training was performed. Computing
+infrastructure: single NVIDIA RTX PRO 6000 GPU. Total computational budget:
+approximately 5 GPU-hours (inference only). Pythia 70M seed calibration
+experiment (Appendix) used the same GPU with negligible additional compute.
+
+C2. Did you discuss the experimental setup, including hyperparameter
+    search and best model selection?
+Answer: Yes
+Section: Section 3
+Justification: Section 3 describes the model zoo, task taxonomy (retrieval /
+reasoning / mixed), all metrics (Spearman rho, cross-architecture std,
+Jaccard, alpha, normalized ES), and statistical methods (permutation tests,
+BCa bootstrap CIs, Bonferroni and BH corrections). All models use default
+lm-evaluation-harness settings. No hyperparameter tuning or model selection
+was performed — this is a post-hoc analysis of existing checkpoints.
+
+C3. Did you report descriptive statistics about your results (e.g., error
+    bars, confidence intervals, significance tests)?
+Answer: Yes
+Justification: We report: exact permutation tests (two-tailed, 120
+permutations); BCa bootstrap confidence intervals; Bonferroni correction
+for multiple comparisons (10-benchmark adjusted threshold); effect sizes
+(Cohen's d, Jaccard similarity, normalized ES); the ambiguity metric alpha
+(Marx et al. 2020); z-scores from permutation null distributions for
+Jaccard significance; Mann-Whitney U and Kruskal-Wallis tests for
+within/cross-architecture comparisons.
+
+C4. Did you use existing packages (e.g., for pre-processing, for model
+    evaluation)?
+Answer: Yes
+Justification: lm-evaluation-harness v0.4.12 (Gao et al. 2024) for
+benchmark evaluation; flash-linear-attention v0.5.0 for efficient linear
+attention inference; PyTorch; standard scientific Python stack (numpy, scipy,
+scikit-learn for statistical tests).
+
+
+D. DID YOU USE HUMAN ANNOTATORS (E.G., CROWDWORKERS) OR INVOLVE HUMAN
+   PARTICIPANTS?
+==========================================
+
+Answer: No
+
+D1-D5: N/A
+Justification: No human annotation or human participants were involved.
+This is a purely computational analysis of existing pretrained models on
+established benchmarks.
+
+
+E. DID YOU USE AI ASSISTANTS (E.G., CHATGPT)?
+===============================================
+
+E1. Did you report the use of AI assistants (e.g., ChatGPT, Copilot)?
+Answer: Yes
+Justification: See A4. AI writing assistants were used for drafting and
+editing. All scientific content was verified by the authors.
+
+
+ADDITIONAL NOTES FOR FORM FIELDS
+=================================
+
+Fairness / Bias Implications (if asked):
+Per-example predictive multiplicity has direct fairness implications.
+Different architectures with equivalent aggregate performance affect largely
+non-overlapping sets of examples (J ≤ 0.14, ~86% non-overlap). This means
+the choice of architecture — often made based on aggregate benchmarks alone
+— determines WHICH specific examples are correctly or incorrectly predicted.
+The ambiguity metric alpha ranges from 0.14 (reasoning tasks) to 0.30
+(retrieval tasks), quantifying the fraction of examples whose predictions
+depend on architecture choice. This is an instance of predictive multiplicity
+(Marx et al. 2020) arising from architectural variation, complementing
+underspecification (D'Amour et al. 2022) which focuses on same-pipeline
+variation. Practitioners should be aware that aggregate-equivalent models
+are not per-example equivalent.
+
+Reproducibility:
+All models are publicly available from the Wang et al. (2025) model zoo on
+HuggingFace (m-a-p organization). Evaluation uses the standard
+lm-evaluation-harness with default settings. Analysis code and per-example
+outputs will be released upon publication. No training is required to
+reproduce results — only inference on public checkpoints.

@@ -1,0 +1,31 @@
+{
+  "observed_interaction_pp": -0.4774,
+  "permutation_null_sd_pp": 4.2627,
+  "permutation_95ci_percentile": [
+    -8.4903,
+    8.2866
+  ],
+  "permutation_95ci_se_based": [
+    -8.8324,
+    7.8775
+  ],
+  "permutation_tost_p_value": 0.2855,
+  "permutation_tost_p_upper": 0.2128,
+  "permutation_tost_p_lower": 0.2855,
+  "permutation_p_value_h0_zero": 0.9143,
+  "n_permutations": 10000,
+  "n_batches_per_cell": {
+    "count_8_low": 13,
+    "count_8_high": 12,
+    "count_16_low": 13,
+    "count_16_high": 12
+  },
+  "equivalence_margin_pp": 3.0,
+  "equivalence_supported": false,
+  "cell_means_pct": {
+    "count_8_low": 79.65,
+    "count_8_high": 81.42,
+    "count_16_low": 70.79,
+    "count_16_high": 73.05
+  }
+}

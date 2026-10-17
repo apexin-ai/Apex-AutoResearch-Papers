@@ -1,0 +1,204 @@
+{
+  "spearman_r_by_attack": {
+    "prompt_injection": {
+      "mmlu": 0.6283,
+      "arc_challenge": 0.6003
+    },
+    "sycophancy": {
+      "mmlu": 0.9142,
+      "arc_challenge": 0.9235
+    },
+    "score_manipulation": {
+      "mmlu": 0.9775,
+      "arc_challenge": 0.986
+    },
+    "verbosity_bias": {
+      "mmlu": 0.9146,
+      "arc_challenge": 0.92
+    },
+    "position_bias": {
+      "mmlu": 0.6038,
+      "arc_challenge": 0.0773
+    },
+    "authority_bias": {
+      "mmlu": 0.9493,
+      "arc_challenge": 0.9713
+    }
+  },
+  "mean_abs_diff": {
+    "prompt_injection": {
+      "mmlu": 0.2449,
+      "arc_challenge": 0.2533
+    },
+    "sycophancy": {
+      "mmlu": 0.0919,
+      "arc_challenge": 0.0942
+    },
+    "score_manipulation": {
+      "mmlu": 0.1109,
+      "arc_challenge": 0.0845
+    },
+    "verbosity_bias": {
+      "mmlu": 0.0884,
+      "arc_challenge": 0.1204
+    },
+    "position_bias": {
+      "mmlu": 0.5343,
+      "arc_challenge": 0.8353
+    },
+    "authority_bias": {
+      "mmlu": 0.0779,
+      "arc_challenge": 0.0946
+    }
+  },
+  "detail_by_attack": {
+    "prompt_injection": {
+      "mmlu": {
+        "n_panels": 455,
+        "spearman_r": 0.6283,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.2449,
+        "median_abs_diff": 0.2145,
+        "max_abs_diff": 0.6261,
+        "mean_keff_clean": 2.2755,
+        "mean_keff_attacked": 2.4597,
+        "relative_change_pct": 8.1
+      },
+      "arc_challenge": {
+        "n_panels": 455,
+        "spearman_r": 0.6003,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.2533,
+        "median_abs_diff": 0.2084,
+        "max_abs_diff": 0.7373,
+        "mean_keff_clean": 2.0759,
+        "mean_keff_attacked": 2.1332,
+        "relative_change_pct": 2.76
+      }
+    },
+    "sycophancy": {
+      "mmlu": {
+        "n_panels": 455,
+        "spearman_r": 0.9142,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.0919,
+        "median_abs_diff": 0.074,
+        "max_abs_diff": 0.3284,
+        "mean_keff_clean": 2.2755,
+        "mean_keff_attacked": 2.3316,
+        "relative_change_pct": 2.47
+      },
+      "arc_challenge": {
+        "n_panels": 455,
+        "spearman_r": 0.9235,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.0942,
+        "median_abs_diff": 0.0336,
+        "max_abs_diff": 0.4997,
+        "mean_keff_clean": 2.0759,
+        "mean_keff_attacked": 2.0154,
+        "relative_change_pct": 2.92
+      }
+    },
+    "score_manipulation": {
+      "mmlu": {
+        "n_panels": 455,
+        "spearman_r": 0.9775,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.1109,
+        "median_abs_diff": 0.1003,
+        "max_abs_diff": 0.3219,
+        "mean_keff_clean": 2.2755,
+        "mean_keff_attacked": 2.386,
+        "relative_change_pct": 4.86
+      },
+      "arc_challenge": {
+        "n_panels": 455,
+        "spearman_r": 0.986,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.0845,
+        "median_abs_diff": 0.0667,
+        "max_abs_diff": 0.2779,
+        "mean_keff_clean": 2.0759,
+        "mean_keff_attacked": 2.1391,
+        "relative_change_pct": 3.04
+      }
+    },
+    "verbosity_bias": {
+      "mmlu": {
+        "n_panels": 455,
+        "spearman_r": 0.9146,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.0884,
+        "median_abs_diff": 0.0621,
+        "max_abs_diff": 0.3924,
+        "mean_keff_clean": 2.2755,
+        "mean_keff_attacked": 2.3287,
+        "relative_change_pct": 2.34
+      },
+      "arc_challenge": {
+        "n_panels": 455,
+        "spearman_r": 0.92,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.1204,
+        "median_abs_diff": 0.1006,
+        "max_abs_diff": 0.4174,
+        "mean_keff_clean": 2.0759,
+        "mean_keff_attacked": 2.0714,
+        "relative_change_pct": 0.22
+      }
+    },
+    "position_bias": {
+      "mmlu": {
+        "n_panels": 455,
+        "spearman_r": 0.6038,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.5343,
+        "median_abs_diff": 0.5254,
+        "max_abs_diff": 1.1486,
+        "mean_keff_clean": 2.2755,
+        "mean_keff_attacked": 2.8098,
+        "relative_change_pct": 23.48
+      },
+      "arc_challenge": {
+        "n_panels": 455,
+        "spearman_r": 0.0773,
+        "spearman_p": 0.099694,
+        "mean_abs_diff": 0.8353,
+        "median_abs_diff": 0.911,
+        "max_abs_diff": 1.4682,
+        "mean_keff_clean": 2.0759,
+        "mean_keff_attacked": 2.9112,
+        "relative_change_pct": 40.24
+      }
+    },
+    "authority_bias": {
+      "mmlu": {
+        "n_panels": 455,
+        "spearman_r": 0.9493,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.0779,
+        "median_abs_diff": 0.0711,
+        "max_abs_diff": 0.2378,
+        "mean_keff_clean": 2.2755,
+        "mean_keff_attacked": 2.226,
+        "relative_change_pct": 2.17
+      },
+      "arc_challenge": {
+        "n_panels": 455,
+        "spearman_r": 0.9713,
+        "spearman_p": 0.0,
+        "mean_abs_diff": 0.0946,
+        "median_abs_diff": 0.0408,
+        "max_abs_diff": 0.4343,
+        "mean_keff_clean": 2.0759,
+        "mean_keff_attacked": 1.9925,
+        "relative_change_pct": 4.02
+      }
+    }
+  },
+  "overall_spearman_r": 0.7888,
+  "overall_mean_abs_diff": 0.2192,
+  "conclusion": "K_eff stable for 4/6 attacks (r>0.91), moderately perturbed by prompt_injection (r~0.61), heavily disrupted by position_bias (r~0.08-0.60)",
+  "summary": "Across 6 attacks x 2 datasets (455 K=3 panels each): score_manipulation (r=0.98), authority_bias (r=0.96), sycophancy (r=0.92), verbosity_bias (r=0.92) preserve K_eff ranking well. prompt_injection moderately disrupts (r=0.61, mean |dK|=0.25). position_bias heavily disrupts MI structure (r=0.08-0.60, mean |dK|=0.53-0.84), likely because position swapping uniformly decorrelates judges. Overall mean r=0.79. Conclusion: clean K_eff is a reliable proxy for 4/6 attacks; position_bias and prompt_injection require attacked-K_eff correction."
+}

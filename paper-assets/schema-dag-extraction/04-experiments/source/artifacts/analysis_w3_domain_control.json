@@ -1,0 +1,65 @@
+{
+  "analysis": "Domain-controlled regression: FewRel BCS robustness check",
+  "n_batches": 84,
+  "data_sources": "eval_exp1 (30 batches, excl count_1) + eval_exp2 (54 batches)",
+  "domains": [
+    "creative_work",
+    "event_temporal",
+    "geography",
+    "organization",
+    "person",
+    "science_taxonomy"
+  ],
+  "n_domains": 6,
+  "zero_order_correlations": {
+    "r_BCS_acc": -0.7402,
+    "r_entropy_acc": -0.3923,
+    "r_BCS_entropy": 0.5339
+  },
+  "Model_A_BCS_only": {
+    "R2": 0.548,
+    "semipartial_R2_BCS": 0.548
+  },
+  "Model_B_BCS_entropy": {
+    "R2": 0.548,
+    "semipartial_R2_BCS": 0.394,
+    "semipartial_R2_entropy": 0.0,
+    "VIF_BCS": 1.399,
+    "coefficients": {
+      "BCS": {
+        "beta": -0.7993,
+        "SE": 0.0951,
+        "t": -8.403,
+        "p": 0.0
+      },
+      "domain_entropy": {
+        "beta": 0.0014,
+        "SE": 0.03,
+        "t": 0.045,
+        "p": 0.9642
+      },
+      "intercept": {
+        "beta": 1.3507,
+        "SE": 0.0684,
+        "t": 19.744,
+        "p": 0.0
+      }
+    }
+  },
+  "Model_D_BCS_domain_props": {
+    "R2": 0.6777,
+    "R2_domain_props_only": 0.2172,
+    "semipartial_R2_BCS": 0.4605,
+    "semipartial_R2_domain_props": 0.1297,
+    "F_domain_props": 6.198,
+    "p_domain_props": 0.0001
+  },
+  "comparison": {
+    "baseline_semipartial_R2_BCS": 0.548,
+    "after_entropy_semipartial_R2_BCS": 0.394,
+    "after_domain_props_semipartial_R2_BCS": 0.4605,
+    "attenuation_pct_entropy": -28.1,
+    "attenuation_pct_domain_props": -16.0
+  },
+  "verdict": "ROBUST: Domain entropy adds zero unique predictive power (p=0.96). Even with full domain-proportion dummies, BCS retains 84% of its baseline semipartial R^2."
+}

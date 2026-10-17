@@ -1,0 +1,160 @@
+{
+  "regime": "random_fault",
+  "rf_definition": "clean_accuracy_error_rate",
+  "simulation": {
+    "n_trials": 10000,
+    "method": "independent_bernoulli",
+    "error_rate_source": "1 - clean_accuracy (dataset-level)"
+  },
+  "n_panels": 455,
+  "n_conditions": 2,
+  "note": "2 conditions (1 per dataset); RF error rate = 1 - clean_accuracy is dataset-level, no attack-level variation. No FDR (only 2 tests).",
+  "bootstrap": {
+    "B": 9999,
+    "weights": "rademacher",
+    "seed": 42,
+    "positions": 3
+  },
+  "per_condition": {
+    "mmlu": {
+      "n_panels": 455,
+      "skipped": false,
+      "rf_asr_stats": {
+        "mean": 0.14243758241758242,
+        "std": 0.056532021215650194,
+        "max_analytical_deviation": 0.0125962962962963
+      },
+      "eta_max_rf_stats": {
+        "mean": 0.3293186813186813,
+        "min": 0.15666666666666662,
+        "max": 0.43333333333333335
+      },
+      "keff_stats": {
+        "mean": 2.275498490771776,
+        "min": 1.4477398539683035,
+        "max": 2.833883716152029
+      },
+      "ols": {
+        "keff_beta": 0.6727529704246338,
+        "keff_std_beta": 0.21520548688703287,
+        "keff_t": 6.318457499764419,
+        "keff_p": 6.33568331932979e-10,
+        "eta_beta": 0.9654727119238585,
+        "eta_std_beta": 0.6919996952290223,
+        "eta_t": 20.31718952616521,
+        "eta_p": 1.1307415666649845e-65,
+        "r2": 0.7344082408669064,
+        "adj_r2": 0.7332330560919812
+      },
+      "clustered_se": {
+        "keff_t": 3.5846588511432547,
+        "keff_p": 0.00037425385084902894,
+        "eta_t": 11.787814512700177,
+        "eta_p": 3.7653749676589958e-28,
+        "se_inflation_keff": 1.7626384440319263,
+        "se_inflation_eta": 1.7235756046445667
+      },
+      "bootstrap_v2": {
+        "keff_boot_p_positions": [
+          0.0011,
+          0.0004,
+          0.0035
+        ],
+        "keff_final_p": 0.0035,
+        "keff_n_clusters": [
+          13,
+          13,
+          13
+        ],
+        "eta_boot_p_positions": [
+          0.0013,
+          0.0005,
+          0.0007
+        ],
+        "eta_final_p": 0.0013,
+        "eta_n_clusters": [
+          13,
+          13,
+          13
+        ]
+      }
+    },
+    "arc_challenge": {
+      "n_panels": 455,
+      "skipped": false,
+      "rf_asr_stats": {
+        "mean": 0.045070109890109886,
+        "std": 0.057520647291412576,
+        "max_analytical_deviation": 0.0093655555555556
+      },
+      "eta_max_rf_stats": {
+        "mean": 0.2734139194139194,
+        "min": 0.023333333333333317,
+        "max": 0.55
+      },
+      "keff_stats": {
+        "mean": 2.0759091397634495,
+        "min": 1.4931804368430674,
+        "max": 2.8531649266483186
+      },
+      "ols": {
+        "keff_beta": 2.6909431188551447,
+        "keff_std_beta": 0.3787688772158386,
+        "keff_t": 7.175753816314519,
+        "keff_p": 2.9669152074187443e-12,
+        "eta_beta": 0.810171944489081,
+        "eta_std_beta": 0.5404056298688106,
+        "eta_t": 10.23795246693204,
+        "eta_p": 2.9056280150378036e-22,
+        "r2": 0.8133244845468902,
+        "adj_r2": 0.8124984866909031
+      },
+      "clustered_se": {
+        "keff_t": 2.644230912635059,
+        "keff_p": 0.00847252902817788,
+        "eta_t": 4.241217219731423,
+        "eta_p": 2.697678190612248e-05,
+        "se_inflation_keff": 2.7137394779049973,
+        "se_inflation_eta": 2.4139184428710685
+      },
+      "bootstrap_v2": {
+        "keff_boot_p_positions": [
+          0.0185,
+          0.0055,
+          0.004
+        ],
+        "keff_final_p": 0.0185,
+        "keff_n_clusters": [
+          13,
+          13,
+          13
+        ],
+        "eta_boot_p_positions": [
+          0.0023,
+          0.0064,
+          0.0219
+        ],
+        "eta_final_p": 0.0219,
+        "eta_n_clusters": [
+          13,
+          13,
+          13
+        ]
+      }
+    }
+  },
+  "summary": {
+    "ols": {
+      "eta_sig": "2/2",
+      "keff_sig": "2/2"
+    },
+    "clustered_se": {
+      "eta_sig": "2/2",
+      "keff_sig": "2/2"
+    },
+    "bootstrap_v2": {
+      "eta_sig": "2/2",
+      "keff_sig": "2/2"
+    }
+  }
+}

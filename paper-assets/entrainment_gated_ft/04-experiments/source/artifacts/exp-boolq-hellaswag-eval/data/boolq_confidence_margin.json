@@ -1,0 +1,103 @@
+{
+  "analysis": "boolq_confidence_margin",
+  "benchmark": "boolq",
+  "n_samples": 3270,
+  "method": "within-category controls (same as LAMBADA/ARC-Easy/HellaSwag)",
+  "confidence_proxy": "abs(correct_option_loglikelihood) from pure model",
+  "note": "BoolQ is binary (2 options). GDN uses h12-1; RetNet/HGRN2 use h3-1",
+  "results": {
+    "GDN": {
+      "hybrid_config": "1.3B-100B-GatedDeltaNet-hybrid-12-1",
+      "control_1_pure_correct": {
+        "hurt_n": 441,
+        "stayed_right_n": 1471,
+        "hurt_mean": 3.0033,
+        "hurt_median": 2.9844,
+        "stayed_right_mean": 2.9794,
+        "stayed_right_median": 2.9688,
+        "U": 331850.5,
+        "p": 0.4611229056287808,
+        "cohens_d": 0.0407,
+        "r_rb": -0.0231,
+        "direction": "hurt has HIGHER confidence (hypothesis supported)",
+        "hypothesis_supported": true
+      },
+      "control_2_pure_wrong": {
+        "helped_n": 605,
+        "stayed_wrong_n": 753,
+        "helped_mean": 3.5052,
+        "helped_median": 3.4844,
+        "stayed_wrong_mean": 3.7321,
+        "stayed_wrong_median": 3.7031,
+        "U": 181900.5,
+        "p": 1.681e-10,
+        "cohens_d": -0.3568,
+        "r_rb": 0.2014,
+        "direction": "helped has LOWER confidence (hypothesis supported)",
+        "hypothesis_supported": true
+      }
+    },
+    "RetNet": {
+      "hybrid_config": "1.3B-100B-RetNet-hybrid-3-1",
+      "control_1_pure_correct": {
+        "hurt_n": 648,
+        "stayed_right_n": 1351,
+        "hurt_mean": 3.0838,
+        "hurt_median": 3.0625,
+        "stayed_right_mean": 3.0801,
+        "stayed_right_median": 3.0156,
+        "U": 438393.0,
+        "p": 0.9558639202158401,
+        "cohens_d": 0.0055,
+        "r_rb": -0.0015,
+        "direction": "hurt has HIGHER confidence (hypothesis supported)",
+        "hypothesis_supported": true
+      },
+      "control_2_pure_wrong": {
+        "helped_n": 550,
+        "stayed_wrong_n": 721,
+        "helped_mean": 3.5916,
+        "helped_median": 3.5781,
+        "stayed_wrong_mean": 3.6962,
+        "stayed_wrong_median": 3.6094,
+        "U": 185792.5,
+        "p": 0.054188774900793234,
+        "cohens_d": -0.1584,
+        "r_rb": 0.063,
+        "direction": "helped has LOWER confidence (hypothesis supported)",
+        "hypothesis_supported": true
+      }
+    },
+    "HGRN2": {
+      "hybrid_config": "1.3B-100B-HGRN2-hybrid-3-1",
+      "control_1_pure_correct": {
+        "hurt_n": 488,
+        "stayed_right_n": 1388,
+        "hurt_mean": 2.9877,
+        "hurt_median": 2.9219,
+        "stayed_right_mean": 3.0607,
+        "stayed_right_median": 2.9844,
+        "U": 324003.5,
+        "p": 0.1541370105557747,
+        "cohens_d": -0.0977,
+        "r_rb": 0.0433,
+        "direction": "hurt has LOWER confidence",
+        "hypothesis_supported": false
+      },
+      "control_2_pure_wrong": {
+        "helped_n": 691,
+        "stayed_wrong_n": 703,
+        "helped_mean": 3.5538,
+        "helped_median": 3.5469,
+        "stayed_wrong_mean": 3.7793,
+        "stayed_wrong_median": 3.75,
+        "U": 199091.0,
+        "p": 5.605e-09,
+        "cohens_d": -0.3119,
+        "r_rb": 0.1803,
+        "direction": "helped has LOWER confidence (hypothesis supported)",
+        "hypothesis_supported": true
+      }
+    }
+  }
+}

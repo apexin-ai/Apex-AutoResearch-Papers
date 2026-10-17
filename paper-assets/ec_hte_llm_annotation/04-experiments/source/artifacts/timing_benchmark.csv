@@ -1,0 +1,6 @@
+step,mean_seconds,std_seconds,per_replicate_seconds,n_repeats,cpu_model,n_cores,total_memory,config
+Single DIM estimate,0.0017,0.0005,,5,Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz,2,7.6Gi,"K=4, N=5000, n_expert=250, B=100"
+HB Centered EB (optimization),0.0023,0.0004,,5,Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz,2,7.6Gi,"K=4, N=5000, n_expert=250, B=100"
+HB Gibbs MCMC (4ch×6k iter),4.6619,0.1141,,5,Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz,2,7.6Gi,"K=4, N=5000, n_expert=250, B=100"
+EC-HTE full pipeline,0.0034,0.0003,,5,Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz,2,7.6Gi,"K=4, N=5000, n_expert=250, B=100"
+Bootstrap SE (B=100),0.3465,0.0175,0.0035,5,Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz,2,7.6Gi,"K=4, N=5000, n_expert=250, B=100"

@@ -1,0 +1,387 @@
+meta:
+  venue: EMNLP 2026
+  track: findings
+  submission_system: ARR June 2026 cycle
+  template: templates/latex/acl2023/
+  template_note: "标准 ACL LaTeX 模板 (acl2023.sty)，ARR/ACL/EMNLP 2026 通用"
+  page_limit: 8
+  deadline: 2026-06-15
+  title: "Aggregate Convergence, Per-Example Divergence: Decoupled Effects of Attention in Hybrid Recurrent Architectures"
+  core_claim: >
+    Adding attention to hybrid recurrent architectures (GDN, RetNet, HGRN2) reduces
+    cross-architecture variance by 79% on LAMBADA (BCa CI [-1.0, -0.7]), but per-example
+    helped/hurt sets remain nearly disjoint (Jaccard ≤ 0.11) and saturate at minimal
+    attention — aggregate convergence and per-example divergence are decoupled,
+    quantifying underspecification in hybrid architecture design.
+  created_at: 2026-05-19T18:00:00Z
+
+  # D009 统计硬约束
+  statistical_constraints:
+    primary_evidence: "BCa percentile CI [-1.0, -0.7] (valid-only, 88.75%)"
+    permutation_test: "exact, two-tailed, n=5, 120 permutations"
+    bonferroni: "6-benchmark pre-registered adj-p=0.100; report 'does not survive strict Bonferroni'"
+    prohibited:
+      - "post-hoc subset Bonferroni (e.g. '2-benchmark Bonferroni', 'only rho<0 benchmarks')"
+      - "'mechanistic analysis' → use 'characterization' / 'decomposition'"
+      - "'paradox' / 'paradoxical' / 'co-evolution' / 'co-evolve'"
+      - "'significantly improves' without statistical test"
+      - "'state-of-the-art' (no SOTA comparison)"
+      - "'consistently outperforms' (1 benchmark only)"
+
+  # 叙事约束
+  narrative_constraints:
+    prohibited_terms:
+      - paradox
+      - paradoxical
+      - co-evolution
+      - co-evolve
+      - paradoxical coexistence
+      - mechanistic analysis
+      - remarkably
+      - extensive experiments demonstrate
+    replacement_map:
+      co-evolution: "decoupling"
+      paradox: "divergence"
+      mechanistic analysis: "characterization"
+    honest_reporting:
+      - "Bonferroni adj-p=0.100 does not survive strict correction"
+      - "BCa degenerate resamples (11.25%) excluded; formal justification in appendix"
+      - "n=5 attention ratios limits statistical power (min p≈0.008)"
+      - "Per-example analysis limited to LAMBADA only"
+      - "Two scale points (340M, 1.3B) — binary contrast, not trend"
+
+# ============================================================
+#  PAPER OUTLINE
+# ============================================================
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "Context: hybrid recurrent architectures (linear recurrence + attention) increasingly standard, but per-example behavioral effects of attention poorly quantified"
+      - "Method: systematic analysis using Wang et al.'s model zoo — 3 architectures × 5 attention ratios × 2 scales, 10 benchmarks, 5153 per-example comparisons"
+      - "C1: across 10 benchmarks, significant convergence only on LAMBADA (rho=-1.0, BCa CI [-1.0,-0.7], cross-arch std drops 79%)"
+      - "C3: despite aggregate convergence, per-example helped/hurt sets nearly disjoint (Jaccard ≤ 0.11) — decoupled from aggregate trend, saturating at minimal (4%) attention"
+      - "C2: convergence complete at 1.3B but partial/non-monotonic at 340M"
+      - "Implication: quantifies underspecification in hybrid architecture design"
+    dependencies: [experiments, method, introduction]
+    registry_refs: [exp-001, exp-008, exp-010, exp-011]
+
+  - section: introduction
+    word_budget: 1000
+    core_bullets:
+      - "Hook: adding attention to three different recurrent architectures makes LAMBADA performance near-identical (std 0.024→0.005), yet they achieve this by helping/hurting almost entirely different examples (Jaccard ≤ 0.11)"
+      - "Context: hybrid recurrent-attention architectures (Jamba, Griffin, RWKV-6) mainstream; Wang et al. (2025) provide 72-model zoo — but no per-example analysis"
+      - "Gap: aggregate benchmark comparisons mask per-example behavioral diversity; this gap is well-documented (D'Amour et al. 2022) but unquantified for hybrid architectures"
+      - "Our contribution: first systematic per-example analysis; three findings — (1) task-specific convergence, (2) scale-dependent convergence, (3) per-example divergence decoupled from aggregate convergence"
+      - "Insight preview: aggregate σ decreases gradually across 5 attention levels; Jaccard saturates at first level (4%) — different timescales = decoupling"
+      - "Paper structure and Figure 1 forward reference"
+    dependencies: [experiments]
+    figures: [fig1_decoupling_hero]
+    citation_hints:
+      - "Wang et al. (2025) model zoo — primary data source"
+      - "D'Amour et al. (2022) underspecification — framing anchor"
+      - "Jamba (Lieber et al. 2024), Griffin (De et al. 2024) — hybrid arch motivation"
+    registry_refs: [exp-001, exp-010]
+
+  - section: related_work
+    word_budget: 750
+    core_bullets:
+      - "§ Hybrid recurrent architectures: Jamba, RWKV-6, Griffin/RecurrentGemma, Mamba-2 → we analyze these designs, not propose new ones"
+      - "§ Linear recurrent models: S4, Mamba, RetNet, HGRN2, GatedDeltaNet → the base architectures in our study"
+      - "§ Underspecification + model agreement: D'Amour et al. 2022, Fort et al. 2019, McCoy et al. 2020 → our finding is a specific instance; we quantify, not discover"
+      - "§ Ensemble diversity: Krogh & Vedelsby 1995, Kuncheva & Whitaker 2003 → per-example divergence expected in diverse ensembles; hybrid models are not ensembles but exhibit similar patterns"
+      - "§ Dataset cartography + per-example analysis: Swayamdipta et al. 2020, IRT (Rodriguez et al. 2021) → per-example difficulty modeling"
+      - "§ Attention analysis: Clark et al. 2019, Jain & Wallace 2019, Olsson et al. 2022 → descriptive attention analysis background"
+      - "Positioning: we do NOT claim discovery of per-example divergence; contribution is quantifying it in hybrid architectures with controlled attention variation"
+    dependencies: [introduction]
+    citation_hints:
+      - "Must-cite: D'Amour et al. 2022, Wang et al. 2025, Krogh & Vedelsby 1995, Swayamdipta et al. 2020"
+      - "Must-engage: Jamba, Mamba, Griffin"
+      - "CKA (Kornblith et al. 2019) — representation similarity context"
+
+  - section: method
+    word_budget: 750
+    core_bullets:
+      - "§3.1 Model Zoo: Wang et al. (2025) pretrained — 3 architectures (GatedDeltaNet, RetNet, HGRN2) × 5 attention ratios (0%, 4%, 7.7%, 14.3%, 25%) × 2 scales (340M, 1.3B); pure = 0% attention; h-k-1 = 1 attention layer per k+1 layers; transformer baseline"
+      - "§3.2 Task Taxonomy (pre-defined, D003, NOT post-hoc): pure context retrieval = next-token prediction requiring long-range context without reasoning/knowledge (LAMBADA); comprehension = reading comprehension/QA (BoolQ); reasoning = commonsense/inference (HellaSwag, ARC-C, WinoGrande, PIQA, COPA); mixed = multiple skills (ARC-E, MMLU, SciQ, xstorycloze_en)"
+      - "§3.3 Convergence Metrics: cross-arch std σ across 3 architectures at each attention ratio; Spearman ρ between attention ratio rank and σ; convergence ratio = σ_pure / σ_{h3-1}"
+      - "§3.4 Per-Example Decomposition: helped = acc_hybrid > acc_pure; hurt = acc_hybrid < acc_pure; net effect = helped - hurt; pairwise Jaccard J = |A∩B| / |A∪B| across architecture pairs"
+      - "§3.5 Statistical Methods: exact permutation test (n=5, 120 perms, two-tailed); BCa bootstrap CI (10000 resamples, architecture-level); Bonferroni correction (6 benchmarks pre-registered D003); Mann-Whitney U for within-arch comparisons; Kruskal-Wallis for cross-arch comparisons"
+    dependencies: []
+    notation_table:
+      σ: "cross-architecture standard deviation"
+      ρ: "Spearman rank correlation"
+      J: "pairwise Jaccard similarity"
+      h-k-1: "hybrid with 1 attention layer per k+1 total layers (e.g., h3-1 = 25% attention)"
+    registry_refs: [exp-001, exp-008]
+
+  - section: experiments
+    word_budget: 1800
+    core_bullets:
+      - "§4.1 Task-Specific Convergence (C1): Table 1 shows 10 benchmarks; only LAMBADA has ρ=-1.0 (p=0.017 exact perm); BCa CI [-1.0, -0.7]; σ drops 0.024→0.005 (79%); Bonferroni adj-p=0.100 'does not survive strict correction'; task-specificity IS the finding — LAMBADA uniquely tests pure context retrieval; Figure 2 forest plot visualizes"
+      - "§4.2 Scale-Dependent Convergence (C2): 1.3B monotonically converges (ρ=-1.0); 340M partial convergence (56% σ reduction but non-monotonic rebound at h3-1); binary contrast — scale is necessary condition for complete equalization; two data points, NOT a scalable trend"
+      - "§4.3 Per-Example Divergence (C3a): Table 2 — pairwise Jaccard ≤ 0.11 for all architecture pairs; GDN net -153, HGRN2 net +153, RetNet net -69; surface features do NOT differentiate helped/hurt within arch (exp-003 negative); BUT cross-arch Kruskal-Wallis p=0.0005 for hurt samples → architecture-specificity is structured, not random"
+      - "§4.4 Decoupling (C3b, title-level contribution): Figure 1 — aggregate σ decreases gradually (0.024→0.016→0.014→0.006→0.005) across 5 attention levels; Jaccard saturates at first level (4%→~0.095) and stays flat; net asymmetry increases (0.013→0.040); aggregate convergence and per-example divergence operate on different timescales = decoupling. Attention weight analysis (exp-004-r2): GDN↔RetNet L2 cosine=0.995 yet per-example effects differ → divergence not in attention layer but in recurrent layers; HGRN2↔others cosine~0.20 in early layers, converges >0.94 at L20. 1-2 sentences in text, full 8-layer × 3-pair data in Appendix D."
+      - "§4.5 Robustness (brief, details in appendix): GDN-excluded sensitivity — LAMBADA ρ→-0.7 (p=0.233), MMLU flips +0.6 (D007); BCa degenerate resamples 11.25% formally justified"
+    dependencies: [method]
+    tables: [tab1_convergence, tab2_per_example]
+    figures: [fig2_task_specificity]
+    registry_refs: [exp-001, exp-003, exp-003-p2, exp-004-r2, exp-008, exp-009, exp-010, exp-011, exp-011-xstorycloze, eval_340m_retnet_hgrn2]
+
+  - section: conclusion
+    word_budget: 350
+    core_bullets:
+      - "Summary: first systematic per-example analysis of attention's equalizing effect in hybrid recurrent architectures — decoupling is title-level contribution"
+      - "Key findings recap: (1) task-specific convergence on LAMBADA only, (2) scale-dependent (1.3B complete, 340M partial), (3) aggregate convergence and per-example divergence decoupled"
+      - "Practical implication: architecture selection based on aggregate benchmarks may mask per-example behavioral differences that matter for deployment"
+      - "Future work: interventional experiments (attention head ablation/swaps); scaling beyond 1.3B; other hybrid families (Jamba, RWKV-6); fine-tuning analysis"
+    dependencies: [experiments]
+    registry_refs: [exp-001, exp-010]
+
+  - section: limitations
+    word_budget: 300
+    core_bullets:
+      - "n=5 attention ratios: minimum achievable p≈0.008, statistical power inherently limited"
+      - "LAMBADA-only per-example analysis: sample-level decomposition requires significant convergence benchmark"
+      - "Two scale points (340M, 1.3B): binary contrast, not scalable trend; 7B+ unavailable"
+      - "Three architectures (GDN, RetNet, HGRN2): more families needed to generalize"
+      - "Descriptive, not causal: attention weight analysis is observational; interventional experiments = future work"
+      - "Pre-trained only: no fine-tuning or downstream task adaptation analysis"
+    dependencies: [experiments]
+
+# ============================================================
+#  VISUALIZATION PLAN
+# ============================================================
+visualization_plan:
+  - fig_id: fig1_decoupling_hero
+    type: statistical
+    tool: matplotlib
+    description: "Hero figure: 2-panel showing decoupling of aggregate convergence and per-example divergence"
+    narrative_intent: >
+      Aggregate convergence (cross-arch std drops 79%) and per-example divergence
+      (Jaccard ~0.10) operate on different timescales — minimal attention (4%) creates
+      full per-example specificity while aggregate convergence requires gradual increases.
+      This is the paper's title-level contribution.
+    design_notes:
+      - "Pattern H: 2-panel layout [1.3:1], shared x-axis (attention ratio %)"
+      - "Panel (a) 'Aggregate Convergence': line plot of cross-arch σ vs attention ratio; include both 1.3B (solid bold) and 340M (dashed thin) to show C2 scale dependence simultaneously; annotate '-79%' endpoint for 1.3B; y-axis 'Cross-architecture σ'"
+      - "Panel (b) 'Per-Example Divergence': scatter+line of Jaccard vs attention ratio; separate markers for J(helped) and J(hurt); flat reference band (axhspan) at ~0.09-0.10 to emphasize saturation; x starts at 4% (no pure data); annotate 'saturates at 4%'"
+      - "Pattern A: subtle vertical band at 4% attention marking Jaccard saturation threshold"
+      - "Panel subtitles are insights not descriptions: (a) 'Gradual reduction across 5 levels' (b) 'Immediate saturation at first level'"
+      - "Consistent arch colors across paper: GDN=#0072B2, RetNet=#E69F00, HGRN2=#009E73"
+      - "Pattern J: path-effect white stroke on annotations"
+    data_source: "artifacts/paper_data/decoupling_data.csv + eval_340m_retnet_hgrn2 (340M convergence)"
+    placement: introduction
+    aspect_ratio: "16:6"
+
+  - fig_id: fig2_task_specificity
+    type: statistical
+    tool: matplotlib
+    description: "Forest plot of Spearman ρ across 10 benchmarks showing LAMBADA as sole convergence benchmark"
+    narrative_intent: >
+      Among 10 benchmarks spanning 4 task categories, only LAMBADA shows strong negative
+      Spearman correlation — convergence is task-specific, concentrated in pure context retrieval.
+    design_notes:
+      - "Pattern L: horizontal forest plot; y-axis = benchmarks sorted by ρ (most negative top); x-axis = Spearman ρ"
+      - "Vertical dashed line at ρ=0"
+      - "Pattern A: subtle green shading left of 0 ('convergence direction'), subtle red shading right of 0 ('divergence direction')"
+      - "Color-code by taxonomy: retrieval=#0072B2, reasoning=#E69F00, mixed=#999999, comprehension=#009E73"
+      - "Pattern D: LAMBADA marker solid+larger (significant); all others hollow+smaller (not significant)"
+      - "Right-side inline text: ρ value and p value for each benchmark"
+      - "COPA row marked with dagger (supplementary, n=100)"
+      - "Taxonomy labels on right margin or as row grouping"
+    data_source: "artifacts/paper_data/convergence_table.csv"
+    placement: experiments
+    aspect_ratio: "3:4"
+
+# ============================================================
+#  TABLE PLAN
+# ============================================================
+table_plan:
+  - table_id: tab1_convergence
+    caption: >
+      Cross-architecture convergence across 10 benchmarks (1.3B scale).
+      ρ: Spearman correlation between attention ratio rank and cross-architecture σ
+      (exact permutation test, two-tailed, n=5).
+      Only LAMBADA shows significant negative correlation (BCa CI [-1.0, -0.7]).
+    placement: experiments
+    type: statistics
+    columns:
+      - Benchmark
+      - Taxonomy
+      - ρ
+      - "p"
+      - "Bonf. p"
+      - "σ_{pure}"
+      - "σ_{h3-1}"
+      - "Ratio"
+    data_source: "artifacts/paper_data/convergence_table.csv"
+    notes: >
+      Bold LAMBADA row. Footnote: BCa percentile CI reported in text.
+      6-benchmark Bonferroni for pre-registered set (D003);
+      remaining 4 benchmarks show 10-benchmark Bonferroni.
+      COPA in supplementary (n=100 samples).
+
+  - table_id: tab2_per_example
+    caption: >
+      Per-example decomposition on LAMBADA (1.3B, h3-1 vs pure).
+      Pairwise Jaccard similarity of helped/hurt sets across architectures
+      is below 0.10 for all pairs — near-disjoint despite aggregate convergence.
+    placement: experiments
+    type: statistics
+    columns:
+      - Architecture
+      - Helped
+      - Hurt
+      - "Net"
+      - "J(helped)"
+      - "J(hurt)"
+    data_source: "artifacts/paper_data/per_example_table.csv"
+    notes: >
+      Net = Helped - Hurt. Positive net = architecture benefits from attention overall.
+      Jaccard = mean pairwise across 3 architecture pairs at h3-1.
+
+# ============================================================
+#  LITERATURE STRATEGY
+# ============================================================
+literature_strategy:
+  citation_budget: 35
+  macro_context:
+    - "hybrid recurrent-attention architectures"
+    - "underspecification and per-example model behavior"
+    - "ensemble diversity and model agreement"
+    - "attention interpretability in language models"
+  micro_clusters:
+    - cluster_name: "Hybrid Architectures"
+      search_queries:
+        - "hybrid recurrent attention architecture language model 2024 2025"
+        - "Jamba Mamba-2 RWKV-6 RecurrentGemma Griffin linear attention hybrid"
+        - "combining recurrence and attention language modeling"
+      must_cite:
+        - "Wang et al. 2025 (arXiv 2507.06457) — model zoo, primary data source"
+        - "Lieber et al. 2024 — Jamba"
+        - "Peng et al. 2024 — Eagle/RWKV-6"
+        - "De et al. 2024 — Griffin/RecurrentGemma"
+        - "Dao & Gu 2024 — Mamba-2"
+      target_count: 7
+
+    - cluster_name: "Linear Recurrent Models"
+      search_queries:
+        - "linear recurrent model state space Mamba RetNet HGRN GatedDeltaNet"
+        - "gated linear attention efficient sequence modeling"
+        - "structured state space S4 S5 diagonal"
+      must_cite:
+        - "Gu & Dao 2024 — Mamba"
+        - "Sun et al. 2023 — RetNet"
+        - "Qin et al. 2024 — HGRN2"
+        - "Yang et al. 2024 — GatedDeltaNet / Gated Delta Networks"
+      target_count: 6
+
+    - cluster_name: "Underspecification and Model Agreement"
+      search_queries:
+        - "underspecification machine learning D'Amour 2022"
+        - "model agreement disagreement prediction level"
+        - "rashomon set predictive multiplicity"
+        - "model similarity behavioral CKA"
+      must_cite:
+        - "D'Amour et al. 2022 — Underspecification Presents Challenges for Credibility"
+        - "McCoy et al. 2020 — BERTs of a Feather"
+        - "Fort et al. 2019 — Deep Ensembles: A Loss Landscape Perspective"
+        - "Kornblith et al. 2019 — CKA"
+      target_count: 5
+
+    - cluster_name: "Ensemble Diversity"
+      search_queries:
+        - "ensemble diversity error decomposition neural networks"
+        - "Krogh Vedelsby bias variance ensemble"
+        - "diversity measures ensemble learning classification"
+      must_cite:
+        - "Krogh & Vedelsby 1995 — Neural Network Ensembles, Cross Validation"
+        - "Kuncheva & Whitaker 2003 — Measures of Diversity in Classifier Ensembles"
+      target_count: 3
+
+    - cluster_name: "Dataset Cartography and Per-Example Analysis"
+      search_queries:
+        - "dataset cartography training dynamics Swayamdipta 2020"
+        - "item response theory NLP evaluation"
+        - "per-example difficulty curriculum learning"
+      must_cite:
+        - "Swayamdipta et al. 2020 — Dataset Cartography"
+        - "Rodriguez et al. 2021 — Evaluation Examples for IRT"
+      target_count: 4
+
+    - cluster_name: "Attention Interpretability"
+      search_queries:
+        - "attention not explanation Jain Wallace 2019"
+        - "attention head analysis BERT Clark 2019"
+        - "induction heads mechanistic interpretability Olsson 2022"
+      must_cite:
+        - "Jain & Wallace 2019 — Attention is not Explanation"
+        - "Clark et al. 2019 — What Does BERT Look At"
+        - "Olsson et al. 2022 — In-context Learning and Induction Heads"
+      target_count: 4
+
+    - cluster_name: "Benchmarks and Evaluation"
+      search_queries:
+        - "LAMBADA language modeling benchmark Paperno 2016"
+        - "lm-evaluation-harness Gao 2023"
+        - "benchmark evaluation language models comprehensive"
+      must_cite:
+        - "Paperno et al. 2016 — LAMBADA dataset"
+      target_count: 3
+
+# ============================================================
+#  WRITING ORDER (strict serial)
+# ============================================================
+writing_order:
+  - experiments
+  - method
+  - introduction
+  - related_work
+  - conclusion
+  - limitations
+  - abstract
+
+# ============================================================
+#  APPENDIX PLAN
+# ============================================================
+appendix_plan:
+  - appendix_id: app_bca_methodology
+    title: "BCa Bootstrap Methodology and Degenerate Resample Treatment"
+    content:
+      - "Architecture-level resampling procedure"
+      - "Degenerate resample definition (11.25% — same-arch triplicates producing undefined ρ)"
+      - "Formal justification: degenerate resamples have undefined ρ (not ρ=0); exclusion is standard"
+      - "Percentile vs BCa: BCa degenerates at rho=-1.0 boundary; percentile CI valid"
+    data_source: "artifacts/paper_data/bca_ci_data.json"
+
+  - appendix_id: app_gdn_sensitivity
+    title: "GDN Sensitivity Analysis"
+    content:
+      - "Table: 6 benchmarks with/without GDN"
+      - "LAMBADA weakens (ρ=-0.7, p=0.233)"
+      - "MMLU flips to +0.6 (D007)"
+      - "ARC-Easy strengthens (ρ=-0.9, p=0.083)"
+    data_source: "artifacts/paper_data/gdn_sensitivity_table.csv"
+
+  - appendix_id: app_surface_features
+    title: "Surface Feature Analysis of Helped/Hurt Samples"
+    content:
+      - "exp-003 negative result: token frequency, context length, lexical complexity do not differentiate"
+      - "RetNet weak context-length signal (p=0.012, r=-0.096) but cross-arch criterion fails"
+    data_source: "registry: exp-003"
+
+  - appendix_id: app_attention_weights
+    title: "Attention Weight Analysis (Supplementary)"
+    content:
+      - "exp-004 descriptive analysis of attention patterns on helped vs hurt samples"
+      - "NOT causal — observational characterization only"
+    data_source: "registry: exp-004-r2"
+    status: "READY — exp-004-r2 completed; 8-layer × 3-pair cosine similarity + entropy data available"
+
+  - appendix_id: app_full_benchmark
+    title: "Full Benchmark Results at All Attention Ratios"
+    content:
+      - "10 benchmarks × 5 attention ratios × 3 architectures accuracy matrix"
+      - "340M results where available"
+    data_source: "registry: exp-001, exp-011, eval_340m_retnet_hgrn2"

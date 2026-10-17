@@ -1,0 +1,51 @@
+{
+  "analysis": "partial_knowledge_clustered_se",
+  "description": "η_max predictive robustness under incomplete information with clustered SE",
+  "n_models": 15,
+  "n_conditions": 12,
+  "fdr_alpha": 0.05,
+  "eps": 1e-06,
+  "partial_ols": {
+    "eta_max_fdr_sig": "12/12",
+    "keff_fdr_sig": "5/12",
+    "eta_beta_std_mean": 0.5889,
+    "keff_beta_std_mean": -0.0109
+  },
+  "partial_clustered_se": {
+    "eta_max_fdr_sig": "12/12",
+    "keff_fdr_sig": "0/12",
+    "eta_beta_std_mean": 0.5889,
+    "keff_beta_std_mean": -0.0109
+  },
+  "se_inflation": {
+    "eta_mean": 2.55,
+    "eta_range": [1.66, 3.60],
+    "keff_mean": 2.27,
+    "keff_range": [1.44, 3.17]
+  },
+  "cross_method_comparison": {
+    "oracle_ols": {
+      "eta_max_fdr_sig": "11/12",
+      "keff_fdr_sig": "8/12",
+      "eta_beta_std_mean": 0.387,
+      "keff_beta_std_mean": 0.164
+    },
+    "oracle_clustered_se": {
+      "eta_max_fdr_sig": "8/12",
+      "keff_fdr_sig": "0/12"
+    },
+    "partial_ols": {
+      "eta_max_fdr_sig": "12/12",
+      "keff_fdr_sig": "5/12",
+      "eta_beta_std_mean": 0.5889,
+      "keff_beta_std_mean": -0.0109
+    },
+    "partial_clustered_se": {
+      "eta_max_fdr_sig": "12/12",
+      "keff_fdr_sig": "0/12",
+      "eta_beta_std_mean": 0.5889,
+      "keff_beta_std_mean": -0.0109
+    }
+  },
+  "narrative": "Under incomplete information (2/3 judges known) with conservative clustered SE, η_max retains 12/12 FDR-significant conditions (mean β=0.589). K_eff: 0/12 significant (mean β=-0.011). η_max remains the dominant predictor even under the most conservative combination of incomplete information and clustered inference."
+}

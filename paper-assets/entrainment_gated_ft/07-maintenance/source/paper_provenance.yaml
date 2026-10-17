@@ -1,0 +1,340 @@
+paper:
+  title: 'Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures: Evidence
+    from Two Benchmarks and Three Backbones'
+  version: 5
+  generated_at: '2026-05-22T10:18:40.456475+00:00'
+  source: Round 3 patch — framing weakening, GDN confound expansion, ARR checklist,
+    reviewer Q responses
+claims:
+- id: claim_lambada_rho
+  section: experiments
+  text: LAMBADA rho = -1.0, exact permutation p = .017
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-001
+    metric: LAMBADA.rho=-1.0, p=0.0167
+  - exp_id: exp-008
+    metric: LAMBADA.rho=-1.0, raw_p=0.0167
+  status: active
+- id: claim_lambada_ci
+  section: experiments
+  text: BCa percentile bootstrap CI [-1.0, -0.7] excludes zero
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-008
+    metric: ci_lower=-1.0, ci_upper=-0.7
+  status: active
+- id: claim_lambada_bonferroni
+  section: experiments
+  text: Bonferroni-adjusted p = .100
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-008
+    metric: bonferroni_adj_p=0.1
+  status: active
+- id: claim_sigma_reduction
+  section: experiments
+  text: sigma drops from 0.024 to 0.005, 79% reduction
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-010
+    metric: std_pure=0.024, std_h3_1=0.0049
+  status: active
+- id: claim_no_other_benchmark
+  section: experiments
+  text: No other benchmark significant
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-001
+    metric: non-LAMBADA p>=0.2333
+  - exp_id: exp-011
+    metric: boolq/piqa/sciq/copa p>0.26
+  - exp_id: exp-011-xstorycloze
+    metric: rho=-0.6, p=0.35
+  status: active
+- id: claim_340m_nonmonotonic
+  section: experiments
+  text: 340M non-monotonic, 56% max, 36% endpoint
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-007
+    metric: 340m_cross_arch_std rebound at h3-1
+  status: active
+- id: claim_within_scale_jaccard
+  section: experiments
+  text: Mean J 340M 0.094/0.090, 1.3B 0.100/0.093
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-007
+    metric: 340m helped=0.0944, hurt=0.0899
+  - exp_id: exp-010
+    metric: 1.3B Jaccard ranges
+  status: active
+- id: claim_per_example_counts
+  section: experiments
+  text: GDN 462/615, RetNet 426/495, HGRN2 548/395
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-003
+    metric: per-example helped/hurt counts
+  status: active
+- id: claim_jaccard_low
+  section: experiments
+  text: Jaccard <= 0.104 helped, <= 0.096 hurt
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-010
+    metric: jaccard_helped_range [0.092, 0.1]
+  status: active
+- id: claim_kruskal_wallis
+  section: experiments
+  text: KW hurt p=.0005, helped p=.020
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-003-p2
+    metric: KW_p hurt=0.000498, helped=0.020136
+  status: active
+- id: claim_surface_features
+  section: experiments
+  text: No surface feature separates helped/hurt
+  type: qualitative
+  tier: 1
+  evidence:
+  - exp_id: exp-003
+    metric: surface_features_significant=false
+  status: active
+- id: claim_sigma_trajectory
+  section: experiments
+  text: sigma 0.024->0.016->0.014->0.006->0.005
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-010
+    metric: aggregate_convergence std values
+  status: active
+- id: claim_jaccard_saturation
+  section: experiments
+  text: Jaccard saturates ~0.095 at 4%
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-010
+    metric: flat after h24-1
+  status: active
+- id: claim_net_asymmetry
+  section: experiments
+  text: Net asymmetry 0.013 to 0.040
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-010
+    metric: net_asymmetry_range [0.013, 0.04]
+  status: active
+- id: claim_cosine_similarity
+  section: experiments
+  text: GDN-RetNet cosine 0.995 at L2
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-004-r2
+    metric: cross_arch_similarity_early_layers
+  status: active
+- id: claim_entropy_differentiated
+  section: experiments
+  text: 'Entropy: GDN/HGRN2 negligible (|DH|<=0.002), RetNet DH=+0.018 small but slightly
+    larger'
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-004-r2
+    metric: GDN=-0.0009, RetNet=+0.0179, HGRN2=+0.0020
+  status: active
+- id: claim_gdn_exclusion
+  section: experiments
+  text: 'GDN exclusion: LAMBADA -1.0->-0.7, MMLU reverses'
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-008
+    metric: gdn_excluded LAMBADA and MMLU
+  status: active
+- id: claim_bootstrap_degenerate
+  section: experiments
+  text: 11.25% degenerate bootstrap
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-008
+    metric: n_valid=8875/10000
+  status: active
+- id: claim_app_attn_cosine
+  section: appendix
+  text: Cosine similarity table
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-004-r2
+    metric: cross_arch_similarity
+  status: active
+- id: claim_app_entropy
+  section: appendix
+  text: Entropy diff table
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-004-r2
+    metric: entropy_diff
+  status: active
+- id: claim_app_last5
+  section: appendix
+  text: Last-5 attention mass table
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-004-r2
+    metric: last5_mass
+  status: active
+- id: claim_app_gdn_sens
+  section: appendix
+  text: GDN exclusion sensitivity table
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-008
+    metric: gdn_excluded
+  status: active
+- id: claim_app_within_jaccard
+  section: appendix
+  text: Within-scale Jaccard per pair
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-007
+    metric: 340m per-pair Jaccard
+  - exp_id: exp-010
+    metric: 1.3B per-pair Jaccard
+  status: active
+- id: claim_app_cross_jaccard
+  section: appendix
+  text: Cross-scale Jaccard below 0.10
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-007
+    metric: cross-scale comparison
+  status: active
+- id: claim_confidence_margin
+  section: experiments
+  text: Pure-model confidence predicts helped/hurt (d=0.73-0.92, p<1e-54)
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-003
+    metric: confidence_margin Cohen_d hurt=0.83-0.92, helped=0.73-0.77
+  status: active
+- id: claim_normalized_es
+  section: experiments
+  text: Normalized ES 0.065 helped, 0.047 hurt (5-7% of theoretical max)
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-010
+    metric: J_max helped=0.847, hurt=0.748; norm_ES helped=0.065, hurt=0.047
+  status: active
+- id: claim_retnet_hgrn2_decoupling
+  section: experiments
+  text: RetNet-HGRN2 pair preserves decoupling (sigma 0.016-><=0.008, J saturates
+    0.085-0.108)
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-010
+    metric: retnet_hgrn2_sigma and jaccard trajectories
+  status: active
+- id: claim_practical_ensemble
+  section: conclusion
+  text: Disjoint per-example sets (J<=0.11) imply complementary ensemble coverage
+  type: qualitative
+  tier: 1
+  evidence:
+  - exp_id: exp-010
+    metric: jaccard_helped_max=0.108, jaccard_hurt_max=0.103
+  status: active
+- id: claim_bh_correction
+  section: experiments
+  text: BH adjusted p=0.102, same conclusion as Bonferroni
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-008
+    metric: bh_adjusted_p=0.102
+  status: active
+- id: claim_arceasy_no_convergence
+  section: experiments
+  text: ARC-Easy rho=-0.20, p=.783, no aggregate convergence
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-015
+    metric: arceasy.rho=-0.20, p=0.7833
+  status: active
+- id: claim_arceasy_jaccard
+  section: experiments
+  text: ARC-Easy Jaccard 0.067-0.134, all 24 pairs p<.01
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-015
+    metric: arceasy.jaccard_range=[0.067,0.134], all_p<0.01
+  status: active
+- id: claim_arceasy_ambiguity
+  section: experiments
+  text: ARC-Easy ambiguity alpha 0.201-0.226 (~21%)
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-015
+    metric: arceasy.alpha_range=[0.201,0.226]
+  status: active
+- id: claim_lambada_ambiguity
+  section: experiments
+  text: LAMBADA ambiguity alpha 0.294-0.316 (~30%)
+  type: quantitative
+  tier: 1
+  evidence:
+  - exp_id: exp-015
+    metric: lambada.alpha_range=[0.294,0.316]
+  status: active
+- id: claim_multiplicity_general
+  section: experiments
+  text: Per-example multiplicity general across retrieval and reasoning, independent
+    of aggregate convergence
+  type: qualitative
+  tier: 1
+  evidence:
+  - exp_id: exp-015
+    metric: both benchmarks show stable alpha across attention ratios
+  status: active
+tables: {}
+figures: {}
+_completeness:
+  coverage: 34/34
+  claims: 34
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 34
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-22T10:18:40.456529+00:00'

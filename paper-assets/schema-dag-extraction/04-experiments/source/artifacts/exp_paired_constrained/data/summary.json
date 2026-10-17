@@ -1,0 +1,12 @@
+n_batches: 25, n_low: 13, n_high: 12
+low_mean_acc: 0.8093, high_mean_acc: 0.7795
+delta_pp: 2.98, CI: [-4.41, 10.91]
+pearson_r: -0.4479 (p=0.0247)
+spearman_rho: -0.1566 (p=0.4548)
+
+Paired comparison (25 batches):
+  unconstrained_pearson_r: -0.4393 (p=0.028)
+  constrained_pearson_r: -0.4479 (p=0.025)
+  unconstrained_mean_acc: 0.7958
+  constrained_mean_acc: 0.7950
+  acc_improvement: -0.0008

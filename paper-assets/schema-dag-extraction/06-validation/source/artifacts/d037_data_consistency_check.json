@@ -1,0 +1,45 @@
+{
+  "figure_1a": {
+    "data_source": "pooled",
+    "count_22_value": 0.527,
+    "count_44_value": 0.551,
+    "consistency": "MISMATCH",
+    "detail": "Figure uses pooled recall (0.527, 0.551 from round2 JSON pooled_recall 0.5268, 0.5512). Paper text uses macro-avg/batch-mean recall (0.522, 0.549 from round2 JSON mean_recall 0.5222, 0.5491).",
+    "script_path": "/root/schema-dag-extraction/figures/paper/fig_count_curves.py"
+  },
+  "cluster_bootstrap_ci": {
+    "fewnerd": {
+      "lower": 0.069,
+      "upper": 0.219,
+      "point_estimate": 0.137,
+      "n_types": 63,
+      "n_pairs": 1953,
+      "n_bootstrap": 10000,
+      "significant": true,
+      "naive_ci": [0.076, 0.156]
+    },
+    "maven": {
+      "lower": 0.081,
+      "upper": 0.185,
+      "point_estimate": 0.129,
+      "n_types": 149,
+      "n_pairs": 11026,
+      "n_bootstrap": 10000,
+      "significant": true,
+      "naive_ci": [0.104, 0.156]
+    },
+    "source_file": "/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json"
+  },
+  "practical_magnitude": {
+    "paper_iqr": 0.054,
+    "paper_gap": 2.2,
+    "w2_json_iqr": 0.0539,
+    "w2_json_gap": 2.16,
+    "w2_data_source_description": "100 random 16-type subsets from 80-rel pool (w2_practical_effect_results.json). Paper rounds IQR 0.0539→0.054, gap 2.16→2.2pp. CONSISTENT.",
+    "w2_source_file": "/root/schema-dag-extraction/scripts/d037/w2_practical_effect_results.json",
+    "round2_json_iqr": 0.0655,
+    "round2_json_gap": 2.63,
+    "round2_data_source_description": "Original n=25 batches from 80-rel experiment (round2_statistical_analyses.json → W2_practical_effect → 80pool_16sub). Same regression slope (-0.401) but different BCS distribution (Q1=0.5037, Q3=0.5692) yields larger IQR and gap.",
+    "round2_source_file": "/root/schema-dag-extraction/artifacts/round2_statistical_analyses.json"
+  }
+}

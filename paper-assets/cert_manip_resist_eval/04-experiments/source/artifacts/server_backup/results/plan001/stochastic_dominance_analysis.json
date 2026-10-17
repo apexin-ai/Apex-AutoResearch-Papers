@@ -1,0 +1,489 @@
+{
+  "analysis": "Stochastic dominance tier breakdown",
+  "n_judges": 15,
+  "tier_sizes": {
+    "frontier": 4,
+    "mid": 6,
+    "lightweight": 5
+  },
+  "tier_members": {
+    "frontier": [
+      "gpt-5.5",
+      "gemini-3.1-pro-preview",
+      "claude-opus-4-6",
+      "gemini-3.5-flash"
+    ],
+    "mid": [
+      "gpt-4.1",
+      "claude-sonnet-4-6",
+      "llama3.1-70b",
+      "qwen2.5-72b",
+      "mistral-large",
+      "qwen2.5-32b"
+    ],
+    "lightweight": [
+      "gpt-4.1-mini",
+      "gpt-4.1-nano",
+      "claude-3-haiku",
+      "qwen2.5-14b",
+      "llama3.1-8b"
+    ]
+  },
+  "total_unordered_pairs": 105,
+  "dominant_pairs": 61,
+  "non_dominant_pairs": 44,
+  "dominant_pct": 58.1,
+  "non_dominant_pct": 41.9,
+  "tier_breakdown": [
+    {
+      "tier_combo": "frontier-frontier",
+      "total_pairs": 6,
+      "dominant": 2,
+      "non_dominant": 4,
+      "non_dominant_pct": 66.7
+    },
+    {
+      "tier_combo": "frontier-mid",
+      "total_pairs": 24,
+      "dominant": 18,
+      "non_dominant": 6,
+      "non_dominant_pct": 25.0
+    },
+    {
+      "tier_combo": "frontier-lightweight",
+      "total_pairs": 20,
+      "dominant": 19,
+      "non_dominant": 1,
+      "non_dominant_pct": 5.0
+    },
+    {
+      "tier_combo": "mid-mid",
+      "total_pairs": 15,
+      "dominant": 4,
+      "non_dominant": 11,
+      "non_dominant_pct": 73.3
+    },
+    {
+      "tier_combo": "lightweight-mid",
+      "total_pairs": 30,
+      "dominant": 14,
+      "non_dominant": 16,
+      "non_dominant_pct": 53.3
+    },
+    {
+      "tier_combo": "lightweight-lightweight",
+      "total_pairs": 10,
+      "dominant": 4,
+      "non_dominant": 6,
+      "non_dominant_pct": 60.0
+    }
+  ],
+  "within_tier": {
+    "total_pairs": 31,
+    "non_dominant": 21,
+    "non_dominant_pct": 67.7
+  },
+  "cross_tier": {
+    "total_pairs": 74,
+    "non_dominant": 23,
+    "non_dominant_pct": 31.1
+  },
+  "non_dominant_pairs_detail": [
+    {
+      "judge_1": "qwen2.5-72b",
+      "judge_2": "llama3.1-70b",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-72b",
+      "judge_2": "mistral-large",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-72b",
+      "judge_2": "qwen2.5-32b",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-72b",
+      "judge_2": "llama3.1-8b",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-72b",
+      "judge_2": "claude-sonnet-4-6",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-72b",
+      "judge_2": "gpt-4.1-nano",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "llama3.1-70b",
+      "judge_2": "mistral-large",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "llama3.1-70b",
+      "judge_2": "qwen2.5-32b",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "llama3.1-70b",
+      "judge_2": "qwen2.5-14b",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "llama3.1-70b",
+      "judge_2": "llama3.1-8b",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "llama3.1-70b",
+      "judge_2": "claude-sonnet-4-6",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "llama3.1-70b",
+      "judge_2": "gpt-4.1-nano",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "llama3.1-70b",
+      "judge_2": "gpt-4.1-mini",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "mistral-large",
+      "judge_2": "qwen2.5-32b",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "mistral-large",
+      "judge_2": "qwen2.5-14b",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "mistral-large",
+      "judge_2": "llama3.1-8b",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "mistral-large",
+      "judge_2": "claude-opus-4-6",
+      "tier_1": "mid",
+      "tier_2": "frontier",
+      "tier_combo": "frontier-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "mistral-large",
+      "judge_2": "gpt-4.1",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "mistral-large",
+      "judge_2": "claude-sonnet-4-6",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "mistral-large",
+      "judge_2": "gpt-4.1-nano",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "mistral-large",
+      "judge_2": "gpt-4.1-mini",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "mistral-large",
+      "judge_2": "claude-3-haiku",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-32b",
+      "judge_2": "qwen2.5-14b",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-32b",
+      "judge_2": "llama3.1-8b",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-32b",
+      "judge_2": "gpt-4.1-nano",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-14b",
+      "judge_2": "llama3.1-8b",
+      "tier_1": "lightweight",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-lightweight",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-14b",
+      "judge_2": "gpt-4.1-nano",
+      "tier_1": "lightweight",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-lightweight",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "qwen2.5-14b",
+      "judge_2": "claude-3-haiku",
+      "tier_1": "lightweight",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-lightweight",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "llama3.1-8b",
+      "judge_2": "gpt-4.1-nano",
+      "tier_1": "lightweight",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-lightweight",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "llama3.1-8b",
+      "judge_2": "claude-3-haiku",
+      "tier_1": "lightweight",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-lightweight",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "claude-opus-4-6",
+      "judge_2": "gemini-3.1-pro-preview",
+      "tier_1": "frontier",
+      "tier_2": "frontier",
+      "tier_combo": "frontier-frontier",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "claude-opus-4-6",
+      "judge_2": "gpt-4.1",
+      "tier_1": "frontier",
+      "tier_2": "mid",
+      "tier_combo": "frontier-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "claude-opus-4-6",
+      "judge_2": "claude-sonnet-4-6",
+      "tier_1": "frontier",
+      "tier_2": "mid",
+      "tier_combo": "frontier-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "claude-opus-4-6",
+      "judge_2": "gemini-3.5-flash",
+      "tier_1": "frontier",
+      "tier_2": "frontier",
+      "tier_combo": "frontier-frontier",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "claude-opus-4-6",
+      "judge_2": "gpt-4.1-mini",
+      "tier_1": "frontier",
+      "tier_2": "lightweight",
+      "tier_combo": "frontier-lightweight",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "gpt-5.5",
+      "judge_2": "gemini-3.1-pro-preview",
+      "tier_1": "frontier",
+      "tier_2": "frontier",
+      "tier_combo": "frontier-frontier",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "gpt-5.5",
+      "judge_2": "claude-sonnet-4-6",
+      "tier_1": "frontier",
+      "tier_2": "mid",
+      "tier_combo": "frontier-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "gpt-5.5",
+      "judge_2": "gemini-3.5-flash",
+      "tier_1": "frontier",
+      "tier_2": "frontier",
+      "tier_combo": "frontier-frontier",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "gemini-3.1-pro-preview",
+      "judge_2": "claude-sonnet-4-6",
+      "tier_1": "frontier",
+      "tier_2": "mid",
+      "tier_combo": "frontier-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "gpt-4.1",
+      "judge_2": "claude-sonnet-4-6",
+      "tier_1": "mid",
+      "tier_2": "mid",
+      "tier_combo": "mid-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "gpt-4.1",
+      "judge_2": "gpt-4.1-mini",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "claude-sonnet-4-6",
+      "judge_2": "gemini-3.5-flash",
+      "tier_1": "mid",
+      "tier_2": "frontier",
+      "tier_combo": "frontier-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "claude-sonnet-4-6",
+      "judge_2": "gpt-4.1-mini",
+      "tier_1": "mid",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-mid",
+      "n_violations": 0,
+      "violation_conditions": []
+    },
+    {
+      "judge_1": "gpt-4.1-nano",
+      "judge_2": "claude-3-haiku",
+      "tier_1": "lightweight",
+      "tier_2": "lightweight",
+      "tier_combo": "lightweight-lightweight",
+      "n_violations": 0,
+      "violation_conditions": []
+    }
+  ]
+}

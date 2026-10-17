@@ -1,0 +1,9 @@
+_next_id: 3
+constraints:
+- id: C001
+  added: 2026-05-15 22:03 UTC
+  summary: 论文中 count_40 子集必须明确说明 "40-rel subsets sampled from the 80-relation pool"，不能暗示是独立的
+    40-type pool
+  scope: all
+  reason: count_40 实际是从 80-type pool 中采样的子集，不是独立构建的 pool。Reviewer 指出如果表述不清会误导读者认为存在三个独立
+    pool size

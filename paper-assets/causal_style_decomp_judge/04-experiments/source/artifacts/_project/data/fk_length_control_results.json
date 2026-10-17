@@ -1,0 +1,201 @@
+{
+  "descriptive_passed_only": {
+    "verbosity": {
+      "n": 86,
+      "delta_fk_mean": 2.2598892513133677,
+      "delta_fk_sd": 4.5088864344653645,
+      "delta_fk_d": 0.5012078445886453,
+      "delta_sentlen_mean": 4.105555724621923,
+      "delta_sentlen_sd": 10.302512953390076,
+      "delta_sentlen_d": 0.3985004186062175,
+      "delta_words_mean": 5.337209302325581,
+      "delta_words_d": 0.04816655530338499
+    },
+    "formality": {
+      "n": 36,
+      "delta_fk_mean": 0.017836451541869733,
+      "delta_fk_sd": 1.2028901461363084,
+      "delta_fk_d": 0.014827997052898423,
+      "delta_sentlen_mean": 0.35395064852301694,
+      "delta_sentlen_sd": 1.4764705418259212,
+      "delta_sentlen_d": 0.239727538407433,
+      "delta_words_mean": -1.6111111111111112,
+      "delta_words_d": -0.16692205116991224
+    }
+  },
+  "descriptive_all_pairs": {
+    "verbosity": {
+      "n": 100,
+      "delta_fk_mean": 2.7022940908769972,
+      "delta_fk_sd": 5.009767609054633,
+      "delta_fk_d": 0.5394050785894504,
+      "delta_sentlen_mean": 5.251900907678273,
+      "delta_sentlen_sd": 10.445420705881919,
+      "delta_sentlen_d": 0.5027945791327367,
+      "delta_words_mean": 19.94,
+      "delta_words_d": 0.16440882820697783
+    },
+    "formality": {
+      "n": 100,
+      "delta_fk_mean": -1.2146329952159263,
+      "delta_fk_sd": 2.9889998799467525,
+      "delta_fk_d": -0.4063676962200361,
+      "delta_sentlen_mean": -0.27571430471784913,
+      "delta_sentlen_sd": 1.9996897978326222,
+      "delta_sentlen_d": -0.13787853746950351,
+      "delta_words_mean": -6.64,
+      "delta_words_d": -0.2840054569502014
+    }
+  },
+  "regression_passed_only": {
+    "n_total": 122,
+    "n_verbosity": 86,
+    "n_formality": 36,
+    "model1_no_control": {
+      "style_axis_coef": 2.242052799771498,
+      "style_axis_se": 0.764257857307473,
+      "style_axis_t": 2.933633953951598,
+      "style_axis_p": 0.004014506543458759,
+      "intercept": 0.017836451541870527,
+      "r2": 0.06691907255375085,
+      "adj_r2": 0.059143398158365446
+    },
+    "model2_length_controlled": {
+      "style_axis_coef": 0.8498797195986084,
+      "style_axis_se": 0.4253815376430958,
+      "style_axis_t": 1.9979233802847263,
+      "style_axis_p": 0.048005491710227124,
+      "delta_sentlen_coef": 0.3710873218085455,
+      "delta_sentlen_se": 0.022037204050347,
+      "delta_sentlen_t": 16.839129000246395,
+      "delta_sentlen_p": 2.7907199927950697e-33,
+      "intercept": -0.1135101466709336,
+      "r2": 0.7241711534863537,
+      "adj_r2": 0.7195353745533513
+    },
+    "coef_reduction_pct": 62.093679520606074
+  },
+  "mediation_passed_only": {
+    "a_X_to_M": 3.751605076098907,
+    "b_M_to_Y_given_X": 0.3710873218085455,
+    "c_total_X_to_Y": 2.242052799771498,
+    "c_prime_direct": 0.8498797195986084,
+    "indirect_ab": 1.3921730801728878,
+    "sobel_se": 0.6467316648045655,
+    "sobel_z": 2.1526286030754127,
+    "sobel_p": 0.03134787873072087,
+    "proportion_mediated": 0.6209367952060598
+  },
+  "regression_all_pairs": {
+    "n_total": 200,
+    "n_verbosity": 100,
+    "n_formality": 100,
+    "model1_no_control": {
+      "style_axis_coef": 3.916927086092924,
+      "style_axis_se": 0.5833685951356533,
+      "style_axis_t": 6.7143262745950585,
+      "style_axis_p": 1.9505671395098135e-10,
+      "intercept": -1.2146329952159272,
+      "r2": 0.18546064470227064,
+      "adj_r2": 0.18134680957450444
+    },
+    "model2_length_controlled": {
+      "style_axis_coef": 1.7488287892179484,
+      "style_axis_se": 0.43584664455703753,
+      "style_axis_t": 4.012486527217226,
+      "style_axis_p": 8.530344100076717e-05,
+      "delta_sentlen_coef": 0.39223032240247846,
+      "delta_sentlen_se": 0.027320382297430047,
+      "delta_sentlen_t": 14.35669230878129,
+      "delta_sentlen_p": 1.8533857320282575e-32,
+      "intercept": -1.106489484585471,
+      "r2": 0.6019388843736149,
+      "adj_r2": 0.597897654773347
+    },
+    "coef_reduction_pct": 55.35202083727378
+  },
+  "correlation": {
+    "delta_sentlen_vs_delta_fk": {
+      "verbosity_passed": {
+        "r": 0.850153302695596,
+        "p": 4.0457549573469937e-25,
+        "n": 86
+      },
+      "formality_passed": {
+        "r": 0.31301940402584305,
+        "p": 0.06304766736142868,
+        "n": 36
+      },
+      "pooled_passed": {
+        "r": 0.8455287334707531,
+        "p": 1.7022334230192854e-34,
+        "n": 122
+      }
+    }
+  },
+  "descriptive": {
+    "verbosity": {
+      "n": 86,
+      "delta_fk_mean": 2.2598892513133677,
+      "delta_fk_sd": 4.5088864344653645,
+      "delta_fk_d": 0.5012078445886453,
+      "delta_sentlen_mean": 4.105555724621923,
+      "delta_sentlen_sd": 10.302512953390076,
+      "delta_sentlen_d": 0.3985004186062175,
+      "delta_words_mean": 5.337209302325581,
+      "delta_words_d": 0.04816655530338499
+    },
+    "formality": {
+      "n": 36,
+      "delta_fk_mean": 0.017836451541869733,
+      "delta_fk_sd": 1.2028901461363084,
+      "delta_fk_d": 0.014827997052898423,
+      "delta_sentlen_mean": 0.35395064852301694,
+      "delta_sentlen_sd": 1.4764705418259212,
+      "delta_sentlen_d": 0.239727538407433,
+      "delta_words_mean": -1.6111111111111112,
+      "delta_words_d": -0.16692205116991224
+    }
+  },
+  "regression": {
+    "n_total": 122,
+    "n_verbosity": 86,
+    "n_formality": 36,
+    "model1_no_control": {
+      "style_axis_coef": 2.242052799771498,
+      "style_axis_se": 0.764257857307473,
+      "style_axis_t": 2.933633953951598,
+      "style_axis_p": 0.004014506543458759,
+      "intercept": 0.017836451541870527,
+      "r2": 0.06691907255375085,
+      "adj_r2": 0.059143398158365446
+    },
+    "model2_length_controlled": {
+      "style_axis_coef": 0.8498797195986084,
+      "style_axis_se": 0.4253815376430958,
+      "style_axis_t": 1.9979233802847263,
+      "style_axis_p": 0.048005491710227124,
+      "delta_sentlen_coef": 0.3710873218085455,
+      "delta_sentlen_se": 0.022037204050347,
+      "delta_sentlen_t": 16.839129000246395,
+      "delta_sentlen_p": 2.7907199927950697e-33,
+      "intercept": -0.1135101466709336,
+      "r2": 0.7241711534863537,
+      "adj_r2": 0.7195353745533513
+    },
+    "coef_reduction_pct": 62.093679520606074
+  },
+  "conclusion": "FK cross-axis contamination IS explained by sentence-length changes: the verbosity-vs-formality contrast in delta-FK shrinks from beta=2.24 (p=0.00401) to beta=0.85 (p=0.048) once delta sentence length is controlled — a 62% reduction.",
+  "notes": {
+    "data_sources": {
+      "verbosity": "/root/causal_style_decomp_judge/data/verified_verbosity.jsonl",
+      "formality": "/root/causal_style_decomp_judge/data/verified.jsonl"
+    },
+    "passed_filter": "passed_cf == True (NLI-gated subset used in main paper analysis)",
+    "fk_implementation": "textstat 0.7.13 flesch_kincaid_grade",
+    "sentence_split": "regex split on [.!?]\\s+ or newlines; min 1 sentence",
+    "word_count": "regex \\b[\\w']+\\b",
+    "style_axis_coding": "0 = formality, 1 = verbosity",
+    "interpretation": "Primary result uses NLI-passed subset to match the paper's main-analysis universe (n=86 verbosity + n=36 formality). On the full unfiltered set the same pattern holds (55% coefficient reduction)."
+  }
+}

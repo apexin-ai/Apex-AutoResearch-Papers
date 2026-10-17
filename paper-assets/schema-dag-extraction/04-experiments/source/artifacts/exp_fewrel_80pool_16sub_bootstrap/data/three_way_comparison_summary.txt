@@ -1,0 +1,6 @@
+Three-way comparison (D035/D036):
+16-rel: slope=-0.449 CI[-0.549,-0.345], extreme Δ=11.45pp CI[7.66,15.48]
+80-pool-16sub: slope=-0.401 CI[-0.694,-0.057], extreme Δ=9.79pp CI[1.87,17.50]
+80-rel controlled: slope=-0.151 CI[-0.930,0.657], extreme Δ=31.25pp CI[22.92,39.58]
+Permutation tests slope diff: p=0.44/0.15/0.33 (n.s.)
+Server path: artifacts/extreme_batch_analysis.json, artifacts/three_way_comparison/results.json

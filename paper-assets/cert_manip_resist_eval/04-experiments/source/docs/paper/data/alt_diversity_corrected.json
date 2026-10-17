@@ -1,0 +1,43 @@
+{
+  "error_handling": "V2 (_is_valid_score)",
+  "measures": {
+    "Q_statistic": {
+      "sig": "9/12",
+      "dir": "6+/3-",
+      "mean_abs_beta_std": 0.2506,
+      "rho_with_keff": 0.5987
+    },
+    "Disagreement": {
+      "sig": "11/12",
+      "dir": "11+/0-",
+      "mean_abs_beta_std": 0.4806,
+      "rho_with_keff": 0.9338
+    },
+    "kappa_diversity": {
+      "sig": "11/12",
+      "dir": "11+/0-",
+      "mean_abs_beta_std": 0.4965,
+      "rho_with_keff": 0.9779
+    },
+    "K_eff": {
+      "sig": "12/12",
+      "dir": "12+/0-",
+      "mean_abs_beta_std": 0.4298
+    }
+  },
+  "effect_size": {
+    "eta_max_std_beta": {"mean": 0.179, "sd": 0.100},
+    "keff_std_beta": {"mean": 0.430, "sd": 0.109},
+    "practical_delta_asr": {"mean": 0.0299, "sd": 0.0350},
+    "clustered_se": {
+      "keff_ci_contains_zero": "11/12",
+      "eta_ci_contains_zero": "4/12"
+    }
+  },
+  "old_vs_new": {
+    "K_eff_sig": "8/12 → 12/12",
+    "K_eff_dir": "7+/1- → 12+/0-",
+    "K_eff_mean_abs_beta_std": "0.164 → 0.430",
+    "note": "V1 bug (.get('winner','tie')) treated API errors as ties, inflating eta_max and suppressing K_eff. After V2 fix with _is_valid_score(), K_eff is universally significant and always positive."
+  }
+}

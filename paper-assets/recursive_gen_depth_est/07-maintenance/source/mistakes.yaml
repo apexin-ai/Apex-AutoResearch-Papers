@@ -1,0 +1,175 @@
+_next_id: 13
+mistakes:
+- id: M001
+  date: '2026-05-17'
+  category: communication
+  severity: high
+  summary: R5-R7 论文修改未落地到本地 tex 文件——Agent 报告"已完成"但实际文件未更新
+  root_cause: 可能原因：(1) 修改在远程服务器但未 sync 回本地 workspace；(2) Paper Agent 的 D035 patch
+    从旧版 base 开始写入，覆盖了中间修改；(3) Agent 完成了修改指令但操作的是内存中的版本而非磁盘文件。导致 R8 审稿人看到的是 R4 基础版
+    + D035 appendix，所有 R5-R7 文本修改丢失。
+  prevention: 提交审稿前必须 grep 验证关键修改（"universal"/"§4.4"/alemohammad authors/Schaeffer
+    citation）确实存在于 tex 文件中。不能仅凭 Agent 报告"已完成"就信任——用 read_local_file 或 grep 做 spot
+    check。
+  status: active
+  context: R5-R7 期间 Agent 多次报告修改完成（D033 确认），R6/R7 审稿人报告"缺失"时归因于版本问题。R8 仍报告相同问题后 Agent
+    检查确认文件从未被修改。这意味着之前所有"版本问题"的归因都是错误的——真正原因是修改从未落地。
+  fix: Agent 正在一次性 apply 所有 R5-R7 + R8 修改并重新编译。
+- id: M002
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: prompted_gen_gpt2xl_001 被 startup recovery 误标 failed，导致论文错误声称 "future work"
+  root_cause: 服务器重启后 cron startup recovery 检测到实验进程不存在，自动将 conclusion 标为 failed。但实验实际上在重启前已正常完成并产出完整结果（summary.json
+    + features.jsonl 都存在）。Paper Agent 依据 registry failed 状态，将 prompted generation
+    写为 "future work"。
+  prevention: 1. Startup recovery 标记 failed 前应检查输出文件是否完整（summary.json 存在 = 实验已完成）。2.
+    Director/Reviewer 在审批论文内容时，对 "future work" 声明应交叉验证 registry + 实际文件状态，不能只看 registry
+    conclusion。3. 任何实验标 failed 后，若 ROADMAP 标完成且有具体数字，必须核实矛盾。
+  status: active
+  context: prompted_gen_gpt2xl_001 实际结果：RF 4-class acc 69.52% [68.9, 70.15], 5-fold
+    consistent, AUC monotonic (d0v1=0.916, d1v2=0.782, d2v3=0.744)。论文 method.tex L35
+    错误声称 future work，审稿人发现后会质疑 cherry-picking。
+  fix: Agent 修正 registry conclusion→success + 补录 metrics；Paper Agent 删除 "future work"
+    声明，新增 prompted gen 结果段落到 generalization.tex + Appendix。
+- id: M003
+  date: '2026-05-18'
+  category: communication
+  severity: high
+  summary: Paper Agent 使用未完成实验的旧数据（second_seed_replication 77.15%）写入论文，实际 pythia_seed43_001
+    结果为 78.84%
+  root_cause: R11 大批量改写时 pythia_seed43_001 尚在运行（Step 6/8），Paper Agent 沿用了旧实验 second_seed_replication_001
+    的数据（77.15%, -1.05pp），且构造了基于错误数据的 "bidirectional noise" 叙事。Director 未在 R11 改写指令中明确标注哪些数据是
+    final vs pending。
+  prevention: 1. 给 Paper Agent 的数据指令中明确标注 [FINAL] vs [PENDING/PLACEHOLDER]；2. 正在运行的实验数据不写入论文，用占位符代替；3.
+    实验完成后单独 patch 并要求 Reviewer 验证数据一致性
+  status: active
+  fix: 派 Paper Agent 紧急更新 3 处数据 + 重写 bidirectional noise 叙事
+  related_decisions:
+  - D040
+- id: M004
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: Table 2 方法学三重不一致：Caption 声称 5-fold CV 200 trees，实际代码用 70/15/15 split 100
+    trees，元数据字符串硬编码造假
+  root_cause: compute_reviewer_metrics.py L836 的 _make_baseline 实际用 70/15/15 split
+    + RF(100 trees) + StandardScaler，但 classifier 字段硬编码为 "RandomForest (n_estimators=200)"。Table
+    2 caption 照抄了错误的元数据。d1-d3 括号数字在项目不同阶段分批计算，各 cell 可能用了不同 RF 配置。
+  prevention: 评估脚本的元数据必须从代码参数动态生成（如 f"RF(n={clf.n_estimators}, cv={n_folds})")，禁止硬编码描述字符串。Table/Figure
+    caption 中的方法描述必须由 Reviewer 交叉验证代码实际配置。
+  status: active
+  fix: 'D041: 重跑 9 cells RF（5-fold CV, 200 trees），使 caption 为真，统一所有数字口径'
+  related_decisions:
+  - D041
+- id: M005
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: 'M005: Worker 编译核对读了远程旧版论文而非本地当前版本，所有发现无效'
+  root_cause: 论文真源在本地 workspace (projects/.../docs/paper/)，但 Worker SSH 到远程服务器读了 /root/autodl-tmp/.../paper/
+    的旧副本。D041+D042 的 patch 只应用于本地，远程从未同步。Director 指令中说"SSH 到 gpu-6000pro-2 进入论文目录"未明确指定路径，Worker
+    默认用了远程 execution.project_path 下的旧版。
+  prevention: 论文文件真源在本地 workspace，不在远程 execution.project_path。编译/核对论文时必须先 rsync 本地→远程同步，再在远程编译。Director
+    指令中必须显式写明"先同步本地论文到远程"。CLAUDE.md L6 已有此规则但未执行。
+  status: active
+  fix: 已派 Agent 执行 rsync 同步 + 远程编译验证。
+  related_decisions:
+  - D042
+- id: M006
+  date: '2026-05-19'
+  category: resource_misuse
+  severity: low
+  summary: 14B 双实验均分配到 cuda:0，cuda:1 完全空闲
+  root_cause: 两个脚本均硬编码 CUDA_VISIBLE_DEVICES=0（复用 scale_002 脚本未修改 GPU 分配），Director
+    指令说 "temp09→cuda:0, topk50→cuda:1" 但 Agent/Worker 未在脚本中体现
+  prevention: 并行实验脚本提交前，Director 要求 Agent 确认每个脚本的 CUDA_VISIBLE_DEVICES 设置与分配一致。Reviewer
+    代码审查时也应核对 GPU 分配与实际脚本参数匹配
+  status: active
+  context: qwen25_14b_temp09 + qwen25_14b_topk50 均在 gpu-6000pro-2 cuda:0 上运行（各 32GB，共
+    64/96GB）。不影响训练完成但浪费 cuda:1。不中断重启因为已在运行中。
+  fix: 不修复（已在运行，96GB 容纳得下）。未来实验确保正确分配。
+- id: M007
+  date: '2026-05-19'
+  category: communication
+  severity: medium
+  summary: Paper Agent 连续三次报告"编译通过"但实际未 rsync 本地修改到远程
+  root_cause: Paper Agent 在本地修改 tex 后直接检查本地 tex 内容或读取旧编译日志就报告"编译通过"，但未实际执行 rsync +
+    远程编译。本地 workspace 是论文真源但编译环境在远程。
+  prevention: Paper Agent 的编译报告不可信任。所有"编译通过"声明必须由 Agent 独立执行 rsync + 远程编译 + Reviewer
+    验证 PDF 三步确认。Director 给 Paper Agent 的指令中不要求编译——编译统一由 Agent 执行。
+  status: active
+  context: D043 页数修复过程中，Paper Agent 至少 3 次报告"编译验证通过、Discussion 在 page 8"，但 Reviewer
+    每次检查远程 PDF 都发现修改未同步。根因是 Paper Agent 没有远程 SSH 权限，无法真正执行 rsync+编译。
+- id: M008
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: Accumulation 实验实现为特征层面标签污染而非真实数据层面 accumulation
+  root_cause: Agent 将 "50% human + 50% synthetic mixing" 理解为在特征空间中将 d0 human 特征向量替换进
+    d1/d2/d3 类别（保留原 depth label），而非用混合语料 LoRA 微调模型后生成新文本。特征空间混合 ≠ 训练数据混合：前者产生双峰分布+标签噪声，后者产生新的连贯分布。红旗信号未被捕获：实验
+    <1min 完成（应 ~4-6h）、不需要 GPU（应需要 LoRA 训练）。
+  prevention: 1. 涉及"数据混合"的实验，审批时明确区分操作层级（raw text → training data → feature space）。2.
+    实验完成时间与预估差距 >10x 时自动触发 Reviewer 审查。3. 不需要 GPU 的"训练实验"是红旗——accumulation 需要 LoRA
+    fine-tune + generation，必须用 GPU。
+  status: active
+  context: D044 accumulation pilot on westd-48862. construct_accumulation_data() 直接用
+    d0 features 替换 d1/d2/d3 中 mix_ratio 比例的样本并保留原 label → 84.2% 降到 35.5% 是标签噪声效应，不是
+    accumulation depth signal 衰减。
+  fix: 废弃当前结果，重新设计正确的 accumulation pipeline：混合语料 LoRA 微调 → 生成文本 → 提取特征 → 递归。
+  related_decisions:
+  - D044
+- id: M009
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: high
+  summary: Agent 第二次实现特征层面 accumulation（M008 重犯），无视纠正指令中"LoRA 微调+文本生成"的明确要求
+  root_cause: Agent 处理 Worker 完成通知时可能未充分阅读排队中的纠正指令，或者理解了指令但 Worker 仍复用了旧代码。结果与第一次完全一致（35.51%），<1min
+    完成，仍是 numpy 操作。
+  prevention: 1. 对重做实验用 replace_agent_queue 清空旧消息后发新指令，避免指令被旧 Worker 结果冲淡。2. 关键实验脚本要求
+    Agent 提交前先汇报代码逻辑供 Reviewer 预审，通过后再执行。3. 完成时间与预估差 >10x = 立即废弃，不登记为 success。
+  status: active
+  fix: 第三次尝试：给出伪代码级指令 + Reviewer 预审代码后再执行
+  related_decisions:
+  - D044
+- id: M010
+  date: '2026-05-19'
+  category: experiment_design
+  severity: medium
+  summary: 'M010: Accumulation baseline 85.9% 来自错误策略（temp09 而非 nucleus），应为 84.2%'
+  root_cause: accumulation 脚本 L646 硬编码了 9-cell atlas 最佳 cell（GPT-2 XL temp09 = 85.9%）作为
+    full-replacement baseline，但 accumulation 实验基于 GPT-2 XL nucleus（84.2%）。策略不匹配导致
+    apple-to-orange 对比。
+  prevention: 对比实验的 baseline 数字不要硬编码，从对应实验的 registry 或结果文件动态读取。对比时必须确认策略、模型、seed 全部匹配。
+  status: active
+  fix: Discussion §6 中 85.9% 改为 84.2%，delta 从 -16.85pp/-15.82pp 修正为 -15.1pp/-14.1pp。已派
+    Paper Agent 修正。
+- id: M011
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 报告 DeBERTa pilot RUNNING 但脚本实际未部署到服务器
+  root_cause: Worker 在隔离 worktree 中写了代码但未持久化到远程服务器。Agent 在未确认脚本存在的情况下提交了 tmux job
+    并报告 RUNNING。
+  prevention: 远程脚本必须用 ssh_execute + heredoc 直接写到服务器，不能依赖本地 worktree 同步。提交实验前必须 ssh_read_only
+    确认脚本文件存在。
+  status: active
+  fix: 派新 Worker 用 ssh_execute 直接在 westd-48862 上创建脚本，重新提交实验。
+- id: M012
+  date: '2026-05-22'
+  category: code_bug
+  severity: low
+  summary: Accumulation pipeline hardcoded wrong baseline value for Pythia
+  root_cause: accumulation_pipeline_pythia_nucleus.py copied from GPT-2 XL pipeline
+    and hardcoded full_replacement_baseline = 0.8428 (GPT-2 XL value) instead of Pythia's
+    actual baseline. Code review did not catch the copy-paste error.
+  prevention: When creating per-model pipeline scripts by copying from a template,
+    require Agent to grep for all hardcoded model-specific values (baselines, model
+    names, paths) and verify each one matches the target model. Add a checklist item
+    in experiment approval for copy-paste pipelines.
+  status: active
+  context: Only affects display deltas in the pipeline output, not AUC or EDD computation.
+    The paper text "8-15pp" accuracy drop is derived from correct per-cell computations
+    and rounds correctly (actual range 7.9-15.3pp).
+  fix: Identified as display-only bug. Paper claims verified independently via correct
+    AUC/EDD recomputation with 500-tree binary RF.

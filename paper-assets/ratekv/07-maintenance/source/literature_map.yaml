@@ -1,0 +1,916 @@
+meta:
+  last_updated: '2026-05-14T18:00:00.000Z'
+  total_papers: 41
+categories:
+  - Mixed-Precision Rate-Distortion
+  - KV Cache Quantization
+  - KV Cache Eviction
+  - Model Compression
+  - Attention Head Analysis
+  - LLM Inference Efficiency
+  - Evaluation Models
+  - Theory
+papers:
+  # ============================================================
+  # Cluster 1: Mixed-Precision R-D Allocation (7 papers)
+  # ============================================================
+  zuo2026ratequant:
+    title: 'RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory'
+    authors:
+    - Fei Zuo
+    - Zikang Zhou
+    - Hao Cong
+    - Xiaoyan Xi
+    - Ho Fai Leung
+    year: 2026
+    venue: arXiv 2026
+    url: ''
+    doi: '2605.06675'
+    bibtex_key: zuo2026ratequant
+    category: Mixed-Precision Rate-Distortion
+    role: direct-competitor
+    relevance: 'Primary competitor: R-D optimal per-head KV cache bit allocation. Algorithm 1 (discrete greedy). Theorem 2 (continuous closed-form via reverse waterfilling). Proposition 6 (greedy optimality on consecutive integers). Key limitation: does not address hardware-aligned non-consecutive {2,4,8,16} where greedy may fail.'
+    abstract: RateQuant fits a per-quantizer distortion model D(b)=alpha*beta^{-b} from a small calibration set, then solves the bit-allocation in closed form via reverse waterfilling from rate-distortion theory. On Qwen3-8B at 2.5 avg bits, calibrated RateQuant reduces KIVI perplexity from 49.3 to 14.9 (70% reduction). Calibration takes 1.6s on a single GPU with zero inference overhead.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:42:26.710Z'
+  lei2026arkv:
+    title: 'ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs'
+    authors:
+    - Jianlong Lei
+    - Shashikant Ilager
+    year: 2026
+    venue: arXiv 2026
+    url: ''
+    doi: '2603.08727'
+    bibtex_key: lei2026arkv
+    category: Mixed-Precision Rate-Distortion
+    role: direct-competitor
+    relevance: Adaptive mixed-precision KV cache with tri-state token assignment (Original/Quantization/Eviction). Per-layer OQ ratio estimation via attention entropy, variance, kurtosis. Alternative adaptive allocation strategy to our R-D formulation.
+    abstract: 'ARKV dynamically allocates precision levels to cached tokens based on per-layer attention dynamics and token-level importance. Three components: per-layer OQ ratio estimation, token importance scoring, and tri-state cache assignment. Preserves ~97% baseline accuracy with 4x KV memory reduction.'
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:42:26.710Z'
+  li2025kvmix:
+    title: 'KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache'
+    authors:
+    - Fei Li
+    - Song Liu
+    - Weiguo Wu
+    - Shiqiang Nie
+    - Jinyu Wang
+    year: 2025
+    venue: AAAI 2026
+    url: ''
+    doi: '2506.08018'
+    bibtex_key: li2025kvmix
+    category: Mixed-Precision Rate-Distortion
+    role: direct-competitor
+    relevance: Gradient-based importance for layer-wise KV cache bit-width allocation. Heuristic sensitivity-based approach vs our R-D optimal formulation. Achieves near-lossless at Key 2.19bit / Value 2.38bit.
+    abstract: KVmix employs gradient-based importance analysis to evaluate how individual Key and Value projection matrices affect model loss, enabling layer-specific bit-width allocation. Includes dynamic long-context optimization preserving full-precision KV pairs for recent pivotal tokens.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:42:26.710Z'
+  zhang2025mixkvq:
+    title: 'MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning'
+    authors:
+    - Tao Zhang
+    - Ziqian Zeng
+    - Hao Peng
+    - Huiping Zhuang
+    - Cen Chen
+    year: 2025
+    venue: arXiv 2025
+    url: ''
+    doi: '2512.19206'
+    bibtex_key: zhang2025mixkvq
+    category: Mixed-Precision Rate-Distortion
+    role: method-component
+    relevance: 'Query-aware channel-level mixed-precision for KV cache. Orthogonal to our per-head R-D allocation: operates at channel granularity rather than head granularity.'
+    abstract: MixKVQ introduces a lightweight query-aware algorithm to identify and preserve critical key channels at higher precision while applying per-token quantization for value cache. Outperforms existing low-bit methods on complex reasoning datasets.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:42:26.710Z'
+  kim2024squeezellm:
+    title: 'SqueezeLLM: Dense-and-Sparse Quantization'
+    authors:
+    - Sehoon Kim
+    - Coleman Hooper
+    - Amir Gholami
+    - Zhen Dong
+    - Xiuyu Li
+    - Sheng Shen
+    - Michael W. Mahoney
+    - Kurt Keutzer
+    year: 2024
+    venue: ICML 2024
+    url: ''
+    doi: '2306.07629'
+    bibtex_key: kim2024squeezellm
+    category: Mixed-Precision Rate-Distortion
+    role: foundation
+    relevance: Foundational sensitivity-based non-uniform quantization using second-order information. Pioneered per-group precision assignment based on sensitivity—principle we extend to per-head KV cache R-D allocation.
+    abstract: 'SqueezeLLM enables lossless compression to ultra-low 3-bit precision via two ideas: sensitivity-based non-uniform quantization searching for optimal bit precision assignment, and Dense-and-Sparse decomposition storing outliers in efficient sparse format.'
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:42:26.710Z'
+  li2025kvtuner:
+    title: 'KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference'
+    authors:
+    - Li et al.
+    year: 2025
+    venue: ICML 2025
+    url: ''
+    doi: ''
+    bibtex_key: li2025kvtuner
+    category: Mixed-Precision Rate-Distortion
+    role: direct-competitor
+    relevance: Layer-level mixed-precision KV cache via Pareto search over hardware-friendly precision pairs. Achieves nearly lossless 3.25-bit for Llama-3.1-8B. Operates at layer granularity vs our head granularity.
+    abstract: KVTuner uses Pareto search over hardware-friendly layer-wise K/V precision pairs. Gradient-based sensitivity shows U-shaped pattern (early+late layers sensitive). Achieves nearly lossless compression at 3.25-bit for Llama-3.1-8B and 4.0-bit for Qwen2.5-7B.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T18:00:00.000Z'
+  chen2025pmkvq:
+    title: 'PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs'
+    authors:
+    - Chen et al.
+    year: 2025
+    venue: arXiv 2025
+    url: ''
+    doi: '2505.18610'
+    bibtex_key: chen2025pmkvq
+    category: Mixed-Precision Rate-Distortion
+    role: method-component
+    relevance: Progressive quantization that gradually lowers bit-width over decoding steps. Temporal dimension orthogonal to our spatial (per-head) allocation. Uses integer programming for block-wise memory allocation.
+    abstract: PM-KVQ introduces a progressive quantization strategy that gradually lowers bit-width over decoding steps. Block-wise memory allocation assigns higher bits to sensitive transformer blocks via integer programming.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T18:00:00.000Z'
+
+  # ============================================================
+  # Cluster 2: KV Cache Quantization (7 papers)
+  # ============================================================
+  liu2024kivi:
+    title: 'KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache'
+    authors:
+    - Zirui Liu
+    - Jiayi Yuan
+    - Hongye Jin
+    - Shaochen Zhong
+    - Zhaozhuo Xu
+    - Vladimir Braverman
+    - Beidi Chen
+    - Xia Hu
+    year: 2024
+    venue: ICML 2024
+    url: ''
+    doi: '2402.02750'
+    bibtex_key: liu2024kivi
+    category: KV Cache Quantization
+    role: direct-competitor
+    relevance: Asymmetric per-channel key / per-token value 2-bit KV cache quantization; tuning-free baseline for mixed-precision KV cache methods
+    abstract: We conduct a comprehensive study on the element distribution in KV cache of popular LLMs and find that the key cache should be quantized per-channel while the value cache should be quantized per-token. From this observation, we develop a tuning-free 2bit KV cache quantization algorithm named KIVI.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T07:56:45.265Z'
+  hooper2024kvquant:
+    title: 'KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization'
+    authors:
+    - Coleman Hooper
+    - Sehoon Kim
+    - Hiva Mohammadzadeh
+    - Michael W. Mahoney
+    - Yakun Sophia Shao
+    - Kurt Keutzer
+    - Amir Gholami
+    year: 2024
+    venue: NeurIPS 2024
+    url: ''
+    doi: '2401.18079'
+    bibtex_key: hooper2024kvquant
+    category: KV Cache Quantization
+    role: direct-competitor
+    relevance: Per-channel key quantization with pre-RoPE, non-uniform datatypes, and dense-and-sparse outlier handling; achieves sub-4-bit KV cache for 10M context
+    abstract: KV cache activations are the dominant contributor to memory consumption during LLM inference for large context windows. We address this with per-channel key quantization, pre-RoPE key quantization, non-uniform KV cache quantization, and per-vector dense-and-sparse quantization to isolate outliers.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T07:56:45.265Z'
+  lin2024qserve:
+    title: 'QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM Serving'
+    authors:
+    - Yujun Lin
+    - Haotian Tang
+    - Shang Yang
+    - Zhekai Zhang
+    - Guangxuan Xiao
+    - Chuang Gan
+    - Song Han
+    year: 2024
+    venue: MLSys 2025
+    url: ''
+    doi: '2405.04532'
+    bibtex_key: lin2024qserve
+    category: KV Cache Quantization
+    role: foundation
+    relevance: W4A8KV4 co-design with SmoothAttention for KV4 quantization; demonstrates system-level gains from joint weight-activation-KV quantization
+    abstract: QServe introduces QoQ (W4A8KV4), a quantization algorithm with 4-bit weight, 8-bit activation, and 4-bit KV cache. Progressive group quantization ensures all GEMMs run on INT8 tensor cores. SmoothAttention shifts quantization difficulty from keys to queries.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T07:56:45.265Z'
+  he2024zipcache:
+    title: 'ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification'
+    authors:
+    - Yefei He
+    - Luoming Zhang
+    - Weijia Wu
+    - Jing Liu
+    - Hong Zhou
+    - Bohan Zhuang
+    year: 2024
+    venue: NeurIPS 2024
+    url: ''
+    doi: '2405.14256'
+    bibtex_key: he2024zipcache
+    category: KV Cache Quantization
+    role: direct-competitor
+    relevance: Channel-separable tokenwise quantization with adaptive bit-width based on normalized attention score saliency; mixed-precision KV cache baseline
+    abstract: ZipCache proposes channel-separable tokenwise quantization and uses normalized attention score for identifying salient tokens with adaptive bit-width assignment. Achieves 4.98x compression on Mistral-7B with 0.38% accuracy drop.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T07:56:45.265Z'
+  kang2024gear:
+    title: 'GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM'
+    authors:
+    - Hao Kang
+    - Qingru Zhang
+    - Souvik Kundu
+    - Geonhwa Jeong
+    - Zaoxing Liu
+    - Tushar Krishna
+    - Tuo Zhao
+    year: 2024
+    venue: arXiv 2024
+    url: ''
+    doi: '2403.05527'
+    bibtex_key: kang2024gear
+    category: KV Cache Quantization
+    role: direct-competitor
+    relevance: Hybrid quantization + low-rank + sparse error correction for KV cache; demonstrates that residual compensation improves ultra-low-bit quantization quality
+    abstract: GEAR first applies quantization to majority of entries to ultra-low precision, then employs a low rank matrix to approximate the quantization error, and a sparse matrix to remedy individual errors from outlier entries. Achieves near-lossless 4-bit compression with 2.38x throughput improvement.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T07:56:45.265Z'
+  duanmu2024skvq:
+    title: 'SKVQ: Sliding-window Key and Value Cache Quantization for Large Language Models'
+    authors:
+    - Haojie Duanmu
+    - Zhihang Yuan
+    - Xiuhong Li
+    - Jiangfei Duan
+    - Xingcheng Zhang
+    - Dahua Lin
+    year: 2024
+    venue: arXiv 2024
+    url: ''
+    doi: '2405.06219'
+    bibtex_key: duanmu2024skvq
+    category: KV Cache Quantization
+    role: direct-competitor
+    relevance: Channel rearrangement + sliding-window high-precision recent tokens; achieves 2-bit key / 1.5-bit value with minimal accuracy loss
+    abstract: SKVQ rearranges KV cache channels to improve similarity within quantization groups and applies clipped dynamic quantization at group level. Preserves recent window tokens at high precision. Enables 2-bit keys and 1.5-bit values with up to 1M context on 80GB GPU.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T07:56:45.265Z'
+  li2025kitty:
+    title: 'Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost'
+    authors:
+    - Li et al.
+    year: 2025
+    venue: arXiv 2025
+    url: ''
+    doi: '2511.18643'
+    bibtex_key: li2025kitty
+    category: KV Cache Quantization
+    role: background
+    relevance: Channel-wise precision boost for Key cache. Ranks channels by sensitivity and keeps critical fraction at higher precision. Decomposes mixed-precision pages into two uniform 2-bit tensors for hardware efficiency.
+    abstract: KITTY achieves accurate 2-bit KV cache quantization by dynamically boosting critical Key channels to higher precision. Decomposes mixed-precision Key pages into two uniform 2-bit tensors, enabling efficient hardware implementation without custom kernels.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T18:00:00.000Z'
+
+  # ============================================================
+  # Cluster 3: KV Cache Eviction (8 papers)
+  # ============================================================
+  zhang2023h2o:
+    title: 'H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models'
+    authors:
+    - Zhenyu Zhang
+    - Ying Sheng
+    - Tianyi Zhou
+    - Tianlong Chen
+    - Lianmin Zheng
+    - Ruisi Cai
+    - Zhao Song
+    - Yuandong Tian
+    - Christopher Re
+    - Clark Barrett
+    - Zhangyang Wang
+    - Beidi Chen
+    year: 2023
+    venue: NeurIPS 2023
+    url: ''
+    doi: 10.48550/arXiv.2306.14048
+    bibtex_key: zhang2023h2o
+    category: KV Cache Eviction
+    role: background
+    relevance: Foundational KV cache eviction policy based on heavy-hitter tokens; orthogonal to our quantization approach
+    abstract: H2O identifies Heavy Hitters — a small set of tokens contributing most to attention scores — and dynamically retains recent and H2 tokens. With 20% heavy hitters, H2O improves throughput by up to 29x and reduces KV cache memory by up to 5x.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:10:15.562Z'
+  li2024snapkv:
+    title: 'SnapKV: LLM Knows What You are Looking for Before Generation'
+    authors:
+    - Yuhong Li
+    - Yingbing Huang
+    - Bowen Yang
+    - Bharat Venkitesh
+    - Acyr Locatelli
+    - Hanchen Ye
+    - Tianle Cai
+    - Patrick Lewis
+    - Deming Chen
+    year: 2024
+    venue: NeurIPS 2024
+    url: ''
+    doi: 10.48550/arXiv.2404.14469
+    bibtex_key: li2024snapkv
+    category: KV Cache Eviction
+    role: background
+    relevance: Observation-driven KV cache compression using attention pattern consistency; competes with eviction-based approaches our work compares against
+    abstract: SnapKV efficiently minimizes KV cache size by selecting clustered important KV positions per attention head using an observation window at the end of the prompt. Achieves 3.6x speed increase and 8.2x memory efficiency at 16K tokens.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:10:15.562Z'
+  ge2024fastgen:
+    title: 'Model Tells You What to Discard: Adaptive KV Cache Compression for LLMs'
+    authors:
+    - Suyu Ge
+    - Yunan Zhang
+    - Liyuan Liu
+    - Minjia Zhang
+    - Jiawei Han
+    - Jianfeng Gao
+    year: 2024
+    venue: ICLR 2024
+    url: ''
+    doi: 10.48550/arXiv.2310.01801
+    bibtex_key: ge2024fastgen
+    category: KV Cache Eviction
+    role: background
+    relevance: Adaptive per-head eviction strategy (FastGen); demonstrates head-specific compression is beneficial, complementary to quantization
+    abstract: 'FastGen constructs KV cache adaptively per attention head: evicting long-range contexts on local-attention heads, discarding non-special tokens on special-token-focused heads, and using standard KV cache for broad-attention heads. Reduces memory by 50% without sacrificing quality.'
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:10:15.562Z'
+  xiao2024streamingllm:
+    title: Efficient Streaming Language Models with Attention Sinks
+    authors:
+    - Guangxuan Xiao
+    - Yuandong Tian
+    - Beidi Chen
+    - Song Han
+    - Mike Lewis
+    year: 2024
+    venue: ICLR 2024
+    url: ''
+    doi: 10.48550/arXiv.2309.17453
+    bibtex_key: xiao2024streamingllm
+    category: KV Cache Eviction
+    role: background
+    relevance: Discovers attention sink phenomenon in initial tokens; motivates why naive eviction can fail and informs our quantization-first approach
+    abstract: StreamingLLM enables LLMs to generalize to infinite sequence lengths without fine-tuning by retaining attention sink tokens alongside a sliding window of recent tokens. Achieves up to 22.2x speedup over sliding window recomputation.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:10:15.562Z'
+  liu2024scissorhands:
+    title: 'Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time'
+    authors:
+    - Zichang Liu
+    - Aditya Desai
+    - Fangshuo Liao
+    - Weitao Wang
+    - Victor Xie
+    - Zhaozhuo Xu
+    - Anastasios Kyrillidis
+    - Anshumali Shrivastava
+    year: 2024
+    venue: NeurIPS 2023
+    url: ''
+    doi: 10.48550/arXiv.2305.17118
+    bibtex_key: liu2024scissorhands
+    category: KV Cache Eviction
+    role: background
+    relevance: Persistence-of-importance hypothesis for KV cache eviction; achieves 5x cache reduction, combinable with 4-bit quantization for 20x compression
+    abstract: Scissorhands maintains KV cache at a fixed budget by storing pivotal tokens with higher probability, achieving up to 5x memory reduction without quality loss, and up to 20x when combined with 4-bit quantization.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:10:15.562Z'
+  yang2024pyramidinfer:
+    title: 'PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference'
+    authors:
+    - Dongjie Yang
+    - Xiaodong Han
+    - Yan Gao
+    - Yao Hu
+    - Shilin Zhang
+    - Hai Zhao
+    year: 2024
+    venue: Findings of ACL 2024
+    url: ''
+    doi: 10.48550/arXiv.2405.12532
+    bibtex_key: yang2024pyramidinfer
+    category: KV Cache Eviction
+    role: background
+    relevance: Layer-wise pyramid compression exploiting inter-layer dependency; crucial KV count decreases across layers, relevant to our per-layer rate allocation
+    abstract: PyramidInfer compresses KV cache by layer-wise retaining crucial context, exploiting the finding that crucial keys and values decrease layer by layer. Achieves 2.2x throughput improvement with 54% GPU memory reduction.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper-research
+    added_at: '2026-05-14T08:10:15.562Z'
+  fu2025headkv:
+    title: 'Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning'
+    authors:
+    - Fu et al.
+    year: 2025
+    venue: ICLR 2025
+    url: ''
+    doi: '2410.19258'
+    bibtex_key: fu2025headkv
+    category: KV Cache Eviction
+    role: background
+    relevance: Head-level KV cache budget allocation for eviction based on importance scores from Needle-in-a-Haystack probing. Confirms head-level importance heterogeneity is exploitable. Eviction-based, not quantization-based.
+    abstract: HeadKV allocates KV cache budgets at the head level based on importance scores derived from Needle-in-a-Haystack probing. Different heads serve retrieval vs reasoning roles. Retains 1.5% KV cache with 97% performance preservation.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T18:00:00.000Z'
+  feng2025adakv:
+    title: 'Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation'
+    authors:
+    - Feng et al.
+    year: 2025
+    venue: NeurIPS 2025
+    url: ''
+    doi: '2407.11550'
+    bibtex_key: feng2025adakv
+    category: KV Cache Eviction
+    role: background
+    relevance: Adaptive per-head budget allocation for KV eviction. Key insight that uniform compression rate across heads is a rigidity that hurts performance. Supports our thesis that head-level heterogeneity matters.
+    abstract: Ada-KV extends SnapKV/PyramidKV with head-wise adaptive budget allocation for KV cache eviction. Shows that uniform compression rate across attention heads is suboptimal and adaptive per-head allocation significantly improves long-context performance.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T18:00:00.000Z'
+
+  # ============================================================
+  # Cluster 4: Model Compression (7 papers)
+  # ============================================================
+  frantar2023gptq:
+    title: 'GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers'
+    authors:
+    - Elias Frantar
+    - Saleh Ashkboos
+    - Torsten Hoefler
+    - Dan Alistarh
+    year: 2023
+    venue: ICLR 2023
+    url: ''
+    doi: '2210.17323'
+    bibtex_key: frantar2023gptq
+    category: Model Compression
+    role: foundation
+    relevance: Foundational one-shot weight quantization based on approximate second-order information (OBQ). Reduces bitwidth to 3-4 bits per weight with negligible accuracy degradation. Established post-training quantization paradigm for LLMs.
+    abstract: GPTQ is a one-shot weight quantization method based on approximate second-order information that can quantize GPT models with 175 billion parameters in approximately four GPU hours, reducing bitwidth to 3 or 4 bits per weight with negligible accuracy degradation.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  lin2024awq:
+    title: 'AWQ: Activation-aware Weight Quantization for LLM Compression and Acceleration'
+    authors:
+    - Ji Lin
+    - Jiaming Tang
+    - Haotian Tang
+    - Shang Yang
+    - Wei-Ming Chen
+    - Wei-Chen Wang
+    - Guangxuan Xiao
+    - Xingyu Dang
+    - Chuang Gan
+    - Song Han
+    year: 2024
+    venue: MLSys 2024 (Best Paper)
+    url: ''
+    doi: '2306.00978'
+    bibtex_key: lin2024awq
+    category: Model Compression
+    role: foundation
+    relevance: Activation-aware salient weight protection via equivalent scaling transformation. Demonstrates that 1% salient weights dominate quantization quality—analogous to our finding that per-head sensitivity varies drastically.
+    abstract: AWQ finds that protecting only 1% salient weights (identified by activation distribution, not weights) greatly reduces quantization error. Scales salient channels via mathematically equivalent transformation. No backpropagation or reconstruction needed. 3x speedup over FP16.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  xiao2023smoothquant:
+    title: 'SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models'
+    authors:
+    - Guangxuan Xiao
+    - Ji Lin
+    - Mickael Seznec
+    - Hao Wu
+    - Julien Demouth
+    - Song Han
+    year: 2023
+    venue: ICML 2023
+    url: ''
+    doi: '2211.10438'
+    bibtex_key: xiao2023smoothquant
+    category: Model Compression
+    role: foundation
+    relevance: Smooths activation outliers by migrating quantization difficulty from activations to weights. Enables W8A8 for all matmuls in LLMs. QServe's SmoothAttention extends this idea to KV cache.
+    abstract: SmoothQuant enables INT8 quantization of both weights and activations for all matrix multiplications in LLMs by smoothing activation outliers via offline migration of quantization difficulty from activations to weights. Up to 1.56x speedup and 2x memory reduction with negligible accuracy loss.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  dettmers2022llmint8:
+    title: 'LLM.int8(): 8-bit Matrix Multiplication for Transformers at Scale'
+    authors:
+    - Tim Dettmers
+    - Mike Lewis
+    - Younes Belkada
+    - Luke Zettlemoyer
+    year: 2022
+    venue: NeurIPS 2022
+    url: ''
+    doi: '2208.07339'
+    bibtex_key: dettmers2022llmint8
+    category: Model Compression
+    role: foundation
+    relevance: First to identify emergent outlier features in transformers that dominate quantization quality. Mixed-precision decomposition (0.1% in FP16, 99.9% in INT8) is conceptually related to our per-head mixed-precision allocation.
+    abstract: LLM.int8() develops Int8 matrix multiplication for feed-forward and attention projection layers via absmax vector-wise quantization and mixed precision decomposition. Cuts inference memory by half while retaining full precision performance for 175B-parameter models.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  tseng2024quipsharp:
+    title: 'QuIP#: Even Better LLM Quantization with Hadamard Incoherence and Lattice Codebooks'
+    authors:
+    - Albert Tseng
+    - Jerry Chee
+    - Qingyao Sun
+    - Volodymyr Kuleshov
+    - Christopher De Sa
+    year: 2024
+    venue: ICML 2024
+    url: ''
+    doi: '2402.04396'
+    bibtex_key: tseng2024quipsharp
+    category: Model Compression
+    role: foundation
+    relevance: State-of-the-art extreme compression (2-bit weights) via Hadamard incoherence processing and E8 lattice codebooks. Theoretical grounding for why incoherent distributions quantize better—relevant to understanding per-head distortion variation.
+    abstract: QuIP# achieves state-of-the-art in extreme weight compression using randomized Hadamard transform for incoherence processing, E8 lattice codebooks for vector quantization of sub-Gaussian incoherent weights, and fine-tuning for fidelity. Hardware-efficient implementation.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  zhao2024atom:
+    title: 'Atom: Low-bit Quantization for Efficient and Accurate LLM Serving'
+    authors:
+    - Yilong Zhao
+    - Chien-Yu Lin
+    - Kan Zhu
+    - Zihao Ye
+    - Lequn Chen
+    - Size Zheng
+    - Luis Ceze
+    - Arvind Krishnamurthy
+    - Tianqi Chen
+    - Baris Kasikci
+    year: 2024
+    venue: MLSys 2024
+    url: ''
+    doi: '2310.19102'
+    bibtex_key: zhao2024atom
+    category: Model Compression
+    role: foundation
+    relevance: End-to-end low-bit quantization for serving with mixed-precision, group quantization, and KV cache quantization. Demonstrates system-level throughput gains (3.5x over FP16) from co-designed quantization kernels.
+    abstract: Atom combines mixed-precision quantization retaining salient activations/weights in high precision, fine-grained group quantization, dynamic activation quantization, KV-cache quantization, and efficient CUDA kernels. Achieves 7.73x throughput over FP16 baseline.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  chen2026muxq:
+    title: 'MUXQ: Mixed-to-Uniform Precision Matrix Quantization via Low-Rank Outlier Decomposition'
+    authors:
+    - Chen et al.
+    year: 2026
+    venue: arXiv 2026
+    url: ''
+    doi: '2604.04701'
+    bibtex_key: chen2026muxq
+    category: Model Compression
+    role: background
+    relevance: Decomposes outlier channels into low-rank matrix to convert mixed-precision into uniform precision. Opposite philosophy to ours — eliminates heterogeneity (smoothing) vs exploiting it (our approach).
+    abstract: MUXQ decomposes outlier channels into a low-rank matrix, converting mixed-precision quantization into uniform precision. Applies rotation and permutation to redistribute outlier energy, enabling efficient uniform-precision hardware execution.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T18:00:00.000Z'
+
+  # ============================================================
+  # Cluster 5: Attention Head Analysis (4 papers)
+  # ============================================================
+  voita2019heads:
+    title: 'Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned'
+    authors:
+    - Elena Voita
+    - David Talbot
+    - Fedor Moiseev
+    - Rico Sennrich
+    - Ivan Titov
+    year: 2019
+    venue: ACL 2019
+    url: ''
+    doi: '1905.09418'
+    bibtex_key: voita2019heads
+    category: Attention Head Analysis
+    role: foundation
+    relevance: Foundational work on attention head specialization and pruning. Shows most heads can be pruned (38/48 with only 0.15 BLEU drop). Motivates our per-head heterogeneous quantization—heads have different importance and roles.
+    abstract: Evaluates individual attention head contributions and identifies specialized heads playing consistent linguistically-interpretable roles. Using stochastic gates with L0 penalty, the vast majority of heads can be pruned without seriously affecting performance.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  michel2019sixteen:
+    title: Are Sixteen Heads Really Better than One?
+    authors:
+    - Paul Michel
+    - Omer Levy
+    - Graham Neubig
+    year: 2019
+    venue: NeurIPS 2019
+    url: ''
+    doi: '1905.10650'
+    bibtex_key: michel2019sixteen
+    category: Attention Head Analysis
+    role: foundation
+    relevance: Shows large proportion of attention heads can be removed at test time. Greedy pruning analysis reveals varying head importance. Directly supports our premise that heads deserve different quantization precision.
+    abstract: A large proportion of attention heads can be removed at test time without significantly impacting performance, and some layers can be reduced to a single head. Self-attention layers can be significantly pruned while encoder-decoder layers are more dependent on multi-headedness.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  clark2019bert:
+    title: What Does BERT Look At? An Analysis of BERT's Attention
+    authors:
+    - Kevin Clark
+    - Urvashi Khandelwal
+    - Omer Levy
+    - Christopher D. Manning
+    year: 2019
+    venue: ACL Workshop BlackboxNLP 2019
+    url: ''
+    doi: '1906.04341'
+    bibtex_key: clark2019bert
+    category: Attention Head Analysis
+    role: background
+    relevance: Characterizes attention head behavior patterns (delimiter tokens, positional offsets, broad attention). Shows heads in same layer often exhibit similar behaviors—relevant to understanding GQA group structure.
+    abstract: Proposes methods for analyzing attention mechanisms of pre-trained models. Finds BERT heads exhibit patterns like attending to delimiter tokens, positional offsets, or broadly over sentences. Certain heads correspond to syntactic and coreference relations with high accuracy.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  ainslie2023gqa:
+    title: 'GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints'
+    authors:
+    - Joshua Ainslie
+    - James Lee-Thorp
+    - Michiel de Jong
+    - Yury Zemlyanskiy
+    - Federico Lebron
+    - Sumit Sanghai
+    year: 2023
+    venue: EMNLP 2023
+    url: ''
+    doi: '2305.13245'
+    bibtex_key: ainslie2023gqa
+    category: Attention Head Analysis
+    role: foundation
+    relevance: Defines grouped-query attention (GQA) which is the architecture used by all three models we evaluate (Qwen2.5 7:1, Llama-3.1 4:1, Mistral 4:1). GQA group ratio directly affects our per-head allocation granularity and results.
+    abstract: Proposes grouped-query attention (GQA), a generalization of multi-query attention using an intermediate number of key-value heads. Uptrained GQA achieves quality close to multi-head attention with comparable speed to MQA. Provides recipe for uptraining existing MHA checkpoints.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+
+  # ============================================================
+  # Cluster 6: LLM Inference Efficiency (4 papers)
+  # ============================================================
+  kwon2023vllm:
+    title: Efficient Memory Management for Large Language Model Serving with PagedAttention
+    authors:
+    - Woosuk Kwon
+    - Zhuohan Li
+    - Siyuan Zhuang
+    - Ying Sheng
+    - Lianmin Zheng
+    - Cody Hao Yu
+    - Joseph E. Gonzalez
+    - Hao Zhang
+    - Ion Stoica
+    year: 2023
+    venue: SOSP 2023
+    url: ''
+    doi: '2309.06180'
+    bibtex_key: kwon2023vllm
+    category: LLM Inference Efficiency
+    role: background
+    relevance: PagedAttention enables non-contiguous KV cache storage, reducing memory waste. Our per-head mixed-precision allocation is complementary—can be applied within vLLM's paged memory management.
+    abstract: vLLM proposes PagedAttention inspired by virtual memory paging, achieving near-zero waste in KV cache memory and flexible sharing within and across requests. 2-4x throughput improvement over state-of-the-art systems.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  dao2022flashattention:
+    title: 'FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness'
+    authors:
+    - Tri Dao
+    - Daniel Y. Fu
+    - Stefano Ermon
+    - Atri Rudra
+    - Christopher Re
+    year: 2022
+    venue: NeurIPS 2022
+    url: ''
+    doi: '2205.14135'
+    bibtex_key: dao2022flashattention
+    category: LLM Inference Efficiency
+    role: background
+    relevance: IO-aware tiling for exact attention. Our quantized KV cache reduces HBM reads during attention, providing complementary gains to FlashAttention's tiling strategy.
+    abstract: FlashAttention uses tiling to reduce memory reads/writes between GPU HBM and SRAM. 15% speedup on BERT-large, 3x on GPT-2, 2.4x on long-range arena, without approximation.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  shazeer2019mqa:
+    title: 'Fast Transformer Decoding: One Write-Head is All You Need'
+    authors:
+    - Noam Shazeer
+    year: 2019
+    venue: arXiv 2019
+    url: ''
+    doi: '1911.02150'
+    bibtex_key: shazeer2019mqa
+    category: LLM Inference Efficiency
+    role: foundation
+    relevance: Introduces multi-query attention (MQA) sharing a single KV head across all query heads. GQA generalizes MQA. Our per-head allocation exploits the remaining KV head heterogeneity in GQA models.
+    abstract: Proposes multi-query attention where keys and values are shared across all attention heads, greatly reducing KV cache size and memory bandwidth requirements of incremental decoding. Much faster decoding with minor quality degradation.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  deepseek2024v2:
+    title: 'DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model'
+    authors:
+    - DeepSeek-AI
+    year: 2024
+    venue: arXiv 2024
+    url: ''
+    doi: '2405.04434'
+    bibtex_key: deepseek2024v2
+    category: LLM Inference Efficiency
+    role: background
+    relevance: Introduces Multi-head Latent Attention (MLA) compressing KV cache into low-rank latent vectors (93.3% reduction). Alternative architectural approach to KV cache reduction vs our post-training quantization.
+    abstract: DeepSeek-V2 uses Multi-head Latent Attention (MLA) compressing KV caches into latent vectors and DeepSeekMoE for sparse computation. 236B total parameters, 21B activated per token. 42.5% training cost reduction, 93.3% KV cache reduction, 5.76x throughput increase vs DeepSeek 67B.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+
+  # ============================================================
+  # Cluster 7: Evaluation Models (3 papers)
+  # ============================================================
+  grattafiori2024llama3:
+    title: The Llama 3 Herd of Models
+    authors:
+    - Aaron Grattafiori
+    - et al.
+    year: 2024
+    venue: arXiv 2024
+    url: ''
+    doi: '2407.21783'
+    bibtex_key: grattafiori2024llama3
+    category: Evaluation Models
+    role: evaluation
+    relevance: Llama-3.1-8B is one of three evaluation models. GQA with 4:1 ratio (8 KV heads, 32 query heads). Marginal gains from per-head allocation in our experiments.
+    abstract: Llama 3 is a herd of foundation models natively supporting multilinguality, coding, reasoning, and tool usage. Dense Transformer up to 405B parameters with 128K context. Comparable quality to GPT-4.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  yang2025qwen25:
+    title: Qwen2.5 Technical Report
+    authors:
+    - An Yang
+    - et al.
+    year: 2025
+    venue: arXiv 2024
+    url: ''
+    doi: '2412.15115'
+    bibtex_key: yang2025qwen25
+    category: Evaluation Models
+    role: evaluation
+    relevance: Qwen2.5-7B is our strongest-result model. GQA with 7:1 ratio (4 KV heads, 28 query heads)—highest heterogeneity among tested models, yielding 29.3% PPL improvement from per-head allocation.
+    abstract: Qwen2.5 is a comprehensive LLM series with improvements in pre-training (18T tokens) and post-training. Qwen2.5-72B-Instruct outperforms many open and proprietary models, competitive with Llama-3-405B-Instruct at 5x smaller size.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+  jiang2023mistral:
+    title: Mistral 7B
+    authors:
+    - Albert Q. Jiang
+    - Alexandre Sablayrolles
+    - Arthur Mensch
+    - Chris Bamford
+    - Devendra Singh Chaplot
+    - Diego de las Casas
+    - Florian Bressand
+    - Gianna Lengyel
+    - Guillaume Lample
+    - Lucile Saulnier
+    - Lelio Renard Lavaud
+    - Marie-Anne Lachaux
+    - Pierre Stock
+    - Teven Le Scao
+    - Thibaut Lavril
+    - Thomas Wang
+    - Timothee Lacroix
+    - William El Sayed
+    year: 2023
+    venue: arXiv 2023
+    url: ''
+    doi: '2310.06825'
+    bibtex_key: jiang2023mistral
+    category: Evaluation Models
+    role: evaluation
+    relevance: Mistral-7B-v0.3 is our third evaluation model. GQA with 4:1 ratio (8 KV heads, 32 query heads). Negative result from per-head allocation—demonstrates architecture-dependent effectiveness.
+    abstract: Mistral 7B leverages grouped-query attention (GQA) for faster inference and sliding window attention (SWA) for handling arbitrary-length sequences with reduced cost. Outperforms Llama 2 13B on all benchmarks.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'
+
+  # ============================================================
+  # Cluster 8: Theory (1 paper)
+  # ============================================================
+  kellerer2004knapsack:
+    title: Knapsack Problems
+    authors:
+    - Hans Kellerer
+    - Ulrich Pferschy
+    - David Pisinger
+    year: 2004
+    venue: Springer
+    url: ''
+    doi: 10.1007/978-3-540-24777-7
+    bibtex_key: kellerer2004knapsack
+    category: Theory
+    role: foundation
+    relevance: Definitive reference for multiple-choice knapsack problem (MCKP, Chapter 11). Our per-head bit allocation with hardware-aligned {2,4,8,16} is formulated as MCKP. Greedy optimality conditions and dominance relations from this text underpin our theoretical analysis.
+    abstract: Comprehensive monograph on knapsack problems covering 0-1, bounded, unbounded, subset-sum, change-making, multiple-choice, and multi-dimensional variants. Chapter 11 covers MCKP including dominance, branch-and-bound, dynamic programming, and approximation algorithms.
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-survey
+    added_at: '2026-05-14T10:30:00.000Z'

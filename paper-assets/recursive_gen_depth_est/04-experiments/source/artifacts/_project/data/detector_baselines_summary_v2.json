@@ -1,0 +1,14 @@
+See remote file: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/detector_baselines/summary_v2.json
+
+Key results (mean across 9 cells):
+- RF-19feat reference: 78.16%
+- Combined 5-feat (all detectors): 74.22%
+- Combined 3-det (bino+fdgpt+logrank): 71.01%
+- Log-Rank alone: 64.01%
+- Fast-DetectGPT: 50.55%
+- Binoculars: 40.59%
+- LLR: 40.31%
+- Entropy: 35.91%
+
+Best single cell: gpt2xl_temp09 combined_5feat RF=85.98%
+GPU scoring time: 2786s (~46 min)

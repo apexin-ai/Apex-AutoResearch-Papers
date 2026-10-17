@@ -1,0 +1,15 @@
+{
+  "panel_size": 5,
+  "n_models": 15,
+  "n_total_panels": 3003,
+  "n_random_samples": 100,
+  "summary": {
+    "best_strategy_counts": {"min_eta_max": 0, "max_keff": 0, "min_keff": 0, "tie": 12},
+    "min_eta_max_avg_asr": 0.0767,
+    "max_keff_avg_asr": 0.1940,
+    "min_keff_avg_asr": 0.0767,
+    "random_avg_asr": 0.1092
+  },
+  "key_finding": "min(eta_max) and min(K_eff) converge to identical panels in most conditions. Both select low-vulnerability, high-agreement panels (API frontier models). The hypothesis that min(K_eff) > min(eta_max) at K=5 is not supported — they are equivalent because low eta_max and low K_eff are correlated.",
+  "note": "Full per-condition data on server at /root/cert_manip_resist_eval/artifacts/results/plan001/k5_panel_selection.json"
+}

@@ -1,0 +1,653 @@
+{
+  "summary": {
+    "total_models": 6,
+    "total_attacks": 6,
+    "total_datasets": 2,
+    "total_conditions": 72,
+    "conditions_with_data": 72,
+    "completeness": "100%",
+    "samples_per_condition": 300
+  },
+  "local_models": {
+    "qwen2.5-72b": {
+      "attacks": {
+        "mmluxprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        }
+      },
+      "has_clean_scores": true,
+      "clean_source": "_step2v3_checkpoint.json / _taxonomy_checkpoint.json",
+      "clean_samples": 300
+    },
+    "llama3.1-70b": {
+      "attacks": {
+        "mmluxprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        }
+      },
+      "has_clean_scores": true,
+      "clean_source": "_step2v3_checkpoint.json / _taxonomy_checkpoint.json",
+      "clean_samples": 300
+    },
+    "mistral-large": {
+      "attacks": {
+        "mmluxprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        }
+      },
+      "has_clean_scores": true,
+      "clean_source": "_step2v3_checkpoint.json / _taxonomy_checkpoint.json",
+      "clean_samples": 300
+    },
+    "qwen2.5-32b": {
+      "attacks": {
+        "mmluxprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        }
+      },
+      "has_clean_scores": true,
+      "clean_source": "_step2v3_checkpoint.json / _taxonomy_checkpoint.json",
+      "clean_samples": 300
+    },
+    "qwen2.5-14b": {
+      "attacks": {
+        "mmluxprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        }
+      },
+      "has_clean_scores": true,
+      "clean_source": "_step2v3_checkpoint.json / _taxonomy_checkpoint.json",
+      "clean_samples": 300
+    },
+    "llama3.1-8b": {
+      "attacks": {
+        "mmluxprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "mmluxauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexprompt_injection": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexsycophancy": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexscore_manipulation": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_step2v3_regression_20260522_031307.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_step2v3_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexverbosity_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexposition_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        },
+        "arc_challengexauthority_bias": {
+          "has_individual_asr": true,
+          "asr_source_file": "results_taxonomy_broadspectrum_20260522_044539.json",
+          "has_raw_scores": true,
+          "raw_scores_source": "_taxonomy_checkpoint.json",
+          "n_samples": 300
+        }
+      },
+      "has_clean_scores": true,
+      "clean_source": "_step2v3_checkpoint.json / _taxonomy_checkpoint.json",
+      "clean_samples": 300
+    }
+  },
+  "pairwise_mi": {
+    "mmlu": {
+      "pairs": 15,
+      "models": 6,
+      "source_file": "results_step1_full_20260521_222222.json"
+    },
+    "arc_challenge": {
+      "pairs": 15,
+      "models": 6,
+      "source_file": "results_step1_full_20260521_222222.json"
+    }
+  },
+  "missing_data": [],
+  "disk_space": {
+    "root_total_gb": 30,
+    "root_used_gb": 16,
+    "root_available_gb": 15,
+    "autodl_tmp_total_gb": 250,
+    "autodl_tmp_used_gb": 190,
+    "autodl_tmp_available_gb": 61,
+    "models_storage_gb": 172
+  },
+  "directories_created": [
+    "artifacts/results/plan001",
+    "artifacts/results/plan001/individual_scores",
+    "artifacts/results/plan001/mi_matrix",
+    "artifacts/results/plan001/panel_regression"
+  ],
+  "data_sources": {
+    "individual_asr_step2v3": {
+      "file": "results_step2v3_regression_20260522_031307.json",
+      "attacks": [
+        "prompt_injection",
+        "sycophancy",
+        "score_manipulation"
+      ],
+      "has_regression": true,
+      "has_panel_data": true
+    },
+    "individual_asr_taxonomy": {
+      "file": "results_taxonomy_broadspectrum_20260522_044539.json",
+      "attacks": [
+        "verbosity_bias",
+        "position_bias",
+        "authority_bias"
+      ],
+      "has_regression": true,
+      "has_panel_data": true
+    },
+    "clean_scores_checkpoint": {
+      "files": [
+        "_step2v3_checkpoint.json",
+        "_taxonomy_checkpoint.json"
+      ],
+      "note": "Both checkpoints contain identical clean_scores for all 6 models x 2 datasets (300 samples each)"
+    },
+    "attacked_scores_step2v3_checkpoint": {
+      "file": "_step2v3_checkpoint.json",
+      "attacks": [
+        "prompt_injection",
+        "sycophancy",
+        "score_manipulation"
+      ]
+    },
+    "attacked_scores_taxonomy_checkpoint": {
+      "file": "_taxonomy_checkpoint.json",
+      "attacks": [
+        "verbosity_bias",
+        "position_bias",
+        "authority_bias"
+      ]
+    },
+    "attack_data_pairs": {
+      "directory": "artifacts/results/attack_data/",
+      "files": [
+        "mmlu_clean_pairs.json",
+        "mmlu_prompt_injection_attacked.json",
+        "mmlu_sycophancy_attacked.json",
+        "mmlu_score_manipulation_attacked.json",
+        "arc_challenge_clean_pairs.json",
+        "arc_challenge_prompt_injection_attacked.json",
+        "arc_challenge_sycophancy_attacked.json",
+        "arc_challenge_score_manipulation_attacked.json"
+      ],
+      "note": "Attack pair data only exists for 3 original attacks; taxonomy attacks (verbosity_bias, position_bias, authority_bias) generated from swapped_pairs in checkpoint"
+    },
+    "eval_pipeline_raw_scores": {
+      "files": [
+        "results_eval_pipeline_20260521_210648.json (2 models: llama3.1-8b, qwen2.5-14b)",
+        "results_eval_pipeline_20260521_214021.json (3 models: llama3.1-8b, qwen2.5-14b, qwen2.5-32b)"
+      ],
+      "note": "Partial raw score exports; complete clean/attacked scores available in checkpoint files"
+    }
+  }
+}

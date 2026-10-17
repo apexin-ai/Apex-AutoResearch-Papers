@@ -1,0 +1,10 @@
+Atlas v2 9-cell data files on gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas_v2/
+
+Updated files:
+1. atlas_v2_data.json — 9 cells with accuracy, AUC, feature importance
+2. atlas_v2_results.json — signal strength, cross-strategy, cross-model rank, EDD, feature analysis
+3. monotonicity_scores.json — Spearman rho for all 9 cells
+4. edd_sensitivity.json — EDD at 4 thresholds for 9 cells
+5. cross_model_comparison.json — rank correlation + Jaccard top-5 for all strategy groups (topk_k50 now has 3 models)
+6. feature_trajectory.json — per-feature stats across 9 cells
+7. atlas_v2_9cells_summary.md — analysis report

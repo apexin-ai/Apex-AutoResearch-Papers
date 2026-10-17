@@ -1,0 +1,67 @@
+{
+  "file1_local": {
+    "source": "第一个Worker (fk_length_control.py at repo root)",
+    "script": "/root/causal_style_decomp_judge/fk_length_control.py",
+    "data_files": {
+      "verbosity": "verified_verbosity_filtered.jsonl (pre-filtered, all 86 rows are passed_cf=True)",
+      "formality": "verified_32b.jsonl (100 rows, NOT filtered by passed_cf — only 36 of 100 passed)"
+    },
+    "subset_issue": "INCONSISTENT: verbosity uses passed_cf-only data, formality uses ALL pairs including 64 NLI-failed pairs",
+    "text_processing": "re.split(r'[.!?]+', text) for sentences; text.split() for words",
+    "n_verb": 86,
+    "n_form": 100,
+    "n_total": 186,
+    "sobel_z": 3.3553,
+    "sobel_p": 0.00079282,
+    "path_a": {"coef": 3.5124, "se": 1.0195, "desc": "style_axis -> delta_sentlen"},
+    "path_b": {"coef": 0.4322, "se": 0.0292, "desc": "delta_sentlen -> delta_fk | style_axis"}
+  },
+  "file2_server": {
+    "source": "持久化脚本 (scripts/r15_analysis/fk_length_control.py)",
+    "script": "/root/causal_style_decomp_judge/scripts/r15_analysis/fk_length_control.py",
+    "data_files": {
+      "verbosity": "verified_verbosity.jsonl (100 rows, filtered to passed_cf=True → 86)",
+      "formality": "verified.jsonl (100 rows, filtered to passed_cf=True → 36)"
+    },
+    "subset_issue": "CONSISTENT: both axes filtered to passed_cf=True",
+    "text_processing": "re.compile(r'(?<=[.!?])\\s+|\\n+') for sentences; re.findall(r\"\\b[\\w']+\\b\", text) for words",
+    "n_verb": 86,
+    "n_form": 36,
+    "n_total": 122,
+    "sobel_z": 2.1526,
+    "sobel_p": 0.031348,
+    "path_a": {"coef": 3.7516, "se": 1.7285, "desc": "style_axis -> delta_sentlen"},
+    "path_b": {"coef": 0.3711, "se": 0.0220, "desc": "delta_sentlen -> delta_fk | style_axis"}
+  },
+  "independent_verification": {
+    "passed_only_n122": {
+      "sobel_z": 2.1526,
+      "sobel_p": 0.031348,
+      "note": "Consistent passed_cf=True on both axes, using r15 text processing"
+    },
+    "all_pairs_n200": {
+      "sobel_z": 4.8871,
+      "sobel_p": 0.000001,
+      "note": "All 100+100 pairs, no passed_cf filter"
+    },
+    "mixed_n186_worker1_exact": {
+      "sobel_z": 3.3553,
+      "sobel_p": 0.000793,
+      "note": "Exact replication of Worker 1 using its text processing and data files"
+    }
+  },
+  "root_cause": "Worker 1 used verified_verbosity_filtered.jsonl (86 rows, pre-filtered to passed_cf=True) + verified_32b.jsonl (100 rows, NOT filtered). This created an inconsistent data universe: verbosity pairs are NLI-verified but 64 of 100 formality pairs are NOT NLI-verified. The inflated formality sample (100 vs correct 36) changes regression coefficients and reduces standard errors, yielding an artificially inflated Sobel z (3.36 vs correct 2.15). Secondary factor: different sentence-splitting regex between scripts also slightly shifts delta_sentlen values.",
+  "correct_value": {
+    "sobel_z": 2.15,
+    "sobel_p": 0.031,
+    "subset": "passed_only",
+    "n_total": 122,
+    "n_verb": 86,
+    "n_form": 36,
+    "rationale": "The paper's main analysis universe is NLI-verified (passed_cf=True) pairs throughout. The mediation analysis must use the same consistent universe. Sobel z=2.15 (p=0.031) is significant at alpha=0.05 but NOT at alpha=0.001 as the paper currently claims. The paper must be corrected from 'z=3.36, p<.001' to 'z=2.15, p=.031'."
+  },
+  "paper_impact": {
+    "severity": "HIGH — the mediation is still significant (p<.05) so the qualitative conclusion holds, but the p-value is off by ~40x. The paper overstates significance from p<.001 to p=.031.",
+    "action_required": "Update paper text: Sobel z=2.15, p=.031. Mediation is significant but modestly so. Consider also reporting the all_pairs result (z=4.89, p<.001) as a robustness check, clearly labeling the subset difference."
+  }
+}

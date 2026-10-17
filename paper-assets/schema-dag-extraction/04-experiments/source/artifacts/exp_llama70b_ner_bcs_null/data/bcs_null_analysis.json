@@ -1,0 +1,1 @@
+Full results on server: cqa1-38874:/root/schema-dag-extraction/artifacts/exp_llama70b_ner_bcs_null/bcs_null_analysis.json. Summary: count_6 r=-0.06 p=0.76 (null), count_12 r=-0.42 p=0.034 (borderline, Bonferroni p=0.069), pooled r=-0.13 p=0.36 (null). Cross-model: Qwen3 r=0.004, LLaMA-8B r=-0.12, LLaMA-70B r=-0.13.

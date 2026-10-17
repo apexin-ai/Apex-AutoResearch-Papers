@@ -1,0 +1,35 @@
+\section{Introduction}
+
+\emph{``What is the average height for a male?''} In our experiments, given a formal and a casual answer with verified identical content (natural language inference [NLI] entailment $= 0.993$), GPT-4o rates the casual variant \emph{higher} on a 1--10 Likert scale (8 vs.\ 5), yet consistently selects the formal variant in pairwise comparison.
+Same judge, same texts, opposite conclusions---and both answers say the same thing.
+This is not an isolated quirk.
+Surface-level style features alone explain most of the variance in judge scores \citep{feuer2025sos}, with 76--92\% of preferences originating from style cues \citep{li2026preference,soumik2026judging}.
+We term this pattern the \emph{Likert Blindspot}: the measurement-mode divergence where pairwise comparison detects statistically significant style sensitivity that Likert scoring misses on the same data.
+The divergence admits multiple non-exclusive explanations---measurement attenuation, format amplification \citep{jeong2025comparative}, or construct-level differences---which our controlled design bounds but cannot definitively resolve (\S\ref{sec:likert_pairwise}).
+
+LLM judges are central infrastructure for evaluation and alignment training, where judge preferences serve as reward signals in reinforcement learning from human feedback (RLHF) and direct preference optimization (DPO).
+Any systematic bias therefore propagates through both evaluation leaderboards and model development pipelines.
+Existing approaches address individual requirements---multi-dimensional style analysis \citep{casse2026concise,wang2026fairjudge}, interventional design \citep{reber2025rate}, population-level correction \citep{dubois2025lc}---but no single framework integrates per-axis decomposition, interventional identification, confound-structure analysis, and black-box applicability.
+Classical psychometrics establishes that pairwise comparison yields higher discriminability than absolute rating \citep{thurstone1927law,david1988method}; our power analysis (Figure~\ref{fig:power_curve}) is quantitatively consistent.
+In the LLM judge setting, this gap has \emph{per-axis} confound signatures---verbosity is style-dominated while formality is quality-confounded (Table~\ref{tab:gee})---a decomposition not previously applied in LLM judge evaluation.
+
+We propose Controlled Style Decomposition (CSD), combining NLI-gated content control, per-axis style decomposition, and position-controlled pairwise comparison.
+Inspired by interventional text analysis \citep{veitch2020adapting}, CSD operates in three stages: style-controlled rewriting along a single axis, NLI entailment verification, and bias measurement via forced-choice comparison.
+CSD requires no access to judge internals and applies post-hoc to any black-box judge.
+Our experiments demonstrate the Blindspot across four target judges from independent providers (GPT-4o, Qwen3-32B, Llama-3.3-70B, Gemini-2.5-Flash), a fifth judge (Claude Sonnet~4) with benchmark-dependent sensitivity, three benchmarks, and two primary style axes, with exploratory register evidence.
+On formality data, Likert yields non-significant effects while Bradley-Terry (BT) detects significant formal preferences (63--70\%, $p < 0.001$); verbosity shows even stronger effects across all four judges (70--77\%, $p < 0.001$), all invisible to Likert (Figure~\ref{fig:forest_plot}).
+
+Our contributions are threefold:
+\begin{itemize}
+    \item We provide the first per-axis demonstration that pairwise and Likert formats yield qualitatively divergent style-sensitivity profiles, replicated across four judges, three benchmarks, and two axes with position control (Table~\ref{tab:main_results}).
+    \item We decompose per-axis confound structures via generalized estimating equation (GEE) conditional analysis, revealing that verbosity bias is style-dominated while formality reflects joint style--quality confounding---a distinction invisible to aggregate metrics (Table~\ref{tab:gee}).
+    \item We release CSD as a black-box diagnostic requiring no access to model internals, applicable post-hoc to any judge (\S\ref{sec:method}).
+\end{itemize}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/pipeline_diagram.pdf}
+\vspace{-6pt}
+\caption{CSD pipeline overview. Numbers indicate sample attrition at each stage.}
+\label{fig:pipeline}
+\end{figure*}

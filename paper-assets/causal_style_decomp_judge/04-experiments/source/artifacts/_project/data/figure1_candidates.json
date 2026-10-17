@@ -1,0 +1,163 @@
+[
+  {
+    "sample_id": "mvp_0024",
+    "instruction": "Name a common cause of stress.",
+    "original_formality": "formal",
+    "original_response": "- Work and job-related stress\n- Relationships and interpersonal stress\n- Financial distress",
+    "casual_rewrite": {
+      "gpt4o_version": "- Work and job stress  \n- Relationship and people stress  \n- Money problems",
+      "llama70b_qwen32b_version": "- Work and job-related stress  \n- Relationship and people-related stress  \n- Money problems"
+    },
+    "nli_scores": {
+      "gpt4o": 0.9939,
+      "llama70b": 0.9933,
+      "qwen32b": 0.9933
+    },
+    "bertscore_cf": {
+      "gpt4o": 0.7482,
+      "llama70b": 0.7783,
+      "qwen32b": 0.7783
+    },
+    "judges": {
+      "gpt4o": {
+        "likert_original": 9,
+        "likert_counterfactual": 9,
+        "trial1_choice": "A",
+        "trial1_prefers_formal": true,
+        "trial2_choice": "B",
+        "trial2_prefers_formal": true,
+        "consistent": true,
+        "formal_wins": true
+      },
+      "llama70b": {
+        "likert_original": 8,
+        "likert_counterfactual": 8,
+        "trial1_choice": "A",
+        "trial1_prefers_formal": true,
+        "trial2_choice": "B",
+        "trial2_prefers_formal": true,
+        "consistent": true,
+        "formal_wins": true
+      },
+      "qwen32b": {
+        "likert_original": 7,
+        "likert_counterfactual": 7,
+        "trial1_choice": "A",
+        "trial1_prefers_formal": true,
+        "trial2_choice": "B",
+        "trial2_prefers_formal": true,
+        "consistent": true,
+        "formal_wins": true
+      }
+    },
+    "why_good_candidate": "NLI>=0.993 across all judges; Likert perfectly tied (9/9, 8/8, 7/7); formal wins pairwise consistently in both orderings across all 3 judges. Cleanest example: identical Likert yet unanimous pairwise formal preference."
+  },
+  {
+    "sample_id": "mvp_0048",
+    "instruction": "average height for a male",
+    "original_formality": "formal",
+    "original_response": "Yes, men are taller than women on average. The worldwide average height for men is 175 cm (69 inches, or 5 feet 9 inches), while the worldwide average height for women is 162 cm (64 inches, or 5 feet 4 inches).",
+    "casual_rewrite": {
+      "gpt4o_version": "Sure, men are generally taller than women. On average, guys around the world are about 175 cm tall—roughly 5 feet 9 inches—which is taller than the average woman's height of 162 cm, or about 5 feet 4 inches.",
+      "llama70b_qwen32b_version": "Yep, men are taller than women on average. The average height for guys around the world is 175 cm (69 inches, or 5 feet 9 inches), and for women, it's 162 cm (64 inches, or 5 feet 4 inches)."
+    },
+    "nli_scores": {
+      "gpt4o": 0.9930,
+      "llama70b": 0.9982,
+      "qwen32b": 0.9982
+    },
+    "bertscore_cf": {
+      "gpt4o": 0.8523,
+      "llama70b": 0.9476,
+      "qwen32b": 0.9476
+    },
+    "judges": {
+      "gpt4o": {
+        "likert_original": 5,
+        "likert_counterfactual": 8,
+        "trial1_choice": "A",
+        "trial1_prefers_formal": true,
+        "trial2_choice": "B",
+        "trial2_prefers_formal": true,
+        "consistent": true,
+        "formal_wins": true,
+        "note": "GPT-4o gives casual HIGHER Likert (8>5) yet still picks formal in pairwise — Likert-pairwise inconsistency"
+      },
+      "llama70b": {
+        "likert_original": 8,
+        "likert_counterfactual": 8,
+        "trial1_choice": "A",
+        "trial1_prefers_formal": true,
+        "trial2_choice": "B",
+        "trial2_prefers_formal": true,
+        "consistent": true,
+        "formal_wins": true
+      },
+      "qwen32b": {
+        "likert_original": 7,
+        "likert_counterfactual": 6,
+        "trial1_choice": "A",
+        "trial1_prefers_formal": true,
+        "trial2_choice": "B",
+        "trial2_prefers_formal": true,
+        "consistent": true,
+        "formal_wins": true
+      }
+    },
+    "why_good_candidate": "NLI>=0.993; all 3 judges pick formal in pairwise (consistent, both orderings). GPT-4o shows striking Likert-pairwise contradiction: rates casual 8 vs formal 5 in Likert, yet picks formal in pairwise. Good factual topic with clear numbers."
+  },
+  {
+    "sample_id": "mvp_0096",
+    "instruction": "Compare two methods to reduce carbon emissions.",
+    "original_formality": "formal",
+    "original_response": "One strategy that countries can use to reduce their carbon emissions is implementing carbon pricing. Carbon pricing systems place a fee or a cap-and-trade system on the release of greenhouse gases. This is effective because it makes carbon-emitting activities more expensive, thus encouraging them to move away from these practices and toward more sustainable alternatives such as renewable energy. Other strategies include investing in renewable energies, promoting energy efficiency, electrifying the transportation sector, and implementing better land management practices. All of these strategies have the potential to reduce emissions, as well as to help countries meet their climate change commitments.",
+    "casual_rewrite": {
+      "gpt4o_version": "One way countries can cut down on their carbon emissions is by putting a price on carbon. Carbon pricing works by charging a fee or using a cap-and-trade system for greenhouse gas emissions. This approach makes polluting activities costlier, which pushes businesses and individuals to switch to cleaner options like renewable energy. Other good moves include investing in clean energy, making buildings and appliances more efficient, switching to electric cars, and improving how we manage land. All these steps can help lower emissions and help nations stick to their climate goals.",
+      "llama70b_qwen32b_version": "One strategy countries can use to cut down on carbon emissions is carbon pricing. These systems either charge a fee or use a cap-and-trade approach for releasing greenhouse gases. It works because it makes emitting carbon more costly, pushing industries to shift away from those practices and toward cleaner options like renewable energy. Other methods include investing in renewables, boosting energy efficiency, moving to electric vehicles, and improving land management. All of these can help lower emissions and support countries in hitting their climate goals."
+    },
+    "nli_scores": {
+      "gpt4o": 0.9978,
+      "llama70b": 0.9985,
+      "qwen32b": 0.9985
+    },
+    "bertscore_cf": {
+      "gpt4o": 0.8445,
+      "llama70b": 0.8903,
+      "qwen32b": 0.8903
+    },
+    "judges": {
+      "gpt4o": {
+        "likert_original": 5,
+        "likert_counterfactual": 5,
+        "trial1_choice": "A",
+        "trial1_prefers_formal": true,
+        "trial2_choice": "A",
+        "trial2_prefers_formal": false,
+        "consistent": false,
+        "formal_wins": null,
+        "note": "GPT-4o inconsistent across orderings (position bias); prefers formal in trial1 but casual in trial2"
+      },
+      "llama70b": {
+        "likert_original": 6,
+        "likert_counterfactual": 6,
+        "trial1_choice": "A",
+        "trial1_prefers_formal": true,
+        "trial2_choice": "B",
+        "trial2_prefers_formal": true,
+        "consistent": true,
+        "formal_wins": true
+      },
+      "qwen32b": {
+        "likert_original": 6,
+        "likert_counterfactual": 6,
+        "trial1_choice": "A",
+        "trial1_prefers_formal": true,
+        "trial2_choice": "B",
+        "trial2_prefers_formal": true,
+        "consistent": true,
+        "formal_wins": true
+      }
+    },
+    "why_good_candidate": "NLI>=0.998 (highest); Likert tied across all judges; Llama70b+Qwen32b consistent formal preference in pairwise. GPT-4o inconsistent (position bias). Longer response shows bias persists for substantive content. Slightly weaker than mvp_0024 due to GPT-4o inconsistency."
+  }
+]

@@ -1,0 +1,31 @@
+TEMP07 PILOT RESULTS - Pythia-1.4B
+=====================================
+Temperature: 0.7 (temp_only decoding)
+Samples per depth: 500, Depths: d0-d5
+
+KEY METRIC - d1v2 AUC:
+  RF:  0.8378  (temp09 baseline: 0.8327, delta: +0.0051)
+  LR:  0.8031  (temp09 baseline: 0.7833, delta: +0.0198)
+
+6-class accuracy: 57.3% (chance: 16.7%)
+
+All RF pairwise AUC:
+  depth0_vs_depth1: 0.9981
+  depth0_vs_depth2: 1.0
+  depth0_vs_depth3: 1.0
+  depth0_vs_depth4: 0.9999
+  depth0_vs_depth5: 1.0
+  depth1_vs_depth2: 0.8378
+  depth1_vs_depth3: 0.9211
+  depth1_vs_depth4: 0.9259
+  depth1_vs_depth5: 0.9764
+  depth2_vs_depth3: 0.635
+  depth2_vs_depth4: 0.8396
+  depth2_vs_depth5: 0.902
+  depth3_vs_depth4: 0.5997
+  depth3_vs_depth5: 0.7553
+  depth4_vs_depth5: 0.6025
+
+Top features: p90_ppl (0.111), var_surprisal (0.101), mean_surprisal (0.087)
+
+CONCLUSION: No AUC inversion at τ=0.7. Depth separability is comparable to τ=0.9.

@@ -1,0 +1,171 @@
+{
+  "dataset": {
+    "name": "FewRel combined (exp1=110 + exp2=54 batches, 80-type pool)",
+    "n_batches": 164,
+    "n_unique_types": 80,
+    "original_r": -0.5178,
+    "original_R2": 0.2681,
+    "original_p": 1.2502070529685776e-12
+  },
+  "instance_sharing": {
+    "mean_pairwise_overlap": 0.218,
+    "fraction_pairs_with_overlap": 0.345,
+    "icc_shared_type_pairs": 0.2119,
+    "icc_independent_pairs": -0.0137
+  },
+  "design_effect": {
+    "avg_batches_per_type": 21.9,
+    "DEFF": 5.42,
+    "effective_n": 30.3,
+    "nominal_n": 164
+  },
+  "slope_standard_errors": {
+    "slope": -0.1923,
+    "ols_se": 0.025,
+    "ols_95ci": [
+      -0.2412,
+      -0.1434
+    ],
+    "hc1_se": 0.0255,
+    "hc1_95ci": [
+      -0.2423,
+      -0.1423
+    ],
+    "hc1_inflation": 1.02,
+    "cluster_robust_se": 0.0239,
+    "cluster_robust_95ci": [
+      -0.2392,
+      -0.1454
+    ],
+    "cluster_robust_inflation": 0.96,
+    "n_clusters": 81
+  },
+  "bootstrap_R2": {
+    "n_iterations": 10000,
+    "standard": {
+      "mean": 0.2731,
+      "ci_95": [
+        0.1451,
+        0.417
+      ],
+      "ci_width": 0.2719
+    },
+    "cluster": {
+      "mean": 0.2729,
+      "ci_95": [
+        0.1434,
+        0.4111
+      ],
+      "ci_width": 0.2678,
+      "width_change_pct": -1.5
+    }
+  },
+  "bootstrap_slope": {
+    "standard": {
+      "mean": -0.192,
+      "ci_95": [
+        -0.2407,
+        -0.1416
+      ],
+      "ci_width": 0.099
+    },
+    "cluster": {
+      "mean": -0.1915,
+      "ci_95": [
+        -0.236,
+        -0.1429
+      ],
+      "ci_width": 0.0931,
+      "width_change_pct": -6.0
+    }
+  },
+  "significance": {
+    "ols_t": -7.7,
+    "ols_p": 1.2501111257279263e-12,
+    "cluster_robust_t": -8.04,
+    "cluster_robust_p": 7.192690887336539e-12,
+    "significant_under_cluster_robust": true
+  },
+  "robustness_verdict": "ROBUST: BCS-accuracy slope remains significant (p<0.05) under all cluster-robust specifications tested (SE inflation range: 0.96x\u20130.97x). Bootstrap R\u00b2 CI width changes range from -6% to 6%. Despite high design effect (DEFF=5.4) from extensive type sharing, the BCS predictor contains sufficient independent signal across clusters to maintain robust inference.",
+  "sensitivity_analysis": {
+    "standard_bootstrap_R2_ci": [
+      0.142,
+      0.4193
+    ],
+    "standard_bootstrap_R2_width": 0.2774,
+    "by_threshold": {
+      "0.1": {
+        "n_clusters": 83,
+        "cluster_robust_se": 0.0243,
+        "se_inflation": 0.97,
+        "bootstrap_R2_ci": [
+          0.148,
+          0.4145
+        ],
+        "bootstrap_R2_width": 0.2665,
+        "p_cluster_robust": 1.1507683694844673e-11,
+        "width_change_pct": -3.9
+      },
+      "0.2": {
+        "n_clusters": 83,
+        "cluster_robust_se": 0.0243,
+        "se_inflation": 0.97,
+        "bootstrap_R2_ci": [
+          0.147,
+          0.4123
+        ],
+        "bootstrap_R2_width": 0.2653,
+        "p_cluster_robust": 1.1507683694844673e-11,
+        "width_change_pct": -4.3
+      },
+      "0.3": {
+        "n_clusters": 81,
+        "cluster_robust_se": 0.0239,
+        "se_inflation": 0.96,
+        "bootstrap_R2_ci": [
+          0.1479,
+          0.411
+        ],
+        "bootstrap_R2_width": 0.2631,
+        "p_cluster_robust": 7.192690887336539e-12,
+        "width_change_pct": -5.1
+      },
+      "0.5": {
+        "n_clusters": 80,
+        "cluster_robust_se": 0.0239,
+        "se_inflation": 0.96,
+        "bootstrap_R2_ci": [
+          0.1507,
+          0.4121
+        ],
+        "bootstrap_R2_width": 0.2614,
+        "p_cluster_robust": 7.636336007976752e-12,
+        "width_change_pct": -5.8
+      },
+      "0.7": {
+        "n_clusters": 80,
+        "cluster_robust_se": 0.0239,
+        "se_inflation": 0.96,
+        "bootstrap_R2_ci": [
+          0.1455,
+          0.4088
+        ],
+        "bootstrap_R2_width": 0.2633,
+        "p_cluster_robust": 7.636336007976752e-12,
+        "width_change_pct": -5.1
+      },
+      "0.9": {
+        "n_clusters": 80,
+        "cluster_robust_se": 0.0239,
+        "se_inflation": 0.96,
+        "bootstrap_R2_ci": [
+          0.1454,
+          0.4134
+        ],
+        "bootstrap_R2_width": 0.268,
+        "p_cluster_robust": 7.636336007976752e-12,
+        "width_change_pct": -3.4
+      }
+    }
+  }
+}

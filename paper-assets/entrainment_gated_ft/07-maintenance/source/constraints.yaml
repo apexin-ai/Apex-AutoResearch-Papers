@@ -1,0 +1,7 @@
+_next_id: 2
+constraints:
+- id: C001
+  added: 2026-05-18 05:44 UTC
+  summary: 'GPU 白名单: 仅允许使用 cuda:0 (westb-48145)'
+  scope: all
+  reason: 项目仅分配 1 张 RTX PRO 6000 (cuda:0)，防止误用其他 GPU

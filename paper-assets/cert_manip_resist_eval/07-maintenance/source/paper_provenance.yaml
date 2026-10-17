@@ -1,0 +1,176 @@
+paper:
+  title: ''
+  version: 35
+  generated_at: '2026-05-25T08:50:52.557548+00:00'
+claims:
+- id: C001
+  location:
+    section: threat_model
+    paragraph: 0
+    sentence: 0
+  text: 'SDPI bound: joint vulnerability satisfies η_joint ≤ min(1, K_eff · η_max)
+    under non-adaptive faults'
+  type: theoretical
+  evidence:
+  - type: theory
+    source: SDPI
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: threat_model
+    paragraph: 0
+    sentence: 0
+  text: Under adaptive adversaries, independent judges present a wider attack surface
+    — diversity expands the set of viable attack vectors rather than providing mutual
+    protection
+  type: theoretical
+  evidence:
+  - type: theory
+    source: BFT reversal mechanism
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: threat_model
+    paragraph: 0
+    sentence: 0
+  text: 'Weakest-Link Monotonicity: replacing a judge with a more vulnerable one can
+    only increase ASR under any adversary including adaptive ones'
+  type: theoretical
+  evidence:
+  - type: proof
+    source: Appendix proof
+  decisions: []
+  deprecated: false
+- id: C010
+  location:
+    section: threat_model
+    paragraph: 0
+    sentence: 0
+  text: 'Testable prediction: β₁ > 0 (theorem), β₂ > 0 under adaptive adversaries
+    (reversal mechanism); tested across 12 conditions with residualized K_eff'
+  type: testable_prediction
+  evidence:
+  - type: experiment
+    source: plan001_step1_full_v4
+  decisions: []
+  deprecated: false
+- id: C011
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: 455 unique 3-judge panels from 15 models across 6 families and 3 capability
+    tiers
+  type: methodology
+  evidence:
+  - type: design
+    source: C(15,3)=455
+  decisions: []
+  deprecated: false
+- id: C013
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: '12 experimental conditions: 2 benchmarks (MMLU, ARC) x 6 attack types'
+  type: methodology
+  evidence:
+  - type: design
+    source: experimental design
+  decisions: []
+  deprecated: false
+- id: C016
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: Log-log OLS regression with FDR correction and dominance analysis to decompose
+    predictor contributions
+  type: methodology
+  evidence:
+  - type: method
+    source: statistical framework
+  decisions: []
+  deprecated: false
+- id: C020
+  location:
+    section: methodology
+    paragraph: 0
+    sentence: 0
+  text: '4 aggregation methods compared: majority vote, accuracy-weighted, threshold,
+    Bayesian calibration'
+  type: methodology
+  evidence:
+  - type: design
+    source: aggregation comparison D016
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: η_max remains significant in ≥10/12 conditions under all 4 aggregation methods
+  type: empirical
+  evidence:
+  - type: experiment
+    exp_id: plan001_step1_full_v4
+    metric: eta_max_sig_counts
+  decisions: []
+  deprecated: false
+- id: C023
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: Bayesian calibration suppresses K_eff significance from 12/12 to 5/12 and
+    flips β direction in 3 conditions
+  type: empirical
+  evidence:
+  - type: experiment
+    exp_id: plan001_step1_full_v4
+    metric: keff_sig_bayesian
+  decisions: []
+  deprecated: false
+- id: C026
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: R² drops from 0.433 (majority) to 0.141 (Bayesian) — Bayesian homogenizes
+    ASR distribution
+  type: empirical
+  evidence:
+  - type: experiment
+    exp_id: plan001_step1_full_v4
+    metric: r2_comparison
+  decisions: []
+  deprecated: false
+- id: C030
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Two-pronged defense needed: robustness-first selection (η_max) + Bayesian
+    aggregation (K_eff)'
+  type: prescriptive
+  evidence:
+  - type: experiment
+    exp_id: plan001_step1_full_v4
+  decisions: []
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 12/12
+  claims: 12
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 12
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-25T13:56:24.184426+00:00'

@@ -1,0 +1,25 @@
+{
+  "experiment": "plan_015_c4_supplement",
+  "data_source": "allenai/c4 (en, validation)",
+  "model_cell": "pythia_nucleus",
+  "feature_model": "pythia-1.4b",
+  "rf_config": {"n_estimators": 200, "seed": 42},
+  "cv_accuracy": {"mean": 0.7878, "std": 0.0056},
+  "n_c4_passages": 5000,
+  "trunc_len": 507,
+  "min_tokens": 100,
+  "c4_d0_prediction_rate": 79.76,
+  "c4_prediction_distribution": {"d0": 3988, "d1": 984, "d2": 17, "d3": 11},
+  "c4_prediction_pct": {"d0": 79.76, "d1": 19.68, "d2": 0.34, "d3": 0.22},
+  "c4_mean_prob": {"d0": 0.8, "d1": 0.1493, "d2": 0.0356, "d3": 0.0151},
+  "calibration_table": {
+    "c4_web": {"n_samples": 5000, "pred_pct": {"d0": 79.76, "d1": 19.68, "d2": 0.34, "d3": 0.22}},
+    "wikitext": {"n_samples": 546, "pred_pct": {"d0": 100.0}},
+    "controlled_d0": {"n_samples": 5000, "pred_pct": {"d0": 100.0}},
+    "controlled_d1": {"n_samples": 5000, "pred_pct": {"d1": 99.96}},
+    "controlled_d2": {"n_samples": 5000, "pred_pct": {"d2": 99.94}},
+    "controlled_d3": {"n_samples": 5000, "pred_pct": {"d3": 99.9}}
+  },
+  "n_misclassified_d1plus": 1012,
+  "comparison_with_wikitext": {"wikitext_d0_rate": 100.0, "c4_d0_rate": 79.76}
+}

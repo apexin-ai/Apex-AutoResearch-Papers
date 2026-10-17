@@ -1,0 +1,17 @@
+Plan 001 API Model Availability Results
+
+Server path: /root/cert_manip_resist_eval/artifacts/results/api_model_availability.json
+Endpoint: http://47.94.22.126/v1 (requires Bearer token)
+
+Available API models (13):
+- OpenAI GPT: gpt-4o-mini, gpt-4o, gpt-4.1, gpt-4.1-mini, gpt-4.1-nano
+- OpenAI GPT-5: gpt-5.4-mini, gpt-5.5
+- OpenAI o-series: o4-mini
+- Claude: claude-sonnet-4, claude-opus-4, claude-3-haiku
+- Gemini: gemini-2.5-flash, gemini-2.5-pro
+
+Unavailable: claude-3-5-sonnet (use claude-sonnet-4), gemini-1.5-pro/2.0-flash (use 2.5 versions), DeepSeek all unavailable
+
+Local AWQ models (6): Qwen2.5-72B/32B/14B, Llama-3.1-70B/8B, Mistral-Large-2407
+
+Note: /v1/models only lists 118 OpenAI models; Claude/Gemini routed via proxy but not in catalog.

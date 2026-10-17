@@ -1,0 +1,1019 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{sec:discussion} has no matching \\label",
+          "location": "background.tex:58"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:smart_compress_setup} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:openvla_pertask} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:smart_compress_results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:discussion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:training_hyperparams} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:per_task} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai_disclosure} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:cv} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:openvla_results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:connector_analysis} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:smolvla_results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:models} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:smolvla_arch} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:diagnostic_metrics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:results_combined} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:setup_overview} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:full_results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related_work} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:libero_bench} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:supplementary_figures} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:diagnostic} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:entanglement_and_gap} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:limitations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:background} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:offline_error} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:vtr} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:confounders} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:cliff_model} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:learned_compression} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cost_benefit} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:scaling_law} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:taxonomy_overview} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:cross_suite} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:entropy_details} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:mlp_adapter} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:pi05_long_multiseed} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:vtr_recovery} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:openvla_arch} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experimental_setup} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cross_suite} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:offline_disconnect} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:attention_pruning} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:vtr_full} is never referenced",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "1 critical, 48 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "analysis.tex",
+          "role": "result",
+          "num_numbers": 9,
+          "num_cites": 0
+        },
+        {
+          "file": "background.tex",
+          "role": "other",
+          "num_numbers": 3,
+          "num_cites": 7
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "experimental_setup.tex",
+          "role": "other",
+          "num_numbers": 14,
+          "num_cites": 12
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 195,
+          "num_cites": 5
+        },
+        {
+          "file": "experiments_deprecated.tex",
+          "role": "other",
+          "num_numbers": 37,
+          "num_cites": 6
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 0,
+          "num_cites": 11
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 33,
+          "num_cites": 8
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 22
+        },
+        {
+          "file": "results.tex",
+          "role": "result",
+          "num_numbers": 244,
+          "num_cites": 10
+        },
+        {
+          "file": "results_v2.tex",
+          "role": "other",
+          "num_numbers": 224,
+          "num_cites": 10
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.7, 'experiments' reports 0.75.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.9, 'experiments' reports 0.95.",
+          "location": "analysis,experiments"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.7, 'results' reports 0.70.",
+          "location": "analysis,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.9, 'results' reports 0.976.",
+          "location": "analysis,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.9, 'results' reports 0.90.",
+          "location": "analysis,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.9, 'results' reports 0.96.",
+          "location": "analysis,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.9, 'results' reports 0.95.",
+          "location": "analysis,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'analysis' reports 0.5, 'results' reports 0.50.",
+          "location": "analysis,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.151, 'results' reports 0.15.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.151, 'results' reports 0.1.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.85, 'results' reports 0.8.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.15, 'results' reports 0.151.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.15, 'results' reports 0.1.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.7, 'results' reports 0.70.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.314, 'results' reports 0.3.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.3, 'results' reports 0.314.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.3, 'results' reports 0.30.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.75, 'results' reports 0.7.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.0, 'results' reports 0.038.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.0, 'results' reports 0.055.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.0, 'results' reports 0.018.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.0, 'results' reports 0.06.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.055, 'results' reports 0.0.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.9, 'results' reports 0.976.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.9, 'results' reports 0.90.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.9, 'results' reports 0.96.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.9, 'results' reports 0.95.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.5, 'results' reports 0.50.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.215, 'results' reports 0.2.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.49, 'results' reports 0.4.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "precision_mismatch",
+          "message": "Result sections disagree on precision: 'experiments' reports 0.95, 'results' reports 0.9.",
+          "location": "experiments,results"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'abnar2020quantifying' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'alayrac2022flamingo' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'bouthillier2024negative' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'brohan2023rt1' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'brohan2023rt2' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'chen2023sparsevit' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'chen2024internvl' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'chen2024internvl25' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'chi2023diffusionpolicy' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'gao2024miniinternvl' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ghosh2024octo' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'jaegle2021perceiver' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2024roboflamingo' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2024tokenpacker' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'liu2024llava15' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'mees2022calvin' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'meng2022adavit' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'openxembodiment2024' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'oquab2024dinov2' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ryoo2021tokenlearner' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'su2024roformer' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wen2024tinyvla' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'xiao2024streamingllm' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zeng2023transformers_tsf' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhang2023h2o' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhang2024fastervlm' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zitkovich2023rt2' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\sim"
+            ],
+            "analysis": [
+              "\\Delta",
+              "\\approx",
+              "\\leq",
+              "\\pi"
+            ],
+            "background": [
+              "\\times"
+            ],
+            "experimental_setup": [
+              "\\in",
+              "\\pi",
+              "\\pm",
+              "\\sim",
+              "\\times"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\approx",
+              "\\geq",
+              "\\in",
+              "\\leq",
+              "\\pi",
+              "\\pm",
+              "\\sim",
+              "\\times"
+            ],
+            "introduction": [
+              "\\sim"
+            ],
+            "limitations": [
+              "\\leq",
+              "\\pi"
+            ],
+            "method": [
+              "\\Delta",
+              "\\approx",
+              "\\cdot",
+              "\\colon",
+              "\\dagger",
+              "\\in",
+              "\\ldots",
+              "\\lfloor",
+              "\\mu",
+              "\\pi",
+              "\\pm",
+              "\\rfloor",
+              "\\sigma",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "results": [
+              "\\Delta",
+              "\\S",
+              "\\approx",
+              "\\dagger",
+              "\\ddagger",
+              "\\geq",
+              "\\in",
+              "\\leq",
+              "\\pi",
+              "\\pm",
+              "\\rightarrow",
+              "\\sigma",
+              "\\sim",
+              "\\times"
+            ],
+            "results_v2": [
+              "\\Delta",
+              "\\S",
+              "\\approx",
+              "\\dagger",
+              "\\ddagger",
+              "\\in",
+              "\\leq",
+              "\\pi",
+              "\\pm",
+              "\\rightarrow",
+              "\\sim",
+              "\\times"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 58,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-2/projects/importance_margin_vla_compress/docs/_audit_compile_7r2yz4f0",
+        "main_tex": "main.tex",
+        "log_tail": "(pdftex.def)             Requested size: 337.86465pt x 122.2602pt.\n [19] [20]\nUnderfull \\vbox (badness 10000) has occurred while \\output is active []\n\n [21 <./figures/paper/fig_crosssuite.pdf> <./figures/paper/fig_token_heatmap.pd\nf>]\n[22 <./figures/paper/fig_cliff_model.pdf>] [23]\n<figures/paper/fig_entropy_layers.pdf, id=916, 237.60959pt x 172.44174pt>\nFile: figures/paper/fig_entropy_layers.pdf Graphic file (type pdf)\n<use figures/paper/fig_entropy_layers.pdf>\nPackage pdftex.def Info: figures/paper/fig_entropy_layers.pdf  used on input li\nne 696.\n(pdftex.def)             Requested size: 397.48499pt x 288.4871pt.\n\nUnderfull \\vbox (badness 10000) has occurred while \\output is active []\n\n [24]\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 7\n13.\n\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\n) [25]\nUnderfull \\vbox (badness 10000) has occurred while \\output is active []\n\n [26]\n[27 <./figures/paper/fig_entropy_layers.pdf>]\nUnderfull \\vbox (badness 10000) has occurred while \\output is active []\n\n [28]\nUnderfull \\vbox (badness 2818) has occurred while \\output is active []\n\n [29]\n[30]\nUnderfull \\vbox (badness 3240) has occurred while \\output is active []\n\n [31]\n[32]) [33] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: DEBBC39666CB415185EA124933B1143A;11222.\n ) \nHere is how much of TeX's memory you used:\n 13598 strings out of 469438\n 215601 string characters out of 5468411\n 661704 words of memory out of 5000000\n 41862 multiletter control sequences out of 15000+600000\n 655259 words of font info for 96 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,14n,93p,1582b,631s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb\n></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cmextra/cmmib9.pfb></usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\nnts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c\nmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/\nutmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (33 pages, 1299516 bytes).\nPDF statistics:\n 1192 PDF objects out of 1200 (max. 8388607)\n 853 compressed objects within 9 object streams\n 193 named destinations out of 1000 (max. 500000)\n 522 words of extra memory for PDF output out of 10000 (max. 10000000)\n",
+        "error": "",
+        "pages": 33,
+        "warnings": [
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):"
+        ]
+      },
+      "pages": 33,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Underfull \\vbox (badness 5563) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 6252) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 2818) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 3240) has occurred while \\output is active []"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "critical",
+      "dimension": "叙事一致性",
+      "message": "experiments.tex:29 引用 Section~\\ref{sec:analysis} 指向 OpenVLA scoring crossover 分析，但 \\label{sec:analysis} 定义在 conclusion.tex:3（与 \\section{Conclusion} 共标签）。读者跳转到 Conclusion 而非实际分析内容。这是一个残留的交叉引用错误——分析内容已合并入 Experiments 但旧标签指向了 Conclusion。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "写作规则",
+      "message": "limitations.tex 仅 55 词（3 句），远低于 CoRL 2026 要求的实质性 Limitations 段（建议 ≥150 词，≥2 个 distinct limitations）。CoRL 2026 明确要求 Limitations section 计入 8 页限制，当前内容不足以满足 \"explicitly describing limiting assumptions, failure modes, and other limitations\" 的要求。缺失的关键限制：(1) 所有模型在 backbone/encoder/fusion 上也不同，无法因果隔离 connector 效应（appendix 提到但主文未写）；(2) 仅 LIBERO 仿真无真实机器人验证；(3) CV 是相关性非因果关系；(4) VTR 训练成本约 6.5h/config 对快速原型是障碍。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "叙事一致性",
+      "message": "Conclusion（conclusion.tex:5）仅一段，基本重述 Abstract 的 claim 而无更高层次解读。未提及论文发现对 VLA 设计社区的影响（如 connector 设计新方向）、未对 inverted-U 现象给出更深解释、未讨论 CV diagnostic 的适用边界。作为 Conclusion 过于单薄，更像 Summary。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "abstract.tex:2 含 2 处 LaTeX em-dash（---）：\"outcomes---from\" 和 \"diagnostic---the\"。em-dash 是最显著的 AI 写作标志，应改为逗号、括号或拆分句子。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "introduction.tex:14 \"pruning---removing\"，introduction.tex:16 \"connectors---linear ... pixel-shuffle ... and learned encoders\"，introduction.tex:18 \"safe---importance-based\"。正文 Introduction 有 3+ 处 em-dash。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "method.tex:7 \"norms---the ratio\"，method.tex:30 \"informative---L2\"。Method 中 2 处 em-dash。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "experiments.tex:84 \"sharing---each output token's receptive field\"。Experiments 中 1 处 em-dash。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "conclusion.tex:5 \"safe---the importance margin\"。Conclusion 中 1 处 em-dash。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "appendix.tex 中多处 em-dash（至少 5 处以上）。总计主文+附录约 15+ 处 em-dash，应全部消除。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "experiments.tex:84 使用 filler word \"Notably\"（\"Notably, X-VLA's BART encoder is also entangling\"），应删除直接陈述。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "主文无 Discussion section。Extended Discussion 仅在 appendix（app:extended_discussion）。OpenVLA scoring crossover、inverted-U 的更深机制解读、position encoding 的 V-shape recovery 等核心发现的高阶讨论仅在 appendix 中。审稿人可能认为正文缺少对结果的反思性讨论。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "实验严谨性",
+      "message": "主结果表（Table 2）大部分条件为 single seed（仅 π₀.₅ Long 有 n=5，VTR 有 n=3）。limitations.tex 提到了这一点但过于简略。对于 claim \"strongest predictor\" 这一强度级别，更多 multi-seed 数据会增强可信度。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Claim强度",
+      "message": "abstract.tex:2 使用 \"wildly divergent outcomes\"——\"wildly\" 过于口语化/情绪化，建议改为 \"starkly divergent\" 或去掉副词直接写 \"divergent outcomes\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "abstract.tex 声称 \"recovers baseline performance at 75% compression\"，但 experiments.tex Table 3 显示 VTR M=32 达 60.1±1.3%，对比的 baseline 是 LoRA reproduction (44.8%) 而非 official checkpoint (59.2%)。Abstract 中 \"baseline\" 的含义不够明确，审稿人可能误读为 official baseline。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "贡献-范围对齐",
+      "message": "Intro contribution (3) 包含 \"mechanistic evidence that position disruption drives failure\"——这在 Sec 4.4 有验证（zero-mask ablation），但 ablation 仅在 π₀.₅ 一个模型上做了（experiments.tex:96 明确说\"This ablation targets π₀.₅\"）。声称 \"position disruption, not information loss, is the binding constraint\"（abstract, conclusion）基于单模型 ablation 偏强。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "所有核心符号（CV, k, N, M, Δ, SR, pp）在首次使用时有定义，全文使用一致。"
+    },
+    {
+      "severity": "info",
+      "dimension": "术语",
+      "message": "VLA 在 abstract:2 首次出现时已展开定义。CV 在 abstract 中有解释。VTR 在 method.tex:71 首次定义。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "超参（Appendix Table tab:training_hyperparams）、GPU型号（RTX 4090 D）、训练时间（~6h43m）、数据集细节均已披露。可复现性良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节过渡",
+      "message": "Introduction → Related Work → Method → Experiments 过渡自然。Method 末尾（VTR）到 Experiments 衔接良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "未发现 \"Furthermore/Moreover/Additionally\" 连续使用、\"delve/leverage/utilize\" 等黑名单词、过度短段落。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "sections/analysis.tex:2 和 sections/experiments.tex:2 包含 `% Experiment IDs (provenance):` 注释，但这些文件未被 main.tex \\input（实际编译的是根目录下的同名文件），不会出现在编译产物中。无风险。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Related Work",
+      "message": "采用主题归纳式（ViT pruning / VLM+VLA efficiency / Concurrent / Vision connectors），非堆砌式。结构清晰，但 VLMs/VLAs 段引用密度较高（13 篇连续列举），可考虑精简为代表性引用。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "critical",
+      "dimension": "page 11",
+      "message": "引用页尾部约 85% 为空白。仅 2 条引用 ([32]-[33]) 后页面完全空白，Appendix 从第 12 页才开始。严重浪费页面空间，视觉上极不专业。建议让 Appendix 紧跟引用结束处开始（使用 \\clearpage 前检查是否必要），或调整引用格式缩减空间"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 3",
+      "message": "Figure 2（Vision connector architectures）内部组件标签字号过小。架构框内的 \"Linear Projection\"、\"Pixel Shuffle\"、\"Token → Action\" 等标签在打印尺寸下接近可读性下限（估计 ~6-7pt）。建议将子图标签字号提升至 ≥8pt，或简化图中文字"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 2",
+      "message": "Figure 1(a) The Puzzle 部分的 connector 内部结构示意图中，部分标签（如 connector 名称、箭头标注）字号偏小。整体信息传达清晰，但细节标注需放大才能在双栏打印时舒适阅读"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 6",
+      "message": "Figure 3 线图的 legend 条目字号偏小，4 条线的 legend 文字在双栏宽度下辨识度有限。建议增大 legend 字号或将 legend 移至图外"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 33",
+      "message": "末页（Appendix 最后一页）约 55% 为空白。Table 27 + AI Disclosure 仅占页面上部 ~40%。建议将前面 Appendix 内容适当后移填充，或合并至上一页"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "Limitations section（Section 6）仅约 4 行正文，内容覆盖了仿真限制、单种子限制、VTR 仅验证单模型三点，但对 failure modes 和 limiting assumptions 的描述偏浅。CoRL 2026 要求 \"explicitly describing limiting assumptions, failure modes, and other limitations\"——当前内容勉强达标但建议扩充"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 作为第一个 display item 出现在第 2 页，位置良好。传达了核心 message（不同 connector 对 pruning 的敏感度差异 + 诊断方法），Title-Abstract-Figure 1 三者故事一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "主体 8 页包含 5 figures + 3 tables = 8 个 display items，密度 1.0/页，对实证为主的论文而言密度合理"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "第 5 页为纯文本页（无 figure/table），但包含公式且第 4 页有 Table 1、第 6 页有 Figure 3 + Table 2，未构成连续 2 页纯文本，节奏可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "所有表格均使用 booktabs 风格（\\toprule/\\midrule/\\bottomrule），无竖线，格式规范"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6,8",
+      "message": "Table 2、Table 3 最优结果已加粗标注 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-33",
+      "message": "全文公式渲染正确，未发现 LaTeX 残留错误或乱码"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-33",
+      "message": "未发现内容溢出 margin，页面边距正常"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-33",
+      "message": "Section heading 未发现孤悬页底现象"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9-10",
+      "message": "引用编号连续 [1]-[33]，未发现 [?] 未解析引用，格式统一"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-33",
+      "message": "全文配色方案一致（蓝/橙/绿系），无纯红绿对比，色盲友好性良好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2,3",
+      "message": "Figure 1 和 Figure 2 的 caption 具备自包含性，不读正文可理解图表内容"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "Float 位置合理，figure/table 均出现在首次引用附近，无严重漂移"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "CoRL 2026 要求的 Limitations section 存在于第 8 页（在 8 页主体限制内），格式合规。但内容深度建议加强（见 page 8 warning）"
+    }
+  ],
+  "counts": {
+    "critical": 5,
+    "warning": 144,
+    "info": 20
+  },
+  "error": "",
+  "timestamp": "2026-05-29T10:16:58.867551+00:00"
+}

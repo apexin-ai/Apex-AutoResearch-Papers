@@ -1,0 +1,10 @@
+See results/lr_cross_strategy_zscore/lr_zscore_results.json on gpu-6000pro-2.
+
+Key temp09 holdout results (the critical case):
+- Pythia-1.4B: raw=0.631, scaler=0.518, zscore=0.721
+- GPT-2 XL: raw=0.500, scaler=0.238, zscore=0.561
+- OLMo-1B: raw=0.500, scaler=0.191, zscore=0.699
+
+Paper claimed GPT-2 XL 0.13→0.68, OLMo 0.25→0.83.
+Actual: GPT-2 XL scaler→zscore = 0.238→0.561, OLMo = 0.191→0.699.
+Direction correct (z-score recovers), but magnitudes need correction.

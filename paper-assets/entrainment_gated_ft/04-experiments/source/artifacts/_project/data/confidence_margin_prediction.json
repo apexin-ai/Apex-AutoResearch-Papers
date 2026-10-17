@@ -1,0 +1,16 @@
+See server: westb-48145:/root/entrainment_gated_ft/results/a2_prediction_framework/confidence_margin_prediction.json
+
+SUMMARY:
+- Within-arch helped AUC: 0.6415 ± 0.0834 (n=12)
+- Within-arch hurt AUC: 0.5714 ± 0.1054 (n=12)
+- Transfer helped AUC: 0.6422 ± 0.0826 (n=12)
+- Transfer hurt AUC: 0.5809 ± 0.0958 (n=12)
+- Specificity delta: helped=-0.0007, hurt=-0.0095
+
+Per-benchmark within-arch AUC (helped / hurt):
+- LAMBADA: GDN 0.75/0.73, RetNet 0.75/0.74, HGRN2 0.76/0.75
+- HellaSwag: GDN 0.56/0.51, RetNet 0.54/0.51, HGRN2 0.55/0.52
+- ARC-Easy: GDN 0.71/0.60, RetNet 0.67/0.57, HGRN2 0.66/0.54
+- PIQA: GDN 0.56/0.47, RetNet 0.60/0.47, HGRN2 0.58/0.45
+
+Cross-arch transfer AUC ≈ within-arch AUC across all conditions → zero architecture specificity.

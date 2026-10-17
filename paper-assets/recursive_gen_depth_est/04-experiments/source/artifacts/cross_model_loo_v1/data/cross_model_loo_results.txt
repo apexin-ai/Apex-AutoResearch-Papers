@@ -1,0 +1,4 @@
+Hold-out Pythia: acc=0.6242 [0.6206,0.6282] d1v2=0.5617 d2v3=0.6534 recall: d0=1.0 d1=0.493 d2=0.2677 d3=0.7363
+Hold-out OLMo: acc=0.6921 [0.6886,0.6959] d1v2=0.7687 d2v3=0.6862 recall: d0=0.9925 d1=0.7549 d2=0.4327 d3=0.5883
+Hold-out GPT-2 XL: acc=0.6756 [0.6719,0.6792] d1v2=0.8157 d2v3=0.6639 recall: d0=0.9853 d1=0.7465 d2=0.5255 d3=0.445
+Mean 4-class acc: 0.664. Full JSON at server: /root/autodl-tmp/recursive_gen_depth_est/results/cross_model_loo.json

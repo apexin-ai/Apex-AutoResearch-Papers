@@ -1,0 +1,6 @@
+Results on server: /root/autodl-tmp/recursive_gen_depth_est/results/w2_domain_bias/w2_domain_bias_v2_results.json
+
+Key results:
+- Sub-B LOGO mean accuracy: 72.1% (vs 72.0% standard CV), mean drop: -0.08pp
+- Sub-C: depth prediction 59-82%, seed group prediction ~10% (chance level)
+- Sub-A per_class_recall is train-set memorization (99.9-100%), not generalization metric

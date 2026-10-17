@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "analysis_date": "2026-05-21",
+    "purpose": "RE count-curve evaluation: none handling and in-schema-only accuracy analysis",
+    "datasets": ["FewRel (formal_full exp1)", "DocRED (phase2 curve)"],
+    "reviewer_question": "When gold relation is not in candidate set, what happens?"
+  },
+
+  "part_a_code_check": {
+    "summary": "Gold relation is ALWAYS in the candidate set. Samples with out-of-schema gold are excluded before inference.",
+
+    "sample_filtering": {
+      "mechanism": "batch_samples = [s for s in samples if s['relation_type'] in type_set]",
+      "files": [
+        "src/run_fewrel_formal.py:118 (run_re_extraction)",
+        "src/run_docred.py:225 (run_extraction)",
+        "src/run_docred_phase2.py:259 (stage_infer)",
+        "scripts/run_d051_count_curves_25.py:169",
+        "src/run_fewrel_v2_bcs.py:283"
+      ],
+      "effect": "For a count_K batch with K relation types, only samples whose gold relation is among those K types are included. Sample count scales proportionally with K."
+    },
+
+    "none_in_prompt": {
+      "allowed": true,
+      "prompt_text": "If none of the candidate relations apply, output: {\"relation\": \"none\"}",
+      "json_schema_enum": "sorted(relation_types) + [\"none\"]",
+      "files": [
+        "src/run_extraction.py:138 (build_json_schema_re) — enum includes 'none'",
+        "src/run_extraction.py:151 (build_prompt_v2_re) — prompt says 'if none apply'",
+        "src/run_docred.py:160 (build_prompt_docred) — same prompt pattern",
+        "src/run_docred.py:170 (build_json_schema_re) — same schema pattern"
+      ]
+    },
+
+    "accuracy_formula": {
+      "formula": "accuracy = correct / total",
+      "none_handling": "When model predicts 'none', it is ALWAYS wrong (gold is never 'none'). These count toward total but not correct.",
+      "code": "evaluate_re() in run_fewrel_formal.py:41 — if pred == gold: correct += 1; total += 1 for all samples",
+      "gold_none_count": 0,
+      "note": "No samples have ground_truth='none'. The 'none' option is a model escape hatch when it cannot identify the relation."
+    },
+
+    "verification": {
+      "fewrel_oos_gt": 0,
+      "docred_oos_gt": 0,
+      "verified_across": "All prediction files (fewrel_formal, fewrel_formal_full, fewrel_40rel_r4, exp_docred_confusability, phase2)"
+    }
+  },
+
+  "part_b_in_schema_accuracy": {
+    "conclusion": "in_schema_accuracy == original_accuracy for all count levels, because gold is always in the candidate set by construction.",
+
+    "fewrel_formal_full_exp1": {
+      "pool_size": 80,
+      "count_1":  {"total_samples": 960,  "in_schema_samples": 960,  "original_accuracy": 0.8573, "in_schema_accuracy": 0.8573, "none_pred_count": 137, "none_pred_rate": 0.1427, "accuracy_excl_none_pred": 1.0000},
+      "count_4":  {"total_samples": 240,  "in_schema_samples": 240,  "original_accuracy": 0.8667, "in_schema_accuracy": 0.8667, "none_pred_count": 16,  "none_pred_rate": 0.0667, "accuracy_excl_none_pred": 0.9286},
+      "count_8":  {"total_samples": 480,  "in_schema_samples": 480,  "original_accuracy": 0.8021, "in_schema_accuracy": 0.8021, "none_pred_count": 44,  "none_pred_rate": 0.0917, "accuracy_excl_none_pred": 0.8830},
+      "count_16": {"total_samples": 960,  "in_schema_samples": 960,  "original_accuracy": 0.6958, "in_schema_accuracy": 0.6958, "none_pred_count": 70,  "none_pred_rate": 0.0729, "accuracy_excl_none_pred": 0.7506},
+      "count_32": {"total_samples": 1920, "in_schema_samples": 1920, "original_accuracy": 0.6578, "in_schema_accuracy": 0.6578, "none_pred_count": 256, "none_pred_rate": 0.1333, "accuracy_excl_none_pred": 0.7590},
+      "count_64": {"total_samples": 3840, "in_schema_samples": 3840, "original_accuracy": 0.5424, "in_schema_accuracy": 0.5424, "none_pred_count": 550, "none_pred_rate": 0.1432, "accuracy_excl_none_pred": 0.6331},
+      "count_80": {"total_samples": 4800, "in_schema_samples": 4800, "original_accuracy": 0.5042, "in_schema_accuracy": 0.5042, "none_pred_count": 770, "none_pred_rate": 0.1604, "accuracy_excl_none_pred": 0.6005}
+    },
+
+    "fewrel_40rel_exp1": {
+      "pool_size": "40 (sampled from 80-rel pool)",
+      "count_1":  {"total_samples": 960,  "original_accuracy": 0.8573, "none_pred_count": 137},
+      "count_4":  {"total_samples": 240,  "original_accuracy": 0.8667, "none_pred_count": 16},
+      "count_8":  {"total_samples": 480,  "original_accuracy": 0.8021, "none_pred_count": 44},
+      "count_16": {"total_samples": 960,  "original_accuracy": 0.6969, "none_pred_count": 69},
+      "count_32": {"total_samples": 1920, "original_accuracy": 0.6578, "none_pred_count": 256},
+      "count_40": {"total_samples": 2400, "original_accuracy": 0.5883, "none_pred_count": 348}
+    },
+
+    "docred_phase2_curve": {
+      "pool_size": 96,
+      "curve_count_1":  {"total_samples": 25,   "in_schema_samples": 25,   "original_accuracy": 0.8800, "in_schema_accuracy": 0.8800, "none_pred_count": 3,   "none_pred_rate": 0.1200, "accuracy_excl_none_pred": 1.0000},
+      "curve_count_4":  {"total_samples": 100,  "in_schema_samples": 100,  "original_accuracy": 0.7700, "in_schema_accuracy": 0.7700, "none_pred_count": 17,  "none_pred_rate": 0.1700, "accuracy_excl_none_pred": 0.9277},
+      "curve_count_8":  {"total_samples": 194,  "in_schema_samples": 194,  "original_accuracy": 0.7732, "in_schema_accuracy": 0.7732, "none_pred_count": 32,  "none_pred_rate": 0.1649, "accuracy_excl_none_pred": 0.9259},
+      "curve_count_16": {"total_samples": 387,  "in_schema_samples": 387,  "original_accuracy": 0.5245, "in_schema_accuracy": 0.5245, "none_pred_count": 90,  "none_pred_rate": 0.2326, "accuracy_excl_none_pred": 0.6835},
+      "curve_count_32": {"total_samples": 780,  "in_schema_samples": 780,  "original_accuracy": 0.5218, "in_schema_accuracy": 0.5218, "none_pred_count": 196, "none_pred_rate": 0.2513, "accuracy_excl_none_pred": 0.6969},
+      "curve_count_64": {"total_samples": 1577, "in_schema_samples": 1577, "original_accuracy": 0.4242, "in_schema_accuracy": 0.4242, "none_pred_count": 385, "none_pred_rate": 0.2441, "accuracy_excl_none_pred": 0.5612},
+      "curve_count_96": {"total_samples": 2350, "in_schema_samples": 2350, "original_accuracy": 0.3872, "in_schema_accuracy": 0.3872, "none_pred_count": 431, "none_pred_rate": 0.1834, "accuracy_excl_none_pred": 0.4742}
+    }
+  },
+
+  "part_b_trend_analysis": {
+    "fewrel_monotonic": {
+      "sequence": [0.8573, 0.8667, 0.8021, 0.6958, 0.6578, 0.5424, 0.5042],
+      "strictly_monotonic": false,
+      "note": "count_1 (0.8573) < count_4 (0.8667) — slight uptick at low counts. From count_4 onward, strictly decreasing.",
+      "overall_trend": "Strong degradation trend preserved. The count_1→count_4 uptick is likely due to count_1 being a degenerate case (binary: is it this type or not) where 'none' is the only wrong answer."
+    },
+    "docred_monotonic": {
+      "sequence": [0.8800, 0.7700, 0.7732, 0.5245, 0.5218, 0.4242, 0.3872],
+      "strictly_monotonic": false,
+      "note": "count_4 (0.77) ≈ count_8 (0.7732), count_16 (0.5245) ≈ count_32 (0.5218) — flat segments but overall clearly decreasing.",
+      "overall_trend": "Strong degradation trend preserved."
+    },
+    "trend_consistent": true,
+    "explanation": "Since in_schema_accuracy == original_accuracy, the degradation trend is identical. Both datasets show clear performance degradation as candidate set size increases."
+  },
+
+  "supplementary_none_analysis": {
+    "finding": "The model outputs 'none' even though the gold relation IS in the candidate set. This is a false negative — the model fails to identify the correct relation from available options.",
+    "fewrel_none_rate_trend": "Roughly U-shaped: high at count_1 (14.3%, degenerate binary case), drops at count_4-16 (6.7-9.2%), then rises with count_32+ (13.3-16.0%)",
+    "docred_none_rate_trend": "Increases from 12% (count_1) to 25% (count_32), then drops slightly to 18% (count_96)",
+    "accuracy_excl_none_trend": "Also degrades with count, confirming that degradation is not solely driven by 'none' predictions. Even among samples where the model picks a real relation, accuracy drops.",
+    "rebuttal_value": "This decomposition (none-pred rate + accuracy-excl-none) provides a richer picture for the reviewer: performance degrades both because the model more often gives up (none) AND because it more often picks the wrong relation."
+  }
+}

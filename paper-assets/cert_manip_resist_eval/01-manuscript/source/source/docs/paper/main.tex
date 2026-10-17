@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\usepackage{float}
+\usepackage{placeins}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+\title{The Weakest Link Across Panel Sizes: Predictor Relevance\\Patterns in Multi-Judge LLM Evaluation under Adversarial Manipulation}
+
+\author{Anonymous}
+
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.7}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Multi-judge LLM evaluation panels assume that diversity strengthens robustness against adversarial manipulation. Recent work reports that 7-model committees reduce attack success rates from 50--68\% to 10--19\%, yet no existing analysis separates diversity from individual judge quality, two properties structurally confounded ($r{=}0.70$--$0.81$) because expanding family coverage inevitably introduces weaker judges. We regress panel attack success rate on weakest-link susceptibility ($\eta_{\max}$) and a pairwise-MI diversity index ($K_{\mathrm{eff}}$) across 15 models, six attack types, two benchmarks, and panel sizes $K \in \{3, 5, 7\}$. Two patterns emerge: (1)~diversity and vulnerability covary positively (pooled $\hat{\beta}_{\mathrm{std}}$: $0.286$--$0.353$, CI excludes zero), and (2)~$\eta_{\max}$ is significant at $K{=}3$ (pooled $\hat{\beta}_{\mathrm{std}}{=}0.243$) but non-significant at $K{\geq}5$ ($0.091$, $0.086$; CI crosses zero). Bayesian calibration nearly neutralizes composition effects ($R^2{\leq}0.17$). The diversity--capability confound precludes causal claims; all findings are associational\footnote{Code and data are available at \url{https://anonymous.4open.science/r/cert_manip_resist_eval-588E/}.}.
+\end{abstract}
+
+\input{introduction}
+\input{related_work}
+\input{threat_model}
+\input{methodology}
+\input{results}
+\input{analysis}
+\input{conclusion}
+
+\section*{Limitations}
+
+\textbf{Diversity--capability confound.} The $r{=}0.70$--$0.81$ correlation between diversity and capability prevents causal separation; capability-matched subsampling reduces but does not eliminate this confound (Pool~A $r{=}0.50$).
+\textbf{Inference sensitivity.} At $K{=}3$, $K_{\mathrm{eff}}$'s significance is method-dependent (OLS 12/12, bootstrap 8/12, fractional logit 9/12); $K_{\mathrm{eff}}$ vs.\ $\kappa$-diversity show opposite $K$-trends.
+\textbf{Scope.} Both benchmarks use multiple-choice formats; each attack uses 1--2 template variants; all API models were accessed via OpenRouter without version hashes.
+
+\bibliography{references}
+
+\input{appendix}
+\input{appendix_attacks}
+
+\end{document}

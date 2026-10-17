@@ -1,0 +1,17 @@
+Plan_016 Greedy Cardinality Ablation Results
+
+Method: greedy_constrained_max2bit_8
+Budget: 0.25, max_2bit: 8
+PPL: 11.2312
+Bit distribution: 8-bit=4, 4-bit=100, 2-bit=8
+Memory ratio: 0.2500
+Total distortion: 0.170428
+
+Comparison:
+  Greedy unconstrained: PPL=32.4467 (bits: 2=68, 4=30, 8=4, 16=10)
+  Greedy+max_2bit=8:    PPL=11.2312 (bits: 2=8, 4=100, 8=4)
+  MCKP constrained k=8: PPL=11.23   (bits: 2=8, 4=100, 8=4)
+  Delta (greedy_c - mckp): +0.0012
+
+Conclusion: Greedy+constraint produces IDENTICAL allocation to MCKP. 
+The contribution is entirely from the cardinality constraint, NOT the solver.

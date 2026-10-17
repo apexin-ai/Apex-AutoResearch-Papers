@@ -1,0 +1,6 @@
+Location: seetacloud-rtx6000:/root/cert_manip_resist_eval/artifacts/results/plan001/fractional_logit.json
+K3 frac_logit: eta 1/12, keff 0/12 | robust HC1: eta 9/12, keff 10/12 | clustered: eta 7/12, keff 4/12
+K5 frac_logit: eta 2/12, keff 4/12 | robust HC1: eta 12/12, keff 11/12 | clustered: eta 5/12, keff 9/12
+K7 frac_logit: eta 2/12, keff 7/12 | robust HC1: eta 12/12, keff 12/12 | clustered: eta 5/12, keff 10/12
+Direction concordance with OLS: 93.1% (5 flips out of 72)
+Default Binomial SE is conservative due to overdispersion. HC1 and clustered SE are the reliable variants.

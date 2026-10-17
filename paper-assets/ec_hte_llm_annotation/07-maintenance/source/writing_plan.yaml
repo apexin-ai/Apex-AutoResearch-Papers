@@ -1,0 +1,388 @@
+meta:
+  venue: EMNLP 2026
+  track: main (via ARR unified review)
+  template: ""
+  template_note: "ARR 统一审稿，使用 ACL 2026 LaTeX 模板（acl_latex）。需下载最新版本。"
+  page_limit: 8
+  reference_limit: unlimited
+  deadline: "2026-05-25"
+  commitment_deadline: "2026-08-02"
+  core_claim: >
+    Global correction of LLM annotation errors worsens subgroup-level CATE estimates
+    by 2-3x (median) due to an exact bias identity proportional to Δπ×Δτ; EC-HTE's
+    hierarchical Bayesian stratified correction eliminates this bias, with a computable
+    diagnostic criterion (LOO-CV AUC=0.833) predicting when stratified correction is needed,
+    and composition with PPCI achieving near-zero bias when both covariate and outcome errors coexist.
+  created_at: "2026-05-21T15:00:00Z"
+  story_arc:
+    hook: >
+      LLMs now annotate millions of social-science texts, but their error rates
+      vary up to 5x across demographic and textual subgroups — and existing debiasing
+      methods assume this variation doesn't exist.
+    gap: >
+      PPI/DSL correct population-level estimates assuming homogeneous error; PPCI extends
+      to conditional means but on the outcome side. No method addresses correction when the
+      mismeasured variable defines the heterogeneity structure itself.
+    insight: >
+      Global correction introduces systematic bias proportional to Δπ×Δτ — applying a
+      single pooled confusion matrix over-corrects low-error subgroups and under-corrects
+      high-error ones, making debiasing worse than doing nothing in ~50% of the parameter space.
+    mechanism: >
+      EC-HTE decomposes the correction into subgroup-stratified confusion matrix estimation
+      (with HB partial pooling for small samples) + CausalForestDML integration, and provides
+      a computable diagnostic to decide when this stratification is needed.
+    evidence: >
+      Global correction worsens subgroup CATE bias by 2-3x (median), up to 5.9x with
+      causal forests; EC-HTE reduces |bias| to 0.06 (vs naive 0.16); diagnostic AUC=0.833
+      on LOO-CV; EC-HTE+PPCI achieves bias=0.005 when both error types coexist.
+
+paper_outline:
+  - section: abstract
+    word_budget: 200
+    core_bullets:
+      - "Problem: LLM annotations increasingly used as effect modifiers in CSS heterogeneous treatment effect analysis, but misclassification rates vary systematically across subgroups"
+      - "Discovery: global correction introduces bias ∝ Δπ×Δτ (exact identity, R²=0.99), worsening subgroup CATE by 2-3x median, up to 5.9x with causal forests"
+      - "Method: EC-HTE — hierarchical Bayesian stratified correction + CausalForestDML + computable diagnostic (AUC=0.833)"
+      - "Complementarity: EC-HTE handles covariate error, PPCI handles outcome error; composition achieves bias=0.005 vs 0.178 for EC-HTE alone in dual-error setting"
+      - "Validation: synthetic (100-1000 MC) + semi-synthetic TweetEval sentiment (N=5000)"
+    dependencies: [experiments, method, theory]
+
+  - section: introduction
+    word_budget: 900
+    core_bullets:
+      - "Hook: LLMs replace human annotators at scale in CSS — sentiment, hate speech, stance — but error rates vary 5x across subgroups (Ashwin 2025; Gilardi 2023)"
+      - "Context: when LLM-annotated variable is the effect modifier defining heterogeneity structure, errors propagate directly to subgroup CATE estimates"
+      - "Gap: PPI/DSL correct population-level aggregates assuming homogeneous error; PPCI extends to conditional means but on outcome side; Mozer 2026 handles ATE with arm-specific rectifiers but not CATE; ForestIV handles regression but not CATE; no method addresses covariate-side effect-modifier misclassification in HTE"
+      - "Insight: we discover and formalize a previously unrecognized bias mechanism — global correction introduces bias ∝ Δπ×Δτ, making debiasing worse than doing nothing in ~50% of configurations"
+      - "Mechanism: EC-HTE uses HB stratified confusion matrix estimation + variance-adjusted CausalForestDML + computable diagnostic"
+      - "Contributions: [C1] bias decomposition identity (Δπ×Δτ product form), [C2] EC-HTE framework with boundary conditions, [C3] diagnostic criterion (AUC=0.833), [C4] EC-HTE+PPCI complementarity for dual-error scenarios, [C5] comprehensive synthetic + semi-synthetic validation"
+    dependencies: [experiments]
+    citation_hints:
+      - "LLM annotation: Gilardi 2023, Tornberg 2024, Ziems 2024"
+      - "Error heterogeneity: Ashwin 2025"
+      - "PPI/DSL: Angelopoulos 2023, Egami 2024"
+      - "Mozer 2026, Sui 2026 (PPCI)"
+      - "ForestIV: Bu 2023"
+      - "Classical ME: Fuller 1987, Carroll 2006"
+    figures: [fig1_bias_mechanism]
+
+  - section: related_work
+    word_budget: 600
+    core_bullets:
+      - "Cluster 1 (Classical Measurement Error): Fuller 1987, Carroll 2006 Ch.4, Gustafson 2003, Hu & Schennach 2008 — misspecified correction can amplify MSE (classical insight); our Δπ×Δτ identity is a CATE-specific quantification for effect-modifier misclassification"
+      - "Cluster 2 (Bayesian Annotation): Dawid & Skene 1979, Hovy 2013 MACE, Passonneau & Carpenter 2014, Paun 2018 — annotator confusion matrix estimation; we extend with hierarchical structure tied to causal inference, not just label aggregation"
+      - "Cluster 3 (HTE Methods): Athey & Imbens 2016, Wager & Athey 2018, Chernozhukov 2018 DML, Kennedy 2023 DR-learner, Künzel 2019 metalearners — assume clean covariates; our correction extends applicability to mismeasured effect modifiers"
+      - "Cluster 4 (LLM-as-Annotator): Gilardi 2023, Tornberg 2024, Ziems 2024, Pangakis 2023, Ashwin 2025 — document heterogeneous error patterns; none provide correction for downstream causal analysis"
+      - "Cluster 5 (PPI/DSL/CSS): Angelopoulos 2023 PPI, Egami 2024 DSL, Mozer 2026, Sui 2026 PPCI, Grimmer 2022 — population-level or outcome-side correction; Imai & Yamamoto 2010 addresses mediation ME but not effect-modifier misclassification defining HTE structure"
+      - "DIRECTIVE [D010]: Imai & Yamamoto (2010) must have a dedicated paragraph — they handle TREATMENT VARIABLE misclassification (arm dimension, affects ATE identification, needs IV/bounds), we handle EFFECT MODIFIER misclassification (subgroup dimension, affects HTE structure, needs mixing matrix correction)"
+    dependencies: [introduction]
+
+  - section: theory
+    title: "Bias Decomposition: When Debiasing Hurts"
+    word_budget: 800
+    core_bullets:
+      - "Setup: CATE τ(z) = E[Y(1)-Y(0)|Z=z] with mismeasured effect modifier Ẑ (K subgroups); global correction applies pooled confusion matrix C̄ to all subgroups"
+      - "Assumptions A1-A4: (A1) conditional independence of misclassification given true Z, (A2) non-degenerate subgroup confusion matrices det(C_k) ≠ 0, (A3) known subgroup proportions, (A4) overlap"
+      - "Proposition 1 (Bias Decomposition Identity): subgroup bias under global correction is exactly Σ_j (π̄_j - π_{k,j}) × (τ_j - τ̄) — product of misclassification heterogeneity and CATE heterogeneity. This is an EXACT identity at population level, NOT a bound"
+      - "Corollary (Multi-class Extension): K>2 generalization as formal Corollary — sum-of-products form; empirically verified with R²=0.97 for K=4"
+      - "Proposition 2 (Debiasing Can Hurt): constructive two-subgroup example where |bias_global| > |bias_naive| whenever low-error subgroup's π_k < π̄"
+      - "Finite-sample remainder term: R_n = O(1/√n_expert) from CM estimation noise; explicit dependence on sample size and CM estimation uncertainty"
+      - "Empirical verification: R²=0.99 (K=2), 50% of parameter space shows debiasing hurts, max amplification 2.86x (K=2) to 5.9x (K=4 CausalForest)"
+      - "NOTE: R² < 1.0 reflects finite-sample MC noise, not identity looseness"
+      - "HARD RULE: use 'bias decomposition identity' everywhere, NEVER 'bias bound'"
+    dependencies: []
+    registry_refs: [exp-002, exp-011]
+    figures: [fig2_heatmap]
+    notation_table:
+      Z: "true effect modifier (unobserved at scale)"
+      "Ẑ": "LLM-annotated effect modifier"
+      K: "number of subgroups"
+      "C_k": "confusion matrix for subgroup k"
+      "π_{k,j}": "P(Ẑ=j|Z=z) for subgroup k"
+      "π̄_j": "pooled (global) misclassification rate"
+      "τ(z)": "CATE for subgroup z"
+      "Δπ": "misclassification heterogeneity across subgroups"
+      "Δτ": "CATE heterogeneity across subgroups"
+
+  - section: method
+    title: "EC-HTE: Error-Corrected Heterogeneous Treatment Effects"
+    word_budget: 700
+    core_bullets:
+      - "Stage 1 — HB Confusion Matrix Estimation: Dirichlet-Multinomial hierarchical model with Gamma hyperprior on concentration; partial pooling across subgroups via shared hyperprior; Gibbs sampler specs [D009]: 4 chains, 4000 iterations, 2000 warmup, convergence criteria R̂<1.01 and ESS>845"
+      - "Stage 2 — Subgroup-Stratified Correction: per-subgroup CM inverse applied to outcome moments; corrected pseudo-outcomes Ỹ_k = C_k^{-1} × observed moments"
+      - "Assumption [D009: must state explicitly]: det(Ĉ_k) ≠ 0 for all k (confusion matrix invertibility required for CM inverse correction)"
+      - "Singularity guard [D009]: condition number κ(Ĉ_k) > 100 → automatic fallback to global correction for that subgroup; prevents numerical instability from near-singular estimated CMs"
+      - "Stage 3 — Variance-Adjusted CausalForestDML: honest splitting with corrected covariates; plug-in uncertainty approach — forest SE + M⁻¹ post-processing, SE propagation: se_c = sqrt(diag(M⁻¹ @ diag(se²) @ M⁻¹ᵀ)). LIMITATION: CM estimation uncertainty NOT propagated to forest SE; plug-in approximation reasonable at n_expert≥100"
+      - "Diagnostic Criterion: Δπ×Δτ product computed from pilot data (n_expert ≥ 50); threshold via LOO-CV; AUC=0.833 at subgroup level"
+      - "EC-HTE + PPCI Composition: EC-HTE as structured M⁻¹ correction for covariate error; PPCI rectifier for residual outcome error; composition achieves best-of-both in dual-error scenarios"
+      - "Boundary conditions: (i) n_expert/subgroup ≥ 25 for HB advantage; (ii) det(Ĉ_k) ≠ 0 with singularity guard κ>100→fallback; (iii) below boundary → stratified MLE preferred over HB"
+      - "Hyperpriors: Gamma(3,1) default for Dirichlet concentration α_0; sensitivity analysis shows <5% RMSE variation under 2× perturbation"
+    dependencies: [theory]
+    registry_refs: [exp-001, exp-003, exp-007]
+
+  - section: experiments
+    word_budget: 1800
+    core_bullets:
+      - "5.1 Experimental Setup and Data Generation [D009: DGP 完整描述是审稿硬要求]"
+      - "5.1.1 Synthetic DGP (fully specified): (a) Outcome generation — Y_i(t) = μ(X_i) + τ(Z_i)·t + ε_i, ε~N(0,σ²); (b) Treatment assignment — T_i ~ Bernoulli(e(X_i)) with known propensity; (c) CATE injection — τ(z) varies by true subgroup z with controlled Δτ between subgroups; (d) Misclassification — Ẑ_i ~ Multinomial(C_{z_i}) with subgroup-specific confusion matrices and controlled Δπ. Parameters: N=5000, K∈{2,4}, regime∈{extreme,moderate}, n_expert∈{50-2000}, 100 MC runs, symmetric misclassification"
+      - "5.1.2 Semi-synthetic DGP (TweetEval): real tweet corpus (N=5000 from 59K TweetEval sentiment), 4 subgroups by text features (has_hashtag × text_length), injected CATE heterogeneity preserving real subgroup proportions (S0~38%, S1~38%, S2~12%, S3~12%), controlled misclassification rates (S0=0.05, S1=0.10, S2=0.15, S3=0.25), 100 MC runs"
+      - "Baselines: naive (no correction), global (pooled CM), stratified MLE (per-subgroup CM, no pooling), HB EC-HTE (ours), PPCI (outcome-side), EC-HTE+PPCI (composition), DSL per-subgroup"
+      - "Metrics: |bias| (primary), RMSE, 95% CI coverage, debiasing-hurts indicator"
+      - "5.2 Bias Mechanism Verification (Claim 1): identity R²=0.99 (K=2), 0.97 (K=4); 50% of configs global hurts; K-dependent amplification — K=2 max 2.86x, K=4 max 2.41x in synthetic DIM"
+      - "5.3 EC-HTE Evaluation (Claim 2): HB beats MLE in 91.7% of configs; semi-synthetic TweetEval confirms pattern with real text subgroups; HB partial pooling helps mid-misclass subgroups (+21-40% RMSE) but blows up in extreme-misclass tiny subgroups (S3 n=50: 345-804% worse RMSE)"
+      - "5.3.1 CausalForest K-Dependence [D009: 单独一段]: CausalForest amplifies the debiasing-hurts effect due to nonlinear CATE estimation. K=2/extreme: global 2.7x worse than naive; K=4/extreme: global 5.9x worse (max across subgroups). ec_hte_forest |bias|=0.06 vs naive 0.16 vs global 0.11. Pattern consistent with DIM but magnitudes larger due to forest's sensitivity to covariate noise"
+      - "RMSE TRADEOFF DISCLOSURE [D009: Writing Requirement #11 硬要求]: ec_hte has higher RMSE than global in K=4/n≤100 (up to 3.5x) due to noisy per-subgroup CM estimation; bias is lower but variance higher. Tab1 must explicitly mark (†) all configs where ec_hte RMSE > global RMSE"
+      - "5.4 Diagnostic Criterion (Claim 3 = practical corollary of Theorem 1): 'The Δπ×Δτ product provides a computable diagnostic (subgroup-level AUC=0.833), validating Theorem 1 practical utility'; LOO-CV AUC=0.833 at subgroup level; correlation r=0.86 between Δπ×Δτ product and observed bias ratio"
+      - "5.5 Expert Budget Analysis: crossover where EC-HTE RMSE < global — K=2/extreme: n=250, K=4/extreme: n=1000, K=4/moderate: n=2000, K=2/moderate: never (global always better on RMSE). Budget recommendation: when diagnostic flags high heterogeneity, invest ≥250 expert labels for K=2, ≥1000 for K=4"
+      - "5.6 PPCI Complementarity (Claim 4): DGP C (both errors) — ec_hte_ppci bias=0.005, 35x better than ec_hte alone (0.178); DGP A (covariate only) — ec_hte_ppci = ec_hte (PPCI adds nothing); DGP B (outcome only) — ppci best; framing: complementary, not orthogonal"
+      - "[TODO exp-004] Real-data case study (UC Berkeley hate speech) — blocked on GPU; pattern consistency framing, NOT ground-truth benchmark. 完成后 Patch 补入 5.7 小节"
+    dependencies: [theory, method]
+    registry_refs: [exp-001, exp-002, exp-003, exp-005, exp-006, exp-007, exp-011]
+    tables: [tab1_main_results, tab2_ppci_complementarity]
+    figures: [fig3_diagnostic_roc, fig4_budget_crossover]
+
+  - section: conclusion
+    word_budget: 300
+    core_bullets:
+      - "Summary: identified exact bias identity (Δπ×Δτ) showing global correction can hurt; proposed EC-HTE with HB stratified correction + CausalForest + computable diagnostic; demonstrated complementarity with PPCI"
+      - "Practical takeaway: compute Δπ×Δτ from pilot → high product → use EC-HTE with n_expert ≥ 250-1000 depending on K; low product → global correction suffices"
+      - "EC-HTE advantage is conditional, not universal — honest about boundary conditions"
+    dependencies: [experiments, method]
+
+  - section: limitations
+    word_budget: 250
+    core_bullets:
+      - "Boundary: n_expert/subgroup < 25 → HB shrinkage can be harmful; recommend stratified MLE"
+      - "RMSE tradeoff at small n: lower bias but higher variance; practitioner must weigh bias-variance tradeoff"
+      - "Asymmetric CM untested [D009/RR-W6]: all experiments use symmetric misclassification DGP; real LLMs may exhibit asymmetric confusion patterns (e.g., higher false positive than false negative for certain categories). Validation with asymmetric CM is future work"
+      - "Discrete subgroup structure assumed known; continuous/latent subgroup discovery is future work"
+      - "Computational cost [D009/RR-Q9]: HB Gibbs sampler ~2.87s per MC run (4 chains × 4000 iter) vs MLE near-instantaneous; acceptable for offline calibration but may be prohibitive for online/streaming settings. Variational inference for large K is future work"
+    dependencies: [experiments]
+    note: "Mandatory section — does not count toward 8-page limit per EMNLP 2026 rules"
+
+visualization_plan:
+  - fig_id: fig1_bias_mechanism
+    type: conceptual
+    tool: paperbanana
+    description: "Bias mechanism schematic: how global (pooled) correction over-corrects low-error subgroups and under-corrects high-error ones, producing bias ∝ Δπ×Δτ"
+    narrative_intent: >
+      When LLM error rates differ across subgroups, applying a single pooled correction
+      systematically biases subgroup CATEs — over-correcting where error is low and
+      under-correcting where error is high — producing bias proportional to Δπ×Δτ.
+    design_notes:
+      - "Two-panel layout: LEFT shows two subgroups with different misclassification rates (π_low, π_high) and the pooled π̄ as a third line; arrows indicate over/under-correction direction"
+      - "RIGHT shows resulting CATE estimates: true τ(z) vs globally-corrected τ̂(z), with divergence highlighting where debiasing hurts"
+      - "Color semantics: safe green (#009E73) for low-error subgroup, vermillion (#D55E00) for high-error, neutral gray (#999999) for pooled/global"
+      - "Must be parseable in 5 seconds — minimal text, maximum visual clarity"
+      - "Include small formula callout: bias ∝ (π̄ - π_k) × (τ_j - τ̄)"
+    placement: introduction
+    aspect_ratio: "16:9"
+    data_source: "conceptual (no registry data)"
+
+  - fig_id: fig2_heatmap
+    type: statistical
+    tool: matplotlib
+    description: "Bias amplification heatmap: Δπ (x-axis) × Δτ (y-axis) showing bias ratio |bias_global|/|bias_naive|"
+    narrative_intent: >
+      The severity of global correction damage increases monotonically with both
+      misclassification heterogeneity (Δπ) and CATE heterogeneity (Δτ); the Δπ×Δτ
+      product captures this relationship with R²=0.99, and approximately half the
+      parameter space shows debiasing-hurts (ratio > 1).
+    design_notes:
+      - "Two panels side by side: K=2 (left) and K=4 (right) to show K-dependent amplification"
+      - "Diverging colormap with TwoSlopeNorm vcenter=1.0 — blue for 'debiasing helps' (ratio < 1), white at 1.0, red for 'debiasing hurts' (ratio > 1)"
+      - "Pattern A: bold contour line at ratio=1.0 dividing the two regimes, labeled 'debiasing helps' / 'debiasing hurts'"
+      - "Pattern J: path-effect text annotations on extreme cells (K=2: 2.86x, K=4: 2.41x in synthetic; K=4 CausalForest: 5.9x)"
+      - "R² annotation in corner of each panel"
+    data_source: "registry: exp-002"
+    placement: theory
+    aspect_ratio: "2:1"
+
+  - fig_id: fig3_diagnostic_roc
+    type: statistical
+    tool: matplotlib
+    description: "ROC curve for Δπ×Δτ diagnostic criterion at subgroup level, LOO-CV evaluated"
+    narrative_intent: >
+      The Δπ×Δτ product provides a practical, computable diagnostic (LOO-CV AUC=0.833)
+      for deciding when stratified correction is needed — practitioners can compute this
+      from a small pilot study before committing to the full EC-HTE pipeline.
+    design_notes:
+      - "Pattern C: dashed diagonal reference line at AUC=0.5 (random classifier)"
+      - "Shaded area under ROC curve with low alpha (0.15)"
+      - "Direct AUC label on curve body, not in legend — 'AUC = 0.833'"
+      - "Annotation callout: 'LOO-CV across 40 subgroup-settings'"
+      - "Clean, simple — this is a practical decision tool, not a complex visualization"
+    data_source: "registry: exp-005"
+    placement: experiments
+    aspect_ratio: "1:1"
+
+  - fig_id: fig4_budget_crossover
+    type: statistical
+    tool: matplotlib
+    description: "Expert label budget (n_expert) vs RMSE for EC-HTE and global correction, showing crossover points"
+    narrative_intent: >
+      EC-HTE's advantage is conditional on expert budget and heterogeneity regime:
+      cost-effective at n=250 for K=2/extreme, but requires n=1000+ for K=4/extreme;
+      in moderate heterogeneity (K=2), global correction always wins on RMSE —
+      the diagnostic criterion (Claim 3) determines which strategy to adopt.
+    design_notes:
+      - "Pattern A: light green background band for region where EC-HTE wins (RMSE lower), light blue for region where global wins"
+      - "4 lines: K=2/extreme, K=2/moderate, K=4/extreme, K=4/moderate; extreme solid, moderate dashed"
+      - "Pattern D: hollow markers for K=2/moderate (global always wins, never crosses)"
+      - "Vertical dashed lines at crossover points with n_expert labels (250, 1000, 2000)"
+      - "X-axis: n_expert (log scale 50-2000); Y-axis: RMSE ratio (EC-HTE / Global)"
+      - "Horizontal reference line at ratio=1.0"
+    data_source: "registry: exp-006"
+    placement: experiments
+    aspect_ratio: "4:3"
+
+table_plan:
+  - table_id: tab1_main_results
+    caption: >
+      Subgroup-level correction results across methods. |Bias|: absolute bias (lower is better);
+      RMSE: root mean squared error; Cov: 95% CI coverage. Bold: lowest |bias| per configuration.
+      Global correction worsens bias in ~50% of configurations (debiasing hurts). DIM = difference-in-means;
+      CF = CausalForestDML.
+    placement: experiments
+    type: comparison
+    columns:
+      - "Estimator"
+      - "K"
+      - "Regime"
+      - "n_expert"
+      - "Method"
+      - "|Bias|"
+      - "RMSE"
+      - "Coverage"
+    data_source: "registry: exp-001, exp-002, exp-003, exp-011"
+    notes: >
+      Selected representative configs: K=2/extreme/n=250, K=2/moderate/n=250,
+      K=4/extreme/n=500, K=4/extreme/n=1000. Include both DIM and CausalForest rows.
+      Semi-synthetic TweetEval as separate block. Bold lowest |bias|, underline second-best.
+      Must disclose RMSE tradeoff [D009]: explicitly mark with † all configs where EC-HTE RMSE > global RMSE.
+      Add footnote: "† EC-HTE achieves lower bias but higher RMSE due to per-subgroup CM estimation variance."
+    baseline_row: "naive (no correction)"
+
+  - table_id: tab2_ppci_complementarity
+    caption: >
+      Complementarity of EC-HTE and PPCI across four error DGPs (K=2, n_expert=250, extreme regime,
+      100 MC runs). EC-HTE corrects structured covariate error; PPCI rectifier corrects residual
+      outcome error; composition achieves near-zero bias when both error types coexist (DGP C).
+    placement: experiments
+    type: comparison
+    columns:
+      - "DGP"
+      - "Error Type"
+      - "Method"
+      - "|Bias| z=0"
+      - "|Bias| z=1"
+      - "RMSE z=0"
+      - "RMSE z=1"
+    data_source: "registry: exp-007"
+    notes: >
+      4 DGPs: A (covariate error only, σ_outcome=0), B (outcome error only, σ_outcome=0.5),
+      C (both errors, σ_outcome=0.5), D (no error, σ_outcome=0).
+      Methods: naive, global, ec_hte, ppci, ec_hte_ppci.
+      Highlight DGP C row where composition is necessary and sufficient.
+      Frame as complementary not orthogonal.
+      Section text must explicitly state sigma_outcome settings for each DGP.
+
+literature_strategy:
+  citation_budget: 33
+  macro_context:
+    - "measurement error correction in causal inference with mismeasured effect modifiers"
+    - "LLM annotation quality and heterogeneous error in computational social science"
+    - "heterogeneous treatment effect estimation under covariate misclassification"
+  micro_clusters:
+    - cluster_name: "Classical Measurement Error"
+      search_queries:
+        - "misclassification covariate measurement error causal inference correction"
+        - "measurement error models discrete covariates Bayesian"
+      must_cite:
+        - "Fuller 1987"
+        - "Carroll et al. 2006"
+        - "Gustafson 2003"
+        - "Hu & Schennach 2008"
+      target_count: 4
+
+    - cluster_name: "Bayesian Annotation Models"
+      search_queries:
+        - "Bayesian annotation model confusion matrix estimation"
+        - "crowdsourcing annotator reliability"
+      must_cite:
+        - "Dawid & Skene 1979"
+        - "Hovy et al. 2013 MACE"
+        - "Passonneau & Carpenter 2014"
+        - "Paun et al. 2018"
+      target_count: 4
+
+    - cluster_name: "Causal Inference & HTE"
+      search_queries:
+        - "heterogeneous treatment effects causal forest estimation"
+        - "doubly robust CATE conditional average treatment effect"
+        - "causal inference measurement error covariate"
+      must_cite:
+        - "Athey & Imbens 2016"
+        - "Wager & Athey 2018"
+        - "Chernozhukov et al. 2018"
+        - "Kennedy 2023"
+        - "Imai & Yamamoto 2010"
+        - "Künzel et al. 2019"
+        - "Nie & Wager 2021"
+      target_count: 7
+
+    - cluster_name: "LLM-as-Annotator"
+      search_queries:
+        - "LLM annotation quality social science 2024 2025"
+        - "ChatGPT text annotation accuracy heterogeneity"
+        - "large language model coding qualitative data bias"
+      must_cite:
+        - "Gilardi et al. 2023"
+        - "Tornberg 2024"
+        - "Ziems et al. 2024"
+        - "Ashwin et al. 2025"
+        - "Pangakis et al. 2023"
+      target_count: 6
+
+    - cluster_name: "PPI/DSL/CSS Methodology"
+      search_queries:
+        - "prediction-powered inference debiasing LLM annotations"
+        - "design-based supervised learning social science"
+        - "text as data computational social science methodology"
+      must_cite:
+        - "Angelopoulos et al. 2023 PPI"
+        - "Angelopoulos et al. 2023 PPI++"
+        - "Egami et al. 2024 DSL"
+        - "Mozer 2026"
+        - "Sui et al. 2026 PPCI"
+        - "Audinet et al. 2025"
+        - "Bu et al. 2023 ForestIV"
+        - "Grimmer et al. 2022"
+        - "Zrnic & Candès 2024 CrossPPI"
+        - "Zrnic & Candès 2024 Active"
+        - "Reiss 2023"
+        - "Tornberg 2023 guide"
+      target_count: 12
+
+global_constraints:
+  - "HARD: No forward claims without evidence — Intro/Conclusion must NOT write 'will activate on cross-lingual tasks' or similar unsupported forward-looking statements"
+  - "HARD: 'bias decomposition identity' everywhere, NEVER 'bias bound'"
+  - "HARD: Responsible NLP Checklist required (EMNLP mandatory) — ACL 2023 checklist format, fill every item seriously (no blanket N/A)"
+  - "Claim 3 framing: 'practical corollary of Theorem 1' — Δπ×Δτ diagnostic validates Theorem 1's practical utility"
+  - "CausalForest uncertainty = plug-in approach (forest SE + M⁻¹ post-processing); Limitations must note CM estimation uncertainty not propagated"
+
+responsible_nlp_checklist:
+  required: true
+  format: "ACL 2023 Responsible NLP Research checklist"
+  placement: "after conclusion, before references (does not count toward 8-page limit)"
+  note: "Fill every item substantively — blanket N/A is a red flag for reviewers"
+
+writing_order:
+  - experiments
+  - theory
+  - method
+  - introduction
+  - related_work
+  - abstract
+  - conclusion
+  - limitations

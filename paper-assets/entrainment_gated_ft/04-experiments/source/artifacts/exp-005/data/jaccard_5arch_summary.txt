@@ -1,0 +1,20 @@
+5-Architecture Pairwise Jaccard Analysis (exp-005)
+===================================================
+Scale: 340M-20B, Architectures: GDN/RetNet/HGRN2/GLA/DeltaNet
+10 pairs (C(5,2)), permutation test n=10000
+
+ARC-Easy (n=2376):
+  Mean J_helped = 0.1081, Mean J_hurt = 0.1047
+  All 10 pairs significant (z: 3.49-9.19 helped, 3.72-7.48 hurt, all p<0.002)
+
+LAMBADA (n=5153):
+  Mean J_helped = 0.1221, Mean J_hurt = 0.0946
+  All 10 pairs significant (z: 9.03-12.21 helped, 6.33-10.89 hurt, all p=0)
+
+Subgroup (LAMBADA):
+  3-arch (GDN/RetNet/HGRN2): J_helped=0.1194
+  4-arch (+ GLA):            J_helped=0.1219
+  5-arch (+ DeltaNet):       J_helped=0.1221
+  DeltaNet vs others:        J_helped=0.1224
+
+Full JSON on server: /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json

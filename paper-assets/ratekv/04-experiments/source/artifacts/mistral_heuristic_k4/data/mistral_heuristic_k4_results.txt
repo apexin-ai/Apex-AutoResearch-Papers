@@ -1,0 +1,1 @@
+Server: westd-37397:/root/ratekv/mistral_heuristic_k4_results.json\n\nSummary:\n- Baseline bf16: 7.0351\n- Uniform 4-bit: 7.1314\n- MCKP (k=4): 7.1648 (budget=0.248)\n- L0-random mean: 7.2411 +/- 0.0707 (budget=0.2559)\n- L0-random seeds: 7.1882, 7.1995, 7.1723, 7.3577, 7.2875\n- Naive positional: 7.2105 (budget=0.2559)

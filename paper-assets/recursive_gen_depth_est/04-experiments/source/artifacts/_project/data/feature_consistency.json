@@ -1,0 +1,6 @@
+See server: /root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas/feature_consistency.json
+
+Key findings:
+- 3-way top-5 intersection: var_surprisal, p90_ppl, p75_ppl, mean_surprisal (4/6 features)
+- 3-way Jaccard: 0.667
+- Rank correlations: Pythia-GPT2XL rho=0.904, OLMo-GPT2XL rho=0.853, Pythia-OLMo rho=0.647 (all p<0.01)

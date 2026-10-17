@@ -1,0 +1,43 @@
+\subsection{Topic Classification: AG News Cross-Task Validation}
+\label{app:agnews}
+
+To validate generalization beyond sentiment and toxicity, we extend the semi-synthetic evaluation to topic classification using AG News~\cite{zhang2015character}, binarized as Business/World ($Z{=}1$) vs.\ Sports/Sci-Tech ($Z{=}0$).
+Confusion matrices are calibrated to match empirical LLM accuracy levels on AG News (${\sim}80\%$; \citealt{etaiwi2025comparative}), with per-subgroup error rates derived from reported per-class metrics; Business$\to$World is the dominant confusion direction.
+Subgroups ($K{=}4$) are defined by article length $\times$ vocabulary complexity, with per-subgroup error rates reflecting text difficulty ($\bar{\pi} = 0.173$, $\Delta\pi = 0.19$).
+CATE heterogeneity ranges from $\Delta\tau{=}0.10$ (short, simple) to $\Delta\tau{=}0.60$ (long, complex), with 100 MC replications.
+
+Table~\ref{tab:agnews_results} reports the main results.
+EC-HTE reduces $|\text{bias}|$ by $1.9\times$ at $n_{\text{expert}}{=}1{,}000$ (0.015 vs.\ 0.028) with 94.9\% coverage.
+At $n_{\text{expert}}{=}250$, EC-HTE incurs higher variance than global correction ($\text{RMSE}{=}0.182$ vs.\ $0.115$), consistent with the expert-budget operating condition ($n_{\text{expert}}/K{=}62.5$, near the threshold).
+The asymmetric bias identity achieves $R^2 = 0.95$ ($0.93$--$0.97$ per budget level), confirming the product-form structure on a task with inherently asymmetric confusion matrices ($\mathrm{FPR} \neq \mathrm{FNR}$); the symmetric scalar approximation does not hold ($R^2 < 0$), consistent with Remark~\ref{rem:asymmetric} in Section~\ref{sec:theory}.
+
+\begin{table}[h]
+\centering
+\caption{AG News topic classification ($K{=}4$, $\Delta\pi{=}0.19$). Metrics averaged over subgroups, $z$-levels, 100 MC runs. Bold: lowest $|\text{bias}|$.}
+\label{tab:agnews_results}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{ll cccc}
+\toprule
+$n_{\text{expert}}$ & Method & $|\text{Bias}|$ & RMSE & 95\% CI Cov. & Asym.\ $R^2$ \\
+\midrule
+\multirow{4}{*}{250}
+ & Naive & 0.067 & 0.109 & 0.84 & --- \\
+ & Global & \textbf{0.027} & 0.115 & 0.94 & 0.93 \\
+ & Strat.\ MLE & 0.034 & 0.181 & 0.89 & --- \\
+ & HB EC-HTE & 0.035 & 0.182 & 0.89 & --- \\
+\midrule
+\multirow{4}{*}{500}
+ & Naive & 0.067 & 0.109 & 0.84 & --- \\
+ & Global & 0.028 & 0.110 & 0.94 & 0.96 \\
+ & Strat.\ MLE & \textbf{0.022} & 0.147 & 0.92 & --- \\
+ & HB EC-HTE & 0.022 & 0.147 & 0.92 & --- \\
+\midrule
+\multirow{4}{*}{1{,}000}
+ & Naive & 0.067 & 0.109 & 0.84 & --- \\
+ & Global & 0.028 & 0.109 & 0.94 & 0.97 \\
+ & Strat.\ MLE & \textbf{0.015} & 0.126 & 0.95 & --- \\
+ & HB EC-HTE & 0.015 & 0.126 & 0.95 & --- \\
+\bottomrule
+\end{tabular}}
+\end{table}

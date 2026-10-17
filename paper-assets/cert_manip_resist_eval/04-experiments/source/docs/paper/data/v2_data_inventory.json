@@ -1,0 +1,359 @@
+{
+  "generated_at": "2026-05-23T19:00:00Z",
+  "total_files": 17,
+  "v1_bug_description": ".get('winner', 'tie') treated API errors (1221/63000 = 1.94%, mostly gemini-3.5-flash:742, gemini-3.1-pro-preview:335) as ties. V2 fix: _is_valid_score() skips invalid samples.",
+  "categories": {
+    "v2_corrected": [
+      {
+        "filename": "table1_corrected.json",
+        "size_bytes": 6401,
+        "modified_at": "2026-05-23T17:56:32Z",
+        "summary": "OLS log-log regression results (K=3, 455 panels) with old/new comparison across 12 conditions. V2 fix made K_eff universally significant (12/12, up from 8/12). 5 conditions changed dominance pattern.",
+        "paper_reference": "Table 1, Section 4.2",
+        "key_metrics": [
+          "eta_sig: 11/12→10/12",
+          "keff_sig: 8/12→12/12",
+          "dominance: {Co:7,eta:4,K:1}→{Co:10,K:2,eta:0}",
+          "5 conditions changed (mmlu_score_manipulation, mmlu_position_bias, mmlu_authority_bias, arc_sycophancy, arc_verbosity_bias)"
+        ],
+        "changes_needed": "Update ALL coefficients, significance markers, dominance column. Rewrite narrative about eta vs K dominance — eta no longer dominant in any condition."
+      },
+      {
+        "filename": "table2_corrected.json",
+        "size_bytes": 2389,
+        "modified_at": "2026-05-23T18:15:19Z",
+        "summary": "Aggregation method comparison (threshold/majority/weighted/bayesian) with old/new. All 4 methods changed. Majority and weighted K_eff now 12/12 significant. Bayesian direction reversal: 1+/6- → 5+/1- was artifact.",
+        "paper_reference": "Table 2, Section 4.3",
+        "key_metrics": [
+          "majority keff_sig: 8/12→12/12, keff_dir: 7+/1-→12+/0-",
+          "weighted keff_sig: 9/12→12/12, keff_dir: 9+/0-→12+/0-",
+          "threshold keff_dir: 10+/1-→11+/0- (spurious negative gone)",
+          "bayesian keff_dir: 1+/6-→5+/1- (direction reversal was artifact)"
+        ],
+        "changes_needed": "Update all 4 method rows. Major rewrite of Bayesian discussion — direction reversal was V1 artifact, not genuine signal."
+      },
+      {
+        "filename": "regime_transition_corrected.json",
+        "size_bytes": 5356,
+        "modified_at": "2026-05-23T18:05:19Z",
+        "summary": "Wild cluster bootstrap (B=9999, Rademacher, max-p, BH FDR 0.05) for K=3/5/7. V2 fix increased K_eff significance counts: K3 1→4, K5 7→10, K7 5→9. Per-condition max-p and FDR-p values included.",
+        "paper_reference": "Table 3, Section 4.4",
+        "key_metrics": [
+          "K3: eta_sig 5→3, keff_sig 1→4",
+          "K5: eta_sig 0→0, keff_sig 7→10",
+          "K7: eta_sig 0→0, keff_sig 5→9",
+          "n_filtered_samples: 1365"
+        ],
+        "changes_needed": "Update Table 3 significance counts for all K values. Strengthen K_eff narrative across panel sizes."
+      },
+      {
+        "filename": "random_fault_contrast_corrected.json",
+        "size_bytes": 4214,
+        "modified_at": "2026-05-23T18:36:38Z",
+        "summary": "Random Fault (RF) vs adaptive attack R² contrast. RF R² unchanged (clean accuracy based). Adaptive R² slightly increased (0.2562→0.2751). RF-adaptive gap narrowed slightly (0.4485→0.4296) but qualitative finding unchanged: RF R²(0.70) >> adaptive R²(0.28).",
+        "paper_reference": "Section 4.5 or Table on RF contrast",
+        "key_metrics": [
+          "RF k3 mean R²: 0.7739, k5 mean R²: 0.7047 (unchanged)",
+          "adaptive k5 mean R²: 0.2562→0.2751",
+          "gap: 0.4485→0.4296",
+          "RF keff bootstrap sig: 2/2 for both K3 and K5"
+        ],
+        "changes_needed": "Update adaptive R² values and gap size. Qualitative claim unchanged."
+      },
+      {
+        "filename": "keff_distribution_corrected.json",
+        "size_bytes": 650,
+        "modified_at": "2026-05-23T14:41:35Z",
+        "summary": "Corrected K_eff distribution using empirical formula (K - (1/K)*sum(rho_ij^2), rho from MI via Gaussian copula, averaged across benchmarks). Values higher than original: K3 mean 2.18 vs 1.92, K5 mean 3.35 vs 2.32, K7 mean 4.53 vs 2.54.",
+        "paper_reference": "Section 3.3, descriptive statistics",
+        "key_metrics": [
+          "K3: mean=2.1757, sd=0.3038, range=[1.47,2.80]",
+          "K5: mean=3.3514, sd=0.4213, range=[2.16,4.30]",
+          "K7: mean=4.5271, sd=0.4746, range=[2.97,5.55]"
+        ],
+        "changes_needed": "Update K_eff descriptive statistics if using new formula. Supersedes keff_distribution.json."
+      }
+    ],
+    "new_analysis": [
+      {
+        "filename": "gam_bootstrap_ci_k3.json",
+        "size_bytes": 5313,
+        "modified_at": "2026-05-23T17:11:33Z",
+        "summary": "GAM bootstrap CIs (B=9999, K=3, 455 panels) run with V2 data from the start. 12/12 conditions positive direction. 11/12 have CI excluding zero. Includes taxonomy split (targeted vs shared_bias) — split_consistency_rate=0.0 (no 6:6 split observed).",
+        "paper_reference": "Figure 2 or Section 4.3 (nonlinear analysis)",
+        "key_metrics": [
+          "12/12 conditions positive direction",
+          "direction_positive_rate > 0.88 for all conditions",
+          "11/12 CIs exclude zero (mmlu_score_manipulation marginal: [-8.5, 44.0])",
+          "taxonomy 6:6 split NOT confirmed (split_consistency_rate=0.0)"
+        ],
+        "changes_needed": "New data for GAM analysis section. The disappearance of the 6:6 targeted/shared split is a major narrative change."
+      },
+      {
+        "filename": "gam_bootstrap_ci_k5.json",
+        "size_bytes": 5767,
+        "modified_at": "2026-05-23T17:09:28Z",
+        "summary": "GAM bootstrap CIs (B=9999, K=5, 3003 panels) run with V2 from the start. ALL 12/12 conditions have 100% positive direction rate and CIs excluding zero. Even stronger than K3. Taxonomy split also not confirmed.",
+        "paper_reference": "Appendix or Section 4.3 (K=5 extension)",
+        "key_metrics": [
+          "12/12 conditions: direction_positive_rate = 1.0",
+          "12/12 CIs exclude zero",
+          "All slopes positive and well-estimated",
+          "taxonomy 6:6 split NOT confirmed"
+        ],
+        "changes_needed": "New appendix/supplementary data. Strengthens universal K_eff effect claim at K=5."
+      }
+    ],
+    "unchanged": [
+      {
+        "filename": "temperature_pilot_summary.json",
+        "size_bytes": 6030,
+        "modified_at": "2026-05-23T14:33:37Z",
+        "summary": "Temperature pilot study (3 models, temps 0.0/0.3/0.7/1.0). Conclusion: temperature 0→1 changes K_eff by at most 0.033, NOT a valid instrument. Includes accuracy, K_eff, MI, and ASR by temperature. Total cost $4.93.",
+        "paper_reference": "Appendix (temperature instrument validation)",
+        "key_metrics": [
+          "K_eff delta: mmlu 0.033, arc 0.027",
+          "accuracy_change_max: 0.0085",
+          "instrument_clean: true, correlation_changes: false",
+          "cost: $4.93, 8.3M input + 6.1M output tokens"
+        ],
+        "changes_needed": "None — separate pilot study, independent of V1/V2 bug."
+      },
+      {
+        "filename": "stochastic_dominance_analysis.json",
+        "size_bytes": 12008,
+        "modified_at": "2026-05-23T12:33:34Z",
+        "summary": "Stochastic dominance tier breakdown for 15 judges (frontier 4/mid 2/lightweight 9, unified with paper Table 1). 61/105 pairs dominant, 44 non-dominant. Within-tier: 72.1% non-dominant (31/43). Cross-tier: 21.0% non-dominant (13/62). Updated 2026-05-24.",
+        "paper_reference": "Section 3.2 or Appendix (judge diversity characterization)",
+        "key_metrics": [
+          "total_pairs: 105, dominant: 61 (58.1%), non-dominant: 44 (41.9%)",
+          "within_tier non-dominant: 72.1% (31/43)",
+          "cross_tier non-dominant: 21.0% (13/62)",
+          "tiers: frontier(4), mid(2), lightweight(9)"
+        ],
+        "changes_needed": "Tier scheme updated 2026-05-24 to match paper Table 1 (frontier >85% both, mid 80-85%, lightweight <80% or quantized)."
+      },
+      {
+        "filename": "power_analysis_all_K.json",
+        "size_bytes": 3540,
+        "modified_at": "2026-05-23T12:42:47Z",
+        "summary": "Statistical power analysis via simulation (1000 sims) for K=3/5/7. MDE at 80% power: K3=0.144, K5=0.048, K7=0.036 (standardized beta). Baseline parameters from mmlu_prompt_injection.",
+        "paper_reference": "Appendix (statistical power)",
+        "key_metrics": [
+          "K3 MDE_80: 0.144 (std beta), power@0.1: 64.6%, power@0.2: 99.7%",
+          "K5 MDE_80: 0.048, power@0.05: 84.5%",
+          "K7 MDE_80: 0.036, power@0.03: 72.1%"
+        ],
+        "changes_needed": "Baseline parameters are from V1 regression. MDE estimates may shift slightly but power analysis conclusion (adequate power) is robust. Low priority to rerun."
+      }
+    ],
+    "superseded": [
+      {
+        "filename": "aggregation_bootstrap.json",
+        "size_bytes": 16481,
+        "modified_at": "2026-05-23T17:29:47Z",
+        "summary": "Bootstrap validation (B=9999) of OLS K_eff coefficients for all 4 aggregation methods × 12 conditions. OLS point estimates match V1 values (e.g., majority mmlu_prompt_injection keff_std_beta=0.2524). Superseded by table2_corrected.json.",
+        "paper_reference": "Was: Appendix bootstrap validation for Table 2",
+        "key_metrics": [
+          "majority: 11/12 positive confirmed, 9/12 sig>50%",
+          "weighted: 11/12 positive confirmed, 10/12 sig>50%",
+          "threshold: 11/12 positive confirmed, 11/12 sig>50%",
+          "bayesian: 9/12 NEGATIVE confirmed (V1 artifact)"
+        ],
+        "superseded_by": "Needs rerun with V2 data. OLS baselines are V1.",
+        "changes_needed": "Must rerun bootstrap on V2 data. Bayesian results especially affected — V1 showed 9/12 negative (artifact)."
+      },
+      {
+        "filename": "epsilon_sensitivity.json",
+        "size_bytes": 10374,
+        "modified_at": "2026-05-23T12:42:46Z",
+        "summary": "Epsilon sensitivity analysis for K=3 (3 epsilons: 1e-3, 1e-6, 1e-9). Coefficients at 1e-6 match V1 table1 values (keff_beta_std=0.252 for mmlu_prompt_injection). Also includes ASR zero rates by condition × K.",
+        "paper_reference": "Was: Appendix (log-transform sensitivity)",
+        "key_metrics": [
+          "3 epsilon values tested: 1e-3, 1e-6, 1e-9",
+          "ASR zero rates included for K3/K5/K7",
+          "coefficients match V1 baseline values"
+        ],
+        "superseded_by": "Needs rerun with V2 data. Coefficients will change.",
+        "changes_needed": "Rerun with V2 error filtering. Qualitative conclusion (epsilon insensitivity) likely holds but values will change."
+      },
+      {
+        "filename": "epsilon_sensitivity_k5.json",
+        "size_bytes": 8883,
+        "modified_at": "2026-05-23T14:44:46Z",
+        "summary": "Epsilon sensitivity analysis for K=5 (3003 panels, 3 epsilons: 1e-3, 1e-6, 1e-9). Created before V2 corrections. ASR zero rates and OLS coefficients for 12 conditions.",
+        "paper_reference": "Was: Appendix (K=5 epsilon sensitivity)",
+        "key_metrics": [
+          "max_coefficient_change: keff 184.5%, eta 31.07%",
+          "K_eff more sensitive to epsilon at K=5",
+          "3 epsilon values × 12 conditions"
+        ],
+        "superseded_by": "Needs rerun with V2 data.",
+        "changes_needed": "Rerun with V2 error filtering."
+      },
+      {
+        "filename": "cross_benchmark_iv.json",
+        "size_bytes": 6256,
+        "modified_at": "2026-05-23T16:34:35Z",
+        "summary": "Cross-benchmark IV analysis: MMLU K_eff predicting ARC ASR (and reverse). Exclusion restriction violated (rho=0.76-0.78). Reduced form: 34/36 conditions significant. 2SLS invalid. Created before V2 corrections, ASR outcomes are V1.",
+        "paper_reference": "Was: Section 4.6 or Appendix (cross-benchmark validation)",
+        "key_metrics": [
+          "rho(K_eff_MMLU, K_eff_ARC): K3=0.784, K5=0.762, K7=0.763",
+          "reduced form significant: 34/36",
+          "first_stage_F: K3=820, K5=4508, K7=9232",
+          "2SLS invalid (exclusion restriction violated)"
+        ],
+        "superseded_by": "Needs rerun with V2 data. Structural conclusion (exclusion restriction violation) won't change, but coefficient values will.",
+        "changes_needed": "Rerun with V2 ASR. Structural conclusion valid regardless but numbers need updating."
+      },
+      {
+        "filename": "keff_stability_split.json",
+        "size_bytes": 3257,
+        "modified_at": "2026-05-23T12:33:32Z",
+        "summary": "K_eff significance by Spearman rho stability tier (stable/moderate/unstable). FDR p-values do NOT match regime_transition_corrected (e.g., K3 mmlu_sycophancy: 0.5184 here vs 0.0320 in corrected). Confirmed V1 data.",
+        "paper_reference": "Was: Section 4.4 (stability tier analysis)",
+        "key_metrics": [
+          "stable_4attacks K3: keff_sig 0/8, K5: 4/8",
+          "moderate_1attack K3: 1/2, K5: 2/2",
+          "unstable_1attack K3: 0/2, K5: 1/2"
+        ],
+        "superseded_by": "regime_transition_corrected.json — p-values diverge, must rerun with V2 bootstrap p-values.",
+        "changes_needed": "Recompute stability tiers using V2 regime_transition_corrected p-values. Tier assignments (stable/moderate/unstable) may be unchanged but sig counts will change."
+      },
+      {
+        "filename": "sensitivity_analysis_poolA.json",
+        "size_bytes": 12692,
+        "modified_at": "2026-05-23T12:18:21Z",
+        "summary": "Cinelli & Hazlett (2020) OVB sensitivity analysis on Pool A (9 capability-matched models). K3 (84 panels) and K5 (126 panels). RV exceeds eta in 9/24 conditions. Regressions use ASR from V1 voting data.",
+        "paper_reference": "Was: Appendix (omitted variable bias sensitivity)",
+        "key_metrics": [
+          "rv_exceeds_eta_count: 9/24 (K3: 3/12, K5: 6/12)",
+          "Pool A models: gpt-4.1, claude-sonnet-4-6, gpt-4.1-mini, etc.",
+          "K3 n_panels=84, K5 n_panels=126"
+        ],
+        "superseded_by": "Needs rerun with V2 data. RV values and beta_keff will change.",
+        "changes_needed": "Rerun OVB sensitivity with V2 error filtering. RV/eta comparison results may change."
+      },
+      {
+        "filename": "keff_distribution.json",
+        "size_bytes": 510,
+        "modified_at": "2026-05-23T14:30:38Z",
+        "summary": "Original K_eff distribution (simpler formula). K3 mean=1.92, K5 mean=2.32, K7 mean=2.54. Superseded by keff_distribution_corrected.json which uses MI-based Gaussian copula formula with higher values.",
+        "paper_reference": "Was: Section 3.3 descriptive statistics",
+        "key_metrics": [
+          "K3: mean=1.9198, sd=0.3226",
+          "K5: mean=2.3223, sd=0.3930",
+          "K7: mean=2.5351, sd=0.3758"
+        ],
+        "superseded_by": "keff_distribution_corrected.json (formula correction, not V1 bug)",
+        "changes_needed": "Replaced by corrected formula version."
+      }
+    ]
+  },
+  "paper_update_checklist": [
+    {
+      "priority": "critical",
+      "section": "4.2",
+      "table_or_figure": "Table 1",
+      "data_file": "table1_corrected.json",
+      "changes_needed": "Update ALL coefficients, significance markers, dominance column. K_eff now 12/12 significant (was 8/12). No pure eta-dominant conditions remain (was 4). Rewrite narrative: diversity is universally protective."
+    },
+    {
+      "priority": "critical",
+      "section": "4.3",
+      "table_or_figure": "Table 2",
+      "data_file": "table2_corrected.json",
+      "changes_needed": "Update all 4 aggregation method rows. Bayesian direction reversal (1+/6-→5+/1-) was V1 artifact — requires major rewrite of Bayesian discussion."
+    },
+    {
+      "priority": "critical",
+      "section": "4.4",
+      "table_or_figure": "Table 3",
+      "data_file": "regime_transition_corrected.json",
+      "changes_needed": "Update wild cluster bootstrap significance counts for K3/K5/K7. K_eff significance increased across all panel sizes."
+    },
+    {
+      "priority": "high",
+      "section": "4.3",
+      "table_or_figure": "Figure 2 (GAM)",
+      "data_file": "gam_bootstrap_ci_k3.json",
+      "changes_needed": "New GAM results show 12/12 positive (V2). The previously reported 6:6 targeted/shared split no longer holds (split_consistency_rate=0.0). Remove or revise split narrative."
+    },
+    {
+      "priority": "high",
+      "section": "4.5",
+      "table_or_figure": "RF Contrast",
+      "data_file": "random_fault_contrast_corrected.json",
+      "changes_needed": "Update adaptive R² values (0.2562→0.2751) and gap (0.4485→0.4296). Qualitative conclusion unchanged."
+    },
+    {
+      "priority": "medium",
+      "section": "3.3",
+      "table_or_figure": "K_eff descriptive stats",
+      "data_file": "keff_distribution_corrected.json",
+      "changes_needed": "Update K_eff distribution statistics if switching to corrected formula."
+    },
+    {
+      "priority": "medium",
+      "section": "Appendix",
+      "table_or_figure": "Bootstrap validation",
+      "data_file": "aggregation_bootstrap.json",
+      "changes_needed": "MUST RERUN with V2 data. Current bootstrap CIs are on V1 OLS values. Bayesian bootstrap especially affected."
+    },
+    {
+      "priority": "medium",
+      "section": "Appendix",
+      "table_or_figure": "Epsilon sensitivity",
+      "data_file": "epsilon_sensitivity.json",
+      "changes_needed": "MUST RERUN with V2 data. K3 coefficients are V1."
+    },
+    {
+      "priority": "medium",
+      "section": "Appendix",
+      "table_or_figure": "Epsilon sensitivity K5",
+      "data_file": "epsilon_sensitivity_k5.json",
+      "changes_needed": "MUST RERUN with V2 data."
+    },
+    {
+      "priority": "medium",
+      "section": "Appendix",
+      "table_or_figure": "OVB Sensitivity",
+      "data_file": "sensitivity_analysis_poolA.json",
+      "changes_needed": "MUST RERUN with V2 data. RV and beta values will change."
+    },
+    {
+      "priority": "low",
+      "section": "4.4/Appendix",
+      "table_or_figure": "Stability tiers",
+      "data_file": "keff_stability_split.json",
+      "changes_needed": "Recompute using V2 regime_transition_corrected p-values."
+    },
+    {
+      "priority": "low",
+      "section": "4.6/Appendix",
+      "table_or_figure": "Cross-benchmark IV",
+      "data_file": "cross_benchmark_iv.json",
+      "changes_needed": "Rerun with V2 ASR. Structural conclusion (exclusion restriction violated) won't change. Coefficient values will."
+    }
+  ],
+  "summary": {
+    "v2_corrected_count": 5,
+    "new_analysis_count": 2,
+    "unchanged_count": 3,
+    "superseded_count": 7,
+    "files_needing_rerun": [
+      "aggregation_bootstrap.json",
+      "epsilon_sensitivity.json",
+      "epsilon_sensitivity_k5.json",
+      "cross_benchmark_iv.json",
+      "keff_stability_split.json",
+      "sensitivity_analysis_poolA.json"
+    ],
+    "critical_paper_changes": [
+      "Table 1: K_eff 12/12 significant, no eta-dominant conditions",
+      "Table 2: Bayesian direction reversal was V1 artifact",
+      "Table 3: K_eff significance increased at all K",
+      "GAM: 6:6 targeted/shared split disappeared"
+    ]
+  }
+}

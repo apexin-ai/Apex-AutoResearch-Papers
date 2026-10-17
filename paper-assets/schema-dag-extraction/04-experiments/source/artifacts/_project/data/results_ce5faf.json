@@ -1,0 +1,50 @@
+{
+  "fewrel": {
+    "n_types": 80,
+    "n_pairs": 3160,
+    "metrics": {
+      "scs": {
+        "spearman_rho": 0.218238,
+        "p_value": 2.219981737602145e-35
+      },
+      "levenshtein": {
+        "spearman_rho": 0.016186,
+        "p_value": 0.3630431290498525
+      },
+      "wordnet_wup": {
+        "spearman_rho": 0.07267123287763251,
+        "p_value": 4.333815840844374e-05,
+        "n_valid_pairs": 3160,
+        "n_missing": 0
+      },
+      "same_parent": {
+        "spearman_rho": 0.09653801447182943,
+        "p_value": 5.408418087026807e-08
+      }
+    }
+  },
+  "fewnerd": {
+    "n_types": 63,
+    "n_pairs": 1953,
+    "metrics": {
+      "scs": {
+        "spearman_rho": 0.16616,
+        "p_value": 1.4706429598501858e-13
+      },
+      "levenshtein": {
+        "spearman_rho": 0.152227,
+        "p_value": 1.3563843339646998e-11
+      },
+      "wordnet_wup": {
+        "spearman_rho": 0.053913703656693505,
+        "p_value": 0.07028973837895815,
+        "n_valid_pairs": 1128,
+        "n_missing": 825
+      },
+      "same_parent": {
+        "spearman_rho": 0.14646267116455344,
+        "p_value": 7.844876889969635e-11
+      }
+    }
+  }
+}

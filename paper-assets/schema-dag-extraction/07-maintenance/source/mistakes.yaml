@@ -1,0 +1,164 @@
+_next_id: 12
+mistakes:
+- id: M001
+  date: '2026-05-17'
+  category: code_bug
+  severity: high
+  summary: references.bib 中 rastogi2020towards 条目有 3 个 LLM 幻觉作者名（Sber/Guber/Nakhost）
+  root_cause: bib 条目由 LLM 生成时产生作者名幻觉：将真实作者名替换为相似但不存在的变体（Sunkara→Sber Srinivas, Gupta→Guber,
+    Khaitan→Nakhost）。之前无引用验证流程。
+  prevention: 投稿前必须对 references.bib 做完整审计：每个条目用 WebSearch 验证作者名、标题、年份、venue。重点关注不常见名字变体——LLM
+    倾向于生成看起来合理但实际错误的名字。
+  status: active
+  fix: 修正为正确作者：Rastogi, Zang, Sunkara, Gupta, Khaitan。已派 Agent 修复并做全面 bib 审计。
+- id: M002
+  date: '2026-05-17'
+  category: code_bug
+  severity: high
+  summary: bib 全面审计发现 3 个条目共 19 个幻觉/编造作者名（rastogi 3 + oneke 14 + volkanovska 2）
+  root_cause: LLM 生成 bib 条目时大规模幻觉作者名。oneke-2025 尤其严重（17 个作者中 14 个虚构）。之前没有系统性引用验证流程。
+  prevention: 1. 每次添加 bib 条目必须立即 WebSearch 验证作者名+标题+年份+venue。2. 投稿前做全量 bib 审计。3. 多作者论文（>5
+    人）需特别注意——LLM 倾向于编造中间作者。4. 已将此教训纳入 ml-experiment-guide skill。
+  status: active
+  context: M001 的扩展。rastogi 只是冰山一角，全面审计暴露了系统性问题。
+  fix: Agent WebSearch 验证全部 57 条，修复 8 条（3 CRITICAL + 3 Medium + 2 Low）。Reviewer 正在交叉验证
+    CRITICAL 修复。
+- id: M003
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: 70B 实验 batch_config_exp2.json 未同步到 westd，导致 Exp 2/3 中断、GPU 空闲
+  root_cause: 跨服务器实验部署时只同步了代码和模型，遗漏了数据配置文件。run_llama70b_cross_model.sh 使用 set -e，Exp
+    2 文件缺失导致后续 Exp 3 也跳过。
+  prevention: 跨服务器部署实验前，Worker 必须列出所有依赖文件（代码/模型/数据/配置），逐一确认目标服务器存在。shell 脚本中对每个实验独立
+    try-catch，不要 set -e 导致级联失败。
+  status: active
+  context: westd-24295 部署 LLaMA 70B FP8 实验，Exp 1 (FewRel count curves) 成功，Exp 2 (BCS-controlled)
+    因 batch_config_exp2.json 未从 cqa1 同步而 FileNotFoundError，set -e 导致 Exp 3 (Few-NERD)
+    也未执行。两张 GPU 空闲。
+  fix: SCP batch_config_exp2.json 从 cqa1 到 westd，单独重跑 Exp 2 和 Exp 3。
+  related_decisions:
+  - D053
+- id: M004
+  date: '2026-05-17'
+  category: experiment_design
+  severity: low
+  summary: 70B Exp 3 崩溃：westd 缺 datasets 模块，部署时未验证 Few-NERD 依赖
+  root_cause: Exp 1/2 使用 FewRel（预处理 JSON），不需要 HuggingFace datasets。Exp 3 使用 Few-NERD（需要
+    datasets 加载），但部署时只验证了 vLLM 环境，未检查数据加载依赖。
+  prevention: 跨服务器部署实验前，对每个实验脚本单独运行 dry-run（python -c "import ..."），确认所有 import 可用。不能假设环境验证覆盖所有脚本的依赖。
+  status: active
+  fix: pip install datasets + 重启 Exp 3
+  related_decisions:
+  - D053
+- id: M005
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: few-shot 实验 BCS 分组使用随机批次 top/bottom 而非极端批次选择，对比度不足 10 倍
+  root_cause: Agent 实现 generate_bcs_groups 时从 60 个随机批次中取 top/bottom 25，而非复用 exp_fewrel_v2_n25
+    的极端批次配置。随机 16-from-80 批次的 BCS 天然聚集于均值附近，无法产生足够 BCS 分离。
+  prevention: BCS-controlled 实验必须复用已验证的极端批次配置（显式最大化 BCS 分离），不能从随机池中取 top/bottom。新实验启动前检查
+    0-shot baseline delta 是否复现已知效应作为 sanity check。
+  status: active
+  fix: 修改 generate_bcs_groups 复用 exp_fewrel_v2_n25 的 batch config，重跑实验。
+- id: M006
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: 70B Few-NERD 评估协议与 Qwen3 不一致 — 简单 set 交集 vs reeval_text_match.py 导致 count_2
+    差距 43pp
+  root_cause: 70B Few-NERD 评估用了新写的 reeval_d051_type_text.py（简单 set 交集），而 Qwen3 用的是
+    reeval_text_match.py（含 offset 修正、hallucination detection、greedy matching）。跨模型实验启动时未检查评估协议是否一致。
+  prevention: 跨模型验证实验审批时，必须明确指定评估脚本路径，且与 baseline 模型使用完全相同的脚本。审批 checklist 加一条：evaluation
+    protocol = baseline protocol?
+  status: active
+  context: 'count_2 recall: 70B=0.962 vs Qwen3=0.527, 差距不可能是模型差异。Reviewer 在审查 worker_ssh_fix_exp3_eval_metric
+    时发现。'
+  fix: 用 Qwen3 相同的 reeval_text_match.py 重新评估 70B Few-NERD 所有 6 个 count 的 prediction
+    JSONL
+- id: M007
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: 'M007: Schema intervention Phase 1 (SCS verification) 和 Phase 2-3 (实际实验)
+    使用了不同的 rename map'
+  root_cause: Worker 在 Phase 1 用 Qwen3 embedding 验证了一组 rename（如 "civic registration
+    land"），但 Phase 2 脚本中硬编码了另一组更自然的 rename（如 "nationality"）。两个 Phase 之间没有数据传递校验。
+  prevention: 多阶段实验中，后续 Phase 必须从前序 Phase 的输出文件读取配置（如 rename map JSON），不能在脚本中独立硬编码。审批实验前要求
+    Agent 确认：Phase 间的数据流是否有断裂。
+  status: active
+  context: rename_count 与 delta 的 Pearson r=-0.625，zero-rename batch delta=0，证明性能下降完全来自重命名本身（label
+    unfamiliarity），不来自 confusability 变化。solo sanity check 仅 12 样本，power 不足。整个实验 inconclusive。
+  related_decisions:
+  - D058
+  - D059
+- id: M008
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: high
+  summary: Agent 误报 Gemini Flash 数据为 PHANTOM DATA — 只查了远程服务器，漏查本地 artifacts
+  root_cause: Gemini Flash 实验通过本地 API 调用执行，结果存在本地 artifacts/exp_gemini_flash/part1/
+    目录。Agent 只 SSH 到 cqa1 搜索远程文件，未检查本地 artifacts 目录，导致误判数据不存在。
+  prevention: 查找实验数据时必须同时检查：(1) 远程服务器 execution.project_path；(2) 本地 artifacts/ 目录；(3)
+    registry 中记录的数据路径。API 类实验（Gemini/GPT 等）的数据通常在本地而非远程。
+  status: active
+  context: Agent 在执行"确认 Gemini Flash tmux 状态"任务时，仅 SSH 到 cqa1 检查文件，发现只有一个 failed dry
+    run log，遂判定 registry 中的 metrics 为 phantom data。实际数据完好存储在本地 artifacts/exp_gemini_flash/part1/count_curve_analysis.json，数值与
+    registry 完全匹配（count_1=0.8267 等）。
+  fix: Director 独立 grep 本地文件找到真实数据，澄清误报，撤销 PHANTOM DATA 标注。
+- id: M009
+  date: '2026-05-20'
+  category: communication
+  severity: high
+  summary: 接受 Reviewer 错误分析导致 v13 引入与 Appendix 矛盾的 claim 收窄
+  root_cause: Reviewer 声称 "8B FewRel RE Dim2 从未测试"，Director 未核实 registry 就采纳，指令 Agent
+    将 "both dimensions across 4 families" 收窄为 "Dim2 across 3 RE-tested families"。实际
+    exp012_llama_fewrel_ch2 (LLaMA-8B, FewRel RE Dim2, Δ=-27.1pp, success) 早在 05-15
+    就已完成。
+  prevention: Reviewer 对实验覆盖范围的 claim（"某实验从未做过"/"某模型未测试"）必须交叉验证 registry，不能仅凭分析采纳。Director
+    收到涉及 claim 收窄的建议时，先 grep registry 确认实验是否存在。
+  status: active
+  context: Reviewer 在 "Claim 强度审计 Q1" 中断言 8B Dim2 仅在 NER 上测试，Director 直接采纳并派 Agent
+    修改 Abstract/Discussion/Limitations/Results 四个文件。v13 的所有 claim 收窄修改都是基于这个错误前提。
+  fix: 回滚 v13 claim 收窄：Discussion 改回 four families，Limitations 承认 8B RE Dim2 正面结果，Abstract
+    恢复 both dimensions across four families。
+- id: M010
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: Semipartial R² computed as r_partial² instead of true ΔR² (R²_full - R²_reduced)
+  root_cause: r1_statistical_supplements.py line 167 computed bcs_unique_r2 = partial_r
+    ** 2, which gives squared partial correlation, not semipartial R² (ΔR²). For low
+    VIF (FewRel 1.18) the difference is negligible (0.288 vs 0.273), but for high
+    VIF (DocRED 50.9) the overestimate was 2.17× (0.121 vs 0.056).
+  prevention: When computing semipartial R² (unique variance), always use ΔR² = R²_full
+    - R²_reduced (fit two regressions). Never use r_partial² as a substitute—they
+    are only equivalent when R²_reduced ≈ 0. Reviewer should flag any semipartial
+    R² that exactly equals r_partial² as a sanity check.
+  status: active
+  context: DocRED VIF=50.9 means BCS and centrality share 99% correlation. True ΔR²
+    = R²_full(0.595) - R²_cent(0.539) = 0.056 (5.6%), not r_partial²=0.3476²=0.121
+    (12.1%). Narrative direction unchanged (DocRED still confounded, FewRel still
+    clean evidence) but numbers were wrong by 2×.
+  fix: 'Agent recomputed correct ΔR² via two-regression approach and updated results.tex
+    L52, L61, main.tex L311, and r1_statistical_supplements.json. DocRED: 0.121→0.056
+    (88% shared). FewRel: 0.288→0.273 (nearly unchanged).'
+  related_decisions:
+  - D071
+- id: M011
+  date: '2026-05-22'
+  category: code_bug
+  severity: high
+  summary: R²=0.218 实际是 |r|=0.2206 的 r/R² 混淆，真实 R²≈0.049
+  root_cause: 80pool_16sub 实验的 pearson_bcs_acc=-0.2206 被误报为 R²=0.218。|r| 的数值被直接当作
+    R² 写入论文。p 值也从实际的 0.027 被误报为 p<0.001。该错误传播到 Abstract、results.tex、Appendix N Monte
+    Carlo、author response template 等多处。
+  prevention: 论文中报告任何统计量时，必须：(1) 在写入 tex 前交叉核对原始数据文件中的字段名（r vs R²）；(2) R² 必须等于 r²
+    的值，不一致时立即报警；(3) Reviewer 审查统计数据时必须溯源到原始 JSON/CSV 核对。
+  status: active
+  context: Reviewer 独立审查 C3 问题时发现。80pool_16sub bootstrap_ci.json 中 pearson_bcs_acc=-0.2206,
+    p=0.027。论文报告 R²=0.218, p<0.001。所有 ancillary 数据（quartile means, slope, IQR）精确匹配同一数据源，唯独
+    R² 和 p 不匹配。错误经过多轮内部审稿均未被发现。
+  fix: 'Option B: Abstract 和 main text 改为引用 pooled semipartial R²=0.273 (n=204, p<0.001)
+    作为 headline，补充报告 80pool R²≈0.05 (n=100, p=0.027) 作为保守估计。修复所有出现 0.218 的位置。'

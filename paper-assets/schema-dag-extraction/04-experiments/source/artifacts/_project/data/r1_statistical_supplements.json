@@ -1,0 +1,95 @@
+{
+  "N3_2_partial_correlation": {
+    "description": "Partial correlation: BCS vs accuracy, controlling for batch mean degree centrality (mean off-diagonal SCS row value per type)",
+    "method": "Pearson partial correlation via residualization; VIF to check multicollinearity",
+    "fewrel": {
+      "n_batches": 204,
+      "zero_order_r": -0.5703,
+      "zero_order_p": 0.0,
+      "zero_order_rho": -0.4335,
+      "zero_order_rho_p": 0.0,
+      "partial_r": -0.5367,
+      "partial_p": 0.0,
+      "vif_bcs": 1.182,
+      "vif_centrality": 1.182,
+      "bcs_semipartial_r2": 0.273,
+      "bcs_partial_r2": 0.288,
+      "bcs_semipartial_r2_note": "true ΔR² = R²_full(0.325) - R²_cent_only(0.052); partial r² = r_partial² = 0.5367² = 0.288",
+      "bcs_deg_correlation": 0.3925,
+      "bcs_range": [0.4578, 0.9706],
+      "bcs_sd": 0.1411,
+      "deg_range": [0.4527, 0.6308]
+    },
+    "docred": {
+      "n_batches": 110,
+      "zero_order_r": -0.7602,
+      "zero_order_p": 0.0,
+      "zero_order_rho": -0.7407,
+      "zero_order_rho_p": 0.0,
+      "partial_r": -0.3476,
+      "partial_p": 0.000198,
+      "vif_bcs": 50.901,
+      "vif_centrality": 50.901,
+      "bcs_semipartial_r2": 0.056,
+      "bcs_partial_r2": 0.1208,
+      "bcs_semipartial_r2_note": "true ΔR² = R²_full(0.595) - R²_cent_only(0.539); partial r² = r_partial² = 0.3476² = 0.1208",
+      "bcs_deg_correlation": 0.9901,
+      "bcs_range": [0.3796, 0.7571],
+      "bcs_sd": 0.1114,
+      "deg_range": [0.4585, 0.6238]
+    },
+    "fewrel_data_sources": [
+      "fewrel_formal_full/eval_exp1.json (110 batches, 80-type pool, count_1..80)",
+      "fewrel_formal_full/eval_exp2.json (54 batches, BCS-controlled extreme)",
+      "fewrel_80pool_16sub (100 batches, 8-type subsets from 80-type pool)",
+      "bcs_controlled_llama-3.1-70b-fp8 (count_8 + count_16, extreme BCS batches)"
+    ],
+    "docred_data_source": "exp_docred_bcs_expanded (110 batches, 96-type pool, count_16+32)"
+  },
+  "W2_docred_range_matched_mde": {
+    "description": "DocRED range-matched: MDE for 2-sample t-test comparing count_16 vs count_32 BCS effects",
+    "n1": 29,
+    "n2": 55,
+    "df": 82,
+    "sd_pooled": 0.084,
+    "se": 0.0193,
+    "mde_pp": 5.47,
+    "mde_raw": 0.0547,
+    "observed_interaction": 0.0093,
+    "observed_interaction_pp": 0.93,
+    "power_at_observed": 0.0755,
+    "ci_95": [-0.0713, 0.0744],
+    "interpretation": "MDE at 80% power = 5.5pp >> observed interaction = 0.9pp. The null interaction is consistent with both (a) no true count×BCS interaction and (b) a true but small (<5pp) interaction that this sample is underpowered to detect."
+  },
+  "W3_ner_null_power": {
+    "description": "NER (Few-NERD) BCS-null power analysis: absence of evidence vs evidence of absence",
+    "fewnerd": {
+      "n_batches": 450,
+      "bcs_range": [0.5802, 0.9356],
+      "bcs_sd": 0.0274,
+      "accuracy_metric": "recall (text_match)",
+      "accuracy_sd": 0.1452,
+      "observed_r": 0.0246,
+      "observed_p": 0.6029,
+      "observed_rho": -0.0262,
+      "observed_rho_p": 0.5797,
+      "min_detectable_r_at_80pct": 0.1318
+    },
+    "fewrel": {
+      "n_batches": 204,
+      "bcs_range": [0.4578, 0.9706],
+      "bcs_sd": 0.1411,
+      "accuracy_sd": 0.1103,
+      "observed_r": -0.5703,
+      "data_sources": "fewrel_formal_full + fewrel_80pool_16sub + bcs_controlled_70b"
+    },
+    "range_restriction": {
+      "bcs_sd_ratio": 0.194,
+      "bcs_range_width_ratio": 0.6931,
+      "attenuated_r": -0.1106,
+      "power_at_fewrel_effect": 1.0,
+      "power_at_attenuated_effect": 0.6512
+    },
+    "comparison": "Few-NERD BCS SD (0.027) is 19.4% of FewRel's (0.141). FewRel's observed r=-0.570 would attenuate to r=-0.111 under this SD compression, yielding only 65.1% power (n=450). Min detectable |r| at 80% power = 0.132. The Few-NERD BCS-null is thus better attributed to insufficient BCS variance (most types have similar embeddings) than to a genuine absence of the BCS-accuracy relationship in NER."
+  }
+}

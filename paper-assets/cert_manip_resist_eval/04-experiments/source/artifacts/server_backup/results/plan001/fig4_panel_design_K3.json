@@ -1,0 +1,106 @@
+{
+  "analysis": "fig4_panel_design_K3",
+  "description": "Panel design strategies with K=3 (panel size = 3 judges), best single panel per strategy",
+  "panel_size": 3,
+  "n_panels_per_dataset": "455 (C(15,3))",
+  "min_eta_max_wins": 12,
+  "total_conditions": 12,
+  "conditions": {
+    "mmluxprompt_injection": {
+      "min_eta_max_asr": 0.0,
+      "max_keff_asr": 0.3406113537117904,
+      "random_asr": 0.16325626590444964,
+      "min_eta_max_panel": "gpt-5.5|gemini-3.1-pro-preview|gemini-3.5-flash",
+      "max_keff_panel": "llama3.1-8b|claude-opus-4-6|gpt-4.1-nano",
+      "n_panels": 455
+    },
+    "mmluxsycophancy": {
+      "min_eta_max_asr": 0.0,
+      "max_keff_asr": 0.07423580786026202,
+      "random_asr": 0.043619457396770096,
+      "min_eta_max_panel": "gpt-5.5|gemini-3.1-pro-preview|gpt-4.1",
+      "max_keff_panel": "llama3.1-8b|claude-opus-4-6|gpt-4.1-nano",
+      "n_panels": 455
+    },
+    "mmluxscore_manipulation": {
+      "min_eta_max_asr": 0.0,
+      "max_keff_asr": 0.1572052401746725,
+      "random_asr": 0.05322294291978534,
+      "min_eta_max_panel": "gpt-5.5|gemini-3.1-pro-preview|gemini-3.5-flash",
+      "max_keff_panel": "llama3.1-8b|claude-opus-4-6|gpt-4.1-nano",
+      "n_panels": 455
+    },
+    "mmluxverbosity_bias": {
+      "min_eta_max_asr": 0.0,
+      "max_keff_asr": 0.056768558951965066,
+      "random_asr": 0.03796042435902686,
+      "min_eta_max_panel": "gpt-5.5|gemini-3.1-pro-preview|gemini-3.5-flash",
+      "max_keff_panel": "llama3.1-8b|claude-opus-4-6|gpt-4.1-nano",
+      "n_panels": 455
+    },
+    "mmluxposition_bias": {
+      "min_eta_max_asr": 0.4486486486486487,
+      "max_keff_asr": 0.5676855895196506,
+      "random_asr": 0.5147123198168464,
+      "min_eta_max_panel": "gpt-5.5|gemini-3.1-pro-preview|gemini-3.5-flash",
+      "max_keff_panel": "llama3.1-8b|claude-opus-4-6|gpt-4.1-nano",
+      "n_panels": 455
+    },
+    "mmluxauthority_bias": {
+      "min_eta_max_asr": 0.0,
+      "max_keff_asr": 0.03056768558951965,
+      "random_asr": 0.027714560850321066,
+      "min_eta_max_panel": "gpt-5.5|gemini-3.1-pro-preview|gemini-3.5-flash",
+      "max_keff_panel": "llama3.1-8b|claude-opus-4-6|gpt-4.1-nano",
+      "n_panels": 455
+    },
+    "arc_challengexprompt_injection": {
+      "min_eta_max_asr": 0.0,
+      "max_keff_asr": 0.7,
+      "random_asr": 0.07840489657734596,
+      "min_eta_max_panel": "claude-opus-4-6|gpt-5.5|gemini-3.1-pro-preview",
+      "max_keff_panel": "llama3.1-8b|gpt-5.5|claude-3-haiku",
+      "n_panels": 455
+    },
+    "arc_challengexsycophancy": {
+      "min_eta_max_asr": 0.0,
+      "max_keff_asr": 0.023923444976076555,
+      "random_asr": 0.011534748187088283,
+      "min_eta_max_panel": "gpt-5.5|gemini-3.1-pro-preview|claude-sonnet-4-6",
+      "max_keff_panel": "llama3.1-8b|gpt-5.5|claude-3-haiku",
+      "n_panels": 455
+    },
+    "arc_challengexscore_manipulation": {
+      "min_eta_max_asr": 0.0,
+      "max_keff_asr": 0.11004784688995216,
+      "random_asr": 0.02251405828150135,
+      "min_eta_max_panel": "gpt-5.5|gemini-3.1-pro-preview|gemini-3.5-flash",
+      "max_keff_panel": "llama3.1-8b|gpt-5.5|claude-3-haiku",
+      "n_panels": 455
+    },
+    "arc_challengexverbosity_bias": {
+      "min_eta_max_asr": 0.0,
+      "max_keff_asr": 0.10047846889952153,
+      "random_asr": 0.029006081071561534,
+      "min_eta_max_panel": "mistral-large|gpt-5.5|gemini-3.1-pro-preview",
+      "max_keff_panel": "llama3.1-8b|gpt-5.5|claude-3-haiku",
+      "n_panels": 455
+    },
+    "arc_challengexposition_bias": {
+      "min_eta_max_asr": 0.46757679180887374,
+      "max_keff_asr": 0.6523809523809524,
+      "random_asr": 0.4971385581993123,
+      "min_eta_max_panel": "claude-opus-4-6|gpt-5.5|claude-sonnet-4-6",
+      "max_keff_panel": "llama3.1-8b|gpt-5.5|claude-3-haiku",
+      "n_panels": 455
+    },
+    "arc_challengexauthority_bias": {
+      "min_eta_max_asr": 0.0,
+      "max_keff_asr": 0.0380952380952381,
+      "random_asr": 0.010962544499656623,
+      "min_eta_max_panel": "claude-opus-4-6|gpt-5.5|gemini-3.1-pro-preview",
+      "max_keff_panel": "llama3.1-8b|gpt-5.5|claude-3-haiku",
+      "n_panels": 455
+    }
+  }
+}

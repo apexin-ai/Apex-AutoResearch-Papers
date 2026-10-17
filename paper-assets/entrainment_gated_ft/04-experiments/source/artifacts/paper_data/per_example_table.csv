@@ -1,0 +1,4 @@
+arch,helped_count,hurt_count,net_effect,pairwise_jaccard_helped,pairwise_jaccard_hurt
+GDN,462,615,-153,0.096,0.096
+RetNet,426,495,-69,0.100,0.095
+HGRN2,548,395,+153,0.104,0.088

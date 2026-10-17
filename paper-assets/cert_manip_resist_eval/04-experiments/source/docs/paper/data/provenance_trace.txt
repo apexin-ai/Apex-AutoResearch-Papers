@@ -1,0 +1,39 @@
+# Provenance Trace: 8 Paper Values → Source JSON
+# Generated: 2026-05-23
+# Format: 论文值 | 源JSON路径:字段 | JSON精确值 | 一致?
+
+# ── 1. VIF average 3.0, "10/12 below 5" ──
+VIF avg 3.0 | vif_partial_corr.json:vif.mean | 2.978413693204765 | Y (rounds to 3.0)
+10/12 below 5 | vif_partial_corr.json:vif.per_condition.* | 10 of 12 values < 5 (exceptions: arc_challengexscore_manipulation=7.027, arc_challengexposition_bias=6.532) | Y
+
+# ── 2. Partial r values: η_max=0.31, K_eff=0.12 ──
+η_max partial r=0.31 | vif_partial_corr.json:partial_correlation.summary.eta_mean_partial_r | 0.30455451459096816 | ~Y (signed mean=0.305; abs mean=0.306→0.31)
+K_eff partial r=0.12 | vif_partial_corr.json:partial_correlation.summary.keff_mean_partial_r | 0.11624853561260645 | Y (rounds to 0.12)
+
+# ── 3. MDE=0.14, OLS β_std=0.164 ──
+MDE=0.14 | power_cr2_cr3.json:power_analysis.MDE_80 | 0.14387464387464388 | Y (rounds to 0.14)
+OLS β_std=0.164 | k5_rf_contrast.json:rf_ols.mmlu.keff_std_beta | 0.16517932295288243 | ~N (JSON rounds to 0.165, paper says 0.164; minor rounding discrepancy)
+
+# ── 4. RF R²=0.73–0.81 range ──
+RF R²=0.73 (lower) | k5_rf_contrast.json:comparison_table.k3_rf.mmlu_r2 | 0.7344 | Y (rounds to 0.73)
+RF R²=0.81 (upper) | k5_rf_contrast.json:comparison_table.k3_rf.arc_r2 | 0.8133 | Y (rounds to 0.81)
+
+# ── 5. β_std=-0.192, bootstrap p≈0.06 for arc×sycophancy ──
+β_std=-0.192 | wild_cluster_bootstrap_v2.json:per_condition.arc_challengexsycophancy.keff_ols_std_beta | -0.19168025366159222 | Y (rounds to -0.192; also confirmed at validation.arc_sycophancy_keff_std_beta)
+bootstrap p≈0.06 | wild_cluster_bootstrap.json:per_condition.arc_challengexsycophancy.keff_boot_p | 0.0593 | Y (rounds to 0.06; NOTE: this is v1 bootstrap with 15 clusters; v2 3-position max-p gives final_p=0.3973)
+
+# ── 6. Theorem 1 "58% (61/105)" ──
+58% (61/105) | stochastic_dominance.json:global_12_conditions.dominant_unordered_pairs + n_unordered_pairs | dominant_unordered_pairs=61, n_unordered_pairs=105 | Y (61/105=58.1%≈58%)
+
+# ── 7. r≈0.82 in log space ──
+r≈0.82 log space | capability_matched_subsample.json:full_set_correlation.log | 0.82 | Y (exact match)
+
+# ── 8. Random subsample "mean significance 1.85/12" ──
+mean sig 1.85/12 | random_subsample_transition.json:overall.cl_keff_sig_mean | 1.849 | Y (rounds to 1.85)
+
+# ──────────────────────────────────────────────
+# NOTES
+# - All paths relative to: /root/cert_manip_resist_eval/artifacts/results/plan001/
+# - Value #3 β_std: JSON=0.16518→0.165, paper says 0.164. Off by 0.001 in last digit. Likely rounding convention difference or intermediate computation.
+# - Value #5 bootstrap p: v1 (wild_cluster_bootstrap.json, 15-cluster) gives p=0.0593≈0.06. v2 (wild_cluster_bootstrap_v2.json, 3-position max-p) gives p=0.3973. Paper cites v1 value.
+# - Value #2 η_max partial r: signed mean=0.3046→0.30, but abs mean of per-condition partial r's ≈0.306→0.31. Paper likely uses abs mean.

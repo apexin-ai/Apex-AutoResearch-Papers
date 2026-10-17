@@ -1,0 +1,790 @@
+% Appendix sections for the paper.
+
+\section{Confirmatory and Exploratory Analyses}\label{app:benchmark_details}
+
+The task taxonomy used in \S\ref{ssec:task_taxonomy} was defined prior to running any convergence analyses. Each benchmark was assigned to exactly one of four categories based on the primary cognitive demand of the task:
+
+\begin{itemize}
+    \item \textbf{Retrieval}: tasks requiring prediction from long-range context without multi-step reasoning (LAMBADA).
+    \item \textbf{Comprehension}: reading comprehension with explicit passage support (BoolQ).
+    \item \textbf{Reasoning}: tasks requiring commonsense inference or multi-step reasoning (HellaSwag, ARC-Challenge, WinoGrande, PIQA).
+    \item \textbf{Mixed}: tasks combining retrieval, comprehension, and reasoning demands (ARC-Easy, MMLU, SciQ, XStoryCloze).
+\end{itemize}
+
+\paragraph{Confirmatory benchmark set.} Six benchmarks were designated as confirmatory for Bonferroni correction: LAMBADA, HellaSwag, ARC-Challenge, WinoGrande, ARC-Easy, and MMLU. These were selected as representative of retrieval, reasoning, and mixed categories before any convergence analysis was performed. The taxonomy and benchmark selection were fixed before analysis as an informal pre-analysis plan; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The main text applies the more conservative all-10-benchmark correction (Bonferroni-adjusted $p = .017 \times 10 = .167$). \textbf{Sensitivity:} correcting across only the six confirmatory benchmarks yields adjusted $p = .017 \times 6 = .100$, still above conventional significance.
+
+\paragraph{One-sided test.} If one adopts the prior that attention should reduce cross-architecture variance, the one-sided permutation $p$-value for LAMBADA is $1/120 \approx 0.0083$. Under 10-benchmark Bonferroni correction, this yields an adjusted $p = 0.083$, above the conventional threshold. We report two-sided tests throughout the main text as the more conservative choice; the one-sided result is noted here for completeness.
+
+\paragraph{Exploratory benchmarks.} Four additional benchmarks (BoolQ, PIQA, SciQ, XStoryCloze) were added as exploratory tests. All benchmarks share the same 10-benchmark correction (adjusted threshold $\alpha / 10 = 0.005$) and the four exploratory benchmarks are labeled as such throughout the paper. The all-10 Bonferroni correction reported in the main text is the only correction used for inference; the exploratory 6-benchmark subset correction in this appendix is provided for transparency.
+
+\paragraph{Supplementary benchmark.} COPA ($n = 100$) is treated as supplementary due to its small sample size. It is excluded from both correction families and reported separately with the $\dagger$ annotation in Table~\ref{tab:convergence}.
+
+\section{Convergence Detail}\label{app:convergence_detail}
+
+% Figure moved to main text (\S\ref{ssec:decoupling}).
+
+Beyond LAMBADA ($\rho = -1.0$), two benchmarks show moderate negative correlations that do not reach significance: ARC-Easy and MMLU (both $\rho = -0.7$, $p = .233$). Both are classified as ``Mixed'' tasks combining retrieval with reasoning demands. The sensitivity analysis (Appendix~\ref{app:sensitivity}) shows that MMLU's correlation reverses upon GDN exclusion ($\rho = +0.6$), indicating dependence on a single architecture; ARC-Easy's correlation is more stable. COPA ($n = 100$; supplementary) shows $\rho = -0.67$ with a large $\sigma$ ratio (5.57), consistent with LAMBADA's pattern but unreliable due to small sample size.
+
+Several benchmarks show positive or near-zero $\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.3$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \citep{arora2024zoology,arora2024based} rather than multi-step inference.
+
+\paragraph{Regression to the mean.} The direction of LAMBADA's aggregate convergence is consistent with regression to the mean: GDN (highest pure accuracy, 0.543) declines to 0.513 under h3-1, while HGRN2 (lowest, 0.484) rises to 0.514, yielding a ${\sim}5\times$ $\sigma$ compression ($0.024 \to 0.005$). However, three observations argue against a purely statistical artifact. First, the ${\sim}5\times$ reduction in cross-architecture $\sigma$ far exceeds typical regression amplitudes. Second, the direction is entirely determined by architecture identity, not random fluctuation: HGRN2 accuracy increases monotonically across all attention ratios, while GDN decreases monotonically---a pattern inconsistent with noise-driven mean reversion. Third, per-example analysis (\S\ref{ssec:per_example}) reveals architecture-specific patterns: GDN's net $-153$ examples and HGRN2's net $+153$ examples reflect distinct helped/hurt profiles with low cross-architecture Jaccard overlap, indicating that the aggregate convergence arises from structured, architecture-dependent per-example changes rather than symmetric regression.
+
+\section{Scale-Dependent Convergence}\label{app:scale_convergence}
+
+At 1.3B parameters, LAMBADA convergence is monotonic: $\sigma$ decreases at every attention level from 0\% through 25\% ($\rho = -1.0$). At 340M, convergence is partial: $\sigma$ reaches a maximum reduction of 56\% at intermediate attention ratios but rebounds at h3-1, yielding a net endpoint reduction of 36\%. The trajectory is non-monotonic, and the highest-attention model does not achieve the lowest cross-architecture variance. One possible interpretation is that at smaller scale, the capacity overhead of attention layers creates interference that offsets the retrieval benefit.
+
+This contrast is a preliminary observation from two data points (not a scaling law). Despite the aggregate divergence at 340M, mean pairwise Jaccard is similar at both scales ($J \approx 0.09$), extending the decoupling observation (\S\ref{ssec:decoupling}) to the scale dimension.
+
+\section{Sensitivity Analyses}\label{app:sensitivity}
+
+\subsection{Bootstrap Confidence Intervals}
+
+We construct 95\% bootstrap confidence intervals for the Spearman $\rho$ between attention ratio and cross-architecture $\sigma$ on LAMBADA using 10{,}000 resamples at the architecture level ($n = 3$ architectures). Of these resamples, 11.25\% are degenerate: they consist of same-architecture triplicates, which produce a constant $\sigma$ vector and therefore an undefined $\rho$ (division by zero in the rank correlation formula). These are excluded from the confidence interval computation because they carry no information about the correlation, not because they represent $\rho = 0$.
+
+The BCa (bias-corrected and accelerated) correction degenerates at the $\rho = -1.0$ boundary because the acceleration parameter requires finite jackknife variance, which collapses when the point estimate is at the distributional limit. We therefore report percentile confidence intervals instead. From the 88.75\% informative resamples, the 95\% percentile CI is $[-1.0,\,-0.7]$, which excludes zero.
+
+\subsection{GDN Exclusion Sensitivity}
+
+The GDN h3-1 configuration uses 16 attention heads rather than 32 (see Appendix~\ref{app:gdn_confound}). To assess the influence of this confound, we recompute all convergence correlations after excluding GDN, leaving two architectures (RetNet, HGRN2) at five attention ratios.
+
+Table~\ref{tab:gdn_sensitivity} reports the results for benchmarks where the correlation changes by $|\Delta\rho| \geq 0.3$. LAMBADA weakens from $\rho = -1.0$ to $\rho = -0.7$ ($p = .233$), consistent with GDN contributing to the convergence signal. MMLU reverses from $\rho = -0.7$ to $\rho = +0.6$, confirming that the moderate negative correlation on MMLU depends on GDN's inclusion and should not be interpreted as evidence of convergence.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Effect of GDN exclusion on Spearman $\rho$ (attention ratio vs.\ cross-architecture $\sigma$) at 1.3B scale. Only benchmarks with $|\Delta\rho| \geq 0.3$ shown.}
+\label{tab:gdn_sensitivity}
+\begin{tabular}{lrrrr}
+\toprule
+Benchmark & $\rho_{\text{all}}$ & $\rho_{\text{no-GDN}}$ & $\Delta\rho$ & $p_{\text{no-GDN}}$ \\
+\midrule
+LAMBADA & $-1.0$ & $-0.7$ & $+0.3$ & .233 \\
+MMLU & $-0.7$ & $+0.6$ & $+1.3$ & .350 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{GDN Attention Head Confound}\label{app:gdn_confound}
+
+In the \citet{wang2025hybrid} model zoo, the GDN h3-1 configuration at 1.3B scale uses 16 attention heads per attention layer, while all other hybrid configurations (across GDN, RetNet, and HGRN2) use 32 attention heads. This is a design choice in the original model zoo, not an error. The reduced head count changes the per-head dimension and may affect the attention capacity of GDN h3-1 relative to other configurations.
+
+This confound is relevant because the convergence analysis measures cross-architecture $\sigma$ at each attention ratio. At the h3-1 ratio (25\% attention), GDN's attention layers have a different internal structure than those of RetNet and HGRN2, which could contribute to variance reduction (or inflation) for reasons unrelated to the recurrent--attention interaction under study.
+
+The sensitivity analysis in Appendix~\ref{app:sensitivity} shows that removing GDN weakens the LAMBADA convergence correlation from $\rho = -1.0$ to $\rho = -0.7$. This weakening is partially attributable to the reduced sample size ($n = 2$ architectures) and partially to the confound itself. We cannot separate these two effects with the available data.
+
+\section{Attention Weight Analysis}\label{app:attention_patterns}
+
+We extract attention weight matrices from the 1.3B h3-1 models of all three architectures using forward hooks on each attention layer. While \citet{ali2025hidden} show that SSM layers learn implicit attention patterns, our analysis focuses on the explicit attention layers interleaved within the hybrid architecture. For each layer, we compute the mean attention distribution across all 5{,}153 LAMBADA examples and measure cross-architecture similarity via cosine similarity.
+
+\subsection{Cross-Architecture Cosine Similarity}
+
+Table~\ref{tab:attn_cosine} reports cosine similarity between mean attention distributions at selected layers and averaged across all layers.
+
+\begin{table}[ht]
+\centering
+\caption{Cosine similarity between mean attention weight distributions of architecture pairs at selected layers (1.3B h3-1 models on LAMBADA).}
+\label{tab:attn_cosine}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrr}
+\toprule
+Layer & GDN--RetNet & GDN--HGRN2 & HGRN2--RetNet \\
+\midrule
+L2 (early) & 0.995 & 0.244 & 0.196 \\
+L20 (deep) & 0.986 & 0.942 & 0.943 \\
+\midrule
+Mean (all layers) & 0.905 & 0.766 & 0.698 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+At layer 2, GDN and RetNet produce nearly identical attention distributions (cosine 0.995), while HGRN2 diverges from both (cosine $< 0.25$). By layer 20, all three architectures converge to similar attention patterns (cosine $> 0.94$). The layer-wise trajectory suggests that early-layer attention patterns are shaped by the preceding recurrent layers (which differ across architectures), while deeper layers converge regardless of the recurrent substrate.
+
+\subsection{Helped vs.\ Hurt Attention Entropy}
+
+To test whether the attention mechanism itself differs between helped and hurt examples, we compute the Shannon entropy of the attention distribution for each example at each attention layer and compare the mean entropy of helped examples against hurt examples within each architecture.
+
+\begin{table}[ht]
+\centering
+\caption{Mean attention entropy difference (helped $-$ hurt) averaged across attention layers (1.3B h3-1 models on LAMBADA). Values near zero indicate that the attention mechanism does not discriminate between helped and hurt examples.}
+\label{tab:attn_entropy}
+\begin{tabular}{lr}
+\toprule
+Architecture & $\Delta H$ (helped $-$ hurt) \\
+\midrule
+GDN & $-0.0009$ \\
+RetNet & $+0.0179$ \\
+HGRN2 & $+0.0020$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GDN and HGRN2 show negligible entropy differences ($|\Delta H| \leq 0.002$). RetNet's $\Delta H = +0.018$ is small in absolute terms but slightly larger; helped examples receive marginally more diffuse attention in RetNet. Across all three architectures, the differences are insufficient to explain the per-example divergence, consistent with per-example effects not being explained by attention weight patterns and likely originating in the recurrent layers.
+
+\subsection{Last-5 Attention Mass}
+
+We also measure the fraction of attention mass allocated to the last five tokens, which captures whether the attention mechanism concentrates differently on recent context for helped vs.\ hurt examples.
+
+\begin{table}[ht]
+\centering
+\caption{Mean attention mass on last-5 tokens for helped and hurt examples, averaged across attention layers (1.3B h3-1 models on LAMBADA).}
+\label{tab:attn_last5}
+\begin{tabular}{lrr}
+\toprule
+Architecture & Helped & Hurt \\
+\midrule
+GDN & 0.0834 & 0.0831 \\
+RetNet & 0.1578 & 0.1591 \\
+HGRN2 & 0.0453 & 0.0467 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No architecture shows a meaningful difference in last-5 attention mass between helped and hurt examples (Table~\ref{tab:attn_last5}). This further supports the conclusion that the per-example divergence is not driven by differential attention allocation.
+
+\section{Cross-Scale Per-Example Comparisons}\label{app:cross_scale}
+
+\subsection{Within-Scale Pairwise Jaccard}
+
+Table~\ref{tab:within_scale_jaccard} reports the within-scale pairwise Jaccard similarity between architectures' helped and hurt sets at both scales. Mean values are similar across scales (340M: 0.094/0.090; 1.3B: 0.100/0.093), indicating that per-example architecture specificity is consistent across the two scales examined.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Within-scale pairwise Jaccard similarity of per-example effects (pure $\to$ h3-1) on LAMBADA. Each row compares the helped (or hurt) sets of two architectures at the same scale.}
+\label{tab:within_scale_jaccard}
+\begin{tabular}{llcc}
+\toprule
+Scale & Pair & $J_{\text{helped}}$ & $J_{\text{hurt}}$ \\
+\midrule
+\multirow{4}{*}{340M} & GDN--RetNet & 0.092 & 0.109 \\
+& GDN--HGRN2 & 0.084 & 0.075 \\
+& RetNet--HGRN2 & 0.108 & 0.085 \\
+& \textit{Mean} & \textit{0.094} & \textit{0.090} \\
+\midrule
+\multirow{4}{*}{1.3B} & GDN--RetNet & 0.092 & 0.103 \\
+& GDN--HGRN2 & 0.100 & 0.088 \\
+& RetNet--HGRN2 & 0.108 & 0.087 \\
+& \textit{Mean} & \textit{0.100} & \textit{0.093} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Scale Pairwise Jaccard}
+
+For each architecture, we compare the helped and hurt sets of the pure $\to$ h3-1 transition at 340M and 1.3B scale on LAMBADA.
+The comparison uses the same classification scheme as \S\ref{ssec:per_example}: an example is ``helped'' if it is correct only in the hybrid variant and ``hurt'' if correct only in the pure baseline.
+All pairwise Jaccard values fall below 0.10, indicating that scale variation is associated with per-example predictive multiplicity analogous to the cross-architecture effect reported in \S\ref{ssec:per_example}.
+
+\begin{table}[ht]
+\centering
+\caption{Cross-scale pairwise Jaccard similarity of per-example effects (pure $\to$ h3-1) between 340M and 1.3B on LAMBADA. All values below 0.10.}
+\label{tab:cross_scale_jaccard}
+\begin{tabular}{llcc}
+\toprule
+Architecture & Scale Pair & $J_{\text{helped}}$ & $J_{\text{hurt}}$ \\
+\midrule
+GDN & 340M $\leftrightarrow$ 1.3B & 0.047 & 0.087 \\
+RetNet & 340M $\leftrightarrow$ 1.3B & 0.059 & 0.073 \\
+HGRN2 & 340M $\leftrightarrow$ 1.3B & 0.089 & 0.055 \\
+\midrule
+Mean & & 0.065 & 0.072 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Per-Example Effect Counts}\label{app:per_example_counts}
+
+Table~\ref{tab:per_example} reports the full per-example effect counts for each architecture at 1.3B scale.
+
+\begin{table}[ht]
+\centering
+\caption{Per-example effects of attention (pure $\to$ h3-1) on 5{,}153 LAMBADA examples at 1.3B scale. $\bar{J}$: mean pairwise Jaccard similarity with other architectures across helped and hurt sets.}
+\label{tab:per_example}
+\begin{tabular}{lrrrr}
+\toprule
+Architecture & Helped & Hurt & Net & $\bar{J}$ \\
+\midrule
+GDN & 462 & 615 & $-$153 & .096 \\
+RetNet & 426 & 495 & $-$69 & .098 \\
+HGRN2 & 548 & 395 & $+$153 & .096 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Normalized Jaccard Effect Size}\label{app:normalized_es}
+
+To assess whether low observed Jaccard reflects a floor effect imposed by unequal set sizes, we compute the theoretical upper bound $J_{\max} = \min(|A|,|B|) / \max(|A|,|B|)$ and the normalized effect size $(J_{\text{obs}} - J_{\text{null}}) / (J_{\max} - J_{\text{null}})$, which measures observed overlap as a fraction of the achievable range above chance. Table~\ref{tab:normalized_es} reports per-pair results.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\max}$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}
+\label{tab:normalized_es}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccc}
+\toprule
+Category & Pair & $J_{\text{obs}}$ & $J_{\max}$ & $J_{\text{null}}$ & Norm.\ ES \\
+\midrule
+Helped & GDN--RetNet & .092 & .922 & .045 & .054 \\
+ & GDN--HGRN2 & .100 & .843 & .051 & .062 \\
+ & RetNet--HGRN2 & .108 & .777 & .049 & .081 \\
+ & \textit{Mean} & \textit{.100} & \textit{.848} & \textit{.048} & \textit{.066} \\
+\midrule
+Hurt & GDN--RetNet & .103 & .805 & .056 & .063 \\
+ & GDN--HGRN2 & .088 & .642 & .049 & .066 \\
+ & RetNet--HGRN2 & .087 & .798 & .045 & .056 \\
+ & \textit{Mean} & \textit{.093} & \textit{.748} & \textit{.050} & \textit{.062} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+All normalized effect sizes fall below 0.10, confirming that observed overlap reaches only 6--7\% of the theoretical maximum. The low Jaccard values cannot be attributed to set-size constraints.
+
+\section{ARC-Easy Per-Example Analysis}\label{app:arceasy}
+
+Table~\ref{tab:arceasy_effects} reports per-example effect counts on ARC-Easy ($N = 2{,}376$) at 1.3B scale for each attention ratio. Unlike LAMBADA, ARC-Easy shows no aggregate convergence ($\rho = -0.20$, $p = .783$). HGRN2 is net positive at all ratios; GDN and RetNet are mixed.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Per-example effects on ARC-Easy at 1.3B scale. Net = helped $-$ hurt.}
+\label{tab:arceasy_effects}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrr}
+\toprule
+Architecture & Ratio & Helped & Hurt & Net \\
+\midrule
+\multirow{4}{*}{GDN} & h24-1 & 178 & 185 & $-$7 \\
+& h12-1 & 176 & 206 & $-$30 \\
+& h6-1 & 170 & 157 & $+$13 \\
+& h3-1 & 171 & 180 & $-$9 \\
+\midrule
+\multirow{4}{*}{RetNet} & h24-1 & 158 & 168 & $-$10 \\
+& h12-1 & 163 & 146 & $+$17 \\
+& h6-1 & 159 & 147 & $+$12 \\
+& h3-1 & 144 & 184 & $-$40 \\
+\midrule
+\multirow{4}{*}{HGRN2} & h24-1 & 160 & 119 & $+$41 \\
+& h12-1 & 159 & 111 & $+$48 \\
+& h6-1 & 185 & 118 & $+$67 \\
+& h3-1 & 164 & 146 & $+$18 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+Table~\ref{tab:arceasy_ambiguity} reports the ambiguity $\alpha$ \citep{marx2020predictive} at each attention ratio for all four main benchmarks. Within-benchmark ranges are 0.004 (HellaSwag), 0.011 (PIQA), 0.025 (ARC-Easy), and 0.022 (LAMBADA), all below the 0.03 threshold reported in \S\ref{ssec:per_example}.
+
+\begin{table}[ht]
+\centering
+\caption{Ambiguity $\alpha$ across attention ratios (1.3B scale). 95\% CI: BCa bootstrap (10{,}000 resamples) at the pure-recurrent configuration.}
+\label{tab:arceasy_ambiguity}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+Benchmark & Pure & h24-1 & h12-1 & h6-1 & h3-1 & 95\% CI (pure) \\
+\midrule
+PIQA & .143 & .138 & .132 & .143 & .140 & $[.127,\,.159]$ \\
+HellaSwag & .148 & .150 & .148 & .146 & .150 & $[.141,\,.155]$ \\
+ARC-Easy & .205 & .226 & .223 & .201 & .210 & $[.189,\,.221]$ \\
+LAMBADA & .307 & .300 & .316 & .294 & .296 & $[.294,\,.319]$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\section{Jaccard Permutation Test}\label{app:jaccard_permutation}
+
+To assess whether the observed pairwise Jaccard similarities exceed what would be expected under independence, we perform a permutation test. For each architecture pair at 1.3B h3-1, we hold the helped (or hurt) set sizes fixed and randomly assign example indices to each set (10{,}000 permutations, seed 42). Table~\ref{tab:jaccard_perm} reports the observed $J$, the null baseline $J_{\text{null}}$ (mean over permutations), and the $z$-score.
+
+\begin{table}[ht]
+\centering
+\caption{Permutation test for pairwise Jaccard similarity (1.3B h3-1 on LAMBADA, 10{,}000 permutations). All observed values significantly exceed the independence baseline.}
+\label{tab:jaccard_perm}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccc}
+\toprule
+Category & Pair & $J_{\text{obs}}$ & $J_{\text{null}}$ & $z$ & $p$ \\
+\midrule
+Helped & GDN--HGRN2 & .100 & .051 & 7.11 & $<$.0001 \\
+ & GDN--RetNet & .092 & .045 & 6.75 & $<$.0001 \\
+ & HGRN2--RetNet & .108 & .049 & 8.61 & $<$.0001 \\
+\midrule
+Hurt & GDN--HGRN2 & .088 & .049 & 5.91 & $<$.0001 \\
+ & GDN--RetNet & .103 & .056 & 6.85 & $<$.0001 \\
+ & HGRN2--RetNet & .087 & .045 & 6.05 & $<$.0001 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+All six comparisons yield $z > 5.9$ ($p < .0001$). The null baseline averages $J_{\text{null}} \approx 0.049$; observed values are approximately twice this level. The overlap between architectures' per-example effect sets is therefore structured rather than a product of random set overlap given the set sizes.
+
+\section{Transformer Entrainment Comparison}\label{app:transformer_entrainment}
+
+To test whether attention layers make hybrid models' per-example behavior converge toward a pure Transformer, we compare the correct-example sets of each architecture's pure and h3-1 variants against a 1.3B Transformer baseline (accuracy 48.1\%) on LAMBADA. Table~\ref{tab:transformer_jaccard} reports the Jaccard similarity between each model's correct set and the Transformer's correct set.
+
+\begin{table}[ht]
+\centering
+\caption{Jaccard similarity between each model's correct set and the Transformer correct set on LAMBADA (1.3B scale). All three h3-1 hybrids are more similar to the Transformer than their pure counterparts.}
+\label{tab:transformer_jaccard}
+\small
+\begin{tabular}{lccc}
+\toprule
+Architecture & $J_{\text{pure,T}}$ & $J_{\text{h3-1,T}}$ & $\Delta$ \\
+\midrule
+GDN & 0.645 & 0.649 & $+$0.005 \\
+RetNet & 0.679 & 0.694 & $+$0.015 \\
+HGRN2 & 0.672 & 0.701 & $+$0.029 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All three architectures show positive $\Delta$: the h3-1 correct set is more similar to the Transformer correct set than the pure correct set is. The effect is strongest for HGRN2 ($+$0.029) and weakest for GDN ($+$0.005). This ordering is consistent with HGRN2 being the only architecture with a positive net per-example effect from attention (Table~\ref{tab:per_example}). The Transformer itself achieves the lowest accuracy among all models, so the convergence is not explained by hybrid models degrading toward Transformer-level performance; rather, adding attention shifts which specific examples the hybrid gets correct toward the Transformer's pattern.
+
+\section{Within-Architecture Per-Example Stability}\label{app:within_arch_stability}
+
+Per-example effect sets exhibit a three-tier Jaccard hierarchy on LAMBADA (1.3B scale). Under independence (permutation baseline), pairwise Jaccard is $J \approx 0.05$. Cross-architecture comparisons (different architectures at the same attention ratio) yield $J \approx 0.10$, approximately $2\times$ baseline. Within-architecture comparisons (same architecture across different attention ratios) yield $J \approx 0.33$, approximately $7\times$ baseline and $3\times$ the cross-architecture level. Architecture identity therefore has approximately three times the influence of attention ratio on per-example effects.
+
+Table~\ref{tab:within_arch_summary} reports mean within-architecture Jaccard for each architecture. HGRN2 shows the highest helped overlap and lowest hurt overlap, consistent with its monotonically increasing helped count across ratios (479 $\to$ 548).
+
+\begin{table}[ht]
+\centering
+\caption{Mean within-architecture pairwise Jaccard similarity across attention ratios (1.3B, LAMBADA). Each mean is computed over all six ratio pairs per architecture.}
+\label{tab:within_arch_summary}
+\begin{tabular}{lcc}
+\toprule
+Architecture & $\bar{J}_{\text{helped}}$ & $\bar{J}_{\text{hurt}}$ \\
+\midrule
+GDN & 0.338 & 0.319 \\
+RetNet & 0.333 & 0.321 \\
+HGRN2 & 0.373 & 0.291 \\
+\midrule
+\textit{Overall mean} & \textit{0.348} & \textit{0.310} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:within_arch_pairwise} reports the full pairwise Jaccard matrix. Attention ratios are denoted by their h$k$-1 labels: h24-1 (4\%), h12-1 (7.7\%), h6-1 (14.3\%), h3-1 (25\%).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Within-architecture pairwise Jaccard similarity between helped and hurt sets at different attention ratios (1.3B, LAMBADA). Each cell compares the per-example effect sets of two attention configurations within the same architecture.}
+\label{tab:within_arch_pairwise}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccccc}
+\toprule
+ & & \multicolumn{6}{c}{Ratio pair} \\
+\cmidrule(lr){3-8}
+Arch & Cat & h24--h12 & h24--h6 & h24--h3 & h12--h6 & h12--h3 & h6--h3 \\
+\midrule
+\multirow{2}{*}{GDN} & Helped & .345 & .335 & .311 & .344 & .341 & .352 \\
+ & Hurt & .310 & .328 & .320 & .331 & .281 & .345 \\
+\midrule
+\multirow{2}{*}{RetNet} & Helped & .354 & .314 & .334 & .322 & .330 & .345 \\
+ & Hurt & .316 & .334 & .307 & .301 & .324 & .343 \\
+\midrule
+\multirow{2}{*}{HGRN2} & Helped & .359 & .369 & .375 & .368 & .378 & .388 \\
+ & Hurt & .292 & .289 & .298 & .273 & .309 & .287 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+Adjacent ratio pairs (e.g., h24-1 vs.\ h12-1) do not exhibit systematically higher Jaccard than non-adjacent pairs (e.g., h24-1 vs.\ h3-1). Across all architectures, the mean Jaccard for adjacent pairs is 0.353 (helped) and 0.311 (hurt), compared with 0.343 (helped) and 0.310 (hurt) for non-adjacent pairs. The negligible difference indicates that the mapping from attention ratio to per-example effects is non-smooth: doubling the attention ratio does not produce a proportionally more similar set of affected examples.
+
+\section{Cross-Benchmark Jaccard Trajectories}\label{app:cross_bench_jaccard}
+
+To test whether the Jaccard stability pattern is specific to LAMBADA or a general property, we compute mean pairwise Jaccard trajectories across all four hybrid attention ratios on all four main benchmarks. Table~\ref{tab:cross_bench_jaccard} reports the results. On every benchmark, Jaccard shows no statistically significant trend with attention ratio (all $\rho \leq 0.80$, $p \geq 0.333$), with values uniformly between 0.08 and 0.11. The stability observed at the first attention level on LAMBADA (\S\ref{ssec:decoupling}) thus appears to hold across benchmarks: once any attention is present, each architecture's per-example response remains largely consistent regardless of attention ratio.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Mean pairwise Jaccard (mean of helped and hurt sets, 3 architecture pairs) across attention ratios and benchmarks (1.3B scale). $\rho$: Spearman correlation between attention ratio and $\bar{J}$. All $p \geq 0.333$.}
+\label{tab:cross_bench_jaccard}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Benchmark & h24-1 & h12-1 & h6-1 & h3-1 & $\rho$ & $p$ \\
+\midrule
+LAMBADA & .091 & .088 & .096 & .097 & 0.80 & .333 \\
+HellaSwag & .084 & .081 & .091 & .086 & 0.60 & .417 \\
+PIQA & .089 & .096 & .089 & .095 & 0.00 & 1.00 \\
+ARC-Easy & .084 & .099 & .091 & .109 & 0.80 & .333 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{Continuous-Threshold Jaccard Analysis}\label{app:continuous_jaccard}
+
+The main text binarizes per-example effects at the correctness boundary. To verify that low cross-architecture Jaccard is not an artifact of this binarization, we compute Jaccard similarity using a continuous confidence threshold $\tau$: two architectures' effect sets are defined as the examples whose target-token $|\log p|$ changes by more than $\tau$ when attention is added. On LAMBADA, mean pairwise Jaccard decreases monotonically from 0.26 ($\tau = 0.00$, any change) to 0.05 ($\tau = 0.30$, large changes only). ARC-Easy and PIQA show the same monotonic decrease. The binary threshold ($\tau = 0$, correctness flip) thus represents the upper end of cross-architecture overlap; restricting to confident transitions further reduces agreement, confirming that low Jaccard is robust to the choice of binarization threshold.
+
+\section{Target-Token Confidence Margin}
+\label{app:confidence_margin}
+
+We analyze whether pure-model confidence on the target token predicts whether attention will help or hurt on a given example.
+We define confidence as $|\log p_{\text{pure}}(y^*)|$, where $y^*$ is the target token: lower values indicate higher probability (near-correct).
+We initially tested raw perplexity as a predictor of helped/hurt status, but found that within-category controls (C1/C2) are necessary to isolate attention effects from the definitional confound between pure-correct and pure-wrong populations.
+
+Table~\ref{tab:cm_c1} compares hurt versus stayed-right samples (both pure-correct): hurt samples have significantly lower target-token probability (higher $|\log p|$), confirming that weakly-correct predictions are vulnerable to attention disruption.
+Table~\ref{tab:cm_c2} compares helped versus stayed-wrong samples (both pure-wrong): helped samples have higher target-token probability (lower $|\log p|$), confirming that near-miss errors are rescuable.
+This pattern is consistent across all three architectures ($|d| = 0.73$--$0.92$, all $p < 10^{-54}$) but does not alter the cross-architecture Jaccard findings: within-architecture predictability coexists with cross-architecture divergence.
+
+\begin{table}[ht]
+\centering
+\caption{Control 1: Pure-correct samples: hurt vs.\ stayed-right. Higher mean $|\log p|$ indicates lower target-token probability (less confident correct).}
+\label{tab:cm_c1}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Architecture & $n_{\text{hurt}}$ & $n_{\text{stay}}$ & Hurt mean & Stay mean & Cohen's $d$ \\
+\midrule
+GDN (h12-1) & 519 & 2281 & 1.049 & 0.576 & 0.87 \\
+RetNet (h3-1) & 497 & 2169 & 1.293 & 0.785 & 0.83 \\
+HGRN2 (h3-1) & 392 & 2102 & 1.481 & 0.899 & 0.92 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Control 2: Pure-wrong samples: helped vs.\ stayed-wrong. Lower mean $|\log p|$ indicates higher target-token probability (near-miss error).}
+\label{tab:cm_c2}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Architecture & $n_{\text{help}}$ & $n_{\text{stay}}$ & Help mean & Stay mean & Cohen's $d$ \\
+\midrule
+GDN (h12-1) & 480 & 1873 & 2.459 & 4.189 & $-$0.75 \\
+RetNet (h3-1) & 420 & 2067 & 2.478 & 4.103 & $-$0.73 \\
+HGRN2 (h3-1) & 548 & 2111 & 2.500 & 4.112 & $-$0.77 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{Cross-Benchmark Extension}\label{app:cm_cross}
+
+The confidence margin pattern extends beyond LAMBADA to multiple-choice benchmarks, though with smaller effect sizes. Table~\ref{tab:cm_cross_c2} reports the rescue analysis (helped vs.\ stayed-wrong) on HellaSwag and ARC-Easy. All nine comparisons (three benchmarks $\times$ three architectures) are significant, confirming that attention consistently rescues near-miss errors regardless of task type. Effect sizes range from small on HellaSwag ($d = 0.13$--$0.17$) to medium on ARC-Easy ($d = 0.51$--$0.60$), compared to large on LAMBADA ($d = 0.73$--$0.77$); the attenuation on HellaSwag reflects noisier confidence proxies under length-normalized scoring. Table~\ref{tab:cm_cross_c1} reports the disruption analysis (hurt vs.\ stayed-right); two of six comparisons are significant (all on ARC-Easy) with small effect sizes ($d = 0.13$--$0.26$), indicating that the disruption signal is weaker on multiple-choice tasks and absent on HellaSwag under \texttt{acc\_norm}. The asymmetry between rescue and disruption reflects task structure: near-miss errors are an intrinsic sample property (the model almost produced the correct answer regardless of format), while borderline correctness in multiple-choice settings depends on relative option ranking rather than absolute confidence, reducing the raw log-likelihood margin's predictive power for vulnerability.
+
+\begin{table}[ht]
+\centering
+\caption{Cross-benchmark rescue analysis (Control 2): helped vs.\ stayed-wrong on HellaSwag and ARC-Easy (1.3B h3-1).}
+\label{tab:cm_cross_c2}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrr}
+\toprule
+Benchmark & Architecture & Cohen's $d$ & $p$ \\
+\midrule
+HellaSwag & GDN & $-$0.166 & $6.1 \times 10^{-4}$ \\
+ & RetNet & $-$0.132 & $1.4 \times 10^{-2}$ \\
+ & HGRN2 & $-$0.164 & $1.4 \times 10^{-3}$ \\
+\midrule
+ARC-Easy & GDN & $-$0.60 & $1.0 \times 10^{-13}$ \\
+ & RetNet & $-$0.51 & $5.3 \times 10^{-10}$ \\
+ & HGRN2 & $-$0.53 & $5.4 \times 10^{-10}$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Cross-benchmark disruption analysis (Control 1): hurt vs.\ stayed-right on HellaSwag and ARC-Easy (1.3B h3-1).}
+\label{tab:cm_cross_c1}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrl}
+\toprule
+Benchmark & Architecture & Cohen's $d$ & $p$ & Sig.? \\
+\midrule
+HellaSwag & GDN & 0.009 & .999 & No \\
+ & RetNet & $-$0.035 & .453 & No \\
+ & HGRN2 & $-$0.062 & .274 & No \\
+\midrule
+ARC-Easy & GDN & 0.26 & $3.2 \times 10^{-4}$ & Yes \\
+ & RetNet & 0.22 & $2.8 \times 10^{-3}$ & Yes \\
+ & HGRN2 & 0.13 & .145 & No \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Prediction Framework}\label{app:prediction_framework}
+
+We formalize the confidence margin analysis as a binary prediction task: given a pure-model example and its target-token $|\log p|$, predict whether attention will change the example's correctness. Using the within-category summary statistics (Tables~\ref{tab:cm_c1},~\ref{tab:cm_c2}), we derive analytic AUC from Cohen's $d$ via $\text{AUC} = \Phi(|d|/\sqrt{2})$ and compute Gaussian-intersection thresholds (the $|\log p|$ value at which the two group densities intersect under equal priors).
+
+Table~\ref{tab:prediction_auc} reports within-architecture prediction performance. All AUCs exceed 0.69, indicating moderate within-architecture predictive discrimination for attention effects. Disruption prediction is consistently stronger than rescue (mean AUC 0.73 vs.\ 0.70), reflecting the larger effect sizes in Control~1.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Within-architecture prediction of attention effects on LAMBADA (1.3B). AUC$_p$: parametric (from Cohen's $d$); AUC$_e$: empirical (non-parametric).}
+\label{tab:prediction_auc}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+Architecture & \multicolumn{3}{c}{Rescue} & \multicolumn{3}{c}{Disruption} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+ & AUC$_p$ & AUC$_e$ & $d$ & AUC$_p$ & AUC$_e$ & $d$ \\
+\midrule
+GDN (h12-1) & .701 & .756 & 0.75 & .732 & .742 & 0.87 \\
+RetNet (h3-1) & .696 & .754 & 0.73 & .722 & .735 & 0.83 \\
+HGRN2 (h3-1) & .708 & .765 & 0.77 & .743 & .748 & 0.92 \\
+\midrule
+Mean & .702 & .758 & --- & .732 & .742 & --- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Normality verification.} Shapiro-Wilk tests reject normality for all six architecture--set combinations (all $W < 0.98$, $p < 10^{-6}$), but the practical departure varies by group. Disruption-set $|\log p|$ values show mild skewness (0.53--0.77, $W \in [0.955, 0.973]$), closely approximating a normal distribution at the sample sizes involved. Rescue-set values are moderately right-skewed (skewness 1.33--1.41, $W \in [0.899, 0.920]$), following an approximately log-normal distribution. Because the skew is one-sided, parametric AUC estimates (0.70--0.74 in the main text) are conservative lower bounds; non-parametric empirical AUC from the same data yields 0.73--0.77.
+
+Despite similar within-architecture AUC, the optimal prediction thresholds differ across architectures for disruption but not rescue (Table~\ref{tab:threshold_gap}). Rescue thresholds cluster tightly (range 0.03 in $|\log p|$), indicating that the rescuability boundary (the confidence level below which pure-wrong examples are likely to be corrected by attention) is architecture-invariant. Disruption thresholds span a 47\% relative range (GDN: 0.70, RetNet: 1.00, HGRN2: 1.14), meaning that the same confidence level on a pure-correct example may predict vulnerability in one architecture but safety in another. This asymmetry constitutes a second dimension of multiplicity beyond per-example disagreement: all three architectures agree on which wrong answers are rescuable, but disagree on which correct answers are vulnerable to disruption.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Gaussian-intersection prediction thresholds ($|\log p|$) across architectures. Relative spread: range/mean.}
+\label{tab:threshold_gap}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lccccr@{}}
+\toprule
+ & GDN & RetNet & HGRN2 & Range & Rel.\ spread \\
+\midrule
+Rescue & 3.32 & 3.29 & 3.31 & 0.03 & 1.0\% \\
+Disruption & 0.70 & 1.00 & 1.14 & 0.44 & 46.7\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\section{Calibration Analysis}\label{app:calibration}
+
+Cross-architecture disruption threshold variation (\S\ref{ssec:per_example}) could in principle arise from calibration differences rather than genuine differences in per-example processing. We compute expected calibration error (ECE; \citealt{guo2017calibration}) for each architecture's h3-1 model on LAMBADA using 15 equal-width bins. ECE values are similar: GDN 0.222, RetNet 0.224, HGRN2 0.235. The cross-architecture ECE spread (6\%, computed as range/mean) is less than half the disruption threshold spread (47\%; Table~\ref{tab:threshold_gap}), indicating that calibration differences are insufficient to account for the observed threshold divergence. Rescue thresholds, which show only 1\% cross-architecture spread, are consistent with near-identical calibration in the low-confidence regime.
+
+\section{BoolQ Supplementary Analysis}
+\label{app:boolq}
+
+BoolQ ($N = 3{,}270$; comprehension, binary yes/no classification) shows the highest ambiguity among the benchmarks we analyzed ($\alpha \approx 0.45$), but the Jaccard significance pattern is mixed: only 12 of 24 architecture $\times$ attention-ratio pair combinations yield $p < .01$. In particular, the RetNet--HGRN2 pair produces 0/8 significant Jaccard values, with several normalized effect sizes below zero, suggesting anti-correlated per-example effects for this pair.
+
+\paragraph{Binary classification baseline.} BoolQ is binary classification (two answer choices), whereas LAMBADA, HellaSwag, and ARC-Easy involve open vocabulary prediction or four-way multiple choice. Under a binary task, the null Jaccard baseline $J_{\text{null}}$ is higher because chance overlap between helped/hurt sets is larger when there are fewer ways to be wrong. This elevates the significance threshold: observed Jaccard must be substantially higher to exceed the null, which explains why 12/24 pairs fail to reach significance despite $\bar{J}_h = 0.103$ and $\bar{J}_u = 0.098$---values comparable to the four main benchmarks.
+
+\paragraph{Per-example summary.} Table~\ref{tab:boolq_multiplicity} reports the key metrics. The high $\alpha$ reflects that BoolQ examples are more sensitive to architectural variation in the presence of attention: approximately half of all examples change correctness status for at least one architecture. However, the mixed Jaccard significance prevents us from confidently concluding that the cross-architecture overlap structure matches the pattern observed on the four main benchmarks.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{BoolQ predictive multiplicity at 1.3B (h3-1).}
+\label{tab:boolq_multiplicity}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & $N$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & Sig.\ pairs & $\rho_\alpha$ \\
+\midrule
+BoolQ & 3270 & .45 & .103 & .098 & 12/24 & $+0.1$ \\
+\bottomrule
+\end{tabular}
+\par\vspace{1pt}
+{\footnotesize RetNet--HGRN2: 0/8 significant; multiple normalized ES $< 0$.}
+\end{table}
+
+The significant Jaccard overlap concentrates in GDN--RetNet pairs (8/8 significant), while RetNet--HGRN2 shows none (0/8). This pair-specificity does not appear on the four main benchmarks, where all architecture pairs show significant overlap; it may reflect a BoolQ-specific interaction between binary classification structure and particular recurrent architectures rather than a general property of architecture pairs.
+
+\paragraph{Confidence margin.} Confidence margin analysis on BoolQ shows the rescue pattern (C2) partially holds (2/3 architectures significant, $d = 0.16$--$0.36$) but the disruption pattern (C1) is absent (0/3, $|d| \leq 0.10$), consistent with compressed log-likelihood ranges in binary classification reducing the predictive power of confidence margins. This extends the gradient observed across LAMBADA, ARC-Easy, and HellaSwag: C1 effect sizes decrease from open-ended prediction ($d \approx 0.9$, LAMBADA) through ARC-Easy ($d \approx 0.1$--$0.3$) to HellaSwag ($d \approx 0$ under \texttt{acc\_norm}) and binary classification ($d \approx 0$, BoolQ). The gradient broadly tracks the coefficient of variation (CV) of the log-likelihood confidence proxy: LAMBADA ($\text{CV} = 0.75$) $>$ ARC-Easy ($0.54$) $>$ HellaSwag ($0.49$) $>$ BoolQ ($0.22$). BoolQ's high-frequency short completions (``\,yes''/``\,no'') yield elevated baseline log-likelihoods (mean $|\text{loglik}| = 3.04$ vs.\ $0.84$ for LAMBADA) with similar absolute spread (IQR $\approx 0.9$), compressing the relative variation and rendering the confidence margin unable to separate borderline-correct from robustly-correct examples.
+
+\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly.
+
+\section{WinoGrande Supplementary Analysis}
+\label{app:winogrande}
+
+WinoGrande ($N = 1{,}267$; reasoning, two-choice coreference resolution) shows high ambiguity ($\alpha \approx 0.41$ at h3-1) but mixed Jaccard significance: 10 of 24 architecture $\times$ attention-ratio pair combinations yield $p < .01$. Mean pairwise Jaccard ($\bar{J}_h = 0.110$, $\bar{J}_u = 0.103$) is comparable to the four main benchmarks, but the elevated null baseline from near-chance accuracy (${\sim}60\%$) reduces statistical power to detect above-chance overlap.
+
+\paragraph{Near-chance accuracy.} WinoGrande accuracy across hybrid configurations ranges from 59\% to 62\%, close to the two-choice chance level of 50\%. At near-chance accuracy, a large fraction of examples are borderline---small perturbations (such as adding attention) can flip predictions in either direction, inflating the helped and hurt sets and consequently $\alpha$. This structural property, shared with BoolQ (${\sim}59\%$ accuracy, $\alpha \approx 0.45$), may partially explain the elevated $\alpha$ rather than task-intrinsic multiplicity. PIQA (73\% accuracy, $\alpha = 0.14$) and HellaSwag (60\% normalized accuracy, $\alpha = 0.15$) demonstrate that near-chance accuracy is not the sole driver, but we cannot fully exclude it as a contributing factor for WinoGrande and BoolQ.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{WinoGrande predictive multiplicity at 1.3B (h3-1).}
+\label{tab:winogrande_multiplicity}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & $N$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & Sig.\ pairs & $\rho_\alpha$ \\
+\midrule
+WinoGrande & 1267 & .41 & .110 & .103 & 10/24 & $-0.9$ \\
+\bottomrule
+\end{tabular}}
+\par\vspace{1pt}
+{\footnotesize $\alpha$ variation across ratios: 0.054 ($> 0.03$ threshold of main benchmarks).}
+\end{table}
+
+\section{340M Per-Example Analysis}\label{app:scale_per_example}
+
+\subsection{LAMBADA}
+
+At 340M, LAMBADA per-example multiplicity closely matches the 1.3B pattern: $\alpha = 0.313$ (vs.\ 0.307 at 1.3B), with mean pairwise Jaccard $\bar{J} \approx 0.089$ (vs.\ 0.095). Per-example directionality is preserved: HGRN2 shows net positive effects at h3-1 ($+238$ examples), while GDN ($-256$) and RetNet ($-106$) show net negative effects, mirroring the 1.3B profile (HGRN2 $+153$, GDN $-153$, RetNet $-69$).
+
+However, aggregate convergence is absent at 340M: $\rho = -0.50$ ($p = .45$), with non-monotonic $\sigma$ across attention ratios ($0.025 \to 0.012 \to 0.018 \to 0.011 \to 0.016$). This contrasts sharply with 1.3B ($\rho = -1.0$, $p = .017$, monotonic $\sigma$ decrease). The decoupling between per-example divergence and aggregate convergence thus manifests differently across scales: at 340M, per-example multiplicity is present but aggregate convergence is not, suggesting that convergence requires sufficient model capacity while multiplicity does not.
+
+Within-benchmark $\alpha$ variation across attention ratios is also larger at 340M (0.047, from 0.313 at pure to 0.266 at h3-1) than at 1.3B ($< 0.03$; \S\ref{ssec:per_example}), suggesting that smaller models are more sensitive to the attention ratio in terms of per-example disagreement patterns.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{340M vs.\ 1.3B LAMBADA comparison.}
+\label{tab:scale_comparison}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & 340M & 1.3B \\
+\midrule
+$\alpha$ (pure) & .313 & .307 \\
+$\bar{J}$ (h3-1) & .089 & .095 \\
+$\rho_\sigma$ & $-0.50$ & $-1.0$ \\
+$p$ & .45 & .017 \\
+GDN net & $-256$ & $-153$ \\
+HGRN2 net & $+238$ & $+153$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Benchmark Scale Comparison}
+
+Table~\ref{tab:340m_multi_bench} extends the scale comparison to all four main benchmarks. Two patterns emerge. First, $\alpha$ is systematically higher at 340M across all benchmarks, with the largest gap on ARC-Easy ($+$8.4pp) and the smallest on LAMBADA ($+$0.6pp). Second, pairwise Jaccard remains stable across scales ($\bar{J}_h = 0.08$--$0.10$ at both scales); three-architecture results are stable across both 340M and 1.3B scales (Jaccard $\approx$ 0.08--0.10), providing indirect support for consistency across these two scales. This suggests that the qualitative pattern of per-example multiplicity (which architectures affect which examples) is consistent across the two scales examined, even as its magnitude increases at smaller scale. The $\alpha$ inflation does not track accuracy loss: HellaSwag has the largest accuracy gap between scales yet the smallest $\Delta\alpha$ ($+$1.9pp), while ARC-Easy has a smaller accuracy gap but the largest $\Delta\alpha$ ($+$8.4pp), arguing against accuracy as the primary driver of scale-dependent multiplicity.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{340M vs.\ 1.3B per-example multiplicity across four benchmarks. $\alpha$: ambiguity at pure-recurrent configuration. Acc: mean accuracy across three architectures at pure-recurrent. $\bar{J}_{h}$/$\bar{J}_{u}$: mean pairwise Jaccard of helped/hurt sets. $\Delta\alpha$: 340M $-$ 1.3B.}
+\label{tab:340m_multi_bench}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccccccr}
+\toprule
+ & \multicolumn{4}{c}{340M} & \multicolumn{3}{c}{1.3B} & \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-8}
+Benchmark & Acc & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & $\Delta\alpha$ \\
+\midrule
+PIQA & .663 & .181 & .090 & .085 & .143 & .091 & .094 & $+$.038 \\
+HellaSwag$^\dagger$ & .420 & .167 & .084 & .083 & .148 & .095 & .085 & $+$.019 \\
+ARC-Easy & .594 & .289 & .098 & .103 & .205 & .092 & .099 & $+$.084 \\
+LAMBADA & --- & .313 & .089 & .090 & .307 & .095 & .093 & $+$.006 \\
+\bottomrule
+\multicolumn{9}{l}{\footnotesize $^\dagger$\texttt{acc\_norm}. LAMBADA accuracy omitted (evaluated in separate run).}
+\end{tabular}%
+}
+\end{table}
+
+Convergence is absent at 340M across all benchmarks (all $|\rho| \leq 0.4$, $p \geq .45$), in contrast to 1.3B where LAMBADA shows monotonic convergence. The absence of convergence at 340M extends beyond LAMBADA to HellaSwag ($\rho = 0.4$, $p = .52$), PIQA ($\rho = 0.3$, $p = .68$), and ARC-Easy ($\rho = -0.1$, $p = .95$).
+
+\section{Subsample Sensitivity of \texorpdfstring{$\alpha$}{α}}\label{app:subsample_sensitivity}
+
+To assess the reliability of $\alpha$ estimation at different sample sizes, we repeatedly subsample each benchmark (1{,}000 bootstrap replicates, seed 42) and compute the 95\% CI width of $\alpha$.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{$\alpha$ estimation stability: 95\% CI width by subsample size.}
+\label{tab:subsample}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Benchmark & $n = 100$ & $n = 200$ & $n = 500$ & $n = 1000$ & Full $N$ \\
+\midrule
+PIQA & .130 & .095 & .066 & .045 & .034 \\
+HellaSwag & .140 & .100 & .062 & .044 & .013 \\
+ARC-Easy & .160 & .105 & .072 & .050 & .032 \\
+LAMBADA & .180 & .125 & .082 & .057 & .025 \\
+\bottomrule
+\end{tabular}}
+\par\vspace{1pt}
+{\footnotesize At $n = 100$, CI width (0.13--0.18) spans the entire four-benchmark $\alpha$ range (0.14--0.30), rendering $\alpha$ estimation unreliable. This justifies excluding COPA ($n = 100$) from the per-example analysis.}
+\end{table}
+
+\section{Complementarity Decomposition}\label{app:complementarity}
+
+We decompose the three-architecture vote on each example into four categories: unanimous correct (3/3), majority correct (2/3), minority correct (1/3), and unanimous wrong (0/3). This decomposition explains the structural failure of majority vote despite substantial per-example complementarity.
+
+Table~\ref{tab:complementarity} reports the decomposition at h3-1 (25\% attention). Majority vote benefits only from 2/3 examples (where the correct answer holds a majority) but is actively harmed by 1/3 examples (where the correct architecture is outvoted). On LAMBADA, HellaSwag, and ARC-Easy, the MV exploitation ratio---the fraction of complementary examples where MV selects correctly---hovers near 51\%, indicating a near-even split between MV-exploitable and MV-hostile disagreements. The oracle, by contrast, exploits both categories, explaining the large oracle--MV gap ($+7$--$14$\,pp).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Complementarity decomposition at 1.3B h3-1. Fractions of total examples in each vote category. MV expl.: fraction of complementary examples where majority vote is correct.}
+\label{tab:complementarity_full}
+\begin{tabular}{@{}lccccr@{}}
+\toprule
+Benchmark & 3/3 & 2/3 & 1/3 & 0/3 & MV expl. \\
+\midrule
+LAMBADA & .361 & .151 & .145 & .343 & 51.1\% \\
+HellaSwag & .519 & .078 & .073 & .331 & 51.6\% \\
+ARC-Easy & .603 & .107 & .103 & .187 & 50.9\% \\
+BoolQ & .376 & .257 & .197 & .170 & 56.6\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This near-50\% exploitation ratio is structurally invariant across attention ratios: on LAMBADA, the ratio ranges from 51.1\% to 54.4\% across all five configurations; on HellaSwag, from 50.3\% to 51.6\%. Attention changes neither the amount nor the structure of cross-architecture complementarity.
+
+\section{Seed-Variation Calibration}\label{app:seed_calibration}
+
+To contextualize the $3\times$ within- vs.\ cross-architecture Jaccard gap (\S\ref{ssec:decoupling}), we compare against within-seed variation using the Pythia 70M \citep{biderman2023pythia} PolyPythias models \citep{vanderwal2025polypythias}, which provide 9 individually trained seeds of the same architecture.
+
+On LAMBADA ($N = 5{,}153$), within-seed mean Jaccard is $\bar{J}_h = 0.273$ (helped) and $\bar{J}_u = 0.393$ (hurt), compared to our cross-architecture reference $J \approx 0.10$. On ARC-Easy ($N = 2{,}376$), within-seed $\bar{J}_h = 0.312$ and $\bar{J}_u = 0.354$, versus cross-architecture $J \approx 0.092$. Within-seed ambiguity is $\alpha = 0.36$ (LAMBADA) and $\alpha = 0.49$ (ARC-Easy), compared to cross-architecture $\alpha = 0.30$ and $0.21$ respectively.
+
+Seeds thus produce comparable or higher amounts of per-example disagreement ($\alpha$) but on more overlapping examples (higher $J$). Cross-architecture variation is associated with per-example effects on less overlapping examples (lower $J$), consistent with architecture-associated divergence yielding qualitatively different per-example patterns than seed noise. The within-seed Jaccard is 2.7--4.3$\times$ higher than cross-architecture Jaccard across both benchmarks.
+
+Three caveats qualify this comparison. First, scale mismatch: Pythia 70M is $5\times$ smaller than our smallest models (340M); attempts to use Pythia 410M failed repeatedly. Second, architecture family: Pythia is a standard Transformer, not a hybrid recurrent architecture, so this is a cross-family reference point rather than a matched control. Third, accuracy regime: Pythia 70M accuracy (LAMBADA 0.17--0.23, ARC-Easy ${\sim}$0.38) is far below our models (${\sim}$0.50, ${\sim}$0.72), and Jaccard is affected by base rates; the 2.7--4.3$\times$ ratio may differ at accuracy regimes closer to our main experiments. These limitations restrict the comparison to a reference point for seed-variation magnitude rather than definitive evidence for architecture-driven effects.
+
+\section{Extended Architecture Validation (Five Architectures)}\label{app:extended_arch}
+
+To test whether the low cross-architecture Jaccard pattern generalizes beyond the three primary architectures, we extend the analysis to include two additional architectures from the same model zoo: GLA (Gated Linear Attention) and DeltaNet, yielding ten pairwise comparisons. Both are available only at 340M in the model zoo; all results below use the h3-1 (25\% attention) configuration. This extension validates per-example divergence (not aggregate convergence).
+
+\begin{center}
+\small
+\captionof{table}{Pairwise Jaccard similarity across five architectures (340M, h3-1). All 40 permutation tests yield $p \leq .002$ ($z = 3.49$--$12.21$).}
+\label{tab:extended_arch_jaccard}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Benchmark & Pair & $J_h$ & $J_u$ \\
+\midrule
+\multirow{11}{*}{LAMBADA} & GDN--RetNet & .128 & .121 \\
+ & GDN--HGRN2 & .123 & .083 \\
+ & GDN--GLA & .124 & .100 \\
+ & GDN--DeltaNet & .115 & .100 \\
+ & RetNet--HGRN2 & .108 & .083 \\
+ & RetNet--GLA & .123 & .107 \\
+ & RetNet--DeltaNet & .115 & .096 \\
+ & HGRN2--GLA & .127 & .086 \\
+ & HGRN2--DeltaNet & .125 & .090 \\
+ & GLA--DeltaNet & .134 & .081 \\
+ & \textit{Mean} & \textit{.122} & \textit{.095} \\
+\midrule
+\multirow{11}{*}{ARC-Easy} & GDN--RetNet & .089 & .114 \\
+ & GDN--HGRN2 & .122 & .105 \\
+ & GDN--GLA & .114 & .106 \\
+ & GDN--DeltaNet & .084 & .102 \\
+ & RetNet--HGRN2 & .087 & .115 \\
+ & RetNet--GLA & .112 & .110 \\
+ & RetNet--DeltaNet & .138 & .123 \\
+ & HGRN2--GLA & .098 & .087 \\
+ & HGRN2--DeltaNet & .109 & .088 \\
+ & GLA--DeltaNet & .129 & .098 \\
+ & \textit{Mean} & \textit{.108} & \textit{.105} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% Figure moved to main text (\S\ref{ssec:robustness})
+
+All pairwise Jaccard values remain $\leq 0.14$, consistent with the three-architecture results at 1.3B (Table~\ref{tab:per_example}). The seven new pairs involving GLA and DeltaNet show no systematic difference from the original three pairs (Mann-Whitney $p > .3$ for both helped and hurt), indicating that the low-overlap pattern is not specific to the original architecture triple. A sixth architecture (HGRN; \citealp{qin2023hierarchically}) is also available in the zoo but excluded from the main analysis: its substantially lower baseline accuracy on LAMBADA (0.263 vs.\ 0.32--0.38 for the other five) mechanically inflates helped-set sizes and Jaccard values. All 15 six-architecture permutation tests nonetheless remain significant ($z \geq 2.9$, $p \leq .006$). The same pattern holds on HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$): all 20 additional pairwise tests yield $p < .01$ with mean $J_{\text{helped}} \leq 0.10$. Full four-benchmark and six-architecture data are included in our code release.
+
+\section{Code, Data, and Computational Resources}
+\label{app:code_data}
+
+All models are from the publicly available model zoo of \citet{wang2025hybrid}. Analysis code and per-example evaluation outputs are available at \url{https://anonymous.4open.science/r/entrainment_gated_ft-9444/}.
+
+\paragraph{Compute.} All experiments are inference-only (no training). Evaluations were conducted on a single NVIDIA RTX PRO 6000 GPU with approximately 5 GPU-hours total across all 30 model configurations and 10 benchmarks. Statistical analyses (permutation tests, bootstrap CIs, Jaccard computations) ran on CPU in under 1 hour.
+
+\section{Use of AI Assistance}
+
+We used Claude for coding, code drafting, debugging, and language polishing.

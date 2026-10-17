@@ -1,0 +1,50 @@
+{
+  "mmlu": {
+    "pairwise": [
+      {
+        "judge_i": "llama3.1-8b",
+        "judge_j": "qwen2.5-14b",
+        "agreement": 0.4633333333333333,
+        "agreement_ci_lower": 0.4033333333333333,
+        "agreement_ci_upper": 0.52,
+        "mi": 0.03821582074939136,
+        "mi_ci_lower": 0.016561163311678125,
+        "mi_ci_upper": 0.07419897921818583,
+        "copula_rho": 0.17977346022079108,
+        "copula_rho_ci_lower": 0.05488160497028675,
+        "copula_rho_ci_upper": 0.26267945973795026
+      }
+    ],
+    "validation": {
+      "within_family_mi_mean": null,
+      "cross_family_mi_mean": 0.03821582074939136,
+      "n_within_pairs": 0,
+      "n_cross_pairs": 1,
+      "note": "Only 2 models (different families) - no within-family pairs available"
+    }
+  },
+  "arc_challenge": {
+    "pairwise": [
+      {
+        "judge_i": "llama3.1-8b",
+        "judge_j": "qwen2.5-14b",
+        "agreement": 0.6666666666666666,
+        "agreement_ci_lower": 0.6166666666666667,
+        "agreement_ci_upper": 0.7166666666666667,
+        "mi": 0.12881312326297056,
+        "mi_ci_lower": 0.08263519034888951,
+        "mi_ci_upper": 0.18508216403354977,
+        "copula_rho": 0.20293508046212125,
+        "copula_rho_ci_lower": 0.07712398874403795,
+        "copula_rho_ci_upper": 0.2993063660686214
+      }
+    ],
+    "validation": {
+      "within_family_mi_mean": null,
+      "cross_family_mi_mean": 0.12881312326297056,
+      "n_within_pairs": 0,
+      "n_cross_pairs": 1,
+      "note": "Only 2 models (different families) - no within-family pairs available"
+    }
+  }
+}

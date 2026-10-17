@@ -1,0 +1,210 @@
+{
+  "mmlu": [
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "qwen2.5-32b"
+      ],
+      "K": 2,
+      "I_max": 0.3060074697246516,
+      "k_eff_empirical": 1.8672632143108707,
+      "k_eff_formula": 1.5422571522302353,
+      "k_star_von_neumann": 1.868669218217455,
+      "deviation": 0.3250060620806354,
+      "relative_deviation": 0.1740547661356793,
+      "panel_type": "homo"
+    },
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "qwen2.5-32b",
+        "qwen2.5-14b"
+      ],
+      "K": 3,
+      "I_max": 0.3060074697246516,
+      "k_eff_empirical": 2.814638182348414,
+      "k_eff_formula": 2.0845143044604706,
+      "k_star_von_neumann": 2.7490503972111093,
+      "deviation": 0.7301238778879435,
+      "relative_deviation": 0.25940239227436307,
+      "panel_type": "homo"
+    },
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "llama3.1-70b",
+        "mistral-large"
+      ],
+      "K": 3,
+      "I_max": 0.2779591751301094,
+      "k_eff_empirical": 2.7734121902829436,
+      "k_eff_formula": 2.147090607577506,
+      "k_star_von_neumann": 2.696723082721431,
+      "deviation": 0.6263215827054376,
+      "relative_deviation": 0.22583068787966215,
+      "panel_type": "hetero"
+    },
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "llama3.1-70b"
+      ],
+      "K": 2,
+      "I_max": 0.2779591751301094,
+      "k_eff_empirical": 1.9023275898139924,
+      "k_eff_formula": 1.573545303788753,
+      "k_star_von_neumann": 1.9030982068269944,
+      "deviation": 0.3287822860252394,
+      "relative_deviation": 0.1728315815770655,
+      "panel_type": "hetero"
+    },
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "mistral-large"
+      ],
+      "K": 2,
+      "I_max": 0.2617035669072783,
+      "k_eff_empirical": 1.919999038039611,
+      "k_eff_formula": 1.5924983837559936,
+      "k_star_von_neumann": 1.9205191039815366,
+      "deviation": 0.3275006542836174,
+      "relative_deviation": 0.17057334290021703,
+      "panel_type": "hetero"
+    },
+    {
+      "judge_ids": [
+        "llama3.1-70b",
+        "mistral-large"
+      ],
+      "K": 2,
+      "I_max": 0.23581490652845344,
+      "k_eff_empirical": 1.8377916575708124,
+      "k_eff_formula": 1.6239844610683003,
+      "k_star_von_neumann": 1.8398689544790319,
+      "deviation": 0.21380719650251212,
+      "relative_deviation": 0.11633919199803194,
+      "panel_type": "hetero"
+    },
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "llama3.1-70b",
+        "mistral-large",
+        "qwen2.5-32b"
+      ],
+      "K": 4,
+      "I_max": 0.3060074697246516,
+      "k_eff_empirical": 3.6380112697068556,
+      "k_eff_formula": 2.6267714566907063,
+      "k_star_von_neumann": 3.4188438483214907,
+      "deviation": 1.0112398130161493,
+      "relative_deviation": 0.2779650028675236,
+      "panel_type": "hetero"
+    }
+  ],
+  "arc_challenge": [
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "qwen2.5-32b"
+      ],
+      "K": 2,
+      "I_max": 0.4510098368768388,
+      "k_eff_empirical": 1.8334131639088598,
+      "k_eff_formula": 1.4057493503273177,
+      "k_star_von_neumann": 1.8356005501842168,
+      "deviation": 0.42766381358154204,
+      "relative_deviation": 0.23326101393848261,
+      "panel_type": "homo"
+    },
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "qwen2.5-32b",
+        "qwen2.5-14b"
+      ],
+      "K": 3,
+      "I_max": 0.4510098368768388,
+      "k_eff_empirical": 2.801554741369408,
+      "k_eff_formula": 1.8114987006546355,
+      "k_star_von_neumann": 2.7292708911845067,
+      "deviation": 0.9900560407147725,
+      "relative_deviation": 0.35339521519784056,
+      "panel_type": "homo"
+    },
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "llama3.1-70b",
+        "mistral-large"
+      ],
+      "K": 3,
+      "I_max": 0.48700269816430425,
+      "k_eff_empirical": 2.530558104636981,
+      "k_eff_formula": 1.75513539418183,
+      "k_star_von_neumann": 2.405916533510801,
+      "deviation": 0.775422710455151,
+      "relative_deviation": 0.30642359447675616,
+      "panel_type": "hetero"
+    },
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "llama3.1-70b"
+      ],
+      "K": 2,
+      "I_max": 0.38241840181326203,
+      "k_eff_empirical": 1.80676718524297,
+      "k_eff_formula": 1.4654098779812732,
+      "k_star_von_neumann": 1.8096805609588176,
+      "deviation": 0.3413573072616969,
+      "relative_deviation": 0.18893264724408412,
+      "panel_type": "hetero"
+    },
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "mistral-large"
+      ],
+      "K": 2,
+      "I_max": 0.3971339360742792,
+      "k_eff_empirical": 1.8304170495495407,
+      "k_eff_formula": 1.4519119711777062,
+      "k_star_von_neumann": 1.8326812837854787,
+      "deviation": 0.37850507837183445,
+      "relative_deviation": 0.20678625041488946,
+      "panel_type": "hetero"
+    },
+    {
+      "judge_ids": [
+        "llama3.1-70b",
+        "mistral-large"
+      ],
+      "K": 2,
+      "I_max": 0.48700269816430425,
+      "k_eff_empirical": 1.658652922162961,
+      "k_eff_formula": 1.377567697090915,
+      "k_star_von_neumann": 1.6671709106498447,
+      "deviation": 0.2810852250720459,
+      "relative_deviation": 0.16946596923092122,
+      "panel_type": "hetero"
+    },
+    {
+      "judge_ids": [
+        "qwen2.5-72b",
+        "llama3.1-70b",
+        "mistral-large",
+        "qwen2.5-32b"
+      ],
+      "K": 4,
+      "I_max": 0.48700269816430425,
+      "k_eff_empirical": 3.3089341214424293,
+      "k_eff_formula": 2.132703091272745,
+      "k_star_von_neumann": 2.985922984513197,
+      "deviation": 1.176231030169684,
+      "relative_deviation": 0.3554712747369361,
+      "panel_type": "hetero"
+    }
+  ]
+}

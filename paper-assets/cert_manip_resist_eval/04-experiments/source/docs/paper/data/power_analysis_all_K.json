@@ -1,0 +1,153 @@
+{
+  "K3": {
+    "n_panels": 455,
+    "n_clusters_per_position": 15,
+    "n_simulations": 1000,
+    "baseline": {
+      "intercept": -2.7584981933796486,
+      "beta_eta": 0.7438879306104328,
+      "sigma_resid": 0.5380082278757582,
+      "sd_y": 0.9231527162302234,
+      "sd_log_keff": 0.12744725754050734
+    },
+    "results": {
+      "0.1": {
+        "beta_std": 0.1,
+        "beta_raw": 0.7243409815521626,
+        "power": 0.646,
+        "n_sig": 646
+      },
+      "0.2": {
+        "beta_std": 0.2,
+        "beta_raw": 1.4486819631043253,
+        "power": 0.997,
+        "n_sig": 997
+      },
+      "0.3": {
+        "beta_std": 0.3,
+        "beta_raw": 2.1730229446564877,
+        "power": 1.0,
+        "n_sig": 1000
+      },
+      "0.5": {
+        "beta_std": 0.5,
+        "beta_raw": 3.621704907760813,
+        "power": 1.0,
+        "n_sig": 1000
+      }
+    },
+    "MDE_80": 0.14387464387464388
+  },
+  "K5": {
+    "K": 5,
+    "condition_used": "mmluxprompt_injection",
+    "n_panels": 3003,
+    "n_position_clusters": 5,
+    "n_simulations": 1000,
+    "baseline": {
+      "intercept": -5.762591818060465,
+      "beta_eta": 0.5182149394366661,
+      "sigma_resid": 0.46933771456377016,
+      "sd_y": 0.7456614171847866,
+      "sd_log_keff": 0.11235165552424457
+    },
+    "results": {
+      "0.02": {
+        "beta_std": 0.02,
+        "beta_raw": 0.13273705913908476,
+        "power": 0.206,
+        "n_sig": 206
+      },
+      "0.03": {
+        "beta_std": 0.03,
+        "beta_raw": 0.19910558870862716,
+        "power": 0.409,
+        "n_sig": 409
+      },
+      "0.04": {
+        "beta_std": 0.04,
+        "beta_raw": 0.2654741182781695,
+        "power": 0.64,
+        "n_sig": 640
+      },
+      "0.05": {
+        "beta_std": 0.05,
+        "beta_raw": 0.33184264784771195,
+        "power": 0.845,
+        "n_sig": 845
+      },
+      "0.06": {
+        "beta_std": 0.06,
+        "beta_raw": 0.3982111774172543,
+        "power": 0.944,
+        "n_sig": 944
+      },
+      "0.08": {
+        "beta_std": 0.08,
+        "beta_raw": 0.530948236556339,
+        "power": 1.0,
+        "n_sig": 1000
+      },
+      "0.1": {
+        "beta_std": 0.1,
+        "beta_raw": 0.6636852956954239,
+        "power": 1.0,
+        "n_sig": 1000
+      }
+    },
+    "MDE_80": 0.047804878048780496
+  },
+  "K7": {
+    "K": 7,
+    "condition_used": "mmluxprompt_injection",
+    "n_panels": 6435,
+    "n_position_clusters": 7,
+    "n_simulations": 1000,
+    "baseline": {
+      "intercept": -7.360796219047336,
+      "beta_eta": 0.4252991943228885,
+      "sigma_resid": 0.36997467951564267,
+      "sd_y": 0.5778371917628347,
+      "sd_log_keff": 0.0924385756042846
+    },
+    "results": {
+      "0.005": {
+        "beta_std": 0.005,
+        "beta_raw": 0.031255197734572804,
+        "power": 0.038,
+        "n_sig": 38
+      },
+      "0.01": {
+        "beta_std": 0.01,
+        "beta_raw": 0.06251039546914561,
+        "power": 0.089,
+        "n_sig": 89
+      },
+      "0.015": {
+        "beta_std": 0.015,
+        "beta_raw": 0.09376559320371843,
+        "power": 0.196,
+        "n_sig": 196
+      },
+      "0.02": {
+        "beta_std": 0.02,
+        "beta_raw": 0.12502079093829122,
+        "power": 0.326,
+        "n_sig": 326
+      },
+      "0.03": {
+        "beta_std": 0.03,
+        "beta_raw": 0.18753118640743685,
+        "power": 0.721,
+        "n_sig": 721
+      },
+      "0.05": {
+        "beta_std": 0.05,
+        "beta_raw": 0.3125519773457281,
+        "power": 0.996,
+        "n_sig": 996
+      }
+    },
+    "MDE_80": 0.03574545454545455
+  }
+}

@@ -1,0 +1,417 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{sec:amplification} has no matching \\label",
+          "location": "main.tex:47"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{app:rewriter_indep} has no matching \\label",
+          "location": "main.tex:48"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{sec:nli_validation} has no matching \\label",
+          "location": "main.tex:53"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:limitations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "3 critical, 2 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
+      "sections": [],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "no_paper_tex",
+          "message": "No section .tex files found under /home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper",
+          "location": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/paper"
+        }
+      ],
+      "info": [],
+      "summary": {
+        "critical": 0,
+        "warning": 1,
+        "info": 0
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_5/projects/causal_style_decomp_judge/docs/_audit_compile_dxfe9m33",
+        "main_tex": "main.tex",
+        "log_tail": "\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 768--769\n\\T1/pcr/m/n/10.95 the following text in\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 768--769\n\\T1/pcr/m/n/10.95 the same style (keep it\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 768--769\n\\T1/pcr/m/n/10.95 [formal/casual/verbose/concise])\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 768--769\n\\T1/pcr/m/n/10.95 while preserving the exact same\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 768--769\n\\T1/pcr/m/n/10.95 content and meaning. Paraphrase\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 768--769\n\\T1/pcr/m/n/10.95 the text without changing its\n []\n\n[19]\nUnderfull \\vbox (badness 10000) has occurred while \\output is active []\n\n\nUnderfull \\hbox (badness 1092) in paragraph at lines 817--818\n[]\\T1/ptm/b/n/10.95 (+20) Code: \\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\n scripts, data-\n []\n\n) [20] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: AF8FDD3F48B2E2002D7A6D9A30FE4EB6;7681.\n ) \nHere is how much of TeX's memory you used:\n 26567 strings out of 469438\n 482745 string characters out of 5468411\n 928782 words of memory out of 5000000\n 54147 multiletter control sequences out of 15000+600000\n 703142 words of font info for 417 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,15n,94p,1001b,692s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\nnts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c\nmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive\n/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/f\nonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u\nrw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (20 pages, 4990485 bytes).\nPDF statistics:\n 1031 PDF objects out of 1200 (max. 8388607)\n 904 compressed objects within 10 object streams\n 175 named destinations out of 1000 (max. 500000)\n 66435 words of extra memory for PDF output out of 74296 (max. 10000000)\n",
+        "error": "",
+        "pages": 20,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 20,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 9--9",
+        "Underfull \\hbox (badness 2318) in paragraph at lines 23--24",
+        "Underfull \\vbox (badness 1173) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1275) in paragraph at lines 104--110",
+        "Underfull \\hbox (badness 1584) in paragraph at lines 104--110",
+        "Underfull \\vbox (badness 3302) has occurred while \\output is active []",
+        "Overfull \\hbox (14.06667pt too wide) in paragraph at lines 106--125",
+        "Underfull \\vbox (badness 1275) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2181) in paragraph at lines 140--140",
+        "Underfull \\hbox (badness 1248) in paragraph at lines 140--140",
+        "Overfull \\hbox (4.4811pt too wide) in paragraph at lines 142--154",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Overfull \\hbox (1.18979pt too wide) in paragraph at lines 363--375",
+        "Overfull \\hbox (5.18329pt too wide) in paragraph at lines 415--430",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 545--549",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 545--549",
+        "Underfull \\hbox (badness 4429) in paragraph at lines 545--549",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 545--549",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 545--549",
+        "Underfull \\hbox (badness 8019) in paragraph at lines 545--549",
+        "Underfull \\hbox (badness 3148) in paragraph at lines 545--549",
+        "Underfull \\hbox (badness 5504) in paragraph at lines 545--549",
+        "Underfull \\hbox (badness 6001) in paragraph at lines 683--685",
+        "Underfull \\hbox (badness 3291) in paragraph at lines 745--748",
+        "Underfull \\hbox (badness 6016) in paragraph at lines 745--748",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 759--760",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 759--760",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 759--760",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 759--760",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 759--760",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 759--760",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 759--760",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 762--763",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 762--763",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 762--763",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 762--763",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 762--763",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 762--763",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 765--766",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 765--766",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 765--766",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 765--766",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 765--766",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 765--766",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 765--766",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 768--769",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 768--769",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 768--769",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 768--769",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 768--769",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 768--769",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 768--769",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 817--818"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract→Intro→Method→Experiments→Analysis→Conclusion 主线高度一致：问题（Likert/pairwise格式对风格偏差敏感性分歧）、方法（CSD）、发现（Likert Blindspot + GEE per-axis 分解）全文统一，未检测到叙事漂移。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Intro 三条贡献均有对应正文支撑：Empirical→Table 1/§5.1/§5.3；Analytical→Table 2/§5.2；Practical→§3 Method。无孤儿贡献或孤儿章节。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 回答四个必答问题（问题/方法/结果/意义），约175 words，密度合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Introduction 采用背景→问题→gap→方法→贡献的完整叙事结构，贡献列表清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 采用三个主题归纳（Interventional Approaches / Style Bias / Measurement Format Sensitivity），非论文堆砌。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围",
+      "message": "Title/Abstract 范围词与实验匹配：四个 target judges（GPT-4o/Qwen3/Llama/Gemini）✓、两个 primary axes（formality/verbosity）✓、三个 benchmarks（LLMBar/AlpacaEval/MT-Bench）✓。Abstract 用\"selectively replicated\"正确修饰了非全覆盖的跨基准测试（6/24 cells）。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "符号",
+      "message": "abstract.tex:7 Abstract 中 \"OR\"（odds ratio）未展开定义。NLP 审稿人可能不立即识别此统计缩写，建议首次出现时写 \"odds ratio (OR)\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "符号",
+      "message": "abstract.tex:4 Abstract 中 \"NLI\" 未展开定义。虽然 NLI 在 NLP 社区是标准术语，但写作规范要求 Abstract 内缩写必须展开。建议写 \"natural language inference (NLI)\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "核心符号 $S$/$Q$/$Y$/$R$ 在 Method §3.5 + Figure 2 DAG 首次定义，后续使用一致。GEE/CSD/BT 在首次出现处均有展开。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim",
+      "message": "Abstract \"p < 0.001\" 和 \"p > 0.28\" 与 Table 1 数据吻合（最低 Likert p = 0.284 > 0.28，所有 primary BT p < 0.001）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim",
+      "message": "\"the first per-axis demonstration\" 是强 novelty claim。Related Work 中已论证此前无类似工作（RATE 用 Likert ATE 而非 per-axis pairwise；CASSE/FairJudge 用 correlational 而非 interventional），论证链完整。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim",
+      "message": "\"consistently\" 在 intro:3 用于描述单个例子的重复实验行为，非统计泛化声称，用法合规。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验",
+      "message": "主结果表 (Table 1) 无 inline CIs，但 caption 指向 Appendix H (Table 8) 提供 bootstrap 95% CIs。可接受但审稿人可能偏好 inline CIs。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验",
+      "message": "统计方法层次完整：Holm-Bonferroni 多重比较校正、exploratory/confirmatory 分级、7种测量方法交叉验证、bootstrap 稳定性检验。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验",
+      "message": "Ablation 覆盖全面：NLI gate ablation、阈值敏感性（11级）、一致性过滤器、rewriter 独立性、100点连续Likert、方向感知gate、跨轴污染、FK长度控制。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "可复现性",
+      "message": "论文未披露 locally hosted 模型（Qwen3-32B、Llama-3.3-70B）的 GPU 型号和推理时间。虽然本文是评测论文（非训练论文），但审稿人可能期望了解推理硬件配置以评估可复现性。Appendix P 有部分信息但缺 GPU 型号。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "代码/数据 URL 在 Abstract 脚注中提供（匿名 GitHub）。API 模型版本号（gpt-4o-2024-08-06）、温度、BT正则化参数等均已披露。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "Em-dash (—) 全文零匹配。En-dash 解释性用法零匹配。最显著的 AI 痕迹已完全消除。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "Filler words 检查：仅 appendix.tex:775 有一处 \"additionally\"，属于正常学术表达。无 \"it is worth noting\"/\"notably\"/\"importantly\"/\"furthermore\"/\"moreover\" 的连续使用。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "黑名单词汇：appendix.tex:649 中 \"utilize\" 出现在引用的词汇对比例子（``use'' → ``utilize''）中，属于分析对象而非写作用语，不需修改。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "段落长度正常，未见过度分段（2-3句一段）的模式。"
+    },
+    {
+      "severity": "info",
+      "dimension": "过渡",
+      "message": "Experiments (§4) → Analysis (§5) 逻辑自然：§4 建立统计框架和实验设置，§5 解读结果。Analysis 不仅复述数字，还提供更高层解读（attenuation vs. amplification vs. construct divergence 三种解释、对 alignment pipeline 的实践含义）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "过渡",
+      "message": "Conclusion 极简（5行），仅总结两个核心发现和实践含义，不重复具体数字。合规。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "约170 words，三个 distinct limitations（残余混淆、检测vs放大、适用范围），每个有实质性内容而非回避式表述。覆盖 NLI gate 的根本局限（无法阻断风格本身介导的质量感知变化）、放大因子无法精确量化、scope 限于表面级轴。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "未检测到内部实验编号、服务器名、内部路径、框架术语泄露。正文中无隐含内部流程的表述。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract 约175 words，未超过200 words 限制。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations section 仅一个，位于正文 main.tex（非 appendix），覆盖3个点。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "论文 PDF 中无 ARR Responsible NLP Checklist（正确，应在 OpenReview submission form 填写）。✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "正文页数需确认是否 ≤8 页。Phase 1 报告总计20页（含大量 appendix），正文内容量估计接近8页上限。建议编译后精确核实。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1",
+      "message": "[写作规则] Abstract 字数目测超过 200 words（估算 ~230-250 words）。EMNLP 2026 硬性要求 abstract ≤ 200 words，当前 abstract 覆盖了 definition、method 三阶段描述、五个 judge 的实验结果、GEE 分解、concordance 分析等，信息密度过高。建议压缩 method 细节和 judge 枚举，控制在 200 words 以内。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 1-2",
+      "message": "连续 2 页纯文本（Title/Abstract/Introduction/Related Work），无任何 display item（figure/table/equation）。虽然 Intro+Related Work 传统上以文字为主，但审稿人在前 2 页无法形成视觉锚点。考虑在 Introduction 中加入一个 motivating example 小图或将 Figure 1 提前。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "第一页印象整体整洁专业。Title/Author/Abstract 排版干净，\"Anonymous ACL submission\" 匿名标注正确。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "第一个 display item（Figure 1: CSD pipeline overview）出现在第 3 页，位于审稿人注意力窗口内。Pipeline 五阶段图设计清晰，配有 sample attrition 数字，caption 自包含，有效传达核心方法流程。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2（causal DAG）尺寸偏小，仅占单栏约 1/4 高度。DAG 节点（S, Q, Y）和路径虽然可读，但作为设计原理的核心图示，适当放大可增强视觉重量。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 1（Primary results on LLMBar）使用 booktabs 风格，水平线清晰，无竖线。列包含 Judge/Axis/Form/BT†/Likert/Cat.，格式规范。最优结果有加粗标注。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "视觉节奏良好：Figure 3（BT win probabilities bar chart）+ Figure 4（detection probability curves）同页呈现，两图配合展示核心发现。Figure 3 使用 filled/open markers 区分显著性，兼顾色盲友好。Figure 4 的 line plot 清晰可读。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Table 2 + Figure 5 同页：GEE 分解的表格+柱状图双重展示。Figure 5 使用蓝+橙配色（color-blind friendly），Verbosity vs Formality 对比直观。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 6（pairwise BT heatmap）跨 5 judges × 3 benchmarks × 3 axes，彩色网格内数值可读。Section 6 Conclusion 紧随其后，页面利用率高。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Limitations 从第 8 页底部开始，延续到第 9 页顶部数行后进入 References。篇幅简短，覆盖 residual confounding、detection vs. amplification、scope 三个点，符合 EMNLP 要求。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "[审稿规则] 正文（Sections 1-6）至 Conclusion 结束约占 7.7 页，Limitations 不计入页数限制，符合 EMNLP 2026 的 8 页正文限制。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "[写作规则] Limitations section 唯一且位于正文中（page 8-9），appendix 中无重复 Limitations section，符合 EMNLP 规则。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9-10",
+      "message": "References 排版正常，双栏格式统一，未见 [?] 未解析引用或 overfull hbox。引用格式一致（author-year 风格）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12-17",
+      "message": "Appendix 表格密度极高（Tables 3-21），均使用 booktabs 风格，小数精度统一。部分表格字号较小但仍可辨认。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 19",
+      "message": "Rewriting Prompts（Section Y）使用带框文本块展示 prompt 模板，格式清晰，与正文文字区分明确。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 20",
+      "message": "末页（appendix 最后一页）内容约占 60-65%，底部约 35% 空白。作为 appendix 末页可接受，非正文末页故不作 warning。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全局",
+      "message": "主正文 display items 密度：6 figures + 2 tables = 8 items / 8 pages = 1.0/页，对实证为主的论文属合理范围（参考值 5-8 个）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全局",
+      "message": "全文无 LaTeX 渲染错误、无公式乱码、无 margin 溢出。Section heading 未见孤悬页底。双栏排版左右栏底部基本对齐。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全局",
+      "message": "[写作规则] PDF 中未包含 ARR Responsible NLP Checklist（正确——应在 OpenReview submission form 中填写）。"
+    }
+  ],
+  "counts": {
+    "critical": 3,
+    "warning": 74,
+    "info": 43
+  },
+  "error": "",
+  "timestamp": "2026-05-25T11:03:16.876777+00:00"
+}

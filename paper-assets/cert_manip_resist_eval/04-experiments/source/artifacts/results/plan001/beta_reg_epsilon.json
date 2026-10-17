@@ -1,0 +1,112 @@
+{
+  "beta_regression": {
+    "per_condition": {
+      "mmlu__prompt_injection": {
+        "eta_std_beta": 4.110976,
+        "eta_p": 0.027217,
+        "keff_std_beta": 2.515233,
+        "keff_p": 0.244023,
+        "pseudo_r2": 0.604564
+      },
+      "mmlu__sycophancy": {
+        "eta_std_beta": 11.196342,
+        "eta_p": 0.521196,
+        "keff_std_beta": 6.939277,
+        "keff_p": 0.86007,
+        "pseudo_r2": 0.50328
+      },
+      "mmlu__score_manipulation": {
+        "eta_std_beta": 6.141916,
+        "eta_p": 0.828179,
+        "keff_std_beta": 6.246759,
+        "keff_p": 0.86007,
+        "pseudo_r2": 0.47692
+      },
+      "mmlu__verbosity_bias": {
+        "eta_std_beta": 15.551003,
+        "eta_p": 0.129787,
+        "keff_std_beta": 6.042933,
+        "keff_p": 0.86007,
+        "pseudo_r2": 0.647594
+      },
+      "mmlu__position_bias": {
+        "eta_std_beta": 1.691394,
+        "eta_p": 0.931481,
+        "keff_std_beta": 0.40106,
+        "keff_p": 0.941583,
+        "pseudo_r2": 0.243779
+      },
+      "mmlu__authority_bias": {
+        "eta_std_beta": 12.993762,
+        "eta_p": 0.828179,
+        "keff_std_beta": 3.814033,
+        "keff_p": 0.941583,
+        "pseudo_r2": 0.247383
+      },
+      "arc_challenge__prompt_injection": {
+        "eta_std_beta": -0.591047,
+        "eta_p": 0.989326,
+        "keff_std_beta": 9.698187,
+        "keff_p": 0.093388,
+        "pseudo_r2": 0.533775
+      },
+      "arc_challenge__sycophancy": {
+        "eta_std_beta": 39.863872,
+        "eta_p": 0.828179,
+        "keff_std_beta": 4.119317,
+        "keff_p": 0.941583,
+        "pseudo_r2": 0.391653
+      },
+      "arc_challenge__score_manipulation": {
+        "eta_std_beta": -1.469079,
+        "eta_p": 0.989326,
+        "keff_std_beta": 29.244372,
+        "keff_p": 0.86007,
+        "pseudo_r2": 0.554185
+      },
+      "arc_challenge__verbosity_bias": {
+        "eta_std_beta": 13.731317,
+        "eta_p": 0.828179,
+        "keff_std_beta": 10.753761,
+        "keff_p": 0.86007,
+        "pseudo_r2": 0.47886
+      },
+      "arc_challenge__position_bias": {
+        "eta_std_beta": -0.087752,
+        "eta_p": 0.989326,
+        "keff_std_beta": 2.333332,
+        "keff_p": 0.941583,
+        "pseudo_r2": 0.313855
+      },
+      "arc_challenge__authority_bias": {
+        "eta_std_beta": 28.080144,
+        "eta_p": 0.828179,
+        "keff_std_beta": 28.613779,
+        "keff_p": 0.938205,
+        "pseudo_r2": 0.470227
+      }
+    },
+    "summary": {
+      "eta_fdr_sig": "1/12",
+      "keff_fdr_sig": "0/12",
+      "eta_dominates": "7/12"
+    },
+    "vs_ols": "ranking_changed",
+    "ranking_match_detail": "10/12"
+  },
+  "epsilon_sensitivity": {
+    "1e-03": {
+      "eta_fdr_sig": "10/12",
+      "keff_fdr_sig": "8/12"
+    },
+    "1e-06": {
+      "eta_fdr_sig": "11/12",
+      "keff_fdr_sig": "8/12"
+    },
+    "1e-09": {
+      "eta_fdr_sig": "10/12",
+      "keff_fdr_sig": "6/12"
+    },
+    "max_beta_change_pct": 472.04
+  }
+}

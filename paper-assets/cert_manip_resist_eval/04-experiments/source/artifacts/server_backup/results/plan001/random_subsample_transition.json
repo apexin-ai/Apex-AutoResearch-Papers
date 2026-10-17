@@ -1,0 +1,168 @@
+{
+  "n_trials": 1000,
+  "seed": 42,
+  "K": 5,
+  "n_models_per_trial": 9,
+  "n_total_models": 15,
+  "n_local_models": 6,
+  "n_api_models": 9,
+  "local_models": [
+    "qwen2.5-72b",
+    "llama3.1-70b",
+    "mistral-large",
+    "qwen2.5-32b",
+    "qwen2.5-14b",
+    "llama3.1-8b"
+  ],
+  "api_models": [
+    "claude-opus-4-6",
+    "gpt-5.5",
+    "gemini-3.1-pro-preview",
+    "gpt-4.1",
+    "claude-sonnet-4-6",
+    "gpt-4.1-nano",
+    "gemini-3.5-flash",
+    "gpt-4.1-mini",
+    "claude-3-haiku"
+  ],
+  "regression": "log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)",
+  "fdr_method": "BH",
+  "fdr_alpha": 0.05,
+  "overall": {
+    "n_trials": 1000,
+    "ols_keff_sig_rate": 0.999,
+    "ols_eta_sig_rate": 0.999,
+    "ols_keff_dominant_rate": 0.707,
+    "ols_keff_sig_mean": 8.586,
+    "ols_eta_sig_mean": 6.72,
+    "cl_keff_sig_rate": 0.607,
+    "cl_eta_sig_rate": 0.39,
+    "cl_keff_dominant_rate": 0.514,
+    "cl_keff_sig_mean": 1.849,
+    "cl_eta_sig_mean": 0.783
+  },
+  "by_contains_local": {
+    "true": {
+      "n_trials": 1000,
+      "ols_keff_sig_rate": 0.999,
+      "ols_eta_sig_rate": 0.999,
+      "ols_keff_dominant_rate": 0.707,
+      "ols_keff_sig_mean": 8.586,
+      "ols_eta_sig_mean": 6.72,
+      "cl_keff_sig_rate": 0.607,
+      "cl_eta_sig_rate": 0.39,
+      "cl_keff_dominant_rate": 0.514,
+      "cl_keff_sig_mean": 1.849,
+      "cl_eta_sig_mean": 0.783
+    },
+    "false": {
+      "n_trials": 0
+    }
+  },
+  "by_n_local": {
+    "1": {
+      "n_trials": 8,
+      "ols_keff_sig_rate": 0.875,
+      "ols_eta_sig_rate": 1.0,
+      "ols_keff_dominant_rate": 0.5,
+      "ols_keff_sig_mean": 5.875,
+      "ols_eta_sig_mean": 5.75,
+      "cl_keff_sig_rate": 0.0,
+      "cl_eta_sig_rate": 0.375,
+      "cl_keff_dominant_rate": 0.0,
+      "cl_keff_sig_mean": 0.0,
+      "cl_eta_sig_mean": 0.375
+    },
+    "2": {
+      "n_trials": 117,
+      "ols_keff_sig_rate": 1.0,
+      "ols_eta_sig_rate": 0.9914529914529915,
+      "ols_keff_dominant_rate": 0.5811965811965812,
+      "ols_keff_sig_mean": 7.760683760683761,
+      "ols_eta_sig_mean": 6.521367521367521,
+      "cl_keff_sig_rate": 0.4017094017094017,
+      "cl_eta_sig_rate": 0.358974358974359,
+      "cl_keff_dominant_rate": 0.3247863247863248,
+      "cl_keff_sig_mean": 0.8888888888888888,
+      "cl_eta_sig_mean": 0.6324786324786325
+    },
+    "3": {
+      "n_trials": 334,
+      "ols_keff_sig_rate": 1.0,
+      "ols_eta_sig_rate": 1.0,
+      "ols_keff_dominant_rate": 0.7365269461077845,
+      "ols_keff_sig_mean": 8.610778443113773,
+      "ols_eta_sig_mean": 6.517964071856287,
+      "cl_keff_sig_rate": 0.6766467065868264,
+      "cl_eta_sig_rate": 0.39221556886227543,
+      "cl_keff_dominant_rate": 0.6017964071856288,
+      "cl_keff_sig_mean": 2.320359281437126,
+      "cl_eta_sig_mean": 0.8233532934131736
+    },
+    "4": {
+      "n_trials": 363,
+      "ols_keff_sig_rate": 1.0,
+      "ols_eta_sig_rate": 1.0,
+      "ols_keff_dominant_rate": 0.7520661157024794,
+      "ols_keff_sig_mean": 9.055096418732782,
+      "ols_eta_sig_mean": 6.9476584022038566,
+      "cl_keff_sig_rate": 0.7107438016528925,
+      "cl_eta_sig_rate": 0.38292011019283745,
+      "cl_keff_dominant_rate": 0.5867768595041323,
+      "cl_keff_sig_mean": 2.088154269972452,
+      "cl_eta_sig_mean": 0.8236914600550964
+    },
+    "5": {
+      "n_trials": 169,
+      "ols_keff_sig_rate": 1.0,
+      "ols_eta_sig_rate": 1.0,
+      "ols_keff_dominant_rate": 0.6686390532544378,
+      "ols_keff_sig_mean": 8.36094674556213,
+      "ols_eta_sig_mean": 6.816568047337278,
+      "cl_keff_sig_rate": 0.44970414201183434,
+      "cl_eta_sig_rate": 0.4260355029585799,
+      "cl_keff_dominant_rate": 0.3668639053254438,
+      "cl_keff_sig_mean": 1.2544378698224852,
+      "cl_eta_sig_mean": 0.7633136094674556
+    },
+    "6": {
+      "n_trials": 9,
+      "ols_keff_sig_rate": 1.0,
+      "ols_eta_sig_rate": 1.0,
+      "ols_keff_dominant_rate": 0.3333333333333333,
+      "ols_keff_sig_mean": 6.111111111111111,
+      "ols_eta_sig_mean": 6.666666666666667,
+      "cl_keff_sig_rate": 0.0,
+      "cl_eta_sig_rate": 0.3333333333333333,
+      "cl_keff_dominant_rate": 0.0,
+      "cl_keff_sig_mean": 0.0,
+      "cl_eta_sig_mean": 0.3333333333333333
+    }
+  },
+  "clustered_se": {
+    "method": "5-position max-SE (CR1)",
+    "overall": {
+      "n_trials": 1000,
+      "cl_keff_sig_rate": 0.607,
+      "cl_eta_sig_rate": 0.39,
+      "cl_keff_dominant_rate": 0.514,
+      "cl_keff_sig_mean": 1.849,
+      "cl_eta_sig_mean": 0.783
+    },
+    "by_contains_local": {
+      "true": {
+        "n_trials": 1000,
+        "cl_keff_sig_rate": 0.607,
+        "cl_eta_sig_rate": 0.39,
+        "cl_keff_dominant_rate": 0.514,
+        "cl_keff_sig_mean": 1.849,
+        "cl_eta_sig_mean": 0.783
+      },
+      "false": {
+        "n_trials": 0
+      }
+    }
+  },
+  "summary": "K_eff dominant in 70.7% of 1000 trials (OLS). With local (1000 trials): 70.7%. No pure-API trials in 1000 draws (expected ~0.02%).",
+  "elapsed_seconds": 30.1599600315094
+}

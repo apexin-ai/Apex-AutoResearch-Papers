@@ -1,0 +1,45 @@
+{
+  "error_handling": "V2",
+  "fix_applied": "_is_valid_score() filter replacing .get('winner', 'tie') V1 pattern",
+  "concordance_rate": 0.986,
+  "old_concordance": 0.931,
+  "concordance_detail": "71/72 direction matches across 3 K-values x 12 conditions x 2 variables",
+  "K3": {
+    "frac_logit": {"eta_sig": "0/12", "keff_sig": "2/12"},
+    "frac_logit_robust_HC1": {"eta_sig": "8/12", "keff_sig": "12/12"},
+    "frac_logit_clustered": {"eta_sig": "6/12", "keff_sig": "9/12"},
+    "ols_inline": {"eta_sig": "10/12", "keff_sig": "12/12"},
+    "direction_concordance": {"eta": "12/12", "keff": "12/12"}
+  },
+  "K5": {
+    "frac_logit": {"eta_sig": "1/12", "keff_sig": "7/12"},
+    "frac_logit_robust_HC1": {"eta_sig": "12/12", "keff_sig": "12/12"},
+    "frac_logit_clustered": {"eta_sig": "4/12", "keff_sig": "11/12"},
+    "ols_inline": {"eta_sig": "10/12", "keff_sig": "12/12"},
+    "direction_concordance": {"eta": "12/12", "keff": "12/12"}
+  },
+  "K7": {
+    "frac_logit": {"eta_sig": "2/12", "keff_sig": "7/12"},
+    "frac_logit_robust_HC1": {"eta_sig": "11/12", "keff_sig": "12/12"},
+    "frac_logit_clustered": {"eta_sig": "4/12", "keff_sig": "12/12"},
+    "ols_inline": {"eta_sig": "11/12", "keff_sig": "12/12"},
+    "direction_concordance": {"eta": "11/12", "keff": "12/12"}
+  },
+  "direction_flips": [
+    {
+      "condition": "arc_challengexscore_manipulation",
+      "variable": "eta_max",
+      "K": 7,
+      "frac_sign": -1.0,
+      "ols_sign": 1.0
+    }
+  ],
+  "significance_concordance": {"rate": 0.333, "detail": "24/72"},
+  "old_vs_new": "V2 direction concordance 98.6% (up from V1 93.1%). Only 1 direction flip remains (K7 arc_challenge x score_manipulation, eta_max). K_eff direction is perfectly concordant across all 36 comparisons. Significance concordance is low (33.3%) because basic fractional logit uses z-scored predictors and is more conservative than OLS log-log, but robust HC1 variant closely matches OLS significance patterns.",
+  "old_fractional_logit_V1": {
+    "K3": {"eta_sig": "7/12", "keff_sig": "4/12"},
+    "K5": {"eta_sig": "5/12", "keff_sig": "9/12"},
+    "K7": {"eta_sig": "5/12", "keff_sig": "10/12"},
+    "concordance_with_ols": 0.931
+  }
+}

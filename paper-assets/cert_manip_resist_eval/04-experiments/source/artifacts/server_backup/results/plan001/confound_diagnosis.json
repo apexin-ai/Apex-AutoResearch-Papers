@@ -1,0 +1,91 @@
+{
+  "conditions": {
+    "mmlu×prompt_injection": {
+      "pearson_r": 0.6561544952115396,
+      "p_value": 2.3336338266329969e-57,
+      "verdict": "CONFOUND_MODERATE",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "mmlu×sycophancy": {
+      "pearson_r": 0.3478419347431459,
+      "p_value": 2.1864593876845904e-14,
+      "verdict": "CONFOUND_BROKEN",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "mmlu×score_manipulation": {
+      "pearson_r": 0.8200677642383261,
+      "p_value": 7.101546863435947e-112,
+      "verdict": "CONFOUND_SEVERE",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "mmlu×verbosity_bias": {
+      "pearson_r": 0.3548206335826208,
+      "p_value": 6.040939813240407e-15,
+      "verdict": "CONFOUND_BROKEN",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "mmlu×position_bias": {
+      "pearson_r": 0.6332364711740149,
+      "p_value": 2.2895308532069985e-52,
+      "verdict": "CONFOUND_MODERATE",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "mmlu×authority_bias": {
+      "pearson_r": 0.5948361107503004,
+      "p_value": 6.935476055679576e-45,
+      "verdict": "CONFOUND_MODERATE",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "arc_challenge×prompt_injection": {
+      "pearson_r": 0.8881436057841691,
+      "p_value": 4.661440053390286e-155,
+      "verdict": "CONFOUND_SEVERE",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "arc_challenge×sycophancy": {
+      "pearson_r": 0.7643685872046883,
+      "p_value": 2.2540787633336278e-88,
+      "verdict": "CONFOUND_SEVERE",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "arc_challenge×score_manipulation": {
+      "pearson_r": 0.907678612792164,
+      "p_value": 6.179046268859648e-173,
+      "verdict": "CONFOUND_SEVERE",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "arc_challenge×verbosity_bias": {
+      "pearson_r": 0.7903066700009499,
+      "p_value": 2.0056828273293803e-98,
+      "verdict": "CONFOUND_SEVERE",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "arc_challenge×position_bias": {
+      "pearson_r": 0.9162196639321009,
+      "p_value": 4.753497842022759e-182,
+      "verdict": "CONFOUND_SEVERE",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    },
+    "arc_challenge×authority_bias": {
+      "pearson_r": 0.7324850612687912,
+      "p_value": 1.1508113783254069e-77,
+      "verdict": "CONFOUND_SEVERE",
+      "n_panels": 455,
+      "n_models_with_asr": 15
+    }
+  },
+  "scatter_plots": "/root/cert_manip_resist_eval/artifacts/results/plan001/confound_scatter.png",
+  "overall_verdict": "CONFOUND_SEVERE",
+  "mean_r": 0.7005133008902343
+}

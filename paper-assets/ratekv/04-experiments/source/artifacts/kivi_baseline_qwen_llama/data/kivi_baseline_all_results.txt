@@ -1,0 +1,4 @@
+Qwen2.5-7B r128: KIVI-2bit=12.8273, KIVI-4bit=9.8976
+Qwen2.5-7B r0: KIVI-2bit=13.3406, KIVI-4bit=9.9130
+Llama-3.1-8B r128: KIVI-2bit=9.8440, KIVI-4bit=8.1377
+Llama-3.1-8B r0: KIVI-2bit=10.0750, KIVI-4bit=8.1427

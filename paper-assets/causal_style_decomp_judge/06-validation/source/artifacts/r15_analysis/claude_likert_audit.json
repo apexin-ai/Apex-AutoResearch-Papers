@@ -1,0 +1,81 @@
+{
+  "table1_values": {
+    "form_d": -0.021,
+    "form_p": 0.721,
+    "verb_d": -0.039,
+    "verb_p": 0.743,
+    "source": "docs/paper/sections/experiments.tex lines 45-46, hardcoded in LaTeX",
+    "method": "d = ATE(pole_a - pole_b) / pooled_sd(orig, cf); p = Wilcoxon signed-rank on pole-aligned pairs",
+    "ate_direction": "pole-aligned (formal - casual, verbose - concise)",
+    "sd_type": "pooled SD of original and counterfactual scores",
+    "p_test": "Wilcoxon signed-rank test"
+  },
+  "appendix_u_values": {
+    "form_d": 0.042,
+    "form_p": 0.449,
+    "verb_d": 0.017,
+    "verb_p": 0.799,
+    "source": "claude_crossbench_analysis.py -> artifacts/r14_fixes/claude_crossbench_results.json",
+    "method": "d = ATE(orig - cf) / pooled_sd(orig, cf); p = paired t-test on orig vs cf",
+    "ate_direction": "condition-aligned (original - counterfactual)",
+    "sd_type": "pooled SD of original and counterfactual scores",
+    "p_test": "paired t-test (scipy.stats.ttest_rel)"
+  },
+  "independent_verification": {
+    "formality": {
+      "data_file": "data/scored_claude_formality.jsonl",
+      "n": 88,
+      "nli_threshold": 0.90,
+      "mean_orig": 4.9432,
+      "mean_cf": 4.8523,
+      "pooled_sd": 2.1785,
+      "ate_orig_minus_cf": 0.0909,
+      "ate_formal_minus_casual": -0.0455,
+      "d_orig_cf_pooled": 0.0417,
+      "d_polealigned_pooled": -0.0209,
+      "p_paired_t_origcf": 0.4487,
+      "p_wilcoxon_polealigned": 0.7207,
+      "p_ttest_polealigned": 0.7052,
+      "table1_d_match": true,
+      "table1_p_match": true,
+      "appendix_u_d_match": true,
+      "appendix_u_p_match": true
+    },
+    "verbosity": {
+      "data_file": "data/scored_claude_verbosity.jsonl",
+      "n": 86,
+      "nli_threshold": 0.90,
+      "mean_orig": 4.7674,
+      "mean_cf": 4.7326,
+      "pooled_sd": 2.0611,
+      "ate_orig_minus_cf": 0.0349,
+      "ate_verbose_minus_concise": -0.0814,
+      "d_orig_cf_pooled": 0.0169,
+      "d_polealigned_pooled": -0.0395,
+      "p_paired_t_origcf": 0.7994,
+      "p_wilcoxon_polealigned": 0.7427,
+      "p_ttest_polealigned": 0.5529,
+      "table1_d_match": true,
+      "table1_p_match": true,
+      "appendix_u_d_match": true,
+      "appendix_u_p_match": true
+    }
+  },
+  "root_cause": "Table 1 and Appendix U compute Likert d using different ATE directions and different p-value tests from the same underlying data. Table 1 uses pole-aligned ATE (formal-casual / verbose-concise) with Wilcoxon p; Appendix U uses condition-aligned ATE (orig-cf) with paired t-test p. The pooled SD denominator is the same. Both sets of values are arithmetically correct given their respective methods — the discrepancy is methodological, not a computation error.",
+  "root_cause_details": {
+    "difference_1_ate_direction": "Table 1: score(pole_a) - score(pole_b), e.g. score(formal) - score(casual). Appendix U: score(original) - score(counterfactual). Since each pair's original can be either pole, these ATE values differ in magnitude and can differ in sign.",
+    "difference_2_p_value_test": "Table 1: Wilcoxon signed-rank test on pole-aligned differences. Appendix U: paired t-test on orig-cf differences. These test different null hypotheses on differently-directed paired data.",
+    "why_bt_matches": "BT values are identical (.562/.541) because BT is computed from pairwise comparison data (trial1/trial2 choices), which is the same regardless of Likert scoring method."
+  },
+  "correct_values": {
+    "form_d": -0.021,
+    "form_p": 0.721,
+    "verb_d": -0.039,
+    "verb_p": 0.743,
+    "rationale": "Table 1 values (pole-aligned) are the correct ones for a style bias paper. The pole-aligned direction directly measures 'does the judge prefer formal/verbose style?', which is the research question. The orig-cf direction conflates style direction with rewriting direction and is less interpretable. Appendix U should be updated to match Table 1's method for consistency.",
+    "recommended_fix": "Update claude_crossbench_analysis.py likert_analysis() to use pole-aligned ATE direction and Wilcoxon p-value, matching the method used in Table 1 for all primary judges. Then regenerate Appendix U table from the corrected script."
+  },
+  "cross_validation_other_judges": {
+    "note": "Verified Table 1 method (pole-aligned d, Wilcoxon p) matches for Llama-70B (form d=+.010, verb d=+.020) and Gemini-Flash (form d=-.082, verb d=+.051). GPT-4o and Qwen primary results appear to use different source data files (different n after NLI filtering), making direct cross-validation impossible without identifying those exact data sources."
+  }
+}
