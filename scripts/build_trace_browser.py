@@ -304,7 +304,7 @@ def write_preview(target, examples):
     template = (target / "index.html").read_text()
     offline = template.replace('<body>', '<body data-offline="true">').replace('<!-- EMBEDDED_DATA -->', '<script id="embedded-sessions" type="application/json">' + json.dumps(examples, ensure_ascii=False).replace('<', '\\u003c') + '</script>')
     offline = offline.replace('<link rel="stylesheet" href="viewer.css">', '<style>' + (target / "viewer.css").read_text() + '</style>')
-    offline = offline.replace('<script src="viewer.js" defer></script>', '')
+    offline = offline.replace('  <script src="viewer.js" defer></script>\n', '')
     offline = offline.replace('</body>', '<script>' + (target / "viewer.js").read_text().replace('</script', '<\\/script') + '</script></body>')
     (target / "demo.html").write_text(offline)
 
