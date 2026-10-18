@@ -299,6 +299,16 @@ def build_project(project):
     return {"project": project.name, "title": manifest["title"], "catalog": f"../paper-assets/{project.name}/05-generation-trace/catalog.json", "statistics": dict(totals)}, example
 
 
+def write_preview(target, examples):
+    """An HTML-only preview can be sent without serving or bundling resources."""
+    template = (target / "index.html").read_text()
+    offline = template.replace('<body>', '<body data-offline="true">').replace('<!-- EMBEDDED_DATA -->', '<script id="embedded-sessions" type="application/json">' + json.dumps(examples, ensure_ascii=False).replace('<', '\\u003c') + '</script>')
+    offline = offline.replace('<link rel="stylesheet" href="viewer.css">', '<style>' + (target / "viewer.css").read_text() + '</style>')
+    offline = offline.replace('<script src="viewer.js" defer></script>', '')
+    offline = offline.replace('</body>', '<script>' + (target / "viewer.js").read_text().replace('</script', '<\\/script') + '</script></body>')
+    (target / "demo.html").write_text(offline)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project", action="append", help="Project slug; repeat to select projects")
@@ -327,10 +337,7 @@ def main():
         projects.sort(key=lambda p: p["project"])
         examples.sort(key=lambda p: p["project"])
     write_json(target / "projects.json", {"schema_version": VERSION, "projects": projects})
-    # JSON in a non-executable script element is safe after escaping '<'.
-    template = (target / "index.html").read_text()
-    offline = template.replace('<body>', '<body data-offline="true">').replace('<!-- EMBEDDED_DATA -->', '<script id="embedded-sessions" type="application/json">' + json.dumps(examples, ensure_ascii=False).replace('<', '\\u003c') + '</script>')
-    (target / "demo.html").write_text(offline)
+    write_preview(target, examples)
 
 
 if __name__ == "__main__":

@@ -2,6 +2,8 @@
 
 Start with [the interactive browser](index.html), or open [the offline preview](demo.html) directly from a downloaded clone. The preview includes one actual, bounded conversation round per paper for which a matching round is recorded. Its selection rule is stated below. The full browser includes every file in the eight released trace archives.
 
+The offline preview embeds its data, styles, and JavaScript in a single HTML file, so `demo.html` can also be sent on its own. Links from that file to full catalogues, papers, and source indexes require the corresponding repository files.
+
 On GitHub, HTML files display as source. Use each paper's `05-generation-trace/README.md` for a clickable index of session JSON, or run the browser locally:
 
 ```bash

@@ -7,6 +7,11 @@
   const state = {projects:[], catalog:null, catalogURL:null, session:null, sessionURL:null, currentRound:null, messages:[], filtered:[], limit:30, listLimit:50, generation:0, roundGeneration:0};
   const offline = document.body.dataset.offline === 'true';
   const embedded = offline ? JSON.parse($('embedded-sessions').textContent) : [];
+  const repository = 'https://github.com/Zxy-MLlab/Release_examples/blob/main/';
+  if(offline){
+    for(const a of document.querySelectorAll('a[href]'))a.href=new URL(a.getAttribute('href'),repository+'traces/demo.html').href;
+    $('offline-banner').querySelector('a').href=repository+'traces/README.md';
+  }
 
   function el(tag, text, cls) { const n=document.createElement(tag); if(text!==undefined)n.textContent=text; if(cls)n.className=cls; return n; }
   function status(text, error=false) { $('status').hidden=!text; $('status').textContent=text; $('status').classList.toggle('error',error); }
@@ -43,7 +48,7 @@
     $('reader').hidden=true;$('empty').hidden=true;status('Loading source catalogue…');
     setQuery({project:project.project,session:desiredSession,round:desiredRound});
     $('project-title').textContent=project.title;
-    $('paper-link').href=`../paper-assets/${encodeURIComponent(project.project)}/01-manuscript/paper.pdf`;
+    $('paper-link').href=offline?`${repository}paper-assets/${encodeURIComponent(project.project)}/01-manuscript/paper.pdf`:`../paper-assets/${encodeURIComponent(project.project)}/01-manuscript/paper.pdf`;
     try {
       if(offline) {
         const sample=embedded.find(s=>s.project===project.project);
@@ -75,8 +80,12 @@
       $('record-kind').textContent=kindLabel[session.kind]||session.kind;
       $('session-title').textContent=session.title;
       $('source-path').textContent=session.source.member;
-      $('json-link').href=url.href;
-      $('source-index-link').href=new URL('trace-index.csv',state.catalogURL).href;
+      if(offline){
+        if(state.previewURL)URL.revokeObjectURL(state.previewURL);
+        state.previewURL=URL.createObjectURL(new Blob([JSON.stringify(session,null,2)],{type:'application/json'}));
+        $('json-link').href=state.previewURL;$('json-link').textContent='Preview JSON ↗';
+      }else $('json-link').href=url.href;
+      $('source-index-link').href=offline?`${repository}paper-assets/${session.project}/05-generation-trace/trace-index.csv`:new URL('trace-index.csv',state.catalogURL).href;
       $('provenance').textContent=`Archive: ${session.source.archive}\nMember: ${session.source.member}\nOccurrence: ${session.source.occurrence}\nSHA-256: ${session.source.sha256}\nSanitized source size: ${fmt(session.source.bytes)} bytes`;
       $('provenance').style.whiteSpace='pre-wrap';$('related').replaceChildren();
       for(const e of state.catalog.sessions.filter(e=>e.task_key===session.task_key&&e.id!==session.id).slice(0,10)) {

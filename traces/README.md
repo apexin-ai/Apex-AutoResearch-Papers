@@ -4,6 +4,8 @@ Inspect how each paper was produced: recorded tasks, conversations, tool calls, 
 
 **Start here:** download the repository and open [the offline preview](demo.html), or run `python3 scripts/serve_traces.py --open` from the repository root for the complete browser. On GitHub, use the paper guides below to browse JSON directly.
 
+You can also send `demo.html` on its own: it embeds all eight sample rounds and its interface resources, and can export each sample round as JSON without a server.
+
 | Paper project | Conversations | Worker logs | Result records | Context notes | Recorded events | Trace guide |
 |---|---:|---:|---:|---:|---:|---|
 | `causal_style_decomp_judge` | 69 | 221 | 211 | 5 | 73,378 | [Browse](../paper-assets/causal_style_decomp_judge/05-generation-trace/README.md) |
