@@ -44,7 +44,8 @@
   async function selectProject(project, desiredSession=null, desiredRound=null) {
     const generation=++state.generation;
     ++state.roundGeneration;
-    state.session=null;state.messages=[];state.listLimit=50;
+    state.session=null;state.catalog=null;state.messages=[];state.listLimit=50;
+    $('session-list').replaceChildren();$('more-sessions').hidden=true;
     $('reader').hidden=true;$('empty').hidden=true;status('Loading source catalogue…');
     setQuery({project:project.project,session:desiredSession,round:desiredRound});
     $('project-title').textContent=project.title;
